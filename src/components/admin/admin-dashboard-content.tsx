@@ -41,6 +41,14 @@ export function AdminDashboardContent({user}: AdminDashboardContentProps) {
           <h3 className='text-lg font-semibold mb-2'>Restaurant Management</h3>
           <p className='text-gray-600'>Add, edit, or remove restaurants</p>
         </Link>
+
+        <Link
+          href='/admin/notifications'
+          className='block p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow'
+        >
+          <h3 className='text-lg font-semibold mb-2'>Push Notifications</h3>
+          <p className='text-gray-600'>Send notifications to users</p>
+        </Link>
       </div>
 
       <div className='bg-white rounded-lg shadow-sm p-6 mb-6'>

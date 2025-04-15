@@ -20,15 +20,49 @@ const nextConfig: NextConfig = {
 		// In production, don't fail the build if there are ESLint errors
 		ignoreDuringBuilds: isProduction,
 	},
+	
+	// Configure security headers for PWA
+	async headers() {
+		return [
+			{
+				// Apply these headers to all routes
+				source: '/(.*)',
+				headers: [
+					{
+						key: 'X-Content-Type-Options',
+						value: 'nosniff',
+					},
+					{
+						key: 'X-Frame-Options',
+						value: 'DENY',
+					},
+					{
+						key: 'Referrer-Policy',
+						value: 'strict-origin-when-cross-origin',
+					},
+				],
+			},
+			{
+				// Service worker specific headers
+				source: '/sw.js',
+				headers: [
+					{
+						key: 'Content-Type',
+						value: 'application/javascript; charset=utf-8',
+					},
+					{
+						key: 'Cache-Control',
+						value: 'no-cache, no-store, must-revalidate',
+					},
+				],
+			},
+		];
+	},
+
 	// Performance optimizations
-
-	// In development, enable React strict mode
-
 	// Improve load times with compression
 	compress: true,
 	// Improve performance with statically exported pages where possible
-
-	// Improved bundling
 
 	// Image configuration
 	images: {
