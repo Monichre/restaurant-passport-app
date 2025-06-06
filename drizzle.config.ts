@@ -5,7 +5,8 @@ import dotenv from "dotenv";
 // Load environment variables from .env file
 dotenv.config();
 export default defineConfig({
-	schema: "./src/db/schema.ts", // Where the generated schema will be written
+	schema: "./src/db/drizzle/schema.ts", // Where the generated schema will be written
+
 	dialect: "postgresql",
 	dbCredentials: {
 		url: process.env.DATABASE_URL || "",

@@ -1,0 +1,703 @@
+---
+description: AI rules derived by SpecStory from the project AI interaction history
+globs: *
+---
+
+## HEADERS
+
+This document defines the rules and guidelines for the AI coding assistant. It covers project standards, tech stack, workflow, and best practices. All generated code must adhere to these rules.
+
+## TECH STACK
+
+-   Next.js
+-   React
+-   TypeScript
+-   Tailwind CSS
+-   Supabase
+-   Drizzle ORM
+-   Lucide React
+-   Framer Motion
+-   canvas-confetti
+-   zod
+-   bun
+-   `@yudiel/react-qr-scanner`
+
+## PROJECT DOCUMENTATION & CONTEXT SYSTEM
+
+-   Use `@` to reference components, files, or data structures (e.g., `@AdminDashboardPage()`, `@useRaffleEntriesSubscription.tsx`, `@models`).
+-   When referring to a UI element, use the format `@ComponentName`.
+-   When referring to a file, use the format `@filename.ext`.
+-   When referring to a function or data structure, use the format `@functionName` or `@dataStructureName`.
+
+## UI DESIGN & COMPONENTS
+
+-   When creating UI, use loading states, error states, and empty states to provide a polished user experience.
+-   When displaying lists of data, use responsive grid layouts.
+-   When displaying key information, use cards.
+-   When displaying data in a tabular format, use the ui/table component.
+-   Ensure components are well-structured and maintainable.
+-   Increase contrast between dashboard components using borders and background colors to clearly distinguish sections.
+-   When addressing UI change requests:
+    - Analyze the request to understand the user's goal.
+    - Identify the affected element(s) using the provided URL and selected elements.
+    - Understand the context of the element within the page structure.
+    - Pay attention to styling inconsistencies, such as absolute positioning, background gradients, and typography.
+    - Propose concise fixes, focusing on removing conflicting styles and applying consistent styling from similar elements (e.g., the "hero div").
+    - Remove `absolute inset-0` unless an overlay is explicitly required.
+    - Remove any background gradient classes (e.g., `bg-gradient-to-*`, `from-*`, `to-*`) unless explicitly requested.
+    - Apply the same typography classes as semantically similar elements (e.g., hero div) (e.g., `text-4xl font-bold text-gray-900`).
+    - Ensure elements are positioned and styled consistently with the overall design.
+-   The `@restaurant-quick-view.tsx` component should display the restaurant's image from the `image_url` field on the restaurant database model. The image should be positioned prominently at the top of the restaurant information card in the BentoGrid layout. Use the Next.js `Image` component for optimized image handling. Ensure conditional rendering so that the image is only displayed if `restaurantData.imageUrl` exists. The image should have a fixed height (192px) and maintain its aspect ratio. Use rounded corners and proper overflow handling. Provide descriptive alt text using the restaurant name.
+-   The restaurant image in the quick view should be editable and updatable, allowing admins to upload new restaurant images using the `@storage.ts` module. The component should display an interactive image display with the following features:
+    - **Existing Image**: Hover overlay with "Change Image" button.
+    - **No Image**: Placeholder with "Upload Image" button.
+    - **Loading States**: Spinner and progress indicators during upload.
+    - Uses the `uploadRestaurantImage()` function from the `@storage.ts` module.
+    - Validates file types (JPEG, PNG, WebP, SVG only).
+    - Enforces 50MB file size limit.
+    - Generates public URLs for uploaded images.
+    - Updates local restaurant data after successful upload.
+    - Propagates changes to parent component via callback.
+    - Updates the database with the new image URL.
+    - Implements client-side file validation before upload.
+    - Displays toast notifications for success/error states.
+    - Provides comprehensive error logging and graceful failure handling.
+    - Uses smooth hover transitions and visual feedback.
+    - Uses a hidden file input for a clean UI.
+    - Implements loading states with spinner animations.
+    - Includes clear visual indicators for interactive elements.
+    - When no image is available, display a placeholder with an upload button.
+    - When an image is available, display an overlay with a "Change Image" button on hover.
+    - The `imageUrl` from `@db.ts @Restaurant` should get updated to the URL of the newly uploaded image on save in the `@restaurant-quick-view.tsx`.
+    - When the `imageUrl` is updated in the `@restaurant-quick-view.tsx` component, ensure that the component receives the new `imageUrl` from the server action, the local `restaurantData` state is updated with the new `imageUrl`, and the UI immediately reflects the newly uploaded image.
+
+## DATA FETCHING & API
+
+-   Use Drizzle ORM for database interactions.
+-   Use server actions for data mutations.
+-   When fetching data, handle loading states, error states, and empty states.
+-   When creating API endpoints, implement proper error handling.
+-   When fetching data for a specific user, filter the data by user ID.
+-   When real-time updates are required, use Supabase subscriptions.
+
+## AUTHENTICATION & AUTHORIZATION
+
+-   (Deprecated) Authentication and authorization checks are no longer required for raffle entries API routes.
+-   When a new user is created, update the Clerk user's metadata with the Supabase user ID. Use `privateMetadata` to store this sensitive linking information, as it should only be accessible from the backend.
+    -   After creating a user in Supabase, update the corresponding Clerk user's `privateMetadata` with the Supabase user ID. This allows linking Clerk users to their database records.
+    -   Access the Supabase user ID from `user.privateMetadata.supabaseUserId` on the backend.
+    -   Ensure the bigint user ID is converted to a string for metadata storage.
+
+## DEBUGGING
+
+-   Use `console.log` statements to debug code.
+-   Inspect network requests in the browser's developer tools to debug API calls.
+-   Inspect React component state using React Developer Tools.
+
+## WORKFLOW & RELEASE RULES
+
+-   Create a pull request for each new feature or bug fix.
+-   Get code reviewed before merging.
+-   Run tests before deploying.
+-   Use SpecStory to generate documentation.
+
+## NAMING CONVENTIONS
+
+-   Use descriptive names for variables and functions.
+-   Use consistent naming conventions throughout the project.
+-   For subscription hooks, use the format `use[ComponentName]Subscription`. If singular is more appropriate, use that. Example: `useRestaurantSubscription` instead of `useRestaurantsSubscription`.
+
+## ERROR HANDLING
+
+-   Handle errors gracefully.
+-   Display user-friendly error messages.
+-   Log errors to the console.
+
+## CODE ORGANIZATION
+
+-   Keep components small and focused.
+-   Use a modular code structure.
+-   Separate UI components from business logic.
+
+## DATABASE INTERACTIONS
+
+-   Use Drizzle ORM for all database interactions.
+-   Create CRUD functions for each database model.
+-   Use Supabase for real-time subscriptions.
+
+## STATE MANAGEMENT
+
+-   Use React's `useState` hook for local component state.
+-   Use React Context for global state.
+-   Use refs for values that should not trigger re-renders.
+
+## ANIMATIONS
+
+-   Use Framer Motion for animations.
+-   Use canvas-confetti for confetti animations.
+
+## IMAGE HANDLING
+
+-   Configure Next.js Image component for external image sources.
+-   Use Next.js Image component for optimized image loading.
+-   The `domains` array in `next.config.js` should contain just the hostname portion, without protocols or trailing slashes.
+-   For admin operations like restaurant image uploads, use server-side upload instead of client-side uploads to prevent Row-Level Security (RLS) policy violations.
+    - To facilitate this, create a **server action** that handles image upload using **server-side storage functions** with proper permissions.
+    - Use `uploadFileServer` in server actions, as it has proper server-side permissions.
+    - The component should create `FormData` and call the server action.
+    - If you exclusively use Storage from trusted clients, such as your own servers, and need to bypass the RLS policies, you can use the service key in the Authorization header. Service keys entirely bypass RLS policies, granting you unrestricted access to all Storage APIs.
+    -   You must add the `SUPABASE_SERVICE_ROLE_KEY` environment variable to your `.env.local` file and restart your development server.
+
+## TABLE DISPLAY
+
+-   When using tables, ensure that `<td>` elements are direct children of `<tr>` elements. Avoid nesting `<td>` elements inside `<div>` elements.
+-   Use `motion(TableRow)` to animate table rows. The animation properties should be directly on the table row component.
+-   Ensure pagination state is properly preserved when data updates.
+-   Use explicit state management for pagination to avoid unexpected resets.
+
+## DEVELOPMENT TOOLING
+
+-   Use Stagewise dev-tool for AI-powered editing capabilities in development.
+-   Install the `@stagewise/toolbar-next` package for Next.js projects.
+-   Create a `StagewiseDevToolbar` component that only renders in `development` mode.
+-   Include `<StagewiseDevToolbar />` in `src/app/layout.tsx`.
+-   Ensure the Stagewise toolbar is not included in production builds.
+
+## QR CODE SCAN FUNCTIONALITY
+
+-   When implementing QR code scan functionality, consider the following user journeys:
+    - Authenticated user scans to action.
+    - Unauthenticated user scans QR code generated by authenticated user for referral.
+    - Unregistered user scans a QR code at a participating restaurant to join the app.
+-   For unauthenticated referral flow:
+    - Ensure cross-platform detection across various QR readers.
+    - Redirect to web application signup page.
+    - Maintain scan context through the signup process using a temporary token/ID system.
+    - Implement security considerations for state management, including token expiration.
+    - Trigger badge fulfillment on successful account creation.
+    - Reconcile data between scan and new account.
+-   Address architectural considerations including:
+    - URL structure and parameter handling.
+    - Cross-platform compatibility.
+    - Error handling and edge cases.
+    - Analytics and tracking requirements.
+    - Database schema implications.
+-   When generating QR codes for referrals:
+    - Encode the referral URL with `referrerId`, `restaurantId` (optional), and a secure, time-limited `token`. Example: `/referral?referrerId=<userId>&restaurantId=<restaurantId>&token=<secureToken>`.
+    - Generate tokens using JWT or random UUID, storing them in the `referral_tokens` table with metadata and expiration.
+    - Create a backend endpoint `POST /api/referrals/generate` that accepts `{ referrerId, restaurantId }` and returns `{ url, token, expiresAt }`.
+-   When an unauthenticated user scans a referral QR code:
+    - The `/referral` route should detect the unauthenticated user and prompt them to sign up with a message like: "Sign up to claim your reward from <referrer/restaurant>!".
+    - Store the referral token and parameters in session/localStorage for multi-step signup or in the Next.js server session.
+    - Use a `referral_tokens` table with fields: `{ token, referrerId, restaurantId, createdAt, expiresAt, claimedByUserId, status }`. Mark the token as "claimed" after signup.
+-   On signup completion:
+    - Create a backend endpoint `POST /api/referrals/claim` that accepts `{ token, newUserId }`.
+    - Validate the token and mark the referral as claimed.
+    - Award the "First Restaurant" badge or points to the new user and optionally reward the referrer.
+    - Link the referral record to the new user and log the conversion.
+-   Implement the following security measures:
+    - Use JWT (signed, expiring) or random UUID (stored in DB) for tokens.
+    - Expire tokens after a short period (e.g., 24h).
+    - Mark tokens as claimed after use.
+    - Validate all parameters server-side.
+    - Log all actions for audit/analytics.
+-   Implement the following error handling:
+    - Show an error and prompt to sign up without reward for invalid/expired tokens.
+    - Inform the user and allow normal signup if the token is already claimed.
+    - Show a generic error for missing parameters.
+    - Ensure tokens remain unclaimed until expiration if signup is abandoned.
+-   Implement analytics and tracking for:
+    - QR code generation (who, when, where).
+    - Scan events (IP, device, timestamp).
+    - Signup completions (conversion rate).
+    - Badge/point fulfillment.
+-   The `referral_tokens` table should have the following structure:
+    ```typescript
+    export const referralTokens = pgTable("referral_tokens", {
+      id: serial("id").primaryKey(),
+      token: text("token").notNull().unique(),
+      referrerId: integer("referrer_id").references(() => users.id),
+      restaurantId: integer("restaurant_id").references(() => restaurants.id),
+      createdAt: timestamp("created_at").defaultNow(),
+      expiresAt: timestamp("expires_at"),
+      claimedByUserId: integer("claimed_by_user_id").references(() => users.id),
+      status: text("status").notNull().default("active"), // active, claimed, expired
+    });
+    ```
+-   Implement the following API endpoints:
+    - `POST /api/referrals/generate` – Authenticated, returns referral URL/token.
+    - `GET /api/referrals/validate?token=...` – Validates token (for landing page).
+    - `POST /api/referrals/claim` – On signup, claims reward.
+-   **Public QR Onboarding Flow:**
+    - **Scenario:** A non-app-user (stranger/guest) scans a QR code displayed at a participating restaurant. The system should:
+        - Recognize the scan as coming from a public QR code (not a referral or user-generated code).
+        - Guide the user to sign up for the app, preserving the context of which restaurant’s QR code was scanned.
+        - Upon signup, award the "First Restaurant" badge or points.
+    - **Step-by-Step Implementation Plan:**
+        - **1. QR Code Generation & Placement**
+            - **What Data Should Be Encoded?**
+                - **URL format:**  
+                  `https://app.example.com/qr?restaurantId=<restaurantId>&campaign=<optional>`
+                    - `restaurantId`: Unique identifier for the restaurant.
+                    - `campaign`: (Optional) For tracking special promotions.
+            - **How to Generate?**
+                - **Admin dashboard**: Restaurant admins or system admins generate QR codes for each location.
+                - **Backend endpoint**:  
+                  - `GET /api/qr/generate?restaurantId=...`
+                  - Returns a QR code image (PNG/SVG) encoding the above URL.
+                - **Physical placement**: Print and place QR codes on tables, menus, posters, etc.
+        - **2. Scan by Unregistered User**
+            - **Cross-Platform Detection**
+                - Any QR reader (native camera, 3rd party app) opens the encoded URL in a browser.
+            - **Landing Page Logic**
+                - **Route:** `/qr` (Next.js page)
+                - **Behavior:**
+                    - If user is **not authenticated**:
+                        - Show a branded landing page:  
+                          “Welcome to [App Name]! You scanned a code at [Restaurant Name]. Sign up to start earning rewards.”
+                        - Prominent **Sign Up** and **Sign In** buttons.
+                        - Store `restaurantId` (and `campaign` if present) in localStorage, session, or as a query param for the signup flow.
+                    - If user is **already authenticated**:
+                        - Optionally, redirect to punch card for that restaurant or show a “Welcome back!” message.
+        - **3. State Preservation Through Signup**
+            - **How to Maintain Context?**
+                - **Store `restaurantId` and `campaign`**:
+                    - In localStorage/sessionStorage (client-side)
+                    - Or as a query param passed through the signup flow
+                - **Signup flow** (Clerk or custom):
+                    - On successful signup, check for stored `restaurantId`/`campaign` context.
+            - **Security Considerations**
+                - No sensitive data in QR or URL.
+                - Validate `restaurantId` on backend before granting rewards.
+                - Optionally, set a short-lived cookie or session value for extra robustness.
+        - **4. Signup Completion & Reward**
+            - **On Account Creation**
+                - **Backend logic** (triggered post-signup):
+                    - Check for `restaurantId` context.
+                    - Award “First Visit” badge, points, or other onboarding reward.
+                    - Optionally, create a punch card for the restaurant.
+                    - Log the event for analytics (user, restaurant, campaign, timestamp).
+            - **Data Reconciliation**
+                - Link the new user to the restaurant for analytics.
+                - Optionally, send a welcome notification or email.
+    - **Technical Requirements & Specifications**
+        - **A. URL Structure & Parameter Handling**
+            - `/qr?restaurantId=123&campaign=spring2024`
+            - All params validated server-side.
+            - Use Next.js dynamic route: `/app/qr/page.tsx`
+        - **B. Token Expiration & Security**
+            - No sensitive tokens needed; only public IDs.
+            - Validate `restaurantId` exists and is active.
+            - Prevent abuse (e.g., rate limit badge/point grants per user).
+        - **C. Cross-Platform Compatibility**
+            - QR code encodes HTTPS URL.
+            - Works with any QR reader/camera.
+            - Mobile-first, responsive landing page.
+        - **D. Error Handling & Edge Cases**
+            - **Invalid/missing `restaurantId`**: Show error, allow generic signup.
+            - **Already signed up user scans**: Show punch card or “already a member” message.
+            - **Signup abandoned**: No reward granted until signup completes.
+        - **E. Analytics & Tracking**
+            - Log:
+                - QR code scans (IP, device, timestamp, restaurant, campaign)
+                - Signups from QR flow (conversion rate)
+                - Badge/point fulfillment
+            - Use for campaign effectiveness, restaurant engagement, etc.
+        - **F. Database Schema Implications**
+            - **No new tables required** (unless you want to track scans separately).  
+            - Optionally, add a `qr_signup_source` or `last_qr_scan_restaurant_id` field to the `users` table for attribution.
+            - Log events in an `analytics` or `qr_scan_events` table for deeper insights.
+    - **API Endpoints**
+        | Endpoint                       | Method | Purpose                        | Auth Required | Params/Body                |
+        |------------------------------- |--------|------------------------------- | 구분 | 구분 |
+        | `/api/qr/generate`             | GET    | Generate QR code for restaurant| Yes (admin)  | `restaurantId`, `campaign`|
+        | `/api/qr/scan`                 | POST   | Log scan event                 | No           | `{restaurantId, campaign, deviceInfo}`|
+        | `/api/qr/signup-complete`      | POST   | Award badge/points post-signup | Yes (new user)| `{restaurantId, campaign}`|
+    - **Data Flow Diagram**
+        ```mermaid
+        sequenceDiagram
+            participant Guest as Unregistered User
+            participant QR as QR Code
+            participant App as Web App
+            participant API as Backend API
+            participant DB as Database
+
+            Guest->>QR: Scans QR code
+            QR-->>App: Opens /qr?restaurantId=123
+            App->>API: POST /api/qr/scan (log event)
+            App->>Guest: Shows signup prompt (with restaurant context)
+            Guest->>App: Completes signup
+            App->>API: POST /api/qr/signup-complete
+            API->>DB: Award badge/points, create punch card
+            App->>Guest: Shows welcome/reward
+        ```
+    - **Summary Table: Key Endpoints & Data**
+        | Endpoint                       | Method | Purpose                        | Auth Required | Params/Body                |
+        |------------------------------- |--------|------------------------------- | 구분 | 구분 |
+        | `/api/qr/generate`             | GET    | Generate QR code for restaurant| Yes (admin)  | `restaurantId`, `campaign`|
+        | `/api/qr/scan`                 | POST   | Log scan event                 | No           | `{restaurantId, campaign, deviceInfo}`|
+        | `/api/qr/signup-complete`      | POST   | Award badge/points post-signup | Yes (new user)| `{restaurantId, campaign}`|
+    - **Security & Best Practices**
+        - No sensitive data in QR/URL.
+        - Validate all params server-side.
+        - Prevent duplicate rewards for same user/restaurant.
+        - Log all actions for analytics.
+    - **Edge Cases & Error Handling**
+        - Invalid/missing `restaurantId`: Show error, allow generic signup.
+        - Already registered user: Show punch card or “already a member” message.
+        - Multiple signups from same device: Prevent abuse.
+    - **Analytics & Tracking**
+        - Track scans, signups, reward fulfillment.
+        - Attribute new users to restaurants/campaigns.
+    - **Database Schema Changes (Optional)**
+        - Add `qr_signup_source` to `users` table.
+        - Add `qr_scan_events` table for analytics.
+    - **Next Steps**
+        - Implement QR code generation and admin UI.
+        - Build `/qr` landing page and signup flow.
+        - Integrate reward logic post-signup.
+        - Add analytics and error handling.
+
+## SUPABASE STORAGE RULES
+
+-   Use the `qr-codes` bucket for storing QR codes.
+-   Use the `restaurants` bucket for storing restaurant images and assets.
+
+## STORAGE MODULE RULES
+
+-   The Storage module provides a comprehensive interface for managing file storage operations in Supabase Storage. It supports two primary buckets:
+    -   `restaurants` - For restaurant images (logos, banners, gallery images)
+    -   `qr-codes` - For QR code images generated for restaurants
+
+-   **Key Components:**
+    -   `StorageResponse<T>` - Standardized response format with data, error, and success fields
+    -   `UploadOptions` - Configuration for file uploads (cache control, upsert, content type)
+    -   `ListOptions` - Configuration for file listing (pagination, sorting, search)
+    -   `BucketName` - Type-safe bucket names (`'qr-codes' | 'restaurants'`)
+    -   `FileObject` - Supabase file metadata structure
+    -   `FileInfo` - Detailed file information structure
+
+-   **Error Handling:**
+    -   `StorageError` - Custom error class with error codes and details
+    -   `StorageErrorCode` - Enumeration of specific error types
+    -   Comprehensive error handling with user-friendly messages
+
+-   **Security Features:**
+    -   Path validation to prevent directory traversal attacks
+    -   File type validation for images
+    -   File size limits (50MB max)
+    -   Content type validation
+
+-   **Dual Client Support:**
+    -   **Server Operations**: Use `createSupabaseServerClient()` for server-side operations
+    -   **Client Operations**: Use `supabaseBrowserClient` for client-side operations
+
+-   **Core Functions:**
+    -   **Server-Side Operations:**
+        -   **File Upload:**
+            ```typescript
+            uploadFileServer(
+              bucket: BucketName,
+              path: string,
+              file: File | ArrayBuffer,
+              options?: UploadOptions
+            ): Promise<StorageResponse>
+            ```
+        -   **File Download:**
+            ```typescript
+            downloadFileServer(
+              bucket: BucketName,
+              path: string
+            ): Promise<StorageResponse<Blob>>
+            ```
+        -   **List Files:**
+            ```typescript
+            listFilesServer(
+              bucket: BucketName,
+              folder?: string,
+              options?: ListOptions
+            ): Promise<StorageResponse<FileObject[]>>
+            ```
+        -   **File Deletion:**
+            ```typescript
+            deleteFileServer(bucket: BucketName, path: string): Promise<StorageResponse>
+            deleteFilesServer(bucket: BucketName, paths: string[]): Promise<StorageResponse>
+            ```
+        -   **File Management:**
+            ```typescript
+            moveFileServer(bucket: BucketName, fromPath: string, toPath: string): Promise<StorageResponse>
+            copyFileServer(bucket: BucketName, fromPath: string, toPath: string): Promise<StorageResponse>
+            ```
+        -   **Signed URLs:**
+            ```typescript
+            getSignedUrlServer(
+              bucket: BucketName,
+              path: string,
+              expiresIn?: number
+            ): Promise<StorageResponse<string>>
+            ```
+    -   **Client-Side Operations:**
+        -   **File Upload:**
+            ```typescript
+            uploadFileClient(
+              bucket: BucketName,
+              path: string,
+              file: File,
+              options?: UploadOptions
+            ): Promise<StorageResponse>
+            ```
+    -   **Universal Operations:**
+        -   **Public URL Generation:**
+            ```typescript
+            getPublicUrl(bucket: BucketName, path: string): string
+            ```
+
+-   **Convenience Functions:**
+    -   **Restaurant Image Management:**
+        -   **Upload Restaurant Image:**
+            ```typescript
+            uploadRestaurantImage(
+              restaurantId: string,
+              file: File,
+              imageType: 'logo' | 'banner' | 'gallery' = 'logo'
+            ): Promise<StorageResponse>
+            ```
+        -   **Get Restaurant Images:**
+            ```typescript
+            getRestaurantImages(
+              restaurantId: string,
+              imageType?: 'logo' | 'banner' | 'gallery'
+            ): Promise<StorageResponse<FileObject[]>>
+            ```
+        -   **Delete Restaurant Images:**
+            ```typescript
+            deleteRestaurantImages(
+              restaurantId: string,
+              imageType?: 'logo' | 'banner' | 'gallery'
+            ): Promise<StorageResponse>
+            ```
+    -   **QR Code Management:**
+        -   **Upload QR Code:**
+            ```typescript
+            uploadQRCode(
+              restaurantId: string,
+              qrType: 'menu' | 'contact' | 'referral' = 'menu',
+              qrCodeBuffer: ArrayBuffer
+            ): Promise<StorageResponse>
+            ```
+        -   **Get QR Codes:**
+            ```typescript
+            getQRCodes(
+              restaurantId: string,
+              qrType?: 'menu' | 'contact' | 'referral'
+            ): Promise<StorageResponse<FileObject[]>>
+            ```
+        -   **Delete QR Codes:**
+            ```typescript
+            deleteQRCodes(
+              restaurantId: string,
+              qrType?: 'menu' | 'contact' | 'referral'
+            ): Promise<StorageResponse>
+            ```
+
+-   **Utility Functions:**
+    -   **Path Management:**
+        -   `validatePath(path: string)` - Validates file paths for security
+        -   `normalizeFilePath(path: string)` - Normalizes file paths
+        -   `getFileExtension(filename: string)` - Extracts file extension
+    -   **File Validation:**
+        -   `validateFileType(file: File, allowedTypes: string[])` - Validates file MIME types
+        -   `validateFileSize(file: File, maxSize?: number)` - Validates file size
+
+-   **Data Flow:**
+    -   **Upload Process:**
+        1.  **Validation** - Path, file type, and size validation
+        2.  **Normalization** - Path normalization and sanitization
+        3.  **Client Selection** - Choose appropriate Supabase client (server/browser)
+        4.  **Upload** - Execute upload with specified options
+        5.  **Error Handling** - Comprehensive error handling and logging
+        6.  **Response** - Return standardized response format
+    -   **Download Process:**
+        1.  **Path Validation** - Ensure path security
+        2.  **Client Selection** - Use server client for downloads
+        3.  **Download** - Retrieve file as Blob
+        4.  **Error Handling** - Handle download failures
+        5.  **Response** - Return file data or error
+    -   **Listing Process:**
+        1.  **Folder Configuration** - Set up folder path and options
+        2.  **Query Execution** - Execute list query with pagination/sorting
+        3.  **Data Processing** - Process file metadata
+        4.  **Response** - Return file list or error
+
+-   **Security Features:**
+    -   **Path Security:**
+        -   Prevents directory traversal attacks (`../`)
+        -   Blocks absolute paths
+        -   Removes double slashes
+        -   Normalizes paths consistently
+    -   **File Validation:**
+        -   **Type Restrictions**: Only allows specified image types for restaurant bucket
+        -   **Size Limits**: 50MB maximum file size
+        -   **Content Type**: Validates MIME types
+    -   **Access Control:**
+        -   Server-side operations use authenticated client
+        -   Client-side operations use browser client with RLS policies
+        -   Signed URLs for temporary private access
+
+-   **Error Handling Strategy:**
+    -   **Error Types:**
+        -   `FILE_NOT_FOUND` - Requested file doesn't exist
+        -   `UPLOAD_FAILED` - Upload operation failed
+        -   `INVALID_PATH` - Path validation failed
+        -   `BUCKET_NOT_FOUND` - Specified bucket doesn't exist
+        -   `PERMISSION_DENIED` - Access denied
+        -   `FILE_TOO_LARGE` - File exceeds size limit
+        -   `INVALID_FILE_TYPE` - File type not allowed
+        -   `DOWNLOAD_FAILED` - Download operation failed
+        -   `DELETE_FAILED` - Delete operation failed
+        -   `LIST_FAILED` - List operation failed
+    -   **Error Response Format:**
+        ```typescript
+        {
+          data: null,
+          error: "User-friendly error message",
+          success: false
+        }
+        ```
+
+-   **Performance Considerations:**
+    -   **Optimization Features:**
+        -   **Caching**: Configurable cache control headers
+        -   **Compression**: Automatic content compression
+        -   **CDN Ready**: Public URLs support CDN integration
+        -   **Batch Operations**: Support for multiple file operations
+    -   **Best Practices:**
+        -   Use appropriate cache control settings
+        -   Implement pagination for large file lists
+        -   Use signed URLs for temporary access
+        -   Batch delete operations when possible
+
+-   **Usage Examples:**
+    -   **Upload Restaurant Logo:**
+        ```typescript
+        import { uploadRestaurantImage } from '@/db/storage';
+
+        const handleLogoUpload = async (file: File, restaurantId: string) => {
+          const { data, error, success } = await uploadRestaurantImage(
+            restaurantId,
+            file,
+            'logo'
+          );
+
+          if (success) {
+            console.log('Logo uploaded:', data);
+          } else {
+            console.error('Upload failed:', error);
+          }
+        };
+        ```
+    -   **Generate and Upload QR Code:**
+        ```typescript
+        import { uploadQRCode } from '@/db/storage';
+
+        const generateMenuQR = async (restaurantId: string, menuData: any) => {
+          // Generate QR code (implementation depends on QR library)
+          const qrCodeBuffer = await generateQRCodeBuffer(menuData);
+
+          const { data, error, success } = await uploadQRCode(
+            restaurantId,
+            'menu',
+            qrCodeBuffer
+          );
+
+          if (success) {
+            console.log('QR code uploaded:', data);
+          } else {
+            console.error('QR upload failed:', error);
+          }
+        };
+        ```
+    -   **List Restaurant Images:**
+        ```typescript
+        import { getRestaurantImages, getPublicUrl } from '@/db/storage';
+
+        const loadRestaurantGallery = async (restaurantId: string) => {
+          const { data: images, error, success } = await getRestaurantImages(
+            restaurantId,
+            'gallery'
+          );
+
+          if (success && images) {
+            const imageUrls = images.map(image =>
+              getPublicUrl('restaurants', `gallery/${image.name}`)
+            );
+            return imageUrls;
+          } else {
+            console.error('Failed to load gallery:', error);
+            return [];
+          }
+        };
+        ```
+    -   **Cleanup Old Files:**
+        ```typescript
+        import { deleteQRCodes } from '@/db/storage';
+
+        const cleanupOldQRCodes = async (restaurantId: string) => {
+          const { success, error } = await deleteQRCodes(restaurantId, 'menu');
+
+          if (success) {
+            console.log('Old QR codes cleaned up');
+          } else {
+            console.error('Cleanup failed:', error);
+          }
+        };
+        ```
+
+-   **Module Integration:**
+    -   **Import Patterns:**
+        ```typescript
+        // Individual functions
+        import {
+          uploadFileClient,
+          getPublicUrl,
+          uploadRestaurantImage
+        } from '@/db/storage';
+
+        // Default export with all functions
+        import storage from '@/db/storage';
+        ```
+        -   **For resolving "Module '"@/db/storage"' has no exported member 'BUCKET_NAMES'." errors, import directly from specific storage modules instead of the main `@/db/storage` entry point.**
+    -   **Types and constants**
+        ```typescript
+        import {
+          BucketName,
+          StorageResponse,
+        } from '@/db/storage';
+        ```
+    -   **Server Actions Integration**
+-   **Important:**
+    - When using server-side storage operations in the Storage module (`storage-server.ts`), always use `createSupabaseServerClient()` and `await` its result. Do not use `createSupabaseServiceClient()`.
+    - To address RLS policy violations when uploading restaurant images, use server-side upload. To facilitate this, create a **server action** that handles image upload using **server-side storage functions** with proper permissions. Use the service key in the Authorization header. You must add the `SUPABASE_SERVICE_ROLE_KEY` environment variable to your `.env.local` file and restart your development server.
+
+## NEXT.JS
+
+-   Avoid calling client functions from the server (e.g., `getPublicUrl()`). Client functions can only be rendered as a Component or passed to props of a Client Component.
+-   When using server actions for image uploads, use the `getPublicUrl` function from `@/db/storage/storage-client` to generate the public URL of the uploaded image.
+    -   (Deprecated) Use `getPublicUrlServer()` instead. `getPublicUrl()` is client-side only and cannot be called from server actions.
+
+## SUPABASE
+
+-   For admin operations that require bypassing Row-Level Security (RLS) policies, use a service client.
+    - Create a `createSupabaseServiceClient()` function that uses the `SUPABASE_SERVICE_ROLE_KEY` environment variable.
+    - Use this service client within server-side storage functions for admin operations.
+    - Ensure the `SUPABASE_SERVICE_ROLE_KEY` environment variable is set in `.env.local` and the development server is restarted after adding this variable.
+
+## DATABASE UPDATES
+
+-   When new images are uploaded, update the `imageUrl` field in the restaurant database model to reflect the new image URL.
+-   When updating restaurant image URLs in the database, use a script that:
+    -   Connects to the Supabase database.
+    -   Fetches all restaurants from the database.
+    -   Uses a mapping array of updates, matching restaurant names (handling variations).
+    -   Executes batch or individual updates to the `imageUrl` field.
+    -   Logs update successes and failures.

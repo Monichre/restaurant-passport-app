@@ -1,222 +1,344 @@
-# Restaurant Data Scraper
+Below is an updated Product Requirements Document that emphasizes Next.js, TypeScript, Tailwind CSS, ShadCN/UI, Framer Motion, Storybook, Supabase (PostgreSQL), and Clerk for authentication. It also highlights role-based authorization (User, Restaurant Admin, System Admin), user profiles, and prize management. It includes the relevant database model schema and the associated CRUD/REST endpoints.
 
-This project scrapes restaurant information from a list of URLs. It extracts:
+Digital Punch Card & Loyalty Platform
 
-- Restaurant name
-- Address information (particularly in Maple Grove, Minnesota)
-- Restaurant image (logo or photo)
+1. Overview
 
-## Prerequisites
+This application is a Next.js-based digital punch card and loyalty system that leverages TypeScript for type safety, Tailwind CSS + ShadCN/UI for styling, Framer Motion for animations, Storybook for UI component documentation, and Clerk for authentication. The database is managed by Supabase (PostgreSQL) with Drizzle integration. Users earn “punches” at participating restaurants, can redeem prizes, and share achievements. Restaurants (via their admins) and a system admin can manage data through protected routes.
 
-- Node.js 16 or higher
-- npm or yarn package manager
+Key Features
+ • Digital Punch Cards: Users earn punches, and upon reaching a threshold (e.g., 10 punches), they are entered into a raffle.
+ • Role-Based Authorization:
+ • User: Access their own profile, punch cards, achievements, and can transfer/earn points.
+ • Restaurant Admin: Manage restaurant-specific data (prizes, analytics, etc.) for their own restaurant(s).
+ • System Admin: Full access to all resources (managing users, restaurants, etc.).
+ • Real-Time QR Code Validation: Staff or admins can scan a user’s QR code to add a punch instantly (via WebSockets).
+ • Prizes & Raffles: Advanced prize management, redemption tracking, and raffle entries upon completing a punch card.
+ • Points & Achievements: Gamified point transfer system with achievements and real-time leaderboard updates.
+ • Analytics Dashboard: Restaurant-level analytics for punch cards, user activity, and prize redemptions.
 
-## Installation
+2. Technical Stack
+1. Next.js (TypeScript)
+ • Server-side rendering, file-based routing, API routes for some server logic if needed.
+ • Integration with Storybook for UI component development.
+2. Clerk Authentication
+ • Manages user sign-up, sign-in, SSO, and role-based access (user, restaurant admin, system admin).
+3. Supabase (PostgreSQL)
+ • Hosts the database.
+ • Communicated with via a custom storage layer.
+4. Tailwind CSS + ShadCN/UI
+ • Provides utility-based styling and pre-built components for a consistent UI/UX.
+5. Framer Motion
+ • Animations for badges, transitions, and dynamic elements (e.g., leaderboard updates).
+6. WebSockets
+ • Real-time communication for QR validation and leaderboard updates.
+7. Storybook
+ • Document and test UI components in isolation.
 
-1. Clone this repository or download the code
-2. Install dependencies:
+3. Roles & Authorization
+1. User
+ • Default role after sign-up.
+ • Can view their profile, punch cards, achievements, and transfer points to other users.
+2. Restaurant Admin
+ • Can manage the resources (e.g., prizes, analytics) for their assigned restaurant(s).
+ • Has extended permissions to update punch cards, view analytics, and handle prize redemptions for their restaurant.
+3. System Admin
+ • Has full access to all resources across the platform.
+ • Manages users, restaurants, global settings, and can see all analytics.
 
-```bash
-npm install
-# or
-yarn install
-```
+4. User Flows & Features
 
-## How to Use
+4.1 User Onboarding & Profile
+ • Sign Up / Sign In:
+ • Powered by Clerk.
+ • The sign-up flow ensures users have a clerkId, and they’re assigned the default “User” role.
+ • Profile Page:
+ • Displays user information, achievements, points, and punch cards.
 
-1. Make sure your `scripts/restaurants.json` file contains an array of restaurant URLs
-2. Run the scraper using either:
+4.2 Punch Card System
+ • Restaurant Listing Page:
+ • Shows participating restaurants with relevant info (name, image, address, etc.).
+ • Punch Card View:
+ • Shows the user’s punch count and a QR code to be scanned by staff.
+ • Once a user hits the required punches, the card is marked completed and a raffle entry is created.
 
-```bash
-# Using npm script
-npm start
+4.3 QR Code Validation & Raffle
+ • QR Scanning (Staff or Restaurant Admin):
+ • Real-time validation via WebSockets.
+ • Increments the punch card and checks if it’s completed.
+ • Raffle Entries:
+ • Automatically created when a punch card completes.
+ • Used for prize drawings and giveaways.
 
-# Or using the shell script (recommended)
-npm run scrape
-# or directly
-bash scripts/run-scraper.sh
-```
+4.4 Prizes & Prize Redemptions
+ • Prize Management (Restaurant Admin or System Admin):
+ • Create, edit, and delete prizes (e.g., free coffee, dessert).
+ • Configure redemption rules, expiration, quantity, etc.
+ • Prize Redemption:
+ • Users can redeem prizes if they meet the required punches.
+ • System tracks redemption status (redeemed, pending, etc.) and handles expiration logic.
 
-3. The scraper will process the URLs in batches and save the results to `restaurant-data.json` in the project root
+4.5 Points & Achievements
+ • Point Balances:
+ • Users have a points balance that can be transferred to other users.
+ • Point Transfers:
+ • A user can send points to another user (if they have enough).
+ • Achievements triggered by the first transfer, or certain milestones (100, 500, 1000 points, etc.).
+ • Leaderboard:
+ • Real-time ranking of users by their points, updated via WebSockets.
 
-## Output Format
+4.6 Analytics & Dashboards
+ • Restaurant Analytics:
+ • Accessible to Restaurant Admin for their restaurant and System Admin for all.
+ • Tracks user engagement (punch cards completed, redemption rates, active users, etc.).
+ • Graphs and charts for daily/weekly/monthly trends.
 
-The output file `restaurant-data.json` contains:
+5. Database Model & CRUD/REST Routes
 
-- `scrapedAt`: Timestamp of when the scraping was performed
-- `totalScraped`: Total number of URLs processed
-- `validResults`: Number of URLs that yielded usable data
-- `restaurants`: Array of restaurant data objects with:
-  - `name`: The name of the restaurant
-  - `address`: The address information found
-  - `imageUrl`: URL of a restaurant image (logo or photo)
-  - `sourceUrl`: The original URL that was scraped
+Below is the Drizzle ORM schema (TypeScript + Zod) defining the PostgreSQL tables. Each table has corresponding CRUD/REST routes (or integrated Next.js API routes, depending on structure).
 
-## Project Structure
+5.1 Database Schema
 
-```
-.
-├── scripts/
-│   ├── restaurants.json     # List of restaurant URLs to scrape
-│   ├── scrape-restaurants.js # Main scraper script
-│   └── run-scraper.sh       # Helper shell script
-├── restaurant-data.json     # Output file (generated after running)
-├── package.json
-└── README.md
-```
+import { pgTable, text, serial, integer, boolean, timestamp, json } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
 
-## Limitations
+/*USERS*/
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  clerkId: text("clerk_id").notNull().unique(),
+  name: text("name").notNull(),
+  isStaff: boolean("is_staff").default(false),   // e.g., restaurant admin
+  isAdmin: boolean("is_admin").default(false),   // system admin
+});
 
-- Some websites may block web scraping or have unusual structures that the scraper can't handle
-- The address extraction prioritizes finding information about Maple Grove, MN
-- Image extraction attempts to find meaningful restaurant images, but may sometimes fail
+/*RESTAURANTS*/
+export const restaurants = pgTable("restaurants", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  imageUrl: text("image_url").notNull(),
+  address: text("address").notNull(),
+});
 
-## Customization
+/*PUNCH CARDS*/
+export const punchCards = pgTable("punch_cards", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  restaurantId: integer("restaurant_id").references(() => restaurants.id),
+  punches: integer("punches").default(0),
+  completed: boolean("completed").default(false),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
 
-You can modify the selectors in the `scrapeRestaurantInfo` function to better target specific websites if needed.
+/*RAFFLE ENTRIES*/
+export const raffleEntries = pgTable("raffle_entries", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  punchCardId: integer("punch_card_id").references(() => punchCards.id),
+  createdAt: timestamp("created_at").defaultNow(),
+});
 
-## License
+/*PRIZES*/
+export const prizes = pgTable("prizes", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  imageUrl: text("image_url").notNull(),
+  type: text("type").notNull(),
+  restaurantId: integer("restaurant_id").references(() => restaurants.id),
+  requiredPunches: integer("required_punches").notNull(),
+  available: boolean("available").default(true),
+  quantity: integer("quantity").default(0),
+  rules: json("rules").default({}).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
 
-MIT
+/*PRIZE REDEMPTIONS*/
+export const prizeRedemptions = pgTable("prize_redemptions", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  prizeId: integer("prize_id").references(() => prizes.id),
+  punchCardId: integer("punch_card_id").references(() => punchCards.id),
+  status: text("status").notNull(),
+  redeemedAt: timestamp("redeemed_at"),
+  expiresAt: timestamp("expires_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
 
-## Project Directory Structure
+/*POINT BALANCES*/
+export const pointBalances = pgTable("point_balances", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  points: integer("points").notNull().default(0),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
 
-```
-.
-├── src/
-│   ├── app/
-│   │   ├── (public)/
-│   │   │   ├── restaurants/
-│   │   │   │   ├── [id]/
-│   │   │   │   │   └── page.tsx
-│   │   │   │   └── page.tsx
-│   │   ├── admin/
-│   │   │   └── deals/
-│   │   │       └── [id]/
-│   │   │           └── edit/
-│   │   │               └── page.tsx
-│   │   └── layout.tsx
-│   ├── components/
-│   │   ├── admin/
-│   │   │   ├── deals/
-│   │   │   │   └── edit-deal-form.tsx
-│   │   │   └── restaurants-table.tsx
-│   │   └── auth/
-│   ├── db/
-│   │   ├── models/
-│   │   │   └── restaurants/
-│   │   │       ├── restaurants.ts
-│   │   │       ├── schema.ts
-│   │   │       └── types.ts
-│   │   ├── migrations/
-│   │   └── drizzle.ts
-│   ├── features/
-│   │   └── restaurants/
-│   │       ├── Restaurant.tsx
-│   │       └── UserFacingRestaurantDetail.tsx
-│   └── public/
-│       ├── images/
-│       └── svg/
-├── .env
-├── tailwind.config.js
-├── drizzle.config.ts
-├── next.config.js
-└── package.json
-```
+/*POINT TRANSFERS*/
+export const pointTransfers = pgTable("point_transfers", {
+  id: serial("id").primaryKey(),
+  fromUserId: integer("from_user_id").references(() => users.id),
+  toUserId: integer("to_user_id").references(() => users.id),
+  points: integer("points").notNull(),
+  message: text("message"),
+  status: text("status").notNull(), // e.g., pending, completed, cancelled
+  createdAt: timestamp("created_at").defaultNow(),
+});
 
-Key Notes:
+/*ACHIEVEMENTS*/
+export const achievements = pgTable("achievements", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  type: text("type").notNull(), // e.g., first_transfer, transfer_milestone
+  data: json("data").default({}),
+  unlockedAt: timestamp("unlocked_at").defaultNow(),
+});
 
-- Next.js app router structure with route groups `(public)`
-- Drizzle ORM configuration for database models
-- Feature-based organization with colocated components
-- Admin/public separation with layout preservation
-- TypeScript-first approach with strict type definitions
+5.2 Insert Schemas & Validation (Zod)
 
-# Restaurant Passport App
+Examples:
 
-A digital punch card and loyalty system built with Next.js, TypeScript, Tailwind CSS, ShadCN UI, and Supabase.
+export const insertUserSchema = createInsertSchema(users).pick({
+  clerkId: true,
+  name: true,
+  isStaff: true,
+  isAdmin: true,
+});
+export const insertRestaurantSchema = createInsertSchema(restaurants);
+export const insertPunchCardSchema = createInsertSchema(punchCards);
+export const insertPrizeSchema = createInsertSchema(prizes).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  rules: z.object({
+    expirationDays: z.number().optional(),
+    usageLimit: z.number().optional(),
+    terms: z.string().optional(),
+  }).optional(),
+});
+export const insertPrizeRedemptionSchema = createInsertSchema(prizeRedemptions).omit({
+  id: true,
+  createdAt: true,
+  redeemedAt: true,
+});
+export const insertPointTransferSchema = createInsertSchema(pointTransfers, {
+  points: z.number().min(1),
+  message: z.string().max(200).optional(),
+}).omit({ id: true, createdAt: true });
 
-## Features
+5.3 Example CRUD/REST Routes
 
-- Digital Punch Cards: Users earn punches at participating restaurants
-- Real-time updates: Instantly see punch card updates via Supabase real-time subscriptions
-- Role-Based Authorization: User, Restaurant Admin, System Admin roles
-- QR Code Validation: Staff can scan a user's QR code to add a punch instantly
-- Prizes & Raffles: Prize management, redemption tracking, and raffle entries
-- Points & Achievements: Gamified point transfer system with achievements
-- Analytics Dashboard: Restaurant-level analytics for punch cards, user activity, and prize redemptions
+The following routes (shown in an Express-like format) can also be integrated into Next.js API routes if preferred:
 
-## Getting Started
+ 1. User Routes
+ • POST /api/users – create a user (via insertUserSchema)
+ • GET /api/users/clerk/:clerkId – retrieve user by clerk ID
+ 2. Restaurant Routes
+ • GET /api/restaurants – list all restaurants
+ • GET /api/restaurants/:id – get a specific restaurant
+ 3. Punch Card Routes
+ • POST /api/punch-cards – create a new punch card
+ • POST /api/punch-cards/:id/punch – increment punch count
+ • GET /api/users/:userId/punch-cards – get all punch cards for a user
+ 4. Raffle Routes
+ • POST /api/raffle-entries – create a raffle entry
+ 5. Prize Management
+ • POST /api/prizes – create a new prize
+ • GET /api/restaurants/:restaurantId/prizes – list prizes for a restaurant
+ • GET /api/prizes/:id – get a specific prize
+ • PATCH /api/prizes/:id – update an existing prize
+ 6. Prize Redemption
+ • POST /api/prize-redemptions – create a new redemption
+ • GET /api/users/:userId/prize-redemptions – list user’s prize redemptions
+ • PATCH /api/prize-redemptions/:id/status – update redemption status
+ 7. Analytics
+ • GET /api/restaurants/:restaurantId/analytics – retrieve punch card and redemption analytics
+ 8. Points & Leaderboard
+ • GET /api/users/:userId/points – get point balance for a user
+ • GET /api/leaderboard – get overall leaderboard
+ • POST /api/point-transfers – transfer points between users
+ • GET /api/users/:userId/transfers – get transfer history
+ • GET /api/users/:userId/achievements – get user achievements
+ 9. WebSocket
+ • ws://<server>/ws – handles real-time QR validation messages.
 
-### Prerequisites
+ 6. Role-Based Access & Authorization
+ • Middleware / Next.js API Route Guards
+ • Use Clerk’s role checks to ensure only restaurant admins or system admins can manage prizes, analytics, or punch cards.
+ • Restrict system-level actions (e.g., reading all resources, user creation) to system admin.
+ • Users can only access their own punch cards, points, and achievements.
 
-- Bun (1.2.4 or higher)
-- Node.js (v18 or higher)
-- Supabase account (for real-time subscriptions)
+Example checks in Next.js:
 
-### Setup
+// e.g. a Next.js API route
+import { getAuth } from '@clerk/nextjs/server';
 
-1. Clone the repository
-2. Install dependencies:
+export default async function handler(req, res) {
+  const { userId, sessionId, getToken } = getAuth(req);
+  // Retrieve user from DB, check roles...
+}
 
-   ```
-   bun install
-   ```
+7. UI/UX & Styling
+1. Tailwind CSS + ShadCN/UI
+ • Provides utility classes and theming.
+2. Framer Motion
+ • Used for animated transitions, particularly for the achievements and leaderboard rank changes.
+3. Storybook
+ • Document reusable components (e.g., “PunchCardDisplay”, “LeaderboardTable”, “AchievementBadge”).
+4. Responsive & Accessible
+ • Mobile-friendly layout for scanning QR codes from phones.
+ • Aria labels, keyboard navigation, and basic accessibility checks.
 
-3. Set up environment variables:
-   - Copy `.env.example` to `.env.local`
-   - Update the required environment variables:
+8. Key Use Cases & Scenarios
+1. User Redeems a Punch
+ • The user visits a restaurant, staff scans the user’s QR code.
+ • The punch count increments in real-time.
+ • If the punch card is completed, a raffle entry is created.
+2. Restaurant Admin Updates a Prize
+ • The admin logs into the admin dashboard.
+ • Navigates to “Prizes” for their restaurant.
+ • Creates or updates a prize, specifying required punches, availability, etc.
+3. System Admin Manages a Restaurant Admin
+ • System admin grants a user isStaff for a specific restaurant or sets isAdmin to true for full privileges.
+4. User Transfers Points
+ • A user chooses a recipient and enters the number of points to transfer.
+ • The system checks if the sender has enough points, completes the transfer, updates balances, and triggers an achievement check.
 
-     ```
-     # Supabase for real-time subscriptions
-     NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-     NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-     
-     # Database
-     DATABASE_URL=your-database-url
-     
-     # Clerk Authentication
-     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
-     CLERK_SECRET_KEY=your-clerk-secret-key
-     ```
+9. Analytics & Reporting
+ • Restaurant-Level Metrics
+ • Completed vs. total punch cards.
+ • Redemption rates for prizes.
+ • Active users in the last 30 days.
+ • Historical activity data for daily punch counts.
+ • Leaderboards
+ • Points-based ranking with real-time updates.
 
-4. Run the development server:
+10. Testing & Quality
+1. Unit Tests:
+ • Test Next.js pages, custom hooks (e.g., useWebSocket), and server routes.
+2. Integration Tests:
+ • Validate flows (sign-up, punch card scanning, prize redemption).
+3. E2E Tests:
+ • Use Playwright or Cypress to test the entire user journey.
+4. Storybook Visual Testing:
+ • Ensure components render consistently across states (loading, success, error).
 
-   ```
-   bun dev
-   ```
+11. Deployment & DevOps
+1. Environment Variables:
+ • NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY
+ • SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY (secured)
+2. CI/CD:
+ • Automated testing pipeline (GitHub Actions or similar).
+3. Hosting:
+ • Next.js can be hosted on Vercel or similar.
+ • Supabase for database hosting.
 
-## Real-time Punch Card Subscriptions
+12. Next Steps & Enhancements
+ • Multiple Campaigns: Support multiple parallel punch-card campaigns within a single restaurant.
+ • Expanded Social Sharing: More robust social media integration (Facebook, Twitter, etc.).
+ • Deeper Analytics: Additional dashboards for points economy, user churn, advanced segmentation.
+ • Localization & Internationalization: Provide multi-language support for broader reach.
 
-The app uses Supabase real-time features to provide instant updates to users when their punch cards change:
+13. Summary
 
-1. When a user's punch card is updated (e.g., a new punch is added), Supabase sends a real-time notification
-2. The client automatically refreshes the punch card data without requiring a page reload
-3. Users see their updated punch cards in real-time
-
-### Implementation
-
-The real-time subscription is implemented using:
-
-- `usePunchCardSubscription` hook: Manages the subscription to punch card changes
-- Supabase client: Connects to Supabase real-time API
-- API routes: Fetch the latest punch card data when changes occur
-
-## Development
-
-### Using Bun
-
-This project uses Bun as the package manager and runtime. Common commands:
-
-- `bun install`: Install dependencies
-- `bun dev`: Start development server
-- `bun build`: Build for production
-- `bun start`: Start production server
-- `bun lint`: Run linting
-
-### Database
-
-Database migrations are managed with Drizzle:
-
-- `bun drizzle:generate`: Generate migrations
-- `bun drizzle:migrate`: Apply migrations
+This Next.js + TypeScript application integrates Clerk for authentication, Supabase for the database, Tailwind CSS + ShadCN/UI for styling, and Framer Motion for animation. It includes robust role-based authorization for Users, Restaurant Admins, and System Admins. The platform offers digital punch cards, real-time QR code validation, prize management, gamified point transfers, achievements, and analytics dashboards. The included Drizzle ORM schema and CRUD/REST endpoints illustrate how data is managed and accessed, ensuring a clear, maintainable foundation for future growth and enhancements.

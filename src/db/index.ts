@@ -1,3 +1,4 @@
 export * from "./models";
-export * from "./schema";
+export * from "./drizzle/schema";
+export * from "./drizzle/relations";
 export * from "./db";

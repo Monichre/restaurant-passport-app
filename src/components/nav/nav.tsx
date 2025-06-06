@@ -1,442 +1,360 @@
-"use client";
+'use client'
 
-import type React from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import type React from 'react'
+import {Button} from '@/components/ui/button'
+import {cn} from '@/lib/utils'
+import Link from 'next/link'
+
 import {
-	SignedIn,
-	SignInButton,
-	SignOutButton,
-	SignUp,
-	SignUpButton,
-	useSession,
-	useUser,
-} from "@clerk/nextjs";
+  SignedIn,
+  SignInButton,
+  SignOutButton,
+  SignUp,
+  SignUpButton,
+  useSession,
+  useUser,
+} from '@clerk/nextjs'
 import {
-	Award,
-	Clock,
-	Home,
-	Settings,
-	Trophy,
-	User,
-	Utensils,
-	UserPlus,
-	Loader2,
-	QrCode,
-	CheckCircle,
-	Search,
-	Settings2,
-	WalletCards,
-	Wallet,
-} from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import { useCallback, useState, useEffect } from "react";
-import { QrReader } from "react-qr-reader";
-import { useScanQrCode } from "@/hooks/use-scan-qr-code";
+  Trophy,
+  type User,
+  UserPlus,
+  Loader2,
+  QrCodeIcon,
+  Tag,
+  Settings2,
+  BookUser,
+  Utensils,
+} from 'lucide-react'
+import {motion, AnimatePresence} from 'motion/react'
+import {useCallback, useState, useEffect, Suspense} from 'react'
+
 import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogClose,
-} from "@/components/ui/dialog";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from '@/components/ui/dialog'
+import {NavScanner} from '@/components/nav/nav-scanner'
+
+import {useUserContext} from '@/context/user-context'
+import {usePathname} from 'next/navigation'
 
 export type NavProps = {
-	initialActiveTab?: string;
-	onTabChange?: (tabId: string) => void;
-};
+  initialActiveTab?: string
+  onTabChange?: (tabId: string) => void
+}
 
 type NavItem = {
-	id: string;
-	icon?: React.ElementType;
-	label: string;
-	href?: string;
-	action?: string;
-};
+  id: string
+  icon?: React.ElementType
+  label: string
+  href?: string
+  action?: string
+}
 
 // Create a simple spinner component
-const Spinner = ({ className }: { className?: string }) => {
-	return <Loader2 className={cn("animate-spin", className)} />;
-};
+const Spinner = ({className}: {className?: string}) => {
+  return <Loader2 className={cn('animate-spin', className)} />
+}
 
 // Animation variants for the QR scanner and content
 const containerVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.3,
-			ease: "easeOut",
-			when: "beforeChildren",
-			staggerChildren: 0.1,
-		},
-	},
-	exit: {
-		opacity: 0,
-		y: 20,
-		transition: {
-			duration: 0.2,
-			ease: "easeIn",
-			when: "afterChildren",
-			staggerChildren: 0.05,
-			staggerDirection: -1,
-		},
-	},
-};
+  hidden: {opacity: 0, y: 20},
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut',
+      when: 'beforeChildren',
+      staggerChildren: 0.1,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 20,
+    transition: {
+      duration: 0.2,
+      ease: 'easeIn',
+      when: 'afterChildren',
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+}
 
 const itemVariants = {
-	hidden: { opacity: 0, y: 10 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.3, ease: "easeOut" },
-	},
-	exit: {
-		opacity: 0,
-		y: 10,
-		transition: { duration: 0.2, ease: "easeIn" },
-	},
-};
+  hidden: {opacity: 0, y: 10},
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {duration: 0.3, ease: 'easeOut'},
+  },
+  exit: {
+    opacity: 0,
+    y: 10,
+    transition: {duration: 0.2, ease: 'easeIn'},
+  },
+}
 
 // NavScanner is now just a button that triggers the modal
-type NavScannerProps = {
-	onScanClick: () => void;
-};
+type NavScannerButtonProps = {
+  onScanClick: () => void
+}
 
-export const NavScanner = ({ onScanClick }: NavScannerProps) => {
-	return (
-		<Button
-			onClick={onScanClick}
-			variant="ghost"
-			size="sm"
-			className={cn(
-				"flex flex-col p-4 gap-1 mx-2 h-auto !w-auto rounded-full items-center justify-center",
-				"text-primary",
-			)}
-		>
-			<QrCode className="h-5 w-5" />
-		</Button>
-	);
-};
+export const NavScannerButton = ({onScanClick}: NavScannerButtonProps) => {
+  return (
+    <Button
+      onClick={onScanClick}
+      variant='ghost'
+      size='sm'
+      className={cn('p-4 mx-1 h-auto !w-auto rounded-full', 'text-white')}
+    >
+      <QrCodeIcon className='h-6 w-6 text-white' />
+    </Button>
+  )
+}
 
-export const Nav = ({ initialActiveTab = "home", onTabChange }: NavProps) => {
-	const [activeTab, setActiveTab] = useState(initialActiveTab);
-	const { isSignedIn, user } = useUser();
+export const Nav = () => {
+  const pathname = usePathname()
+  const activeTab = pathname.split('/').pop()
 
-	const { session } = useSession();
+  const {currentUser} = useUserContext()
+  const {session} = useSession()
+  const [showModal, setShowModal] = useState(false)
 
-	console.log("🚀 ~ Nav ~ session:", session);
+  const toggleModal = () => {
+    setShowModal(!showModal)
+  }
 
-	const [showModal, setShowModal] = useState(false);
-	const router = useRouter();
+  const userIsAdmin = currentUser?.isAdmin
+  const closeModal = useCallback(() => {
+    setShowModal(false)
+  }, [])
 
-	// QR scanning logic moved from NavScanner to Nav
-	const {
-		isScanning,
-		checkingPunchCardStatus,
-		scanResult,
-		toggleScanner,
-		handleScan,
-		handleError,
-		reset,
-	} = useScanQrCode({
-		userId: user?.id || "guest",
-		onScanSuccess: (result) => {
-			console.log("Scan successful:", result);
-			// Close modal and show success state on successful scan
-			setTimeout(() => {
-				setShowModal(false);
-				// Allow time for success message before reset
-				setTimeout(() => {
-					reset();
-					// Redirect to user profile after scan is complete and modal is closed
-					if (user?.id) {
-						router.push(`/users/${user.id}/profile`);
-					}
-				}, 1500);
-			}, 1000);
-		},
-	});
+  const [elementFocused, setElementFocused] = useState<string | null>(null)
 
-	// Effect to ensure redirection happens after successful scan
-	useEffect(() => {
-		if (scanResult && user?.id) {
-			// Give time for modal to close and success message to show
-			const redirectTimeout = setTimeout(() => {
-				router.push(`/users/${user.id}/profile`);
-			}, 2500);
+  const handleHoverButton = (type: string | null) => {
+    setElementFocused(type)
+  }
+  return (
+    <>
+      <Suspense>
+        {/* QR Scanner Modal with animations */}
+        <AnimatePresence>
+          {showModal && (
+            <Dialog open={showModal} onOpenChange={toggleModal}>
+              <DialogContent className='sm:max-w-md p-0 overflow-hidden'>
+                <motion.div
+                  variants={containerVariants}
+                  initial='hidden'
+                  animate='visible'
+                  exit='exit'
+                  className='p-6'
+                >
+                  <motion.div variants={itemVariants}>
+                    <DialogHeader>
+                      <DialogTitle>Scan QR Code</DialogTitle>
+                      <DialogDescription>
+                        Point your camera at a restaurant's QR code to earn a
+                        punch.
+                      </DialogDescription>
+                    </DialogHeader>
+                  </motion.div>
 
-			return () => clearTimeout(redirectTimeout);
-		}
-	}, [scanResult, router, user?.id]);
+                  <div className='flex flex-col items-center space-y-4 mt-4'>
+                    <NavScanner
+                      userId={currentUser?.id ? String(currentUser.id) : ''}
+                      closeModal={closeModal}
+                    />
+                  </div>
 
-	// Handle opening/closing the modal and scanner together
-	const handleScannerToggle = () => {
-		if (!isScanning) {
-			setShowModal(true);
-			toggleScanner();
-		} else {
-			toggleScanner();
-			setShowModal(false);
-		}
-	};
+                  <motion.div variants={itemVariants} className='mt-6'>
+                    <DialogFooter className='sm:justify-start'>
+                      <DialogClose asChild>
+                        <Button
+                          type='button'
+                          variant='secondary'
+                          onClick={() => setShowModal(false)}
+                        >
+                          Close
+                        </Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </motion.div>
+                </motion.div>
+              </DialogContent>
+            </Dialog>
+          )}
+        </AnimatePresence>
 
-	// Handle modal close
-	const handleModalClose = useCallback(() => {
-		if (isScanning) {
-			toggleScanner();
-		}
-		setShowModal(false);
-	}, [isScanning, toggleScanner]);
+        <motion.nav className='fixed bottom-0 left-1/2 -translate-x-1/2 sm:py-2 py-2 z-50 s:h-[80px] h-auto will-change-transform'>
+          <motion.div
+            className='flex justify-evenly w-content border rounded-full bg-linear-270 from-[#336f4f] from 48% to-[#179b55] backdrop-blur-sm  will-change-transform'
+            initial={{opacity: 0, y: 10, width: 0}}
+            animate={{opacity: 1, y: 0, width: 'auto'}}
+            exit={{opacity: 0, y: -10}}
+            transition={{
+              duration: 0.8,
+              ease: 'easeInOut',
+              type: 'spring',
+              stiffness: 260,
+              damping: 20,
+              delay: 0.5,
+            }}
+          >
+            <Button
+              variant='ghost'
+              size='sm'
+              onMouseEnter={() => handleHoverButton('deals')}
+              onMouseLeave={() => handleHoverButton(null)}
+              className={cn(
+                'p-4 h-auto !w-auto rounded-full relative',
+                'text-white',
+                (activeTab?.includes('deals') ||
+                  activeTab?.includes('restaurants')) &&
+                  'active-tab text-primary !bg-[#E2FFE5] relative after:content-[" "] after:absolute after:-inset-1 after:h-[60px] after:w-[60px] after:rounded-full after:bg-[#E2FFE5] after:z-[1] after:opacity-50 after:blur-sm'
+              )}
+              style={{
+                backgroundColor:
+                  activeTab?.includes('deals') ||
+                  activeTab?.includes('restaurants')
+                    ? '#E2FFE5'
+                    : 'transparent',
+                border:
+                  activeTab?.includes('deals') ||
+                  activeTab?.includes('restaurants')
+                    ? '2px solid #336F4F'
+                    : 'none',
+              }}
+            >
+              <Link
+                href='/deals'
+                className={cn(
+                  ' h-auto !w-auto rounded-full text-white ',
+                  activeTab?.includes('deals') ||
+                    (activeTab?.includes('restaurants') &&
+                      'text-primary !bg-[#E2FFE5]')
+                )}
+              >
+                {activeTab?.includes('restaurants') ? (
+                  <Utensils className='h-6 w-6' />
+                ) : (
+                  <Tag className='h-6 w-6' />
+                )}
+              </Link>
+            </Button>
 
-	console.log("🚀 ~ Nav ~ user:", user);
+            {currentUser && !userIsAdmin && (
+              // <NavScannerButton onScanClick={toggleModal} />
+              <Button
+                onClick={toggleModal}
+                variant='ghost'
+                onMouseEnter={() => handleHoverButton('qr')}
+                onMouseLeave={() => handleHoverButton(null)}
+                size='sm'
+                className={cn(
+                  'p-4 mx-1 h-auto !w-auto rounded-full relative',
+                  'text-white',
+                  activeTab?.includes('qr') && ' text-primary !bg-[#E2FFE5]'
+                )}
+                style={{
+                  backgroundColor: activeTab?.includes('qr')
+                    ? '#E2FFE5'
+                    : 'transparent',
+                  border: activeTab?.includes('qr')
+                    ? '2px solid #336F4F'
+                    : 'none',
+                }}
+              >
+                <QrCodeIcon className='h-6 w-6' />
+              </Button>
+            )}
+            {userIsAdmin && (
+              <Button
+                variant='ghost'
+                size='sm'
+                onMouseEnter={() => handleHoverButton('admin')}
+                className={cn(
+                  'p-4 mx-1 h-auto !w-auto rounded-full relative',
+                  'text-white',
+                  activeTab?.includes('admin') &&
+                    'active-tab text-primary !bg-[#E2FFE5]',
+                  activeTab?.includes('admin') &&
+                    'active-tab text-primary !bg-[#E2FFE5]'
+                )}
+                style={{
+                  backgroundColor: activeTab?.includes('admin')
+                    ? '#E2FFE5'
+                    : 'transparent',
+                  border: activeTab?.includes('admin')
+                    ? '2px solid #336F4F'
+                    : 'none',
+                }}
+              >
+                <Link
+                  href={'/admin'}
+                  className={cn(
+                    '  h-auto !w-auto rounded-full text-white',
+                    activeTab?.includes('admin') && 'text-primary !bg-[#E2FFE5]'
+                  )}
+                >
+                  <Settings2 className='h-6 w-6 ' />
+                </Link>
+              </Button>
+            )}
+            {currentUser && (
+              <Button
+                variant='ghost'
+                size='sm'
+                onMouseEnter={() => handleHoverButton('profile')}
+                className={cn(
+                  'p-4 mx-1 h-auto !w-auto rounded-full',
+                  'text-white',
+                  activeTab?.includes('profile') && 'text-primary !bg-[#E2FFE5]'
+                )}
+                style={{
+                  backgroundColor: activeTab?.includes('profile')
+                    ? '#E2FFE5'
+                    : 'transparent',
+                  border: activeTab?.includes('profile')
+                    ? '2px solid #336F4F'
+                    : 'none',
+                }}
+              >
+                <Link
+                  href={`/users/${currentUser?.id}/profile`}
+                  className={cn(
+                    ' h-auto !w-auto rounded-full text-white',
+                    activeTab?.includes('profile') &&
+                      'text-primary !bg-[#E2FFE5]'
+                  )}
+                >
+                  <BookUser className='h-6 w-6 ' />
+                </Link>
+              </Button>
+            )}
 
-	const userIsAdmin = user?.publicMetadata?.role === "admin";
-
-	console.log("🚀 ~ Nav ~ userIsAdmin:", userIsAdmin);
-
-	const navigateToPage = useCallback(
-		(page: string) => {
-			console.log("🚀 ~ navigateToPage ~ page:", page);
-			if (page) {
-				router.push(page);
-			}
-		},
-		[router],
-	);
-
-	const staticNavItems: NavItem[] = [
-		// { id: "home", icon: Home, label: "Home", href: "/" },
-		{
-			id: "restaurants",
-			icon: Utensils,
-			label: "Food",
-			href: "/restaurants",
-		},
-
-		// {
-		// 	id: "leaderBoard",
-		// 	icon: Trophy,
-		// 	label: "Leader Board",
-		// 	href: "/leaderboard",
-		// },
-	];
-
-	const authNavItems: NavItem[] = [];
-	if (isSignedIn && !userIsAdmin) {
-		authNavItems.push({
-			id: "myProfile",
-			icon: User,
-			label: "Profile",
-			href: `/users/${user?.id}/profile`,
-		});
-	}
-	if (isSignedIn && userIsAdmin) {
-		authNavItems.push({
-			id: "admin",
-			icon: Settings,
-			label: "Admin",
-			href: "/admin",
-		});
-	}
-
-	const navItems: NavItem[] = [...staticNavItems, ...authNavItems];
-
-	return (
-		<>
-			{/* QR Scanner Modal with animations */}
-			<AnimatePresence>
-				{showModal && (
-					<Dialog open={showModal} onOpenChange={handleModalClose}>
-						<DialogContent className="sm:max-w-md p-0 overflow-hidden">
-							<motion.div
-								variants={containerVariants}
-								initial="hidden"
-								animate="visible"
-								exit="exit"
-								className="p-6"
-							>
-								<motion.div variants={itemVariants}>
-									<DialogHeader>
-										<DialogTitle>Scan QR Code</DialogTitle>
-										<DialogDescription>
-											Point your camera at a restaurant's QR code to earn a
-											punch.
-										</DialogDescription>
-									</DialogHeader>
-								</motion.div>
-
-								<div className="flex flex-col items-center space-y-4 mt-4">
-									<AnimatePresence mode="wait">
-										{isScanning && (
-											<motion.div
-												key="scanner"
-												variants={itemVariants}
-												initial="hidden"
-												animate="visible"
-												exit="exit"
-												className="w-full max-w-[350px] h-[350px] mx-auto relative rounded-lg overflow-hidden"
-											>
-												<QrReader
-													videoId="qr-video"
-													onResult={handleScan}
-													constraints={{
-														facingMode: "environment",
-													}}
-													className="w-full h-full"
-												/>
-												<video
-													id="qr-video"
-													aria-label="QR code scanner video output"
-													controls={false}
-													className="hidden"
-												>
-													<track
-														kind="captions"
-														src="/empty.vtt"
-														label="English captions"
-														default
-													/>
-												</video>
-											</motion.div>
-										)}
-
-										{checkingPunchCardStatus && (
-											<motion.div
-												key="processing"
-												variants={itemVariants}
-												initial="hidden"
-												animate="visible"
-												exit="exit"
-												className="text-center py-2"
-											>
-												<Spinner className="w-8 h-8 mx-auto" />
-												<p className="mt-2">Processing your scan...</p>
-											</motion.div>
-										)}
-
-										{scanResult && (
-											<motion.div
-												key="success"
-												variants={itemVariants}
-												initial="hidden"
-												animate="visible"
-												exit="exit"
-												className="text-center py-2 bg-green-50 rounded-md p-3 w-full"
-											>
-												<CheckCircle className="w-8 h-8 mx-auto text-green-500" />
-												<p className="font-medium mt-2">
-													Scan processed successfully!
-												</p>
-											</motion.div>
-										)}
-									</AnimatePresence>
-								</div>
-
-								<motion.div variants={itemVariants} className="mt-6">
-									<DialogFooter className="sm:justify-start">
-										<DialogClose asChild>
-											<Button
-												type="button"
-												variant="secondary"
-												onClick={handleModalClose}
-											>
-												Close
-											</Button>
-										</DialogClose>
-									</DialogFooter>
-								</motion.div>
-							</motion.div>
-						</DialogContent>
-					</Dialog>
-				)}
-			</AnimatePresence>
-
-			<nav className="fixed bottom-[10px] left-1/2 transform -translate-x-1/2 z-40 pb-safe w-max">
-				<div className="flex justify-evenly items-center p-3 gap-4 mx-auto w-min border-t bg-[#e0d9d1] backdrop-blur-md shadow-lg rounded-full">
-					<Link href="/restaurants" className="flex-1">
-						<Button
-							variant="ghost"
-							size="icon"
-							className={cn(
-								"flex flex-col items-center justify-center rounded-full h-14 w-14 mx-auto touch-manipulation bg-none",
-								activeTab === "home"
-									? "bg-white/80 text-primary shadow-sm"
-									: "text-white",
-							)}
-						>
-							<Utensils className="h-6 w-6" />
-						</Button>
-					</Link>
-
-					{userIsAdmin && (
-						<Link href="/admin" className="flex-1">
-							<Button
-								variant="ghost"
-								size="icon"
-								className={cn(
-									"flex flex-col items-center justify-center rounded-full h-14 w-14 mx-auto touch-manipulation bg-none",
-									activeTab === "admin"
-										? "bg-white/80 text-primary shadow-sm"
-										: "text-white",
-								)}
-							>
-								<Settings2 className="h-6 w-6" />
-							</Button>
-						</Link>
-					)}
-
-					{isSignedIn && (
-						<div className="flex-1 flex items-center justify-center">
-							<Button
-								variant="outline"
-								size="icon"
-								className="rounded-full h-16 w-16 flex items-center justify-center"
-								onClick={handleScannerToggle}
-								aria-label="Scan QR code"
-							>
-								<QrCode className="h-7 w-7" />
-							</Button>
-						</div>
-					)}
-
-					{isSignedIn && !userIsAdmin && (
-						<Link href={`/users/${user?.id}/profile`} className="flex-1">
-							<Button
-								variant="outline"
-								size="icon"
-								className={cn(
-									"flex flex-col items-center justify-center rounded-full h-14 w-14 mx-auto touch-manipulation bg-none",
-									activeTab === "profile"
-										? "bg-white/80 text-primary shadow-sm"
-										: "",
-								)}
-							>
-								<Wallet className="h-6 w-6" />
-							</Button>
-						</Link>
-					)}
-
-					{!isSignedIn && (
-						<div className="flex-1">
-							<SignInButton>
-								<Button
-									variant="ghost"
-									size="icon"
-									className="flex flex-col items-center justify-center rounded-full h-14 w-14 mx-auto touch-manipulation bg-none"
-								>
-									<UserPlus className="h-6 w-6" />
-								</Button>
-							</SignInButton>
-						</div>
-					)}
-				</div>
-			</nav>
-		</>
-	);
-};
+            {!currentUser && (
+              <SignInButton>
+                <Button
+                  variant='ghost'
+                  size='sm'
+                  className={cn(
+                    'p-4 mx-1 h-auto !w-auto rounded-full hover:bg-[#E2FFE5] text-black relative z-50',
+                    'text-white'
+                  )}
+                >
+                  <UserPlus className='h-6 w-6 text-white' />
+                </Button>
+              </SignInButton>
+            )}
+          </motion.div>
+        </motion.nav>
+      </Suspense>
+    </>
+  )
+}

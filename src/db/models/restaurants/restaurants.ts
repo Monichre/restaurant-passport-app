@@ -1,32 +1,16 @@
 "use server";
 
-import { eq } from "drizzle-orm";
+import { eq, count } from "drizzle-orm";
 import { db } from "../../db";
-import { restaurants, prizes, punchCards, restaurantDeals } from "../../schema";
-import { getPrizesByRestaurantId } from "@/db/models/prizes";
+import { restaurants, restaurantDeals } from "@/db/drizzle/schema";
+import type { Restaurant } from "@/types/db";
 
-export const getRestaurants = async (page = 1, limit = 12) => {
-	// Get restaurants with pagination and only load essential relations
-	const offset = (page - 1) * limit;
+export const getRestaurants = async () => {
+	// Get all restaurants and only load essential relations
 	const restaurantsList = await db.query.restaurants.findMany({
-		limit,
-		offset,
 		with: {
-			deals: {
-				columns: {
-					id: true,
-				},
-			},
-			prizes: {
-				columns: {
-					id: true,
-				},
-			},
-			punchCards: {
-				columns: {
-					id: true,
-				},
-			},
+			deals: true,
+			punchCards: true,
 		},
 	});
 
@@ -35,17 +19,78 @@ export const getRestaurants = async (page = 1, limit = 12) => {
 		...restaurant,
 		punchCardCount: restaurant?.punchCards?.length || 0,
 		dealCount: restaurant?.deals?.length || 0,
-		prizeCount: restaurant?.prizes?.length || 0,
 	}));
 };
 
-export const getDeals = async () => {
-	return await db.query.restaurantDeals.findMany({
-		with: {
-			restaurant: true,
-		},
-	});
+export type PaginatedRestaurants = {
+	restaurants: Restaurant[];
+	pagination: {
+		total: number;
+		pageSize: number;
+		currentPage: number;
+		totalPages: number;
+		hasMore: boolean;
+	};
 };
+
+export const getPaginatedRestaurants = async (
+	page = 1,
+	pageSize = 10,
+): Promise<PaginatedRestaurants> => {
+	// Get paginated restaurants and only load essential relations
+	const offset = (page - 1) * pageSize;
+
+	// First get total count for pagination metadata
+	const totalCountResult = await db
+		.select({ value: count() })
+		.from(restaurants);
+	const totalCount = totalCountResult[0]?.value || 0;
+
+	// Then get the paginated data
+	const restaurantsList = await db.query.restaurants.findMany({
+		with: {
+			deals: true,
+			punchCards: true,
+		},
+		limit: pageSize,
+		offset: offset,
+	});
+
+	// Add count metadata to each restaurant
+	// const restaurantsWithCounts = restaurantsList.map((restaurant) => ({
+	// 	...restaurant,
+	// 	punchCardCount: restaurant?.punchCards?.length || 0,
+	// 	dealCount: restaurant?.deals?.length || 0,
+	// }));
+
+	// Return both the restaurants and pagination metadata
+	return {
+		restaurants: restaurantsList,
+		pagination: {
+			total: totalCount,
+			pageSize,
+			currentPage: page,
+			totalPages: Math.ceil(totalCount / pageSize),
+			hasMore: offset + pageSize < totalCount,
+		},
+	};
+};
+
+// export const getDeals = async () => {
+// 	return await db.query.restaurantDeals.findMany({
+// 		with: {
+// 			restaurant: true,
+// 		},
+// 	});
+// };
+// export const getActiveDeals = async () => {
+// 	return await db.query.restaurantDeals.findMany({
+// 		where: eq(restaurantDeals.active, true),
+// 		with: {
+// 			restaurant: true,
+// 		},
+// 	});
+// };
 
 export const getRestaurantById = async (id: bigint) => {
 	return await db
@@ -60,7 +105,6 @@ export const getRestaurantByIdWithPrizesAndDeals = async (id: bigint) => {
 	const restaurant = await db.query.restaurants.findFirst({
 		where: eq(restaurants.id, id),
 		with: {
-			prizes: true,
 			deals: true,
 		},
 	});
@@ -78,7 +122,6 @@ export const getRestaurantByIdWithAll = async (id: bigint) => {
 	return await db.query.restaurants.findFirst({
 		where: eq(restaurants.id, id),
 		with: {
-			prizes: true,
 			deals: true,
 			punchCards: true,
 		},

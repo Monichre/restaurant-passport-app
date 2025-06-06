@@ -147,7 +147,7 @@ export type LeaderboardEntry = {
 export type AdminDashboardStats = {
 	totalUsers: number;
 	totalRestaurants: number;
-	totalPunches: number;
+	MAX_PUNCH_THRESHOLD: number;
 	totalPrizeRedemptions: number;
 	activeUsersLast30Days: number;
 };
@@ -171,4 +171,17 @@ export type RestaurantLeaderboardEntry = {
 	imageUrl: string;
 	punchCardCount: number;
 	rank: number;
+};
+
+/**
+ * Raffle Entry with User Details
+ */
+export type RaffleEntryWithUser = {
+	raffleEntryId: bigint;
+	userId: bigint;
+	userName: string;
+	enteredAt: string;
+	restaurantId: bigint;
+	restaurantName: string;
+	punchCardId: bigint;
 };

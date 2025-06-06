@@ -2,10 +2,11 @@
 
 import { sql } from "drizzle-orm";
 import { db } from "../../db";
-import { punchCards, users, restaurants } from "../../schema";
+import { punchCards, users, restaurants, raffleEntries } from "@/db/drizzle/schema";
 import type {
 	UserLeaderboardEntry,
 	RestaurantLeaderboardEntry,
+	RaffleEntryWithUser,
 } from "@/types/api";
 
 /**
@@ -59,4 +60,35 @@ export const getPopularRestaurantsByPunchCardCount = async (
   `);
 
 	return result as unknown as RestaurantLeaderboardEntry[];
+};
+
+/**
+ * Get users who are currently in the raffle
+ */
+export const getUsersInRaffle = async (
+	limit = 10,
+): Promise<RaffleEntryWithUser[]> => {
+	const result = await db.execute(sql`
+    SELECT 
+      re.id as "raffleEntryId",
+      u.id as "userId", 
+      u.name as "userName",
+      re.created_at as "enteredAt",
+      r.id as "restaurantId",
+      r.name as "restaurantName",
+      pc.id as "punchCardId"
+    FROM 
+      ${raffleEntries} re
+    JOIN 
+      ${users} u ON re.user_id = u.id
+    JOIN
+      ${punchCards} pc ON re.punch_card_id = pc.id
+    JOIN
+      ${restaurants} r ON pc.restaurant_id = r.id
+    ORDER BY 
+      re.created_at DESC
+    LIMIT ${limit}
+  `);
+
+	return result as unknown as RaffleEntryWithUser[];
 };

@@ -2,7 +2,7 @@
 
 import { and, eq } from "drizzle-orm";
 import { db } from "../../db";
-import { punchCards, restaurants } from "../../schema";
+import { punchCards, restaurants } from "@/db/drizzle/schema";
 
 export const getPunchCards = async () => {
 	return await db.select().from(punchCards);
@@ -23,7 +23,6 @@ export const getPunchCardsByUserId = async (userId: bigint) => {
 		where: eq(punchCards.userId, userId),
 		with: {
 			restaurant: true,
-			user: true,
 		},
 	});
 };

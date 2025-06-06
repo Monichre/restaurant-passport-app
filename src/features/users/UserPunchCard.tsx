@@ -1,30 +1,24 @@
-"use client";
+'use client'
 
-import { PunchCard, PUNCH_THRESHOLD } from "@/components/ui/punch-card";
-import type { PunchCardWithRestaurant as ApiPunchCardWithRestaurant } from "@/types/api";
-import type { PunchCardWithRestaurant as HookPunchCardWithRestaurant } from "@/hooks/use-punch-card-subscription";
+import type {PunchCardWithRestaurant as ApiPunchCardWithRestaurant} from '@/types/api'
+import type {PunchCardWithRestaurant as HookPunchCardWithRestaurant} from '@/hooks/use-punch-card-subscription'
+import {PunchCard, type RestaurantPunch} from '@/components/ui/punchcard'
 
 interface UserPunchCardProps {
-	punchCard: ApiPunchCardWithRestaurant | HookPunchCardWithRestaurant;
+  restaurants: ApiPunchCardWithRestaurant[] | HookPunchCardWithRestaurant[]
 }
 
-export function UserPunchCard({ punchCard }: UserPunchCardProps) {
-	// Convert number | null to number for punches
-	const punches = punchCard.punches === null ? 0 : punchCard.punches;
-	// Convert boolean | null to boolean for completed
-	const completed = punchCard.completed === null ? false : punchCard.completed;
-	// Handle lastUpdated which could be string, Date, or null
-	const lastUpdated = punchCard.updatedAt || undefined;
+export function UserPunchCard({restaurants}: UserPunchCardProps) {
+  // Convert restaurant punch cards to the format expected by PunchCard
+  const restaurantPunches: RestaurantPunch[] = restaurants.map((punchCard) => ({
+    restaurantId: String(punchCard.restaurantId || punchCard.restaurant?.id || ''),
+    restaurantName: punchCard.restaurant?.name || 'Unknown Restaurant',
+    restaurantImage: punchCard.restaurant?.imageUrl,
+    currentPunches: punchCard.punches || 1,
+    MAX_PUNCH_THRESHOLD: 6,
+    completed: punchCard.completed || false,
+    lastUpdated: punchCard.createdAt || punchCard.updatedAt,
+  }))
 
-	return (
-		<PunchCard
-			restaurantName={punchCard.restaurant.name}
-			restaurantImage={punchCard.restaurant.imageUrl}
-			restaurantId={punchCard.restaurantId}
-			currentPunches={punches}
-			totalPunches={PUNCH_THRESHOLD}
-			completed={completed}
-			lastUpdated={lastUpdated}
-		/>
-	);
+  return <PunchCard restaurants={restaurantPunches} />
 }

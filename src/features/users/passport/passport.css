@@ -1,0 +1,50 @@
+.punch {
+	/* background: linear-gradient(
+		to right,
+		rgba(var(--primary), 0.9),
+		var(--primary)
+	); */
+	/* -webkit-background-clip: text;
+	background-clip: text;
+	color: transparent; */
+	background-color: conic-gradient(at bottom left, #fff7ed, #1e3a1f);
+}
+
+.punch-overlay {
+	/* -webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	background-color: lightblue; */
+	/* conic-gradient(at bottom left, #fff7ed, #1e3a1f); */
+}
+.punch-overlay::before {
+	/* content: attr(data-text); */
+	/* position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	background: conic-gradient(at bottom left, #fff7ed, #1e3a1f);
+
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	
+	z-index: 10; */
+}

@@ -59,3 +59,28 @@ restaurant-data.json
 
 # OS
 Thumbs.db
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+# Added by Claude Task Master
+# Logs
+logs
+*.log
+dev-debug.log
+# Dependency directories
+# Environment variables
+.env
+.cursor-tools.env
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# OS specific
+# Task files
+tasks.json
+tasks/ 

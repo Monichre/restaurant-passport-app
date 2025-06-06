@@ -28,10 +28,18 @@ export type Restaurant = {
 	description: string;
 	imageUrl: string;
 	address: string;
-	deals?: Deal[];
 	qrCodeUrl: string | null;
+	qrCodeSvg: string | null;
+	code?: number | null;
+	contactName?: string | null;
+	contactPosition?: string | null;
+	email?: string | null;
+	phone?: string | null;
+	website?: string | null;
+	deals?: Deal[];
 	punchCardCount?: number;
 	punchCards?: PunchCard[];
+	prizes?: Prize[];
 };
 
 /**
@@ -42,6 +50,8 @@ export type PunchCard = {
 	userId: bigint;
 	restaurantId: bigint;
 	punches: number;
+	restaurant?: Restaurant;
+
 	completed: boolean;
 	updatedAt: Date;
 };
@@ -84,7 +94,12 @@ export type Prize = {
 };
 
 export interface RestaurantDetailPayload extends Restaurant {
-	prizes: Prize[];
+	deals?: Deal[];
+	prizes?: Prize[];
+	punchCards?: PunchCard[];
+	dealCount?: number;
+	prizeCount?: number;
+	punchCardCount?: number;
 }
 
 /**
@@ -174,24 +189,7 @@ export type Deal = {
 	imageUrl: string;
 	active: boolean;
 	restaurantId: bigint;
+	restaurant?: Restaurant;
 	createdAt: Date;
 	updatedAt: Date;
 };
-
-export interface RestaurantDetailPayload extends Restaurant {
-	deals?: Deal[];
-	prizes?: Prize[];
-	punchCards?: PunchCard[];
-	dealCount?: number;
-	prizeCount?: number;
-	punchCardCount?: number;
-}
-
-export interface RestaurantDetailPayload extends Restaurant {
-	deals?: Deal[];
-	prizes?: Prize[];
-	punchCards?: PunchCard[];
-	dealCount?: number;
-	prizeCount?: number;
-	punchCardCount?: number;
-}
