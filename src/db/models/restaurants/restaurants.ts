@@ -3,7 +3,7 @@
 import { eq, count } from "drizzle-orm";
 import { db } from "../../db";
 import { restaurants, restaurantDeals } from "@/db/drizzle/schema";
-import type { Restaurant } from "@/types/db";
+import type { Restaurant, RestaurantDetailPayload } from "@/types/db";
 
 export const getRestaurants = async () => {
 	// Get all restaurants and only load essential relations
@@ -23,7 +23,7 @@ export const getRestaurants = async () => {
 };
 
 export type PaginatedRestaurants = {
-	restaurants: Restaurant[];
+	restaurants: RestaurantDetailPayload[];
 	pagination: {
 		total: number;
 		pageSize: number;
@@ -57,15 +57,15 @@ export const getPaginatedRestaurants = async (
 	});
 
 	// Add count metadata to each restaurant
-	// const restaurantsWithCounts = restaurantsList.map((restaurant) => ({
-	// 	...restaurant,
-	// 	punchCardCount: restaurant?.punchCards?.length || 0,
-	// 	dealCount: restaurant?.deals?.length || 0,
-	// }));
+	const restaurantsWithCounts = restaurantsList.map((restaurant) => ({
+		...restaurant,
+		punchCardCount: restaurant?.punchCards?.length || 0,
+		dealCount: restaurant?.deals?.length || 0,
+	})) as unknown as RestaurantDetailPayload[];
 
 	// Return both the restaurants and pagination metadata
 	return {
-		restaurants: restaurantsList,
+		restaurants: restaurantsWithCounts,
 		pagination: {
 			total: totalCount,
 			pageSize,
