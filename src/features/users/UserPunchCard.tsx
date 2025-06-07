@@ -17,7 +17,7 @@ export function UserPunchCard({restaurants}: UserPunchCardProps) {
     currentPunches: punchCard.punches || 1,
     MAX_PUNCH_THRESHOLD: 6,
     completed: punchCard.completed || false,
-    lastUpdated: punchCard.createdAt || punchCard.updatedAt,
+    lastUpdated: punchCard.updatedAt,
   }))
 
   return <PunchCard restaurants={restaurantPunches} />

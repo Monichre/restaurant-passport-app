@@ -45,7 +45,7 @@ export function RestaurantCard({
   const hasDeals = restaurant.deals && restaurant.deals.length > 0
 
   return (
-    <div className='block w-full group h-full'>
+    <Link href={`/restaurants/${restaurant.id}`} className='block w-full group h-full'>
       <div
         className={cn(
           'relative overflow-hidden rounded-lg',
@@ -55,7 +55,7 @@ export function RestaurantCard({
           'shadow-md',
           'transition-all duration-300',
           'hover:shadow-lg',
-          'hover:border-zinc-300/50 dark:hover:border-zinc-700/50 h-full'
+          'hover:border-zinc-300/50 dark:hover:border-zinc-700/50 h-full cursor-pointer'
         )}
       >
         <div className='relative h-[200px] w-full overflow-hidden'>
@@ -91,21 +91,7 @@ export function RestaurantCard({
           </div>
         )}
 
-        <div className='absolute top-3 right-3 z-10'>
-          <Link
-            href={`/restaurants/${restaurant.id}`}
-            className={cn(
-              'px-2.5 py-1 rounded-full text-xs font-medium',
-              'bg-white/90 text-zinc-800',
-              'dark:bg-zinc-900/90 dark:text-zinc-200',
-              'backdrop-blur-md',
-              'shadow-xs',
-              'border border-white/20 dark:border-zinc-800/50'
-            )}
-          >
-            View
-          </Link>
-        </div>
+
 
         <div className='absolute bottom-0 left-0 right-0 p-5'>
           <div className='flex items-center justify-between gap-3'>
@@ -133,6 +119,6 @@ export function RestaurantCard({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

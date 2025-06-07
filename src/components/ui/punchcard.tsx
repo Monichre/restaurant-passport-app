@@ -267,7 +267,7 @@ export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
           )}
         </div>
         <div className='flex items-center justify-start'>
-          <ProgressIndicator punches={restaurants} />
+          <ProgressIndicator punches={restaurants as any} />
         </div>
       </motion.div>
     )
