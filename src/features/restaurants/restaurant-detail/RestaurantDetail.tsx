@@ -97,7 +97,7 @@ export function RestaurantDetail({
           initial={{opacity: 0}}
           animate={{opacity: 1}}
           transition={{duration: 0.5}}
-          className='relative h-auto md:h-[50vh] w-full overflow-hidden md:max-h-[50vh]'
+          className='relative h-auto md:h-[40vh] w-full overflow-hidden md:max-h-[40vh]'
         >
           {/* Background Image */}
           <Image
@@ -107,12 +107,21 @@ export function RestaurantDetail({
             width={1000}
             priority
             loading='eager'
-            className='object-cover object-center w-full h-auto max-h-[55vh]'
+            className='object-cover object-center w-full h-auto max-h-[40vh]'
             style={{
-              maxHeight: '55vh',
+              maxHeight: '40vh',
               objectFit: 'cover',
               objectPosition: 'center',
               filter: 'brightness(0.6)',
+            }}
+          />
+          <div
+            className='absolute inset-0 w-full h-full'
+            style={{
+              backgroundColor: '#ed8025',
+              opacity: 0.2,
+              mixBlendMode: 'screen',
+              pointerEvents: 'none',
             }}
           />
 
@@ -130,7 +139,7 @@ export function RestaurantDetail({
               ease: 'easeInOut',
             }}
           >
-            <Sparkles size={32} className='text-yellow-300' />
+            <Sparkles size={32} className='text-white' />
           </motion.div>
 
           <motion.div
@@ -147,7 +156,7 @@ export function RestaurantDetail({
               delay: 1,
             }}
           >
-            <Sparkles size={24} className='text-yellow-400' />
+            <Sparkles size={24} className='text-white' />
           </motion.div>
 
           <div className='absolute inset-0 flex flex-col items-center justify-center text-white z-10 px-4'>
@@ -196,7 +205,7 @@ export function RestaurantDetail({
           </div>
 
           {/* Animated Wave Overlay */}
-          <svg
+          {/* <svg
             className='absolute bottom-0 left-0 w-full text-white'
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 1440 320'
@@ -226,7 +235,7 @@ export function RestaurantDetail({
                 />
               </pattern>
             </defs>
-          </svg>
+          </svg> */}
         </motion.div>
 
         {/* Bento Grid Layout */}

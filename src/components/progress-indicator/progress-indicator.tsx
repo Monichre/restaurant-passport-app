@@ -1,7 +1,3 @@
-import {
-  AnimatedNumber,
-  AnimatedNumberInView,
-} from '@/components/motion-primitives/animated-number'
 import type {PunchCardWithRestaurant} from '@/types/api'
 import {motion, useMotionValue, useSpring, useTransform} from 'motion/react'
 import React, {useEffect, useState} from 'react'
@@ -20,7 +16,7 @@ export function ProgressIndicator({punches}: ProgressIndicatorProps) {
     percentageProgress
   )
 
-  const TOTAL_PUNCH_CARDS = 10
+  const TOTAL_PUNCH_CARDS = 6
   const [currentPunches, setCurrentPunches] = React.useState(punches.length)
   const percentage = (currentPunches / TOTAL_PUNCH_CARDS) * 100
 

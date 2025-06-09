@@ -12,8 +12,6 @@ export default async function Index() {
       {/* Decorative SVG elements layer */}
       <DecorativeElements />
 
-      {/* Main content layer */}
-
       <Home />
     </div>
   )

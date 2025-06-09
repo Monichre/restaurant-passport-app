@@ -162,6 +162,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   After creating a user in Supabase, update the corresponding Clerk user's `privateMetadata` with the Supabase user ID. This allows linking Clerk users to their database records.
     -   Access the Supabase user ID from `user.privateMetadata.supabaseUserId` on the backend.
     -   Ensure the bigint user ID is converted to a string for metadata storage.
+-   When no Clerk session or user is detected, trigger a sign-up modal.
 
 ## DEBUGGING
 
@@ -432,6 +433,14 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         - Build `/qr` landing page and signup flow.
         - Integrate reward logic post-signup.
         - Add analytics and error handling.
+-   **Restaurant Detail Page QR Onboarding:**
+    -   When a user navigates directly to `/restaurants/[id]` (likely from scanning a QR code), and they are not authenticated, display a modal or banner prompting them to sign up.
+    -   This prompt should include the restaurant name and the incentive for signing up (e.g., "Sign up to start earning rewards at this restaurant!").
+    -   Store the `restaurantId` in `localStorage` or `sessionStorage` to preserve context through the signup flow.
+    -   After successful signup, check for the stored `restaurantId` and trigger onboarding reward logic (badge, points, punch card).
+    -   If the user is already authenticated, show the normal restaurant detail page.
+    -   Use `window.history.length === 1` to detect direct entry (no navigation history).
+    -   Use `@TriggerSignUp.tsx` to implement this logic.
 
 ## SUPABASE STORAGE RULES
 
@@ -602,27 +611,3 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         1.  **Folder Configuration** - Set up folder path and options
         2.  **Query Execution** - Execute list query with pagination/sorting
         3.  **Data Processing** - Process file metadata
-        4.  **Response** - Return file list or error
-
--   **Security Features:**
-    -   **Path Security:**
-        -   Prevents directory traversal attacks (`../`)
-        -   Blocks absolute paths
-        -   Removes double slashes
-        -   Normalizes paths consistently
-    -   **File Validation:**
-        -   **Type Restrictions**: Only allows specified image types for restaurant bucket
-        -   **Size Limits**: 50MB maximum file size
-        -   **Content Type**: Validates MIME types
-    -   **Access Control:**
-        -   Server-side operations use authenticated client
-        -   Client-side operations use browser client with RLS policies
-        -   Signed URLs for temporary private access
-
--   **Error Handling Strategy:**
-    -   **Error Types:**
-        -   `FILE_NOT_FOUND` - Requested file doesn't exist
-        -   `UPLOAD_FAILED` - Upload operation failed
-        -   `INVALID_PATH` - Path validation failed
-        -   `BUCKET_NOT_FOUND` - Specified bucket doesn't exist
-        -

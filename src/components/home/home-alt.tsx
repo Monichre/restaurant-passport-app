@@ -23,15 +23,15 @@ export const Home = () => {
             <Image
               src='/maple-grove.png'
               alt='Maple Grove Restaurant Week'
-              height={200}
-              width={300}
+              height={isMobile ? 200 : 200}
+              width={isMobile ? 150 : 300}
               className='mx-auto'
               priority
             />
           </motion.div>
         </BoxReveal>
         <BoxReveal boxColor={'#E2FFE5'} duration={0.25} delay={0.5}>
-          <h2 className='text-center text-4xl lg:text-5xl font-bold tk-wigwag-bold mt-6 uppercase'>
+          <h2 className='text-center text-2xl md:text-4xl lg:text-5xl font-bold tk-wigwag-bold mt-6 uppercase'>
             <span className='text-[#ed8025]'>Dine.</span>{' '}
             <span className='text-[#22d3ee]'>Scan.</span>{' '}
             <span className='text-[#22d3ee]'>Win!</span>
@@ -39,13 +39,13 @@ export const Home = () => {
         </BoxReveal>
       </div>
 
-      <div className='mt-12 w-full flex justify-center items-center'>
+      <div className='w-full flex justify-center items-center'>
         <BoxReveal boxColor={'#E2FFE5'} duration={0.35} delay={0.75}>
           <Image
             src='/rw-logo.png'
             alt='Maple Grove Restaurant Week'
-            height={isMobile ? 300 : 400}
-            width={isMobile ? 300 : 400}
+            height={isMobile ? 250 : 400}
+            width={isMobile ? 250 : 400}
             className='mx-auto block'
             priority
           />
@@ -58,11 +58,19 @@ export const Home = () => {
         <div>
           <BoxReveal boxColor={'#E2FFE5'} duration={0.5} delay={0.85}>
             <div className='text-center '>
-              <p className='text-xl text-gray-500'>Get Started with Your</p>
-              <h2 className='text-4xl font-semibold text-[#16A34A] mt-1'>
+              <p
+                className='text-md  md:text-xl text-gray-600'
+                style={{fontWeight: 500}}
+              >
+                Get Started with Your
+              </p>
+              <h2 className='text-4xl font-bold text-[#2d6444] my-1'>
                 Digital Passport
               </h2>
-              <p className='text-xl text-gray-500 mt-5 leading-8 w-[60%] mx-auto'>
+              <p
+                className='text-md md:text-xl text-gray-600 my-5 leading-8 w-[60%] mx-auto'
+                style={{fontWeight: 500}}
+              >
                 Scan the QR code at each restaurant to collect stamps and unlock
                 your chance to win a shopping spree.
               </p>
