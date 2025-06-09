@@ -6,9 +6,10 @@ import {LocationProvider} from '@/context/location-context'
 import {Analytics} from '@vercel/analytics/react'
 import {Nav} from '@/components/nav/nav'
 import {Toaster} from '@/components/ui/sonner'
-import {UserProvider} from '@/context/user-context'
+
 import './globals.css'
 import {StyleWrapper} from '@/context/style-wrapper'
+import {AppProviders} from '@/context/providers'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -42,22 +43,20 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <LocationProvider>
-        <UserProvider>
-          <html lang='en' suppressHydrationWarning>
-            <body
-              className={`${geistSans.variable} ${geistMono.variable} antialiased relative h-screen overflow-scroll bg-[#faf9f6] overflow-x-hidden`}
-            >
-              {/* <StagewiseDevToolbar /> */}
-              {/* <GoogleAnalytics gaId='G-SZWPFKRGP3' /> */}
-              <StyleWrapper>{children}</StyleWrapper>
-              <Nav />
-              <Toaster />
-              <Analytics />
-            </body>
-          </html>
-        </UserProvider>
-      </LocationProvider>
+      <AppProviders>
+        <html lang='en' suppressHydrationWarning>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased relative h-screen overflow-scroll bg-[#faf9f6] overflow-x-hidden`}
+          >
+            {/* <StagewiseDevToolbar /> */}
+            {/* <GoogleAnalytics gaId='G-SZWPFKRGP3' /> */}
+            <StyleWrapper>{children}</StyleWrapper>
+            <Nav />
+            <Toaster />
+            <Analytics />
+          </body>
+        </html>
+      </AppProviders>
     </ClerkProvider>
   )
 }
