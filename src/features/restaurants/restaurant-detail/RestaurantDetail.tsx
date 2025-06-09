@@ -35,6 +35,7 @@ import {cn, isValidUrl} from '@/lib/utils'
 import {motion, AnimatePresence} from 'motion/react'
 import {BoxReveal} from '@/components/magicui/box-reveal'
 import {useMediaQuery} from 'usehooks-ts'
+import {DealsListCard} from '@/features/deals/DealsListCard'
 
 export function RestaurantDetail({
   restaurant: restaurantDetail,
@@ -229,7 +230,7 @@ export function RestaurantDetail({
         </motion.div>
 
         {/* Bento Grid Layout */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-12'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 md:p-12'>
           {/* About Section */}
           <div className='bg-white rounded-xl shadow-sm border p-6 col-span-full md:col-span-2'>
             <div className='flex items-center mb-4'>
@@ -240,7 +241,7 @@ export function RestaurantDetail({
           </div>
 
           {/* Deals Section */}
-          <div className='bg-white rounded-xl shadow-sm border p-6 col-span-full'>
+          <div className='bg-white rounded-xl shadow-sm border p-4 col-span-full'>
             <div className='flex items-center justify-between mb-6'>
               <div className='flex items-center'>
                 <Tag className='w-5 h-5 mr-2 text-amber-500' />
@@ -259,101 +260,17 @@ export function RestaurantDetail({
                       animate={{opacity: 1, y: 0}}
                       exit={{opacity: 0, y: -20}}
                       transition={{duration: 0.3}}
-                      className={cn(
-                        'overflow-hidden rounded-lg',
-                        'bg-white dark:bg-zinc-900',
-                        'shadow-sm',
-                        'border border-gray-100 dark:border-zinc-800',
-                        'hover:shadow-md transition-all duration-200'
-                      )}
+                      // style={{border: '1px dashed #ed8025'}}
+                      // className={cn(
+                      //   'w-full max-w-md mx-auto border-2 border-dashed',
+                      //   'overflow-hidden rounded-lg',
+                      //   'bg-white dark:bg-zinc-900',
+                      //   'shadow-md',
+                      //   'border border-2 border-yellow-200 dark:border-zinc-800',
+                      //   'hover:shadow-md transition-all duration-200'
+                      // )}
                     >
-                      {/* Show restaurant info for each deal */}
-                      {deal.restaurant && (
-                        <Link
-                          href={`/restaurants/${deal.restaurantId}`}
-                          className='block'
-                        >
-                          <div className='flex items-center p-4 border-b border-gray-100 dark:border-zinc-800'>
-                            {deal.restaurant?.imageUrl ? (
-                              <div className='relative w-12 h-12 mr-3 overflow-hidden rounded-full flex-shrink-0'>
-                                <Image
-                                  src={
-                                    isValidUrl(deal?.restaurant?.imageUrl)
-                                      ? deal?.restaurant?.imageUrl
-                                      : '/RWP.jpg'
-                                  }
-                                  alt={deal?.restaurant?.name || 'Restaurant'}
-                                  className='object-cover'
-                                  height={300}
-                                  width={300}
-                                />
-                              </div>
-                            ) : (
-                              <div className='relative w-12 h-12 mr-3 overflow-hidden rounded-full flex-shrink-0'>
-                                <Image
-                                  src={deal?.restaurant?.imageUrl || '/RWP.jpg'}
-                                  alt={deal?.restaurant?.name || 'Restaurant'}
-                                  height={300}
-                                  width={300}
-                                  className='object-cover'
-                                />
-                              </div>
-                            )}
-                            <div>
-                              <h4 className='font-medium text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors'>
-                                {deal.restaurant.name}
-                              </h4>
-                              <p className='text-xs text-gray-500 dark:text-gray-400'>
-                                View restaurant details
-                              </p>
-                            </div>
-                          </div>
-                        </Link>
-                      )}
-
-                      <div className='p-5'>
-                        <div className='flex justify-between items-start mb-2'>
-                          <h3 className='font-semibold text-gray-900 dark:text-gray-100'>
-                            {deal.title ||
-                              `${deal.content.substring(0, 40)}...`}
-                          </h3>
-                          {deal.active ? (
-                            <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'>
-                              Active
-                            </span>
-                          ) : (
-                            <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'>
-                              Inactive
-                            </span>
-                          )}
-                        </div>
-
-                        <div className='mt-2'>
-                          <p
-                            className={cn(
-                              'text-gray-700 dark:text-gray-300',
-                              'text-sm'
-                            )}
-                          >
-                            {deal.content}
-                          </p>
-                        </div>
-
-                        <div className='mt-4 flex items-center justify-between'>
-                          <div className='flex items-center text-sm text-gray-500 dark:text-gray-400'>
-                            <Clock className='mr-1 h-4 w-4' />
-                            <span>Limited time offer</span>
-                          </div>
-
-                          <Link
-                            href={`/restaurants/${deal.restaurantId}`}
-                            className='inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline'
-                          >
-                            View Restaurant{' '}
-                            <ExternalLink className='ml-1 h-3 w-3' />
-                          </Link>
-                        </div>
-                      </div>
+                      <DealsListCard deal={deal} />
                     </motion.div>
                   ))}
                 </div>

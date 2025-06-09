@@ -28,7 +28,7 @@ export default async function RestaurantsPage({
   )
 
   return (
-    <div className='px-4 py-8 h-full w-full overflow-auto'>
+    <div className='h-full w-full overflow-auto'>
       <RestaurantsHero />
 
       <RestaurantsList

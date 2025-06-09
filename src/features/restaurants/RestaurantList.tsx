@@ -2,11 +2,12 @@
 
 import {motion} from 'motion/react'
 
-import {RestaurantCard} from './RestaurantCard'
+import {RestaurantCard, RestaurantPreviewCard} from './RestaurantCard'
 import {RestaurantSearchBar} from './RestaurantSearchBar'
 import {useRestaurantSearch} from '@/hooks/useRestaurantSearch'
 import type {Restaurant, RestaurantDetailPayload} from '@/types/db'
 import {InView} from '@/components/ui/in-view'
+import {NewRestaurantCard} from '@/features/restaurants/RestaurantCardNewVersion'
 
 // Loading component
 export function RestaurantsLoading() {
@@ -56,7 +57,7 @@ export function RestaurantsList({
   })
 
   return (
-    <>
+    <div className='px-4 py-8'>
       <RestaurantSearchBar
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -110,6 +111,6 @@ export function RestaurantsList({
           </div>
         </InView>
       )}
-    </>
+    </div>
   )
 }

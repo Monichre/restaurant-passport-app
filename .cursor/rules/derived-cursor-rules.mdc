@@ -88,6 +88,63 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   Improving spacing with better padding and margins across devices.
     -   Centering content for better visual balance.
     -   Staggering animations for smooth flow.
+-   When creating company cards, use the following UI structure:
+    -   The card should have an image, title, description, and a list of tags.
+    -   The card should have a link to an external site.
+    -   The card should use the Material Symbols Outlined font for the link icon.
+    -   The card should have a hover effect.
+    -   The card should have a consistent color scheme.
+    -   Each card should include an image, a title (h3), a description (p), and a list of tags (ul > li).
+    -   The tags should be styled with different background colors based on their category (e.g., branding, packaging, marketing).
+    -   The link icon should be an arrow_outward icon from Material Symbols Outlined.
+    -   The card should have a visually distinct inner section with a background color.
+    -   The card should use a grid layout for responsiveness.
+-   When updating `@page.tsx` or any page layout, follow these guidelines based on the visual specifications:
+    -   **Global Canvas & Grid**:
+        -   Viewport size: 414px × 896px (mobile portrait).
+        -   Primary layout: Single-column, centered content with 24px horizontal margins.
+        -   Content width: 366px (414px - 48px margins).
+        -   Layout type: Fixed mobile layout, vertically scrollable.
+        -   Background: Cream/off-white (#F5F2ED) with subtle decorative elements. Use `--bg-canvas` color token.
+    -   **Color Tokens**:
+        -   Use the defined color tokens for consistent styling. Refer to the `VISUAL_SPEC.md` for specific token usages.
+    -   **Typography Scale**:
+        -   Adhere to the specified typography scale for headers, body text, and buttons. Use the provided Tailwind CSS classes (e.g., `text-2xl-bold`, `text-lg-regular`).
+    -   **Component Dimensions and Spacing**:
+        -   Ensure components match the specified dimensions and spacing.
+        -   Header Section: 366px × 120px, 24px top margin, 32px bottom margin.
+        -   Logo Badge: 200px × 200px, center-aligned, 32px top margin.
+        -   Content Section: 366px × 140px, 40px top margin from logo.
+        -   Button Group: 366px × 48px, 40px top margin.
+        -   Bottom Navigation: 366px × 64px, fixed bottom, 24px margins.
+    -   **Layout & Spacing Details**:
+        -   Main container: 414px × 896px, `--bg-canvas`.
+        -   Content padding: 24px horizontal, 40px top.
+        -   Vertical spacing: Header to logo: 32px, Logo to content: 40px, Content to buttons: 40px.
+    -   **Interaction & Motion Cues**:
+        -   Button hover: Slight opacity reduction (0.9), 150ms ease transition.
+        -   Button press: Scale down (0.95), 100ms ease transition.
+    -   **Accessibility Checks**:
+        -   Ensure contrast ratios meet accessibility standards.
+        -   Touch targets should be at least 44px.
+        -   Use appropriate ARIA roles for navigation and buttons.
+    -   **Assets & Iconography**:
+        -   Use the specified icons (maple leaf, restaurant icons, navigation icons) with the correct dimensions and colors.
+    -   **Bottom Navigation**:
+        -   Fixed positioning, 24px from edges, likely sticky/fixed positioning.
+-   When placing decorative SVG images randomly throughout the `@page.tsx` or similar pages:
+    -   Create a dedicated component to manage these decorative elements (e.g., `DecorativeElements`).
+    -   Position the component absolutely in the background of the page content.
+    -   Use `pointer-events-none` to prevent the decorative elements from interfering with user interactions.
+    -   Incorporate subtle animations for a polished user experience.
+    -   Use variable opacity (0.10 - 0.18) for subtle visual effect.
+    -   Add blur effects on some elements for depth.
+    -   Use drop shadows for dimension.
+    -   Ensure responsive sizing, scaling from 48px on mobile to 96px on desktop.
+    -   Hide some elements on mobile to reduce clutter.
+    -   Load images lazily using `priority={false}`.
+    -   Use the following SVG assets: `/Burger.svg`, `/Fried.svg`, `/IceCream.svg`, `/Picklball.svg`, `/Pizza.svg`, `/Salad.svg`, `/Shop.svg`, `/Taco.svg`.
+    -   The decorative element should have an initial fade-in with staggered delays and continuous floating motion (4-8 seconds duration) with subtle rotation effects.
 
 ## DATA FETCHING & API
 
@@ -568,136 +625,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         -   `UPLOAD_FAILED` - Upload operation failed
         -   `INVALID_PATH` - Path validation failed
         -   `BUCKET_NOT_FOUND` - Specified bucket doesn't exist
-        -   `PERMISSION_DENIED` - Access denied
-        -   `FILE_TOO_LARGE` - File exceeds size limit
-        -   `INVALID_FILE_TYPE` - File type not allowed
-        -   `DOWNLOAD_FAILED` - Download operation failed
-        -   `DELETE_FAILED` - Delete operation failed
-        -   `LIST_FAILED` - List operation failed
-    -   **Error Response Format:**
-        ```typescript
-        {
-          data: null,
-          error: "User-friendly error message",
-          success: false
-        }
-        ```
-
--   **Performance Considerations:**
-    -   **Optimization Features:**
-        -   **Caching**: Configurable cache control headers
-        -   **Compression**: Automatic content compression
-        -   **CDN Ready**: Public URLs support CDN integration
-        -   **Batch Operations**: Support for multiple file operations
-    -   **Best Practices:**
-        -   Use appropriate cache control settings
-        -   Implement pagination for large file lists
-        -   Use signed URLs for temporary access
-        -   Batch delete operations when possible
-
--   **Usage Examples:**
-    -   **Upload Restaurant Logo:**
-        ```typescript
-        import { uploadRestaurantImage } from '@/db/storage';
-
-        const handleLogoUpload = async (file: File, restaurantId: string) => {
-          const { data, error, success } = await uploadRestaurantImage(
-            restaurantId,
-            file,
-            'logo'
-          );
-
-          if (success) {
-            console.log('Logo uploaded:', data);
-          } else {
-            console.error('Upload failed:', error);
-          }
-        };
-        ```
-    -   **Generate and Upload QR Code:**
-        ```typescript
-        import { uploadQRCode } from '@/db/storage';
-
-        const generateMenuQR = async (restaurantId: string, menuData: any) => {
-          // Generate QR code (implementation depends on QR library)
-          const qrCodeBuffer = await generateQRCodeBuffer(menuData);
-
-          const { data, error, success } = await uploadQRCode(
-            restaurantId,
-            'menu',
-            qrCodeBuffer
-          );
-
-          if (success) {
-            console.log('QR code uploaded:', data);
-          } else {
-            console.error('QR upload failed:', error);
-          }
-        };
-        ```
-    -   **List Restaurant Images:**
-        ```typescript
-        import { getRestaurantImages, getPublicUrl } from '@/db/storage';
-
-        const loadRestaurantGallery = async (restaurantId: string) => {
-          const { data: images, error, success } = await getRestaurantImages(
-            restaurantId,
-            'gallery'
-          );
-
-          if (success && images) {
-            const imageUrls = images.map(image =>
-              getPublicUrl('restaurants', `gallery/${image.name}`)
-            );
-            return imageUrls;
-          } else {
-            console.error('Failed to load gallery:', error);
-            return [];
-          }
-        };
-        ```
-    -   **Cleanup Old Files:**
-        ```typescript
-        import { deleteQRCodes } from '@/db/storage';
-
-        const cleanupOldQRCodes = async (restaurantId: string) => {
-          const { success, error } = await deleteQRCodes(restaurantId, 'menu');
-
-          if (success) {
-            console.log('Old QR codes cleaned up');
-          } else {
-            console.error('Cleanup failed:', error);
-          }
-        };
-        ```
-
--   **Module Integration:**
-    -   **Import Patterns:**
-        ```typescript
-        // Individual functions
-        import {
-          uploadFileClient,
-          getPublicUrl,
-          uploadRestaurantImage
-        } from '@/db/storage';
-
-        // Default export with all functions
-        import storage from '@/db/storage';
-        ```
-        -   **For resolving "Module '"@/db/storage"' has no exported member 'BUCKET_NAMES'." errors, import directly from specific storage modules instead of the main `@/db/storage` entry point.**
-    -   **Types and constants**
-        ```typescript
-        import {
-          BucketName,
-          StorageResponse,
-        } from '@/db/storage';
-        ```
-    -   **Server Actions Integration**
--   **Important:**
-    - When using server-side storage operations in the Storage module (`storage-server.ts`), always use `createSupabaseServerClient()` and `await` its result. Do not use `createSupabaseServiceClient()`.
-    - To address RLS policy violations when uploading restaurant images, use server-side upload. To facilitate this, create a **server action** that handles image upload using **server-side storage functions** with proper permissions. Use the service key in the Authorization header. You must add the `SUPABASE_SERVICE_ROLE_KEY` environment variable to your `.env.local` file and restart your development server.
-
-## NEXT.JS
-
--   Avoid calling client functions from the server (e.g., `getPublicUrl()`). Client functions can only be rendered as a Component or passed to props of a Client Component.
--   When using server actions for image uploads, use the `getPublic
+        -

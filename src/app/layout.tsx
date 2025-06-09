@@ -9,8 +9,6 @@ import {Toaster} from '@/components/ui/sonner'
 import {UserProvider} from '@/context/user-context'
 import './globals.css'
 import {StyleWrapper} from '@/context/style-wrapper'
-// import {GoogleAnalytics} from '@next/third-parties/google-analytics'
-// import {GoogleAnalytics} from '@next/third-parties/google'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

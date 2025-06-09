@@ -342,3 +342,7 @@ export default async function handler(req, res) {
 13. Summary
 
 This Next.js + TypeScript application integrates Clerk for authentication, Supabase for the database, Tailwind CSS + ShadCN/UI for styling, and Framer Motion for animation. It includes robust role-based authorization for Users, Restaurant Admins, and System Admins. The platform offers digital punch cards, real-time QR code validation, prize management, gamified point transfers, achievements, and analytics dashboards. The included Drizzle ORM schema and CRUD/REST endpoints illustrate how data is managed and accessed, ensuring a clear, maintainable foundation for future growth and enhancements.
+
+
+Dealslist Mobile Card
+- orange dashed border: #ed8025

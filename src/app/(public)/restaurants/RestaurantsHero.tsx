@@ -17,28 +17,38 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
           initial={{opacity: 0}}
           animate={{opacity: 1}}
           transition={{duration: 0.5}}
-          className='relative h-auto md:h-[50vh] w-full overflow-hidden md:max-h-[50vh]'
+          className='relative h-auto lg:h-[60vh] w-full overflow-hidden lg:max-h-[60vh]'
           // style={{
           //   height: '50vh',
           //   maxHeight: '50vh',
           // }}
         >
-          {/* Background Image */}
-          <Image
-            src='/deals-hero.jpeg'
-            alt='Maple Grove Restaurant Week'
-            height={1000}
-            width={1000}
-            priority
-            loading='eager'
-            className='object-cover object-top w-full h-auto max-h-[55vh]'
-            style={{
-              maxHeight: '55vh',
-              objectFit: 'cover',
-              objectPosition: 'top center',
-              filter: 'brightness(0.5)',
-            }}
-          />
+          <div className='relative w-full h-auto'>
+            <Image
+              src='/deals-hero.jpeg'
+              alt='Maple Grove Restaurant Week'
+              height={1000}
+              width={1000}
+              priority
+              loading='eager'
+              className='object-cover object-center w-full h-auto'
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+                filter: 'brightness(0.5)',
+              }}
+            />
+            <div
+              className='absolute inset-0 w-full h-full'
+              style={{
+                backgroundColor: '#ed8025',
+                opacity: 0.6,
+                mixBlendMode: 'screen',
+                pointerEvents: 'none',
+              }}
+            />
+          </div>
+
           {/* <div className='absolute inset-0 top-0 left-0 h-full w-full z-3 bg-gradient-to-b from-transparent to bg-black/50' /> */}
           {/* Floating Sparkles */}
           <motion.div
@@ -54,7 +64,7 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
               ease: 'easeInOut',
             }}
           >
-            <Sparkles size={32} className='text-yellow-300' />
+            <Sparkles size={32} className='text-white' />
           </motion.div>
 
           <motion.div
@@ -71,7 +81,7 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
               delay: 1,
             }}
           >
-            <Sparkles size={24} className='text-yellow-400' />
+            <Sparkles size={24} className='text-white' />
           </motion.div>
 
           <div className='absolute inset-0 flex flex-col items-center justify-center text-white z-10 px-4'>
@@ -81,12 +91,12 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
                 animate={{y: 0, opacity: 1}}
                 transition={{duration: 0.7, delay: 0.2}}
               >
-                <h1 className='text-5xl md:text-7xl font-bold text-center mb-4 drop-shadow-lg'>
+                <h1 className='text-5xl md:text-7xl font-bold text-center mb-4 drop-shadow-lg tk-wigwag-bold'>
                   Restaurants
                 </h1>
               </motion.div>
             </BoxReveal>
-
+            {/* 
             <BoxReveal boxColor={'#E2FFE5'} duration={0.5} delay={0.4}>
               <motion.div
                 initial={{y: 30, opacity: 0}}
@@ -99,8 +109,8 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
                   stamps on your food passport!
                 </p>
               </motion.div>
-            </BoxReveal>
-
+            </BoxReveal> */}
+            {/* 
             <motion.div
               initial={{y: 30, opacity: 0}}
               animate={{y: 0, opacity: 1}}
@@ -121,44 +131,11 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
                 <Home size={20} />
                 Home
               </Link>
-            </motion.div>
+            </motion.div> */}
           </div>
-
-          {/* Animated Wave Overlay */}
-          <svg
-            className='absolute bottom-0 left-0 w-full text-white'
-            xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 1440 320'
-            aria-hidden='true'
-            style={{
-              marginBottom: '-125px',
-            }}
-          >
-            <path
-              fill='url(#patternFill)'
-              fillOpacity='1'
-              d='M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,170.7C672,149,768,107,864,90.7C960,75,1056,85,1152,96C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'
-            />
-            <defs>
-              <pattern
-                id='patternFill'
-                patternUnits='userSpaceOnUse'
-                width='100'
-                height='100'
-              >
-                <image
-                  href='/bg-pattern.png'
-                  x='0'
-                  y='0'
-                  width='100'
-                  height='100'
-                />
-              </pattern>
-            </defs>
-          </svg>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           initial={{y: 40, opacity: 0}}
           animate={{y: 0, opacity: 1}}
           transition={{duration: 0.5, delay: 0.6, ease: 'easeInOut'}}
@@ -172,7 +149,7 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
             className='mx-auto mt-4 md:my-8 block'
             priority
           />
-        </motion.div>
+        </motion.div> */}
       </div>
     </AnimatePresence>
   )
