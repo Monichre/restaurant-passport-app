@@ -1,0 +1,375 @@
+# Mouse-Sensitive Bottom Navigation Implementation Plan
+
+## Overview
+
+This document outlines the implementation plan for creating a mouse-sensitive bottom navigation bar that:
+
+- **On Desktop**: Hides when the mouse moves away from the bottom of the screen and animates back in when the mouse approaches the bottom
+- **On Mobile**: Always remains visible (never hides)
+
+## Requirements
+
+1. Create a responsive bottom navigation that responds to mouse position on desktop devices
+2. Ensure the navigation always remains visible on mobile devices
+3. Implement smooth animations for showing/hiding the navigation
+4. Maintain accessibility standards across all devices
+5. Optimize performance to avoid impacting page responsiveness
+
+## Technical Implementation
+
+### 1. Custom Mouse Position Hook
+
+We'll create a custom React hook to track the mouse position relative to the viewport:
+
+```typescript
+// src/hooks/use-mouse-position.tsx
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useIsMobile } from './use-mobile'
+
+export function useMousePosition() {
+  const [mousePosition, setMousePosition] = useState({ 
+    x: 0, 
+    y: 0, 
+    viewportHeight: 0 
+  })
+  
+  // Use the existing mobile detection hook
+  const isMobile = useIsMobile()
+
+  useEffect(() => {
+    // Don't track mouse position on mobile devices
+    if (isMobile) {
+      setMousePosition({
+        x: 0,
+        y: 0,
+        viewportHeight: window.innerHeight || 0
+      })
+      return
+    }
+
+    // Debounce function to improve performance
+    function debounce<T extends (...args: any[]) => any>(
+      func: T,
+      wait: number
+    ): (...args: Parameters<T>) => void {
+      let timeout: ReturnType<typeof setTimeout> | null = null
+      
+      return (...args: Parameters<T>) => {
+        const later = () => {
+          timeout = null
+          func(...args)
+        }
+        
+        if (timeout !== null) {
+          clearTimeout(timeout)
+        }
+        timeout = setTimeout(later, wait)
+      }
+    }
+
+    const handleMouseMove = debounce((event: MouseEvent) => {
+      setMousePosition({
+        x: event.clientX,
+        y: event.clientY,
+        viewportHeight: window.innerHeight || 0
+      })
+    }, 10) // Small debounce value for responsiveness
+
+    // Update viewport height on resize
+    const handleResize = debounce(() => {
+      setMousePosition(prev => ({
+        ...prev,
+        viewportHeight: window.innerHeight || 0
+      }))
+    }, 100)
+
+    // Set initial viewport height
+    handleResize()
+
+    // Add event listeners
+    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('resize', handleResize)
+
+    // Clean up
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [isMobile])
+
+  return { ...mousePosition, isMobile }
+}
+```
+
+### 2. Navigation Component Modifications
+
+We'll update the existing Nav component to use our custom hook and implement the conditional animation behavior:
+
+```typescript
+// src/components/nav/nav.tsx
+'use client'
+
+import type React from 'react'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import Link from 'next/link'
+import { /* existing imports */ } from 'lucide-react'
+import { motion, AnimatePresence, useTransform, useMotionValue, useSpring } from 'motion/react'
+import { useCallback, useState, useEffect, Suspense, useRef } from 'react'
+import { useMousePosition } from '@/hooks/use-mouse-position'
+import { usePathname } from 'next/navigation'
+// other imports...
+
+export const Nav = () => {
+  const pathname = usePathname()
+  const activeTab = pathname 
+  // other existing state...
+  const [showModal, setShowModal] = useState(false)
+  
+  // Track mouse position with our custom hook
+  const { y, viewportHeight, isMobile } = useMousePosition()
+  
+  // Calculate the threshold for showing/hiding the nav (bottom 15% of viewport)
+  const threshold = viewportHeight * 0.85
+  
+  // Always show on mobile, only hide on desktop when mouse is away from bottom
+  const isNearBottom = isMobile ? true : y > threshold
+  
+  // Create a spring animation for smooth transitions
+  const navY = useMotionValue(0)
+  const springNavY = useSpring(navY, {
+    stiffness: 300,
+    damping: 30
+  })
+  
+  // Update nav position based on mouse position and device type
+  useEffect(() => {
+    navY.set(isNearBottom ? 0 : 100) // 0 = visible, 100 = hidden
+  }, [isNearBottom, navY])
+
+  // Track when the nav is fully hidden for accessibility
+  const [isHidden, setIsHidden] = useState(false)
+  
+  useEffect(() => {
+    const unsubscribe = springNavY.on('change', (value) => {
+      setIsHidden(value > 90)
+    })
+    
+    return unsubscribe
+  }, [springNavY])
+
+  // Handle keyboard focus for accessibility
+  const navContainerRef = useRef<HTMLDivElement>(null)
+  const [hasFocus, setHasFocus] = useState(false)
+
+  useEffect(() => {
+    const navElement = navContainerRef.current
+    if (!navElement) return
+    
+    const handleFocusIn = () => setHasFocus(true)
+    const handleFocusOut = () => setHasFocus(false)
+    
+    navElement.addEventListener('focusin', handleFocusIn)
+    navElement.addEventListener('focusout', handleFocusOut)
+    
+    return () => {
+      navElement.removeEventListener('focusin', handleFocusIn)
+      navElement.removeEventListener('focusout', handleFocusOut)
+    }
+  }, [])
+
+  // Ensure nav is visible when it has keyboard focus
+  useEffect(() => {
+    if (hasFocus) {
+      navY.set(0) // Always show when focused
+    } else if (!isMobile) {
+      navY.set(isNearBottom ? 0 : 100) // Resume normal behavior when not focused
+    }
+  }, [hasFocus, isNearBottom, navY, isMobile])
+
+  // Optimize mouse enter/leave with useCallback
+  const handleMouseEnter = useCallback(() => {
+    navY.set(0) // Show the nav
+  }, [navY])
+
+  const handleMouseLeave = useCallback(() => {
+    if (!isMobile && !hasFocus) {
+      navY.set(100) // Only hide on desktop when not focused
+    }
+  }, [isMobile, hasFocus, navY])
+
+  // existing methods...
+
+  return (
+    <>
+      <Suspense>
+        {/* QR Scanner Modal with animations */}
+        <AnimatePresence>
+          {showModal && (
+            // Existing modal code...
+          )}
+        </AnimatePresence>
+
+        {/* 
+          The nav component with auto-hide behavior on desktop only 
+          Mobile devices will always show the nav (isNearBottom is always true for mobile)
+        */}
+        <motion.nav 
+          ref={navContainerRef}
+          className='fixed bottom-0 left-1/2 -translate-x-1/2 sm:py-2 py-2 z-50 s:h-[80px] h-auto will-change-transform'
+          style={{ 
+            y: springNavY, // Apply the spring animation to the y position
+            opacity: useTransform(springNavY, [0, 100], [1, 0]) // Fade out as it moves down
+          }}
+          aria-hidden={isHidden && !hasFocus}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <motion.div
+            className='flex justify-evenly w-content border rounded-full bg-linear-270 from-[#336f4f] from 48% to-[#179b55] backdrop-blur-sm will-change-transform'
+            initial={{ opacity: 0, y: 10, width: 0 }}
+            animate={{ opacity: 1, y: 0, width: 'auto' }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{
+              duration: 0.8,
+              ease: 'easeInOut',
+              type: 'spring',
+              stiffness: 260,
+              damping: 20,
+              delay: 0.5,
+            }}
+          >
+            {/* Existing navigation buttons... */}
+          </motion.div>
+        </motion.nav>
+      </Suspense>
+    </>
+  )
+}
+```
+
+### 3. Alternative: GSAP Implementation (Optional)
+
+As an alternative to the Motion.js approach, we could implement the animation using GSAP:
+
+```typescript
+// Inside the Nav component
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+
+// Inside the component:
+const navRef = useRef<HTMLDivElement>(null)
+
+useGSAP(() => {
+  if (!navRef.current || isMobile) return // Don't animate on mobile devices
+  
+  // Create a GSAP timeline for the animation
+  const timeline = gsap.timeline({ paused: true })
+  
+  timeline.to(navRef.current, {
+    y: 100,
+    opacity: 0,
+    duration: 0.4,
+    ease: 'power2.inOut'
+  })
+  
+  // Function to update the animation based on mouse position
+  const updateAnimation = () => {
+    if (isMobile) {
+      timeline.progress(0) // Always show on mobile devices
+      return
+    }
+    
+    const progress = isNearBottom ? 0 : 1
+    timeline.progress(progress)
+  }
+  
+  // Add the updater to GSAP's ticker
+  gsap.ticker.add(updateAnimation)
+  
+  return () => {
+    // Clean up ticker when component unmounts
+    gsap.ticker.remove(updateAnimation)
+  }
+}, [isNearBottom, isMobile])
+
+// Then use navRef in the JSX:
+<nav 
+  ref={navRef}
+  className='fixed bottom-0 left-1/2 -translate-x-1/2 sm:py-2 py-2 z-50 s:h-[80px] h-auto will-change-transform'
+  aria-hidden={isHidden && !hasFocus}
+>
+  {/* content */}
+</nav>
+```
+
+## Implementation Process
+
+1. **Initial Setup**
+   - First, verify the project structure to understand the codebase organization
+   - Create the necessary files and hooks
+
+2. **Development Steps**
+   - Create the `use-mouse-position.tsx` hook in the src/hooks directory
+   - Update the existing Nav component to implement the conditional animation
+   - Test behavior on both desktop and mobile devices
+   - Refine animation parameters for smooth transitions
+
+3. **Testing Plan**
+   - **Desktop Testing**:
+     - Verify that the navigation hides when the mouse is away from the bottom
+     - Confirm the navigation appears with a smooth animation when the mouse moves to the bottom
+     - Test keyboard navigation shows the navigation appropriately
+   - **Mobile Testing**:
+     - Ensure the navigation is always visible on mobile devices
+     - Verify touch interactions work as expected
+     - Test on various mobile screen sizes
+   - **Accessibility Testing**:
+     - Verify keyboard navigation works properly
+     - Test with screen readers to ensure accessible navigation
+     - Check that focus management functions correctly
+
+## Performance Considerations
+
+1. **Debouncing Events**
+   - Mouse movement events are debounced to reduce excessive rendering
+   - Resize events use a larger debounce delay to prioritize performance
+
+2. **Conditional Processing**
+   - Mouse tracking only happens on desktop devices
+   - No unnecessary event listeners or animations on mobile devices
+
+3. **Optimized Rendering**
+   - `useCallback` for event handlers to prevent unnecessary re-renders
+   - Motion values are updated efficiently to minimize layout thrashing
+
+## Accessibility Considerations
+
+1. **Keyboard Navigation**
+   - Navigation remains visible when it or its children have keyboard focus
+   - `aria-hidden` attribute is properly managed
+
+2. **Device Adaptation**
+   - Behavior adapts appropriately to the user's device
+   - All functionality remains accessible on both mobile and desktop
+
+## Future Enhancements
+
+1. **User Preferences**
+   - Add a setting to allow users to disable the auto-hide behavior
+   - Store preference in local storage or user settings
+
+2. **Context-Aware Behavior**
+   - Modify behavior based on page context (e.g., always show on critical pages)
+   - Integrate with app-wide navigation state
+
+3. **Animation Refinement**
+   - Fine-tune animation parameters based on user feedback
+   - Add additional visual cues for better user experience
+
+## Conclusion
+
+This implementation provides a responsive, accessible, and performant bottom navigation that enhances the user experience by providing more screen real estate on desktop while maintaining constant access on mobile devices. The solution leverages existing hooks and libraries within the project for consistent behavior and optimal performance.
+

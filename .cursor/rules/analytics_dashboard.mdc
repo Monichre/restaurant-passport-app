@@ -1,0 +1,171 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+ ---
+description: Guidelines for implementing analytics dashboards for restaurant and system admins
+globs: app/analytics/**, app/components/dashboard/**, app/services/analytics/**
+alwaysApply: false
+---
+
+# Analytics Dashboard Implementation Guidelines
+
+- **Core Analytics Architecture**
+  - Implement service-based approach with clear separation of concerns
+  - Use aggregation methods for different metric types
+  - Implement time-based filtering capabilities (daily, weekly, monthly)
+  - Cache frequently accessed analytics data
+  ```typescript
+  // ✅ DO: Create dedicated analytics service with clear method naming
+  export const getRestaurantAnalytics = async (
+    restaurantId: string,
+    period: TimePeriod = 'monthly'
+  ): Promise<RestaurantAnalytics> => {
+    // Implementation with proper caching and error handling
+  }
+  
+  // ❌ DON'T: Mix analytics logic with component rendering
+  const RestaurantDashboard = () => {
+    useEffect(() => {
+      // Don't fetch and process analytics data directly in components
+      db.punchCards.findMany({...}).then(data => {
+        // Process data here for display
+      });
+    }, []);
+  }
+  ```
+
+- **Data Aggregation Patterns**
+  - Create reusable aggregation utilities for common metrics
+  - Implement proper DTOs for structured analytics data
+  - Use standardized time period calculations
+  ```typescript
+  // ✅ DO: Create strongly typed analytics models
+  export interface PunchCardAnalytics {
+    totalPunches: number;
+    completionRate: number;
+    averageDaysToCompletion: number;
+    trendsOverTime: TimeSeriesData[];
+  }
+  
+  // ✅ DO: Use consistent time period handling
+  export const getTimeRangeForPeriod = (
+    period: 'daily' | 'weekly' | 'monthly' | 'custom',
+    customRange?: { start: Date; end: Date }
+  ): { startDate: Date; endDate: Date } => {
+    // Standard time calculations
+  }
+  ```
+
+- **Dashboard Component Structure**
+  - Build reusable chart components with consistent props
+  - Implement responsive layouts for all dashboard views
+  - Use consistent loading states and error handling
+  ```typescript
+  // ✅ DO: Create reusable chart components
+  export const MetricChart = ({
+    data,
+    title,
+    type = 'line',
+    isLoading,
+    error,
+    emptyState,
+  }: MetricChartProps) => {
+    if (isLoading) return <ChartSkeleton />;
+    if (error) return <ErrorDisplay message={error.message} />;
+    if (!data || data.length === 0) return emptyState || <NoDataDisplay />;
+    
+    // Chart rendering logic
+  }
+  ```
+
+- **Role-Based Dashboard Access**
+  - Implement permission checks for all analytics routes
+  - Create specialized views for restaurant vs system admins
+  - Filter data appropriately based on user role
+  ```typescript
+  // ✅ DO: Use role-based route protection
+  export const analyticsRouteHandler = withAuthRequired(
+    async (req, res, session) => {
+      // Verify proper role access
+      if (!isAdminUser(session) && !hasRestaurantAccess(session, req.query.restaurantId)) {
+        return res.status(403).json({ error: 'Access denied' });
+      }
+      
+      // Handle analytics request
+    }
+  );
+  ```
+
+- **Performance Optimization**
+  - Implement data caching for expensive queries
+  - Use pagination for large data sets
+  - Consider scheduled aggregation for system-wide reports
+  ```typescript
+  // ✅ DO: Cache expensive analytics queries
+  export const getSystemWideAnalytics = async (period: TimePeriod): Promise<SystemAnalytics> => {
+    const cacheKey = `system-analytics:${period}`;
+    
+    // Check cache first
+    const cached = await cache.get(cacheKey);
+    if (cached) return JSON.parse(cached);
+    
+    // Expensive calculation logic here
+    const result = await calculateSystemAnalytics(period);
+    
+    // Cache results with appropriate TTL
+    await cache.set(cacheKey, JSON.stringify(result), 60 * 15); // 15 min TTL
+    
+    return result;
+  }
+  ```
+
+- **Visualization Best Practices**
+  - Use appropriate chart types for different metrics
+  - Implement consistent color schemes across charts
+  - Add proper tooltips and legends for all visualizations
+  - Ensure all charts have proper accessibility attributes
+  ```typescript
+  // ✅ DO: Follow accessibility guidelines
+  export const PunchCardTrend = ({ data }: PunchCardTrendProps) => {
+    return (
+      <div aria-label="Punch card trends chart">
+        <h3 id="chart-title">Punch Card Completion Trend</h3>
+        <LineChart 
+          data={data} 
+          aria-labelledby="chart-title"
+          role="img"
+          // Chart configuration
+        />
+        <ChartLegend items={legendItems} />
+      </div>
+    );
+  }
+  ```
+
+- **Export and Reporting Features**
+  - Implement standard CSV/Excel export functionality
+  - Create consistent report formatting
+  - Add scheduled reporting capabilities for admins
+  ```typescript
+  // ✅ DO: Create reusable export utilities
+  export const exportAnalyticsToCSV = async (
+    data: any[],
+    filename: string,
+    headers: string[]
+  ): Promise<string> => {
+    // CSV generation logic
+  }
+  
+  // ❌ DON'T: Hardcode export formats or column names
+  const downloadReport = () => {
+    // Don't create one-off export implementations
+    let csv = 'Date,Punches,Completions\n';
+    data.forEach(row => {
+      csv += `${row.date},${row.punches},${row.completions}\n`;
+    });
+    
+    // Download logic
+  }
+  ```

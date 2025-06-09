@@ -1,0 +1,1153 @@
+---
+description: 
+globs: *.test.*,/tests/
+alwaysApply: false
+---
+# Comprehensive Testing Suite Implementation Plan for Restaurant Passport App
+
+After thoroughly reviewing your codebase, I've created a structured plan for implementing a robust testing suite for your Restaurant Passport App. This plan covers multiple testing approaches to ensure comprehensive coverage across all application layers.
+
+## 1. Testing Strategy Overview
+
+Your application requires testing across several domains:
+
+- **Unit Testing**: For individual components and utility functions
+- **Integration Testing**: For component interactions and data flow 
+- **End-to-End Testing**: For complete user journeys
+- **Visual Testing**: For UI components and responsive layouts
+- **API Testing**: For backend functionality
+- **Accessibility Testing**: For inclusive user experience
+
+I've noted you're already using Vitest and have Playwright installed, which gives us a solid foundation.
+
+## 2. Testing Environment Setup
+
+### 2.1 Recommended Testing Tools & Configuration
+
+```typescript
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./vitest.setup.ts'],
+    css: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: [
+        'node_modules/',
+        'src/stories/',
+        '.storybook/',
+        '**/*.d.ts',
+      ],
+    },
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+    },
+  },
+});
+```
+
+```typescript
+// vitest.setup.ts
+import '@testing-library/jest-dom';
+import { vi } from 'vitest';
+import { TextDecoder, TextEncoder } from 'util';
+
+// Mock Next.js router
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    refresh: vi.fn(),
+    back: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+  usePathname: () => '/current-path',
+  useSearchParams: () => new URLSearchParams(),
+}));
+
+// Mock Clerk authentication
+vi.mock('@clerk/nextjs', () => ({
+  auth: () => ({ userId: 'test-user-id' }),
+  useUser: () => ({ 
+    isSignedIn: true, 
+    user: { id: 'test-user-id', fullName: 'Test User' } 
+  }),
+  useSession: () => ({ 
+    session: { id: 'test-session' } 
+  }),
+  SignedIn: ({ children }) => children,
+  SignedOut: () => null,
+}));
+
+// Global mocks
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+```
+
+Add these scripts to your `package.json`:
+
+```json
+"scripts": {
+  "test": "vitest run",
+  "test:watch": "vitest",
+  "test:coverage": "vitest run --coverage",
+  "test:ui": "vitest --ui",
+  "test:e2e": "playwright test",
+  "test:e2e:ui": "playwright test --ui"
+}
+```
+
+### 2.2 Test Database Setup
+
+Create a separate test database environment:
+
+```typescript
+// src/db/test-db.ts
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+import * as schema from './schema';
+
+// Use a test-specific database URL
+const connectionString = process.env.TEST_DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/restaurant_passport_test';
+const client = postgres(connectionString, { prepare: false });
+export const testDb = drizzle(client, { schema });
+
+export const resetTestDatabase = async () => {
+  // Add logic to reset tables for testing
+  // This could truncate tables or restore from fixtures
+};
+```
+
+## 3. Unit Testing Plan
+
+### 3.1 Directory Structure
+
+```
+src/
+└── __tests__/
+    ├── components/
+    │   ├── ui/
+    │   ├── admin/
+    │   └── ...
+    ├── hooks/
+    ├── lib/
+    ├── db/
+    └── utils/
+```
+
+### 3.2 Component Testing
+
+Focus on testing individual UI components using React Testing Library:
+
+```typescript
+// src/__tests__/components/ui/button.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Button } from '@/components/ui/button';
+import { describe, it, expect, vi } from 'vitest';
+
+describe('Button Component', () => {
+  it('renders with children', () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByText('Click me')).toBeInTheDocument();
+  });
+
+  it('calls onClick when clicked', () => {
+    const handleClick = vi.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    fireEvent.click(screen.getByText('Click me'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders different variants correctly', () => {
+    const { rerender } = render(<Button variant="default">Default</Button>);
+    expect(screen.getByText('Default')).toHaveClass('bg-primary');
+    
+    rerender(<Button variant="destructive">Destructive</Button>);
+    expect(screen.getByText('Destructive')).toHaveClass('bg-destructive');
+  });
+
+  it('is disabled when disabled prop is true', () => {
+    render(<Button disabled>Disabled</Button>);
+    expect(screen.getByText('Disabled')).toBeDisabled();
+  });
+});
+```
+
+### 3.3 Hook Testing
+
+Your application has several custom hooks that should be tested:
+
+```typescript
+// src/__tests__/hooks/use-geolocation.test.tsx
+import { renderHook, act } from '@testing-library/react';
+import { useGeolocation } from '@/hooks/use-geolocation';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+
+describe('useGeolocation Hook', () => {
+  beforeEach(() => {
+    // Mock the Geolocation API
+    const mockGeolocation = {
+      getCurrentPosition: vi.fn().mockImplementation((success) => 
+        success({
+          coords: {
+            latitude: 37.7749,
+            longitude: -122.4194,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+        })
+      ),
+      watchPosition: vi.fn(),
+      clearWatch: vi.fn(),
+    };
+    
+    global.navigator.geolocation = mockGeolocation;
+  });
+
+  it('returns location coordinates when successful', async () => {
+    const { result } = renderHook(() => useGeolocation());
+    
+    // Initially null
+    expect(result.current.coords).toBeNull();
+    
+    // Trigger geolocation request
+    act(() => {
+      result.current.getLocation();
+    });
+    
+    // Wait for state update
+    await vi.waitFor(() => {
+      expect(result.current.coords).not.toBeNull();
+    });
+    
+    expect(result.current.coords?.latitude).toBe(37.7749);
+    expect(result.current.coords?.longitude).toBe(-122.4194);
+    expect(result.current.error).toBeNull();
+  });
+
+  it('handles errors correctly', async () => {
+    // Mock geolocation error
+    global.navigator.geolocation.getCurrentPosition = vi.fn((_, error) => 
+      error({ code: 1, message: 'User denied geolocation' })
+    );
+    
+    const { result } = renderHook(() => useGeolocation());
+    
+    act(() => {
+      result.current.getLocation();
+    });
+    
+    await vi.waitFor(() => {
+      expect(result.current.error).not.toBeNull();
+    });
+    
+    expect(result.current.error).toBe('User denied geolocation');
+    expect(result.current.coords).toBeNull();
+  });
+});
+```
+
+### 3.4 Utility Function Testing
+
+Test your utility functions like those in `src/lib/utils.ts`:
+
+```typescript
+// src/__tests__/lib/utils.test.ts
+import { 
+  cn, 
+  toBigInt, 
+  toNumber, 
+  convertBigInts,
+  convertBigIntToString 
+} from '@/lib/utils';
+import { describe, it, expect } from 'vitest';
+
+describe('Utility Functions', () => {
+  describe('cn', () => {
+    it('merges class names correctly', () => {
+      expect(cn('btn', 'btn-primary')).toBe('btn btn-primary');
+      expect(cn('btn', { 'btn-large': true, 'btn-small': false })).toBe('btn btn-large');
+    });
+  });
+  
+  describe('toBigInt', () => {
+    it('converts string to BigInt', () => {
+      expect(toBigInt('123')).toBe(123n);
+    });
+    
+    it('converts number to BigInt', () => {
+      expect(toBigInt(456)).toBe(456n);
+    });
+  });
+  
+  describe('convertBigInts', () => {
+    it('converts BigInt values in objects to numbers or strings', () => {
+      const obj = { id: 123n, name: 'Test', nested: { count: 456n } };
+      const converted = convertBigInts(obj);
+      
+      expect(converted).toEqual({ id: 123, name: 'Test', nested: { count: 456 } });
+    });
+    
+    it('handles arrays with BigInt values', () => {
+      const arr = [1n, 2n, { id: 3n }];
+      const converted = convertBigInts(arr);
+      
+      expect(converted).toEqual([1, 2, { id: 3 }]);
+    });
+  });
+});
+```
+
+## 4. Integration Testing Plan
+
+### 4.1 Form Submissions
+
+Test form components with their submission logic:
+
+```typescript
+// src/__tests__/integration/restaurant-form.test.tsx
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { RestaurantForm } from '@/components/admin/restaurant-form';
+import { createRestaurantAction } from '@/actions/restaurants';
+import { describe, it, expect, vi } from 'vitest';
+
+// Mock the server action
+vi.mock('@/actions/restaurants', () => ({
+  createRestaurantAction: vi.fn().mockResolvedValue({ success: true, id: '123' }),
+}));
+
+describe('Restaurant Form Integration', () => {
+  it('submits the form with valid data', async () => {
+    render(<RestaurantForm />);
+    
+    // Fill out the form
+    fireEvent.change(screen.getByLabelText(/name/i), {
+      target: { value: 'Test Restaurant' },
+    });
+    
+    fireEvent.change(screen.getByLabelText(/description/i), {
+      target: { value: 'A test restaurant description' },
+    });
+    
+    fireEvent.change(screen.getByLabelText(/address/i), {
+      target: { value: '123 Test St, Testville' },
+    });
+    
+    // Mock file selection for image upload
+    const file = new File(['test'], 'test.png', { type: 'image/png' });
+    const fileInput = screen.getByLabelText(/image/i);
+    Object.defineProperty(fileInput, 'files', {
+      value: [file],
+    });
+    fireEvent.change(fileInput);
+    
+    // Submit the form
+    fireEvent.click(screen.getByRole('button', { name: /create/i }));
+    
+    // Verify the form was submitted with correct data
+    await waitFor(() => {
+      expect(createRestaurantAction).toHaveBeenCalledWith(expect.objectContaining({
+        name: 'Test Restaurant',
+        description: 'A test restaurant description',
+        address: '123 Test St, Testville',
+      }));
+    });
+  });
+  
+  it('displays validation errors for invalid data', async () => {
+    render(<RestaurantForm />);
+    
+    // Submit without filling any fields
+    fireEvent.click(screen.getByRole('button', { name: /create/i }));
+    
+    // Check for validation errors
+    await waitFor(() => {
+      expect(screen.getByText(/name is required/i)).toBeInTheDocument();
+    });
+    
+    // createRestaurantAction should not be called
+    expect(createRestaurantAction).not.toHaveBeenCalled();
+  });
+});
+```
+
+### 4.2 Authentication Flow Testing
+
+Test the authentication flows with Clerk:
+
+```typescript
+// src/__tests__/integration/auth-flow.test.tsx
+import { render, screen } from '@testing-library/react';
+import { UserButton } from '@/components/UserButton';
+import { AdminLayout } from '@/app/admin/layout';
+import { isAdmin } from '@/lib/auth';
+import { describe, it, expect, vi } from 'vitest';
+
+// Mock the auth module
+vi.mock('@/lib/auth', () => ({
+  isAdmin: vi.fn(),
+}));
+
+// Mock the clerk auth
+vi.mock('@clerk/nextjs/server', () => ({
+  auth: vi.fn().mockReturnValue({ userId: 'test-user-id' }),
+}));
+
+describe('Authentication Flow Integration', () => {
+  it('renders user button when signed in', () => {
+    render(<UserButton />);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+  
+  it('redirects non-admin users from admin routes', async () => {
+    isAdmin.mockReturnValue(false);
+    
+    // Mock redirect function
+    const redirect = vi.fn();
+    vi.mock('next/navigation', () => ({
+      ...vi.importActual('next/navigation'),
+      redirect: redirect,
+    }));
+    
+    // Render admin layout (this would trigger auth check and redirect)
+    await AdminLayout({ children: <div>Admin content</div> });
+    
+    // Should redirect non-admins to home page
+    expect(redirect).toHaveBeenCalledWith('/');
+  });
+  
+  it('allows admin users to access admin routes', async () => {
+    isAdmin.mockReturnValue(true);
+    
+    // Mock redirect function
+    const redirect = vi.fn();
+    vi.mock('next/navigation', () => ({
+      ...vi.importActual('next/navigation'),
+      redirect: redirect,
+    }));
+    
+    // Render admin layout
+    await AdminLayout({ children: <div>Admin content</div> });
+    
+    // Should not redirect admin users
+    expect(redirect).not.toHaveBeenCalled();
+  });
+});
+```
+
+## 5. End-to-End Testing with Playwright
+
+### 5.1 Playwright Configuration
+
+```typescript
+// playwright.config.ts
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './e2e',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: [['html'], ['list']],
+  use: {
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+  },
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'mobile',
+      use: { ...devices['iPhone 13'] },
+    },
+  ],
+  webServer: {
+    command: 'bun run dev',
+    port: 3000,
+    reuseExistingServer: !process.env.CI,
+  },
+});
+```
+
+### 5.2 Authentication Setup
+
+Create authentication helpers for E2E tests:
+
+```typescript
+// e2e/utils/auth.ts
+import { test as base } from '@playwright/test';
+import { login, adminLogin } from './login-helpers';
+
+// Regular user auth fixture
+export const test = base.extend({
+  authenticatedPage: async ({ page }, use) => {
+    // Log in before tests
+    await login(page);
+    await use(page);
+    // Optional: Log out or clean up after tests
+  },
+});
+
+// Admin user auth fixture
+export const adminTest = base.extend({
+  adminPage: async ({ page }, use) => {
+    await adminLogin(page);
+    await use(page);
+  },
+});
+
+export { expect } from '@playwright/test';
+```
+
+### 5.3 E2E Test Examples
+
+User journey test examples:
+
+```typescript
+// e2e/user-punchcard-journey.spec.ts
+import { test, expect } from './utils/auth';
+
+test.describe('User Punch Card Journey', () => {
+  test('user can view their punch cards', async ({ authenticatedPage: page }) => {
+    await page.goto('/users/me/profile');
+    
+    // Check if punch cards are displayed
+    await expect(page.getByTestId('user-punch-cards')).toBeVisible();
+  });
+  
+  test('user can view a restaurant details', async ({ authenticatedPage: page }) => {
+    await page.goto('/restaurants');
+    
+    // Click on the first restaurant
+    await page.getByTestId('restaurant-card').first().click();
+    
+    // Check if restaurant details are displayed
+    await expect(page.getByTestId('restaurant-detail')).toBeVisible();
+    await expect(page.getByTestId('restaurant-punch-card')).toBeVisible();
+  });
+  
+  test('user can scan a QR code to add a punch', async ({ authenticatedPage: page }) => {
+    // Mock QR scanning (since it's hard to test with real camera)
+    await page.goto('/');
+    
+    // Open scanner modal
+    await page.getByTestId('qr-scanner-button').click();
+    
+    // Mock scan result by calling the handler directly
+    await page.evaluate(() => {
+      // Simulate the QR scan event
+      window.dispatchEvent(new CustomEvent('qr-scanned', {
+        detail: { restaurantId: '1' }
+      }));
+    });
+    
+    // Check for success notification
+    await expect(page.getByText(/punch added/i)).toBeVisible();
+  });
+});
+```
+
+Admin journey test:
+
+```typescript
+// e2e/admin-restaurant-management.spec.ts
+import { adminTest, expect } from './utils/auth';
+
+adminTest.describe('Admin Restaurant Management', () => {
+  adminTest('admin can create a new restaurant', async ({ adminPage: page }) => {
+    await page.goto('/admin/restaurants');
+    
+    // Click on "Add Restaurant" button
+    await page.getByRole('button', { name: /add restaurant/i }).click();
+    
+    // Fill the form
+    await page.getByLabel(/name/i).fill('Test E2E Restaurant');
+    await page.getByLabel(/description/i).fill('This is an E2E test restaurant');
+    await page.getByLabel(/address/i).fill('E2E Test Street 123');
+    
+    // Upload a test image
+    await page.setInputFiles('input[type="file"]', './e2e/fixtures/test-image.png');
+    
+    // Submit the form
+    await page.getByRole('button', { name: /create/i }).click();
+    
+    // Check for success message
+    await expect(page.getByText(/restaurant created/i)).toBeVisible();
+    
+    // Verify the new restaurant appears in the list
+    await expect(page.getByText('Test E2E Restaurant')).toBeVisible();
+  });
+  
+  adminTest('admin can edit a restaurant', async ({ adminPage: page }) => {
+    // Navigate to restaurants page
+    await page.goto('/admin/restaurants');
+    
+    // Find and click on the edit button for the first restaurant
+    await page.getByTestId('edit-restaurant-button').first().click();
+    
+    // Update the restaurant name
+    const nameInput = page.getByLabel(/name/i);
+    await nameInput.clear();
+    await nameInput.fill('Updated Restaurant Name');
+    
+    // Save changes
+    await page.getByRole('button', { name: /save/i }).click();
+    
+    // Check for success message
+    await expect(page.getByText(/restaurant updated/i)).toBeVisible();
+  });
+});
+```
+
+## 6. API & Backend Testing
+
+### 6.1 API Route Tests
+
+```typescript
+// src/__tests__/api/restaurants-api.test.ts
+import { createMocks } from 'node-mocks-http';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { POST, GET } from '@/app/api/restaurants/[id]/route';
+import { getRestaurantById, updateRestaurant } from '@/db/models/restaurants/restaurants';
+
+// Mock database functions
+vi.mock('@/db/models/restaurants/restaurants', () => ({
+  getRestaurantById: vi.fn(),
+  updateRestaurant: vi.fn(),
+}));
+
+describe('Restaurant API Routes', () => {
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
+  
+  describe('GET /api/restaurants/[id]', () => {
+    it('returns the restaurant data if found', async () => {
+      // Mock the database response
+      getRestaurantById.mockResolvedValue({
+        id: 1n,
+        name: 'Test Restaurant',
+        description: 'Test Description',
+        imageUrl: 'test.jpg',
+        address: 'Test Address',
+      });
+      
+      // Mock request and response
+      const { req, res } = createMocks({
+        method: 'GET',
+        params: { id: '1' },
+      });
+      
+      // Call the API handler
+      const response = await GET(req, { params: { id: '1' } });
+      const data = await response.json();
+      
+      // Assertions
+      expect(response.status).toBe(200);
+      expect(data).toEqual({
+        id: 1,  // BigInt converted to number
+        name: 'Test Restaurant',
+        description: 'Test Description',
+        imageUrl: 'test.jpg',
+        address: 'Test Address',
+      });
+    });
+    
+    it('returns 404 if restaurant not found', async () => {
+      // Mock database returning null
+      getRestaurantById.mockResolvedValue(null);
+      
+      const { req } = createMocks({
+        method: 'GET',
+        params: { id: '999' },
+      });
+      
+      const response = await GET(req, { params: { id: '999' } });
+      
+      expect(response.status).toBe(404);
+    });
+  });
+  
+  describe('PUT /api/restaurants/[id]', () => {
+    it('updates the restaurant and returns updated data', async () => {
+      // Mock the update function
+      updateRestaurant.mockResolvedValue({
+        id: 1n,
+        name: 'Updated Restaurant',
+        description: 'Updated Description',
+        imageUrl: 'updated.jpg',
+        address: 'Updated Address',
+      });
+      
+      // Mock request with body
+      const { req } = createMocks({
+        method: 'PUT',
+        params: { id: '1' },
+        body: {
+          name: 'Updated Restaurant',
+          description: 'Updated Description',
+        },
+      });
+      
+      // Make the request body accessible
+      req.json = async () => ({
+        name: 'Updated Restaurant',
+        description: 'Updated Description',
+      });
+      
+      const response = await PUT(req, { params: { id: '1' } });
+      const data = await response.json();
+      
+      expect(response.status).toBe(200);
+      expect(updateRestaurant).toHaveBeenCalledWith(1n, {
+        name: 'Updated Restaurant',
+        description: 'Updated Description',
+      });
+      expect(data).toEqual({
+        id: 1,
+        name: 'Updated Restaurant',
+        description: 'Updated Description',
+        imageUrl: 'updated.jpg',
+        address: 'Updated Address',
+      });
+    });
+  });
+});
+```
+
+### 6.2 Database Model Tests
+
+```typescript
+// src/__tests__/db/restaurants.test.ts
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { testDb, resetTestDatabase } from '@/db/test-db';
+import { 
+  getRestaurants, 
+  getRestaurantById,
+  createRestaurant,
+  updateRestaurant,
+  deleteRestaurant,
+} from '@/db/models/restaurants/restaurants';
+
+describe('Restaurant Database Models', () => {
+  beforeEach(async () => {
+    await resetTestDatabase();
+  });
+  
+  it('creates a new restaurant', async () => {
+    const restaurant = await createRestaurant({
+      name: 'Test Restaurant',
+      description: 'Test Description',
+      imageUrl: 'test.jpg',
+      address: 'Test Address',
+    });
+    
+    expect(restaurant).toBeDefined();
+    expect(restaurant.name).toBe('Test Restaurant');
+    
+    // Verify it was actually saved to the DB
+    const saved = await getRestaurantById(restaurant.id);
+    expect(saved).not.toBeNull();
+    expect(saved?.name).toBe('Test Restaurant');
+  });
+  
+  it('updates a restaurant', async () => {
+    // First create a restaurant
+    const restaurant = await createRestaurant({
+      name: 'Original Name',
+      description: 'Original Description',
+      imageUrl: 'original.jpg',
+      address: 'Original Address',
+    });
+    
+    // Update it
+    const updated = await updateRestaurant(restaurant.id, {
+      name: 'Updated Name',
+    });
+    
+    expect(updated.name).toBe('Updated Name');
+    // Other fields should remain the same
+    expect(updated.description).toBe('Original Description');
+  });
+  
+  it('deletes a restaurant', async () => {
+    // First create a restaurant
+    const restaurant = await createRestaurant({
+      name: 'Restaurant To Delete',
+      description: 'Will be deleted',
+      imageUrl: 'delete.jpg',
+      address: 'Delete Address',
+    });
+    
+    // Verify it exists
+    let found = await getRestaurantById(restaurant.id);
+    expect(found).not.toBeNull();
+    
+    // Delete it
+    await deleteRestaurant(restaurant.id);
+    
+    // Verify it's gone
+    found = await getRestaurantById(restaurant.id);
+    expect(found).toBeNull();
+  });
+  
+  it('gets all restaurants', async () => {
+    // Create a few restaurants
+    await createRestaurant({
+      name: 'Restaurant 1',
+      description: 'Description 1',
+      imageUrl: 'image1.jpg',
+      address: 'Address 1',
+    });
+    
+    await createRestaurant({
+      name: 'Restaurant 2',
+      description: 'Description 2',
+      imageUrl: 'image2.jpg',
+      address: 'Address 2',
+    });
+    
+    // Get all restaurants
+    const restaurants = await getRestaurants();
+    
+    expect(restaurants.length).toBe(2);
+    expect(restaurants[0].name).toBe('Restaurant 1');
+    expect(restaurants[1].name).toBe('Restaurant 2');
+  });
+});
+```
+
+## 7. Accessibility Testing
+
+### 7.1 Component-Level Accessibility Testing
+
+```typescript
+// src/__tests__/accessibility/nav.test.tsx
+import { render, screen } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { Nav } from '@/components/nav/nav';
+import { describe, it, expect } from 'vitest';
+
+// Setup jest-axe
+expect.extend(toHaveNoViolations);
+
+describe('Nav Accessibility', () => {
+  it('should not have accessibility violations', async () => {
+    const { container } = render(<Nav />);
+    
+    // Run axe accessibility tests
+    const results = await axe(container);
+    
+    // This will fail if there are any accessibility issues
+    expect(results).toHaveNoViolations();
+  });
+  
+  it('ensures all interactive elements are keyboard accessible', () => {
+    render(<Nav />);
+    
+    const buttons = screen.getAllByRole('button');
+    
+    // Check all buttons are accessible via keyboard
+    buttons.forEach(button => {
+      expect(button).toHaveAttribute('tabindex', '0');
+    });
+  });
+});
+```
+
+### 7.2 E2E Accessibility Testing with Playwright
+
+```typescript
+// e2e/accessibility.spec.ts
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+test.describe('Accessibility Tests', () => {
+  test('homepage should not have accessibility violations', async ({ page }) => {
+    await page.goto('/');
+    
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa'])
+      .analyze();
+    
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+  
+  test('restaurant listing page should be accessible', async ({ page }) => {
+    await page.goto('/restaurants');
+    
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa'])
+      .analyze();
+    
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+});
+```
+
+## 8. Visual Regression Testing
+
+### 8.1 Storybook Integration
+
+Since you're using Storybook, you can leverage it for visual testing:
+
+```typescript
+// .storybook/test-runner.js
+const { toMatchImageSnapshot } = require('jest-image-snapshot');
+
+// Export a function that will be called by the test runner
+module.exports = {
+  async setup() {
+    expect.extend({ toMatchImageSnapshot });
+  },
+  
+  async preRender(page) {
+    // Wait for fonts to load
+    await page.evaluate(() => document.fonts.ready);
+  },
+  
+  async postRender(page, context) {
+    // Skip visual tests on CI or by a flag
+    if (process.env.SKIP_VISUAL_TESTS) return;
+    
+    // Take screenshot
+    const image = await page.screenshot();
+    
+    // Compare with baseline
+    expect(image).toMatchImageSnapshot({
+      customSnapshotsDir: `__image_snapshots__/${context.id}`,
+      customDiffDir: `__image_snapshots__/diff/${context.id}`,
+    });
+  },
+};
+```
+
+### 8.2 Component Visual Testing
+
+```typescript
+// src/__tests__/visual/punch-card.test.tsx
+import { render } from '@testing-library/react';
+import { PunchCard } from '@/components/ui/punchcard';
+import { describe, it, expect } from 'vitest';
+
+describe('PunchCard Visual Test', () => {
+  it('renders consistently', () => {
+    // Create a sample data
+    const restaurants = [
+      {
+        restaurantId: '1',
+        restaurantName: 'Test Restaurant',
+        restaurantImage: '/test-image.jpg',
+        currentPunches: 3,
+        MAX_PUNCH_THRESHOLD: 6,
+        completed: false,
+        lastUpdated: new Date().toISOString(),
+      },
+    ];
+    
+    // Render the component
+    const { container } = render(<PunchCard restaurants={restaurants} />);
+    
+    // Take a snapshot
+    expect(container).toMatchSnapshot();
+  });
+});
+```
+
+## 9. Performance Testing
+
+### 9.1 Component Rendering Performance
+
+```typescript
+// src/__tests__/performance/restaurants-list.test.tsx
+import { render } from '@testing-library/react';
+import { RestaurantsList } from '@/features/restaurants/RestaurantList';
+import { describe, it, expect, vi } from 'vitest';
+
+describe('RestaurantsList Performance', () => {
+  it('renders efficiently with many restaurants', () => {
+    // Generate a large set of test restaurants
+    const restaurants = Array.from({ length: 100 }, (_, i) => ({
+      id: BigInt(i + 1),
+      name: `Restaurant ${i + 1}`,
+      description: `Description for restaurant ${i + 1}`,
+      imageUrl: `/images/restaurant-${i + 1}.jpg`,
+      address: `Address ${i + 1}`,
+    }));
+    
+    // Measure render time
+    const start = performance.now();
+    render(<RestaurantsList restaurants={restaurants} />);
+    const end = performance.now();
+    
+    // Expect render time to be under a threshold
+    // This is a simple check - consider more sophisticated metrics
+    expect(end - start).toBeLessThan(200); // Less than 200ms to render
+  });
+});
+```
+
+### 9.2 API Response Time Testing
+
+```typescript
+// e2e/performance.spec.ts
+import { test, expect } from '@playwright/test';
+
+test.describe('API Performance Tests', () => {
+  test('restaurant listing API responds within acceptable time', async ({ page }) => {
+    // Intercept API requests
+    await page.route('**/api/restaurants', route => {
+      // Start timing
+      const startTime = Date.now();
+      
+      // Let the request continue
+      route.continue({
+        // You can add additional request headers or params here
+      }, {
+        // Add handlers for response
+        response: response => {
+          // Calculate response time
+          const responseTime = Date.now() - startTime;
+          
+          // Store response time in the page context for later assertion
+          page.evaluate(time => {
+            window._lastResponseTime = time;
+          }, responseTime);
+        }
+      });
+    });
+    
+    // Navigate to page that triggers the API call
+    await page.goto('/restaurants');
+    
+    // Wait for API call to complete
+    await page.waitForResponse('**/api/restaurants');
+    
+    // Retrieve the response time
+    const responseTime = await page.evaluate(() => window._lastResponseTime);
+    
+    // Assert reasonable response time (adjust threshold as needed)
+    expect(responseTime).toBeLessThan(300); // 300ms threshold
+  });
+});
+```
+
+## 10. Test Coverage Monitoring
+
+### 10.1 Coverage Report Setup
+
+Configure Vitest to generate coverage reports:
+
+```typescript
+// vitest.config.ts coverage section
+coverage: {
+  provider: 'v8', // Use the V8 coverage provider
+  reporter: ['text', 'json', 'html', 'lcov'], // Output formats
+  reportsDirectory: './coverage',
+  exclude: [
+    'node_modules/',
+    'src/stories/',
+    '.storybook/',
+    '**/*.d.ts',
+    '**/types/**',
+    'e2e/**',
+  ],
+  // You can set thresholds to enforce minimum coverage
+  // thresholds: {
+  //   statements: 80,
+  //   branches: 70,
+  //   functions: 80,
+  //   lines: 80,
+  // },
+}
+```
+
+### 10.2 CI Integration
+
+Add this to your CI workflow:
+
+```yaml
+# .github/workflows/test.yml
+name: Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        
+      - name: Install dependencies
+        run: bun install
+        
+      - name: Run unit and integration tests
+        run: bun test
+        
+      - name: Run E2E tests
+        run: bun test:e2e
+      
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/lcov.info
+          fail_ci_if_error: false
+```
+
+## 11. Implementation Strategy
+
+Here's a practical approach to implementing this testing framework:
+
+1. **Setup Phase** (1-2 weeks):
+   - Configure Vitest, RTL, and Playwright
+   - Create test mocks for auth, API, and database
+   - Establish CI pipeline for test automation
+
+2. **Critical Path Testing** (2-3 weeks):
+   - Focus on core user flows first:
+     - Authentication
+     - Restaurant viewing
+     - Punch card management
+     - Admin operations
+
+3. **Coverage Expansion** (3-4 weeks):
+   - Systematically add tests to reach coverage goals
+   - Prioritize complex components and business logic
+
+4. **Specialized Testing** (2 weeks):
+   - Implement accessibility testing
+   - Add visual regression tests
+   - Performance testing for critical paths
+
+This prioritized approach ensures you build a robust test suite while focusing on the most critical functionality first.
+
+Would you like me to expand on any specific area of this testing plan?
