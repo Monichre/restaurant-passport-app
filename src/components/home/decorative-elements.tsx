@@ -22,7 +22,7 @@ const DECORATIVE_POSITIONS = [
     top: '5%',
     left: '10%',
     rotate: 15,
-    scale: 0.8,
+    scale: 1,
     opacity: 1,
     blur: 0,
     mobileHidden: false,
@@ -31,7 +31,7 @@ const DECORATIVE_POSITIONS = [
     top: '15%',
     right: '8%',
     rotate: -20,
-    scale: 0.6,
+    scale: 1,
     opacity: 1,
     blur: 0,
     mobileHidden: false,
@@ -40,7 +40,7 @@ const DECORATIVE_POSITIONS = [
     top: '25%',
     left: '5%',
     rotate: 25,
-    scale: 0.7,
+    scale: 1,
     opacity: 1,
     blur: 0,
     mobileHidden: false,
@@ -49,7 +49,7 @@ const DECORATIVE_POSITIONS = [
     bottom: '30%',
     right: '12%',
     rotate: -15,
-    scale: 0.65,
+    scale: 1,
     opacity: 1,
     blur: 0,
     mobileHidden: false,
@@ -58,7 +58,7 @@ const DECORATIVE_POSITIONS = [
     top: '40%',
     left: '8%',
     rotate: -10,
-    scale: 0.75,
+    scale: 1,
     opacity: 1,
     blur: 0,
     mobileHidden: false,
@@ -67,7 +67,7 @@ const DECORATIVE_POSITIONS = [
     bottom: '20%',
     left: '15%',
     rotate: 20,
-    scale: 0.6,
+    scale: 1,
     opacity: 1,
     blur: 0,
     mobileHidden: false,
@@ -76,7 +76,7 @@ const DECORATIVE_POSITIONS = [
     top: '60%',
     right: '5%',
     rotate: 30,
-    scale: 0.8,
+    scale: 1,
     opacity: 1,
     blur: 0,
     mobileHidden: false,
@@ -85,7 +85,7 @@ const DECORATIVE_POSITIONS = [
     bottom: '10%',
     right: '10%',
     rotate: -25,
-    scale: 0.7,
+    scale: 1,
     opacity: 1,
     blur: 0,
     mobileHidden: false,
@@ -150,9 +150,9 @@ export const DecorativeElements = () => {
             <Image
               src={item.svg}
               alt=''
-              width={80}
-              height={80}
-              className='w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24'
+              width={110}
+              height={110}
+              className='w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24'
               priority={false}
               style={{
                 filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.05))',

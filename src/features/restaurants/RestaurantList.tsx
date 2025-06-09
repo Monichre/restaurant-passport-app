@@ -8,6 +8,9 @@ import {useRestaurantSearch} from '@/hooks/useRestaurantSearch'
 import type {Restaurant, RestaurantDetailPayload} from '@/types/db'
 import {InView} from '@/components/ui/in-view'
 import {NewRestaurantCard} from '@/features/restaurants/RestaurantCardNewVersion'
+import Link from 'next/link'
+import Image from 'next/image'
+import {useMediaQuery} from 'usehooks-ts'
 
 // Loading component
 export function RestaurantsLoading() {
@@ -55,6 +58,8 @@ export function RestaurantsList({
     restaurants,
     hasDeals: initialHasDeals,
   })
+
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
     <div className='px-4 py-8'>
@@ -111,6 +116,38 @@ export function RestaurantsList({
           </div>
         </InView>
       )}
+
+      <motion.div
+        initial={{y: 40, opacity: 0}}
+        animate={{y: 0, opacity: 1}}
+        transition={{duration: 0.5, delay: 0.6, ease: 'easeInOut'}}
+        className='flex gap-4 flex-wrap justify-center mt-12'
+      >
+        <Link
+          href='/deals'
+          className='bg-[#208F54] text-white rounded-full px-6 py-4 md:px-4 md:py-6 font-medium flex items-center gap-2 shadow-lg hover:shadow-xl transition-all hover:scale-105 hover:bg-[#1a7a47]'
+        >
+          View Deals
+        </Link>
+      </motion.div>
+
+      <motion.div
+        initial={{y: 40, opacity: 0}}
+        animate={{y: 0, opacity: 1}}
+        transition={{duration: 0.5, delay: 0.6, ease: 'easeInOut'}}
+        className='my-8 flex gap-4 flex-wrap justify-center mb-24'
+      >
+        <Link href='/'>
+          <Image
+            src='/mg-2.png'
+            alt='Maple Grove Restaurant Week'
+            height={200}
+            width={isMobile ? 300 : 450}
+            className='mx-auto mt-4 md:mt-8 block'
+            priority
+          />
+        </Link>
+      </motion.div>
     </div>
   )
 }
