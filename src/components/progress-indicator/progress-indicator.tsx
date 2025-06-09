@@ -12,7 +12,7 @@ interface ProgressIndicatorProps {
 
 export function ProgressIndicator({punches}: ProgressIndicatorProps) {
   const [percentageProgress, setPercentageProgress] = React.useState(
-    (punches?.length ? punches?.length / 10 : 0).toFixed(0)
+    Number((punches?.length ? punches?.length / 10 : 0).toFixed(0))
   )
 
   console.log(
@@ -26,7 +26,7 @@ export function ProgressIndicator({punches}: ProgressIndicatorProps) {
 
   useEffect(() => {
     setCurrentPunches(punches.length)
-    setPercentageProgress(percentage)
+    setPercentageProgress(Number(percentage.toFixed(0)))
   }, [punches, percentage])
 
   const width = useMotionValue(percentageProgress)

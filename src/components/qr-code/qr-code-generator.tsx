@@ -141,7 +141,7 @@ export function QRCodeGenerator({
         {/* QR Code Display */}
         {restaurant.qrCodeUrl && !generating ? (
           <div className='flex flex-col items-center'>
-            <div className='bg-white p-2 rounded-md shadow-sm'>
+            <div ref={qrRef} className='bg-white p-2 rounded-md shadow-sm'>
               <QRCodeSVG value={restaurant.qrCodeUrl} size={100} />
             </div>
             <div className='flex space-x-2 mt-2'>
@@ -243,7 +243,7 @@ export function QRCodeGenerator({
       <div className='space-y-4'>
         {restaurant.qrCodeUrl && !generating ? (
           <div className='flex flex-col items-center'>
-            <div className='bg-white p-4 rounded-md shadow-sm mb-3'>
+            <div ref={qrRef} className='bg-white p-4 rounded-md shadow-sm mb-3'>
               <QRCodeSVG value={restaurant.qrCodeUrl} size={200} />
             </div>
             <div className='flex space-x-3'>

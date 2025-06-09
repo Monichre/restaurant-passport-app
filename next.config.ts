@@ -61,6 +61,20 @@ const nextConfig: NextConfig = {
 				protocol: "https",
 				hostname: "*.com",
 			},
+				{
+				protocol: "https",
+				hostname: "*.net",
+			},
+			{
+				protocol: "https",
+				hostname: "*.org",
+			},
+			{
+				protocol: "https",
+				hostname: "malonesbarandgrill.net",
+			},
+	
+			
 		],
 	},
 };

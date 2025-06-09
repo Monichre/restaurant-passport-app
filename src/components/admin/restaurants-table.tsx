@@ -556,24 +556,24 @@ export function RestaurantsTable({restaurants: initialData}) {
       ),
       cell: EditableCell,
     },
-    {
-      accessorKey: 'phone',
-      size: 130,
-      header: ({column}) => (
-        <div className='flex items-center gap-0.5'>
-          Phone
-          <Button
-            size='sm'
-            variant='ghost'
-            className='h-8 w-8 ml-1 p-0'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            {getSortingIcon(column.getIsSorted())}
-          </Button>
-        </div>
-      ),
-      cell: EditableCell,
-    },
+    // {
+    //   accessorKey: 'phone',
+    //   size: 130,
+    //   header: ({column}) => (
+    //     <div className='flex items-center gap-0.5'>
+    //       Phone
+    //       <Button
+    //         size='sm'
+    //         variant='ghost'
+    //         className='h-8 w-8 ml-1 p-0'
+    //         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+    //       >
+    //         {getSortingIcon(column.getIsSorted())}
+    //       </Button>
+    //     </div>
+    //   ),
+    //   cell: EditableCell,
+    // },
     {
       accessorKey: 'website',
       size: 50,
@@ -610,24 +610,24 @@ export function RestaurantsTable({restaurants: initialData}) {
         )
       },
     },
-    {
-      accessorKey: 'code',
-      size: 50,
-      header: ({column}) => (
-        <div className='flex items-center gap-0.5'>
-          Code
-          <Button
-            size='sm'
-            variant='ghost'
-            className='h-8 w-8 ml-1 p-0'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            {getSortingIcon(column.getIsSorted())}
-          </Button>
-        </div>
-      ),
-      cell: EditableCell,
-    },
+    // {
+    //   accessorKey: 'code',
+    //   size: 50,
+    //   header: ({column}) => (
+    //     <div className='flex items-center gap-0.5'>
+    //       Code
+    //       <Button
+    //         size='sm'
+    //         variant='ghost'
+    //         className='h-8 w-8 ml-1 p-0'
+    //         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+    //       >
+    //         {getSortingIcon(column.getIsSorted())}
+    //       </Button>
+    //     </div>
+    //   ),
+    //   cell: EditableCell,
+    // },
     {
       accessorKey: 'qrCodeUrl',
       size: 120,
@@ -756,7 +756,7 @@ export function RestaurantsTable({restaurants: initialData}) {
     },
     {
       accessorKey: 'punchCardCount',
-      size: 50,
+      size: 100,
       header: ({column}) => (
         <div className='flex items-center gap-0.5'>
           Punch Cards
@@ -783,7 +783,7 @@ export function RestaurantsTable({restaurants: initialData}) {
     },
     {
       accessorKey: 'dealCount',
-      size: 50,
+      size: 100,
       header: ({column}) => (
         <div className='flex items-center gap-0.5'>
           Deals
@@ -1231,7 +1231,7 @@ export function RestaurantsTable({restaurants: initialData}) {
                 <div
                   key={restaurant.id.toString()}
                   className={cn(
-                    'bg-background rounded-lg border p-4 shadow-sm transition-colors',
+                    'bg-[#eee] rounded-lg border p-4 shadow-sm transition-colors',
                     isSelected
                       ? 'border-primary bg-primary/5'
                       : 'border-sidebar-border'
@@ -1421,16 +1421,16 @@ export function RestaurantsTable({restaurants: initialData}) {
       >
         <div className='w-full overflow-x-auto'>
           <Table className='w-full'>
-            <TableHeader className='bg-sidebar/50 sticky top-0 z-10'>
+            <TableHeader className='bg-sidebar/50 sticky top-0 z-10 border border-b-1 '>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   key={headerGroup.id}
-                  className='border-b border-sidebar-border'
+                  className='border-b  !border-b-1 '
                 >
                   {headerGroup.headers.map((header) => (
                     <TableHead
                       key={header.id}
-                      className='text-sidebar-foreground px-4 py-3 h-14'
+                      className='text-sidebar-foreground px-4 py-3 h-14 min-w-[150px]'
                       style={{
                         width:
                           header.column.getSize() !== 150

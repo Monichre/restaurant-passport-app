@@ -47,28 +47,32 @@ export function RestaurantSearchBar({
 
   return (
     <div
-      className={`flex flex-col md:flex-row gap-3 w-full  ${className} shadow-md rounded-lg p-4 flex justify-evenly w-content border rounded-full bg-gradient-to-r from-[#e2ffe5] from-0% via-[#d0f7d3] via-50% to-[#fff] to-100% backdrop-blur-sm will-change-transform`}
-      style={{
-        margin: '48px auto',
-        background:
-          'linear-gradient(to right, #e2ffe5 0%, #d0f7d3 50%, #fff 100%)',
-      }}
+      className={`flex flex-col gap-3 w-full justify-evenly items-center content-center w-full`}
     >
-      <div className='relative w-full flex-grow align-middle items-center flex rounded-full'>
-        <Search
-          className='absolute right-6 top-4 h-6 w-6 text-[#268552]'
-          style={{color: '#268552'}}
-        />
-        <Input
-          type='text'
-          placeholder='Search restaurants...'
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className='pl-8 w-full rounded-full focus:outline-none focus:ring-0 focus:ring-offset-0 focus:border-[#268552]'
-        />
+      <div
+        className={`w-full px-4 md:w-[80%]  ${className} shadow-md rounded-lg p-4 flex justify-evenly w-content border rounded-full bg-gradient-to-r from-[#e2ffe5] from-0% via-[#d0f7d3] via-50% to-[#fff] to-100% backdrop-blur-sm will-change-transform`}
+        style={{
+          margin: '48px auto',
+          background:
+            'linear-gradient(to right, #e2ffe5 0%, #d0f7d3 50%, #fff 100%)',
+        }}
+      >
+        <div className='relative w-full flex-grow align-middle items-center flex rounded-full'>
+          <Search
+            className='absolute right-6 top-4 h-6 w-6 text-[#268552]'
+            style={{color: '#268552'}}
+          />
+          <Input
+            type='text'
+            placeholder='Search restaurants...'
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className='pl-8 w-full rounded-full focus:outline-none focus:ring-0 focus:ring-offset-0 focus:border-[#268552]'
+          />
+        </div>
       </div>
 
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center gap-4 justify-center md:justify-end w-full px-4 md:w-[80%] mx-auto'>
         <div
           className='flex items-center space-x-2 px-4 py-2 border-[#268552] rounded-full'
           style={{border: '1px solid #268552'}}

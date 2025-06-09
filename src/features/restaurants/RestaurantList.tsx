@@ -2,11 +2,12 @@
 
 import {motion} from 'motion/react'
 
-import {RestaurantCard} from './RestaurantCard'
+import {RestaurantCard, RestaurantPreviewCard} from './RestaurantCard'
 import {RestaurantSearchBar} from './RestaurantSearchBar'
 import {useRestaurantSearch} from '@/hooks/useRestaurantSearch'
 import type {Restaurant, RestaurantDetailPayload} from '@/types/db'
 import {InView} from '@/components/ui/in-view'
+import {NewRestaurantCard} from '@/features/restaurants/RestaurantCardNewVersion'
 
 // Loading component
 export function RestaurantsLoading() {
@@ -56,7 +57,7 @@ export function RestaurantsList({
   })
 
   return (
-    <>
+    <div className='px-4 py-8'>
       <RestaurantSearchBar
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -90,7 +91,7 @@ export function RestaurantsList({
             },
           }}
         >
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 mx-auto max-w-7xl px-4 auto-rows-fr'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 mx-auto max-w-7xl px-4 auto-rows-fr pb-20'>
             {filteredRestaurants.map((restaurant) => (
               <motion.div
                 variants={{
@@ -110,6 +111,6 @@ export function RestaurantsList({
           </div>
         </InView>
       )}
-    </>
+    </div>
   )
 }

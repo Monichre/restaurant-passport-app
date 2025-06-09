@@ -3,7 +3,7 @@ import {getUserByClerkId} from '@/db/models/users/users'
 import {auth} from '@clerk/nextjs/server'
 import type {PunchCardWithRestaurant} from '@/hooks/use-punch-card-subscription'
 import Image from 'next/image'
-import {UserPunchCards} from '@/features/users/UserPunchCards'
+import {Passport} from '@/features/users/passport/passport'
 import {BentoGrid} from '@/components/kokonutui/bento-grid'
 import {Button} from '@/components/ui/button'
 import Link from 'next/link'
@@ -90,13 +90,13 @@ export default async function ProfilePage({
         />
       </Link>
 
-      {/* Display user's punch cards with real-time updates */}
-      <UserPunchCards
-        raffleEntry={raffleEntry}
-        showRaffleAnimation={showRaffleAnimation}
-        user={user}
-        initialPunchCards={initialPunchCards as PunchCardWithRestaurant[]}
-      />
+      {/* Display user's punch cards as passport stamps */}
+      <Passport punches={initialPunchCards as PunchCardWithRestaurant[]} />
+      
+      {/* Show raffle animation if needed */}
+      {showRaffleAnimation && raffleEntry && (
+        <RaffleSuccessAnimation raffleEntry={raffleEntry} />
+      )}
 
       <Button
         className='bold text-white w-full mx-auto mt-8  sm:w-min'

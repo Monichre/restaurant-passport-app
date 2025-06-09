@@ -15,4 +15,5 @@ export default defineConfig({
 	introspect: {
 		casing: "camel", // Keep the original casing from the database
 	},
+	
 });

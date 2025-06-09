@@ -17,28 +17,39 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
           initial={{opacity: 0}}
           animate={{opacity: 1}}
           transition={{duration: 0.5}}
-          className='relative h-auto md:h-[50vh] w-full overflow-hidden md:max-h-[50vh]'
+          className='relative h-auto lg:h-[60vh] w-full overflow-hidden lg:max-h-[60vh]'
           // style={{
           //   height: '50vh',
           //   maxHeight: '50vh',
           // }}
         >
           {/* Background Image */}
-          <Image
-            src='/deals-hero.jpeg'
-            alt='Maple Grove Restaurant Week'
-            height={1000}
-            width={1000}
-            priority
-            loading='eager'
-            className='object-cover object-center w-full h-auto'
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center',
-              filter: 'brightness(0.5)',
-            }}
-          />
-          {/* <div className='absolute inset-0 top-0 left-0 h-full w-full z-3 bg-gradient-to-b from-transparent to bg-black/50' /> */}
+          <div className='relative w-full h-auto'>
+            <Image
+              src='/deals-hero.jpeg'
+              alt='Maple Grove Restaurant Week'
+              height={1000}
+              width={1000}
+              priority
+              loading='eager'
+              className='object-cover object-center w-full h-auto'
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+                filter: 'brightness(0.5)',
+              }}
+            />
+            <div
+              className='absolute inset-0 w-full h-full'
+              style={{
+                backgroundColor: '#ed8025',
+                opacity: 0.6,
+                mixBlendMode: 'screen',
+                pointerEvents: 'none',
+              }}
+            />
+          </div>
+
           {/* Floating Sparkles */}
           <motion.div
             className='absolute top-1/4 right-1/4 '
@@ -53,7 +64,7 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
               ease: 'easeInOut',
             }}
           >
-            <Sparkles size={32} className='text-yellow-300' />
+            <Sparkles size={32} className='text-white' />
           </motion.div>
 
           <motion.div
@@ -70,7 +81,7 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
               delay: 1,
             }}
           >
-            <Sparkles size={24} className='text-yellow-400' />
+            <Sparkles size={24} className='text-white' />
           </motion.div>
 
           <div className='absolute inset-0 flex flex-col items-center justify-center text-white z-10 px-4'>
@@ -80,51 +91,15 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
                 animate={{y: 0, opacity: 1}}
                 transition={{duration: 0.7, delay: 0.2}}
               >
-                <h1 className='text-5xl md:text-7xl font-bold text-center mb-4 drop-shadow-lg'>
-                  Exclusive <span className='text-yellow-300'>Deals</span>
+                <h1 className='text-5xl md:text-7xl font-bold text-center mb-4 drop-shadow-lg tk-wigwag-bold'>
+                  Today's <span className=''>Deals</span>
                 </h1>
               </motion.div>
             </BoxReveal>
-
-            <BoxReveal boxColor={'#E2FFE5'} duration={0.5} delay={0.4}>
-              <motion.div
-                initial={{y: 30, opacity: 0}}
-                animate={{y: 0, opacity: 1}}
-                transition={{duration: 0.7, delay: 0.4}}
-                className='max-w-2xl'
-              >
-                <p className='text-md  md:text-2xl text-center mb-8 drop-shadow-md'>
-                  Discover special offers from Maple Grove's finest restaurants
-                  while collecting stamps on your food passport!
-                </p>
-              </motion.div>
-            </BoxReveal>
-
-            <motion.div
-              initial={{y: 30, opacity: 0}}
-              animate={{y: 0, opacity: 1}}
-              transition={{duration: 0.7, delay: 0.6}}
-              className='flex gap-4 flex-wrap justify-center'
-            >
-              <Link
-                href='/restaurants'
-                className='bg-[#208F54] text-white rounded-full px-4 py-2 md:px-6 md:py-3 font-medium flex items-center gap-2 shadow-lg hover:shadow-xl transition-all hover:scale-105 hover:bg-[#1a7a47]'
-              >
-                View Restaurants
-              </Link>
-
-              <Link
-                href='/'
-                className='bg-black text-white rounded-full px-4 py-2 md:px-6 md:py-3 font-medium flex items-center gap-2 shadow-lg hover:shadow-xl transition-all hover:scale-105'
-              >
-                <Home size={20} />
-                Home
-              </Link>
-            </motion.div>
           </div>
 
           {/* Animated Wave Overlay */}
-          <svg
+          {/* <svg
             className='absolute bottom-0 left-0 w-full text-white'
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 1440 320'
@@ -154,24 +129,13 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
                 />
               </pattern>
             </defs>
-          </svg>
+          </svg> */}
         </motion.div>
 
-        <motion.div
-          initial={{y: 40, opacity: 0}}
-          animate={{y: 0, opacity: 1}}
-          transition={{duration: 0.5, delay: 0.6, ease: 'easeInOut'}}
-          className='flex gap-4 flex-wrap justify-center'
-        >
-          <Image
-            src='/mg-2.png'
-            alt='Maple Grove Restaurant Week'
-            height={isMobile ? 100 : 200}
-            width={isMobile ? 200 : 400}
-            className='mx-auto mt-4 md:mt-8 block'
-            priority
-          />
-        </motion.div>
+        <h2 className='text-center text-2xl lg:text-4xl font-bold tk-wigwag-bold mt-16'>
+          <span className='text-[#ed8025]'>Dine Local.</span>{' '}
+          <span className='text-[#22d3ee]'>Get Rewarded</span>
+        </h2>
         {children}
       </div>
     </AnimatePresence>
