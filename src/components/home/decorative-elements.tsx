@@ -51,7 +51,7 @@ const DECORATIVE_POSITIONS = [
     rotate: -15,
     scale: 0.65,
     opacity: 1,
-    blur: 2,
+    blur: 0,
     mobileHidden: false,
   },
   {

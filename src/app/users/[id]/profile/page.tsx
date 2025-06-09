@@ -10,6 +10,7 @@ import Link from 'next/link'
 import {getPunchCardsByUserId} from '@/db/models/punch-cards'
 import {getRaffleEntryById} from '@/db/models/raffle-entries/raffle-entries'
 import {RaffleSuccessAnimation} from '@/components/raffle/RaffleSuccessAnimation'
+// import {OfficialPassport} from '@/features/official-passport/OfficialPassport'
 
 // Define viewport metadata as per Next.js recommendations
 export const viewport = {
@@ -92,7 +93,7 @@ export default async function ProfilePage({
 
       {/* Display user's punch cards as passport stamps */}
       <Passport punches={initialPunchCards as PunchCardWithRestaurant[]} />
-      
+
       {/* Show raffle animation if needed */}
       {showRaffleAnimation && raffleEntry && (
         <RaffleSuccessAnimation raffleEntry={raffleEntry} />

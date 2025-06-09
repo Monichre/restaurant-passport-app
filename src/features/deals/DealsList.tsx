@@ -95,7 +95,7 @@ export const DealsList = ({deals: initialDeals, className}: DealsListProps) => {
         initial={{y: 40, opacity: 0}}
         animate={{y: 0, opacity: 1}}
         transition={{duration: 0.5, delay: 0.6, ease: 'easeInOut'}}
-        className='flex gap-4 flex-wrap justify-center'
+        className='flex gap-4 flex-wrap justify-center mt-12'
       >
         <Link
           href='/restaurants'
@@ -109,16 +109,18 @@ export const DealsList = ({deals: initialDeals, className}: DealsListProps) => {
         initial={{y: 40, opacity: 0}}
         animate={{y: 0, opacity: 1}}
         transition={{duration: 0.5, delay: 0.6, ease: 'easeInOut'}}
-        className='mt-8 flex gap-4 flex-wrap justify-center'
+        className='my-8 flex gap-4 flex-wrap justify-center mb-24'
       >
-        <Image
-          src='/mg-2.png'
-          alt='Maple Grove Restaurant Week'
-          height={200}
-          width={isMobile ? 300 : 450}
-          className='mx-auto mt-4 md:mt-8 block'
-          priority
-        />
+        <Link href='/'>
+          <Image
+            src='/mg-2.png'
+            alt='Maple Grove Restaurant Week'
+            height={200}
+            width={isMobile ? 300 : 450}
+            className='mx-auto mt-4 md:mt-8 block'
+            priority
+          />
+        </Link>
       </motion.div>
     </div>
   )

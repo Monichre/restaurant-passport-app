@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Below is an updated Product Requirements Document that emphasizes Next.js, TypeScript, Tailwind CSS, ShadCN/UI, Framer Motion, Storybook, Supabase (PostgreSQL), and Clerk for authentication. It also highlights role-based authorization (User, Restaurant Admin, System Admin), user profiles, and prize management. It includes the relevant database model schema and the associated CRUD/REST endpoints.
 
 Digital Punch Card & Loyalty Platform
@@ -346,3 +347,5 @@ This Next.js + TypeScript application integrates Clerk for authentication, Supab
 
 Dealslist Mobile Card
 - orange dashed border: #ed8025
+=======
+>>>>>>> 170599575bdd34f40f847c74e8ddb3c7e623c561

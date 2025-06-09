@@ -17,7 +17,7 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
           initial={{opacity: 0}}
           animate={{opacity: 1}}
           transition={{duration: 0.5}}
-          className='relative h-auto lg:h-[60vh] w-full overflow-hidden lg:max-h-[60vh]'
+          className='relative h-auto lg:h-[40vh] w-full overflow-hidden md:max-h-[50vh]'
           // style={{
           //   height: '50vh',
           //   maxHeight: '50vh',
