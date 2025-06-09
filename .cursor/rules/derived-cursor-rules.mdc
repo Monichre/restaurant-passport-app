@@ -311,7 +311,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   **Public QR Onboarding Flow:**
     - **Scenario:** A non-app-user (stranger/guest) scans a QR code displayed at a participating restaurant. The system should:
         - Recognize the scan as coming from a public QR code (not a referral or user-generated code).
-        - Guide the user to sign up for the app, preserving the context of which restaurant’s QR code was scanned.
+        - Guide the user to sign up for the app, preserving the context of which restaurant's QR code was scanned.
         - Upon signup, award the "First Restaurant" badge or points.
     - **Step-by-Step Implementation Plan:**
         - **1. QR Code Generation & Placement**
@@ -334,11 +334,11 @@ This document defines the rules and guidelines for the AI coding assistant. It c
                 - **Behavior:**
                     - If user is **not authenticated**:
                         - Show a branded landing page:  
-                          “Welcome to [App Name]! You scanned a code at [Restaurant Name]. Sign up to start earning rewards.”
+                          "Welcome to [App Name]! You scanned a code at [Restaurant Name]. Sign up to start earning rewards."
                         - Prominent **Sign Up** and **Sign In** buttons.
                         - Store `restaurantId` (and `campaign` if present) in localStorage, session, or as a query param for the signup flow.
                     - If user is **already authenticated**:
-                        - Optionally, redirect to punch card for that restaurant or show a “Welcome back!” message.
+                        - Optionally, redirect to punch card for that restaurant or show a "Welcome back!" message.
         - **3. State Preservation Through Signup**
             - **How to Maintain Context?**
                 - **Store `restaurantId` and `campaign`**:
@@ -354,7 +354,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
             - **On Account Creation**
                 - **Backend logic** (triggered post-signup):
                     - Check for `restaurantId` context.
-                    - Award “First Visit” badge, points, or other onboarding reward.
+                    - Award "First Visit" badge, points, or other onboarding reward.
                     - Optionally, create a punch card for the restaurant.
                     - Log the event for analytics (user, restaurant, campaign, timestamp).
             - **Data Reconciliation**
@@ -375,7 +375,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
             - Mobile-first, responsive landing page.
         - **D. Error Handling & Edge Cases**
             - **Invalid/missing `restaurantId`**: Show error, allow generic signup.
-            - **Already signed up user scans**: Show punch card or “already a member” message.
+            - **Already signed up user scans**: Show punch card or "already a member" message.
             - **Signup abandoned**: No reward granted until signup completes.
         - **E. Analytics & Tracking**
             - Log:
@@ -424,7 +424,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         - Log all actions for analytics.
     - **Edge Cases & Error Handling**
         - Invalid/missing `restaurantId`: Show error, allow generic signup.
-        - Already registered user: Show punch card or “already a member” message.
+        - Already registered user: Show punch card or "already a member" message.
         - Multiple signups from same device: Prevent abuse.
     - **Analytics & Tracking**
         - Track scans, signups, reward fulfillment.
@@ -630,4 +630,14 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         -   `UPLOAD_FAILED` - Upload operation failed
         -   `INVALID_PATH` - Path validation failed
         -   `BUCKET_NOT_FOUND` - Specified bucket doesn't exist
-        -
+
+## GIT OPERATIONS
+
+-   When Sam explicitly states he is done and ready to update, execute the following git commands in sequence:
+    1. `git add .` - Stage all changes
+    2. `git commit -m "{AI Message}"` - Commit with the AI's descriptive message
+    3. `git push origin feat/sams-branch` - Push to Sam's feature branch
+-   Do not execute these git commands unless Sam has explicitly stated he is ready to update
+-   The AI message in the commit should be descriptive of the changes made
+-   Always verify the branch name is correct before pushing
+-   If any git command fails, inform Sam immediately
