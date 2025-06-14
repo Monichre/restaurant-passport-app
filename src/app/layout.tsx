@@ -45,6 +45,9 @@ export default function RootLayout({
     <ClerkProvider>
       <AppProviders>
         <html lang='en' suppressHydrationWarning>
+          <head>
+            <link rel="stylesheet" href="https://use.typekit.net/dym2fcl.css" />
+          </head>
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased relative h-screen overflow-scroll bg-[#faf9f6] overflow-x-hidden`}
           >

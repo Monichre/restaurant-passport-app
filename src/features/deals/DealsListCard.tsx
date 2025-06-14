@@ -26,7 +26,7 @@ export const DealsListCard = ({deal}: {deal: DealType}) => {
           {/* Top Section: Offer Details */}
           <div className='flex flex-col gap-2'>
             <div className='flex justify-between items-center'>
-              <h2 className='text-lg font-bold text-gray-800'>
+              <h2 className='text-lg font-bold' style={{color: '#2d6444'}}>
                 {' '}
                 {deal.title || `${deal.content.substring(0, 40)}...`}
               </h2>
@@ -58,10 +58,10 @@ export const DealsListCard = ({deal}: {deal: DealType}) => {
           {/* Bottom Section: Restaurant Info */}
           <div className='flex flex-row justify-end align-middle content-center items-center'>
             <div className='mx-4'>
-              <h3 className='font-semibold text-gray-800 text-center'>
+              <h3 className='font-semibold text-gray-800 text-right'>
                 {deal?.restaurant?.name}
               </h3>
-              <p className='text-xs text-gray-500 text-center'>
+              <p className='text-xs text-gray-500 text-right'>
                 View Restaurant Details
               </p>
             </div>

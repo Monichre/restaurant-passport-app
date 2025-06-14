@@ -153,14 +153,14 @@ export const Nav = () => {
                   initial='hidden'
                   animate='visible'
                   exit='exit'
-                  className='p-6'
+                  className='p-6 text-white'
+                  style={{ backgroundColor: '#447754' }}
                 >
                   <motion.div variants={itemVariants}>
                     <DialogHeader>
-                      <DialogTitle>Scan QR Code</DialogTitle>
-                      <DialogDescription>
-                        Point your camera at a restaurant's QR code to earn a
-                        punch.
+                      <DialogTitle style={{ fontFamily: 'Poppins, sans-serif' }}>Scan QR to Collect Stamp!</DialogTitle>
+                      <DialogDescription className="text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        Spot a table tent, scan the QR, and collect your stamp.
                       </DialogDescription>
                     </DialogHeader>
                   </motion.div>

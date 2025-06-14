@@ -132,9 +132,9 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
           </svg> */}
         </motion.div>
 
-        <h2 className='text-center text-2xl lg:text-4xl font-bold tk-wigwag-bold mt-4 md:mt-12'>
+        <h2 className='text-center text-3xl lg:text-5xl font-bold tk-wigwag-bold mt-4 md:mt-12'>
           <span className='text-[#ed8025]'>Dine Local.</span>{' '}
-          <span className='text-[#22d3ee]'>Get Rewarded</span>
+          <span className='text-[#22d3ee]'>Get Rewarded.</span>
         </h2>
         {children}
       </div>

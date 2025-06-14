@@ -112,14 +112,14 @@ export function RestaurantDetail({
               maxHeight: '40vh',
               objectFit: 'cover',
               objectPosition: 'center',
-              filter: 'brightness(0.6)',
+              filter: 'brightness(0.5)',
             }}
           />
           <div
             className='absolute inset-0 w-full h-full'
             style={{
               backgroundColor: '#ed8025',
-              opacity: 0.2,
+              opacity: 0.6,
               mixBlendMode: 'screen',
               pointerEvents: 'none',
             }}
@@ -127,7 +127,7 @@ export function RestaurantDetail({
 
           {/* Floating Sparkles */}
           <motion.div
-            className='absolute top-1/4 right-1/4'
+            className='absolute top-1/4 right-2 md:right-1/4'
             animate={{
               y: [0, -10, 0],
               rotate: [0, 5, 0],

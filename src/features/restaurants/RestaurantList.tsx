@@ -62,7 +62,12 @@ export function RestaurantsList({
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
-    <div className='px-4 py-8'>
+    <div className='px-4 pb-8'>
+      <h2 className='text-center text-3xl lg:text-5xl font-bold tk-wigwag-bold mt-4 md:mt-8 mb-2.5'>
+        <span className='text-[#ed8025]'>Local spots.</span>{' '}
+        <span className='text-[#59bfdf]'>Big flavor.</span>
+      </h2>
+      
       <RestaurantSearchBar
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
