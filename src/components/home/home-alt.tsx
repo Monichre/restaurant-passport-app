@@ -7,9 +7,11 @@ import {motion} from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {useMediaQuery} from 'usehooks-ts'
+import {useUser} from '@clerk/nextjs'
 
 export const Home = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
+
   return (
     <>
       <div className='h-auto w-full flex flex-col justify-center items-center'>
