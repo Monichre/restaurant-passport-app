@@ -88,23 +88,6 @@ export function Passport({punches}: PassportProps) {
               {/* <AnimatePresence> */}
 
               {punches.map((punchData, index) => {
-                // Calculate stamps used by previous punch cards to avoid duplicates
-                const STAMP_ASSETS = [
-                  '/Burger.svg',
-                  '/Fried.svg', 
-                  '/IceCream.svg',
-                  '/Picklball.svg',
-                  '/Pizza.svg',
-                  '/Salad.svg',
-                  '/Shop.svg',
-                  '/Taco.svg',
-                ]
-                
-                const usedStamps = punches.slice(0, index).map((punch) => {
-                  const seed = String(punch.id).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
-                  return STAMP_ASSETS[seed % STAMP_ASSETS.length]
-                })
-
                 return (
                   <motion.div
                     key={`punch-${punchData?.id}-${punchData.restaurant.id}`}
@@ -124,38 +107,12 @@ export function Passport({punches}: PassportProps) {
                       index={index}
                       size={64}
                       className="text-black"
-                      usedStamps={usedStamps}
-                      avoidDuplicates={true}
                     />
                   </motion.div>
                 )
               })}
               {punchesLeft > 0 && emptyPunches?.length
                 ? emptyPunches.map((emptyPunch, index) => {
-                    // Calculate stamps used by all punch cards and previous empty slots
-                    const STAMP_ASSETS = [
-                      '/Burger.svg',
-                      '/Fried.svg', 
-                      '/IceCream.svg',
-                      '/Picklball.svg',
-                      '/Pizza.svg',
-                      '/Salad.svg',
-                      '/Shop.svg',
-                      '/Taco.svg',
-                    ]
-                    
-                    const usedByPunches = punches.map((punch) => {
-                      const seed = String(punch.id).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
-                      return STAMP_ASSETS[seed % STAMP_ASSETS.length]
-                    })
-                    
-                    const usedByPreviousEmpty = Array.from({length: index}, (_, i) => {
-                      const seed = punches.length + i
-                      return STAMP_ASSETS[seed % STAMP_ASSETS.length]
-                    })
-                    
-                    const allUsedStamps = [...usedByPunches, ...usedByPreviousEmpty]
-
                     return (
                       <motion.div
                         key={`emptypunch-${index}`}
@@ -190,8 +147,6 @@ export function Passport({punches}: PassportProps) {
                             index={punches.length + index}
                             size={16}
                             className="text-black opacity-30"
-                            usedStamps={allUsedStamps}
-                            avoidDuplicates={true}
                           />
                         </motion.div>
                       </motion.div>
