@@ -7,7 +7,6 @@ import {useMemo} from 'react'
 const SVG_ASSETS = [
   '/Burger.svg',
   '/Fried.svg',
-  '/IceCream.svg',
   '/Picklball.svg',
   '/Pizza.svg',
   '/Salad.svg',
@@ -16,77 +15,77 @@ const SVG_ASSETS = [
 ]
 
 // Define positions for decorative elements (in percentages)
-// Include mobile visibility flag
+// Updated to use viewport-relative positioning to prevent clipping
 const DECORATIVE_POSITIONS = [
   {
-    top: '5%',
-    left: '10%',
+    top: '2%',
+    left: '-2%',
     rotate: 15,
     scale: 1,
-    opacity: 1,
+    opacity: 0.40,
     blur: 0,
     mobileHidden: false,
   },
   {
-    top: '15%',
-    right: '8%',
+    top: '8%',
+    right: '-2%',
     rotate: -20,
     scale: 1,
-    opacity: 1,
+    opacity: 0.40,
     blur: 0,
     mobileHidden: false,
   },
   {
-    top: '25%',
-    left: '5%',
+    top: '45%',
+    left: '-3%',
     rotate: 25,
     scale: 1,
-    opacity: 1,
+    opacity: 0.40,
     blur: 0,
     mobileHidden: false,
   },
   {
-    bottom: '30%',
-    right: '12%',
+    top: '35%',
+    right: '-1%',
     rotate: -15,
     scale: 1,
-    opacity: 1,
+    opacity: 0.40,
     blur: 0,
     mobileHidden: false,
   },
   {
-    top: '40%',
-    left: '8%',
+    top: '75%',
+    left: '-2%',
     rotate: -10,
     scale: 1,
-    opacity: 1,
+    opacity: 0.40,
     blur: 0,
     mobileHidden: false,
   },
   {
-    bottom: '20%',
+    bottom: '5%',
     left: '15%',
     rotate: 20,
     scale: 1,
-    opacity: 1,
+    opacity: 0.40,
     blur: 0,
     mobileHidden: false,
   },
   {
-    top: '60%',
-    right: '5%',
+    top: '65%',
+    right: '-3%',
     rotate: 30,
     scale: 1,
-    opacity: 1,
+    opacity: 0.40,
     blur: 0,
     mobileHidden: false,
   },
   {
-    bottom: '10%',
-    right: '10%',
+    bottom: '2%',
+    right: '-1%',
     rotate: -25,
     scale: 1,
-    opacity: 1,
+    opacity: 0.40,
     blur: 0,
     mobileHidden: false,
   },
@@ -102,15 +101,13 @@ export const DecorativeElements = () => {
       ...position,
       svg: shuffledSVGs[index % shuffledSVGs.length],
       id: `decorative-${index}`,
-      animationDuration: 4 + Math.random() * 4, // 4-8 seconds
-      animationDelay: Math.random() * 0.5, // 0-0.5 seconds
     }))
   }, [])
 
   return (
-    <>
+    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -1 }}>
       {decorativeItems.map((item) => (
-        <motion.div
+        <div
           key={item.id}
           className={`absolute pointer-events-none ${
             item.mobileHidden ? 'hidden md:block' : ''
@@ -120,33 +117,12 @@ export const DecorativeElements = () => {
             bottom: item.bottom,
             left: item.left,
             right: item.right,
-            zIndex: 0,
             filter: item.blur ? `blur(${item.blur}px)` : 'none',
-          }}
-          initial={{opacity: 0, scale: 0}}
-          animate={{
             opacity: item.opacity,
-            scale: item.scale,
-            rotate: item.rotate,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: item.animationDelay,
-            ease: 'easeOut',
+            transform: `rotate(${item.rotate}deg) scale(${item.scale})`,
           }}
         >
-          <motion.div
-            animate={{
-              y: [0, -10, 0],
-              rotate: [item.rotate, item.rotate + 5, item.rotate],
-            }}
-            transition={{
-              duration: item.animationDuration,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              ease: 'easeInOut',
-            }}
-          >
+          <div>
             <Image
               src={item.svg}
               alt=''
@@ -158,9 +134,9 @@ export const DecorativeElements = () => {
                 filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.05))',
               }}
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       ))}
-    </>
+    </div>
   )
 }
