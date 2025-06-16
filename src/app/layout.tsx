@@ -2,7 +2,6 @@ import type {Metadata} from 'next'
 import {Geist, Geist_Mono} from 'next/font/google'
 import {ClerkProvider} from '@clerk/nextjs'
 
-import {LocationProvider} from '@/context/location-context'
 import {Analytics} from '@vercel/analytics/react'
 import {Nav} from '@/components/nav/nav'
 import {Toaster} from '@/components/ui/sonner'
@@ -46,7 +45,7 @@ export default function RootLayout({
       <AppProviders>
         <html lang='en' suppressHydrationWarning>
           <head>
-            <link rel="stylesheet" href="https://use.typekit.net/dym2fcl.css" />
+            <link rel='stylesheet' href='https://use.typekit.net/dym2fcl.css' />
           </head>
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased relative h-screen overflow-scroll bg-[#faf9f6] overflow-x-hidden`}

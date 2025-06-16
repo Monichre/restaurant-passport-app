@@ -9,13 +9,36 @@ import {
   InstagramIcon,
   Share,
   TwitterIcon,
+  Copy,
 } from 'lucide-react'
 
-export function SharePunchMenu() {
+interface ShareContent {
+  title: string
+  description: string
+  url: string
+  imageUrl?: string
+  hashtags?: string[]
+}
+
+interface SharePunchMenuProps {
+  shareContent?: ShareContent
+  className?: string
+}
+
+export function SharePunchMenu({
+  shareContent = {
+    title: 'Check out my Restaurant Passport progress!',
+    description: 'I\'m exploring amazing local restaurants and collecting stamps on my dining journey.',
+    url: typeof window !== 'undefined' ? window.location.href : '',
+    hashtags: ['RestaurantPassport', 'FoodieLife', 'LocalEats'],
+  },
+  className,
+}: SharePunchMenuProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [selected, setSelected] = useState<any | null>(null)
   const [open, setOpen] = useState(false)
   const [step, setStep] = useState(1)
+  const [showCopySuccess, setShowCopySuccess] = useState(false)
 
   useEffect(() => {
     if (selected && step === 2) {
@@ -29,28 +52,81 @@ export function SharePunchMenu() {
     }
   }, [selected, step])
 
+  // Generate dynamic sharing URLs
+  const generateShareUrls = () => {
+    const encodedUrl = encodeURIComponent(shareContent.url)
+    const encodedTitle = encodeURIComponent(shareContent.title)
+    const encodedDescription = encodeURIComponent(shareContent.description)
+    const hashtags = shareContent.hashtags?.join(',') || ''
+    const encodedHashtags = encodeURIComponent(hashtags)
+
+    return {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedTitle}`,
+      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}&hashtags=${encodedHashtags}`,
+      instagram: shareContent.imageUrl ? `https://www.instagram.com/` : `https://www.instagram.com/`,
+      tiktok: `https://www.tiktok.com/upload?url=${encodedUrl}`,
+    }
+  }
+
+  const shareUrls = generateShareUrls()
+
+  // Web Share API support
+  const handleNativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: shareContent.title,
+          text: shareContent.description,
+          url: shareContent.url,
+        })
+        setSelected({name: 'Native', icon: () => <Share />})
+        setStep(2)
+      } catch (error) {
+        console.log('Error sharing:', error)
+      }
+    }
+  }
+
+  // Copy to clipboard
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(`${shareContent.title}\n\n${shareContent.description}\n\n${shareContent.url}`)
+      setShowCopySuccess(true)
+      setSelected({name: 'Copied', icon: () => <Copy />})
+      setStep(2)
+      setTimeout(() => setShowCopySuccess(false), 2000)
+    } catch (error) {
+      console.log('Error copying to clipboard:', error)
+    }
+  }
+
   const social = [
+    // Add native share as first option if supported
+    ...(typeof window !== 'undefined' && navigator.share ? [{
+      name: 'Share',
+      icon: () => <Share />,
+      action: handleNativeShare,
+    }] : []),
     {
       name: 'Facebook',
       icon: () => <FacebookIcon />,
-      url: 'https://www.facebook.com/sharer/sharer.php?u=https://www.google.com',
+      url: shareUrls.facebook,
     },
     {
       name: 'Twitter',
       icon: () => <TwitterIcon />,
-      url: 'https://twitter.com/intent/tweet?url=https://www.google.com',
+      url: shareUrls.twitter,
     },
     {
       name: 'Instagram',
       icon: () => <Instagram />,
-      url: 'https://www.instagram.com/sharer/sharer.php?u=https://www.google.com',
+      url: shareUrls.instagram,
+      note: 'Opens Instagram app',
     },
     {
-      name: 'TikTok',
-      icon: () => (
-        <Image src='/tiktok.png' alt='TikTok' width={24} height={24} />
-      ),
-      url: 'https://www.tiktok.com/sharer/sharer.php?u=https://www.google.com',
+      name: 'Copy Link',
+      icon: () => <Copy />,
+      action: handleCopyLink,
     },
   ]
   return (
@@ -108,9 +184,16 @@ export function SharePunchMenu() {
                   onClick={() => {
                     setOpen(false)
                     setSelected(platform)
-                    setTimeout(() => {
-                      setStep(2)
-                    }, 300)
+                    
+                    // Handle different platform actions
+                    if (platform.action) {
+                      platform.action()
+                    } else if (platform.url) {
+                      window.open(platform.url, '_blank', 'noopener,noreferrer')
+                      setTimeout(() => {
+                        setStep(2)
+                      }, 300)
+                    }
                   }}
                 >
                   <motion.div className='flex items-center justify-start gap-3 relative z-[2]'>
