@@ -1,11 +1,6 @@
 ---
 description: AI rules derived by SpecStory from the project AI interaction history
 globs: *
-alwaysApply: false
----
----
-description: AI rules derived by SpecStory from the project AI interaction history
-globs: *
 ---
 
 ## HEADERS
@@ -150,6 +145,36 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   Load images lazily using `priority={false}`.
     -   Use the following SVG assets: `/Burger.svg`, `/Fried.svg`, `/IceCream.svg`, `/Picklball.svg`, `/Pizza.svg`, `/Salad.svg`, `/Shop.svg`, `/Taco.svg`.
     -   The decorative element should have an initial fade-in with staggered delays and continuous floating motion (4-8 seconds duration) with subtle rotation effects.
+-   The `SharePunchMenu` component in `src/features/users/share-punch-menu.tsx` is a floating social sharing widget. It should be positioned as a floating action button (`absolute bottom-[140px] z-50 right-[-25px]`) and include a circular trigger button with a Share icon. It should expand into a vertical menu when clicked with smooth animations using Framer Motion. The component should provide multiple sharing methods: Native Share API, Facebook, Twitter, Instagram, and Copy Link. It should use `generateShareUrls()` for dynamic content generation with a default `shareContent` object containing the title, description, URL, and hashtags for the shared content. In `@passport.tsx`, the `SharePunchMenu` component should be rendered to allow users to share their restaurant passport progress/achievements. Styling and size of the share button should be adjusted to ensure visual consistency with the application's design. When implementing the `SharePunchMenu` component, ensure the following:
+    - The component is imported in `passport.tsx` and rendered inside the `Passport` component's return statement.
+    - The component's `shareContent` prop is populated with the following information:
+        - `title`: A string that includes the number of restaurant visits made by the user. Example: `Check out my ${currentPunches} restaurant visits!`
+        - `description`: A string describing the user's progress and the rewards they've earned. Example: `I've been exploring amazing local restaurants and just earned ${currentPunches} stamps in my dining passport.`
+        - `url`: The current URL of the page.
+        - `hashtags`: An array of hashtags related to the app and the user's location. Example: `['RestaurantPassport', 'FoodieLife', 'LocalEats', 'MapleGrove']`
+    - Potential use cases include:
+        - Achievement Sharing: When users complete their passport or reach milestones.
+        - Restaurant Discovery: Sharing specific restaurant experiences.
+        - Progress Updates: Sharing current punch count progress.
+        - Social Engagement: Encouraging friends to join the app.
+    - The component should provide the following features:
+        - Smart Platform Detection: Shows native share on mobile devices.
+        - Cross-Platform URLs: Generates appropriate sharing URLs for each platform.
+        - Clipboard Fallback: Copy link option for unsupported platforms.
+        - Visual Feedback: Animations and success states.
+    - When integrating the `SharePunchMenu` component in `@passport.tsx`:
+        - Position the component in the top-right corner of the passport card header.
+        - Use relative positioning for the button.
+        - Reduce the button size to `size-12` (48px).
+        - Use a semi-transparent white background (`bg-white/90 backdrop-blur-sm`) with a border for better definition.
+        - Update the Share icon to `text-gray-700 size={18}`.
+        - Adjust animation y values from `-56px` to `-48px` to match the smaller button.
+        - Reduce avatar size from `size-10` to `size-6`.
+        - Add `rounded-full` to the success state background.
+        - Change dropdown positioning to `absolute top-0 left-0 z-50`.
+        - Update dropdown styling to a white background with a shadow.
+        - Improve animation with a scale effect.
+        - Set a minimum width for better appearance.
 
 ## DATA FETCHING & API
 
@@ -561,73 +586,3 @@ This document defines the rules and guidelines for the AI coding assistant. It c
             ```typescript
             uploadQRCode(
               restaurantId: string,
-              qrType: 'menu' | 'contact' | 'referral' = 'menu',
-              qrCodeBuffer: ArrayBuffer
-            ): Promise<StorageResponse>
-            ```
-        -   **Get QR Codes:**
-            ```typescript
-            getQRCodes(
-              restaurantId: string,
-              qrType?: 'menu' | 'contact' | 'referral'
-            ): Promise<StorageResponse<FileObject[]>>
-            ```
-        -   **Delete QR Codes:**
-            ```typescript
-            deleteQRCodes(
-              restaurantId: string,
-              qrType?: 'menu' | 'contact' | 'referral'
-            ): Promise<StorageResponse>
-            ```
-
--   **Utility Functions:**
-    -   **Path Management:**
-        -   `validatePath(path: string)` - Validates file paths for security
-        -   `normalizeFilePath(path: string)` - Normalizes file paths
-        -   `getFileExtension(filename: string)` - Extracts file extension
-    -   **File Validation:**
-        -   `validateFileType(file: File, allowedTypes: string[])` - Validates file MIME types
-        -   `validateFileSize(file: File, maxSize?: number)` - Validates file size
-
--   **Data Flow:**
-    -   **Upload Process:**
-        1.  **Validation** - Path, file type, and size validation
-        2.  **Normalization** - Path normalization and sanitization
-        3.  **Client Selection** - Choose appropriate Supabase client (server/browser)
-        4.  **Upload** - Execute upload with specified options
-        5.  **Error Handling** - Comprehensive error handling and logging
-        6.  **Response** - Return standardized response format
-    -   **Download Process:**
-        1.  **Path Validation** - Ensure path security
-        2.  **Client Selection** - Use server client for downloads
-        3.  **Download** - Retrieve file as Blob
-        4.  **Error Handling** - Handle download failures
-        5.  **Response** - Return file data or error
-    -   **Listing Process:**
-        1.  **Folder Configuration** - Set up folder path and options
-        2.  **Query Execution** - Execute list query with pagination/sorting
-        3.  **Data Processing** - Process file metadata
-        4.  **Response** - Return file list or error
-
--   **Security Features:**
-    -   **Path Security:**
-        -   Prevents directory traversal attacks (`../`)
-        -   Blocks absolute paths
-        -   Removes double slashes
-        -   Normalizes paths consistently
-    -   **File Validation:**
-        -   **Type Restrictions**: Only allows specified image types for restaurant bucket
-        -   **Size Limits**: 50MB maximum file size
-        -   **Content Type**: Validates MIME types
-    -   **Access Control:**
-        -   Server-side operations use authenticated client
-        -   Client-side operations use browser client with RLS policies
-        -   Signed URLs for temporary private access
-
--   **Error Handling Strategy:**
-    -   **Error Types:**
-        -   `FILE_NOT_FOUND` - Requested file doesn't exist
-        -   `UPLOAD_FAILED` - Upload operation failed
-        -   `INVALID_PATH` - Path validation failed
-        -   `BUCKET_NOT_FOUND` - Specified bucket doesn't exist
-        -

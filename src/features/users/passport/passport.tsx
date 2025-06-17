@@ -1,13 +1,12 @@
 'use client'
 
-
 import {ProgressIndicator} from '@/components/progress-indicator/progress-indicator'
 import {RandomStamp} from '@/components/ui/random-stamp'
 import type {restaurants} from '@/db'
 import {MAX_PUNCH_THRESHOLD} from '@/lib/constants'
 import {cn} from '@/lib/utils'
 import type {PunchCardWithRestaurant} from '@/types'
-
+import {SharePunchMenu} from '@/features/users/share-punch-menu'
 import {AnimatePresence, motion} from 'motion/react'
 
 import type React from 'react'
@@ -65,12 +64,32 @@ export function Passport({punches}: PassportProps) {
             <p className='text-xs text-white/70'>
               Click any punch below to view details
             </p>
+            <div className='absolute right-4 top-4 z-30'>
+              <SharePunchMenu
+                shareContent={{
+                  title: `Check out my ${currentPunches} restaurant visits!`,
+                  description: `I've been exploring amazing local restaurants and just earned ${currentPunches} stamps in my dining passport.`,
+                  url: window.location.href,
+                  hashtags: [
+                    'RestaurantPassport',
+                    'FoodieLife',
+                    'LocalEats',
+                    'MapleGrove',
+                  ],
+                }}
+              />
+            </div>
           </div>
         </div>
 
         {/* Restaurant List */}
         <div className='flex flex-col px-2 py-4 sm:px-3 sm:py-6'>
-          <h4 className='text-xl font-bold mb-4 text-center' style={{fontFamily: 'courier-std, monospace', color: '#3b66ab'}}>My Stamp Collection</h4>
+          <h4
+            className='text-xl font-bold mb-4 text-center'
+            style={{fontFamily: 'courier-std, monospace', color: '#3b66ab'}}
+          >
+            My Stamp Collection
+          </h4>
 
           {punches.length === 0 && (
             <div className='py-8 text-center text-muted-foreground'>
@@ -91,7 +110,7 @@ export function Passport({punches}: PassportProps) {
                 return (
                   <motion.div
                     key={`punch-${punchData?.id}-${punchData.restaurant.id}`}
-                    className="cursor-pointer w-16 h-16 flex items-center justify-center"
+                    className='cursor-pointer w-16 h-16 flex items-center justify-center'
                     onClick={() => updateActivePunchCardData(punchData)}
                     animate={{scale: [0, 1.2, 1], rotate: [0, 15, 0]}}
                     transition={{
@@ -102,11 +121,11 @@ export function Passport({punches}: PassportProps) {
                       delay: index * 0.15,
                     }}
                   >
-                    <RandomStamp 
+                    <RandomStamp
                       id={String(punchData.id)}
                       index={index}
                       size={64}
-                      className="text-black"
+                      className='text-black'
                     />
                   </motion.div>
                 )
@@ -143,10 +162,10 @@ export function Passport({punches}: PassportProps) {
                             delay: index * 0.2,
                           }}
                         >
-                          <RandomStamp 
+                          <RandomStamp
                             index={punches.length + index}
                             size={16}
-                            className="text-black opacity-30"
+                            className='text-black opacity-30'
                           />
                         </motion.div>
                       </motion.div>
