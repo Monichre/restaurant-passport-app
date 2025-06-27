@@ -1,11 +1,6 @@
 ---
 description: AI rules derived by SpecStory from the project AI interaction history
 globs: *
-alwaysApply: false
----
----
-description: AI rules derived by SpecStory from the project AI interaction history
-globs: *
 ---
 
 ## HEADERS
@@ -27,6 +22,8 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   bun
 -   `@yudiel/react-qr-scanner`
 -   `usehooks-ts`
+-   `@vercel/edge-functions`
+-   `@sentry/nextjs`
 
 ## PROJECT DOCUMENTATION & CONTEXT SYSTEM
 
@@ -150,6 +147,38 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   Load images lazily using `priority={false}`.
     -   Use the following SVG assets: `/Burger.svg`, `/Fried.svg`, `/IceCream.svg`, `/Picklball.svg`, `/Pizza.svg`, `/Salad.svg`, `/Shop.svg`, `/Taco.svg`.
     -   The decorative element should have an initial fade-in with staggered delays and continuous floating motion (4-8 seconds duration) with subtle rotation effects.
+-   The `SharePunchMenu` component in `src/features/users/share-punch-menu.tsx` is a floating social sharing widget. It should be positioned as a floating action button (`absolute bottom-[140px] z-50 right-[-25px]`) and include a circular trigger button with a Share icon. It should expand into a vertical menu when clicked with smooth animations using Framer Motion. The component should provide multiple sharing methods: Native Share API, Facebook, Twitter, Instagram, and Copy Link. It should use `generateShareUrls()` for dynamic content generation with a default `shareContent` object containing the title, description, URL, and hashtags for the shared content. In `@passport.tsx`, the `SharePunchMenu` component should be rendered to allow users to share their restaurant passport progress/achievements. Styling and size of the share button should be adjusted to ensure visual consistency with the application's design. When implementing the `SharePunchMenu` component, ensure the following:
+    - The component is imported in `passport.tsx` and rendered inside the `Passport` component's return statement.
+    - The component's `shareContent` prop is populated with the following information:
+        - `title`: A string that includes the number of restaurant visits made by the user. Example: `Check out my ${currentPunches} restaurant visits!`
+        - `description`: A string describing the user's progress and the rewards they've earned. Example: `I've been exploring amazing local restaurants and just earned ${currentPunches} stamps in my dining passport.`
+        - `url`: The current URL of the page.
+        - `hashtags`: An array of hashtags related to the app and the user's location. Example: `['RestaurantPassport', 'FoodieLife', 'LocalEats', 'MapleGrove']`
+    - Potential use cases include:
+        - Achievement Sharing: When users complete their passport or reach milestones.
+        - Restaurant Discovery: Sharing specific restaurant experiences.
+        - Progress Updates: Sharing current punch count progress.
+        - Social Engagement: Encouraging friends to join the app.
+    - The component should provide the following features:
+        - Smart Platform Detection: Shows native share on mobile devices.
+        - Cross-Platform URLs: Generates appropriate sharing URLs for each platform.
+        - Clipboard Fallback: Copy link option for unsupported platforms.
+        - Visual Feedback: Animations and success states.
+    - When integrating the `SharePunchMenu` component in `@passport.tsx`:
+        - Position the component in the top-right corner of the passport card header.
+        - Use relative positioning for the button.
+        - Reduce the button size to `size-12` (48px).
+        - Use a semi-transparent white background (`bg-white/90 backdrop-blur-sm`) with a border for better definition.
+        - Update the Share icon to `text-gray-700 size={18}`.
+        - Adjust animation y values from `-56px` to `-48px` to match the smaller button.
+        - Reduce avatar size from `size-10` to `size-6`.
+        - Add `rounded-full` to the success state background.
+        - Change dropdown positioning to `absolute top-0 left-0 z-50`.
+        - Update dropdown styling to a white background with a shadow.
+        - Improve animation with a scale effect.
+        - Set a minimum width for better appearance.
+-   Replace all `img` tags with Next.js `Image` component. Add proper `width` and `height` attributes.
+-   Use React.lazy for heavy components. Example: `const RestaurantDetail = lazy(() => import('./RestaurantDetail'));`
 
 ## DATA FETCHING & API
 
@@ -159,6 +188,16 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   When creating API endpoints, implement proper error handling.
 -   When fetching data for a specific user, filter the data by user ID.
 -   When real-time updates are required, use Supabase subscriptions.
+-   Use Next.js `unstable_cache` for server-side caching. Example:
+    ```typescript
+    import { unstable_cache } from 'next/cache';
+    
+    export const getCachedRestaurants = unstable_cache(
+      async () => getRestaurants(),
+      ['restaurants'],
+      { revalidate: 300 } // 5 minutes
+    );
+    ```
 
 ## AUTHENTICATION & AUTHORIZATION
 
@@ -167,12 +206,18 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   After creating a user in Supabase, update the corresponding Clerk user's `privateMetadata` with the Supabase user ID. This allows linking Clerk users to their database records.
     -   Access the Supabase user ID from `user.privateMetadata.supabaseUserId` on the backend.
     -   Ensure the bigint user ID is converted to a string for metadata storage.
+-   Admin routes must implement proper Role-Based Access Control (RBAC) using Clerk's role management.
+-   Replace hardcoded admin IDs with environment variables:
+    ```typescript
+    const ADMIN_AUTH_IDS = process.env.ADMIN_CLERK_IDS?.split(',') || [];
+    ```
 
 ## DEBUGGING
 
--   Use `console.log` statements to debug code.
+-   (Deprecated) Use `console.log` statements to debug code.
 -   Inspect network requests in the browser's developer tools to debug API calls.
 -   Inspect React component state using React Developer Tools.
+-   Remove all `console.log` statements from production code. Add ESLint rule: `"no-console": ["error", { "allow": ["warn", "error"] }]`.
 
 ## WORKFLOW & RELEASE RULES
 
@@ -192,6 +237,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Handle errors gracefully.
 -   Display user-friendly error messages.
 -   Log errors to the console.
+-   Implement proper error boundaries and monitoring. Consider using Sentry.
 
 ## CODE ORGANIZATION
 
@@ -204,6 +250,21 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Use Drizzle ORM for all database interactions.
 -   Create CRUD functions for each database model.
 -   Use Supabase for real-time subscriptions.
+-   Add composite indexes to the database for frequently used queries. Examples:
+    ```sql
+    CREATE INDEX idx_punch_cards_user_restaurant ON punch_cards(user_id, restaurant_id);
+    CREATE INDEX idx_raffle_entries_user ON raffle_entries(user_id);
+    CREATE INDEX idx_restaurant_deals_active ON restaurant_deals(restaurant_id, active);
+    ```
+-   Implement database connection pooling. Example:
+    ```typescript
+    import { Pool } from 'pg';
+    const pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      max: 20,
+      idleTimeoutMillis: 30000,
+    });
+    ```
 
 ## STATE MANAGEMENT
 
@@ -221,6 +282,13 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Configure Next.js Image component for external image sources.
 -   Use Next.js Image component for optimized image loading.
 -   The `domains` array in `next.config.js` should contain just the hostname portion, without protocols or trailing slashes.
+-   Remove wildcard domains from `next.config.js`. Example:
+    ```typescript
+    remotePatterns: [
+      { protocol: "https", hostname: "hvjiuuzpupgmckuyfahe.supabase.co" },
+      { protocol: "https", hostname: "experiencemaplegrove.com" },
+    ]
+    ```
 -   For admin operations like restaurant image uploads, use server-side upload instead of client-side uploads to prevent Row-Level Security (RLS) policy violations.
     - To facilitate this, create a **server action** that handles image upload using **server-side storage functions** with proper permissions.
     - Use `uploadFileServer` in server actions, as it has proper server-side permissions.
@@ -437,6 +505,14 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         - Build `/qr` landing page and signup flow.
         - Integrate reward logic post-signup.
         - Add analytics and error handling.
+-   Use `zod` to validate QR code URLs. Example:
+    ```typescript
+    import { z } from 'zod';
+    const qrSchema = z.string().url().refine(url => 
+      url.startsWith('https://experiencemaplegrove.com/') || 
+      url.startsWith('https://experiencemaplegrove.app/')
+    );
+    ```
 
 ## SUPABASE STORAGE RULES
 
@@ -478,156 +554,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
             ```typescript
             uploadFileServer(
               bucket: BucketName,
-              path: string,
-              file: File | ArrayBuffer,
-              options?: UploadOptions
-            ): Promise<StorageResponse>
-            ```
-        -   **File Download:**
-            ```typescript
-            downloadFileServer(
-              bucket: BucketName,
               path: string
-            ): Promise<StorageResponse<Blob>>
-            ```
-        -   **List Files:**
-            ```typescript
-            listFilesServer(
-              bucket: BucketName,
-              folder?: string,
-              options?: ListOptions
-            ): Promise<StorageResponse<FileObject[]>>
-            ```
-        -   **File Deletion:**
-            ```typescript
-            deleteFileServer(bucket: BucketName, path: string): Promise<StorageResponse>
-            deleteFilesServer(bucket: BucketName, paths: string[]): Promise<StorageResponse>
-            ```
-        -   **File Management:**
-            ```typescript
-            moveFileServer(bucket: BucketName, fromPath: string, toPath: string): Promise<StorageResponse>
-            copyFileServer(bucket: BucketName, fromPath: string, toPath: string): Promise<StorageResponse>
-            ```
-        -   **Signed URLs:**
-            ```typescript
-            getSignedUrlServer(
-              bucket: BucketName,
-              path: string,
-              expiresIn?: number
-            ): Promise<StorageResponse<string>>
-            ```
-    -   **Client-Side Operations:**
-        -   **File Upload:**
-            ```typescript
-            uploadFileClient(
-              bucket: BucketName,
-              path: string,
-              file: File,
-              options?: UploadOptions
-            ): Promise<StorageResponse>
-            ```
-    -   **Universal Operations:**
-        -   **Public URL Generation:**
-            ```typescript
-            getPublicUrl(bucket: BucketName, path: string): string
-            ```
-
--   **Convenience Functions:**
-    -   **Restaurant Image Management:**
-        -   **Upload Restaurant Image:**
-            ```typescript
-            uploadRestaurantImage(
-              restaurantId: string,
-              file: File,
-              imageType: 'logo' | 'banner' | 'gallery' = 'logo'
-            ): Promise<StorageResponse>
-            ```
-        -   **Get Restaurant Images:**
-            ```typescript
-            getRestaurantImages(
-              restaurantId: string,
-              imageType?: 'logo' | 'banner' | 'gallery'
-            ): Promise<StorageResponse<FileObject[]>>
-            ```
-        -   **Delete Restaurant Images:**
-            ```typescript
-            deleteRestaurantImages(
-              restaurantId: string,
-              imageType?: 'logo' | 'banner' | 'gallery'
-            ): Promise<StorageResponse>
-            ```
-    -   **QR Code Management:**
-        -   **Upload QR Code:**
-            ```typescript
-            uploadQRCode(
-              restaurantId: string,
-              qrType: 'menu' | 'contact' | 'referral' = 'menu',
-              qrCodeBuffer: ArrayBuffer
-            ): Promise<StorageResponse>
-            ```
-        -   **Get QR Codes:**
-            ```typescript
-            getQRCodes(
-              restaurantId: string,
-              qrType?: 'menu' | 'contact' | 'referral'
-            ): Promise<StorageResponse<FileObject[]>>
-            ```
-        -   **Delete QR Codes:**
-            ```typescript
-            deleteQRCodes(
-              restaurantId: string,
-              qrType?: 'menu' | 'contact' | 'referral'
-            ): Promise<StorageResponse>
-            ```
-
--   **Utility Functions:**
-    -   **Path Management:**
-        -   `validatePath(path: string)` - Validates file paths for security
-        -   `normalizeFilePath(path: string)` - Normalizes file paths
-        -   `getFileExtension(filename: string)` - Extracts file extension
-    -   **File Validation:**
-        -   `validateFileType(file: File, allowedTypes: string[])` - Validates file MIME types
-        -   `validateFileSize(file: File, maxSize?: number)` - Validates file size
-
--   **Data Flow:**
-    -   **Upload Process:**
-        1.  **Validation** - Path, file type, and size validation
-        2.  **Normalization** - Path normalization and sanitization
-        3.  **Client Selection** - Choose appropriate Supabase client (server/browser)
-        4.  **Upload** - Execute upload with specified options
-        5.  **Error Handling** - Comprehensive error handling and logging
-        6.  **Response** - Return standardized response format
-    -   **Download Process:**
-        1.  **Path Validation** - Ensure path security
-        2.  **Client Selection** - Use server client for downloads
-        3.  **Download** - Retrieve file as Blob
-        4.  **Error Handling** - Handle download failures
-        5.  **Response** - Return file data or error
-    -   **Listing Process:**
-        1.  **Folder Configuration** - Set up folder path and options
-        2.  **Query Execution** - Execute list query with pagination/sorting
-        3.  **Data Processing** - Process file metadata
-        4.  **Response** - Return file list or error
-
--   **Security Features:**
-    -   **Path Security:**
-        -   Prevents directory traversal attacks (`../`)
-        -   Blocks absolute paths
-        -   Removes double slashes
-        -   Normalizes paths consistently
-    -   **File Validation:**
-        -   **Type Restrictions**: Only allows specified image types for restaurant bucket
-        -   **Size Limits**: 50MB maximum file size
-        -   **Content Type**: Validates MIME types
-    -   **Access Control:**
-        -   Server-side operations use authenticated client
-        -   Client-side operations use browser client with RLS policies
-        -   Signed URLs for temporary private access
-
--   **Error Handling Strategy:**
-    -   **Error Types:**
-        -   `FILE_NOT_FOUND` - Requested file doesn't exist
-        -   `UPLOAD_FAILED` - Upload operation failed
-        -   `INVALID_PATH` - Path validation failed
-        -   `BUCKET_NOT_FOUND` - Specified bucket doesn't exist
-        -

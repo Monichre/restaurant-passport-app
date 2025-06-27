@@ -1,4 +1,4 @@
-import {Home} from '@/components/home/home-alt'
+import {Home} from '@/components/home/home'
 import {DecorativeElements} from '@/components/home/decorative-elements'
 
 export default async function Index() {

@@ -7,7 +7,24 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 export default clerkMiddleware(async (auth, req) => {
 	const isProtectedRoute = createRouteMatcher(["/admin(.*)", "/user(.*)"]);
 	if (isProtectedRoute(req)) await auth.protect();
-	return await updateSession(req);
+	
+	// Handle first-time visitor cookie
+	const response = await updateSession(req);
+	const firstVisitCookie = req.cookies.get('first-visit');
+	
+	if (!firstVisitCookie) {
+		// Set cookie for first-time visitor
+		const timestamp = new Date().toISOString();
+		response.cookies.set('first-visit', timestamp, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'lax',
+			maxAge: 60 * 60 * 24 * 365, // 1 year
+			path: '/'
+		});
+	}
+	
+	return response;
 });
 
 export const config = {

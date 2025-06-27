@@ -83,7 +83,7 @@ export const Home = () => {
               </Button>
 
               <Button className=' px-5 py-1 bg-[#2d6444] text-white font-bold rounded-lg hover:opacity-90 transition-opacity duration-150 active:scale-95'>
-                m <SignUpButton mode='modal'>Sign up to scan</SignUpButton>
+                <SignUpButton mode='modal'>Sign up to scan</SignUpButton>
               </Button>
             </div>
           </BoxReveal>

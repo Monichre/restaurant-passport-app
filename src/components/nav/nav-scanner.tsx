@@ -242,15 +242,17 @@ export function NavScanner({
           initial='hidden'
           animate='visible'
           exit='exit'
-          className='text-center py-2 bg-green-50 rounded-md p-3 w-full'
+          className='text-center py-2 bg-green-50 rounded-md p-3 w-full text-black'
         >
           {result?.error ? (
             <XCircle className='w-8 h-8 mx-auto text-red-500' />
           ) : (
             <CheckCircle className='w-8 h-8 mx-auto text-green-500' />
           )}
-          <h3 className='text-lg font-medium mt-2'>{result?.restaurantName}</h3>
-          <p className='font-medium mt-2'>{result?.message}</p>
+          <h3 className='text-lg font-medium mt-2 text-black'>
+            {result?.restaurantName}
+          </h3>
+          <p className='font-medium mt-2 text-black'>{result?.message}</p>
         </motion.div>
       )}
     </AnimatePresence>

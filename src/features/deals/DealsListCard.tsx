@@ -8,6 +8,8 @@ import Link from 'next/link'
 import {cn} from '@/lib/utils'
 
 export const DealsListCard = ({deal}: {deal: DealType}) => {
+  console.log('🚀 ~ DealsListCard ~ deal:', deal)
+
   return (
     <Link
       href={`/restaurants/${deal.restaurantId}`}
@@ -30,12 +32,26 @@ export const DealsListCard = ({deal}: {deal: DealType}) => {
                 {' '}
                 {deal.title || `${deal.content.substring(0, 40)}...`}
               </h2>
-              <Badge
-                variant='outline'
-                className='bg-green-100 text-green-700 border-green-300 px-2.5 py-0.5 text-xs font-semibold'
-              >
-                Active
-              </Badge>
+              <div className='flex flex-row gap-1 justify-end items-center'>
+                {deal?.activeDate && deal?.activeDate ? (
+                  <Badge
+                    variant='outline'
+                    className='bg-[#ff9800] text-white px-2.5 py-0.5 text-xs font-semibold'
+                  >
+                    {new Date(deal?.activeDate).toLocaleDateString(undefined, {
+                      month: '2-digit',
+                      day: '2-digit',
+                    })}
+                  </Badge>
+                ) : null}
+
+                <Badge
+                  variant='outline'
+                  className='bg-green-100 text-green-700 border-green-300 px-2.5 py-0.5 text-xs font-semibold'
+                >
+                  Active
+                </Badge>
+              </div>
             </div>
             <p className='text-sm text-gray-600'>{deal?.content}</p>
             <div className='flex justify-between items-center align-middle mt-3'>

@@ -58,9 +58,12 @@ export default async function ProfilePage({
   console.log('🚀 ~ ProfilePage ~ initialPunchCards:', initialPunchCards)
 
   return (
-    <div className='p-6 sm:pb-12 relative'>
-            {/* Background SVG - behind everything */}
-      <div className='absolute top-0 right-0 opacity-20 pointer-events-none' style={{transform: 'rotate(-27deg)', zIndex: -10}}>
+    <div className='p-6 pb-24 relative lg:pb-12'>
+      {/* Background SVG - behind everything */}
+      <div
+        className='absolute top-0 right-0 opacity-20 pointer-events-none'
+        style={{transform: 'rotate(-27deg)', zIndex: -10}}
+      >
         <Image
           src='/SVG/EMG Logo Short@8x.svg'
           alt='EMG Logo'
@@ -69,19 +72,45 @@ export default async function ProfilePage({
           className='object-contain'
         />
       </div>
-      
-              <div className='flex justify-center items-center mb-4 relative' style={{zIndex: 10}}>
-         <h1 className='text-2xl font-bold font-["Poppins"]' style={{color: '#2d6444'}}>My Passport</h1>
-        </div>
+
+      <div
+        className='flex justify-center items-center mb-4 relative'
+        style={{zIndex: 10}}
+      >
+        <h1
+          className='text-2xl font-bold font-["Poppins"]'
+          style={{color: '#2d6444'}}
+        >
+          My Passport
+        </h1>
+      </div>
       <div
         className='rounded-md p-[2px] mb-8 shadow-sm relative mx-auto'
-        style={{backgroundColor: '#eee', padding: '2px', zIndex: 10, maxWidth: '444px'}}
+        style={{
+          backgroundColor: '#eee',
+          padding: '2px',
+          zIndex: 10,
+          maxWidth: '444px',
+        }}
       >
-        <div className='bg-white p-3 flex items-center justify-between space-x-4' style={{border: '2px dotted #59bfdf'}}>
+        <div
+          className='bg-white p-3 flex items-center justify-between space-x-4'
+          style={{border: '2px dotted #59bfdf'}}
+        >
           <div className='flex items-center space-x-4'>
             <div className='font-medium'>
-              <div className='font-bold' style={{fontFamily: 'courier-std, monospace'}}>{user.name}</div>
-              <div className='text-sm text-gray-500' style={{fontFamily: 'courier-std, monospace', fontWeight: 400}}>{user.email}</div>
+              <div
+                className='font-bold'
+                style={{fontFamily: 'courier-std, monospace'}}
+              >
+                {user.name}
+              </div>
+              <div
+                className='text-sm text-gray-500'
+                style={{fontFamily: 'courier-std, monospace', fontWeight: 400}}
+              >
+                {user.email}
+              </div>
             </div>
           </div>
           <UserButton />
@@ -111,17 +140,6 @@ export default async function ProfilePage({
           }}
         />
       </Link>
-
-      <Button
-        className='bold text-white w-full mx-auto mt-4  sm:w-min'
-        style={{background: '#208F54'}}
-      >
-        <Link href='/deals'>Where to go Next?</Link>
-      </Button>
-
-      {/* {user?.id && <UserScanQrCode user={user} />} */}
-
-      {/* TODO: Add Bento Grid UI header */}
     </div>
   )
 }

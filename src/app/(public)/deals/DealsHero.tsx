@@ -92,7 +92,7 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
                 transition={{duration: 0.7, delay: 0.2}}
               >
                 <h1 className='text-5xl md:text-7xl font-bold text-center mb-4 drop-shadow-lg tk-wigwag-bold'>
-                  Today's <span className=''>Deals</span>
+                  <span className=''>Deals</span>
                 </h1>
               </motion.div>
             </BoxReveal>
