@@ -15,7 +15,6 @@ interface RandomStampProps {
 const STAMP_ASSETS = [
   '/RW-Stamp-Icons-01.svg',
   '/RW-Stamp-Icons-02.svg',
-  '/RW-Stamp-Icons-03.svg',
   '/RW-Stamp-Icons-04.svg',
   '/RW-Stamp-Icons-05.svg',
   '/RW-Stamp-Icons-06.svg',

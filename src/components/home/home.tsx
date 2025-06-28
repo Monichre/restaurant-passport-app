@@ -13,10 +13,11 @@ import {useMediaQuery} from 'usehooks-ts'
 
 export const Home = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
+  const isSuperSmall = useMediaQuery('(max-width: 480px)')
   const {currentUser} = useUserContext()
   return (
     <>
-      <div className='h-auto w-full flex flex-col justify-center items-center pb-24 lg:pb-0'>
+      <div className='h-auto w-full flex flex-col justify-center items-center pb-12'>
         <BoxReveal boxColor={'#E2FFE5'} duration={0.5}>
           <motion.div
             initial={{y: 40, opacity: 0}}
@@ -48,8 +49,8 @@ export const Home = () => {
           <Image
             src='/rw-logo.png'
             alt='Maple Grove Restaurant Week'
-            height={isMobile ? 300 : 320}
-            width={isMobile ? 300 : 320}
+            height={isMobile && !isSuperSmall ? 300 : isSuperSmall ? 175 : 320}
+            width={isMobile && !isSuperSmall ? 300 : isSuperSmall ? 175 : 320}
             className='mx-auto block'
             priority
           />
@@ -57,7 +58,7 @@ export const Home = () => {
       </div>
 
       {/* Main content container */}
-      <div className='mx-auto w-full flex flex-col justify-center items-center'>
+      <div className='mx-auto w-full flex flex-col justify-center items-center mb-24 lg:mb-0'>
         {/* Header Section */}
         <div>
           <BoxReveal boxColor={'#E2FFE5'} duration={0.5} delay={0.85}>
