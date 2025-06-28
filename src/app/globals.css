@@ -497,14 +497,15 @@ td.data-cell > [role="checkbox"] {
 #app {
 	height: 100vh;
 	overflow-y: auto;
+	padding-bottom: 80px;
 }
-
+/* 
 @media (max-width: 768px) {
 	#app {
 		height: calc(100vh - 80px) !important;
 		overflow-y: scroll;
 	}
-}
+} */
 
 .active-tab {
 	border: 2px solid #268552;
@@ -519,8 +520,9 @@ td.data-cell > [role="checkbox"] {
 
 @media (max-width: 768px) {
 	.app-wrapper {
-		height: calc(100vh - 80px);
-		overflow-y: scroll;
+		height: auto;
+		/* height: calc(100vh - 80px); */
+		/* overflow-y: scroll; */
 	}
 }
 
