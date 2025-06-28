@@ -20,9 +20,15 @@ interface ShareContent {
   hashtags?: string[]
 }
 
+interface SharePunchMenuOptions {
+  enableScreenshot?: boolean
+  screenshotSelector?: string
+}
+
 interface SharePunchMenuProps {
   shareContent?: ShareContent
   className?: string
+  options?: SharePunchMenuOptions
 }
 
 interface SocialPlatform {
@@ -40,60 +46,146 @@ export function SharePunchMenu({
     description:
       "I'm exploring amazing local restaurants and collecting stamps on my dining journey.",
     url: typeof window !== 'undefined' ? window.location.href : '',
-    hashtags: ['RestaurantPassport', 'FoodieLife', 'LocalEats'],
+    hashtags: ['RestaurantPassport', 'FoodieLife', 'LocalEats', "RestaurantWeek", "MapleGrove"],
   },
   className,
+  options = { enableScreenshot: false },
 }: SharePunchMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const [shareSuccess, setShareSuccess] = useState(false)
+  const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(null)
+
+  // Generate screenshot from element
+  const generateScreenshot = async (): Promise<string | null> => {
+    if (!options.enableScreenshot) return null
+    
+    try {
+      const html2canvas = (await import('html2canvas')).default
+      const targetElement = options.screenshotSelector 
+        ? document.querySelector(options.screenshotSelector)
+        : document.body
+      
+      if (!targetElement) return null
+      
+      const canvas = await html2canvas(targetElement as HTMLElement, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        logging: false,
+        useCORS: true,
+      })
+      
+      return canvas.toDataURL('image/png')
+    } catch (error) {
+      return null
+    }
+  }
 
   // Generate dynamic sharing URLs
   const generateShareUrls = () => {
     const encodedUrl = encodeURIComponent(shareContent.url)
     const encodedTitle = encodeURIComponent(shareContent.title)
     const encodedDescription = encodeURIComponent(shareContent.description)
+    const fullText = encodeURIComponent(`${shareContent.title} - ${shareContent.description}`)
     const hashtags = shareContent.hashtags?.join(',') || ''
     const encodedHashtags = encodeURIComponent(hashtags)
+    
+    // Use image URL if available (either provided or generated)
+    const imageUrl = shareContent.imageUrl || generatedImageUrl
+    const encodedImageUrl = imageUrl ? encodeURIComponent(imageUrl) : ''
 
     return {
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedTitle}`,
+      // Fixed Facebook sharing with proper parameters
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${fullText}${imageUrl ? `&picture=${encodedImageUrl}` : ''}`,
+      
+      // Enhanced Twitter sharing
       twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}&hashtags=${encodedHashtags}`,
-      instagram: `https://www.instagram.com/`,
+      
+      // Instagram deep link with fallback
+      instagram: `instagram://camera${shareContent.description ? `?caption=${encodeURIComponent(shareContent.description + ' ' + shareContent.url)}` : ''}`,
+      
+      // Instagram web fallback
+      instagramWeb: 'https://www.instagram.com/',
     }
   }
 
   const shareUrls = generateShareUrls()
 
-  // Web Share API support
+  // Web Share API support with image
   const handleNativeShare = async () => {
     if (navigator.share) {
       try {
-        await navigator.share({
+        let shareData: ShareData = {
           title: shareContent.title,
           text: shareContent.description,
           url: shareContent.url,
-        })
+        }
+
+        // Add image if available and supported
+        if (shareContent.imageUrl || generatedImageUrl) {
+          const imageUrl = shareContent.imageUrl || generatedImageUrl
+          if (imageUrl && navigator.canShare) {
+            try {
+              const response = await fetch(imageUrl)
+              const blob = await response.blob()
+              const file = new File([blob], 'restaurant-passport-share.png', { type: 'image/png' })
+              
+              if (navigator.canShare({ files: [file] })) {
+                shareData.files = [file]
+              }
+            } catch (imageError) {
+              // Continue without image if fetch fails
+            }
+          }
+        }
+
+        await navigator.share(shareData)
         setShareSuccess(true)
         setIsOpen(false)
         setTimeout(() => setShareSuccess(false), 2000)
       } catch (error) {
-        console.log('Error sharing:', error)
+        // User cancelled or error occurred
       }
     }
   }
 
-  // Copy to clipboard
+  // Handle Instagram sharing with app detection
+  const handleInstagramShare = () => {
+    const userAgent = navigator.userAgent.toLowerCase()
+    const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
+    
+    if (isMobile) {
+      // Try Instagram app first
+      const instagramAppUrl = shareUrls.instagram
+      window.location.href = instagramAppUrl
+      
+      // Fallback to web after short delay if app doesn't open
+      setTimeout(() => {
+        window.open(shareUrls.instagramWeb, '_blank', 'noopener,noreferrer')
+      }, 1500)
+    } else {
+      // Desktop - open web version
+      window.open(shareUrls.instagramWeb, '_blank', 'noopener,noreferrer')
+    }
+    setIsOpen(false)
+  }
+
+  // Copy to clipboard with image info
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(
-        `${shareContent.title}\n\n${shareContent.description}\n\n${shareContent.url}`
-      )
+      let textToCopy = `${shareContent.title}\n\n${shareContent.description}\n\n${shareContent.url}`
+      
+      // Add hashtags if available
+      if (shareContent.hashtags && shareContent.hashtags.length > 0) {
+        textToCopy += `\n\n#${shareContent.hashtags.join(' #')}`
+      }
+      
+      await navigator.clipboard.writeText(textToCopy)
       setCopied(true)
       setIsOpen(false)
       setTimeout(() => setCopied(false), 2000)
     } catch (error) {
-      console.log('Error copying to clipboard:', error)
+      // Silently handle clipboard errors
     }
   }
 
@@ -138,7 +230,7 @@ export function SharePunchMenu({
       icon: Instagram,
       color: 'text-pink-500',
       hoverColor: 'hover:bg-pink-500/10',
-      url: shareUrls.instagram,
+      action: handleInstagramShare,
     },
     {
       name: 'Copy Link',
@@ -148,6 +240,20 @@ export function SharePunchMenu({
       action: handleCopyLink,
     },
   ]
+
+  // Generate screenshot when component mounts if enabled
+  useEffect(() => {
+    if (options.enableScreenshot && !generatedImageUrl) {
+      const timer = setTimeout(async () => {
+        const imageUrl = await generateScreenshot()
+        if (imageUrl) {
+          setGeneratedImageUrl(imageUrl)
+        }
+      }, 1000) // Delay to ensure DOM is fully rendered
+
+      return () => clearTimeout(timer)
+    }
+  }, [options.enableScreenshot, generatedImageUrl])
 
   // Auto-close dropdown when clicking outside
   useEffect(() => {

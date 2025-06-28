@@ -81,7 +81,7 @@ export const Home = () => {
               >
                 Scan the QR code at each restaurant to collect stamps and unlock
                 your chance to{' '}
-                <span className='font-bold'>win a shopping spree</span>.
+                <span className='font-bold'>win the grand prize</span>.
               </p>
             </div>
           </BoxReveal>

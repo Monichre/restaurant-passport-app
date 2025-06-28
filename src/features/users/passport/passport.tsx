@@ -69,13 +69,17 @@ export function Passport({punches}: PassportProps) {
                 shareContent={{
                   title: `Check out my ${currentPunches} restaurant visits!`,
                   description: `I've been exploring amazing local restaurants and just earned ${currentPunches} stamps in my dining passport.`,
-                  url: typeof window !== 'undefined' ? window.location.href : '',
+                  url: 'https://www.experiencemaplegrove.app/',
                   hashtags: [
                     'RestaurantPassport',
                     'FoodieLife',
                     'LocalEats',
                     'MapleGrove',
                   ],
+                }}
+                options={{
+                  enableScreenshot: true,
+                  screenshotSelector: '#passport-card',
                 }}
               />
             </div>

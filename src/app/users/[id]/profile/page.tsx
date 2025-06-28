@@ -8,7 +8,10 @@ import {BentoGrid} from '@/components/kokonutui/bento-grid'
 import {Button} from '@/components/ui/button'
 import Link from 'next/link'
 import {getPunchCardsByUserId} from '@/db/models/punch-cards'
-import {getRaffleEntryById} from '@/db/models/raffle-entries/raffle-entries'
+import {
+  getRaffleEntriesByUserId,
+  getRaffleEntryById,
+} from '@/db/models/raffle-entries/raffle-entries'
 import {RaffleSuccessAnimation} from '@/components/raffle/RaffleSuccessAnimation'
 // import {OfficialPassport} from '@/features/official-passport/OfficialPassport'
 
@@ -43,6 +46,9 @@ export default async function ProfilePage({
 
   // Let the client component handle all data fetching with realtime updates
   const initialPunchCards = await getPunchCardsByUserId(user.id)
+  const raffleTicket = await getRaffleEntriesByUserId(user.id)
+
+  console.log('🚀 ~ raffleTicket:', raffleTicket)
 
   // Check for raffle query parameters
   const showRaffleAnimation =
@@ -52,7 +58,7 @@ export default async function ProfilePage({
   const raffleEntry =
     showRaffleAnimation && queryParams?.raffleEntryId
       ? await getRaffleEntryById(BigInt(queryParams.raffleEntryId))
-      : user?.raffleEntries?.[0]
+      : user?.raffleEntries?.[0] || raffleTicket
   console.log('🚀 ~ raffleEntry:', raffleEntry)
 
   console.log('🚀 ~ ProfilePage ~ initialPunchCards:', initialPunchCards)
@@ -122,9 +128,11 @@ export default async function ProfilePage({
       </div>
 
       {/* Show raffle animation if needed */}
-      {showRaffleAnimation && raffleEntry && (
+      {showRaffleAnimation && raffleEntry ? (
         <RaffleSuccessAnimation raffleEntry={raffleEntry as any} />
-      )}
+      ) : raffleTicket ? (
+        <RaffleSuccessAnimation raffleEntry={raffleTicket as any} />
+      ) : null}
 
       <Link href='/deals'>
         <Image
