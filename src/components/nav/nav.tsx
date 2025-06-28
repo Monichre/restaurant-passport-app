@@ -359,6 +359,7 @@ export const Nav = () => {
                   )}
                 >
                   <UserPlus className='h-6 w-6 text-white' />
+                  <span className='text-xs font-semibold mt-1'>Sign Up</span>
                 </Button>
               </SignInButton>
             )}

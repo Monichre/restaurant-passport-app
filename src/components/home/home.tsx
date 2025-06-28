@@ -16,7 +16,7 @@ export const Home = () => {
   const {currentUser} = useUserContext()
   return (
     <>
-      <div className='h-auto w-full flex flex-col justify-center items-center'>
+      <div className='h-auto w-full flex flex-col justify-center items-center pb-24 lg:pb-0'>
         <BoxReveal boxColor={'#E2FFE5'} duration={0.5}>
           <motion.div
             initial={{y: 40, opacity: 0}}
