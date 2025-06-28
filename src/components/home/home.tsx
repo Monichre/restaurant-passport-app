@@ -49,8 +49,8 @@ export const Home = () => {
           <Image
             src='/rw-logo.png'
             alt='Maple Grove Restaurant Week'
-            height={isMobile && !isSuperSmall ? 300 : isSuperSmall ? 175 : 320}
-            width={isMobile && !isSuperSmall ? 300 : isSuperSmall ? 175 : 320}
+            height={isMobile && !isSuperSmall ? 300 : isSuperSmall ? 200 : 320}
+            width={isMobile && !isSuperSmall ? 300 : isSuperSmall ? 200 : 320}
             className='mx-auto block'
             priority
           />
