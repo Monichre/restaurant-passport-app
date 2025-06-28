@@ -25,14 +25,20 @@ export const Home = () => {
             transition={{duration: 0.5, delay: 0.6, ease: 'easeInOut'}}
             className='flex gap-4 flex-wrap justify-center'
           >
-            <Image
-              src='/maple-grove.png'
-              alt='Maple Grove Restaurant Week'
-              height={isMobile ? 250 : 250}
-              width={isMobile ? 230 : 280}
-              className='mt-4 mx-auto'
-              priority
-            />
+            <Link
+              href='https://experiencemaplegrove.com/Restaurantweek/'
+              rel='noopener noreferrer'
+              target='_blank'
+            >
+              <Image
+                src='/maple-grove.png'
+                alt='Maple Grove Restaurant Week'
+                height={isMobile ? 250 : 250}
+                width={isMobile ? 230 : 280}
+                className='mt-4 mx-auto'
+                priority
+              />
+            </Link>
           </motion.div>
         </BoxReveal>
         <BoxReveal boxColor={'#E2FFE5'} duration={0.25} delay={0.5}>
@@ -84,7 +90,13 @@ export const Home = () => {
           <BoxReveal boxColor={'#E2FFE5'} duration={0.5} delay={0.95}>
             <div className='mx-auto flex gap-3'>
               <Button className='w-content px-5 py-1 bg-[#F97316] text-white font-bold rounded-lg hover:opacity-90 transition-opacity duration-150 active:scale-95'>
-                <Link href='/deals'>See Deals</Link>
+                <Link
+                  href='https://experiencemaplegrove.com/Restaurantweek/'
+                  rel='noopener noreferrer'
+                  target='_blank'
+                >
+                  Learn More
+                </Link>
               </Button>
 
               {currentUser ? (
