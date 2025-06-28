@@ -46,35 +46,43 @@ export function SharePunchMenu({
     description:
       "I'm exploring amazing local restaurants and collecting stamps on my dining journey.",
     url: typeof window !== 'undefined' ? window.location.href : '',
-    hashtags: ['RestaurantPassport', 'FoodieLife', 'LocalEats', "RestaurantWeek", "MapleGrove"],
+    hashtags: [
+      'RestaurantPassport',
+      'FoodieLife',
+      'LocalEats',
+      'RestaurantWeek',
+      'MapleGrove',
+    ],
   },
   className,
-  options = { enableScreenshot: false },
+  options = {enableScreenshot: false},
 }: SharePunchMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const [shareSuccess, setShareSuccess] = useState(false)
-  const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(null)
+  const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(
+    null
+  )
 
   // Generate screenshot from element
   const generateScreenshot = async (): Promise<string | null> => {
     if (!options.enableScreenshot) return null
-    
+
     try {
       const html2canvas = (await import('html2canvas')).default
-      const targetElement = options.screenshotSelector 
+      const targetElement = options.screenshotSelector
         ? document.querySelector(options.screenshotSelector)
         : document.body
-      
+
       if (!targetElement) return null
-      
+
       const canvas = await html2canvas(targetElement as HTMLElement, {
         backgroundColor: '#ffffff',
         scale: 2,
         logging: false,
         useCORS: true,
       })
-      
+
       return canvas.toDataURL('image/png')
     } catch (error) {
       return null
@@ -86,24 +94,34 @@ export function SharePunchMenu({
     const encodedUrl = encodeURIComponent(shareContent.url)
     const encodedTitle = encodeURIComponent(shareContent.title)
     const encodedDescription = encodeURIComponent(shareContent.description)
-    const fullText = encodeURIComponent(`${shareContent.title} - ${shareContent.description}`)
+    const fullText = encodeURIComponent(
+      `${shareContent.title} - ${shareContent.description}`
+    )
     const hashtags = shareContent.hashtags?.join(',') || ''
     const encodedHashtags = encodeURIComponent(hashtags)
-    
+
     // Use image URL if available (either provided or generated)
     const imageUrl = shareContent.imageUrl || generatedImageUrl
     const encodedImageUrl = imageUrl ? encodeURIComponent(imageUrl) : ''
 
     return {
       // Fixed Facebook sharing with proper parameters
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${fullText}${imageUrl ? `&picture=${encodedImageUrl}` : ''}`,
-      
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${fullText}${
+        imageUrl ? `&picture=${encodedImageUrl}` : ''
+      }`,
+
       // Enhanced Twitter sharing
       twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}&hashtags=${encodedHashtags}`,
-      
+
       // Instagram deep link with fallback
-      instagram: `instagram://camera${shareContent.description ? `?caption=${encodeURIComponent(shareContent.description + ' ' + shareContent.url)}` : ''}`,
-      
+      instagram: `instagram://camera${
+        shareContent.description
+          ? `?caption=${encodeURIComponent(
+              shareContent.description + ' ' + shareContent.url
+            )}`
+          : ''
+      }`,
+
       // Instagram web fallback
       instagramWeb: 'https://www.instagram.com/',
     }
@@ -128,9 +146,11 @@ export function SharePunchMenu({
             try {
               const response = await fetch(imageUrl)
               const blob = await response.blob()
-              const file = new File([blob], 'restaurant-passport-share.png', { type: 'image/png' })
-              
-              if (navigator.canShare({ files: [file] })) {
+              const file = new File([blob], 'restaurant-passport-share.png', {
+                type: 'image/png',
+              })
+
+              if (navigator.canShare({files: [file]})) {
                 shareData.files = [file]
               }
             } catch (imageError) {
@@ -152,13 +172,14 @@ export function SharePunchMenu({
   // Handle Instagram sharing with app detection
   const handleInstagramShare = () => {
     const userAgent = navigator.userAgent.toLowerCase()
-    const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
-    
+    const isMobile =
+      /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
+
     if (isMobile) {
       // Try Instagram app first
       const instagramAppUrl = shareUrls.instagram
       window.location.href = instagramAppUrl
-      
+
       // Fallback to web after short delay if app doesn't open
       setTimeout(() => {
         window.open(shareUrls.instagramWeb, '_blank', 'noopener,noreferrer')
@@ -174,12 +195,12 @@ export function SharePunchMenu({
   const handleCopyLink = async () => {
     try {
       let textToCopy = `${shareContent.title}\n\n${shareContent.description}\n\n${shareContent.url}`
-      
+
       // Add hashtags if available
       if (shareContent.hashtags && shareContent.hashtags.length > 0) {
         textToCopy += `\n\n#${shareContent.hashtags.join(' #')}`
       }
-      
+
       await navigator.clipboard.writeText(textToCopy)
       setCopied(true)
       setIsOpen(false)
@@ -211,27 +232,7 @@ export function SharePunchMenu({
           },
         ]
       : []),
-    {
-      name: 'Facebook',
-      icon: FacebookIcon,
-      color: 'text-blue-600',
-      hoverColor: 'hover:bg-blue-600/10',
-      url: shareUrls.facebook,
-    },
-    {
-      name: 'Twitter',
-      icon: TwitterIcon,
-      color: 'text-blue-500',
-      hoverColor: 'hover:bg-blue-500/10',
-      url: shareUrls.twitter,
-    },
-    {
-      name: 'Instagram',
-      icon: Instagram,
-      color: 'text-pink-500',
-      hoverColor: 'hover:bg-pink-500/10',
-      action: handleInstagramShare,
-    },
+
     {
       name: 'Copy Link',
       icon: Copy,

@@ -67,7 +67,7 @@ export function Passport({punches}: PassportProps) {
             <div className='absolute right-4 top-4 z-30'>
               <SharePunchMenu
                 shareContent={{
-                  title: `Check out my ${currentPunches} restaurant visits!`,
+                  title: `Restaurant Week Maple Grove is out!`,
                   description: `I've been exploring amazing local restaurants and just earned ${currentPunches} stamps in my dining passport.`,
                   url: 'https://www.experiencemaplegrove.app/',
                   hashtags: [
