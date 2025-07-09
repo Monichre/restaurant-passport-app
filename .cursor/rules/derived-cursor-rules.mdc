@@ -31,6 +31,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   When referring to a UI element, use the format `@ComponentName`.
 -   When referring to a file, use the format `@filename.ext`.
 -   When referring to a function or data structure, use the format `@functionName` or `@dataStructureName`.
+-   Use SpecStory to generate documentation.
 
 ## UI DESIGN & COMPONENTS
 
@@ -91,6 +92,11 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   Centering content for better visual balance.
     -   Staggering animations for smooth flow.
 -   When creating company cards, use the following UI structure:
+    -   The card should have an image, a title (h3), a description (p), and a list of tags (ul > li).
+    -   The tags should be styled with different background colors based on their category (e.g., branding, packaging, marketing).
+    -   The link icon should be an arrow_outward icon from Material Symbols Outlined.
+    -   The card should have a visually distinct inner section with a background color.
+    -   The card should use a grid layout for responsiveness.
     -   The card should have an image, title, description, and a list of tags.
     -   The card should have a link to an external site.
     -   The card should use the Material Symbols Outlined font for the link icon.
@@ -179,6 +185,23 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         - Set a minimum width for better appearance.
 -   Replace all `img` tags with Next.js `Image` component. Add proper `width` and `height` attributes.
 -   Use React.lazy for heavy components. Example: `const RestaurantDetail = lazy(() => import('./RestaurantDetail'));`
+-   When implementing QR onboarding logic using `@TriggerSignUp.tsx`:
+    - The component should:
+        - Detect if the user is unauthenticated and landed directly (likely from a QR scan).
+        - Show a modal/banner prompting sign up or sign in, with the restaurant context.
+        - Store the `restaurantId` and `restaurantName` in localStorage for onboarding reward logic after signup.
+        - Redirect to the sign-up or sign-in page, preserving context.
+        - Render nothing if the user is already signed in.
+-   The `SharePunchMenu` component in `src/features/users/share-punch-menu.tsx` should be refactored to implement the design from the "Share To Social Button" notepad with the following features:
+    - Modern, clean dropdown design with proper relative positioning
+    - TypeScript Interfaces for better type safety
+    - Clean state management
+    - Improved user experience with success states, smooth animations, and click-outside functionality
+    - Visual improvements with a semi-transparent button, white dropdown, and branded platform colors
+    - Preservation of all original sharing functionality (Native Web Share API support, Facebook, Twitter, Instagram sharing, Copy to clipboard, Dynamic URL generation with hashtags, Error handling)
+-   When adding or editing deals, include an "activeDate" field in both the `EditDealForm` and `NewDealForm` components. This allows admins to set when a deal should become active. The form state and submit handlers should be updated to include the `activeDate` value in database create/update calls.
+-   The `@edit-deal-form.tsx` component should render in a pop-up modal instead of a dedicated route.
+-   When implementing export functionality, create a client component for the export button that takes the data and exports it to CSV. Ensure the CSV data is properly formatted, escaping commas and quotes in cell content. Provide a timestamped filename for the downloaded CSV file.
 
 ## DATA FETCHING & API
 
@@ -384,13 +407,13 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     - **Step-by-Step Implementation Plan:**
         - **1. QR Code Generation & Placement**
             - **What Data Should Be Encoded?**
-                - **URL format:**  
+                - **URL format:**
                   `https://app.example.com/qr?restaurantId=<restaurantId>&campaign=<optional>`
                     - `restaurantId`: Unique identifier for the restaurant.
                     - `campaign`: (Optional) For tracking special promotions.
             - **How to Generate?**
                 - **Admin dashboard**: Restaurant admins or system admins generate QR codes for each location.
-                - **Backend endpoint**:  
+                - **Backend endpoint**:
                   - `GET /api/qr/generate?restaurantId=...`
                   - Returns a QR code image (PNG/SVG) encoding the above URL.
                 - **Physical placement**: Print and place QR codes on tables, menus, posters, etc.
@@ -401,7 +424,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
                 - **Route:** `/qr` (Next.js page)
                 - **Behavior:**
                     - If user is **not authenticated**:
-                        - Show a branded landing page:  
+                        - Show a branded landing page:
                           “Welcome to [App Name]! You scanned a code at [Restaurant Name]. Sign up to start earning rewards.”
                         - Prominent **Sign Up** and **Sign In** buttons.
                         - Store `restaurantId` (and `campaign` if present) in localStorage, session, or as a query param for the signup flow.
@@ -452,7 +475,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
                 - Badge/point fulfillment
             - Use for campaign effectiveness, restaurant engagement, etc.
         - **F. Database Schema Implications**
-            - **No new tables required** (unless you want to track scans separately).  
+            - **No new tables required** (unless you want to track scans separately).
             - Optionally, add a `qr_signup_source` or `last_qr_scan_restaurant_id` field to the `users` table for attribution.
             - Log events in an `analytics` or `qr_scan_events` table for deeper insights.
     - **API Endpoints**
@@ -502,56 +525,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         - Add `qr_scan_events` table for analytics.
     - **Next Steps**
         - Implement QR code generation and admin UI.
-        - Build `/qr` landing page and signup flow.
-        - Integrate reward logic post-signup.
-        - Add analytics and error handling.
--   Use `zod` to validate QR code URLs. Example:
-    ```typescript
-    import { z } from 'zod';
-    const qrSchema = z.string().url().refine(url => 
-      url.startsWith('https://experiencemaplegrove.com/') || 
-      url.startsWith('https://experiencemaplegrove.app/')
-    );
-    ```
-
-## SUPABASE STORAGE RULES
-
--   Use the `qr-codes` bucket for storing QR codes.
--   Use the `restaurants` bucket for storing restaurant images and assets.
-
-## STORAGE MODULE RULES
-
--   The Storage module provides a comprehensive interface for managing file storage operations in Supabase Storage. It supports two primary buckets:
-    -   `restaurants` - For restaurant images (logos, banners, gallery images)
-    -   `qr-codes` - For QR code images generated for restaurants
-
--   **Key Components:**
-    -   `StorageResponse<T>` - Standardized response format with data, error, and success fields
-    -   `UploadOptions` - Configuration for file uploads (cache control, upsert, content type)
-    -   `ListOptions` - Configuration for file listing (pagination, sorting, search)
-    -   `BucketName` - Type-safe bucket names (`'qr-codes' | 'restaurants'`)
-    -   `FileObject` - Supabase file metadata structure
-    -   `FileInfo` - Detailed file information structure
-
--   **Error Handling:**
-    -   `StorageError` - Custom error class with error codes and details
-    -   `StorageErrorCode` - Enumeration of specific error types
-    -   Comprehensive error handling with user-friendly messages
-
--   **Security Features:**
-    -   Path validation to prevent directory traversal attacks
-    -   File type validation for images
-    -   File size limits (50MB max)
-    -   Content type validation
-
--   **Dual Client Support:**
-    -   **Server Operations**: Use `createSupabaseServerClient()` for server-side operations
-    -   **Client Operations**: Use `supabaseBrowserClient` for client-side operations
-
--   **Core Functions:**
-    -   **Server-Side Operations:**
-        -   **File Upload:**
-            ```typescript
-            uploadFileServer(
-              bucket: BucketName,
-              path: string
+        - Build `/qr` landing page and signup flow

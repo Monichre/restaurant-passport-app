@@ -5,6 +5,7 @@ import {useRouter} from 'next/navigation'
 import {useFormState as useServerFormState, useFormStatus} from 'react-dom'
 import type {Restaurant} from '@/types/db'
 import {toast} from 'sonner'
+import {DatePicker} from '@/components/ui/date-picker'
 
 // Server actions (placed outside the component)
 import {getRestaurants} from '@/db/models/restaurants/restaurants'
@@ -62,6 +63,7 @@ export function NewDealForm({
   const [restaurants, setRestaurants] =
     useState<SimpleRestaurant[]>(restaurantDeals)
   const [isLoadingRestaurants, setIsLoadingRestaurants] = useState(true)
+  const [activeDate, setActiveDate] = useState<Date | undefined>()
 
   // Initialize form state using useFormState hook with the createDeal server action
   const [formState, formAction] = useServerFormState(createDeal, {
@@ -98,6 +100,13 @@ export function NewDealForm({
 
   return (
     <form action={formAction} className='space-y-6'>
+      {/* Hidden input for activeDate */}
+      <input
+        type='hidden'
+        name='activeDate'
+        value={activeDate ? activeDate.toISOString() : ''}
+      />
+
       {formState.error && (
         <div className='bg-red-50 border-l-4 border-red-500 p-4 mb-6'>
           <div className='flex'>
@@ -198,6 +207,25 @@ export function NewDealForm({
           </div>
           <p className='mt-1 text-xs text-gray-500'>
             If unchecked, the deal will be saved but not visible to users
+          </p>
+        </div>
+
+        {/* Active Date */}
+        <div className='col-span-2'>
+          <label
+            htmlFor='activeDate'
+            className='block text-sm font-medium text-gray-700'
+          >
+            Active Date
+          </label>
+          <DatePicker
+            date={activeDate}
+            onDateChange={setActiveDate}
+            placeholder='Select an active date'
+          />
+          <p className='mt-1 text-xs text-gray-500'>
+            The date when this deal becomes active. Leave empty to activate
+            immediately when the active checkbox is checked.
           </p>
         </div>
       </div>

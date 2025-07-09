@@ -5,6 +5,7 @@ import {useRouter} from 'next/navigation'
 import {useEffect, useState} from 'react'
 import {clientCookies} from '@/lib/cookies'
 import {usePostHog} from 'posthog-js/react'
+import {processQrScan} from '@/app/actions/scan-actions'
 
 // Simple modal/banner component
 const QrOnboardingModal = ({
@@ -42,6 +43,14 @@ const QrOnboardingModal = ({
   </div>
 )
 
+// Processing indicator for existing users
+const QrProcessingIndicator = ({ restaurantName }: { restaurantName: string }) => (
+  <div className='fixed top-4 right-4 z-40 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2'>
+    <div className='animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent'></div>
+    <span className='text-sm'>Processing QR scan for {restaurantName}...</span>
+  </div>
+)
+
 export const TriggerSignUp = ({
   restaurantId,
   restaurantName,
@@ -49,9 +58,10 @@ export const TriggerSignUp = ({
   restaurantId: string
   restaurantName: string
 }) => {
-  const {isLoaded, isSignedIn} = useSession()
+  const {isLoaded, isSignedIn, session} = useSession()
   const router = useRouter()
   const [showModal, setShowModal] = useState(false)
+  const [isProcessingQR, setIsProcessingQR] = useState(false)
   const posthog = usePostHog()
 
   useEffect(() => {
@@ -120,6 +130,75 @@ export const TriggerSignUp = ({
     }
   }, [isLoaded, isSignedIn, restaurantId, restaurantName, posthog])
 
+  // Handle existing users who scan QR codes
+  useEffect(() => {
+    if (!isLoaded || !isSignedIn || !session?.user?.id || isProcessingQR) return
+
+    const hasDirectEntry = typeof window !== 'undefined' && window.history.length === 1
+    
+    // Only process if this appears to be a direct entry (QR scan)
+    if (hasDirectEntry) {
+      setIsProcessingQR(true)
+      
+      // Track existing user QR scan
+      posthog?.capture('existing_user_qr_scan', {
+        restaurant_id: restaurantId,
+        restaurant_name: restaurantName,
+        user_id: session.user.id,
+        timestamp: new Date().toISOString(),
+      })
+
+      // Process the QR scan for the existing user
+      const processExistingUserScan = async () => {
+        try {
+          // Create a mock QR data URL since we know they arrived via QR
+          const qrData = `https://experiencemaplegrove.app/restaurants/${restaurantId}`
+          
+          const result = await processQrScan({
+            qrData,
+            userId: session.user.id
+          })
+
+          if (result.error) {
+            console.error('Error processing QR scan:', result.error)
+            posthog?.capture('qr_scan_error', {
+              restaurant_id: restaurantId,
+              restaurant_name: restaurantName,
+              user_id: session.user.id,
+              error: result.error,
+              message: result.message,
+            })
+          } else {
+            // Track successful scan
+            posthog?.capture('qr_scan_success', {
+              restaurant_id: restaurantId,
+              restaurant_name: restaurantName,
+              user_id: session.user.id,
+              message: result.message,
+              is_existing_card: result.isExisting,
+            })
+
+            // Show success toast or notification
+            // You might want to add a toast notification here
+          }
+        } catch (error) {
+          console.error('Error processing existing user QR scan:', error)
+          posthog?.capture('qr_scan_error', {
+            restaurant_id: restaurantId,
+            restaurant_name: restaurantName,
+            user_id: session.user.id,
+            error: 'Processing failed',
+            message: error instanceof Error ? error.message : 'Unknown error',
+          })
+        } finally {
+          setIsProcessingQR(false)
+        }
+      }
+
+      processExistingUserScan()
+    }
+  }, [isLoaded, isSignedIn, session?.user?.id, restaurantId, restaurantName, posthog, isProcessingQR])
+
   // Handler for Clerk sign up
   const handleSignUp = () => {
     const isFirstTime = clientCookies.isFirstTimeVisitor()
@@ -153,10 +232,14 @@ export const TriggerSignUp = ({
     router.push(`/sign-in?qr=1&restaurantId=${restaurantId}`)
   }
 
-  // If signed in, render nothing
-  if (isSignedIn) return null
+  // If signed in, only show processing indicator if needed
+  if (isSignedIn) {
+    return isProcessingQR ? (
+      <QrProcessingIndicator restaurantName={restaurantName} />
+    ) : null
+  }
 
-  // Only show modal if triggered
+  // For non-signed-in users, show modal if triggered
   return showModal ? (
     <QrOnboardingModal
       restaurantName={restaurantName}
