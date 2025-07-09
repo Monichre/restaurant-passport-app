@@ -15,6 +15,18 @@ const isProduction = process.env.NODE_ENV === "production";
 const eslintConfig = [
 	...compat.extends("next/core-web-vitals", "next/typescript"),
 	{
+		ignores: [
+			'.next/',
+			'node_modules/',
+			'.git/',
+			'out/',
+			'.cache/',
+			'public/',
+			'**/*.d.ts',
+			'**/*.config.js',
+			'**/*.config.ts',
+			'**/*.config.mjs',
+		],
 		rules: {
 			// Disable rules that are too strict for production builds
 			"@typescript-eslint/no-explicit-any": isProduction ? "off" : "warn",
