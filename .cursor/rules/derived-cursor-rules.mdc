@@ -201,7 +201,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     - Preservation of all original sharing functionality (Native Web Share API support, Facebook, Twitter, Instagram sharing, Copy to clipboard, Dynamic URL generation with hashtags, Error handling)
 -   When adding or editing deals, include an "activeDate" field in both the `EditDealForm` and `NewDealForm` components. This allows admins to set when a deal should become active. The form state and submit handlers should be updated to include the `activeDate` value in database create/update calls.
 -   The `@edit-deal-form.tsx` component should render in a pop-up modal instead of a dedicated route.
--   When implementing export functionality, create a client component for the export button that takes the data and exports it to CSV. Ensure the CSV data is properly formatted, escaping commas and quotes in cell content. Provide a timestamped filename for the downloaded CSV file.
+-   When implementing export functionality, create a client component for the export button that takes the data and exports it to CSV. Ensure the CSV data is properly formatted, escaping commas and quotes in cell content. Provide a timestamped filename for the downloaded CSV file. Also add export raffle entries functionality and export leaderboard data.
 
 ## DATA FETCHING & API
 
@@ -525,4 +525,3 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         - Add `qr_scan_events` table for analytics.
     - **Next Steps**
         - Implement QR code generation and admin UI.
-        - Build `/qr` landing page and signup flow

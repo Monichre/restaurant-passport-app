@@ -83,7 +83,7 @@ export default async function AdminLeaderboardPage() {
         </p>
       </div>
 
-      <AdminLeaderboardActions />
+      <AdminLeaderboardActions raffleEntries={serializedRaffleEntries} />
 
       <Tabs defaultValue='users' className='w-full'>
         <TabsList className='grid w-full grid-cols-3 mb-8'>

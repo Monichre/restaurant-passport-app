@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import {
   Table,
   TableBody,
@@ -9,11 +9,20 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { formatDistanceToNow } from 'date-fns'
-import { Gift, MoreHorizontal, Check, UserCheck } from 'lucide-react'
+import {Avatar, AvatarFallback} from '@/components/ui/avatar'
+import {Badge} from '@/components/ui/badge'
+import {Button} from '@/components/ui/button'
+import {formatDistanceToNow} from 'date-fns'
+import {
+  Gift,
+  MoreHorizontal,
+  Check,
+  UserCheck,
+  Download,
+  RefreshCw,
+} from 'lucide-react'
+import {exportToCSV} from '@/lib/csv'
+import {toast} from 'sonner'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,78 +31,159 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { toast } from 'sonner'
-import type { RaffleEntryWithUser } from '@/types/api'
+import type {RaffleEntryWithUser} from '@/types/api'
 
 interface AdminRaffleEntriesProps {
   entries: RaffleEntryWithUser[]
 }
 
-export function AdminRaffleEntries({ entries }: AdminRaffleEntriesProps) {
+export function AdminRaffleEntries({entries}: AdminRaffleEntriesProps) {
   const [selectedEntries, setSelectedEntries] = useState<string[]>([])
-  
+  const [isExporting, setIsExporting] = useState(false)
+
   const toggleEntrySelection = (id: string) => {
     if (selectedEntries.includes(id)) {
-      setSelectedEntries(selectedEntries.filter(entryId => entryId !== id))
+      setSelectedEntries(selectedEntries.filter((entryId) => entryId !== id))
     } else {
       setSelectedEntries([...selectedEntries, id])
     }
   }
-  
+
   const selectAll = () => {
     if (selectedEntries.length === entries.length) {
       setSelectedEntries([])
     } else {
-      setSelectedEntries(entries.map(entry => entry.raffleEntryId.toString()))
+      setSelectedEntries(entries.map((entry) => entry.raffleEntryId.toString()))
     }
   }
-  
+
+  const handleExportEntries = async () => {
+    setIsExporting(true)
+    try {
+      // Determine which entries to export
+      const entriesToExport =
+        selectedEntries.length > 0
+          ? entries.filter((entry) =>
+              selectedEntries.includes(entry.raffleEntryId.toString())
+            )
+          : entries
+
+      if (entriesToExport.length === 0) {
+        toast.error('No entries to export')
+        return
+      }
+
+      // Transform data for CSV export
+      const csvData = entriesToExport.map((entry, index) => ({
+        rank: index + 1,
+        raffleEntryId: entry.raffleEntryId.toString(),
+        userId: entry.userId.toString(),
+        userName: entry.userName,
+        restaurantId: entry.restaurantId.toString(),
+        restaurantName: entry.restaurantName,
+        punchCardId: entry.punchCardId.toString(),
+        enteredAt: entry.enteredAt,
+        status: 'Active',
+        exportedAt: new Date().toISOString(),
+      }))
+
+      // Export to CSV
+      const timestamp = new Date().toISOString().split('T')[0]
+      const filename =
+        selectedEntries.length > 0
+          ? `selected-raffle-entries-${timestamp}`
+          : `all-raffle-entries-${timestamp}`
+
+      exportToCSV(csvData, filename, [
+        'rank',
+        'userName',
+        'restaurantName',
+        'enteredAt',
+        'status',
+        'raffleEntryId',
+        'userId',
+        'restaurantId',
+        'punchCardId',
+        'exportedAt',
+      ])
+
+      toast.success(
+        `Successfully exported ${entriesToExport.length} raffle entries to CSV`
+      )
+    } catch (error) {
+      console.error('Error exporting raffle entries:', error)
+      toast.error('Failed to export raffle entries')
+    } finally {
+      setIsExporting(false)
+    }
+  }
+
   const handleVerifyEntry = (id: string, userName: string) => {
     toast.success(`Verified ${userName}'s raffle entry`)
   }
-  
+
   const handleContactUser = (userName: string) => {
     toast.info(`Contacting ${userName}...`)
   }
-  
+
   const handleRemoveEntry = (id: string, userName: string) => {
     toast.success(`Removed ${userName}'s raffle entry`)
     // Would typically call an API here to remove the entry
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center mb-4">
-        <div className="text-sm text-muted-foreground">
+    <div className='space-y-4'>
+      <div className='flex justify-between items-center mb-4'>
+        <div className='text-sm text-muted-foreground'>
           {selectedEntries.length} of {entries.length} entries selected
         </div>
-        <div className="flex gap-2">
+        <div className='flex gap-2'>
+          <Button
+            size='sm'
+            variant='outline'
+            onClick={handleExportEntries}
+            disabled={isExporting}
+          >
+            {isExporting ? (
+              <>
+                <RefreshCw className='w-4 h-4 mr-2 animate-spin' />
+                Exporting...
+              </>
+            ) : (
+              <>
+                <Download className='w-4 h-4 mr-2' />
+                Export {selectedEntries.length > 0 ? 'Selected' : 'All'}
+              </>
+            )}
+          </Button>
           {selectedEntries.length > 0 && (
-            <Button size="sm" variant="outline">
-              <Gift className="w-4 h-4 mr-2" />
+            <Button size='sm' variant='outline'>
+              <Gift className='w-4 h-4 mr-2' />
               Add to Drawing
             </Button>
           )}
-          <Button size="sm" variant="default" onClick={selectAll}>
-            {selectedEntries.length === entries.length ? 'Deselect All' : 'Select All'}
+          <Button size='sm' variant='default' onClick={selectAll}>
+            {selectedEntries.length === entries.length
+              ? 'Deselect All'
+              : 'Select All'}
           </Button>
         </div>
       </div>
-      
-      <div className="rounded-md border">
+
+      <div className='rounded-md border'>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[40px]">
-                <span className="sr-only">Select</span>
+              <TableHead className='w-[40px]'>
+                <span className='sr-only'>Select</span>
               </TableHead>
-              <TableHead className="w-[50px]">Rank</TableHead>
+              <TableHead className='w-[50px]'>Rank</TableHead>
               <TableHead>User</TableHead>
               <TableHead>Restaurant</TableHead>
               <TableHead>Entered</TableHead>
-              <TableHead className="text-right">Status</TableHead>
-              <TableHead className="w-[50px]">
-                <span className="sr-only">Actions</span>
+              <TableHead className='text-right'>Status</TableHead>
+              <TableHead className='w-[50px]'>
+                <span className='sr-only'>Actions</span>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -102,7 +192,7 @@ export function AdminRaffleEntries({ entries }: AdminRaffleEntriesProps) {
               <TableRow>
                 <TableCell
                   colSpan={7}
-                  className="text-center py-6 text-muted-foreground"
+                  className='text-center py-6 text-muted-foreground'
                 >
                   No entries in the current raffle
                 </TableCell>
@@ -112,17 +202,21 @@ export function AdminRaffleEntries({ entries }: AdminRaffleEntriesProps) {
                 <TableRow key={entry.raffleEntryId.toString()}>
                   <TableCell>
                     <input
-                      type="checkbox"
-                      checked={selectedEntries.includes(entry.raffleEntryId.toString())}
-                      onChange={() => toggleEntrySelection(entry.raffleEntryId.toString())}
-                      className="h-4 w-4 rounded border-gray-300"
+                      type='checkbox'
+                      checked={selectedEntries.includes(
+                        entry.raffleEntryId.toString()
+                      )}
+                      onChange={() =>
+                        toggleEntrySelection(entry.raffleEntryId.toString())
+                      }
+                      className='h-4 w-4 rounded border-gray-300'
                     />
                   </TableCell>
-                  <TableCell className="font-medium">{index + 1}</TableCell>
+                  <TableCell className='font-medium'>{index + 1}</TableCell>
                   <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Avatar className="h-8 w-8">
-                        <AvatarFallback className="bg-primary text-primary-foreground">
+                    <div className='flex items-center gap-2'>
+                      <Avatar className='h-8 w-8'>
+                        <AvatarFallback className='bg-primary text-primary-foreground'>
                           {entry.userName.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
@@ -135,34 +229,48 @@ export function AdminRaffleEntries({ entries }: AdminRaffleEntriesProps) {
                       addSuffix: true,
                     })}
                   </TableCell>
-                  <TableCell className="text-right">
-                    <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+                  <TableCell className='text-right'>
+                    <Badge className='bg-green-100 text-green-800 hover:bg-green-100'>
                       Active
                     </Badge>
                   </TableCell>
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoreHorizontal className="h-4 w-4" />
-                          <span className="sr-only">Open menu</span>
+                        <Button variant='ghost' size='icon'>
+                          <MoreHorizontal className='h-4 w-4' />
+                          <span className='sr-only'>Open menu</span>
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
+                      <DropdownMenuContent align='end'>
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => handleVerifyEntry(entry.raffleEntryId.toString(), entry.userName)}>
-                          <Check className="mr-2 h-4 w-4" />
+                        <DropdownMenuItem
+                          onClick={() =>
+                            handleVerifyEntry(
+                              entry.raffleEntryId.toString(),
+                              entry.userName
+                            )
+                          }
+                        >
+                          <Check className='mr-2 h-4 w-4' />
                           Verify Entry
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleContactUser(entry.userName)}>
-                          <UserCheck className="mr-2 h-4 w-4" />
+                        <DropdownMenuItem
+                          onClick={() => handleContactUser(entry.userName)}
+                        >
+                          <UserCheck className='mr-2 h-4 w-4' />
                           Contact User
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem 
-                          className="text-red-600" 
-                          onClick={() => handleRemoveEntry(entry.raffleEntryId.toString(), entry.userName)}
+                        <DropdownMenuItem
+                          className='text-red-600'
+                          onClick={() =>
+                            handleRemoveEntry(
+                              entry.raffleEntryId.toString(),
+                              entry.userName
+                            )
+                          }
                         >
                           Remove Entry
                         </DropdownMenuItem>
@@ -175,7 +283,7 @@ export function AdminRaffleEntries({ entries }: AdminRaffleEntriesProps) {
           </TableBody>
         </Table>
       </div>
-      <p className="text-sm text-muted-foreground text-center">
+      <p className='text-sm text-muted-foreground text-center'>
         Users who complete punch cards are automatically entered into the raffle
       </p>
     </div>

@@ -31,7 +31,9 @@ export default async function ProfilePage({
   params,
   searchParams,
 }: ProfilePageProps) {
-  const {userId} = await auth()
+  const {userId, ...rest} = await auth()
+
+  console.log('🚀 ~ rest:', rest)
 
   console.log('🚀 ~ userId:', userId)
 
