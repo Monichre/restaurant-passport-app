@@ -44,7 +44,7 @@ const QrOnboardingModal = ({
 )
 
 // Processing indicator for existing users
-const QrProcessingIndicator = ({ restaurantName }: { restaurantName: string }) => (
+const QrProcessingIndicator = ({restaurantName}: {restaurantName: string}) => (
   <div className='fixed top-4 right-4 z-40 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2'>
     <div className='animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent'></div>
     <span className='text-sm'>Processing QR scan for {restaurantName}...</span>
@@ -134,12 +134,13 @@ export const TriggerSignUp = ({
   useEffect(() => {
     if (!isLoaded || !isSignedIn || !session?.user?.id || isProcessingQR) return
 
-    const hasDirectEntry = typeof window !== 'undefined' && window.history.length === 1
-    
+    const hasDirectEntry =
+      typeof window !== 'undefined' && window.history.length === 1
+
     // Only process if this appears to be a direct entry (QR scan)
     if (hasDirectEntry) {
       setIsProcessingQR(true)
-      
+
       // Track existing user QR scan
       posthog?.capture('existing_user_qr_scan', {
         restaurant_id: restaurantId,
@@ -153,10 +154,10 @@ export const TriggerSignUp = ({
         try {
           // Create a mock QR data URL since we know they arrived via QR
           const qrData = `https://experiencemaplegrove.app/restaurants/${restaurantId}`
-          
+
           const result = await processQrScan({
             qrData,
-            userId: session.user.id
+            userId: session.user.id,
           })
 
           if (result.error) {
@@ -197,7 +198,15 @@ export const TriggerSignUp = ({
 
       processExistingUserScan()
     }
-  }, [isLoaded, isSignedIn, session?.user?.id, restaurantId, restaurantName, posthog, isProcessingQR])
+  }, [
+    isLoaded,
+    isSignedIn,
+    session?.user?.id,
+    restaurantId,
+    restaurantName,
+    posthog,
+    isProcessingQR,
+  ])
 
   // Handler for Clerk sign up
   const handleSignUp = () => {
