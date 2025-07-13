@@ -79,7 +79,9 @@ export function NavScanner({
 
   const [checkingPunchCardStatus, setCheckingPunchCardStatus] =
     useState<boolean>(false)
-  const [result, setResult] = useState<string | null>(null)
+  // Using 'any' to accommodate different response shapes (string | object)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [result, setResult] = useState<any>(null)
 
   console.log('🚀 ~ result:', result)
 
@@ -196,7 +198,8 @@ export function NavScanner({
               'upc_e',
             ]}
             constraints={{
-              deviceId: deviceId,
+              facingMode: 'environment',
+              ...(deviceId ? {deviceId} : {}),
             }}
             onScan={(detectedCodes) => {
               handleScan(detectedCodes[0].rawValue)
@@ -208,7 +211,6 @@ export function NavScanner({
             }}
             styles={{container: {height: '400px', width: '350px'}}}
             components={{
-              audio: true,
               onOff: true,
               torch: true,
               zoom: true,

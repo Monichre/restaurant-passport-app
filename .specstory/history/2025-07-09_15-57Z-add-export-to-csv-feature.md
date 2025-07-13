@@ -153,11 +153,140 @@ Now let's update the admin users page to include the export button:
 
 ---
 
+```diff
+  import {getUsers} from '@/db/models/users/users'
+  import Link from 'next/link'
++ import {ExportUsersCsvButton} from '@/components/admin/export-users-csv-button'
+  
+  export default async function AdminUsersPage() {
+```
 
+```diff
+        <div className='flex justify-between items-center mb-6'>
+          <h1 className='text-2xl font-bold'>User Management</h1>
++         <div className='flex gap-3'>
++           <ExportUsersCsvButton users={users} />
+            <Link
+              href='/admin'
+```
+
+```diff
+              Back to Dashboard
+            </Link>
++         </div>
+        </div>
+  
+```
 
 ---
 
+I need to update the component to handle bigint IDs properly:
 
+---
+
+```diff
+  
+  interface User {
+-   id: number
++   id: bigint
+    name: string
+    email: string
+-   isAdmin: boolean
+-   isStaff: boolean
++   isAdmin: boolean | null
++   isStaff: boolean | null
+    punchCards?: {
+      completed: boolean
+```
+
+---
+
+Now I need to convert the bigint to string when creating the CSV:
+
+---
+
+```diff
+  
+        return [
+-         user.id,
++         user.id.toString(),
+          user.name,
+          user.email,
+```
+
+---
+
+<think><details><summary>Thought Process</summary>The user wants to add a CSV export feature to the admin users page. Looking at the file, it's showing a table of users with information like:
+- Name
+- Email  
+- Role (Admin/Staff/User)
+- Punch Cards (completed/total)
+- Raffle eligibility
+
+I need to:
+1. Create a function to export user data to CSV
+2. Add a button to trigger the export
+3. Format the data appropriately for CSV
+
+Since this is a server component (using `async` and directly calling `getUsers()`), I'll need to either:
+- Create a client component for the export button that receives the users data
+- Create an API endpoint for CSV export
+- Use a server action
+
+The simplest approach would be to create a client component that handles the CSV export on the client side.
+
+Looking at the rules, I should:
+- Use descriptive variable names
+- Follow the naming conventions
+- Create clean, maintainable code
+- Handle the CSV export properly
+
+I'll create a client component for the export button that takes the users data and exports it to CSV.</details></think>
+
+---
+
+Now let's run the development server to test the feature:
+
+---
+
+```bash
+cd /Users/liamellis/Desktop/restaurant-passport-app && bun dev
+```
+
+---
+
+Perfect! I've successfully added a CSV export feature to the admin users page. Here's what I implemented:
+
+## What Was Added:
+
+1. **Export Button Component** (`export-users-csv-button.tsx`):
+   - A client component that handles CSV generation and download
+   - Properly escapes CSV data (handles commas, quotes, and newlines)
+   - Includes all relevant user information in the export
+   - Generates a timestamped filename (e.g., `users-export-2024-01-15.csv`)
+
+2. **CSV Includes These Fields**:
+   - ID
+   - Name
+   - Email
+   - Role (Admin/Staff/User)
+   - Total Punch Cards
+   - Completed Punch Cards
+   - Raffle Eligible (Yes/No)
+
+3. **Page Updates**:
+   - Added the export button next to the "Back to Dashboard" link
+   - Properly handles bigint IDs and nullable boolean fields
+   - Maintains the existing layout and styling
+
+## Key Features:
+
+- **Type Safety**: Properly typed interfaces for user data
+- **Data Handling**: Converts bigint IDs to strings for CSV compatibility
+- **User-Friendly**: Download starts automatically with a descriptive filename
+- **Clean UI**: Button includes a download icon and matches the existing design
+
+The export button is now visible in the admin users page header, allowing admins to easily export user data for analysis or reporting purposes.
 
 ---
 

@@ -27,6 +27,10 @@ export type UserContextType = {
   isLoading: boolean
   error: string | null
   reloadUser: () => void
+  // Add QR scanner modal state
+  showQrModal: boolean
+  setShowQrModal: (show: boolean) => void
+  toggleQrModal: () => void
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
@@ -45,6 +49,12 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({
   const [currentUser, setCurrentUser] = useState<AppUser | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
+  // Add QR scanner modal state
+  const [showQrModal, setShowQrModal] = useState(false)
+
+  const toggleQrModal = useCallback(() => {
+    setShowQrModal((prev) => !prev)
+  }, [])
 
   // Use useCallback to memoize fetchUser
   const fetchUser = useCallback(async () => {
@@ -110,11 +120,17 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({
     }
   }, [clerkUser, currentUser])
 
-  return (
-    <UserContext.Provider value={{currentUser, isLoading, error, reloadUser}}>
-      {children}
-    </UserContext.Provider>
-  )
+  const value = {
+    currentUser,
+    isLoading,
+    error,
+    reloadUser,
+    showQrModal,
+    setShowQrModal,
+    toggleQrModal,
+  }
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
 
 export const useUserContext = (): UserContextType => {

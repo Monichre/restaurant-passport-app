@@ -24,6 +24,10 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   `usehooks-ts`
 -   `@vercel/edge-functions`
 -   `@sentry/nextjs`
+-   `date-fns`
+-   `@radix-ui/react-popover`
+-   `react-day-picker`
+-   `@stagewise/toolbar-next`
 
 ## PROJECT DOCUMENTATION & CONTEXT SYSTEM
 
@@ -202,6 +206,86 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   When adding or editing deals, include an "activeDate" field in both the `EditDealForm` and `NewDealForm` components. This allows admins to set when a deal should become active. The form state and submit handlers should be updated to include the `activeDate` value in database create/update calls.
 -   The `@edit-deal-form.tsx` component should render in a pop-up modal instead of a dedicated route.
 -   When implementing export functionality, create a client component for the export button that takes the data and exports it to CSV. Ensure the CSV data is properly formatted, escaping commas and quotes in cell content. Provide a timestamped filename for the downloaded CSV file. Also add export raffle entries functionality and export leaderboard data.
+-   Leaderboard Management export data should export popular restaurants, top users, and raffle status all at once.
+-   When using the date picker component, apply the correct component props for react-day-picker v9:
+    ```javascript
+           components={{
+             Chevron: ({orientation}) =>
+               orientation === 'left' ? (
+                 <ChevronLeft className='h-4 w-4' />
+               ) : (
+                 <ChevronRight className='h-4 w-4' />
+               ),
+           }}
+    ```
+-   The UI immediately following the hero image in `@RestaurantDetail.tsx` should be implemented as follows:
+    - The restaurant-specific punch card UI should be displayed right under the hero image.
+    - Use the `PunchCard` component from `@/components/ui/restaurant-specific-user-punch-card`.
+    - Position it right after the hero section with proper spacing and animations.
+    - Center the punch card with responsive design for optimal mobile/desktop display.
+    - Use a fade-in animation with staggered timing (0.3s delay).
+    - Ensure it works seamlessly on mobile and desktop.
+    - Show the restaurant-specific punch card data.
+    - Include punch tracking and completion status.
+    - Use `shadow-xl` for enhanced visual depth.
+    - Render only when `userPunchCard` exists.
+    - The code structure should be:
+        ```tsx
+        {/* Restaurant Punch Card Section */}
+        {userPunchCard && (
+          <motion.div
+            initial={{opacity: 0, y: 20}}
+            animate={{opacity: 1, y: 0}}
+            transition={{duration: 0.5, delay: 0.3}}
+            className='px-4 md:px-12'
+          >
+            <div className='max-w-md mx-auto'>
+              <PunchCard
+                restaurantName={restaurant.name}
+                restaurantImage={restaurant.imageUrl}
+                restaurantId={restaurant.id}
+                currentPunches={userPunchCard.punches}
+                MAX_PUNCH_THRESHOLD={PUNCH_THRESHOLD}
+                completed={userPunchCard.completed}
+                lastUpdated={userPunchCard.updatedAt}
+                className='shadow-xl'
+              />
+            </div>
+          </motion.div>
+        )}
+        ```
+- When integrating QR scanning functionality into the `@RestaurantDetail.tsx` page, prioritize a user experience that leverages the existing navigation scanner. Instead of creating a restaurant-specific scanner component or modal, directly trigger the navigation scanner modal. This approach ensures consistency, reduces code duplication, and maintains a mobile-first design.
+    - **Direct Modal Trigger**:
+        - The button should directly trigger the QR scanner modal via `toggleQrModal()`.
+    - **Enhanced Button Styling**:
+        - Add a pulse/glow animation on hover.
+        - Add a QR code icon to the button.
+        - Implement visual feedback on click.
+    - **Tooltip/Hint Implementation**:
+        - Add a tooltip explaining the QR functionality.
+        - Show a hint about using the navigation scanner.
+    - **Visual Feedback**:
+        - The nav QR button should briefly pulse for visual feedback when the button is tapped.
+    - **Updated Button Text**:
+        - The button text should be updated from "Use Scanner Below" to "Scan QR Code".
+    - **Updated Tooltip Text**:
+        - The tooltip text should be updated from "Tap to scroll to QR scanner" to "Tap to open QR scanner".
+    - **Camera Permissions:**
+        - When integrating QR scanning functionality, ensure users grant camera permissions. Camera access only works on HTTPS or localhost. If running on a non-secure domain, the camera will not connect.
+        - Ensure the device list in the scanner is populated. If empty, the browser cannot detect any cameras, or permissions are blocked.
+        - Check browser console for errors or warnings related to camera access.
+    - **Nav Modal Logic:**
+        - Change `onOpenChange={toggleQrModal}` to `onOpenChange={setShowQrModal}` in the `Dialog`.
+        - Ensure the close button calls `setShowQrModal(false)`.
+    - **Camera Constraints:**
+        - Set camera constraints to `facingMode: 'environment'` to request the rear camera by default.
+        - Ensure deviceId is respected if provided, using the following structure:
+            ```typescript
+            constraints={{
+              facingMode: 'environment',
+              ...(deviceId ? {deviceId} : {}),
+            }}
+            ```
 
 ## DATA FETCHING & API
 
@@ -452,76 +536,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
                 - Link the new user to the restaurant for analytics.
                 - Optionally, send a welcome notification or email.
     - **Technical Requirements & Specifications**
-        - **A. URL Structure & Parameter Handling**
-            - `/qr?restaurantId=123&campaign=spring2024`
-            - All params validated server-side.
-            - Use Next.js dynamic route: `/app/qr/page.tsx`
-        - **B. Token Expiration & Security**
-            - No sensitive tokens needed; only public IDs.
-            - Validate `restaurantId` exists and is active.
-            - Prevent abuse (e.g., rate limit badge/point grants per user).
-        - **C. Cross-Platform Compatibility**
-            - QR code encodes HTTPS URL.
-            - Works with any QR reader/camera.
-            - Mobile-first, responsive landing page.
-        - **D. Error Handling & Edge Cases**
-            - **Invalid/missing `restaurantId`**: Show error, allow generic signup.
-            - **Already signed up user scans**: Show punch card or “already a member” message.
-            - **Signup abandoned**: No reward granted until signup completes.
-        - **E. Analytics & Tracking**
-            - Log:
-                - QR code scans (IP, device, timestamp, restaurant, campaign)
-                - Signups from QR flow (conversion rate)
-                - Badge/point fulfillment
-            - Use for campaign effectiveness, restaurant engagement, etc.
-        - **F. Database Schema Implications**
-            - **No new tables required** (unless you want to track scans separately).
-            - Optionally, add a `qr_signup_source` or `last_qr_scan_restaurant_id` field to the `users` table for attribution.
-            - Log events in an `analytics` or `qr_scan_events` table for deeper insights.
-    - **API Endpoints**
-        | Endpoint                       | Method | Purpose                        | Auth Required | Params/Body                |
-        |------------------------------- |--------|------------------------------- | 구분 | 구분 |
-        | `/api/qr/generate`             | GET    | Generate QR code for restaurant| Yes (admin)  | `restaurantId`, `campaign`|
-        | `/api/qr/scan`                 | POST   | Log scan event                 | No           | `{restaurantId, campaign, deviceInfo}`|
-        | `/api/qr/signup-complete`      | POST   | Award badge/points post-signup | Yes (new user)| `{restaurantId, campaign}`|
-    - **Data Flow Diagram**
-        ```mermaid
-        sequenceDiagram
-            participant Guest as Unregistered User
-            participant QR as QR Code
-            participant App as Web App
-            participant API as Backend API
-            participant DB as Database
-
-            Guest->>QR: Scans QR code
-            QR-->>App: Opens /qr?restaurantId=123
-            App->>API: POST /api/qr/scan (log event)
-            App->>Guest: Shows signup prompt (with restaurant context)
-            Guest->>App: Completes signup
-            App->>API: POST /api/qr/signup-complete
-            API->>DB: Award badge/points, create punch card
-            App->>Guest: Shows welcome/reward
-        ```
-    - **Summary Table: Key Endpoints & Data**
-        | Endpoint                       | Method | Purpose                        | Auth Required | Params/Body                |
-        |------------------------------- |--------|------------------------------- | 구분 | 구분 |
-        | `/api/qr/generate`             | GET    | Generate QR code for restaurant| Yes (admin)  | `restaurantId`, `campaign`|
-        | `/api/qr/scan`                 | POST   | Log scan event                 | No           | `{restaurantId, campaign, deviceInfo}`|
-        | `/api/qr/signup-complete`      | POST   | Award badge/points post-signup | Yes (new user)| `{restaurantId, campaign}`|
-    - **Security & Best Practices**
-        - No sensitive data in QR/URL.
-        - Validate all params server-side.
-        - Prevent duplicate rewards for same user/restaurant.
-        - Log all actions for analytics.
-    - **Edge Cases & Error Handling**
-        - Invalid/missing `restaurantId`: Show error, allow generic signup.
-        - Already registered user: Show punch card or “already a member” message.
-        - Multiple signups from same device: Prevent abuse.
-    - **Analytics & Tracking**
-        - Track scans, signups, reward fulfillment.
-        - Attribute new users to restaurants/campaigns.
-    - **Database Schema Changes (Optional)**
-        - Add `qr_signup_source` to `users` table.
-        - Add `qr_scan_events` table for analytics.
-    - **Next Steps**
-        - Implement QR code generation and admin UI.
+        - **

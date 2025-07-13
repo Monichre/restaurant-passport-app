@@ -122,18 +122,14 @@ export const Nav = () => {
   const pathname = usePathname()
   const activeTab = pathname.split('/').pop()
 
-  const {currentUser} = useUserContext()
+  const {currentUser, showQrModal, setShowQrModal, toggleQrModal} =
+    useUserContext()
   const {session} = useSession()
-  const [showModal, setShowModal] = useState(false)
-
-  const toggleModal = () => {
-    setShowModal(!showModal)
-  }
 
   const userIsAdmin = currentUser?.isAdmin
   const closeModal = useCallback(() => {
-    setShowModal(false)
-  }, [])
+    setShowQrModal(false)
+  }, [setShowQrModal])
 
   const [elementFocused, setElementFocused] = useState<string | null>(null)
 
@@ -145,8 +141,8 @@ export const Nav = () => {
       <Suspense>
         {/* QR Scanner Modal with animations */}
         <AnimatePresence>
-          {showModal && (
-            <Dialog open={showModal} onOpenChange={toggleModal}>
+          {showQrModal && (
+            <Dialog open={showQrModal} onOpenChange={setShowQrModal}>
               <DialogContent className='sm:max-w-md p-0 overflow-hidden'>
                 <motion.div
                   variants={containerVariants}
@@ -183,7 +179,7 @@ export const Nav = () => {
                         <Button
                           type='button'
                           variant='secondary'
-                          onClick={() => setShowModal(false)}
+                          onClick={() => setShowQrModal(false)}
                         >
                           Close
                         </Button>
@@ -258,7 +254,8 @@ export const Nav = () => {
             {currentUser && !userIsAdmin && (
               // <NavScannerButton onScanClick={toggleModal} />
               <Button
-                onClick={toggleModal}
+                data-testid='qr-scanner-button'
+                onClick={toggleQrModal}
                 variant='ghost'
                 onMouseEnter={() => handleHoverButton('qr')}
                 onMouseLeave={() => handleHoverButton(null)}
