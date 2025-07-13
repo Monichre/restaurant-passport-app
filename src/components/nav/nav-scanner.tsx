@@ -198,8 +198,7 @@ export function NavScanner({
               'upc_e',
             ]}
             constraints={{
-              facingMode: 'environment',
-              ...(deviceId ? {deviceId} : {}),
+              deviceId: deviceId,
             }}
             onScan={(detectedCodes) => {
               handleScan(detectedCodes[0].rawValue)
@@ -211,6 +210,7 @@ export function NavScanner({
             }}
             styles={{container: {height: '400px', width: '350px'}}}
             components={{
+              audio: true,
               onOff: true,
               torch: true,
               zoom: true,
