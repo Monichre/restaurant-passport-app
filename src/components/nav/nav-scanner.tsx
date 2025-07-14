@@ -79,7 +79,9 @@ export function NavScanner({
 
   const [checkingPunchCardStatus, setCheckingPunchCardStatus] =
     useState<boolean>(false)
-  const [result, setResult] = useState<string | null>(null)
+  // Using 'any' to accommodate different response shapes (string | object)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [result, setResult] = useState<any>(null)
 
   console.log('🚀 ~ result:', result)
 
