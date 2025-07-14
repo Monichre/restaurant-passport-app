@@ -12,8 +12,15 @@ import {processQrScan} from '@/app/actions/scan-actions'
 import {AnimatePresence, motion} from 'framer-motion'
 import {useRouter} from 'next/navigation'
 import {Spinner} from '@/components/ui/spinner'
-import {CheckCircle, XCircle} from 'lucide-react'
+import {CheckCircle, XCircle, Camera, ChevronDown} from 'lucide-react'
 import {getRaffleEntriesByUserId} from '@/db/models/raffle-entries'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const containerVariants = {
   hidden: {opacity: 0, y: 20},
@@ -60,7 +67,7 @@ const styles = {
     margin: 'auto',
   },
   controls: {
-    marginBottom: 8,
+    marginBottom: 12,
   },
 }
 
@@ -108,6 +115,23 @@ export function NavScanner({
   console.log('🚀 ~ NavScanner ~ result:', result)
 
   const devices = useDevices()
+
+  // Auto-select the rear camera (environment) by default
+  useEffect(() => {
+    if (devices.length > 0 && !deviceId) {
+      // Try to find the rear camera first
+      const rearCamera = devices.find(
+        (device) =>
+          device.label.toLowerCase().includes('back') ||
+          device.label.toLowerCase().includes('rear') ||
+          device.label.toLowerCase().includes('environment')
+      )
+
+      // If no rear camera found, use the first available device
+      const selectedDevice = rearCamera || devices[0]
+      setDeviceId(selectedDevice.deviceId)
+    }
+  }, [devices, deviceId])
 
   function getTracker() {
     switch (tracker) {
@@ -163,16 +187,25 @@ export function NavScanner({
           exit='exit'
           className='w-full max-w-[350px] h-[350px] mx-auto relative rounded-lg overflow-hidden'
         >
-          <div style={styles.controls}>
-            <select onChange={(e) => setDeviceId(e.target.value)}>
-              <option value={undefined}>Select a device</option>
-              {devices.map((device, index) => (
-                <option key={index} value={device.deviceId}>
-                  {device.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          {/* Only show device selector if there are multiple cameras */}
+          {devices.length > 1 && (
+            <div style={styles.controls} className='px-4 py-2'>
+              <Select value={deviceId || ''} onValueChange={setDeviceId}>
+                <SelectTrigger className='w-full bg-white/90 backdrop-blur-sm border border-gray-200'>
+                  <Camera className='w-4 h-4 mr-2 text-gray-600' />
+                  <SelectValue placeholder='Select camera' />
+                  <ChevronDown className='w-4 h-4 ml-auto text-gray-600' />
+                </SelectTrigger>
+                <SelectContent>
+                  {devices.map((device, index) => (
+                    <SelectItem key={index} value={device.deviceId}>
+                      {device.label || `Camera ${index + 1}`}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
           <Scanner
             formats={[
               'qr_code',

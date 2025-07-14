@@ -286,6 +286,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
               ...(deviceId ? {deviceId} : {}),
             }}
             ```
+- The navigation scanner should not load with the select menu open and nothing selected. Instead, auto-select the rear camera (environment) by default, or the first available device if no rear camera is detected. The device selector should only appear when there are multiple cameras available. Use proper UI components from the UI library for device selection. If no rear camera is available, use the first available device. For cameras without proper labels, use fallback naming (e.g., `Camera 1`, `Camera 2`, etc.).
 
 ## DATA FETCHING & API
 
@@ -527,13 +528,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
                 - Optionally, set a short-lived cookie or session value for extra robustness.
         - **4. Signup Completion & Reward**
             - **On Account Creation**
-                - **Backend logic** (triggered post-signup):
-                    - Check for `restaurantId` context.
-                    - Award “First Visit” badge, points, or other onboarding reward.
-                    - Optionally, create a punch card for the restaurant.
-                    - Log the event for analytics (user, restaurant, campaign, timestamp).
-            - **Data Reconciliation**
-                - Link the new user to the restaurant for analytics.
-                - Optionally, send a welcome notification or email.
-    - **Technical Requirements & Specifications**
-        - **
+                - **Backend logic** (triggered
