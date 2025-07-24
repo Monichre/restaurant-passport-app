@@ -1,3 +1,5 @@
 # Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
 # SpecStory derived-cursor-rules.mdc backup files
 /ai_rules_backups/*
+# SpecStory derived-cursor-rules.mdc backup files
+.specstory/ai_rules_backups/*

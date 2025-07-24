@@ -25,7 +25,7 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
         >
           <div className='relative w-full h-auto'>
             <Image
-              src='/deals-hero.jpeg'
+              src='/Restaurants.jpg'
               alt='Maple Grove Restaurant Week'
               height={1000}
               width={1000}
@@ -41,7 +41,7 @@ export const RestaurantsHero = ({children}: {children: React.ReactNode}) => {
             <div
               className='absolute inset-0 w-full h-full'
               style={{
-                backgroundColor: '#ed8025',
+                backgroundColor: '#7dc68d',
                 opacity: 0.6,
                 mixBlendMode: 'screen',
                 pointerEvents: 'none',

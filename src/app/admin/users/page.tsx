@@ -1,5 +1,6 @@
 import {getUsers} from '@/db/models/users/users'
 import Link from 'next/link'
+import {ExportUsersCsvButton} from '@/components/admin/export-users-csv-button'
 
 export default async function AdminUsersPage() {
   const users = await getUsers()
@@ -10,12 +11,15 @@ export default async function AdminUsersPage() {
     <div>
       <div className='flex justify-between items-center mb-6'>
         <h1 className='text-2xl font-bold'>User Management</h1>
-        <Link
-          href='/admin'
-          className='px-4 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50'
-        >
-          Back to Dashboard
-        </Link>
+        <div className='flex gap-3'>
+          <ExportUsersCsvButton users={users} />
+          <Link
+            href='/admin'
+            className='px-4 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-50'
+          >
+            Back to Dashboard
+          </Link>
+        </div>
       </div>
 
       <div className='bg-white rounded-lg shadow-sm overflow-hidden'>

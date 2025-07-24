@@ -2,11 +2,10 @@ import type {Metadata} from 'next'
 import {Geist, Geist_Mono} from 'next/font/google'
 import {ClerkProvider} from '@clerk/nextjs'
 
-import {LocationProvider} from '@/context/location-context'
 import {Analytics} from '@vercel/analytics/react'
 import {Nav} from '@/components/nav/nav'
 import {Toaster} from '@/components/ui/sonner'
-
+import {GoogleAnalytics} from '@next/third-parties/google'
 import './globals.css'
 import {StyleWrapper} from '@/context/style-wrapper'
 import {AppProviders} from '@/context/providers'
@@ -45,11 +44,15 @@ export default function RootLayout({
     <ClerkProvider>
       <AppProviders>
         <html lang='en' suppressHydrationWarning>
+          <head>
+            <link rel='stylesheet' href='https://use.typekit.net/dym2fcl.css' />
+          </head>
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased relative h-screen overflow-scroll bg-[#faf9f6] overflow-x-hidden`}
           >
+            <GoogleAnalytics gaId='G-SZWPFKRGP3' />
             {/* <StagewiseDevToolbar /> */}
-            {/* <GoogleAnalytics gaId='G-SZWPFKRGP3' /> */}
+
             <StyleWrapper>{children}</StyleWrapper>
             <Nav />
             <Toaster />

@@ -26,4 +26,4 @@
 - **Mobile**: Ensure responsive design with mobile-first approach
 - **Testing**: Write tests with Vitest, follow component testing patterns
 - **UI Components**: Use Radix UI primitives with Tailwind for styling
-- **Performance**: Optimize component rendering, minimize rerenders
+- **Performance**: Optimize component rendering, minimize rerenders[byterover-mcp]

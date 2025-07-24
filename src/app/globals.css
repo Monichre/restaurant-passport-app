@@ -495,16 +495,17 @@ td.data-cell > [role="checkbox"] {
 }
 
 #app {
-	height: 100vh;
+	/* height: 100vh; */
 	overflow-y: auto;
+	/* padding-bottom: 80px; */
 }
-
+/* 
 @media (max-width: 768px) {
 	#app {
 		height: calc(100vh - 80px) !important;
 		overflow-y: scroll;
 	}
-}
+} */
 
 .active-tab {
 	border: 2px solid #268552;
@@ -514,13 +515,14 @@ td.data-cell > [role="checkbox"] {
 	@apply text-primary;
 }
 .app-wrapper {
-	height: 100vh;
+	/* height: 100vh; */
 }
 
 @media (max-width: 768px) {
 	.app-wrapper {
-		height: calc(100vh - 80px);
-		overflow-y: scroll;
+		height: auto;
+		/* height: calc(100vh - 80px); */
+		/* overflow-y: scroll; */
 	}
 }
 
@@ -532,4 +534,20 @@ a {
 
 thead, tr {
 	border-bottom: 1px solid #ddd !important;
+}
+
+/* Date picker styles */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: hsl(var(--primary));
+  --rdp-background-color: hsl(var(--accent));
+  --rdp-background-color-dark: hsl(var(--accent));
+  --rdp-background-color-hover: hsl(var(--accent));
+  --rdp-background-color-selected: hsl(var(--primary));
+  --rdp-color: hsl(var(--foreground));
+  --rdp-color-dark: hsl(var(--foreground));
+  --rdp-color-hover: hsl(var(--foreground));
+  --rdp-color-selected: hsl(var(--primary-foreground));
+  --rdp-color-disabled: hsl(var(--muted-foreground));
+  --rdp-disabled-opacity: 0.5;
 }

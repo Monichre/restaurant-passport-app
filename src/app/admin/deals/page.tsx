@@ -4,6 +4,7 @@ import {DealsTable} from '@/components/admin/deals/deals-table'
 import {getDeals} from '@/db/models/deals'
 import {getRestaurants} from '@/db/models/restaurants/restaurants'
 import {Suspense} from 'react'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Admin - Deals Management',
@@ -26,12 +27,12 @@ export default async function DealsAdminPage() {
           </p>
         </div>
         <div className='flex items-center gap-2'>
-          <a
+          <Link
             href='/admin/deals/new'
             className='inline-flex h-10 items-center justify-center rounded-md bg-[#818cf8] px-4 py-2 text-sm font-medium text-white hover:bg-[#6366f1] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
           >
             Add New Deal
-          </a>
+          </Link>
         </div>
       </div>
       <Suspense fallback={<div>Loading...</div>}>

@@ -3,12 +3,13 @@
 import * as React from 'react'
 import {motion, AnimatePresence} from 'motion/react'
 import {cn} from '@/lib/utils'
-import {Award, Coffee, Stamp, Utensils} from 'lucide-react'
+import {Award, Coffee, Stamp, Utensils, Share} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {Badge} from '@/components/ui/badge'
 import {ProgressIndicator} from '@/components/progress-indicator/progress-indicator'
 import confetti from 'canvas-confetti'
+import {SharePunchMenu} from '@/features/users/share-punch-menu'
 
 // Constant for punch threshold
 export const PUNCH_THRESHOLD = 6
@@ -27,6 +28,8 @@ export interface RestaurantPunch {
 interface PunchCardProps
   extends Omit<React.ComponentProps<typeof motion.div>, 'ref'> {
   restaurants: RestaurantPunch[]
+  showSharing?: boolean
+  onShare?: (shareContent: any) => void
 }
 
 // Simple confetti animation function
@@ -101,11 +104,35 @@ const triggerMegaConfetti = () => {
 }
 
 export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
-  ({className, restaurants, ...props}, ref) => {
+  ({className, restaurants, showSharing = false, onShare, ...props}, ref) => {
     console.log('🚀 ~ restaurants:', restaurants)
     const currentPunches = restaurants.length
     const MAX_PUNCH_THRESHOLD = 6
     const [lastPunchCount, setLastPunchCount] = React.useState(currentPunches)
+    const [showShareMenu, setShowShareMenu] = React.useState(false)
+    const isCompleted = currentPunches >= MAX_PUNCH_THRESHOLD
+
+    // Generate sharing content for punch card achievements
+    const generateShareContent = React.useCallback(() => {
+      const restaurantNames = restaurants.slice(0, 3).map(r => r.restaurantName).join(', ')
+      const remainingCount = restaurants.length - 3
+      const restaurantText = remainingCount > 0 
+        ? `${restaurantNames} and ${remainingCount} more`
+        : restaurantNames
+
+      return {
+        title: isCompleted 
+          ? '🎉 I completed my Restaurant Passport!'
+          : `📍 ${currentPunches}/6 stamps collected on my Restaurant Passport!`,
+        description: isCompleted
+          ? `Just finished my dining journey visiting ${restaurants.length} amazing local restaurants! ${restaurantText ? `Including ${restaurantText}.` : ''} Ready for the next adventure!`
+          : `Making progress on my foodie journey! So far I've visited: ${restaurantText}. ${MAX_PUNCH_THRESHOLD - currentPunches} more stamps to go!`,
+        url: typeof window !== 'undefined' ? window.location.href : '',
+        hashtags: isCompleted 
+          ? ['RestaurantPassport', 'FoodieGoals', 'LocalEats', 'Completed']
+          : ['RestaurantPassport', 'FoodieLife', 'LocalEats', `${currentPunches}of6`],
+      }
+    }, [restaurants, currentPunches, isCompleted])
 
     // Trigger confetti when punch count increases - disabled for Storybook
     React.useEffect(() => {
@@ -117,6 +144,12 @@ export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
             // MEGA CELEBRATION for completing punch card!
             setTimeout(() => {
               triggerMegaConfetti()
+              // Show sharing menu after celebration
+              if (showSharing) {
+                setTimeout(() => {
+                  setShowShareMenu(true)
+                }, 1000)
+              }
             }, 500) // Longer delay for the big celebration
           } else {
             // Regular confetti for normal punches
@@ -127,7 +160,7 @@ export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
         }
       }
       setLastPunchCount(currentPunches)
-    }, [currentPunches])
+    }, [currentPunches, lastPunchCount, showSharing])
 
     return (
       <motion.div
@@ -269,6 +302,30 @@ export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
         <div className='flex items-center justify-start'>
           <ProgressIndicator punches={restaurants as any} />
         </div>
+
+        {/* Share Menu - shows when enabled and triggered */}
+        {showSharing && showShareMenu && (
+          <div className='absolute top-4 left-4 z-20'>
+            <SharePunchMenu 
+              shareContent={generateShareContent()}
+              className='relative'
+            />
+          </div>
+        )}
+
+        {/* Manual share trigger for completed cards */}
+        {showSharing && isCompleted && !showShareMenu && (
+          <motion.button
+            initial={{opacity: 0, scale: 0}}
+            animate={{opacity: 1, scale: 1}}
+            transition={{delay: 2, duration: 0.3}}
+            onClick={() => setShowShareMenu(true)}
+            className='absolute top-4 left-4 z-20 bg-primary text-primary-foreground rounded-full p-2 shadow-lg hover:scale-110 transition-transform'
+            title='Share your achievement!'
+          >
+            <Share className='w-4 h-4' />
+          </motion.button>
+        )}
       </motion.div>
     )
   }

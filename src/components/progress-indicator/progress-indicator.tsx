@@ -51,9 +51,9 @@ export function ProgressIndicator({punches}: ProgressIndicatorProps) {
   console.log('🚀 ~ ProgressIndicator ~ width:', width)
 
   return (
-    <div className='flex flex-col p-4 gap-2 w-full'>
-      <h4 className='text-base font-medium mb-4'>Passport Progress</h4>
-      <div className='flex items-center gap-2 w-44 py-1.5 px-2 w-full'>
+    <div className='flex flex-col gap-2 w-full pb-[10px]'>
+      <h4 className='text-xl font-bold text-center' style={{fontFamily: 'courier-std, monospace', color: '#2d6444'}}>Passport Progress</h4>
+      <div className='flex items-center gap-2 w-44 py-1.5 px-6 w-full'>
         <motion.div
           layoutId='progress-bar'
           className='flex-1 h-2 bg-gray-100 rounded-full'

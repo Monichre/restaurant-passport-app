@@ -413,7 +413,7 @@ export function DealsTable({
                 <Eye size={18} />
               </Link>
               <Link
-                href={`/admin/deals/${deal.id}/edit`}
+                href={`/admin/deals/${deal.id}`}
                 className='rounded p-1 text-blue-500 hover:bg-blue-100 hover:text-blue-700'
                 title='Edit'
               >
@@ -565,7 +565,7 @@ export function DealsTable({
                           </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>
-                          <Link href={`/admin/deals/${deal.id}/edit`}>
+                          <Link href={`/admin/deals/${deal.id}`}>
                             <Edit className='mr-2 h-4 w-4' />
                             Edit Deal
                           </Link>

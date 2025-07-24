@@ -54,13 +54,13 @@ export function RaffleSuccessAnimation({
     }, 250)
 
     // Hide animation after 5 seconds
-    const timer = setTimeout(() => {
-      setIsVisible(false)
-    }, 5000)
+    // const timer = setTimeout(() => {
+    //   setIsVisible(false)
+    // }, 5000)
 
     return () => {
       clearInterval(interval)
-      clearTimeout(timer)
+      // clearTimeout(timer)
     }
   }, [])
 
@@ -72,7 +72,7 @@ export function RaffleSuccessAnimation({
           animate={{opacity: 1, scale: 1, y: 0}}
           exit={{opacity: 0, scale: 0.5, y: -50}}
           transition={{duration: 0.5}}
-          className='mb-8'
+          className='my-8 w-auto max-w-[400px] mx-auto'
         >
           <Card className='p-8 bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-center shadow-xl'>
             <motion.div

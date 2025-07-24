@@ -92,7 +92,7 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
                 transition={{duration: 0.7, delay: 0.2}}
               >
                 <h1 className='text-5xl md:text-7xl font-bold text-center mb-4 drop-shadow-lg tk-wigwag-bold'>
-                  Today's <span className=''>Deals</span>
+                  <span className=''>Deals</span>
                 </h1>
               </motion.div>
             </BoxReveal>
@@ -132,10 +132,6 @@ export const DealsHero = ({children}: {children: React.ReactNode}) => {
           </svg> */}
         </motion.div>
 
-        <h2 className='text-center text-2xl lg:text-4xl font-bold tk-wigwag-bold mt-16'>
-          <span className='text-[#ed8025]'>Dine Local.</span>{' '}
-          <span className='text-[#22d3ee]'>Get Rewarded</span>
-        </h2>
         {children}
       </div>
     </AnimatePresence>

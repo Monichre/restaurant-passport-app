@@ -122,18 +122,14 @@ export const Nav = () => {
   const pathname = usePathname()
   const activeTab = pathname.split('/').pop()
 
-  const {currentUser} = useUserContext()
+  const {currentUser, showQrModal, setShowQrModal, toggleQrModal} =
+    useUserContext()
   const {session} = useSession()
-  const [showModal, setShowModal] = useState(false)
-
-  const toggleModal = () => {
-    setShowModal(!showModal)
-  }
 
   const userIsAdmin = currentUser?.isAdmin
   const closeModal = useCallback(() => {
-    setShowModal(false)
-  }, [])
+    setShowQrModal(false)
+  }, [setShowQrModal])
 
   const [elementFocused, setElementFocused] = useState<string | null>(null)
 
@@ -145,22 +141,27 @@ export const Nav = () => {
       <Suspense>
         {/* QR Scanner Modal with animations */}
         <AnimatePresence>
-          {showModal && (
-            <Dialog open={showModal} onOpenChange={toggleModal}>
+          {showQrModal && (
+            <Dialog open={showQrModal} onOpenChange={setShowQrModal}>
               <DialogContent className='sm:max-w-md p-0 overflow-hidden'>
                 <motion.div
                   variants={containerVariants}
                   initial='hidden'
                   animate='visible'
                   exit='exit'
-                  className='p-6'
+                  className='p-6 text-white'
+                  style={{backgroundColor: '#447754'}}
                 >
                   <motion.div variants={itemVariants}>
                     <DialogHeader>
-                      <DialogTitle>Scan QR Code</DialogTitle>
-                      <DialogDescription>
-                        Point your camera at a restaurant's QR code to earn a
-                        punch.
+                      <DialogTitle style={{fontFamily: 'Poppins, sans-serif'}}>
+                        Scan QR to Collect Stamp!
+                      </DialogTitle>
+                      <DialogDescription
+                        className='text-white'
+                        style={{fontFamily: 'Poppins, sans-serif'}}
+                      >
+                        Spot a table tent, scan the QR, and collect your stamp.
                       </DialogDescription>
                     </DialogHeader>
                   </motion.div>
@@ -178,7 +179,7 @@ export const Nav = () => {
                         <Button
                           type='button'
                           variant='secondary'
-                          onClick={() => setShowModal(false)}
+                          onClick={() => setShowQrModal(false)}
                         >
                           Close
                         </Button>
@@ -191,9 +192,9 @@ export const Nav = () => {
           )}
         </AnimatePresence>
 
-        <motion.nav className='fixed bottom-0 left-1/2 -translate-x-1/2 sm:py-2 py-2 z-50 s:h-[80px] h-auto will-change-transform'>
+        <motion.nav className='fixed bottom-0 left-1/2 -translate-x-1/2  py-2 z-50 s:h-[80px] h-auto will-change-transform'>
           <motion.div
-            className='flex justify-evenly w-content border rounded-full bg-linear-270 from-[#336f4f] from 48% to-[#179b55] backdrop-blur-sm  will-change-transform'
+            className='flex px-4 gap-4 justify-center w-content border rounded-full bg-linear-270 from-[#336f4f] from 48% to-[#179b55] backdrop-blur-sm  will-change-transform'
             initial={{opacity: 0, y: 10, width: 0}}
             animate={{opacity: 1, y: 0, width: 'auto'}}
             exit={{opacity: 0, y: -10}}
@@ -212,7 +213,7 @@ export const Nav = () => {
               onMouseEnter={() => handleHoverButton('deals')}
               onMouseLeave={() => handleHoverButton(null)}
               className={cn(
-                'p-4 h-auto !w-auto rounded-full relative',
+                'p-4 h-auto !w-auto rounded-full relative flex flex-col items-center justify-center',
                 'text-white',
                 (activeTab?.includes('deals') ||
                   activeTab?.includes('restaurants')) &&
@@ -234,10 +235,11 @@ export const Nav = () => {
               <Link
                 href='/deals'
                 className={cn(
-                  ' h-auto !w-auto rounded-full text-white ',
+                  ' h-auto !w-auto rounded-full text-white flex flex-col items-center justify-center',
                   activeTab?.includes('deals') ||
-                    (activeTab?.includes('restaurants') &&
-                      'text-primary !bg-[#E2FFE5]')
+                    activeTab?.includes('restaurants')
+                    ? '!text-black !bg-[#E2FFE5]'
+                    : 'text-white'
                 )}
               >
                 {activeTab?.includes('restaurants') ? (
@@ -245,19 +247,21 @@ export const Nav = () => {
                 ) : (
                   <Tag className='h-6 w-6' />
                 )}
+                <span className='text-xs font-semibold mt-1'>Deals</span>
               </Link>
             </Button>
 
             {currentUser && !userIsAdmin && (
               // <NavScannerButton onScanClick={toggleModal} />
               <Button
-                onClick={toggleModal}
+                data-testid='qr-scanner-button'
+                onClick={toggleQrModal}
                 variant='ghost'
                 onMouseEnter={() => handleHoverButton('qr')}
                 onMouseLeave={() => handleHoverButton(null)}
                 size='sm'
                 className={cn(
-                  'p-4 mx-1 h-auto !w-auto rounded-full relative',
+                  'p-4 mx-1 h-auto !w-auto rounded-full relative flex flex-col items-center justify-center',
                   'text-white',
                   activeTab?.includes('qr') && ' text-primary !bg-[#E2FFE5]'
                 )}
@@ -271,6 +275,7 @@ export const Nav = () => {
                 }}
               >
                 <QrCodeIcon className='h-6 w-6' />
+                <span className='text-xs font-semibold mt-1'>Scan</span>
               </Button>
             )}
             {userIsAdmin && (
@@ -279,7 +284,7 @@ export const Nav = () => {
                 size='sm'
                 onMouseEnter={() => handleHoverButton('admin')}
                 className={cn(
-                  'p-4 mx-1 h-auto !w-auto rounded-full relative',
+                  'p-4 mx-1 h-auto !w-auto rounded-full relative flex flex-col items-center justify-center',
                   'text-white',
                   activeTab?.includes('admin') &&
                     'active-tab text-primary !bg-[#E2FFE5]',
@@ -298,11 +303,12 @@ export const Nav = () => {
                 <Link
                   href={'/admin'}
                   className={cn(
-                    '  h-auto !w-auto rounded-full text-white',
+                    '  h-auto !w-auto rounded-full text-white flex flex-col items-center justify-center',
                     activeTab?.includes('admin') && 'text-primary !bg-[#E2FFE5]'
                   )}
                 >
                   <Settings2 className='h-6 w-6 ' />
+                  <span className='text-xs font-semibold mt-1'>Admin</span>
                 </Link>
               </Button>
             )}
@@ -312,7 +318,7 @@ export const Nav = () => {
                 size='sm'
                 onMouseEnter={() => handleHoverButton('profile')}
                 className={cn(
-                  'p-4 mx-1 h-auto !w-auto rounded-full',
+                  'p-4 mx-1 h-auto !w-auto rounded-full ',
                   'text-white',
                   activeTab?.includes('profile') && 'text-primary !bg-[#E2FFE5]'
                 )}
@@ -328,12 +334,13 @@ export const Nav = () => {
                 <Link
                   href={`/users/${currentUser?.id}/profile`}
                   className={cn(
-                    ' h-auto !w-auto rounded-full text-white',
+                    ' h-auto !w-auto rounded-full text-white flex flex-col items-center justify-center',
                     activeTab?.includes('profile') &&
                       'text-primary !bg-[#E2FFE5]'
                   )}
                 >
                   <BookUser className='h-6 w-6 ' />
+                  <span className='text-xs font-semibold mt-1'>Passport</span>
                 </Link>
               </Button>
             )}
@@ -344,11 +351,12 @@ export const Nav = () => {
                   variant='ghost'
                   size='sm'
                   className={cn(
-                    'p-4 mx-1 h-auto !w-auto rounded-full hover:bg-[#E2FFE5] text-black relative z-50',
+                    'p-4 mx-1 h-auto !w-auto rounded-full hover:bg-[#E2FFE5] text-black relative z-50 flex flex-col items-center justify-center',
                     'text-white'
                   )}
                 >
                   <UserPlus className='h-6 w-6 text-white' />
+                  <span className='text-xs font-semibold mt-1'>Sign Up</span>
                 </Button>
               </SignInButton>
             )}

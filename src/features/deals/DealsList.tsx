@@ -66,8 +66,8 @@ export const DealsList = ({deals: initialDeals, className}: DealsListProps) => {
   }
 
   return (
-    <div className={cn('container my-4 mx-auto space-4 py-8', className)}>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 p-8'>
+    <div className={cn('container my-4 mx-auto space-4 pb-8', className)}>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 px-8 pb-8'>
         {deals.map((deal: any) => (
           <motion.div
             key={`${deal.id.toString()}-${deal.restaurantId.toString()}`}
