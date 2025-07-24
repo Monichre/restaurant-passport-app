@@ -28,6 +28,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   `@radix-ui/react-popover`
 -   `react-day-picker`
 -   `@stagewise/toolbar-next`
+-   `svix`
 
 ## PROJECT DOCUMENTATION & CONTEXT SYSTEM
 
@@ -287,6 +288,15 @@ This document defines the rules and guidelines for the AI coding assistant. It c
             }}
             ```
 - The navigation scanner should not load with the select menu open and nothing selected. Instead, auto-select the rear camera (environment) by default, or the first available device if no rear camera is detected. The device selector should only appear when there are multiple cameras available. Use proper UI components from the UI library for device selection. If no rear camera is available, use the first available device. For cameras without proper labels, use fallback naming (e.g., `Camera 1`, `Camera 2`, etc.).
+- When syncing Clerk users to Supabase, the following steps should be followed:
+    - Create a script that can fetch all users from Clerk.
+    - Get all existing users from Supabase.
+    - Compare them to find missing users.
+    - Create missing users in Supabase.
+    - Update their Clerk metadata with the Supabase user IDs.
+    - Implement comprehensive logging and error handling.
+    - Validate environment variables and dependencies before running the sync.
+    - Use `privateMetadata` to store the Supabase user ID.
 
 ## DATA FETCHING & API
 
@@ -309,7 +319,6 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 
 ## AUTHENTICATION & AUTHORIZATION
 
--   (Deprecated) Authentication and authorization checks are no longer required for raffle entries API routes.
 -   When a new user is created, update the Clerk user's metadata with the Supabase user ID. Use `privateMetadata` to store this sensitive linking information, as it should only be accessible from the backend.
     -   After creating a user in Supabase, update the corresponding Clerk user's `privateMetadata` with the Supabase user ID. This allows linking Clerk users to their database records.
     -   Access the Supabase user ID from `user.privateMetadata.supabaseUserId` on the backend.
@@ -319,6 +328,15 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     ```typescript
     const ADMIN_AUTH_IDS = process.env.ADMIN_CLERK_IDS?.split(',') || [];
     ```
+-   **Webhook Verification**:
+    - All webhooks must implement proper signature verification to ensure they are genuinely from Clerk.
+    - The `SIGNING_SECRET` environment variable must be set.
+    - Use the `svix` package to verify the webhook payload.
+    - Ensure the webhook URL points to the correct endpoint (`/api/webhooks`).
+    - Select the appropriate webhook events in the Clerk dashboard (e.g., `user.created`).
+    - Comprehensive logging should be implemented for debugging and monitoring webhook processing.
+    - Webhook requests should be verified for authenticity.
+    - Input validation for user data should be performed.
 
 ## DEBUGGING
 
@@ -511,21 +529,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
                     - If user is **not authenticated**:
                         - Show a branded landing page:
                           “Welcome to [App Name]! You scanned a code at [Restaurant Name]. Sign up to start earning rewards.”
-                        - Prominent **Sign Up** and **Sign In** buttons.
-                        - Store `restaurantId` (and `campaign` if present) in localStorage, session, or as a query param for the signup flow.
-                    - If user is **already authenticated**:
-                        - Optionally, redirect to punch card for that restaurant or show a “Welcome back!” message.
-        - **3. State Preservation Through Signup**
-            - **How to Maintain Context?**
-                - **Store `restaurantId` and `campaign`**:
-                    - In localStorage/sessionStorage (client-side)
-                    - Or as a query param passed through the signup flow
-                - **Signup flow** (Clerk or custom):
-                    - On successful signup, check for stored `restaurantId`/`campaign` context.
-            - **Security Considerations**
-                - No sensitive data in QR or URL.
-                - Validate `restaurantId` on backend before granting rewards.
-                - Optionally, set a short-lived cookie or session value for extra robustness.
-        - **4. Signup Completion & Reward**
-            - **On Account Creation**
-                - **Backend logic** (triggered
+                        - Prominent **Sign Up**
