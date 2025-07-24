@@ -7,41 +7,41 @@ import { convertBigInts } from "@/lib/utils"
 
 export async function POST( req: Request ) {
 
-	console.log( "🚀 ~ POST ~ req:", req )
+	// console.log( "🚀 ~ POST ~ req:", req )
 
-	const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || process.env.CLERK_WEBHOOK_SECRET
+	// const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || process.env.CLERK_WEBHOOK_SECRET
 
-	console.log( "🚀 ~ POST ~ WEBHOOK_SECRET:", WEBHOOK_SECRET )
-
-
-	if ( !WEBHOOK_SECRET ) {
-		throw new Error(
-			"Error: Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local",
-		)
-	}
-
-	// Create new Svix instance with secret
-	const wh = new Webhook( WEBHOOK_SECRET )
-
-	console.log( "🚀 ~ POST ~ wh:", wh )
+	// console.log( "🚀 ~ POST ~ WEBHOOK_SECRET:", WEBHOOK_SECRET )
 
 
-	// Get headers
-	const headerPayload = await headers()
+	// if ( !WEBHOOK_SECRET ) {
+	// 	throw new Error(
+	// 		"Error: Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local",
+	// 	)
+	// }
 
-	console.log( "🚀 ~ POST ~ headerPayload:", headerPayload )
+	// // Create new Svix instance with secret
+	// const wh = new Webhook( WEBHOOK_SECRET )
 
-	const svix_id = headerPayload.get( "svix-id" )
+	// console.log( "🚀 ~ POST ~ wh:", wh )
 
-	console.log( "🚀 ~ POST ~ svix_id:", svix_id )
 
-	const svix_timestamp = headerPayload.get( "svix-timestamp" )
+	// // Get headers
+	// const headerPayload = await headers()
 
-	console.log( "🚀 ~ POST ~ svix_timestamp:", svix_timestamp )
+	// console.log( "🚀 ~ POST ~ headerPayload:", headerPayload )
 
-	const svix_signature = headerPayload.get( "svix-signature" )
+	// const svix_id = headerPayload.get( "svix-id" )
 
-	console.log( "🚀 ~ POST ~ svix_signature:", svix_signature )
+	// console.log( "🚀 ~ POST ~ svix_id:", svix_id )
+
+	// const svix_timestamp = headerPayload.get( "svix-timestamp" )
+
+	// console.log( "🚀 ~ POST ~ svix_timestamp:", svix_timestamp )
+
+	// const svix_signature = headerPayload.get( "svix-signature" )
+
+	// console.log( "🚀 ~ POST ~ svix_signature:", svix_signature )
 
 
 	// If there are no headers, error out
