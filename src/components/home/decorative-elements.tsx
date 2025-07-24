@@ -1,17 +1,24 @@
 'use client'
-import {motion} from 'framer-motion'
+
 import Image from 'next/image'
 import {useMemo} from 'react'
 
 // Define the SVG assets
 const SVG_ASSETS = [
-  '/Burger.svg',
-  '/Fried.svg',
-  '/Picklball.svg',
-  '/Pizza.svg',
-  '/Salad.svg',
-  '/Shop.svg',
-  '/Taco.svg',
+  // '/Burger.svg',
+  // '/Fried.svg',
+  // '/Picklball.svg',
+  // '/Pizza.svg',
+  // '/Salad.svg',
+  // '/Shop.svg',
+  // '/Taco.svg',
+  '/RW-Stamp-Icons-01.svg',
+  '/RW-Stamp-Icons-02.svg',
+  '/RW-Stamp-Icons-04.svg',
+  '/RW-Stamp-Icons-05.svg',
+  '/RW-Stamp-Icons-06.svg',
+  '/RW-Stamp-Icons-07.svg',
+  '/RW-Stamp-Icons-08.svg',
 ]
 
 // Define positions for decorative elements (in percentages)
@@ -22,7 +29,7 @@ const DECORATIVE_POSITIONS = [
     left: '-2%',
     rotate: 15,
     scale: 1,
-    opacity: 0.40,
+    opacity: 0.4,
     blur: 0,
     mobileHidden: false,
   },
@@ -31,7 +38,7 @@ const DECORATIVE_POSITIONS = [
     right: '-2%',
     rotate: -20,
     scale: 1,
-    opacity: 0.40,
+    opacity: 0.4,
     blur: 0,
     mobileHidden: false,
   },
@@ -40,7 +47,7 @@ const DECORATIVE_POSITIONS = [
     left: '-3%',
     rotate: 25,
     scale: 1,
-    opacity: 0.40,
+    opacity: 0.4,
     blur: 0,
     mobileHidden: false,
   },
@@ -49,7 +56,7 @@ const DECORATIVE_POSITIONS = [
     right: '-1%',
     rotate: -15,
     scale: 1,
-    opacity: 0.40,
+    opacity: 0.4,
     blur: 0,
     mobileHidden: false,
   },
@@ -58,7 +65,7 @@ const DECORATIVE_POSITIONS = [
     left: '-2%',
     rotate: -10,
     scale: 1,
-    opacity: 0.40,
+    opacity: 0.4,
     blur: 0,
     mobileHidden: false,
   },
@@ -67,7 +74,7 @@ const DECORATIVE_POSITIONS = [
     left: '15%',
     rotate: 20,
     scale: 1,
-    opacity: 0.40,
+    opacity: 0.4,
     blur: 0,
     mobileHidden: false,
   },
@@ -76,7 +83,7 @@ const DECORATIVE_POSITIONS = [
     right: '-3%',
     rotate: 30,
     scale: 1,
-    opacity: 0.40,
+    opacity: 0.4,
     blur: 0,
     mobileHidden: false,
   },
@@ -85,7 +92,7 @@ const DECORATIVE_POSITIONS = [
     right: '-1%',
     rotate: -25,
     scale: 1,
-    opacity: 0.40,
+    opacity: 0.4,
     blur: 0,
     mobileHidden: false,
   },
@@ -105,7 +112,10 @@ export const DecorativeElements = () => {
   }, [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -1 }}>
+    <div
+      className='fixed inset-0 pointer-events-none overflow-hidden'
+      style={{zIndex: -1}}
+    >
       {decorativeItems.map((item) => (
         <div
           key={item.id}

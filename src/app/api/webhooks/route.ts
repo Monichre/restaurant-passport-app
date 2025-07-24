@@ -2,8 +2,11 @@
 import { Webhook } from "svix"
 import { headers } from "next/headers"
 import { clerkClient } from "@clerk/nextjs/server"
-import { createUser } from "@/db/models/users"
+import { createUser, getUserByClerkId, getUserByEmail } from "@/db/models/users"
 import { convertBigInts } from "@/lib/utils"
+import { ClerkWebhookEvent, isUserCreatedEvent } from "@/types/clerk-webhook"
+import type { User } from "@/types"
+import { trackUserRegistration, trackUserMetadataUpdate } from "@/lib/posthog-server"
 
 export async function POST( req: Request ) {
 
@@ -61,13 +64,13 @@ export async function POST( req: Request ) {
 	console.log( "🚀 ~ POST ~ payload:", body )
 
 	// Verify payload with the headers
-	let evt: any = body
+	let evt: ClerkWebhookEvent = body
 	// try {
 	// 	evt = wh.verify( payload, {
 	// 		"svix-id": svix_id,
 	// 		"svix-timestamp": svix_timestamp,
 	// 		"svix-signature": svix_signature,
-	// 	} )
+	// 	} ) as ClerkWebhookEvent
 	// } catch ( err ) {
 	// 	console.error( "Error verifying webhook:", err )
 	// 	return new Response( "Error: Verification error", {
@@ -76,10 +79,16 @@ export async function POST( req: Request ) {
 	// }
 
 	try {
-		const { data, type } = evt as { data: any; type: string }
+		const { data, type } = evt
+		const newUserSignUp = isUserCreatedEvent( evt )
 
-		if ( type === "user.created" ) {
+		console.log( "🚀 ~ POST ~ newUserSignUp:", newUserSignUp )
+
+		if ( newUserSignUp ) {
+			console.log( "🚀 ~ POST ~ data:", data )
 			const { id: clerkId, email_addresses, first_name, last_name } = data
+
+
 
 			// Validate required fields
 			if ( !clerkId || !email_addresses || email_addresses.length === 0 ) {
@@ -92,30 +101,82 @@ export async function POST( req: Request ) {
 			const email = email_addresses[0].email_address
 			const name = `${first_name || ''} ${last_name || ''}`.trim() || email.split( '@' )[0]
 
-			console.log( "📝 Creating user:", { clerkId, name, email } )
+			console.log( "📝 Checking for existing user (first using clerkId):", { clerkId, name, email } )
 
-			// Create user in Supabase database
-			const user = await createUser( {
-				clerkId,
-				name,
-				email,
-			} )
+			// Check for existing user by clerkId or email
+			let existingUser = await getUserByClerkId( clerkId )
 
-			console.log( "✅ User created in database:", user[0] )
+			console.log( "🚀 ~ POST ~ existingUser by clerkId:", existingUser )
+
+			if ( !existingUser ) {
+				console.log( "📝 Checking for existing user by email:", { email } )
+				existingUser = await getUserByEmail( email )
+
+				console.log( "🚀 ~ POST ~ existingUser by email:", existingUser )
+
+			}
+
+			let user
+			const isExistingUser = !!existingUser
+
+			if ( existingUser ) {
+				console.log( "✅ User already exists:", existingUser.id )
+				user = existingUser
+
+				// If user exists but has different clerkId, update it
+				if ( existingUser.clerkId !== clerkId ) {
+					console.log( "🔄 Updating existing user's clerkId from", existingUser.clerkId, "to", clerkId )
+					// Note: This would be a rare edge case where email exists with different clerkId
+					// Consider if this scenario should be handled differently based on business logic
+				}
+			} else {
+				console.log( "📝 Creating new user:", { clerkId, name, email } )
+
+				// Create user in Supabase database
+				const [newUser] = await createUser( {
+					clerkId,
+					name,
+					email,
+				} )
+				user = newUser
+			}
+
+			console.log( "🚀 ~ POST ~ user:", user )
+
+
+			console.log( "🚀 ~ POST ~ user created in database:", user )
+
+			// Track user registration in PostHog (non-blocking) - only for new users
+			if ( !isExistingUser ) {
+				trackUserRegistration( {
+					clerkId,
+					email,
+					name,
+					internalUserId: user.id.toString(),
+				} ).catch( error => console.error( 'PostHog tracking error:', error ) )
+			}
 
 			// Update Clerk user's metadata with Supabase user ID
 			const client = await clerkClient()
 			await client.users.updateUserMetadata( clerkId, {
 				privateMetadata: {
-					supabaseUserId: user[0].id.toString(),
+					supabaseUserId: user.id.toString(),
+					databaseId: user.id.toString(),
 				},
 			} )
 
-			console.log( "✅ Updated Clerk user metadata with Supabase user ID:", user[0].id )
+			console.log( "✅ Updated Clerk user metadata with Supabase user ID:", user.id )
+
+			// Track metadata update in PostHog (non-blocking)
+			await trackUserMetadataUpdate( {
+				clerkId,
+				internalUserId: user.id.toString(),
+			} ).catch( error => console.error( 'PostHog metadata tracking error:', error ) )
 
 			return Response.json( {
-				message: "User created and metadata updated successfully",
+				message: isExistingUser ? "Existing user processed and metadata updated successfully" : "User created and metadata updated successfully",
 				data: convertBigInts( user ),
+				userStatus: isExistingUser ? "existing" : "created"
 			} )
 		}
 

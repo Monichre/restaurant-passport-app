@@ -106,9 +106,11 @@ export const Home = () => {
                   </Link>
                 </Button>
               ) : (
-                <Button className='w-content px-5 py-1 bg-[#2d6444] text-white font-bold rounded-lg hover:opacity-90 transition-opacity duration-150 active:scale-95'>
-                  <SignUpButton mode='modal'>Sign up to scan</SignUpButton>
-                </Button>
+                <SignUpButton mode='modal'>
+                  <Button className='w-content px-5 py-1 bg-[#2d6444] text-white font-bold rounded-lg hover:opacity-90 transition-opacity duration-150 active:scale-95'>
+                    Sign up to scan
+                  </Button>
+                </SignUpButton>
               )}
             </div>
           </BoxReveal>

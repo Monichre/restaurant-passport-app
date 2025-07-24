@@ -58,9 +58,9 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     - Ensure elements are positioned and styled consistently with the overall design.
 -   The `@restaurant-quick-view.tsx` component should display the restaurant's image from the `image_url` field on the restaurant database model. The image should be positioned prominently at the top of the restaurant information card in the BentoGrid layout. Use the Next.js `Image` component for optimized image handling. Ensure conditional rendering so that the image is only displayed if `restaurantData.imageUrl` exists. The image should have a fixed height (192px) and maintain its aspect ratio. Use rounded corners and proper overflow handling. Provide descriptive alt text using the restaurant name.
 -   The restaurant image in the quick view should be editable and updatable, allowing admins to upload new restaurant images using the `@storage.ts` module. The component should display an interactive image display with the following features:
-    - **Existing Image**: Hover overlay with "Change Image" button.
-    - **No Image**: Placeholder with "Upload Image" button.
-    - **Loading States**: Spinner and progress indicators during upload.
+    -   **Existing Image**: Hover overlay with "Change Image" button.
+    -   **No Image**: Placeholder with "Upload Image" button.
+    -   **Loading States**: Spinner and progress indicators during upload.
     - Uses the `uploadRestaurantImage()` function from the `@storage.ts` module.
     - Validates file types (JPEG, PNG, WebP, SVG only).
     - Enforces 50MB file size limit.
@@ -346,7 +346,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     const ADMIN_AUTH_IDS = process.env.ADMIN_CLERK_IDS?.split(',') || [];
     ```
 -   **Webhook Verification**:
-    - All webhooks must implement proper signature verification to ensure they are genuinely from Clerk.
+    - All webhooks *must* implement proper signature verification to ensure they are genuinely from Clerk.
     - The environment variable for the Clerk Webhook secret must be set as `WEBHOOK_SECRET` or `CLERK_WEBHOOK_SECRET`.
     - Use the `svix` package to verify the webhook payload.
     - Ensure the webhook URL points to the correct endpoint (`/api/webhooks`).
@@ -354,6 +354,64 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     - Comprehensive logging should be implemented for debugging and monitoring webhook processing.
     - Webhook requests should be verified for authenticity.
     - Input validation for user data should be performed.
+-   **Clerk Webhooks**:
+    -   Implement comprehensive TypeScript type definitions for Clerk webhook events.
+    -   Use type guards (e.g., `isUserCreatedEvent()`) for safer event handling.
+    -   Ensure proper type casting when verifying webhook signatures (e.g., `wh.verify(...) as ClerkWebhookEvent`).
+    -   The webhook route `/api/webhooks(.*)` must be a public route, explicitly excluded from authentication in the middleware configuration. This is essential because webhooks come from external services (like Clerk) and should not require authentication.
+    -   To configure this, ensure the middleware configuration:
+        -   Includes API routes in the matcher.
+        -   Explicitly excludes webhook routes from protection.
+        -   Treats the webhook routes as public.
+        -   Example middleware implementation:
+            ```typescript
+            import { updateSession } from "@/db/supabase/supabase-middleware"
+            import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
+             
+            export default clerkMiddleware( async ( auth, req ) => {
+            	// Define protected routes
+            	const isProtectedRoute = createRouteMatcher( ["/admin(.*)", "/user(.*)"] )
+            
+            	// Define public API routes (webhooks, etc.)
+            	const isPublicApiRoute = createRouteMatcher( ["/api/webhooks(.*)"] )
+            
+            	// Only protect routes that are marked as protected AND not public API routes
+            	if ( isProtectedRoute( req ) && !isPublicApiRoute( req ) ) {
+            		await auth.protect()
+            	}
+             
+            	// Handle first-time visitor cookie
+            	const response = await updateSession( req )
+            	const firstVisitCookie = req.cookies.get( 'first-visit' )
+             
+            	if ( !firstVisitCookie ) {
+            		// Set cookie for first-time visitor
+            		const timestamp = new Date().toISOString()
+            		response.cookies.set( 'first-visit', timestamp, {
+            			httpOnly: true,
+            			secure: process.env.NODE_ENV === 'production',
+            			sameSite: 'lax',
+            			maxAge: 60 * 60 * 24 * 365, // 1 year
+            			path: '/'
+            		} )
+            	}
+             
+            	return response
+            } )
+             
+            export const config = {
+            	matcher: [
+            		"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+            		// Always run for API routes
+            		"/(api|trpc)(.*)",
+            	],
+            }
+            ```
+-   **User Existence Check in Webhooks**:
+    -   Before creating a new user in Supabase via a Clerk webhook, *always* check if a user with the same Clerk ID or email address already exists.
+    -   Implement a function to query the database for existing users by `clerkId` and `email`.
+    -   If a user already exists, do *not* create a duplicate entry. Handle the existing user appropriately (e.g., update their information, log the event, or skip creation).
+    -   This check *must* be performed within the webhook route to prevent duplicate user creation.
 
 ## DEBUGGING
 
@@ -361,6 +419,8 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Inspect network requests in the browser's developer tools to debug API calls.
 -   Inspect React component state using React Developer Tools.
 -   Remove all `console.log` statements from production code. Add ESLint rule: `"no-console": ["error", { "allow": ["warn", "error"] }]`.
+-   **Secure Logging**:
+    -   Avoid logging sensitive user data (e.g., emails, clerkIds) in plain text, especially in production environments. Use structured logging with appropriate redaction or masking techniques.
 
 ## WORKFLOW & RELEASE RULES
 
@@ -386,12 +446,19 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Display user-friendly error messages.
 -   Log errors to the console.
 -   Implement proper error boundaries and monitoring. Consider using Sentry.
+-   Implement specific error types and handling for webhooks.
 
 ## CODE ORGANIZATION
 
 -   Keep components small and focused.
 -   Use a modular code structure.
 -   Separate UI components from business logic.
+-   For webhooks, follow a clear separation of concerns:
+    -   **Route Handler**: Handles HTTP requests, verifies signatures, and routes events.
+    -   **Service Classes**: Encapsulate business logic for user creation, updates, etc.
+    -   **Validators**: Implement comprehensive input validation.
+    -   **Error Handlers**: Centralize error handling and logging.
+    -   **Types**: Define specific types for webhook events and service responses.
 
 ## DATABASE INTERACTIONS
 
@@ -413,114 +480,58 @@ This document defines the rules and guidelines for the AI coding assistant. It c
       idleTimeoutMillis: 30000,
     });
     ```
+-   When using the `createUser` function, it returns a `Promise<{ id: bigint; clerkId: string; name: string; isStaff: boolean | null; isAdmin: boolean | null; email: string; phone: string | null; }[]>`.
+    -   Drizzle ORM's insert operation with `.returning()` always returns an array of the inserted records
+    -   `User[]` is an array containing the newly created user object(s). Even though you're inserting a single user, Drizzle returns an array format for consistency
+-   Use database transactions to ensure data consistency, especially when performing multiple related operations (e.g., creating a user and updating Clerk metadata).
+-   To prevent duplicate key errors due to race conditions during user creation in webhooks, the `createUser` function should use an atomic upsert operation instead of relying on a "check-then-insert" pattern. This ensures that the database guarantees uniqueness and avoids duplicate-key errors. Use one of the following mitigation patterns:
+    1.  **Single-statement UPSERT (preferred)**
 
-## STATE MANAGEMENT
+        ```ts
+        // Drizzle ORM
+        await db
+          .insert(users)
+          .values({ clerkId, email, name })
+          .onConflictDoNothing(); // or .onConflictDoUpdate(...)
+        ```
 
--   Use React's `useState` hook for local component state.
--   Use React Context for global state.
--   Use refs for values that should not trigger re-renders.
+        *   “Insert if missing, otherwise ignore” happens atomically inside Postgres – no race condition.
+        *   Returns `[]` when the row already exists, so you then fetch it.
+    2.  **Transactional “find-or-create” with explicit lock**
 
-## ANIMATIONS
+        ```ts
+        await db.transaction(async (tx) => {
+          // FOR UPDATE locks the matching row, preventing a second txn from inserting
+          const existing = await tx.query.users.findFirst({
+            where: eq(users.email, email),
+            lock: { mode: 'update' } // SELECT … FOR UPDATE
+          });
 
--   Use Framer Motion for animations.
--   Use canvas-confetti for confetti animations.
+          if (existing) return existing;
 
-## IMAGE HANDLING
+          const [user] = await tx
+            .insert(users)
+            .values({ clerkId, email, name })
+            .returning();
 
--   Configure Next.js Image component for external image sources.
--   Use Next.js Image component for optimized image loading.
--   The `domains` array in `next.config.js` should contain just the hostname portion, without protocols or trailing slashes.
--   Remove wildcard domains from `next.config.js`. Example:
-    ```typescript
-    remotePatterns: [
-      { protocol: "https", hostname: "hvjiuuzpupgmckuyfahe.supabase.co" },
-      { protocol: "https", hostname: "experiencemaplegrove.com" },
-    ]
-    ```
--   For admin operations like restaurant image uploads, use server-side upload instead of client-side uploads to prevent Row-Level Security (RLS) policy violations.
-    - To facilitate this, create a **server action** that handles image upload using **server-side storage functions** with proper permissions.
-    - Use `uploadFileServer` in server actions, as it has proper server-side permissions.
-    - The component should create `FormData` and call the server action.
-    - If you exclusively use Storage from trusted clients, such as your own servers, and need to bypass the RLS policies, you can use the service key in the Authorization header. Service keys entirely bypass RLS policies, granting you unrestricted access to all Storage APIs.
-    -   You must add the `SUPABASE_SERVICE_ROLE_KEY` environment variable to your `.env.local` file and restart your development server.
+          return user;
+        });
+        ```
 
-## TABLE DISPLAY
+        *   Slightly slower, but lets you update the existing row if you need to mutate it.
+    3.  **Catch-and-recover**
 
--   When using tables, ensure that `<td>` elements are direct children of `<tr>` elements. Avoid nesting `<td>` elements inside `<div>` elements.
--   Use `motion(TableRow)` to animate table rows. The animation properties should be directly on the table row component.
--   Ensure pagination state is properly preserved when data updates.
--   Use explicit state management for pagination to avoid unexpected resets.
+        ```ts
+        try {
+          const [user] = await createUser({ clerkId, email, name }); // plain INSERT
+          return user;
+        } catch (e: any) {
+          if (e.code === '23505') { // Postgres duplicate_key
+            return await getUserByEmail(email);
+          }
+          throw e; // real error
+        }
+        ```
 
-## DEVELOPMENT TOOLING
-
--   Use Stagewise dev-tool for AI-powered editing capabilities in development.
--   Install the `@stagewise/toolbar-next` package for Next.js projects.
--   Create a `StagewiseDevToolbar` component that only renders in `development` mode.
--   Include `<StagewiseDevToolbar />` in `src/app/layout.tsx`.
--   Ensure the Stagewise toolbar is not included in production builds.
-
-## QR CODE SCAN FUNCTIONALITY
-
--   When implementing QR code scan functionality, consider the following user journeys:
-    - Authenticated user scans to action.
-    - Unauthenticated user scans QR code generated by authenticated user for referral.
-    - Unregistered user scans a QR code at a participating restaurant to join the app.
--   For unauthenticated referral flow:
-    - Ensure cross-platform detection across various QR readers.
-    - Redirect to web application signup page.
-    - Maintain scan context through the signup process using a temporary token/ID system.
-    - Implement security considerations for state management, including token expiration.
-    - Trigger badge fulfillment on successful account creation.
-    - Reconcile data between scan and new account.
--   Address architectural considerations including:
-    - URL structure and parameter handling.
-    - Cross-platform compatibility.
-    - Error handling and edge cases.
-    - Analytics and tracking requirements.
-    - Database schema implications.
--   When generating QR codes for referrals:
-    - Encode the referral URL with `referrerId`, `restaurantId` (optional), and a secure, time-limited `token`. Example: `/referral?referrerId=<userId>&restaurantId=<restaurantId>&token=<secureToken>`.
-    - Generate tokens using JWT or random UUID, storing them in the `referral_tokens` table with metadata and expiration.
-    - Create a backend endpoint `POST /api/referrals/generate` that accepts `{ referrerId, restaurantId }` and returns `{ url, token, expiresAt }`.
--   When an unauthenticated user scans a referral QR code:
-    - The `/referral` route should detect the unauthenticated user and prompt them to sign up with a message like: "Sign up to claim your reward from <referrer/restaurant>!".
-    - Store the referral token and parameters in session/localStorage for multi-step signup or in the Next.js server session.
-    - Use a `referral_tokens` table with fields: `{ token, referrerId, restaurantId, createdAt, expiresAt, claimedByUserId, status }`. Mark the token as "claimed" after signup.
--   On signup completion:
-    - Create a backend endpoint `POST /api/referrals/claim` that accepts `{ token, newUserId }`.
-    - Validate the token and mark the referral as claimed.
-    - Award the "First Restaurant" badge or points to the new user and optionally reward the referrer.
-    - Link the referral record to the new user and log the conversion.
--   Implement the following security measures:
-    - Use JWT (signed, expiring) or random UUID (stored in DB) for tokens.
-    - Expire tokens after a short period (e.g., 24h).
-    - Mark tokens as claimed after use.
-    - Validate all parameters server-side.
-    - Log all actions for audit/analytics.
--   Implement the following error handling:
-    - Show an error and prompt to sign up without reward for invalid/expired tokens.
-    - Inform the user and allow normal signup if the token is already claimed.
-    - Show a generic error for missing parameters.
-    - Ensure tokens remain unclaimed until expiration if signup is abandoned.
--   Implement analytics and tracking for:
-    - QR code generation (who, when, where).
-    - Scan events (IP, device, timestamp).
-    - Signup completions (conversion rate).
-    - Badge/point fulfillment.
--   The `referral_tokens` table should have the following structure:
-    ```typescript
-    export const referralTokens = pgTable("referral_tokens", {
-      id: serial("id").primaryKey(),
-      token: text("token").notNull().unique(),
-      referrerId: integer("referrer_id").references(() => users.id),
-      restaurantId: integer("restaurant_id").references(() => restaurants.id),
-      createdAt: timestamp("created_at").defaultNow(),
-      expiresAt: timestamp("expires_at"),
-      claimedByUserId: integer("claimed_by_user_id").references(() => users.id),
-      status: text("status").notNull().default("active"), // active, claimed, expired
-    });
-    ```
--   Implement the following API endpoints:
-    - `POST /api/referrals/generate` – Authenticated, returns referral URL/token.
-    - `GET /api/referrals/validate?token=...` – Validates token (for landing page).
-    - `POST
+        *   Easiest drop-in, but you still get an exception path in your logs each time it races.
+-   The recommended change to `createUser` is
