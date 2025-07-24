@@ -297,6 +297,23 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     - Implement comprehensive logging and error handling.
     - Validate environment variables and dependencies before running the sync.
     - Use `privateMetadata` to store the Supabase user ID.
+-   **Public QR Onboarding Flow:**
+    - **Scenario:** A non-app-user (stranger/guest) scans a QR code displayed at a participating restaurant. The system should:
+        - Recognize the scan as coming from a public QR code (not a referral or user-generated code).
+        - Guide the user to sign up for the app, preserving the context of which restaurant’s QR code was scanned.
+        - Upon signup, award the "First Restaurant" badge or points.
+    - **Step-by-Step Implementation Plan:**
+        - **1. QR Code Generation & Placement**
+            - **What Data Should Be Encoded?**
+                - **URL format:**
+                  `https://app.example.com/qr?restaurantId=<restaurantId>&campaign=<optional>`
+                    - `restaurantId`: Unique identifier for the restaurant.
+                    - `campaign`: (Optional) For tracking special promotions.
+            - **How to Generate?**
+                - **Admin dashboard**: Restaurant admins or system admins generate QR codes for each location.
+                - **Backend endpoint**:
+                  - `GET /api/qr/generate?restaurantId=...`
+                  - Returns a QR code image (PNG/SVG) encoding the above URL.
 
 ## DATA FETCHING & API
 
@@ -330,7 +347,7 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     ```
 -   **Webhook Verification**:
     - All webhooks must implement proper signature verification to ensure they are genuinely from Clerk.
-    - The `SIGNING_SECRET` environment variable must be set.
+    - The environment variable for the Clerk Webhook secret must be set as `WEBHOOK_SECRET` or `CLERK_WEBHOOK_SECRET`.
     - Use the `svix` package to verify the webhook payload.
     - Ensure the webhook URL points to the correct endpoint (`/api/webhooks`).
     - Select the appropriate webhook events in the Clerk dashboard (e.g., `user.created`).
@@ -351,6 +368,11 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Get code reviewed before merging.
 -   Run tests before deploying.
 -   Use SpecStory to generate documentation.
+-   Before pushing webhook code to production:
+    -   Ensure that all environment variables are properly configured in the production environment, including `CLERK_SECRET_KEY`, `WEBHOOK_SECRET`, `DATABASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+    -   Re-enable the webhook in the Clerk dashboard and verify that it points to the correct endpoint (`/api/webhooks`).
+    -   Test the user creation flow in production to ensure that new users are successfully created in Supabase and that their Clerk metadata is updated correctly.
+    -   Monitor the logs to verify that the webhook is processing events successfully.
 
 ## NAMING CONVENTIONS
 
@@ -501,32 +523,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Implement the following API endpoints:
     - `POST /api/referrals/generate` – Authenticated, returns referral URL/token.
     - `GET /api/referrals/validate?token=...` – Validates token (for landing page).
-    - `POST /api/referrals/claim` – On signup, claims reward.
--   **Public QR Onboarding Flow:**
-    - **Scenario:** A non-app-user (stranger/guest) scans a QR code displayed at a participating restaurant. The system should:
-        - Recognize the scan as coming from a public QR code (not a referral or user-generated code).
-        - Guide the user to sign up for the app, preserving the context of which restaurant’s QR code was scanned.
-        - Upon signup, award the "First Restaurant" badge or points.
-    - **Step-by-Step Implementation Plan:**
-        - **1. QR Code Generation & Placement**
-            - **What Data Should Be Encoded?**
-                - **URL format:**
-                  `https://app.example.com/qr?restaurantId=<restaurantId>&campaign=<optional>`
-                    - `restaurantId`: Unique identifier for the restaurant.
-                    - `campaign`: (Optional) For tracking special promotions.
-            - **How to Generate?**
-                - **Admin dashboard**: Restaurant admins or system admins generate QR codes for each location.
-                - **Backend endpoint**:
-                  - `GET /api/qr/generate?restaurantId=...`
-                  - Returns a QR code image (PNG/SVG) encoding the above URL.
-                - **Physical placement**: Print and place QR codes on tables, menus, posters, etc.
-        - **2. Scan by Unregistered User**
-            - **Cross-Platform Detection**
-                - Any QR reader (native camera, 3rd party app) opens the encoded URL in a browser.
-            - **Landing Page Logic**
-                - **Route:** `/qr` (Next.js page)
-                - **Behavior:**
-                    - If user is **not authenticated**:
-                        - Show a branded landing page:
-                          “Welcome to [App Name]! You scanned a code at [Restaurant Name]. Sign up to start earning rewards.”
-                        - Prominent **Sign Up**
+    - `POST
