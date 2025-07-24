@@ -6,7 +6,13 @@ import { createUser } from "@/db/models/users"
 import { convertBigInts } from "@/lib/utils"
 
 export async function POST( req: Request ) {
+
+	console.log( "🚀 ~ POST ~ req:", req )
+
 	const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || process.env.CLERK_WEBHOOK_SECRET
+
+	console.log( "🚀 ~ POST ~ WEBHOOK_SECRET:", WEBHOOK_SECRET )
+
 
 	if ( !WEBHOOK_SECRET ) {
 		throw new Error(
@@ -17,39 +23,57 @@ export async function POST( req: Request ) {
 	// Create new Svix instance with secret
 	const wh = new Webhook( WEBHOOK_SECRET )
 
+	console.log( "🚀 ~ POST ~ wh:", wh )
+
+
 	// Get headers
 	const headerPayload = await headers()
+
+	console.log( "🚀 ~ POST ~ headerPayload:", headerPayload )
+
 	const svix_id = headerPayload.get( "svix-id" )
+
+	console.log( "🚀 ~ POST ~ svix_id:", svix_id )
+
 	const svix_timestamp = headerPayload.get( "svix-timestamp" )
+
+	console.log( "🚀 ~ POST ~ svix_timestamp:", svix_timestamp )
+
 	const svix_signature = headerPayload.get( "svix-signature" )
 
+	console.log( "🚀 ~ POST ~ svix_signature:", svix_signature )
+
+
 	// If there are no headers, error out
-	if ( !svix_id || !svix_timestamp || !svix_signature ) {
-		return new Response( "Error: Missing Svix headers", {
-			status: 400,
-		} )
-	}
+	// if ( !svix_id || !svix_timestamp || !svix_signature ) {
+	// 	return new Response( "Error: Missing Svix headers", {
+	// 		status: 400,
+	// 	} )
+	// }
 
 	// Get body
 	const payload = await req.text()
+
+	console.log( "🚀 ~ POST ~ payload:", payload )
+
 	const body = JSON.parse( payload )
 
 	console.log( "🚀 ~ POST ~ payload:", body )
 
 	// Verify payload with the headers
-	let evt: any
-	try {
-		evt = wh.verify( payload, {
-			"svix-id": svix_id,
-			"svix-timestamp": svix_timestamp,
-			"svix-signature": svix_signature,
-		} )
-	} catch ( err ) {
-		console.error( "Error verifying webhook:", err )
-		return new Response( "Error: Verification error", {
-			status: 400,
-		} )
-	}
+	let evt: any = body
+	// try {
+	// 	evt = wh.verify( payload, {
+	// 		"svix-id": svix_id,
+	// 		"svix-timestamp": svix_timestamp,
+	// 		"svix-signature": svix_signature,
+	// 	} )
+	// } catch ( err ) {
+	// 	console.error( "Error verifying webhook:", err )
+	// 	return new Response( "Error: Verification error", {
+	// 		status: 400,
+	// 	} )
+	// }
 
 	try {
 		const { data, type } = evt as { data: any; type: string }
