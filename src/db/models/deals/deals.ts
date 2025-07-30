@@ -148,6 +148,7 @@ export type Deal = {
 	title: string
 	content: string
 	active: boolean
+	activeDate: string | null
 	createdAt: string
 	updatedAt: string
 }

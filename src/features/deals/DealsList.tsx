@@ -6,32 +6,15 @@ import Link from 'next/link'
 import {Tag, Clock, ExternalLink} from 'lucide-react'
 import {motion} from 'framer-motion'
 import {cn, isValidUrl} from '@/lib/utils'
-import type {Deal} from '@/types/db'
-import {useDealsSubscription} from '@/hooks/useDealsSubscription'
-import {Deal as DealType} from '@/types/db'
+import {
+  useDealsSubscription,
+  type DealWithRestaurant,
+} from '@/hooks/useDealsSubscription'
 import {DealsListCard} from './DealsListCard'
 import {useMediaQuery} from 'usehooks-ts'
 
-// This type represents the deal structure as it comes from the database
-interface DatabaseDeal {
-  id: bigint
-  restaurantId: bigint
-  title?: string
-  content: string
-  active: boolean | null
-  createdAt: string | null
-  updatedAt: string | null
-  name?: string
-  imageUrl?: string
-  restaurant?: {
-    id: bigint
-    name: string
-    imageUrl?: string
-  }
-}
-
 interface DealsListProps {
-  deals: DatabaseDeal[]
+  deals: DealWithRestaurant[]
   className?: string
 }
 
@@ -48,9 +31,42 @@ export const DealsList = ({deals: initialDeals, className}: DealsListProps) => {
     }
   }, [dealsFeed])
 
-  // Sort deals by active status (active first) and then by creation date (newest first)
+  // Sort deals: active deals without activeDate first, then by activeDate (newest first)
+  const sortedDeals = useMemo(() => {
+    if (!deals) return []
 
-  if (!deals || deals.length === 0) {
+    return [...deals].sort((a, b) => {
+      // First, sort by active status (active deals first)
+      if (a.active && !b.active) return -1
+      if (!a.active && b.active) return 1
+
+      // For active deals, prioritize those without activeDate
+      if (a.active && b.active) {
+        const hasActiveDateA =
+          a.activeDate !== null && a.activeDate !== undefined
+        const hasActiveDateB =
+          b.activeDate !== null && b.activeDate !== undefined
+
+        // Active deals without activeDate come first
+        if (!hasActiveDateA && hasActiveDateB) return -1
+        if (hasActiveDateA && !hasActiveDateB) return 1
+
+        // If both have or both don't have activeDate, sort by activeDate (newest first)
+        if (hasActiveDateA && hasActiveDateB) {
+          const dateA = new Date(a.activeDate!).getTime()
+          const dateB = new Date(b.activeDate!).getTime()
+          return dateB - dateA // Descending order (newest first)
+        }
+      }
+
+      // For inactive deals or when activeDate comparison is not applicable, fallback to createdAt
+      const createdA = a.createdAt ? new Date(a.createdAt).getTime() : 0
+      const createdB = b.createdAt ? new Date(b.createdAt).getTime() : 0
+      return createdB - createdA
+    })
+  }, [deals])
+
+  if (!sortedDeals || sortedDeals.length === 0) {
     return (
       <div className={cn('py-8 text-center', className)}>
         <div className='bg-gray-50 dark:bg-zinc-900/50 rounded-lg p-6 max-w-md mx-auto'>
@@ -68,7 +84,7 @@ export const DealsList = ({deals: initialDeals, className}: DealsListProps) => {
   return (
     <div className={cn('container my-4 mx-auto space-4 pb-8', className)}>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 px-8 pb-8'>
-        {deals.map((deal: any) => (
+        {sortedDeals.map((deal: DealWithRestaurant) => (
           <motion.div
             key={`${deal.id.toString()}-${deal.restaurantId.toString()}`}
             layout

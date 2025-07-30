@@ -13,8 +13,6 @@ export const metadata = {
 export default async function DealsPage() {
   const deals = await getActiveDeals()
 
-  console.log('🚀 ~ DealsPage ~ deals:', deals)
-
   return (
     <Suspense fallback={<DealsListSkeleton />}>
       <DealsHero>

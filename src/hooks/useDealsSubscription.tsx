@@ -2,28 +2,10 @@
 
 import {useState, useEffect, useCallback} from 'react'
 import {supabaseBrowserClient} from '@/db/supabase/supabase.client'
-import {z} from 'zod'
-
-// Import or redefine the dealSchema
-export const dealSchema = z.object({
-  id: z.bigint(),
-  name: z.string(),
-  description: z.string(),
-  imageUrl: z.string().url(),
-  restaurantId: z.bigint(),
-})
-
-export type Deal = z.infer<typeof dealSchema>
+import type {Deal, Restaurant} from '@/types/db'
 
 export type DealWithRestaurant = Deal & {
-  restaurant: {
-    id: bigint
-    name: string
-    description: string
-    imageUrl: string
-    address: string
-    qrCodeUrl: string | null
-  }
+  restaurant?: Restaurant
 }
 
 /**
@@ -41,15 +23,7 @@ export function useDealsSubscription() {
 
       // Use the client-side API endpoint to get all deals
       const response = await fetch('/api/deals')
-
-      console.log('🚀 ~ fetchDeals ~ response:', response)
-
       const {success, data, error} = await response.json()
-      console.log('🚀 ~ fetchDeals ~ response:', response)
-
-      console.log('🚀 ~ fetchDeals ~ error:', error)
-
-      console.log('🚀 ~ fetchDeals ~ deals:', data)
       setDeals(data)
     } catch (err) {
       console.error('Error fetching deals:', err)
@@ -74,12 +48,10 @@ export function useDealsSubscription() {
         'postgres_changes',
         {event: '*', schema: 'public', table: 'restaurant_deals'},
         async (payload) => {
-          console.log('Change received!', payload)
           fetchDeals()
         }
       )
       .subscribe()
-    console.log('🚀 ~ useEffect ~ subscription:', subscription)
 
     //     const channel = supabase
     // .channel("realtime tweets")
@@ -119,7 +91,7 @@ export function useDealsSubscription() {
 
     // Clean up subscriptions on unmount
     return () => {
-      return subscription.unsubscribe()
+      subscription.unsubscribe()
     }
   }, [])
 

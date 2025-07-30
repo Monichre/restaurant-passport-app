@@ -314,6 +314,10 @@ This document defines the rules and guidelines for the AI coding assistant. It c
                 - **Backend endpoint**:
                   - `GET /api/qr/generate?restaurantId=...`
                   - Returns a QR code image (PNG/SVG) encoding the above URL.
+-   When sorting active deals, the `getActiveDeals()` function should be used to retrieve the deals sorted by `activeDate` in descending order. The `DatabaseDeal` interface and the `Deal` type definition should include the `activeDate` field. However, the frontend component should also respect the database ordering and not override it with its own logic. The `DealsList` component should sort deals with the following priority:
+    1.  Active deals without `activeDate` - These appear at the very top
+    2.  Active deals with `activeDate` - Sorted by newest `activeDate` first
+    3.  Inactive deals - Sorted by `createdAt` as fallback
 
 ## DATA FETCHING & API
 
@@ -518,20 +522,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
         });
         ```
 
-        *   Slightly slower, but lets you update the existing row if you need to mutate it.
-    3.  **Catch-and-recover**
-
-        ```ts
-        try {
-          const [user] = await createUser({ clerkId, email, name }); // plain INSERT
-          return user;
-        } catch (e: any) {
-          if (e.code === '23505') { // Postgres duplicate_key
-            return await getUserByEmail(email);
-          }
-          throw e; // real error
-        }
-        ```
-
-        *   Easiest drop-in, but you still get an exception path in your logs each time it races.
--   The recommended change to `createUser` is
+        *   Slightly slower, but lets you update the existing row if you

@@ -147,8 +147,6 @@ export function NavScanner({
   }
 
   const handleScan = async (data: string) => {
-    console.log('🚀 ~ handleScan ~ data:', data)
-
     setPause(true)
     setCheckingPunchCardStatus(true)
     try {
