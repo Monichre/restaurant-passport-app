@@ -1958,7 +1958,405 @@ just add some borders around the inputs or something
 
 _**Assistant**_
 
+I'll add more visible borders around the input fields to make them stand out better:
 
+
+---
+
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1687,5 +1687,5 @@
+                        setEditFormData({...editFormData, name: e.target.value})
+                      }
+-                     className='bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary text-gray-900 dark:text-gray-100'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+```
+
+</details>
+
+---
+
+Now let me update all the other input fields with the same border styling:
+
+
+---
+
+The string to replace was not found in the file.
+
+---
+
+Let me search for the textarea field:
+
+
+---
+
+<details>
+            <summary>Grep search for "min-h-\[100px\] resize-none" • **0** files</summary>
+        
+No results found
+</details>
+
+---
+
+Let me search for the description field:
+
+
+---
+
+<details>
+            <summary>Grep search for "htmlFor='description'" • **2** files</summary>
+        
+| File | Line | Match |
+|------|------|-------|
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1694 | `<Label htmlFor='description'>Description</Label>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1694 | `<Label htmlFor='description'>Description</Label>` |
+
+</details>
+
+---
+
+Read file: src/components/admin/restaurants-table.tsx
+
+---
+
+I see the issue - the other fields still have the old styling. Let me update them all with the new border styling:
+
+
+---
+
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1702,5 +1702,5 @@
+                        })
+                      }
+-                     className='bg-background border-sidebar-border min-h-[100px]'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100 min-h-[100px] resize-none'
+                    />
+                  </div>
+```
+
+</details>
+
+---
+
+Now let me update all the remaining input fields:
+
+
+---
+
+The model provided an ambiguous search string to replace.
+
+---
+
+I need to update them one by one. Let me start with the address field:
+
+
+---
+
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
+```diff
+@@ -1707,5 +1707,10 @@
+  
+                  <div className='space-y-2'>
+-                   <Label htmlFor='address'>Address</Label>
++                   <Label
++                     htmlFor='address'
++                     className='text-sm font-medium text-gray-700 dark:text-gray-300'
++                   >
++                     Address
++                   </Label>
+                    <Input
+                      id='address'
+```
+
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1717,5 +1722,5 @@
+                        })
+                      }
+-                     className='bg-background border-sidebar-border'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+```
+
+</details>
+
+---
+
+Now let me update the imageUrl field:
+
+
+---
+
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
+```diff
+@@ -1727,5 +1727,10 @@
+  
+                  <div className='space-y-2'>
+-                   <Label htmlFor='imageUrl'>Image URL</Label>
++                   <Label
++                     htmlFor='imageUrl'
++                     className='text-sm font-medium text-gray-700 dark:text-gray-300'
++                   >
++                     Image URL
++                   </Label>
+                    <Input
+                      id='imageUrl'
+```
+
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1737,5 +1742,5 @@
+                        })
+                      }
+-                     className='bg-background border-sidebar-border'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+```
+
+</details>
+
+---
+
+Now let me update the contact fields. Let me find them:
+
+
+---
+
+Read file: src/components/admin/restaurants-table.tsx
+
+---
+
+Let me update all the remaining fields in one go by targeting the specific lines:
+
+
+---
+
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
+```diff
+@@ -1756,5 +1756,10 @@
+                <div className='grid gap-4 sm:grid-cols-2'>
+                  <div className='space-y-2'>
+-                   <Label htmlFor='contactName'>Contact Name</Label>
++                   <Label
++                     htmlFor='contactName'
++                     className='text-sm font-medium text-gray-700 dark:text-gray-300'
++                   >
++                     Contact Name
++                   </Label>
+                    <Input
+                      id='contactName'
+```
+
+**Chunk 2**
+Lines added: 7, lines removed: 2
+
+```diff
+@@ -1766,10 +1771,15 @@
+                        })
+                      }
+-                     className='bg-background border-sidebar-border'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+  
+                  <div className='space-y-2'>
+-                   <Label htmlFor='contactPosition'>Contact Position</Label>
++                   <Label
++                     htmlFor='contactPosition'
++                     className='text-sm font-medium text-gray-700 dark:text-gray-300'
++                   >
++                     Contact Position
++                   </Label>
+                    <Input
+                      id='contactPosition'
+```
+
+**Chunk 3**
+Lines added: 7, lines removed: 2
+
+```diff
+@@ -1781,10 +1791,15 @@
+                        })
+                      }
+-                     className='bg-background border-sidebar-border'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+  
+                  <div className='space-y-2'>
+-                   <Label htmlFor='email'>Email</Label>
++                   <Label
++                     htmlFor='email'
++                     className='text-sm font-medium text-gray-700 dark:text-gray-300'
++                   >
++                     Email
++                   </Label>
+                    <Input
+                      id='email'
+```
+
+**Chunk 4**
+Lines added: 7, lines removed: 2
+
+```diff
+@@ -1794,10 +1809,15 @@
+                        setEditFormData({...editFormData, email: e.target.value})
+                      }
+-                     className='bg-background border-sidebar-border'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+  
+                  <div className='space-y-2'>
+-                   <Label htmlFor='phone'>Phone</Label>
++                   <Label
++                     htmlFor='phone'
++                     className='text-sm font-medium text-gray-700 dark:text-gray-300'
++                   >
++                     Phone
++                   </Label>
+                    <Input
+                      id='phone'
+```
+
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1807,5 +1827,5 @@
+                        setEditFormData({...editFormData, phone: e.target.value})
+                      }
+-                     className='bg-background border-sidebar-border'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+```
+
+</details>
+
+---
+
+Now let me update the remaining fields in the Additional Information section:
+
+
+---
+
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
+```diff
+@@ -1841,5 +1841,10 @@
+                <div className='grid gap-4 sm:grid-cols-2'>
+                  <div className='space-y-2'>
+-                   <Label htmlFor='website'>Website</Label>
++                   <Label
++                     htmlFor='website'
++                     className='text-sm font-medium text-gray-700 dark:text-gray-300'
++                   >
++                     Website
++                   </Label>
+                    <Input
+                      id='website'
+```
+
+**Chunk 2**
+Lines added: 7, lines removed: 2
+
+```diff
+@@ -1851,10 +1856,15 @@
+                        })
+                      }
+-                     className='bg-background border-sidebar-border'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+  
+                  <div className='space-y-2'>
+-                   <Label htmlFor='code'>Restaurant Code</Label>
++                   <Label
++                     htmlFor='code'
++                     className='text-sm font-medium text-gray-700 dark:text-gray-300'
++                   >
++                     Restaurant Code
++                   </Label>
+                    <Input
+                      id='code'
+```
+
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1867,5 +1877,5 @@
+                        })
+                      }
+-                     className='bg-background border-sidebar-border'
++                     className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
+                    />
+                  </div>
+```
+
+</details>
+
+---
+
+Perfect! I've updated all the input fields in the edit form with:
+
+## **Enhanced Border Styling:**
+- **Thicker borders**: Changed from `border-1` to `border-2` for more visibility
+- **Better contrast**: Using `border-gray-300 dark:border-gray-600` for clear borders
+- **Focus states**: Added `focus:ring-2 focus:ring-primary/20` for a nice focus ring effect
+- **Consistent styling**: All inputs now have the same enhanced border styling
+
+## **Additional Improvements:**
+- **Better labels**: All labels now have proper contrast with `text-gray-700 dark:text-gray-300`
+- **Consistent backgrounds**: All inputs use `bg-white dark:bg-gray-800`
+- **Text contrast**: Input text uses `text-gray-900 dark:text-gray-100`
+
+The form should now be much more visually appealing with clearly defined input borders that make it easy to see where each field is, especially in both light and dark modes. The focus rings will also provide nice visual feedback when users click into the fields.
 
 ---
 

@@ -1686,7 +1686,7 @@ export function RestaurantsTable({
                     onChange={(e) =>
                       setEditFormData({...editFormData, name: e.target.value})
                     }
-                    className='bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary text-gray-900 dark:text-gray-100'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
 
@@ -1701,12 +1701,17 @@ export function RestaurantsTable({
                         description: e.target.value,
                       })
                     }
-                    className='bg-background border-sidebar-border min-h-[100px]'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100 min-h-[100px] resize-none'
                   />
                 </div>
 
                 <div className='space-y-2'>
-                  <Label htmlFor='address'>Address</Label>
+                  <Label
+                    htmlFor='address'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Address
+                  </Label>
                   <Input
                     id='address'
                     value={editFormData.address || ''}
@@ -1716,12 +1721,17 @@ export function RestaurantsTable({
                         address: e.target.value,
                       })
                     }
-                    className='bg-background border-sidebar-border'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
 
                 <div className='space-y-2'>
-                  <Label htmlFor='imageUrl'>Image URL</Label>
+                  <Label
+                    htmlFor='imageUrl'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Image URL
+                  </Label>
                   <Input
                     id='imageUrl'
                     value={editFormData.imageUrl || ''}
@@ -1731,7 +1741,7 @@ export function RestaurantsTable({
                         imageUrl: e.target.value,
                       })
                     }
-                    className='bg-background border-sidebar-border'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
               </div>
@@ -1745,7 +1755,12 @@ export function RestaurantsTable({
 
               <div className='grid gap-4 sm:grid-cols-2'>
                 <div className='space-y-2'>
-                  <Label htmlFor='contactName'>Contact Name</Label>
+                  <Label
+                    htmlFor='contactName'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Contact Name
+                  </Label>
                   <Input
                     id='contactName'
                     value={editFormData.contactName || ''}
@@ -1755,12 +1770,17 @@ export function RestaurantsTable({
                         contactName: e.target.value,
                       })
                     }
-                    className='bg-background border-sidebar-border'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
 
                 <div className='space-y-2'>
-                  <Label htmlFor='contactPosition'>Contact Position</Label>
+                  <Label
+                    htmlFor='contactPosition'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Contact Position
+                  </Label>
                   <Input
                     id='contactPosition'
                     value={editFormData.contactPosition || ''}
@@ -1770,12 +1790,17 @@ export function RestaurantsTable({
                         contactPosition: e.target.value,
                       })
                     }
-                    className='bg-background border-sidebar-border'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
 
                 <div className='space-y-2'>
-                  <Label htmlFor='email'>Email</Label>
+                  <Label
+                    htmlFor='email'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Email
+                  </Label>
                   <Input
                     id='email'
                     type='email'
@@ -1783,12 +1808,17 @@ export function RestaurantsTable({
                     onChange={(e) =>
                       setEditFormData({...editFormData, email: e.target.value})
                     }
-                    className='bg-background border-sidebar-border'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
 
                 <div className='space-y-2'>
-                  <Label htmlFor='phone'>Phone</Label>
+                  <Label
+                    htmlFor='phone'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Phone
+                  </Label>
                   <Input
                     id='phone'
                     type='tel'
@@ -1796,7 +1826,7 @@ export function RestaurantsTable({
                     onChange={(e) =>
                       setEditFormData({...editFormData, phone: e.target.value})
                     }
-                    className='bg-background border-sidebar-border'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
               </div>
@@ -1810,7 +1840,12 @@ export function RestaurantsTable({
 
               <div className='grid gap-4 sm:grid-cols-2'>
                 <div className='space-y-2'>
-                  <Label htmlFor='website'>Website</Label>
+                  <Label
+                    htmlFor='website'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Website
+                  </Label>
                   <Input
                     id='website'
                     value={editFormData.website || ''}
@@ -1820,12 +1855,17 @@ export function RestaurantsTable({
                         website: e.target.value,
                       })
                     }
-                    className='bg-background border-sidebar-border'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
 
                 <div className='space-y-2'>
-                  <Label htmlFor='code'>Restaurant Code</Label>
+                  <Label
+                    htmlFor='code'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Restaurant Code
+                  </Label>
                   <Input
                     id='code'
                     type='number'
@@ -1836,7 +1876,7 @@ export function RestaurantsTable({
                         code: parseInt(e.target.value) || null,
                       })
                     }
-                    className='bg-background border-sidebar-border'
+                    className='bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100'
                   />
                 </div>
               </div>

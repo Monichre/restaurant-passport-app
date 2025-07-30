@@ -325,6 +325,17 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   The modal should display success and error messages using `toast`.
 -   In the Admin `@restaurants-table.tsx` component, the "Actions" column should include buttons for "Edit" and "Quick View".
 -   In the Admin `@restaurants-table.tsx` component, if horizontal scrolling is required to view the "Actions" column, the "Edit" button should be moved to a more visible location, next to the "Quick View" button, and the column header should be changed to "Actions".
+-   In the Admin `@restaurants-table.tsx` component, the edit form should have improved styling for better readability:
+    -   The DialogContent should have these classes: `max-w-2xl bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 max-h-[90vh] overflow-y-auto`.
+    -   The DialogTitle should have these classes: `text-xl font-semibold text-gray-900 dark:text-gray-100`.
+    -   The DialogDescription should have these classes: `text-sm text-gray-600 dark:text-gray-400`.
+    -   Each section (Basic, Contact, Additional Info) should have these classes: `space-y-4 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg`.
+    -   Each Label should have these classes: `text-sm font-medium text-gray-700 dark:text-gray-300`.
+    -   Each Input should have these classes: `bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary text-gray-900 dark:text-gray-100`.
+    -   The save/cancel buttons container should have these classes: `flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700`.
+    -   The cancel button should have these classes: `border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300`.
+    -   The save button should have these classes: `bg-primary hover:bg-primary/90 text-white`.
+-   In the Admin `@restaurants-table.tsx` component, add borders around the inputs.
 
 ## DATA FETCHING & API
 
@@ -466,33 +477,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Separate UI components from business logic.
 -   For webhooks, follow a clear separation of concerns:
     -   **Route Handler**: Handles HTTP requests, verifies signatures, and routes events.
-    -   **Service Classes**: Encapsulate business logic for user creation, updates, etc.
-    -   **Validators**: Implement comprehensive input validation.
-    -   **Error Handlers**: Centralize error handling and logging.
-    -   **Types**: Define specific types for webhook events and service responses.
-
-## DATABASE INTERACTIONS
-
--   Use Drizzle ORM for all database interactions.
--   Create CRUD functions for each database model.
--   Use Supabase for real-time subscriptions.
--   Add composite indexes to the database for frequently used queries. Examples:
-    ```sql
-    CREATE INDEX idx_punch_cards_user_restaurant ON punch_cards(user_id, restaurant_id);
-    CREATE INDEX idx_raffle_entries_user ON raffle_entries(user_id);
-    CREATE INDEX idx_restaurant_deals_active ON restaurant_deals(restaurant_id, active);
-    ```
--   Implement database connection pooling. Example:
-    ```typescript
-    import { Pool } from 'pg';
-    const pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      max: 20,
-      idleTimeoutMillis: 30000,
-    });
-    ```
--   When using the `createUser` function, it returns a `Promise<{ id: bigint; clerkId: string; name: string; isStaff: boolean | null; isAdmin: boolean | null; email: string; phone: string | null; }[]>`.
-    -   Drizzle ORM's insert operation with `.returning()` always returns an array of the inserted records
-    -   `User[]` is an array containing the newly created user object(s). Even though you're inserting a single user, Drizzle returns an array format for consistency
--   Use database transactions to ensure data consistency, especially when performing multiple related operations (e.g., creating a user and updating Clerk metadata).
--   To prevent duplicate key errors due to race conditions during user creation in webhooks, the `createUser` function should use an atomic upsert operation instead of relying on a "check-then-insert" pattern. This ensures that the database guarantees uniqueness and avoids duplicate-key errors. Use one of the
+    -   **Service Classes**: Encaps
