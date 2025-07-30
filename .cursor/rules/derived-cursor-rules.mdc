@@ -47,15 +47,15 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   Ensure components are well-structured and maintainable.
 -   Increase contrast between dashboard components using borders and background colors to clearly distinguish sections.
 -   When addressing UI change requests:
-    - Analyze the request to understand the user's goal.
-    - Identify the affected element(s) using the provided URL and selected elements.
-    - Understand the context of the element within the page structure.
-    - Pay attention to styling inconsistencies, such as absolute positioning, background gradients, and typography.
-    - Propose concise fixes, focusing on removing conflicting styles and applying consistent styling from similar elements (e.g., the "hero div").
-    - Remove `absolute inset-0` unless an overlay is explicitly required.
-    - Remove any background gradient classes (e.g., `bg-gradient-to-*`, `from-*`, `to-*`) unless explicitly requested.
-    - Apply the same typography classes as semantically similar elements (e.g., hero div) (e.g., `text-4xl font-bold text-gray-900`).
-    - Ensure elements are positioned and styled consistently with the overall design.
+    -   Analyze the request to understand the user's goal.
+    -   Identify the affected element(s) using the provided URL and selected elements.
+    -   Understand the context of the element within the page structure.
+    -   Pay attention to styling inconsistencies, such as absolute positioning, background gradients, and typography.
+    -   Propose concise fixes, focusing on removing conflicting styles and applying consistent styling from similar elements (e.g., the "hero div").
+    -   Remove `absolute inset-0` unless an overlay is explicitly required.
+    -   Remove any background gradient classes (e.g., `bg-gradient-to-*`, `from-*`, `to-*`) unless explicitly requested.
+    -   Apply the same typography classes as semantically similar elements (e.g., hero div) (e.g., `text-4xl font-bold text-gray-900`).
+    -   Ensure elements are positioned and styled consistently with the overall design.
 -   The `@restaurant-quick-view.tsx` component should display the restaurant's image from the `image_url` field on the restaurant database model. The image should be positioned prominently at the top of the restaurant information card in the BentoGrid layout. Use the Next.js `Image` component for optimized image handling. Ensure conditional rendering so that the image is only displayed if `restaurantData.imageUrl` exists. The image should have a fixed height (192px) and maintain its aspect ratio. Use rounded corners and proper overflow handling. Provide descriptive alt text using the restaurant name.
 -   The restaurant image in the quick view should be editable and updatable, allowing admins to upload new restaurant images using the `@storage.ts` module. The component should display an interactive image display with the following features:
     -   **Existing Image**: Hover overlay with "Change Image" button.
@@ -316,8 +316,15 @@ This document defines the rules and guidelines for the AI coding assistant. It c
                   - Returns a QR code image (PNG/SVG) encoding the above URL.
 -   When sorting active deals, the `getActiveDeals()` function should be used to retrieve the deals sorted by `activeDate` in descending order. The `DatabaseDeal` interface and the `Deal` type definition should include the `activeDate` field. However, the frontend component should also respect the database ordering and not override it with its own logic. The `DealsList` component should sort deals with the following priority:
     1.  Active deals without `activeDate` - These appear at the very top
-    2.  Active deals with `activeDate` - Sorted by newest `activeDate` first
+    2.  Active deals with `activeDate` - Sorted by proximity to today's date (closest dates first). This means that deals active today will appear before a deal active tomorrow and that a deal that was active yesterday will appear before a deal active in 3 days. Both past and future dates are considered by their distance from today.
     3.  Inactive deals - Sorted by `createdAt` as fallback
+-   The Admin `@restaurants-table.tsx` component should include a modal for editing restaurant information.
+    -   The modal should include fields for: `name`, `description`, `address`, `imageUrl`, `email`, `phone`, `website`, `contactName`, `contactPosition`, and `code`.
+    -   The modal should be triggered from a button in the "Actions" column of the table row.
+    -   The modal should use a server action (`updateRestaurantAction`) to save the edited data.
+    -   The modal should display success and error messages using `toast`.
+-   In the Admin `@restaurants-table.tsx` component, the "Actions" column should include buttons for "Edit" and "Quick View".
+-   In the Admin `@restaurants-table.tsx` component, if horizontal scrolling is required to view the "Actions" column, the "Edit" button should be moved to a more visible location, next to the "Quick View" button, and the column header should be changed to "Actions".
 
 ## DATA FETCHING & API
 
@@ -488,38 +495,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   Drizzle ORM's insert operation with `.returning()` always returns an array of the inserted records
     -   `User[]` is an array containing the newly created user object(s). Even though you're inserting a single user, Drizzle returns an array format for consistency
 -   Use database transactions to ensure data consistency, especially when performing multiple related operations (e.g., creating a user and updating Clerk metadata).
--   To prevent duplicate key errors due to race conditions during user creation in webhooks, the `createUser` function should use an atomic upsert operation instead of relying on a "check-then-insert" pattern. This ensures that the database guarantees uniqueness and avoids duplicate-key errors. Use one of the following mitigation patterns:
-    1.  **Single-statement UPSERT (preferred)**
-
-        ```ts
-        // Drizzle ORM
-        await db
-          .insert(users)
-          .values({ clerkId, email, name })
-          .onConflictDoNothing(); // or .onConflictDoUpdate(...)
-        ```
-
-        *   “Insert if missing, otherwise ignore” happens atomically inside Postgres – no race condition.
-        *   Returns `[]` when the row already exists, so you then fetch it.
-    2.  **Transactional “find-or-create” with explicit lock**
-
-        ```ts
-        await db.transaction(async (tx) => {
-          // FOR UPDATE locks the matching row, preventing a second txn from inserting
-          const existing = await tx.query.users.findFirst({
-            where: eq(users.email, email),
-            lock: { mode: 'update' } // SELECT … FOR UPDATE
-          });
-
-          if (existing) return existing;
-
-          const [user] = await tx
-            .insert(users)
-            .values({ clerkId, email, name })
-            .returning();
-
-          return user;
-        });
-        ```
-
-        *   Slightly slower, but lets you update the existing row if you
+-   To prevent duplicate key errors due to race conditions during user creation in webhooks, the `createUser` function should use an atomic upsert operation instead of relying on a "check-then-insert" pattern. This ensures that the database guarantees uniqueness and avoids duplicate-key errors. Use one of the

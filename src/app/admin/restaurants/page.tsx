@@ -31,10 +31,8 @@ function RestaurantsLoading() {
 }
 
 // Main page component as a server component
-export default async function RestaurantsPage(props) {
+export default async function RestaurantsPage() {
   const restaurants = await getRestaurants()
-
-  console.log('🚀 ~ RestaurantsPage ~ restaurants:', restaurants)
 
   return (
     <>
@@ -108,7 +106,7 @@ export default async function RestaurantsPage(props) {
         </div>
       ) : (
         <Suspense fallback={<RestaurantsLoading />}>
-          <RestaurantsTable restaurants={restaurants} />
+          <RestaurantsTable restaurants={restaurants as any} />
         </Suspense>
       )}
     </>

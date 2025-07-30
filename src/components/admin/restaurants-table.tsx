@@ -38,6 +38,7 @@ import {
   Phone,
   Globe,
   Hash,
+  Pencil,
 } from 'lucide-react'
 import {Checkbox} from '@/components/ui/checkbox'
 import type {z} from 'zod'
@@ -58,6 +59,8 @@ import {useHandleBulkQRCode} from '@/hooks/use-handle-bulk-qr-code'
 import {Progress} from '@/components/ui/progress'
 import {exportToCSV} from '@/lib/csv'
 import {CSVUpload} from '@/components/admin/csv-upload'
+import {Label} from '@/components/ui/label'
+import {Textarea} from '@/components/ui/textarea'
 
 // Styled components imports
 import {
@@ -274,13 +277,22 @@ const EditableCell = ({getValue, row, column, table}: EditableCellProps) => {
   )
 }
 
-export function RestaurantsTable({restaurants: initialData}) {
+export function RestaurantsTable({
+  restaurants: initialData,
+}: {
+  restaurants: RestaurantData[]
+}) {
   const [data, setData] = React.useState<RestaurantData[]>(initialData)
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({})
   const [pending, setPending] = React.useState<Record<number, boolean>>({})
   const [restaurantToDelete, setRestaurantToDelete] =
     React.useState<RestaurantData | null>(null)
+  const [restaurantToEdit, setRestaurantToEdit] =
+    React.useState<RestaurantData | null>(null)
+  const [editFormData, setEditFormData] = React.useState<
+    Partial<RestaurantData>
+  >({})
   const router = useRouter()
   const [isMobileView, setIsMobileView] = React.useState(false)
   const [isExporting, setIsExporting] = React.useState(false)
@@ -305,7 +317,7 @@ export function RestaurantsTable({restaurants: initialData}) {
 
     // Update the data
     getRestaurants().then((res) => {
-      setData(res)
+      setData(res as unknown as RestaurantData[])
     })
 
     // Force re-render
@@ -810,36 +822,31 @@ export function RestaurantsTable({restaurants: initialData}) {
         )
       },
     },
+
     {
       id: 'quickView',
-      header: 'Quick View',
-      size: 50,
+      header: 'Actions',
+      size: 120,
       cell: ({row}) => {
         const restaurant = row.original
         return (
-          <div className='flex justify-center'>
+          <div className='flex justify-center gap-1'>
+            <Button
+              variant='ghost'
+              size='icon'
+              onClick={() => handleEdit(restaurant)}
+              className='h-8 w-8'
+              title='Edit Restaurant'
+            >
+              <Pencil className='h-4 w-4' />
+            </Button>
             <RestaurantQuickView
               restaurantId={restaurant.id}
               onQRCodeUpdate={handleQRCodeUpdate}
             />
-          </div>
-        )
-      },
-      meta: {editable: false} as ColumnMeta,
-    },
-    {
-      id: 'actions',
-      header: '',
-      cell: ({row}) => {
-        const restaurant = row.original
-        return (
-          <div className='flex justify-end'>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button
-                  variant='ghost'
-                  className='h-8 w-8 p-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
-                >
+                <Button variant='ghost' size='icon' className='h-8 w-8'>
                   <MoreHorizontal className='h-4 w-4' />
                 </Button>
               </DropdownMenuTrigger>
@@ -857,6 +864,7 @@ export function RestaurantsTable({restaurants: initialData}) {
                   onClick={() => setRestaurantToDelete(restaurant)}
                   className='text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20'
                 >
+                  <Trash2 className='h-4 w-4 mr-2' />
                   Delete
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -864,12 +872,53 @@ export function RestaurantsTable({restaurants: initialData}) {
           </div>
         )
       },
+      meta: {editable: false} as ColumnMeta,
     },
   ]
 
   // Handle view restaurant details
   const handleView = (id: string) => {
     router.push(`/admin/restaurants/${id}`)
+  }
+
+  // Handle edit restaurant
+  const handleEdit = (restaurant: RestaurantData) => {
+    setRestaurantToEdit(restaurant)
+    setEditFormData({
+      name: restaurant.name,
+      description: restaurant.description,
+      address: restaurant.address,
+      imageUrl: restaurant.imageUrl,
+      email: restaurant.email,
+      phone: restaurant.phone,
+      website: restaurant.website,
+      contactName: restaurant.contactName,
+      contactPosition: restaurant.contactPosition,
+      code: restaurant.code,
+    })
+  }
+
+  // Handle save edited restaurant
+  const handleSaveEdit = async () => {
+    if (!restaurantToEdit) return
+
+    try {
+      const result = await updateRestaurantAction(
+        restaurantToEdit.id,
+        editFormData
+      )
+
+      if (result.success) {
+        refreshData()
+        setRestaurantToEdit(null)
+        toast.success('Restaurant updated successfully')
+      } else {
+        toast.error(result.error?._form?.[0] || 'Failed to update restaurant')
+      }
+    } catch (error) {
+      toast.error('An error occurred while updating the restaurant')
+      console.error(error)
+    }
   }
 
   // Handle saving edited data using server action
@@ -1276,10 +1325,20 @@ export function RestaurantsTable({restaurants: initialData}) {
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           onClick={() =>
+                            handleEdit(restaurant as RestaurantData)
+                          }
+                          className='hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                        >
+                          <Pencil className='h-4 w-4 mr-2' />
+                          Edit Restaurant
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() =>
                             setRestaurantToDelete(restaurant as RestaurantData)
                           }
                           className='text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20'
                         >
+                          <Trash2 className='h-4 w-4 mr-2' />
                           Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -1585,6 +1644,226 @@ export function RestaurantsTable({restaurants: initialData}) {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Edit Restaurant Modal */}
+      <Dialog
+        open={!!restaurantToEdit}
+        onOpenChange={(open) => {
+          if (!open) {
+            setRestaurantToEdit(null)
+            setEditFormData({})
+          }
+        }}
+      >
+        <DialogContent className='max-w-2xl bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 max-h-[90vh] overflow-y-auto'>
+          <DialogHeader>
+            <DialogTitle className='text-xl font-semibold text-gray-900 dark:text-gray-100'>
+              Edit Restaurant
+            </DialogTitle>
+            <DialogDescription className='text-sm text-gray-600 dark:text-gray-400'>
+              Update the restaurant information below
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className='grid gap-6 py-4'>
+            {/* Basic Information */}
+            <div className='space-y-4 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg'>
+              <h3 className='text-base font-semibold text-gray-900 dark:text-gray-100'>
+                Basic Information
+              </h3>
+
+              <div className='grid gap-4'>
+                <div className='space-y-2'>
+                  <Label
+                    htmlFor='name'
+                    className='text-sm font-medium text-gray-700 dark:text-gray-300'
+                  >
+                    Restaurant Name
+                  </Label>
+                  <Input
+                    id='name'
+                    value={editFormData.name || ''}
+                    onChange={(e) =>
+                      setEditFormData({...editFormData, name: e.target.value})
+                    }
+                    className='bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary text-gray-900 dark:text-gray-100'
+                  />
+                </div>
+
+                <div className='space-y-2'>
+                  <Label htmlFor='description'>Description</Label>
+                  <Textarea
+                    id='description'
+                    value={editFormData.description || ''}
+                    onChange={(e) =>
+                      setEditFormData({
+                        ...editFormData,
+                        description: e.target.value,
+                      })
+                    }
+                    className='bg-background border-sidebar-border min-h-[100px]'
+                  />
+                </div>
+
+                <div className='space-y-2'>
+                  <Label htmlFor='address'>Address</Label>
+                  <Input
+                    id='address'
+                    value={editFormData.address || ''}
+                    onChange={(e) =>
+                      setEditFormData({
+                        ...editFormData,
+                        address: e.target.value,
+                      })
+                    }
+                    className='bg-background border-sidebar-border'
+                  />
+                </div>
+
+                <div className='space-y-2'>
+                  <Label htmlFor='imageUrl'>Image URL</Label>
+                  <Input
+                    id='imageUrl'
+                    value={editFormData.imageUrl || ''}
+                    onChange={(e) =>
+                      setEditFormData({
+                        ...editFormData,
+                        imageUrl: e.target.value,
+                      })
+                    }
+                    className='bg-background border-sidebar-border'
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Information */}
+            <div className='space-y-4 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg'>
+              <h3 className='text-base font-semibold text-gray-900 dark:text-gray-100'>
+                Contact Information
+              </h3>
+
+              <div className='grid gap-4 sm:grid-cols-2'>
+                <div className='space-y-2'>
+                  <Label htmlFor='contactName'>Contact Name</Label>
+                  <Input
+                    id='contactName'
+                    value={editFormData.contactName || ''}
+                    onChange={(e) =>
+                      setEditFormData({
+                        ...editFormData,
+                        contactName: e.target.value,
+                      })
+                    }
+                    className='bg-background border-sidebar-border'
+                  />
+                </div>
+
+                <div className='space-y-2'>
+                  <Label htmlFor='contactPosition'>Contact Position</Label>
+                  <Input
+                    id='contactPosition'
+                    value={editFormData.contactPosition || ''}
+                    onChange={(e) =>
+                      setEditFormData({
+                        ...editFormData,
+                        contactPosition: e.target.value,
+                      })
+                    }
+                    className='bg-background border-sidebar-border'
+                  />
+                </div>
+
+                <div className='space-y-2'>
+                  <Label htmlFor='email'>Email</Label>
+                  <Input
+                    id='email'
+                    type='email'
+                    value={editFormData.email || ''}
+                    onChange={(e) =>
+                      setEditFormData({...editFormData, email: e.target.value})
+                    }
+                    className='bg-background border-sidebar-border'
+                  />
+                </div>
+
+                <div className='space-y-2'>
+                  <Label htmlFor='phone'>Phone</Label>
+                  <Input
+                    id='phone'
+                    type='tel'
+                    value={editFormData.phone || ''}
+                    onChange={(e) =>
+                      setEditFormData({...editFormData, phone: e.target.value})
+                    }
+                    className='bg-background border-sidebar-border'
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Information */}
+            <div className='space-y-4 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg'>
+              <h3 className='text-base font-semibold text-gray-900 dark:text-gray-100'>
+                Additional Information
+              </h3>
+
+              <div className='grid gap-4 sm:grid-cols-2'>
+                <div className='space-y-2'>
+                  <Label htmlFor='website'>Website</Label>
+                  <Input
+                    id='website'
+                    value={editFormData.website || ''}
+                    onChange={(e) =>
+                      setEditFormData({
+                        ...editFormData,
+                        website: e.target.value,
+                      })
+                    }
+                    className='bg-background border-sidebar-border'
+                  />
+                </div>
+
+                <div className='space-y-2'>
+                  <Label htmlFor='code'>Restaurant Code</Label>
+                  <Input
+                    id='code'
+                    type='number'
+                    value={editFormData.code || ''}
+                    onChange={(e) =>
+                      setEditFormData({
+                        ...editFormData,
+                        code: parseInt(e.target.value) || null,
+                      })
+                    }
+                    className='bg-background border-sidebar-border'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700'>
+            <Button
+              variant='outline'
+              onClick={() => {
+                setRestaurantToEdit(null)
+                setEditFormData({})
+              }}
+              className='border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveEdit}
+              className='bg-primary hover:bg-primary/90 text-white'
+            >
+              <Save className='h-4 w-4 mr-2' />
+              Save Changes
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

@@ -31,9 +31,11 @@ export const DealsList = ({deals: initialDeals, className}: DealsListProps) => {
     }
   }, [dealsFeed])
 
-  // Sort deals: active deals without activeDate first, then by activeDate (newest first)
+  // Sort deals: active deals without activeDate first, then by activeDate (closest to today first)
   const sortedDeals = useMemo(() => {
     if (!deals) return []
+
+    const today = new Date().getTime()
 
     return [...deals].sort((a, b) => {
       // First, sort by active status (active deals first)
@@ -47,15 +49,21 @@ export const DealsList = ({deals: initialDeals, className}: DealsListProps) => {
         const hasActiveDateB =
           b.activeDate !== null && b.activeDate !== undefined
 
-        // Active deals without activeDate come first
+        // Active deals without activeDate come first (ongoing deals)
         if (!hasActiveDateA && hasActiveDateB) return -1
         if (hasActiveDateA && !hasActiveDateB) return 1
 
-        // If both have or both don't have activeDate, sort by activeDate (newest first)
+        // If both have activeDate, sort by proximity to today (closest first)
         if (hasActiveDateA && hasActiveDateB) {
           const dateA = new Date(a.activeDate!).getTime()
           const dateB = new Date(b.activeDate!).getTime()
-          return dateB - dateA // Descending order (newest first)
+
+          // Calculate absolute distance from today
+          const distanceA = Math.abs(dateA - today)
+          const distanceB = Math.abs(dateB - today)
+
+          // Closer dates come first
+          return distanceA - distanceB
         }
       }
 
