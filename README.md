@@ -1,351 +1,544 @@
-<<<<<<< HEAD
-Below is an updated Product Requirements Document that emphasizes Next.js, TypeScript, Tailwind CSS, ShadCN/UI, Framer Motion, Storybook, Supabase (PostgreSQL), and Clerk for authentication. It also highlights role-based authorization (User, Restaurant Admin, System Admin), user profiles, and prize management. It includes the relevant database model schema and the associated CRUD/REST endpoints.
+# Restaurant Passport App - Comprehensive Codebase Documentation
 
-Digital Punch Card & Loyalty Platform
+## 1. Project Overview
 
-1. Overview
+**Project Type**: Next.js-based digital restaurant passport and loyalty platform  
+**Primary Technologies**: Next.js 14, TypeScript, Tailwind CSS, ShadCN/UI, Framer Motion  
+**Authentication**: Clerk  
+**Database**: Supabase (PostgreSQL) with Drizzle ORM  
+**Analytics**: PostHog  
+**Deployment**: Vercel  
 
-This application is a Next.js-based digital punch card and loyalty system that leverages TypeScript for type safety, Tailwind CSS + ShadCN/UI for styling, Framer Motion for animations, Storybook for UI component documentation, and Clerk for authentication. The database is managed by Supabase (PostgreSQL) with Drizzle integration. Users earn “punches” at participating restaurants, can redeem prizes, and share achievements. Restaurants (via their admins) and a system admin can manage data through protected routes.
+**Core Functionality**:
 
-Key Features
- • Digital Punch Cards: Users earn punches, and upon reaching a threshold (e.g., 10 punches), they are entered into a raffle.
- • Role-Based Authorization:
- • User: Access their own profile, punch cards, achievements, and can transfer/earn points.
- • Restaurant Admin: Manage restaurant-specific data (prizes, analytics, etc.) for their own restaurant(s).
- • System Admin: Full access to all resources (managing users, restaurants, etc.).
- • Real-Time QR Code Validation: Staff or admins can scan a user’s QR code to add a punch instantly (via WebSockets).
- • Prizes & Raffles: Advanced prize management, redemption tracking, and raffle entries upon completing a punch card.
- • Points & Achievements: Gamified point transfer system with achievements and real-time leaderboard updates.
- • Analytics Dashboard: Restaurant-level analytics for punch cards, user activity, and prize redemptions.
+- Digital punch card system for restaurant visits
+- QR code scanning for instant punch validation
+- Raffle entry system upon completion
+- Restaurant deals and promotions
+- User leaderboards and achievements
+- Admin dashboard for restaurant management
 
-2. Technical Stack
-1. Next.js (TypeScript)
- • Server-side rendering, file-based routing, API routes for some server logic if needed.
- • Integration with Storybook for UI component development.
-2. Clerk Authentication
- • Manages user sign-up, sign-in, SSO, and role-based access (user, restaurant admin, system admin).
-3. Supabase (PostgreSQL)
- • Hosts the database.
- • Communicated with via a custom storage layer.
-4. Tailwind CSS + ShadCN/UI
- • Provides utility-based styling and pre-built components for a consistent UI/UX.
-5. Framer Motion
- • Animations for badges, transitions, and dynamic elements (e.g., leaderboard updates).
-6. WebSockets
- • Real-time communication for QR validation and leaderboard updates.
-7. Storybook
- • Document and test UI components in isolation.
+**Target Environment**: Production web application with mobile-responsive design
 
-3. Roles & Authorization
-1. User
- • Default role after sign-up.
- • Can view their profile, punch cards, achievements, and transfer points to other users.
-2. Restaurant Admin
- • Can manage the resources (e.g., prizes, analytics) for their assigned restaurant(s).
- • Has extended permissions to update punch cards, view analytics, and handle prize redemptions for their restaurant.
-3. System Admin
- • Has full access to all resources across the platform.
- • Manages users, restaurants, global settings, and can see all analytics.
+## 2. Architecture Analysis
 
-4. User Flows & Features
+### Overall System Architecture
 
-4.1 User Onboarding & Profile
- • Sign Up / Sign In:
- • Powered by Clerk.
- • The sign-up flow ensures users have a clerkId, and they’re assigned the default “User” role.
- • Profile Page:
- • Displays user information, achievements, points, and punch cards.
+The application follows a **Next.js App Router** architecture with the following key patterns:
 
-4.2 Punch Card System
- • Restaurant Listing Page:
- • Shows participating restaurants with relevant info (name, image, address, etc.).
- • Punch Card View:
- • Shows the user’s punch count and a QR code to be scanned by staff.
- • Once a user hits the required punches, the card is marked completed and a raffle entry is created.
+- **Server-Side Rendering (SSR)** for SEO and performance
+- **Client-Side Components** for interactive features
+- **API Routes** for backend functionality
+- **Server Actions** for form handling and data mutations
+- **Real-time subscriptions** via WebSockets and Server-Sent Events
 
-4.3 QR Code Validation & Raffle
- • QR Scanning (Staff or Restaurant Admin):
- • Real-time validation via WebSockets.
- • Increments the punch card and checks if it’s completed.
- • Raffle Entries:
- • Automatically created when a punch card completes.
- • Used for prize drawings and giveaways.
+### Directory Structure & Organization
 
-4.4 Prizes & Prize Redemptions
- • Prize Management (Restaurant Admin or System Admin):
- • Create, edit, and delete prizes (e.g., free coffee, dessert).
- • Configure redemption rules, expiration, quantity, etc.
- • Prize Redemption:
- • Users can redeem prizes if they meet the required punches.
- • System tracks redemption status (redeemed, pending, etc.) and handles expiration logic.
+```
+src/
+├── app/                    # Next.js App Router pages and API routes
+│   ├── (public)/          # Public routes (restaurants, deals, auth)
+│   ├── admin/             # Admin dashboard routes
+│   ├── api/               # API endpoints
+│   ├── actions/           # Server actions
+│   └── users/             # User-specific routes
+├── components/            # Reusable UI components
+│   ├── ui/               # ShadCN/UI components
+│   ├── admin/            # Admin-specific components
+│   ├── nav/              # Navigation components
+│   └── [feature]/        # Feature-specific components
+├── features/             # Feature-based modules
+├── hooks/                # Custom React hooks
+├── context/              # React context providers
+├── db/                   # Database layer
+│   ├── drizzle/          # Drizzle ORM schema
+│   ├── models/           # Database models
+│   └── supabase/         # Supabase client configuration
+├── lib/                  # Utility libraries
+├── types/                # TypeScript type definitions
+└── utils/                # Utility functions
+```
 
-4.5 Points & Achievements
- • Point Balances:
- • Users have a points balance that can be transferred to other users.
- • Point Transfers:
- • A user can send points to another user (if they have enough).
- • Achievements triggered by the first transfer, or certain milestones (100, 500, 1000 points, etc.).
- • Leaderboard:
- • Real-time ranking of users by their points, updated via WebSockets.
+### Architectural Patterns
 
-4.6 Analytics & Dashboards
- • Restaurant Analytics:
- • Accessible to Restaurant Admin for their restaurant and System Admin for all.
- • Tracks user engagement (punch cards completed, redemption rates, active users, etc.).
- • Graphs and charts for daily/weekly/monthly trends.
+**1. Feature-Based Organization**
 
-5. Database Model & CRUD/REST Routes
+- Features are organized by domain (users, restaurants, deals)
+- Each feature contains its own components, hooks, and utilities
+- Promotes modularity and maintainability
 
-Below is the Drizzle ORM schema (TypeScript + Zod) defining the PostgreSQL tables. Each table has corresponding CRUD/REST routes (or integrated Next.js API routes, depending on structure).
+**2. Layered Architecture**
 
-5.1 Database Schema
+- **Presentation Layer**: React components and pages
+- **Business Logic Layer**: Server actions and API routes
+- **Data Access Layer**: Database models and Drizzle ORM
+- **Infrastructure Layer**: Supabase, Clerk, PostHog
 
-import { pgTable, text, serial, integer, boolean, timestamp, json } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
+**3. Context-Based State Management**
 
-/*USERS*/
+- User context for authentication state
+- Location context for geolocation
+- Style wrapper for theming
+
+## 3. Code Quality Assessment
+
+### Coding Standards & Style Guidelines
+
+**TypeScript Configuration**
+
+- Strict type checking enabled
+- Comprehensive type definitions in `/types/`
+- Proper type exports and imports
+
+**Code Organization**
+
+- **Named exports** used consistently
+- **Functional components** preferred over classes
+- **Custom hooks** for reusable logic
+- **Server actions** for form handling
+
+**Naming Conventions**
+
+- **Directories**: lowercase with dashes (`restaurant-detail/`)
+- **React Components**: PascalCase (`RestaurantDetail.tsx`)
+- **Hooks**: camelCase with `use` prefix (`useHandleQrCode.tsx`)
+- **Utilities**: lowercase with dashes (`url-parsing.ts`)
+- **Constants**: ALL_CAPS (`MAX_PUNCH_THRESHOLD`)
+
+### Code Modularity
+
+- **High cohesion** within feature modules
+- **Low coupling** between features
+- **Separation of concerns** between UI, business logic, and data access
+- **Reusable components** in `/components/ui/`
+
+### Testing Strategy
+
+- **Jest** configuration present
+- **Test files** in `__tests__/` directories
+- **Component testing** with Storybook
+- **API route testing** structure in place
+
+## 4. Technical Stack
+
+### Core Libraries & Frameworks
+
+**Frontend Framework**
+
+```typescript
+// Next.js 14 with App Router
+import { NextRequest, NextResponse } from "next/server"
+```
+
+**UI Framework**
+
+```typescript
+// Tailwind CSS + ShadCN/UI
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+```
+
+**Animation Library**
+
+```typescript
+// Framer Motion
+import { motion, AnimatePresence } from "motion/react"
+```
+
+**Authentication**
+
+```typescript
+// Clerk
+import { auth } from "@clerk/nextjs/server"
+import { useUser } from "@clerk/nextjs"
+```
+
+### Database Systems
+
+**ORM**: Drizzle ORM with PostgreSQL
+
+```typescript
+// Schema definition
 export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  clerkId: text("clerk_id").notNull().unique(),
-  name: text("name").notNull(),
-  isStaff: boolean("is_staff").default(false),   // e.g., restaurant admin
-  isAdmin: boolean("is_admin").default(false),   // system admin
-});
+  id: bigserial({ mode: "bigint" }).primaryKey().notNull(),
+  clerkId: text("clerk_id").notNull(),
+  name: text().notNull(),
+  isStaff: boolean("is_staff").default(false),
+  isAdmin: boolean("is_admin").default(false),
+  email: text().notNull(),
+  phone: text(),
+})
+```
 
-/*RESTAURANTS*/
-export const restaurants = pgTable("restaurants", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  description: text("description").notNull(),
-  imageUrl: text("image_url").notNull(),
-  address: text("address").notNull(),
-});
+**Database Models**
 
-/*PUNCH CARDS*/
-export const punchCards = pgTable("punch_cards", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id),
-  restaurantId: integer("restaurant_id").references(() => restaurants.id),
-  punches: integer("punches").default(0),
-  completed: boolean("completed").default(false),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
+- `users` - User accounts and authentication
+- `restaurants` - Restaurant information and QR codes
+- `punchCards` - User punch card progress
+- `raffleEntries` - Raffle participation tracking
+- `restaurantDeals` - Restaurant promotions and deals
 
-/*RAFFLE ENTRIES*/
-export const raffleEntries = pgTable("raffle_entries", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id),
-  punchCardId: integer("punch_card_id").references(() => punchCards.id),
-  createdAt: timestamp("created_at").defaultNow(),
-});
+### External Services & APIs
 
-/*PRIZES*/
-export const prizes = pgTable("prizes", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  description: text("description").notNull(),
-  imageUrl: text("image_url").notNull(),
-  type: text("type").notNull(),
-  restaurantId: integer("restaurant_id").references(() => restaurants.id),
-  requiredPunches: integer("required_punches").notNull(),
-  available: boolean("available").default(true),
-  quantity: integer("quantity").default(0),
-  rules: json("rules").default({}).notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-});
+**Analytics**: PostHog for user behavior tracking
+**File Storage**: Supabase Storage for images
+**Real-time**: WebSockets and Server-Sent Events
+**Geolocation**: Browser Geolocation API
 
-/*PRIZE REDEMPTIONS*/
-export const prizeRedemptions = pgTable("prize_redemptions", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id),
-  prizeId: integer("prize_id").references(() => prizes.id),
-  punchCardId: integer("punch_card_id").references(() => punchCards.id),
-  status: text("status").notNull(),
-  redeemedAt: timestamp("redeemed_at"),
-  expiresAt: timestamp("expires_at"),
-  createdAt: timestamp("created_at").defaultNow(),
-});
+## 5. Key Components
 
-/*POINT BALANCES*/
-export const pointBalances = pgTable("point_balances", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id),
-  points: integer("points").notNull().default(0),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
+### Core Business Logic Modules
 
-/*POINT TRANSFERS*/
-export const pointTransfers = pgTable("point_transfers", {
-  id: serial("id").primaryKey(),
-  fromUserId: integer("from_user_id").references(() => users.id),
-  toUserId: integer("to_user_id").references(() => users.id),
-  points: integer("points").notNull(),
-  message: text("message"),
-  status: text("status").notNull(), // e.g., pending, completed, cancelled
-  createdAt: timestamp("created_at").defaultNow(),
-});
+**1. QR Code Scanning System**
 
-/*ACHIEVEMENTS*/
-export const achievements = pgTable("achievements", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id),
-  type: text("type").notNull(), // e.g., first_transfer, transfer_milestone
-  data: json("data").default({}),
-  unlockedAt: timestamp("unlocked_at").defaultNow(),
-});
-
-5.2 Insert Schemas & Validation (Zod)
-
-Examples:
-
-export const insertUserSchema = createInsertSchema(users).pick({
-  clerkId: true,
-  name: true,
-  isStaff: true,
-  isAdmin: true,
-});
-export const insertRestaurantSchema = createInsertSchema(restaurants);
-export const insertPunchCardSchema = createInsertSchema(punchCards);
-export const insertPrizeSchema = createInsertSchema(prizes).omit({
-  id: true,
-  createdAt: true,
-}).extend({
-  rules: z.object({
-    expirationDays: z.number().optional(),
-    usageLimit: z.number().optional(),
-    terms: z.string().optional(),
-  }).optional(),
-});
-export const insertPrizeRedemptionSchema = createInsertSchema(prizeRedemptions).omit({
-  id: true,
-  createdAt: true,
-  redeemedAt: true,
-});
-export const insertPointTransferSchema = createInsertSchema(pointTransfers, {
-  points: z.number().min(1),
-  message: z.string().max(200).optional(),
-}).omit({ id: true, createdAt: true });
-
-5.3 Example CRUD/REST Routes
-
-The following routes (shown in an Express-like format) can also be integrated into Next.js API routes if preferred:
-
- 1. User Routes
- • POST /api/users – create a user (via insertUserSchema)
- • GET /api/users/clerk/:clerkId – retrieve user by clerk ID
- 2. Restaurant Routes
- • GET /api/restaurants – list all restaurants
- • GET /api/restaurants/:id – get a specific restaurant
- 3. Punch Card Routes
- • POST /api/punch-cards – create a new punch card
- • POST /api/punch-cards/:id/punch – increment punch count
- • GET /api/users/:userId/punch-cards – get all punch cards for a user
- 4. Raffle Routes
- • POST /api/raffle-entries – create a raffle entry
- 5. Prize Management
- • POST /api/prizes – create a new prize
- • GET /api/restaurants/:restaurantId/prizes – list prizes for a restaurant
- • GET /api/prizes/:id – get a specific prize
- • PATCH /api/prizes/:id – update an existing prize
- 6. Prize Redemption
- • POST /api/prize-redemptions – create a new redemption
- • GET /api/users/:userId/prize-redemptions – list user’s prize redemptions
- • PATCH /api/prize-redemptions/:id/status – update redemption status
- 7. Analytics
- • GET /api/restaurants/:restaurantId/analytics – retrieve punch card and redemption analytics
- 8. Points & Leaderboard
- • GET /api/users/:userId/points – get point balance for a user
- • GET /api/leaderboard – get overall leaderboard
- • POST /api/point-transfers – transfer points between users
- • GET /api/users/:userId/transfers – get transfer history
- • GET /api/users/:userId/achievements – get user achievements
- 9. WebSocket
- • ws://<server>/ws – handles real-time QR validation messages.
-
- 6. Role-Based Access & Authorization
- • Middleware / Next.js API Route Guards
- • Use Clerk’s role checks to ensure only restaurant admins or system admins can manage prizes, analytics, or punch cards.
- • Restrict system-level actions (e.g., reading all resources, user creation) to system admin.
- • Users can only access their own punch cards, points, and achievements.
-
-Example checks in Next.js:
-
-// e.g. a Next.js API route
-import { getAuth } from '@clerk/nextjs/server';
-
-export default async function handler(req, res) {
-  const { userId, sessionId, getToken } = getAuth(req);
-  // Retrieve user from DB, check roles...
+```typescript
+// src/hooks/use-handle-qr-code.tsx
+export const useHandleQRCode = (props: UseHandleQRCodeProps) => {
+  // QR code generation and processing logic
 }
+```
 
-7. UI/UX & Styling
-1. Tailwind CSS + ShadCN/UI
- • Provides utility classes and theming.
-2. Framer Motion
- • Used for animated transitions, particularly for the achievements and leaderboard rank changes.
-3. Storybook
- • Document reusable components (e.g., “PunchCardDisplay”, “LeaderboardTable”, “AchievementBadge”).
-4. Responsive & Accessible
- • Mobile-friendly layout for scanning QR codes from phones.
- • Aria labels, keyboard navigation, and basic accessibility checks.
+**2. Punch Card Management**
 
-8. Key Use Cases & Scenarios
-1. User Redeems a Punch
- • The user visits a restaurant, staff scans the user’s QR code.
- • The punch count increments in real-time.
- • If the punch card is completed, a raffle entry is created.
-2. Restaurant Admin Updates a Prize
- • The admin logs into the admin dashboard.
- • Navigates to “Prizes” for their restaurant.
- • Creates or updates a prize, specifying required punches, availability, etc.
-3. System Admin Manages a Restaurant Admin
- • System admin grants a user isStaff for a specific restaurant or sets isAdmin to true for full privileges.
-4. User Transfers Points
- • A user chooses a recipient and enters the number of points to transfer.
- • The system checks if the sender has enough points, completes the transfer, updates balances, and triggers an achievement check.
+```typescript
+// src/app/actions/scan-actions.ts
+export async function processQrScan(formData: {
+  qrData: string
+  userId: string | number | bigint
+}) {
+  // Punch card creation and validation
+}
+```
 
-9. Analytics & Reporting
- • Restaurant-Level Metrics
- • Completed vs. total punch cards.
- • Redemption rates for prizes.
- • Active users in the last 30 days.
- • Historical activity data for daily punch counts.
- • Leaderboards
- • Points-based ranking with real-time updates.
+**3. Raffle Entry System**
 
-10. Testing & Quality
-1. Unit Tests:
- • Test Next.js pages, custom hooks (e.g., useWebSocket), and server routes.
-2. Integration Tests:
- • Validate flows (sign-up, punch card scanning, prize redemption).
-3. E2E Tests:
- • Use Playwright or Cypress to test the entire user journey.
-4. Storybook Visual Testing:
- • Ensure components render consistently across states (loading, success, error).
+```typescript
+// src/db/models/raffle-entries/raffle-entries.ts
+export async function createRaffleEntry(data: {
+  userId: bigint
+  punchCardId: bigint
+}) {
+  // Raffle entry creation logic
+}
+```
 
-11. Deployment & DevOps
-1. Environment Variables:
- • NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY
- • SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY (secured)
-2. CI/CD:
- • Automated testing pipeline (GitHub Actions or similar).
-3. Hosting:
- • Next.js can be hosted on Vercel or similar.
- • Supabase for database hosting.
+### Data Models & Schemas
 
-12. Next Steps & Enhancements
- • Multiple Campaigns: Support multiple parallel punch-card campaigns within a single restaurant.
- • Expanded Social Sharing: More robust social media integration (Facebook, Twitter, etc.).
- • Deeper Analytics: Additional dashboards for points economy, user churn, advanced segmentation.
- • Localization & Internationalization: Provide multi-language support for broader reach.
+**User Model**
 
-13. Summary
+```typescript
+export type AppUser = {
+  id: number
+  clerkId: string
+  name: string
+  isStaff: boolean
+  isAdmin: boolean
+}
+```
 
-This Next.js + TypeScript application integrates Clerk for authentication, Supabase for the database, Tailwind CSS + ShadCN/UI for styling, and Framer Motion for animation. It includes robust role-based authorization for Users, Restaurant Admins, and System Admins. The platform offers digital punch cards, real-time QR code validation, prize management, gamified point transfers, achievements, and analytics dashboards. The included Drizzle ORM schema and CRUD/REST endpoints illustrate how data is managed and accessed, ensuring a clear, maintainable foundation for future growth and enhancements.
+**Punch Card Model**
 
+```typescript
+export type PunchCard = {
+  id: bigint
+  userId: bigint
+  restaurantId: bigint
+  punches: number
+  completed: boolean
+  updatedAt: string
+}
+```
 
-Dealslist Mobile Card
-- orange dashed border: #ed8025
-=======
->>>>>>> 170599575bdd34f40f847c74e8ddb3c7e623c561
+### API Endpoints & Services
+
+**User Management**
+
+- `GET /api/users/[id]` - Get user by Clerk ID
+- `POST /api/users` - Create new user
+
+**Restaurant Operations**
+
+- `GET /api/restaurants` - List restaurants
+- `GET /api/restaurants/[id]` - Get restaurant details
+- `POST /api/restaurants/[id]/scan` - Process QR scan
+
+**Punch Card Operations**
+
+- `GET /api/punch-cards` - Get user punch cards
+- `POST /api/punch-cards` - Create punch card
+
+**Raffle Management**
+
+- `GET /api/raffle-entries` - Get raffle entries
+- `POST /api/raffle-entries` - Create raffle entry
+
+### UI Components
+
+**Navigation System**
+
+```typescript
+// src/components/nav/nav.tsx
+export const Nav = () => {
+  // Responsive navigation with QR scanner integration
+}
+```
+
+**Passport Component**
+
+```typescript
+// src/features/users/passport/passport.tsx
+export function Passport({ punches }: PassportProps) {
+  // Digital passport display with stamps
+}
+```
+
+**Admin Dashboard**
+
+```typescript
+// src/components/admin/admin-dashboard-content.tsx
+export const AdminDashboardContent = () => {
+  // Admin interface for restaurant management
+}
+```
+
+## 6. Codebase Instructions for Another Agent
+
+### Critical Files & Functions
+
+**Authentication Flow**
+
+- **File**: `src/context/user-context.tsx`
+- **Function**: `fetchUser()` - Syncs Clerk user with database
+- **Usage**: Provides user state throughout the app
+
+**QR Code Processing**
+
+- **File**: `src/app/api/restaurants/[id]/scan/route.ts`
+- **Function**: `POST` handler - Processes QR scans
+- **Key Logic**: Creates punch cards and raffle entries
+
+**Database Operations**
+
+- **File**: `src/db/models/punch-cards/punch-cards.ts`
+- **Functions**: `createPunchCard()`, `getUserPunchCardForRestaurant()`
+- **Usage**: All punch card database operations
+
+### Implementing New Features
+
+**1. Add New API Endpoint**
+
+```typescript
+// Create: src/app/api/[feature]/route.ts
+export async function GET(request: NextRequest) {
+  // Implementation
+}
+```
+
+**2. Add New Database Model**
+
+```typescript
+// Add to: src/db/drizzle/schema.ts
+export const newTable = pgTable("new_table", {
+  // Schema definition
+})
+```
+
+**3. Add New Component**
+
+```typescript
+// Create: src/components/[feature]/ComponentName.tsx
+export const ComponentName = ({ props }: Props) => {
+  // Component implementation
+}
+```
+
+### Testing Requirements
+
+**Unit Tests**
+
+- Test files in `__tests__/` directories
+- Use Jest and React Testing Library
+- Test both client and server components
+
+**Integration Tests**
+
+- Test API routes with proper authentication
+- Test database operations with test data
+- Test user flows end-to-end
+
+### Deployment & Environment Setup
+
+**Environment Variables**
+
+```bash
+# Required environment variables
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_POSTHOG_KEY=
+```
+
+**Database Migrations**
+
+```bash
+# Run migrations
+bun run db:generate
+bun run db:migrate
+```
+
+### Common Patterns & Idioms
+
+**Server Actions Pattern**
+
+```typescript
+"use server"
+export async function actionName(formData: FormData) {
+  // Server-side logic
+}
+```
+
+**Context Usage Pattern**
+
+```typescript
+const { currentUser, isLoading } = useUserContext()
+```
+
+**Database Query Pattern**
+
+```typescript
+const result = await db.query.table.findMany({
+  where: eq(table.field, value)
+})
+```
+
+### Error Handling Conventions
+
+**API Error Responses**
+
+```typescript
+return NextResponse.json({
+  success: false,
+  error: "Error message"
+}, { status: 400 })
+```
+
+**Client Error Handling**
+
+```typescript
+try {
+  const result = await action()
+} catch (error) {
+  console.error("Error:", error)
+  // Handle error appropriately
+}
+```
+
+### Security Considerations
+
+**Authentication**
+
+- All protected routes use Clerk middleware
+- Server actions validate user authentication
+- API routes check user permissions
+
+**Data Validation**
+
+- Use Zod schemas for input validation
+- Sanitize user inputs
+- Validate database queries
+
+## 7. Development Workflow
+
+### Git Branching Strategy
+
+- **Main branch**: Production-ready code
+- **Feature branches**: `feature/feature-name`
+- **Bug fixes**: `fix/bug-description`
+- **Hotfixes**: `hotfix/urgent-fix`
+
+### Code Review Process
+
+1. Create feature branch from main
+2. Implement changes with tests
+3. Submit pull request
+4. Code review and approval
+5. Merge to main
+
+### Release Procedures
+
+1. Update version in `package.json`
+2. Create release notes
+3. Deploy to staging environment
+4. Run integration tests
+5. Deploy to production
+
+### Environment Management
+
+- **Development**: Local development with hot reload
+- **Staging**: Pre-production testing environment
+- **Production**: Live application environment
+
+## 8. Known Issues & Technical Debt
+
+### Identified Issues
+
+1. **BigInt Serialization**: Some API responses need BigInt conversion
+2. **QR Code Parsing**: Complex JSON parsing logic could be simplified
+3. **Error Handling**: Inconsistent error handling across components
+
+### Areas Needing Refactoring
+
+1. **QR Code Logic**: Consolidate QR processing logic
+2. **Database Queries**: Optimize complex queries
+3. **Component Structure**: Some components are too large
+
+### Performance Considerations
+
+1. **Image Optimization**: Implement proper image optimization
+2. **Database Indexing**: Add indexes for frequently queried fields
+3. **Caching**: Implement caching for restaurant data
+
+### Security Vulnerabilities
+
+1. **Input Validation**: Strengthen input validation
+2. **Rate Limiting**: Add rate limiting to API endpoints
+3. **CORS Configuration**: Review CORS settings
+
+## 9. Context for New Agent
+
+### Project History & Evolution
+
+- **Initial Development**: Restaurant passport concept
+- **QR Code Integration**: Added QR scanning functionality
+- **Admin Dashboard**: Built restaurant management interface
+- **Raffle System**: Implemented completion rewards
+
+### Recent Changes
+
+- **Clerk Integration**: Migrated to Clerk authentication
+- **Drizzle ORM**: Replaced Prisma with Drizzle
+- **PostHog Analytics**: Added user behavior tracking
+- **Mobile Optimization**: Improved mobile responsiveness
+
+### Current Development Priorities
+
+1. **Performance Optimization**: Improve app performance
+2. **User Experience**: Enhance UI/UX
+3. **Admin Features**: Expand admin capabilities
+4. **Testing Coverage**: Increase test coverage
+
+### Future Roadmap
+
+1. **Real-time Features**: Enhanced real-time updates
+2. **Advanced Analytics**: More detailed reporting
+3. **Mobile App**: Native mobile application
+4. **Integration APIs**: Third-party integrations
+
+### Team Conventions
+
+- **Code Style**: Prettier + ESLint configuration
+- **Commits**: Conventional commit messages
+- **Documentation**: Inline comments and README files
+- **Testing**: Write tests for new features
