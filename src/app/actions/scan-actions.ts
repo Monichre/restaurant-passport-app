@@ -162,7 +162,7 @@ export async function processQrScan( formData: {
 			console.log( "🚀 ~ punchCardExists:", punchCardExists )
 
 			return {
-				message: "Punch card already exists. Venture out my friend!",
+				message: "You've already collected this stamp. Venture out my friend!",
 				data: convertBigInts( punchCardExists ), // updatedPunchCard?.[0] ||
 				restaurantName: restaurant?.name || "Restaurant",
 				isExisting: true,
