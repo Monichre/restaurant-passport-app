@@ -436,7 +436,6 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 
 ## DEBUGGING
 
--   (Deprecated) Use `console.log` statements to debug code.
 -   Inspect network requests in the browser's developer tools to debug API calls.
 -   Inspect React component state using React Developer Tools.
 -   Remove all `console.log` statements from production code. Add ESLint rule: `"no-console": ["error", { "allow": ["warn", "error"] }]`.
@@ -477,4 +476,3 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   For webhooks, follow a clear separation of concerns:
     -   **Route Handler**: Handles HTTP requests, verifies signatures, and routes events.
     -   **Service Classes**: Encaps
-</rules-file
