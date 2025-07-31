@@ -81,16 +81,16 @@ Let's look at the database setup:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/db.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/data-table.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/data-table/dashboard-table.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-dashboard-content.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/models/leaderboard/leaderboard.ts` |
 
 </details>
 
@@ -125,22 +125,22 @@ Let's check any existing websocket or real-time implementations:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L9 | `export function useWebSocket() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L11 | `const socketRef = useRef<WebSocket | null>(null);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L14 | `// Get WebSocket URL from environment or use a default` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L17 | `// Create WebSocket connection` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L18 | `const socket = new WebSocket(wsUrl);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L33 | `console.error("WebSocket error:", error);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L39 | `if (socket.readyState === WebSocket.OPEN) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L47 | `if (socketRef.current?.readyState === WebSocket.OPEN) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L50 | `console.error("WebSocket is not connected");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/index.ts` | L7 | `export * from "./use-websocket";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L19 | `•	Real-Time QR Code Validation: Staff or admins can scan a user’s QR code to add a punch instantly (via WebSockets).` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L37 | `6.	WebSockets` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L71 | `•	Real-time validation via WebSockets.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L92 | `•	Real-time ranking of users by their points, updated via WebSockets.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L265 | `9.	WebSocket` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L321 | `•	Test Next.js pages, custom hooks (e.g., useWebSocket), and server routes.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L10 | `export function useWebSocket() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L12 | `const socketRef = useRef<WebSocket | null>(null);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L15 | `// Get WebSocket URL from environment or use a default` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L18 | `// Create WebSocket connection` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L19 | `const socket = new WebSocket(wsUrl);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L34 | `console.error("WebSocket error:", error);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L40 | `if (socket.readyState === WebSocket.OPEN) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L48 | `if (socketRef.current?.readyState === WebSocket.OPEN) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L51 | `console.error("WebSocket is not connected");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/index.ts` | L8 | `export * from "./use-websocket";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L20 | `•	Real-Time QR Code Validation: Staff or admins can scan a user’s QR code to add a punch instantly (via WebSockets).` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L38 | `6.	WebSockets` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L72 | `•	Real-time validation via WebSockets.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L93 | `•	Real-time ranking of users by their points, updated via WebSockets.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L266 | `9.	WebSocket` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L322 | `•	Test Next.js pages, custom hooks (e.g., useWebSocket), and server routes.` |
 
 </details>
 
@@ -397,7 +397,15 @@ Now, let's create a Supabase client for real-time functionality. First, I'll cre
 
 ---
 
+<details><summary>Edit file: src/lib/supabase.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 43, lines removed: 1
+
 ```diff
+@@ -1,1 +1,43 @@
 - 
 + import { createClient } from "@supabase/supabase-js";
 + 
@@ -444,6 +452,8 @@ Now, let's create a Supabase client for real-time functionality. First, I'll cre
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's examine the exact structure of the PunchCard type to ensure our types are correct:
@@ -455,14 +465,14 @@ Now, let's examine the exact structure of the PunchCard type to ensure our types
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punch-card.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/index.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCard.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/punch-cards-list.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` |
 
 </details>
 
@@ -485,7 +495,7 @@ Let's check the PunchCard types from the API types file:
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` |
 
 </details>
 
@@ -507,7 +517,15 @@ Now, let's create the hook for real-time subscription to punch cards:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-punch-card-subscription.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 120, lines removed: 1
+
 ```diff
+@@ -1,1 +1,120 @@
 - 
 + "use client";
 + 
@@ -631,13 +649,23 @@ Now, let's create the hook for real-time subscription to punch cards:
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's create an API endpoint to fetch the user's punch cards:
 
 ---
 
+<details><summary>Edit file: src/app/api/users/[id]/punch-cards/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 50, lines removed: 1
+
 ```diff
+@@ -1,1 +1,50 @@
 - 
 + import { type NextRequest, NextResponse } from "next/server";
 + import { getPunchCardsByUserId } from "@/db/models/punch-cards/punch-cards";
@@ -691,13 +719,23 @@ Now, let's create an API endpoint to fetch the user's punch cards:
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the auth issue in the route file:
 
 ---
 
+<details><summary>Edit file: src/app/api/users/[id]/punch-cards/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -11,5 +11,5 @@
   	try {
   		// Get the authenticated user from Clerk
 - 		const { userId: clerkId } = auth();
@@ -705,6 +743,8 @@ Let's fix the auth issue in the route file:
   
   		// If not authenticated, return 401
 ```
+
+</details>
 
 ---
 
@@ -716,12 +756,22 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/hooks/index.ts
 
 ---
 
+<details><summary>Edit file: src/hooks/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -7,3 +7,4 @@
   export * from "./use-toast";
   export * from "./use-websocket";
 + export * from "./use-punch-card-subscription";
   
 ```
+
+</details>
 
 ---
 
@@ -729,7 +779,15 @@ Now, let's update the UserPunchCards component to use our real-time subscription
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 51, lines removed: 25
+
 ```diff
+@@ -2,38 +2,64 @@
   
   import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 - import { Badge } from "@/components/ui/badge";
@@ -821,7 +879,11 @@ Now, let's update the UserPunchCards component to use our real-time subscription
   			<Card className="mb-6">
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -58,6 +84,6 @@
   			<CardContent>
   				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 - 					{punchCards.map((punchCard) => (
@@ -832,13 +894,23 @@ Now, let's update the UserPunchCards component to use our real-time subscription
   				</div>
 ```
 
+</details>
+
 ---
 
 Let's fix these errors. First, we need to create the Spinner component:
 
 ---
 
+<details><summary>Edit file: src/components/ui/spinner.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 25, lines removed: 1
+
 ```diff
+@@ -1,1 +1,25 @@
 - 
 + import { cn } from "@/lib/utils";
 + 
@@ -866,6 +938,8 @@ Let's fix these errors. First, we need to create the Spinner component:
 + }
 + 
 ```
+
+</details>
 
 ---
 
@@ -938,7 +1012,15 @@ Let's update the UserPunchCard component to accept our hook's type:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 10, lines removed: 4
+
 ```diff
+@@ -2,19 +2,25 @@
   
   import { PunchCard, PUNCH_THRESHOLD } from "@/components/ui/punch-card";
 - import type { PunchCardWithRestaurant } from "@/types/api";
@@ -970,13 +1052,23 @@ Let's update the UserPunchCard component to accept our hook's type:
   		/>
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining linter error:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -14,4 +14,6 @@
   	// Convert boolean | null to boolean for completed
   	const completed = punchCard.completed === null ? false : punchCard.completed;
 + 	// Handle lastUpdated which could be string, Date, or null
@@ -985,7 +1077,11 @@ Let's fix the remaining linter error:
   	return (
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -23,5 +25,5 @@
   			totalPunches={PUNCH_THRESHOLD}
   			completed={completed}
 - 			lastUpdated={punchCard.updatedAt}
@@ -994,13 +1090,23 @@ Let's fix the remaining linter error:
   	);
 ```
 
+</details>
+
 ---
 
 Now we need to update the profile page to use our real-time punch card component:
 
 ---
 
+<details><summary>Edit file: src/app/users/[id]/profile/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -11,6 +11,4 @@
   	const user = userId ? await getUserByClerkId(userId) : null;
   	console.log("🚀 ~ ProfilePage ~ user:", user);
 - 
@@ -1009,7 +1115,11 @@ Now we need to update the profile page to use our real-time punch card component
   	if (!user) return <div>Not logged in</div>;
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: 6
+
 ```diff
+@@ -31,10 +29,9 @@
   			</div>
   
 - 			{/* <BentoGrid items={user.punchCards.map((punchCard) => ({ */}
@@ -1027,18 +1137,30 @@ Now we need to update the profile page to use our real-time punch card component
   			{/* {user?.id && <UserScanQrCode user={user} />} */}
 ```
 
+</details>
+
 ---
 
 Now let's set up the environment variables for Supabase:
 
 ---
 
+<details><summary>Edit file: .env.local</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -1,1 +1,3 @@
 - 
 + # Supabase for real-time subscriptions
 + NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
 + NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key 
 ```
+
+</details>
 
 ---
 
@@ -1054,7 +1176,15 @@ Let's update the scripts in package.json to use Bun:
 
 ---
 
+<details><summary>Edit file: package.json</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -4,8 +4,8 @@
     "private": true,
     "scripts": {
 -     "dev": "next dev",
@@ -1069,11 +1199,17 @@ Let's update the scripts in package.json to use Bun:
       "build:storybook": "storybook build",
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -99,3 +99,2 @@
     }
   }
 - 
 ```
+
+</details>
 
 ---
 
@@ -1081,7 +1217,15 @@ Now let's create a README file to explain how to set up and use the real-time su
 
 ---
 
+<details><summary>Edit file: README.md</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 89, lines removed: undefined
+
 ```diff
+@@ -132,3 +132,92 @@
   - Admin/public separation with layout preservation
   - TypeScript-first approach with strict type definitions
 + 
@@ -1176,13 +1320,23 @@ Now let's create a README file to explain how to set up and use the real-time su
   
 ```
 
+</details>
+
 ---
 
 Let's make sure we've created all the necessary files for the real-time implementation with Supabase. Let's also create an `.env.example` file:
 
 ---
 
+<details><summary>Edit file: .env.example</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 13, lines removed: 1
+
 ```diff
+@@ -1,1 +1,13 @@
 - 
 + # Supabase for real-time subscriptions
 + NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
@@ -1198,6 +1352,8 @@ Let's make sure we've created all the necessary files for the real-time implemen
 + # WebSocket (optional, for custom WebSocket implementation)
 + NEXT_PUBLIC_WS_URL=ws://localhost:3001/ws 
 ```
+
+</details>
 
 ---
 

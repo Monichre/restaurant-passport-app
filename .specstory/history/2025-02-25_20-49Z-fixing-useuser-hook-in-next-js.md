@@ -33,7 +33,15 @@ I'll fix this by adding the 'use client' directive and fixing the associated iss
 
 ---
 
+<details><summary>Edit file: src/app/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -1,5 +1,7 @@
 + 'use client';
 + 
   import Image from "next/image";
@@ -44,7 +52,11 @@ I'll fix this by adding the 'use client' directive and fixing the associated iss
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -42,5 +44,5 @@
   							)}
   							<SignOutButton>
 - 								<button className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm h-10 px-4">
@@ -52,6 +64,8 @@ I'll fix this by adding the 'use client' directive and fixing the associated iss
   									Sign Out
   								</button>
 ```
+
+</details>
 
 ---
 

@@ -140,8 +140,8 @@ Let me check if there's a dashboard or analytics components:
 ---
 
 <details>
-            <summary>Searched codebase "analytics dashboard component or service implementation" • **25** results</summary>
-        
+                <summary>Searched codebase "analytics dashboard component or service implementation" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `.cursor/rules/analytics_dashboard.mdc` | L1-61 |
@@ -179,8 +179,8 @@ Let me check if there's a dedicated analytics service or component:
 ---
 
 <details>
-            <summary>Searched codebase "analytics service getRestaurantAnalytics export" • **25** results</summary>
-        
+                <summary>Searched codebase "analytics service getRestaurantAnalytics export" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/api.ts` | L116-132 |
@@ -218,8 +218,8 @@ Let me check the admin dashboard content component:
 ---
 
 <details>
-            <summary>Searched codebase "AdminDashboardContent" • **25** results</summary>
-        
+                <summary>Searched codebase "AdminDashboardContent" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/admin/admin-content.tsx` | L1-37 |
@@ -257,8 +257,8 @@ Now I need to check if there are any chart or analytics visualization components
 ---
 
 <details>
-            <summary>Searched codebase "chart component visualization analytics dashboard" • **25** results</summary>
-        
+                <summary>Searched codebase "chart component visualization analytics dashboard" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `.cursor/rules/analytics_dashboard.mdc` | L61-101 |

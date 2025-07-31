@@ -89,7 +89,15 @@ Let me implement the BoxReveal animation component into your home.tsx page:
 
 ---
 
+<details><summary>Edit file: src/components/home/home.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -1,10 +1,11 @@
   import {Button} from '@/components/ui/button'
 + import {BoxReveal} from '@/registry/magicui/box-reveal'
   import Image from 'next/image'
@@ -105,7 +113,11 @@ Let me implement the BoxReveal animation component into your home.tsx page:
             src='/logo.png'
 ```
 
+**Chunk 2**
+Lines added: 23, lines removed: 4
+
 ```diff
+@@ -14,17 +15,36 @@
             className='mx-auto'
           />
 + 
@@ -148,7 +160,11 @@ Let me implement the BoxReveal animation component into your home.tsx page:
                   Get Started
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -33,10 +53,11 @@
                 <Link
                   href='/deals'
 -               className='rounded-full bg-[#e0d9d1] relative z-40  border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[var(--brand-primary)] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
@@ -162,6 +178,8 @@ Let me implement the BoxReveal animation component into your home.tsx page:
         </div>
       </main>
 ```
+
+</details>
 
 ---
 
@@ -209,7 +227,15 @@ Now, let's create the BoxReveal component:
 
 ---
 
+<details><summary>Edit file: src/registry/magicui/box-reveal.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 47, lines removed: 1
+
 ```diff
+@@ -1,1 +1,47 @@
 - 
 + import {cn} from '@/lib/utils'
 + import {motion} from 'framer-motion'
@@ -260,6 +286,8 @@ Now, let's create the BoxReveal component:
 + 
 ```
 
+</details>
+
 ---
 
 We need to create the utils file with the cn function if it doesn't exist:
@@ -271,11 +299,11 @@ We need to create the utils file with the cn function if it doesn't exist:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/lib/utils.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/list-01.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/list-02.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` |
 
 </details>
 
@@ -331,13 +359,23 @@ There's an issue with the import in home.tsx. Let's fix it:
 
 ---
 
+<details><summary>Edit file: src/components/home/home.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,4 +1,4 @@
 - import {BoxReveal} from '@/components/magicui/box-reveal'
   import {Button} from '@/components/ui/button'
 + import {BoxReveal} from '@/registry/magicui/box-reveal'
   
   import Image from 'next/image'
 ```
+
+</details>
 
 ---
 

@@ -114,9 +114,9 @@ Now, let's check the restaurant schema to understand the data structure:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/models/achievements/achievements.ts` |
 
 </details>
 
@@ -143,16 +143,16 @@ Let's check if there's a restaurant model for repository functions:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/index.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/scripts/restaurants.json` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/actions/restaurants.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/scripts/scrape-restaurants.js` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/(public)/restaurants/page.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/api/restaurants/[id]/route.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/new/page.tsx` |
 
 </details>
 
@@ -183,16 +183,16 @@ Let's try again with a more generic search:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/card.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/alert.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/table.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toast.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/divider.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/in-view.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/data-table.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punch-card.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/visually-hidden.tsx` |
 
 </details>
 
@@ -227,7 +227,7 @@ Let's look for some specific input components:
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/input.tsx` |
 
 </details>
 
@@ -314,10 +314,10 @@ Let's search for form validation:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/index.ts` | L7 | `// Zod validation schemas` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L86 | `⟪ 103 characters skipped ⟫", "@ai-sdk/provider-utils": "2.1.11", "zod-to-json-schema": "^3.24.1" }, "peerDependencies": { "zod": "^3.0.0" }, "optionalPeers": ["zod"] }, "sha512-fCnp/wntZGqPf6tiCmhuQoSDLSBhXoI5DU2JX4As96EO870+jliE6ozvYUwYOZC6Ta2OKAjjWPcSP7HeHX0b+g=="` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L300 | `⟪ 124 characters skipped ⟫, "typescript-event-target": "^1.1.1", "zod": "^3.23.8", "zod-to-json-schema": "^3.23.0" } }, "sha512-T0mEBVFyOMQkxLjq7QdXxxtlPJl2tpcl+SpusLSo4rngn/Nv/drJv3krjlN+d1isrCz/PZ6xqU4Sf5LLvuIT2g=="],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L1872 | `"zod-to-json-schema": ["zod-to-json-schema@3.24.3", "", { "peerDependencies": { "zod": "^3.24.1" } }, "sha512-HIAfWdYIt1sssHfYZFCXp4rU1w2r8hVVXYIlmoa0r0gABLs5di3RCqPU5DDROogVz1pAdYBaz7HK5n9pSUNs3A=="],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/index.ts` | L8 | `// Zod validation schemas` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L87 | `⟪ 103 characters skipped ⟫", "@ai-sdk/provider-utils": "2.1.11", "zod-to-json-schema": "^3.24.1" }, "peerDependencies": { "zod": "^3.0.0" }, "optionalPeers": ["zod"] }, "sha512-fCnp/wntZGqPf6tiCmhuQoSDLSBhXoI5DU2JX4As96EO870+jliE6ozvYUwYOZC6Ta2OKAjjWPcSP7HeHX0b+g=="` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L301 | `⟪ 124 characters skipped ⟫, "typescript-event-target": "^1.1.1", "zod": "^3.23.8", "zod-to-json-schema": "^3.23.0" } }, "sha512-T0mEBVFyOMQkxLjq7QdXxxtlPJl2tpcl+SpusLSo4rngn/Nv/drJv3krjlN+d1isrCz/PZ6xqU4Sf5LLvuIT2g=="],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L1873 | `"zod-to-json-schema": ["zod-to-json-schema@3.24.3", "", { "peerDependencies": { "zod": "^3.24.1" } }, "sha512-HIAfWdYIt1sssHfYZFCXp4rU1w2r8hVVXYIlmoa0r0gABLs5di3RCqPU5DDROogVz1pAdYBaz7HK5n9pSUNs3A=="],` |
 
 </details>
 
@@ -327,7 +327,15 @@ Now I have enough information to create the restaurant creation form. Let me imp
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/new/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 19, lines removed: 1
+
 ```diff
+@@ -1,1 +1,19 @@
 - 
 + import React from "react";
 + import { RestaurantForm } from "@/components/admin/restaurant-form";
@@ -350,13 +358,23 @@ Now I have enough information to create the restaurant creation form. Let me imp
 + 
 ```
 
+</details>
+
 ---
 
 Now I'll create the restaurant form component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 174, lines removed: 1
+
 ```diff
+@@ -1,1 +1,174 @@
 - 
 + "use client";
 + 
@@ -534,13 +552,23 @@ Now I'll create the restaurant form component:
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the linter error by replacing forEach with for...of:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -44,8 +44,8 @@
   			if (error instanceof z.ZodError) {
   				const newErrors: Partial<Record<keyof FormData, string>> = {};
 - 				error.errors.forEach((err) => {
@@ -553,13 +581,23 @@ Let's fix the linter error by replacing forEach with for...of:
   			}
 ```
 
+</details>
+
 ---
 
 Let's now create a server action to handle the restaurant creation in a more decoupled way, following best practices:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -4,4 +4,8 @@
   import { restaurants } from "@/db/schema";
   import { eq } from "drizzle-orm";
 + import { createRestaurantSchema } from "@/types/schemas";
@@ -570,7 +608,11 @@ Let's now create a server action to handle the restaurant creation in a more dec
   // Function to convert QR code SVG to a data URL
 ```
 
+**Chunk 2**
+Lines added: 29, lines removed: undefined
+
 ```diff
+@@ -22,3 +26,32 @@
   	}
   }
 + 
@@ -605,6 +647,8 @@ Let's now create a server action to handle the restaurant creation in a more dec
   
 ```
 
+</details>
+
 ---
 
 
@@ -632,7 +676,15 @@ Let's implement a file upload component with drag and drop. I'll use the browser
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -1,11 +1,12 @@
   "use client";
   
 - import { useState } from "react";
@@ -649,7 +701,11 @@ Let's implement a file upload component with drag and drop. I'll use the browser
   type FormData = z.infer<typeof createRestaurantSchema>;
 ```
 
+**Chunk 2**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -23,4 +24,11 @@
   		{},
   	);
 + 
@@ -663,7 +719,11 @@ Let's implement a file upload component with drag and drop. I'll use the browser
   	const handleChange = (
 ```
 
+**Chunk 3**
+Lines added: 94, lines removed: undefined
+
 ```diff
+@@ -35,4 +43,98 @@
   		}
   	};
 + 
@@ -764,7 +824,11 @@ Let's implement a file upload component with drag and drop. I'll use the browser
   	const validateForm = (): boolean => {
 ```
 
+**Chunk 4**
+Lines added: 16, lines removed: undefined
+
 ```diff
+@@ -56,4 +158,20 @@
   	const handleSubmit = async (e: React.FormEvent) => {
   		e.preventDefault();
 + 
@@ -787,7 +851,11 @@ Let's implement a file upload component with drag and drop. I'll use the browser
   		if (!validateForm()) return;
 ```
 
+**Chunk 5**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -62,7 +180,13 @@
   
   		try {
 - 			await createRestaurant(formData);
@@ -804,7 +872,11 @@ Let's implement a file upload component with drag and drop. I'll use the browser
   			console.error("Error creating restaurant:", error);
 ```
 
+**Chunk 6**
+Lines added: 64, lines removed: 12
+
 ```diff
+@@ -117,19 +241,71 @@
   				<div>
   					<label
 - 						htmlFor="imageUrl"
@@ -890,13 +962,23 @@ Let's implement a file upload component with drag and drop. I'll use the browser
   					)}
 ```
 
+</details>
+
 ---
 
 Let's fix those linter errors:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 9
+
 ```diff
+@@ -43,15 +43,8 @@
   		}
   	};
 - 
@@ -916,7 +998,11 @@ Let's fix those linter errors:
   			if (!file.type.match(/image\/(jpeg|jpg|png|webp)/i)) {
 ```
 
+**Chunk 2**
+Lines added: 14, lines removed: 1
+
 ```diff
+@@ -81,5 +74,18 @@
   			};
   			reader.readAsDataURL(file);
 - 	};
@@ -938,7 +1024,11 @@ Let's fix those linter errors:
   	// Drag and drop handlers
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -107,5 +113,6 @@
   	}, []);
   
 - 	const handleDrop = useCallback((e: React.DragEvent) => {
@@ -948,7 +1038,11 @@ Let's fix those linter errors:
   			e.stopPropagation();
 ```
 
+**Chunk 4**
+Lines added: 10, lines removed: undefined
+
 ```diff
+@@ -115,4 +122,14 @@
   				const file = e.dataTransfer.files[0];
   				processFile(file);
 + 			}
@@ -965,7 +1059,11 @@ Let's fix those linter errors:
   	}, []);
 ```
 
+**Chunk 5**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -259,4 +276,8 @@
   						onDrop={handleDrop}
   						onClick={openFileDialog}
 + 						onKeyDown={handleKeyDown}
@@ -976,13 +1074,23 @@ Let's fix those linter errors:
   						<input
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining linter errors:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 10
+
 ```diff
+@@ -126,19 +126,11 @@
   		[processFile],
   	);
 - 
@@ -1006,7 +1114,11 @@ Let's fix the remaining linter errors:
   	// Function to handle file upload
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -263,6 +255,7 @@
   						Restaurant Image
   					</label>
 - 					<div
@@ -1018,7 +1130,11 @@ Let's fix the remaining linter errors:
   								? "border-blue-500 bg-blue-50"
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -276,7 +269,4 @@
   						onDrop={handleDrop}
   						onClick={openFileDialog}
 - 						onKeyDown={handleKeyDown}
@@ -1028,7 +1144,11 @@ Let's fix the remaining linter errors:
   					>
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -324,5 +314,5 @@
   							</div>
   						)}
 - 					</div>
@@ -1037,13 +1157,23 @@ Let's fix the remaining linter errors:
   						<p className="mt-1 text-sm text-red-600">{uploadError}</p>
 ```
 
+</details>
+
 ---
 
 Let's remove the dependencies comment since it's not an error that affects functionality:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -45,6 +45,5 @@
   
   	// Process the selected file
 - 	const processFile = useCallback(
@@ -1053,7 +1183,11 @@ Let's remove the dependencies comment since it's not an error that affects funct
   		if (!file.type.match(/image\/(jpeg|jpg|png|webp)/i)) {
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 8
+
 ```diff
+@@ -74,18 +73,13 @@
   		};
   		reader.readAsDataURL(file);
 - 		},
@@ -1077,7 +1211,11 @@ Let's remove the dependencies comment since it's not an error that affects funct
   	// Drag and drop handlers
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -113,6 +107,5 @@
   	}, []);
   
 - 	const handleDrop = useCallback(
@@ -1087,7 +1225,11 @@ Let's remove the dependencies comment since it's not an error that affects funct
   		e.stopPropagation();
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 5
+
 ```diff
+@@ -123,14 +116,12 @@
   			processFile(file);
   		}
 - 		},
@@ -1106,6 +1248,8 @@ Let's remove the dependencies comment since it's not an error that affects funct
   
   	// Function to handle file upload
 ```
+
+</details>
 
 ---
 
@@ -1193,7 +1337,15 @@ Now I understand the issue. Let's fix the admin page to correctly handle server 
 
 ---
 
+<details><summary>Edit file: src/app/admin/layout.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -20,6 +20,6 @@
   	console.log("🚀 ~ session:", session);
   
 - 	// @ts-ignore
@@ -1203,6 +1355,8 @@ Now I understand the issue. Let's fix the admin page to correctly handle server 
   		redirect("/");
   	}
 ```
+
+</details>
 
 ---
 
@@ -1218,7 +1372,15 @@ Let's fix the issue by separating the auth check to its own component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/layout.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -1,31 +1,31 @@
   import { redirect } from "next/navigation";
 - 
   import { isAdmin } from "@/lib/auth";
@@ -1262,13 +1424,23 @@ Let's fix the issue by separating the auth check to its own component:
   			</div>
 ```
 
+</details>
+
 ---
 
 Now we need to make the AdminUI a client component since it uses SidebarProvider:
 
 ---
 
+<details><summary>Edit file: src/app/admin/layout.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 10
+
 ```diff
+@@ -23,13 +23,5 @@
   }
   
 - // Client component that renders the admin UI
@@ -1286,13 +1458,23 @@ Now we need to make the AdminUI a client component since it uses SidebarProvider
   
 ```
 
+</details>
+
 ---
 
 Now let's create the AdminUI component file:
 
 ---
 
+<details><summary>Edit file: src/components/admin/admin-ui.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: 1
+
 ```diff
+@@ -1,1 +1,16 @@
 - 
 + "use client";
 + 
@@ -1311,6 +1493,8 @@ Now let's create the AdminUI component file:
 + }
 + 
 ```
+
+</details>
 
 ---
 
@@ -1361,12 +1545,22 @@ Let's fix it:
 
 ---
 
+<details><summary>Edit file: src/components/admin/admin-ui.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,3 +1,3 @@
 - // "use client";
 + "use client";
   
   import { SidebarProvider } from "@/components/admin/SidebarContext";
 ```
+
+</details>
 
 ---
 
@@ -1403,52 +1597,52 @@ Let's check if there are any imports that might cause issues with mixing server 
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/data-table/dashboard-table.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-server-sent-event.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/layout.tsx` | L20 | `// Render the admin UI with the SidebarProvider (which uses "use client")` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/btn-08.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-form.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L55 | `* - The component is client-side only ("use client")` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/user-leaderboard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/restaurant-leaderboard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-content.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dropdown-menu.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/bento-grid.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/separator.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sheet.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/in-view.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/progress.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/avatar.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tabs.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/alert-dialog.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punch-card.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tooltip.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-form.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/layout.tsx` | L20 | `// Render the admin UI with the SidebarProvider (which uses "use client")` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | Lundefined | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/data-table/dashboard-table.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-server-sent-event.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/layout.tsx` | L21 | `// Render the admin UI with the SidebarProvider (which uses "use client")` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/btn-08.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-form.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L56 | `* - The component is client-side only ("use client")` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/user-leaderboard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/restaurant-leaderboard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-content.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dropdown-menu.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/bento-grid.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/separator.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sheet.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/in-view.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/progress.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/avatar.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tabs.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/alert-dialog.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punch-card.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tooltip.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-form.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/layout.tsx` | L21 | `// Render the admin UI with the SidebarProvider (which uses "use client")` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L1 | `"use client";` |
 
 </details>
 
@@ -1466,7 +1660,15 @@ I see the issue now! The user.ts file has "use server" directive at the top, whi
 
 ---
 
+<details><summary>Edit file: src/app/admin/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 44
+
 ```diff
+@@ -2,52 +2,13 @@
   import { auth } from "@clerk/nextjs/server";
   import { getUserByClerkId } from "@/db";
 + import { AdminDashboardContent } from "@/components/admin/admin-dashboard-content";
@@ -1526,13 +1728,23 @@ I see the issue now! The user.ts file has "use server" directive at the top, whi
   
 ```
 
+</details>
+
 ---
 
 Now let's create the AdminDashboardContent client component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/admin-dashboard-content.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 55, lines removed: 1
+
 ```diff
+@@ -1,1 +1,55 @@
 - 
 + "use client";
 + 
@@ -1590,6 +1802,8 @@ Now let's create the AdminDashboardContent client component:
 + }
 + 
 ```
+
+</details>
 
 ---
 

@@ -15,8 +15,8 @@ I'll implement an "Export to CSV" feature for the admin tables. Looking at the p
 ---
 
 <details>
-            <summary>Searched codebase "csv export file download" • **25** results</summary>
-        
+                <summary>Searched codebase "csv export file download" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/hooks/use-handle-qr-code.tsx` | L477-534 |
@@ -58,14 +58,14 @@ Now I'll search for any CSV-specific utilities or libraries that might already e
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L185 | `/* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cstyle%3E path %7B stroke-width: 1; stroke-dasharray: 2 2;%7D %3C/style%3E%3Cpath d='M 10 0 L 10 10' stroke='rgba(204, 204, 204, 0.3)'/%` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L186 | `/* url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 80'%3E%3Cstyle%3E path %7B stroke-width: 1; stroke-dasharray: 2 2;%7D %3C/style%3E%3Cpath d='M 120 0 L 120 80' stroke='rgba(153, 153, 153, 0.3)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L349 | `background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/middleware.ts` | L14 | `"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursorignore` | Lundefined | `# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L865 | `"@typescript-eslint/types": ["@typescript-eslint/types@8.25.0", "", {}, "sha512-+vUe0Zb4tkNgznQwicsvLUJgZIRs6ITeWSCclX1q85pR1iOiaj+4uZJIUp//Z27QWu5Cseiw3O3AR8hVpax7Aw=="],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L1657 | `"isows": ["isows@1.0.6", "", { "peerDependencies": { "ws": "*" } }, "sha512-lPHCayd40oW98/I0uvgaHKWCSvkzY27LjWLbtzOm64yQ+G3Q5npjjbdppU65iZXkK1Zt+kH9pfegli0AYfwYYw=="],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L2165 | `⟪ 246 characters skipped ⟫P+6mNpoXOMo1quQqJ4wvJDyRZ9+pO3kGWoOdmV08cSv2aJV6Q=="],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L186 | `/* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cstyle%3E path %7B stroke-width: 1; stroke-dasharray: 2 2;%7D %3C/style%3E%3Cpath d='M 10 0 L 10 10' stroke='rgba(204, 204, 204, 0.3)'/%` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L187 | `/* url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 80'%3E%3Cstyle%3E path %7B stroke-width: 1; stroke-dasharray: 2 2;%7D %3C/style%3E%3Cpath d='M 120 0 L 120 80' stroke='rgba(153, 153, 153, 0.3)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L350 | `background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/middleware.ts` | L15 | `"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursorignore` | L1 | `# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L866 | `"@typescript-eslint/types": ["@typescript-eslint/types@8.25.0", "", {}, "sha512-+vUe0Zb4tkNgznQwicsvLUJgZIRs6ITeWSCclX1q85pR1iOiaj+4uZJIUp//Z27QWu5Cseiw3O3AR8hVpax7Aw=="],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L1658 | `"isows": ["isows@1.0.6", "", { "peerDependencies": { "ws": "*" } }, "sha512-lPHCayd40oW98/I0uvgaHKWCSvkzY27LjWLbtzOm64yQ+G3Q5npjjbdppU65iZXkK1Zt+kH9pfegli0AYfwYYw=="],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L2166 | `⟪ 246 characters skipped ⟫P+6mNpoXOMo1quQqJ4wvJDyRZ9+pO3kGWoOdmV08cSv2aJV6Q=="],` |
 
 </details>
 
@@ -75,7 +75,15 @@ I don't see any existing CSV libraries being used. I'll implement this feature f
 
 ---
 
+<details><summary>Edit file: src/lib/csv.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 80, lines removed: 1
+
 ```diff
+@@ -1,1 +1,80 @@
 - 
 + /**
 +  * Utility functions for CSV export and handling
@@ -159,13 +167,23 @@ I don't see any existing CSV libraries being used. I'll implement this feature f
 + 
 ```
 
+</details>
+
 ---
 
 Now I'll fix the linter errors by specifying more specific types:
 
 ---
 
+<details><summary>Edit file: src/lib/csv.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -9,5 +9,5 @@
    * @returns CSV formatted string
    */
 - export function convertToCSV<T extends Record<string, any>>(
@@ -174,7 +192,11 @@ Now I'll fix the linter errors by specifying more specific types:
   	columns?: (keyof T)[],
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -46,5 +46,5 @@
    * @param columns Optional array of column names to include
    */
 - export function exportToCSV<T extends Record<string, any>>(
@@ -183,13 +205,23 @@ Now I'll fix the linter errors by specifying more specific types:
   	filename: string,
 ```
 
+</details>
+
 ---
 
 Now that we have our CSV utilities ready, let's update the RestaurantsTable component to include the export functionality:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -1,5 +1,5 @@
 - "use client";
 + 'use client'
   
@@ -199,7 +231,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
     flexRender,
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -13,5 +13,5 @@
     type Table as TanstackTable,
     type SortingState,
 - } from "@tanstack/react-table";
@@ -208,7 +244,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
     Check,
 ```
 
+**Chunk 3**
+Lines added: 16, lines removed: 14
+
 ```diff
+@@ -29,21 +29,23 @@
     Save,
     Download,
 - } from "lucide-react";
@@ -248,7 +288,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
   // Styled components imports
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -55,8 +57,8 @@
     TableHeader,
     TableRow,
 - } from "@/components/ui/table";
@@ -263,7 +307,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
     AlertDialog,
 ```
 
+**Chunk 5**
+Lines added: 87, lines removed: 88
+
 ```diff
+@@ -69,186 +71,185 @@
     AlertDialogTitle,
     AlertDialogTrigger,
 - } from "@/components/ui/alert-dialog";
@@ -539,7 +587,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
     // Add bulk QR code generation hook
 ```
 
+**Chunk 6**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -264,21 +265,21 @@
       handleDownloadAll = () => {},
       handleReset = () => {},
 - 	} = useHandleBulkQRCode();
@@ -570,7 +622,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
     // Add restaurant search hook
 ```
 
+**Chunk 7**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -292,24 +293,24 @@
     } = useRestaurantSearch({
       restaurants: data as unknown as Restaurant[],
 - 		initialSortOption: "name-asc",
@@ -607,7 +663,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
     // Define a handler for toggling all selection
 ```
 
+**Chunk 8**
+Lines added: 22, lines removed: 22
+
 ```diff
+@@ -318,48 +319,48 @@
         const allRows = filteredRestaurants.reduce<RowSelectionState>(
           (acc, _, index) => {
 - 					acc[index.toString()] = true;
@@ -680,7 +740,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
           </div>
 ```
 
+**Chunk 9**
+Lines added: 13, lines removed: 13
+
 ```diff
+@@ -369,22 +370,22 @@
       },
       {
 - 			id: "id",
@@ -718,7 +782,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
               {getSortingIcon(column.getIsSorted())}
 ```
 
+**Chunk 10**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -395,13 +396,13 @@
       },
       {
 - 			accessorKey: "address",
@@ -741,7 +809,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
               {getSortingIcon(column.getIsSorted())}
 ```
 
+**Chunk 11**
+Lines added: 27, lines removed: 27
+
 ```diff
+@@ -417,52 +418,52 @@
       // },
       {
 - 			accessorKey: "qrCodeUrl",
@@ -823,7 +895,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
               {getSortingIcon(column.getIsSorted())}
 ```
 
+**Chunk 12**
+Lines added: 35, lines removed: 35
+
 ```diff
+@@ -471,78 +472,78 @@
         ),
         accessorFn: (row) => {
 - 				const restaurant = row as ExtendedRestaurant;
@@ -939,7 +1015,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                     Delete
 ```
 
+**Chunk 13**
+Lines added: 23, lines removed: 23
+
 ```diff
+@@ -551,59 +552,59 @@
               </DropdownMenu>
             </div>
 - 				);
@@ -1024,7 +1104,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
     // Define data table using TanStack
 ```
 
+**Chunk 14**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -623,6 +624,6 @@
       enableRowSelection: true,
       onRowSelectionChange: (updatedSelection) => {
 - 			console.log("Row selection changed:", updatedSelection);
@@ -1035,7 +1119,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
       onSortingChange: setSorting,
 ```
 
+**Chunk 15**
+Lines added: 53, lines removed: 15
+
 ```diff
+@@ -633,39 +634,77 @@
         updateData: (rowIndex, columnId, value) => {
           // Find actual restaurant by ID to handle filtered restaurants correctly
 - 				const restaurantId = filteredRestaurants[rowIndex].id;
@@ -1130,7 +1218,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
           searchTerm={searchTerm}
 ```
 
+**Chunk 16**
+Lines added: 47, lines removed: 14
+
 ```diff
+@@ -676,41 +715,74 @@
   
         {/* Selection Debug - Remove in production */}
 - 			<div className="text-xs mb-2">
@@ -1221,7 +1313,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                 )}
 ```
 
+**Chunk 17**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -719,18 +791,18 @@
                   <>
                     <Button
 - 										size="sm"
@@ -1249,7 +1345,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                       Reset
 ```
 
+**Chunk 18**
+Lines added: 42, lines removed: 26
+
 ```diff
+@@ -743,82 +815,98 @@
             {/* Progress bar for bulk operations */}
             {bulkGenerating && progress > 0 && (
 - 						<div className="mt-4 space-y-2">
@@ -1376,7 +1476,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                             View Details
 ```
 
+**Chunk 19**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -828,5 +916,5 @@
                               setRestaurantToDelete(restaurant as RestaurantData)
                             }
 - 													className="text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20"
@@ -1385,7 +1489,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                             Delete
 ```
 
+**Chunk 20**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -838,25 +926,25 @@
                     {/* Result status if this restaurant was part of bulk operation */}
                     {results.length > 0 && (
 - 										<div className="mb-3">
@@ -1423,7 +1531,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                       </div>
 ```
 
+**Chunk 21**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -865,33 +953,33 @@
                     {/* Restaurant Image */}
                     {restaurant.imageUrl && (
 - 										<div className="mb-3 w-full h-32 rounded-lg overflow-hidden">
@@ -1469,7 +1581,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                           ?.length || 0}
 ```
 
+**Chunk 22**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -900,14 +988,14 @@
   
                     {/* Quick View Button */}
 - 									<div className="flex justify-end mt-4 pt-3 border-t border-sidebar-border">
@@ -1490,7 +1606,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                 <p>No restaurants found matching your search</p>
 ```
 
+**Chunk 23**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -922,13 +1010,13 @@
         <div
           className={cn(
 - 					"rounded-xl border border-sidebar-border shadow-sm overflow-hidden",
@@ -1512,7 +1632,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                 {table.getHeaderGroups().map((headerGroup) => (
 ```
 
+**Chunk 24**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -937,9 +1025,9 @@
                       <TableHead
                         key={header.id}
 - 											className="text-sidebar-foreground px-4 py-3"
@@ -1528,7 +1652,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                       >
 ```
 
+**Chunk 25**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -948,5 +1036,5 @@
                           : flexRender(
                               header.column.columnDef.header,
 - 														header.getContext(),
@@ -1537,7 +1665,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                       </TableHead>
 ```
 
+**Chunk 26**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -960,17 +1048,17 @@
                     <TableRow
                       key={row.id}
 - 										data-state={row.getIsSelected() && "selected"}
@@ -1563,7 +1695,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                           </div>
 ```
 
+**Chunk 27**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -983,8 +1071,8 @@
                     <TableCell
                       colSpan={columns.length}
 - 										className="h-24 text-center py-8"
@@ -1577,7 +1713,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                           <p>No restaurants found matching your search</p>
 ```
 
+**Chunk 28**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -1002,25 +1090,25 @@
   
         {/* Pagination controls - work for both mobile and desktop */}
 - 			<div className="flex items-center justify-between py-4">
@@ -1615,7 +1755,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
               Next
 ```
 
+**Chunk 29**
+Lines added: 5, lines removed: 5
+
 ```diff
+@@ -1034,21 +1122,21 @@
           onOpenChange={(open) => !open && setRestaurantToDelete(null)}
         >
 - 				<AlertDialogContent className="bg-background border-sidebar-border">
@@ -1644,7 +1788,11 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
                 Delete
 ```
 
+**Chunk 30**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1058,5 +1146,5 @@
         </AlertDialog>
       </div>
 - 	);
@@ -1653,13 +1801,23 @@ Now that we have our CSV utilities ready, let's update the RestaurantsTable comp
   
 ```
 
+</details>
+
 ---
 
 Let's fix the type issue with the CSV export columns:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 4
+
 ```diff
+@@ -680,15 +680,20 @@
               )
   
 -         // Define columns to export
@@ -1686,13 +1844,23 @@ Let's fix the type issue with the CSV export columns:
           toast.success(
 ```
 
+</details>
+
 ---
 
 Let's try a different approach to fix the type issue:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 16
+
 ```diff
+@@ -680,20 +680,15 @@
               )
   
 -         // Define columns to export - using keys that are guaranteed to exist in RestaurantData
@@ -1726,13 +1894,23 @@ Let's try a different approach to fix the type issue:
           toast.success(
 ```
 
+</details>
+
 ---
 
 Now that we've fixed the RestaurantsTable component, let's also add export functionality to the DealsTable component for consistency:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: 8
+
 ```diff
+@@ -1,11 +1,19 @@
 - "use client";
 + 'use client'
   
@@ -1762,7 +1940,11 @@ Now that we've fixed the RestaurantsTable component, let's also add export funct
     AlertDialog,
 ```
 
+**Chunk 2**
+Lines added: 95, lines removed: 66
+
 ```diff
+@@ -17,157 +25,186 @@
     AlertDialogHeader,
     AlertDialogTitle,
 - } from "@/components/ui/alert-dialog";
@@ -2017,7 +2199,11 @@ Now that we've fixed the RestaurantsTable component, let's also add export funct
                       </DropdownMenuItem>
 ```
 
+**Chunk 3**
+Lines added: 41, lines removed: 27
+
 ```diff
+@@ -180,69 +217,83 @@
         </div>
       ) : (
 - 			<div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
@@ -2130,7 +2316,11 @@ Now that we've fixed the RestaurantsTable component, let's also add export funct
                                   </span>
 ```
 
+**Chunk 4**
+Lines added: 19, lines removed: 19
+
 ```diff
+@@ -251,57 +302,57 @@
                             </div>
                             <div>
 - 														<p className="font-medium text-gray-900">
@@ -2209,7 +2399,11 @@ Now that we've fixed the RestaurantsTable component, let's also add export funct
                               <Trash2 size={18} />
 ```
 
+**Chunk 5**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -315,10 +366,10 @@
                       <td
                         colSpan={6}
 - 											className="px-6 py-4 text-center text-sm text-gray-500"
@@ -2226,7 +2420,11 @@ Now that we've fixed the RestaurantsTable component, let's also add export funct
                           Create one
 ```
 
+**Chunk 6**
+Lines added: 15, lines removed: 15
+
 ```diff
+@@ -332,36 +383,36 @@
   
             {/* Pagination - simplified for mobile friendliness */}
 - 					<div className="border-t border-gray-200 px-4 py-3 sm:px-6">
@@ -2280,7 +2478,11 @@ Now that we've fixed the RestaurantsTable component, let's also add export funct
                     </button>
 ```
 
+**Chunk 7**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -387,13 +438,13 @@
               <AlertDialogAction
                 onClick={confirmDelete}
 - 							className="bg-red-600 hover:bg-red-700 focus:ring-red-600"
@@ -2299,13 +2501,23 @@ Now that we've fixed the RestaurantsTable component, let's also add export funct
   
 ```
 
+</details>
+
 ---
 
 Great! Let's also add the CSV export feature to the DashboardTable component for completeness:
 
 ---
 
+<details><summary>Edit file: src/components/data-table/dashboard-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -1,5 +1,5 @@
 - "use client";
 + 'use client'
   
@@ -2315,7 +2527,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
     RiArrowDownSFill,
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -8,5 +8,6 @@
     RiExpandUpDownFill,
     RiMore2Line,
 - } from "@remixicon/react";
@@ -2325,7 +2541,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
     flexRender,
 ```
 
+**Chunk 3**
+Lines added: 41, lines removed: 39
+
 ```diff
+@@ -16,65 +17,67 @@
     type ColumnDef,
     type SortingState,
 - } from "@tanstack/react-table";
@@ -2434,7 +2654,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
       ),
 ```
 
+**Chunk 4**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -83,12 +86,12 @@
     },
     {
 - 		id: "member",
@@ -2455,7 +2679,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
             {getSortingIcon(column.getIsSorted())}
 ```
 
+**Chunk 5**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -97,14 +100,14 @@
       ),
       enableSorting: true,
 - 		cell: ({ row }) => (
@@ -2478,7 +2706,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
             </span>
 ```
 
+**Chunk 6**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -114,23 +117,23 @@
     },
     {
 - 		id: "title",
@@ -2514,7 +2746,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
           </span>
 ```
 
+**Chunk 7**
+Lines added: 14, lines removed: 14
+
 ```diff
+@@ -139,40 +142,40 @@
     },
     {
 - 		id: "project",
@@ -2571,7 +2807,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
             </span>
 ```
 
+**Chunk 8**
+Lines added: 12, lines removed: 12
+
 ```diff
+@@ -182,25 +185,25 @@
     },
     {
 - 		id: "doc",
@@ -2611,7 +2851,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
             </span>
 ```
 
+**Chunk 9**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -210,18 +213,18 @@
     },
     {
 - 		id: "status",
@@ -2639,7 +2883,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
           <StatusBadge.Icon as={RiCheckboxCircleFill} />
 ```
 
+**Chunk 10**
+Lines added: 6, lines removed: 5
+
 ```diff
+@@ -231,16 +234,17 @@
     },
     {
 - 		id: "actions",
@@ -2664,7 +2912,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
     const table = useReactTable({
 ```
 
+**Chunk 11**
+Lines added: 42, lines removed: 3
+
 ```diff
+@@ -256,13 +260,52 @@
         sorting: [
           {
 - 					id: "member",
@@ -2722,7 +2974,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
           <Table.Header>
 ```
 
+**Chunk 12**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -276,8 +319,8 @@
                         : flexRender(
                             header.column.columnDef.header,
 - 													header.getContext(),
@@ -2735,7 +2991,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
               </Table.Row>
 ```
 
+**Chunk 13**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -288,10 +331,10 @@
               table.getRowModel().rows.map((row, i, arr) => (
                 <React.Fragment key={row.id}>
 - 								<Table.Row data-state={row.getIsSelected() && "selected"}>
@@ -2750,7 +3010,11 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
                       </Table.Cell>
 ```
 
+**Chunk 14**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -304,5 +347,5 @@
         </Table.Root>
       </div>
 - 	);
@@ -2758,6 +3022,8 @@ Great! Let's also add the CSV export feature to the DashboardTable component for
   }
   
 ```
+
+</details>
 
 ---
 
@@ -2797,7 +3063,15 @@ First, let's create a utility function for parsing and validating CSV files:
 
 ---
 
+<details><summary>Edit file: src/lib/csv.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 128, lines removed: undefined
+
 ```diff
+@@ -78,3 +78,131 @@
   	URL.revokeObjectURL(url);
   }
 + 
@@ -2931,13 +3205,23 @@ First, let's create a utility function for parsing and validating CSV files:
   
 ```
 
+</details>
+
 ---
 
 Now, let's create server actions for uploading restaurants and deals:
 
 ---
 
+<details><summary>Edit file: src/actions/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 57, lines removed: undefined
+
 ```diff
+@@ -123,3 +123,60 @@
   	}
   }
 + 
@@ -3000,13 +3284,23 @@ Now, let's create server actions for uploading restaurants and deals:
   
 ```
 
+</details>
+
 ---
 
 Let's fix the type issue in the restaurant import function:
 
 ---
 
+<details><summary>Edit file: src/actions/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -140,6 +140,6 @@
   			name: z.string().min(1, "Name is required"),
   			address: z.string().min(1, "Address is required"),
 - 			description: z.string().optional(),
@@ -3017,7 +3311,11 @@ Let's fix the type issue in the restaurant import function:
   
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: 1
+
 ```diff
+@@ -158,7 +158,15 @@
   			}
   		});
 + 
@@ -3036,13 +3334,23 @@ Let's fix the type issue in the restaurant import function:
   		// Revalidate the restaurants page to show the new data
 ```
 
+</details>
+
 ---
 
 Now, let's create a similar action for deals:
 
 ---
 
+<details><summary>Edit file: src/actions/deals.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 117, lines removed: 1
+
 ```diff
+@@ -1,1 +1,117 @@
 - 
 + "use server";
 + 
@@ -3163,13 +3471,23 @@ Now, let's create a similar action for deals:
 + 
 ```
 
+</details>
+
 ---
 
 Let's create a UI component for the CSV upload:
 
 ---
 
+<details><summary>Edit file: src/components/admin/csv-upload.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 217, lines removed: 1
+
 ```diff
+@@ -1,1 +1,217 @@
 - 
 + 'use client'
 + 
@@ -3390,13 +3708,23 @@ Let's create a UI component for the CSV upload:
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the accessibility issue in the CSV upload component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/csv-upload.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -149,4 +149,13 @@
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
 +           onKeyDown={(e) => {
@@ -3412,13 +3740,23 @@ Let's fix the accessibility issue in the CSV upload component:
             <input
 ```
 
+</details>
+
 ---
 
 Now, let's integrate our CSV upload component into the restaurants table:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -30,4 +30,5 @@
     Download,
     FileSpreadsheet,
 +   Upload,
@@ -3426,7 +3764,11 @@ Now, let's integrate our CSV upload component into the restaurants table:
   import {Checkbox} from '@/components/ui/checkbox'
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -40,4 +41,5 @@
     updateRestaurantAction,
     deleteRestaurantAction,
 +   importRestaurantsFromCSV,
@@ -3434,7 +3776,11 @@ Now, let's integrate our CSV upload component into the restaurants table:
   import {toast} from 'sonner'
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -48,4 +50,5 @@
   import {Progress} from '@/components/ui/progress'
   import {exportToCSV} from '@/lib/csv'
 + import {CSVUpload} from '@/components/admin/csv-upload'
@@ -3442,7 +3788,11 @@ Now, let's integrate our CSV upload component into the restaurants table:
   // Styled components imports
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -249,4 +252,5 @@
     const [isMobileView, setIsMobileView] = React.useState(false)
     const [isExporting, setIsExporting] = React.useState(false)
 +   const [isImporting, setIsImporting] = React.useState(false)
@@ -3450,7 +3800,11 @@ Now, let's integrate our CSV upload component into the restaurants table:
     // Track selection count for visibility check
 ```
 
+**Chunk 5**
+Lines added: 26, lines removed: undefined
+
 ```diff
+@@ -687,4 +691,30 @@
       [filteredRestaurants, rowSelection]
     )
 + 
@@ -3483,7 +3837,11 @@ Now, let's integrate our CSV upload component into the restaurants table:
     return (
 ```
 
+**Chunk 6**
+Lines added: 8, lines removed: 1
+
 ```diff
+@@ -825,5 +855,12 @@
         {/* Add a button to export all restaurants when no selection is made */}
         {selectedCount === 0 && (
 -         <div className='mb-4 flex justify-end'>
@@ -3499,13 +3857,23 @@ Now, let's integrate our CSV upload component into the restaurants table:
               size='sm'
 ```
 
+</details>
+
 ---
 
 Let's fix the pinned property issue in the column definition:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -338,6 +338,4 @@
       {
         id: 'select',
 -       pinned: 'left',
@@ -3514,13 +3882,23 @@ Let's fix the pinned property issue in the column definition:
           <div className=''>
 ```
 
+</details>
+
 ---
 
 Let's now integrate the CSV upload feature into the deals table:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -11,9 +11,12 @@
     Download,
     FileSpreadsheet,
 +   Upload,
@@ -3535,7 +3913,11 @@ Let's now integrate the CSV upload feature into the deals table:
     AlertDialog,
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -50,4 +53,5 @@
     const [isMobileView, setIsMobileView] = useState(false)
     const [isExporting, setIsExporting] = useState(false)
 +   const [isImporting, setIsImporting] = useState(false)
@@ -3543,7 +3925,11 @@ Let's now integrate the CSV upload feature into the deals table:
   
 ```
 
+**Chunk 3**
+Lines added: 23, lines removed: undefined
+
 ```diff
+@@ -128,4 +132,27 @@
       }
     }
 + 
@@ -3573,7 +3959,11 @@ Let's now integrate the CSV upload feature into the deals table:
     // Mobile card view for deals
 ```
 
+**Chunk 4**
+Lines added: 8, lines removed: 1
+
 ```diff
+@@ -234,5 +261,12 @@
       <>
         {/* Export CSV Button */}
 -       <div className='mb-4 flex justify-end'>
@@ -3589,13 +3979,23 @@ Let's now integrate the CSV upload feature into the deals table:
             size='sm'
 ```
 
+</details>
+
 ---
 
 Let's make sure our CSV upload component is accessible by addressing the linter error:
 
 ---
 
+<details><summary>Edit file: src/components/admin/csv-upload.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 10
+
 ```diff
+@@ -138,23 +138,18 @@
           </DialogHeader>
   
 -         <div
@@ -3626,7 +4026,11 @@ Let's make sure our CSV upload component is accessible by addressing the linter 
           >
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -181,5 +176,5 @@
               </p>
             </div>
 -         </div>
@@ -3635,13 +4039,23 @@ Let's make sure our CSV upload component is accessible by addressing the linter 
           {isUploading && (
 ```
 
+</details>
+
 ---
 
 Let's fix the type issues in the drag handlers:
 
 ---
 
+<details><summary>Edit file: src/components/admin/csv-upload.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -48,10 +48,10 @@
     }
   
 -   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -3656,6 +4070,8 @@ Let's fix the type issues in the drag handlers:
       event.stopPropagation()
 ```
 
+</details>
+
 ---
 
 Now our upload functionality is implemented properly. Let's make sure the `deals` schema is correctly referenced in the deals action file:
@@ -3663,8 +4079,8 @@ Now our upload functionality is implemented properly. Let's make sure the `deals
 ---
 
 <details>
-            <summary>Searched codebase "schema.ts deals" • **25** results</summary>
-        
+                <summary>Searched codebase "schema.ts deals" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/schema.ts` | L23-49 |
@@ -3701,7 +4117,15 @@ Let's fix the deals import in our deals actions file:
 
 ---
 
+<details><summary>Edit file: src/actions/deals.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -3,5 +3,5 @@
   import { revalidatePath } from "next/cache";
   import { db } from "@/db";
 - import { deals } from "@/db/schema";
@@ -3710,7 +4134,11 @@ Let's fix the deals import in our deals actions file:
   import { eq } from "drizzle-orm";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -63,5 +63,5 @@
   
   		// Insert all deals into the database
 - 		await db.insert(deals).values(validatedDeals);
@@ -3719,7 +4147,11 @@ Let's fix the deals import in our deals actions file:
   		// Revalidate the deals page to show the new data
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -87,14 +87,14 @@
   export async function updateDealAction(
   	id: bigint | number,
 - 	data: Partial<typeof deals.$inferInsert>,
@@ -3739,13 +4171,23 @@ Let's fix the deals import in our deals actions file:
   		revalidatePath("/admin/deals");
 ```
 
+</details>
+
 ---
 
 Let's fix the Date type issue in the deals action file:
 
 ---
 
+<details><summary>Edit file: src/actions/deals.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -48,6 +48,7 @@
   					active: validated.active,
   					imageUrl: validated.imageUrl || "",
 - 					createdAt: new Date(),
@@ -3757,7 +4199,11 @@ Let's fix the Date type issue in the deals action file:
   			} catch (error) {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -94,5 +95,5 @@
   			.set({
   				...data,
 - 				updatedAt: new Date(),
@@ -3765,6 +4211,8 @@ Let's fix the Date type issue in the deals action file:
   			})
   			.where(eq(restaurantDeals.id, BigInt(id)));
 ```
+
+</details>
 
 ---
 

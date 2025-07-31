@@ -49,9 +49,9 @@ Now, let me check the API route that handles the scan to understand how to modif
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/api/scan/route.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/api/restaurants/[id]/scan/route.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` |
 
 </details>
 
@@ -70,8 +70,8 @@ Now I understand how the system works. Let's also take a look at the navigation 
 ---
 
 <details>
-            <summary>Searched codebase "useRouter or router.push in Next.js components" • **25** results</summary>
-        
+                <summary>Searched codebase "useRouter or router.push in Next.js components" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/nav/nav.tsx` | L1-46 |
@@ -110,7 +110,15 @@ Now I have enough information to make the necessary changes. Let me implement th
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,5 +1,5 @@
   "use client";
   
 - import { useState } from "react";
@@ -119,7 +127,11 @@ Now I have enough information to make the necessary changes. Let me implement th
   import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -8,5 +8,8 @@
   import type { User } from "@/types";
   import { useScanQrCode } from "@/hooks/use-scan-qr-code";
 - import { AnimatePresence } from "framer-motion";
@@ -131,7 +143,11 @@ Now I have enough information to make the necessary changes. Let me implement th
   // Dynamically import QR scanner to avoid SSR issues
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -15,4 +18,5 @@
   	const { toast } = useToast();
   	const [isConnected, setIsConnected] = useState(true);
 + 	const router = useRouter();
@@ -139,7 +155,11 @@ Now I have enough information to make the necessary changes. Let me implement th
   	const {
 ```
 
+**Chunk 4**
+Lines added: 25, lines removed: 1
+
 ```diff
+@@ -27,7 +31,31 @@
   		onScanSuccess: (result) => {
   			console.log("Scan successful:", result);
 - 			// Additional success handling if needed
@@ -174,7 +194,11 @@ Now I have enough information to make the necessary changes. Let me implement th
   	return (
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -41,5 +69,5 @@
   						<p className="text-muted-foreground">
   							Scan QR codes from participating restaurants to validate your
 - 							purchase and punche your punch card.
@@ -183,7 +207,11 @@ Now I have enough information to make the necessary changes. Let me implement th
   						<div className="mt-2">
 ```
 
+**Chunk 6**
+Lines added: 48, lines removed: 2
+
 ```diff
+@@ -111,7 +139,53 @@
   
   						{scanResult && (
 - 							<div className="text-center py-2 bg-green-50 rounded-md p-3">
@@ -241,13 +269,23 @@ Now I have enough information to make the necessary changes. Let me implement th
   					</div>
 ```
 
+</details>
+
 ---
 
 Now, let's update the API route to properly handle the existing punch card case:
 
 ---
 
+<details><summary>Edit file: src/app/api/scan/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -2,14 +2,16 @@
   	createPunchCard,
   	getUserPunchCardForRestaurant,
 + 	incrementPunchCardPunches,
@@ -268,7 +306,11 @@ Now, let's update the API route to properly handle the existing punch card case:
   	// Get path parameters from the URL
 ```
 
+**Chunk 2**
+Lines added: 19, lines removed: 14
+
 ```diff
+@@ -21,33 +23,38 @@
   
   	console.log("🚀 ~ POST ~ restaurantId:", restaurantId);
 - 
@@ -323,7 +365,11 @@ Now, let's update the API route to properly handle the existing punch card case:
   
 ```
 
+**Chunk 3**
+Lines added: 21, lines removed: 1
+
 ```diff
+@@ -57,5 +64,25 @@
   				message: "Punch card created successfully",
   				data: convertBigInts(punchCard),
 - 		});
@@ -352,6 +398,8 @@ Now, let's update the API route to properly handle the existing punch card case:
   }
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors:
@@ -359,8 +407,8 @@ Let's fix the linter errors:
 ---
 
 <details>
-            <summary>Searched codebase "incrementPunchCard function in punch-cards.ts" • **25** results</summary>
-        
+                <summary>Searched codebase "incrementPunchCard function in punch-cards.ts" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/punch-cards/punch-cards.ts` | L93-108 |
@@ -397,7 +445,15 @@ Now, let's fix both files:
 
 ---
 
+<details><summary>Edit file: src/app/api/scan/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   	createPunchCard,
   	getUserPunchCardForRestaurant,
 - 	incrementPunchCardPunches,
@@ -406,7 +462,11 @@ Now, let's fix both files:
   import { convertBigInts } from "@/lib/utils";
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -38,12 +38,12 @@
   			if (punchCardExists) {
   				// If punch card exists, increment the punches
 - 				const updatedPunchCard = await incrementPunchCardPunches(
@@ -424,6 +484,8 @@ Now, let's fix both files:
   					isExisting: true,
 ```
 
+</details>
+
 ---
 
 Now, let's fix the `Alert` component issue in the UserScanQrCode component:
@@ -431,8 +493,8 @@ Now, let's fix the `Alert` component issue in the UserScanQrCode component:
 ---
 
 <details>
-            <summary>Searched codebase "Alert component UI in the codebase" • **25** results</summary>
-        
+                <summary>Searched codebase "Alert component UI in the codebase" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/features/users/UserScanQrCode.tsx` | L132-196 |
@@ -474,10 +536,10 @@ Let me check if there's an alert component in the codebase:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/data-table/dashboard-table.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/(public)/restaurants/page.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/(public)/restaurants/[id]/page.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` |
 
 </details>
 
@@ -487,7 +549,15 @@ I need to create the Alert component since it doesn't seem to exist in the codeb
 
 ---
 
+<details><summary>Edit file: src/components/ui/alert.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 64, lines removed: 1
+
 ```diff
+@@ -1,1 +1,64 @@
 - 
 + import * as React from "react";
 + import { cva, type VariantProps } from "class-variance-authority";
@@ -555,13 +625,23 @@ I need to create the Alert component since it doesn't seem to exist in the codeb
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's fix the remaining template literal issue in the UserScanQrCode component:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -35,5 +35,5 @@
   				title: result.isExisting ? "Punch Card Found!" : "Punch Card Created!",
   				description: result.isExisting
 - 					? `You already have a punch card for this restaurant.`
@@ -570,7 +650,11 @@ Now, let's fix the remaining template literal issue in the UserScanQrCode compon
   				variant: "default",
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 8
+
 ```diff
+@@ -145,12 +145,5 @@
   								className="mb-4"
   							>
 - 								<Alert
@@ -586,7 +670,11 @@ Now, let's fix the remaining template literal issue in the UserScanQrCode compon
   										{scanResult.isExisting ? (
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 8
+
 ```diff
+@@ -160,16 +153,10 @@
   										)}
   										<div>
 - 											<AlertTitle
@@ -606,6 +694,8 @@ Now, let's fix the remaining template literal issue in the UserScanQrCode compon
   												{scanResult.isExisting ? (
   													<>
 ```
+
+</details>
 
 ---
 
@@ -679,7 +769,15 @@ Here's how we could refactor this to use a Server Action:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 78, lines removed: 1
+
 ```diff
+@@ -1,1 +1,78 @@
 - 
 + "use server";
 + 
@@ -761,13 +859,23 @@ Here's how we could refactor this to use a Server Action:
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the type issues in the server action:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -11,5 +11,5 @@
   export async function processQrScan(formData: {
   	qrData: string;
 - 	userId: string | number;
@@ -776,7 +884,11 @@ Let's fix the type issues in the server action:
   	const { qrData, userId } = formData;
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -29,10 +29,14 @@
   		}
   
 + 		// Convert userId to the correct format if needed
@@ -794,7 +906,11 @@ Let's fix the type issues in the server action:
   		);
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -55,5 +59,5 @@
   		// Create new punch card if it doesn't exist
   		const punchCard = await createPunchCard({
 - 			userId,
@@ -803,13 +919,23 @@ Let's fix the type issues in the server action:
   			punches: 1,
 ```
 
+</details>
+
 ---
 
 Now, let's update the `useScanQrCode` hook to use the Server Action instead of a fetch call:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -4,4 +4,5 @@
   import { toast } from "@/hooks/use-toast";
   import type { OnResultFunction } from "react-qr-reader";
 + import { processQrScan } from "@/actions/scan-actions";
@@ -817,7 +943,11 @@ Now, let's update the `useScanQrCode` hook to use the Server Action instead of a
   interface QrData {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -20,5 +21,5 @@
   export interface UseScanQrCodeOptions {
   	userId?: string | number;
 - 	onScanSuccess?: (result: Record<string, string>) => void;
@@ -826,7 +956,11 @@ Now, let's update the `useScanQrCode` hook to use the Server Action instead of a
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -27,5 +28,5 @@
   	isScanning: boolean;
   	checkingPunchCardStatus: boolean;
 - 	scanResult: Record<string, string> | null;
@@ -835,7 +969,11 @@ Now, let's update the `useScanQrCode` hook to use the Server Action instead of a
   	handleScan: OnResultFunction;
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -42,5 +43,5 @@
   	const [checkingPunchCardStatus, setCheckingPunchCardStatus] =
   		useState<boolean>(false);
 - 	const [scanResult, setScanResult] = useState<Record<string, string> | null>(
@@ -844,7 +982,11 @@ Now, let's update the `useScanQrCode` hook to use the Server Action instead of a
   	);
 ```
 
+**Chunk 5**
+Lines added: 8, lines removed: 8
+
 ```diff
+@@ -128,16 +129,16 @@
   	}, []);
   
 - 	// Process scan result
@@ -871,13 +1013,23 @@ Now, let's update the `useScanQrCode` hook to use the Server Action instead of a
   			if (data) {
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors by replacing `any` with proper types:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -18,8 +18,18 @@
   	[key: string]: unknown;
   }
 + 
@@ -899,7 +1051,11 @@ Let's fix the linter errors by replacing `any` with proper types:
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -28,5 +38,5 @@
   	isScanning: boolean;
   	checkingPunchCardStatus: boolean;
 - 	scanResult: Record<string, any> | null;
@@ -908,7 +1064,11 @@ Let's fix the linter errors by replacing `any` with proper types:
   	handleScan: OnResultFunction;
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -43,7 +53,5 @@
   	const [checkingPunchCardStatus, setCheckingPunchCardStatus] =
   		useState<boolean>(false);
 - 	const [scanResult, setScanResult] = useState<Record<string, any> | null>(
@@ -919,7 +1079,11 @@ Let's fix the linter errors by replacing `any` with proper types:
   	// Toggle scanner on/off
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -143,5 +151,5 @@
   
   			if (data) {
 - 				setScanResult(data);
@@ -928,7 +1092,11 @@ Let's fix the linter errors by replacing `any` with proper types:
   
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -152,5 +160,5 @@
   				});
   
 - 				onScanSuccess?.(data);
@@ -936,6 +1104,8 @@ Let's fix the linter errors by replacing `any` with proper types:
   			}
   		} catch (error) {
 ```
+
+</details>
 
 ---
 
@@ -988,7 +1158,17 @@ _**Assistant**_
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - getConsoleErrors: Check our browsers console errors
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -996,7 +1176,17 @@ Let me check the console logs for more detailed information:
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - getConsoleLogs: Check our browser logs
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -1004,7 +1194,17 @@ Let's look at network error logs:
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - getNetworkErrorLogs: Check our network ERROR logs
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -1012,7 +1212,17 @@ And network success logs:
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - getNetworkSuccessLogs: Check our network SUCCESS logs
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -1020,7 +1230,17 @@ Let's take a screenshot to see the current state:
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - takeScreenshot: Take a screenshot of the current browser tab
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+Failed to take screenshot: fetch failed
+</details>
 
 ---
 
@@ -1029,8 +1249,8 @@ It seems all tools are returning "fetch failed" errors, which suggests there mig
 ---
 
 <details>
-            <summary>Searched codebase "table tbody tr component" • **25** results</summary>
-        
+                <summary>Searched codebase "table tbody tr component" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/table.tsx` | L1-81 |
@@ -1092,8 +1312,8 @@ Let me try another approach:
 ---
 
 <details>
-            <summary>Searched codebase "div inside tbody hydration error" • **25** results</summary>
-        
+                <summary>Searched codebase "div inside tbody hydration error" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/data-table.tsx` | L1-76 |
@@ -1138,7 +1358,15 @@ Now that I've found the issue, let's fix it in the `RestaurantsTable` component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -410,5 +410,9 @@
   									</TableRow>
   									{i < arr.length - 1 && (
 - 										<div className="border-t border-gray-100" />
@@ -1150,6 +1378,8 @@ Now that I've found the issue, let's fix it in the `RestaurantsTable` component:
   									)}
   								</React.Fragment>
 ```
+
+</details>
 
 ---
 
@@ -1170,8 +1400,8 @@ Let's search more broadly for unusual table structures:
 ---
 
 <details>
-            <summary>Searched codebase "motion.tr or custom elements inside tbody" • **25** results</summary>
-        
+                <summary>Searched codebase "motion.tr or custom elements inside tbody" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/data-table.tsx` | L1-76 |
@@ -1208,7 +1438,15 @@ I see another potential issue with the `motion.tr` elements in the `user-leaderb
 
 ---
 
+<details><summary>Edit file: src/components/leaderboard/user-leaderboard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -18,4 +18,13 @@
   	users: UserLeaderboardEntry[];
   }
 + 
@@ -1224,7 +1462,11 @@ I see another potential issue with the `motion.tr` elements in the `user-leaderb
   export function UserLeaderboard({ users }: UserLeaderboardProps) {
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 15
+
 ```diff
+@@ -24,29 +33,20 @@
   		switch (rank) {
   			case 1:
 - 				return "bg-yellow-500 text-yellow-950";
@@ -1262,7 +1504,11 @@ I see another potential issue with the `motion.tr` elements in the `user-leaderb
   						<TableHead className="text-right">Punch Cards</TableHead>
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -62,10 +62,13 @@
   					) : (
   						users.map((user, index) => (
 - 							<motion.tr
@@ -1279,7 +1525,11 @@ I see another potential issue with the `motion.tr` elements in the `user-leaderb
   									<TableCell className="text-center font-medium">
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -92,5 +95,6 @@
   										{user.punchCardCount}
   									</TableCell>
 - 							</motion.tr>
@@ -1289,13 +1539,23 @@ I see another potential issue with the `motion.tr` elements in the `user-leaderb
   					)}
 ```
 
+</details>
+
 ---
 
 Let's also fix the same issue in the restaurant-leaderboard component:
 
 ---
 
+<details><summary>Edit file: src/components/leaderboard/restaurant-leaderboard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -27,20 +27,20 @@
   		switch (rank) {
   			case 1:
 - 				return "bg-yellow-500 text-yellow-950";
@@ -1324,7 +1584,11 @@ Let's also fix the same issue in the restaurant-leaderboard component:
   						<TableHead className="text-right">Punch Cards</TableHead>
 ```
 
+**Chunk 2**
+Lines added: 7, lines removed: 2
+
 ```diff
+@@ -56,14 +56,19 @@
   					) : (
   						restaurants.map((restaurant, index) => (
 - 							<motion.tr
@@ -1348,7 +1612,11 @@ Let's also fix the same issue in the restaurant-leaderboard component:
   													<Trophy className="mr-1 h-3 w-3" />
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -100,5 +105,6 @@
   										{restaurant.punchCardCount}
   									</TableCell>
 - 							</motion.tr>
@@ -1357,6 +1625,8 @@ Let's also fix the same issue in the restaurant-leaderboard component:
   						))
   					)}
 ```
+
+</details>
 
 ---
 
@@ -1399,7 +1669,255 @@ I'll use the 21st magic component builder to generate a better punch card compon
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - 21st_magic_component_builder: 
+"Use this tool when the user requests a new UI component—e.g., mentions /ui, /21 /21st, or asks for a button, input, dialog, table, form, banner, card, or other React component.
+This tool ONLY returns the text snippet for that UI component. 
+After calling this tool, you must edit or add files to integrate the snippet into the codebase."
 
+
+*Parameters*:
+  * message: /ui Generate a modern, visually appealing digital punch card component that shows progress towards rewards. It should have a restaurant logo/image, restaurant name, current punches, total punches needed, and a visual indication of progress. Make it interactive and include animations for a delightful user experience. Use a stamp/punch animation when adding a new punch.
+  * searchQuery: restaurant punch card progress UI
+
+*Result*:
+```tsx
+"use client";
+
+import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Award, Coffee } from "lucide-react";
+
+interface PunchCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  restaurantName: string;
+  restaurantLogo?: string;
+  currentPunches: number;
+  totalPunches: number;
+  onAddPunch?: () => void;
+}
+
+const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
+  (
+    {
+      className,
+      restaurantName,
+      restaurantLogo,
+      currentPunches,
+      totalPunches,
+      onAddPunch,
+      ...props
+    },
+    ref
+  ) => {
+    const [isAnimating, setIsAnimating] = React.useState(false);
+    const [punchPosition, setPunchPosition] = React.useState({ x: 0, y: 0 });
+
+    const handleAddPunch = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (currentPunches >= totalPunches || isAnimating) return;
+      
+      // Calculate position for the punch animation
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      setPunchPosition({ x, y });
+      
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIsAnimating(false);
+        onAddPunch?.();
+      }, 800);
+    };
+
+    return (
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={cn(
+          "relative overflow-hidden rounded-xl border border-border bg-card p-6 shadow-lg",
+          "w-80 touch-none",
+          className
+        )}
+        style={{ perspective: 1000 }}
+        {...props}
+      >
+        {/* Restaurant Info */}
+        <div className="flex items-center gap-4 mb-6">
+          <div className="h-14 w-14 rounded-full overflow-hidden bg-muted flex items-center justify-center">
+            {restaurantLogo ? (
+              <img 
+                src={restaurantLogo} 
+                alt={`${restaurantName} logo`} 
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <Coffee className="h-8 w-8 text-muted-foreground" />
+            )}
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-foreground">{restaurantName}</h3>
+            <p className="text-sm text-muted-foreground">Loyalty Card</p>
+          </div>
+        </div>
+
+        {/* Punch Progress */}
+        <div className="mb-4">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-sm font-medium text-foreground">
+              {currentPunches} of {totalPunches} punches
+            </span>
+            {currentPunches >= totalPunches && (
+              <span className="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
+                Reward Ready!
+              </span>
+            )}
+          </div>
+          <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-primary"
+              initial={{ width: 0 }}
+              animate={{ width: `${(currentPunches / totalPunches) * 100}%` }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            />
+          </div>
+        </div>
+
+        {/* Punch Grid */}
+        <div className="grid grid-cols-5 gap-2 mb-6">
+          {Array.from({ length: totalPunches }).map((_, index) => (
+            <motion.div
+              key={index}
+              className={cn(
+                "aspect-square rounded-lg border-2 flex items-center justify-center",
+                index < currentPunches
+                  ? "bg-primary/10 border-primary"
+                  : "bg-muted border-border"
+              )}
+              initial={false}
+              animate={
+                index === currentPunches - 1 && isAnimating
+                  ? { scale: [1, 1.2, 1], rotate: [0, 15, 0] }
+                  : {}
+              }
+              transition={{ duration: 0.5 }}
+            >
+              {index < currentPunches && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 500, 
+                    damping: 30,
+                    delay: index === currentPunches - 1 ? 0.2 : 0
+                  }}
+                >
+                  <Coffee className="h-6 w-6 text-primary" />
+                </motion.div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Action Button */}
+        <div className="flex justify-between items-center">
+          {currentPunches >= totalPunches ? (
+            <motion.button
+              className="w-full py-2 px-4 rounded-lg bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Award className="h-5 w-5" />
+              <span>Claim Reward</span>
+            </motion.button>
+          ) : (
+            <motion.button
+              className="w-full py-2 px-4 rounded-lg bg-secondary text-secondary-foreground font-medium relative overflow-hidden"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={handleAddPunch}
+              disabled={isAnimating}
+            >
+              Add Punch
+              <AnimatePresence>
+                {isAnimating && (
+                  <motion.div
+                    className="absolute bg-primary rounded-full"
+                    style={{ 
+                      left: punchPosition.x, 
+                      top: punchPosition.y,
+                      width: 10,
+                      height: 10,
+                    }}
+                    initial={{ scale: 0, opacity: 1 }}
+                    animate={{ 
+                      scale: 20,
+                      opacity: 0,
+                    }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8 }}
+                  />
+                )}
+              </AnimatePresence>
+            </motion.button>
+          )}
+        </div>
+
+        {/* Reward Info */}
+        {currentPunches >= totalPunches && (
+          <motion.div
+            className="mt-4 p-3 rounded-lg bg-muted/50 border border-border text-sm text-muted-foreground"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            You've earned a free coffee! Present this card to redeem.
+          </motion.div>
+        )}
+      </motion.div>
+    );
+  }
+);
+
+PunchCard.displayName = "PunchCard";
+
+export { PunchCard };
+```
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import { PunchCard } from "@/components/ui/punch-card";
+
+export default function PunchCardDemo() {
+  const [punches, setPunches] = useState(4);
+  const totalPunches = 10;
+
+  const handleAddPunch = () => {
+    if (punches < totalPunches) {
+      setPunches(prev => prev + 1);
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen p-4 bg-background">
+      <PunchCard
+        restaurantName="Coffee Haven"
+        restaurantLogo="/coffee-logo.png" // Replace with your actual logo path
+        currentPunches={punches}
+        totalPunches={totalPunches}
+        onAddPunch={handleAddPunch}
+      />
+    </div>
+  );
+}
+```
+</details>
 
 ---
 
@@ -1408,8 +1926,8 @@ Now I'll implement this component into your codebase, fixing the linter errors a
 ---
 
 <details>
-            <summary>Searched codebase "punch card types or interfaces, punch threshold" • **25** results</summary>
-        
+                <summary>Searched codebase "punch card types or interfaces, punch threshold" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/db.ts` | L32-44 |
@@ -1454,7 +1972,15 @@ Let's create the new punch card component:
 
 ---
 
+<details><summary>Edit file: src/components/ui/punch-card.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 215, lines removed: 1
+
 ```diff
+@@ -1,1 +1,215 @@
 - 
 + "use client";
 + 
@@ -1673,13 +2199,23 @@ Let's create the new punch card component:
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's update the `UserPunchCard` component to use our new component:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: 68
+
 ```diff
+@@ -1,74 +1,22 @@
   "use client";
   
 - import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -1772,13 +2308,23 @@ Now, let's update the `UserPunchCard` component to use our new component:
   }
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors in the punch-card component:
 
 ---
 
+<details><summary>Edit file: src/components/ui/punch-card.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -12,5 +12,6 @@
   export const PUNCH_THRESHOLD = 10;
   
 - interface PunchCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -1788,7 +2334,11 @@ Let's fix the linter errors in the punch-card component:
   	restaurantImage?: string;
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -121,5 +122,5 @@
   						{Array.from({ length: totalPunches }).map((_, index) => (
   							<motion.div
 - 								key={index}
@@ -1797,13 +2347,23 @@ Let's fix the linter errors in the punch-card component:
   									"aspect-square rounded-lg border-2 flex items-center justify-center",
 ```
 
+</details>
+
 ---
 
 Finally, let's update the restaurant view of the punch card to make it more visually appealing for restaurant owners/admins:
 
 ---
 
+<details><summary>Edit file: src/components/ui/restaurant-punch-card.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 141, lines removed: 1
+
 ```diff
+@@ -1,1 +1,141 @@
 - 
 + "use client";
 + 
@@ -1947,6 +2507,8 @@ Finally, let's update the restaurant view of the punch card to make it more visu
 + }
 + 
 ```
+
+</details>
 
 ---
 

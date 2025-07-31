@@ -299,7 +299,15 @@ _**Assistant**_
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -9,5 +9,5 @@
    * @returns Object with subscription status
    */
 - export function useRestaurantsSubscription({
@@ -307,6 +315,8 @@ _**Assistant**_
     onUpdate,
   }: {
 ```
+
+</details>
 
 ---
 
@@ -348,7 +358,15 @@ Let me update the useRestaurantSubscription hook to initially fetch at least 20 
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 105, lines removed: 49
+
 ```diff
+@@ -1,89 +1,145 @@
 - 'use client'
 + "use client";
   
@@ -545,13 +563,23 @@ Let me update the useRestaurantSubscription hook to initially fetch at least 20 
   
 ```
 
+</details>
+
 ---
 
 Now, let's update the restaurant-table-wrapper to use the improved hook properly:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 33, lines removed: 1
+
 ```diff
+@@ -301,7 +301,39 @@
   
     // Subscribe to real-time updates
 -   useRestaurantsSubscription({
@@ -593,6 +621,8 @@ Now, let's update the restaurant-table-wrapper to use the improved hook properly
   
     // Create a wrapped version of fetchMoreRestaurants for the RestaurantsTable
 ```
+
+</details>
 
 ---
 
@@ -659,7 +689,15 @@ Let's fix the negative OFFSET error in the useRestaurantSubscription hook:
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -1,7 +1,7 @@
 - 'use client'
 + "use client";
   
@@ -673,7 +711,11 @@ Let's fix the negative OFFSET error in the useRestaurantSubscription hook:
   /**
 ```
 
+**Chunk 2**
+Lines added: 85, lines removed: 63
+
 ```diff
+@@ -14,123 +14,145 @@
   	pageSize = 10,
   }: {
 -   onUpdate: () => Promise<void>
@@ -884,13 +926,23 @@ Let's fix the negative OFFSET error in the useRestaurantSubscription hook:
   
 ```
 
+</details>
+
 ---
 
 Now let's fix the type issues in the restaurant-table-wrapper:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -324,5 +324,10 @@
         setRestaurants((prevRestaurants) => {
           const existingIds = new Set(prevRestaurants.map((r) => r.id.toString()))
 -         const newRestaurants = subscriptionRestaurants.filter(
@@ -903,6 +955,8 @@ Now let's fix the type issues in the restaurant-table-wrapper:
             (r) => !existingIds.has(r.id.toString())
           )
 ```
+
+</details>
 
 ---
 
@@ -954,7 +1008,15 @@ Let me fix the pagination reset issue in the restaurants-table component. The ke
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 26, lines removed: 7
+
 ```diff
+@@ -307,24 +307,43 @@
     // Function to refresh the restaurant data
     const refreshData = React.useCallback(() => {
 -     // Force Next.js router refresh
@@ -1007,7 +1069,11 @@ Let me fix the pagination reset issue in the restaurants-table component. The ke
   
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -349,4 +368,7 @@
       (updatedRestaurant: RestaurantData | undefined) => {
         if (updatedRestaurant) {
 +         // Store current pagination state
@@ -1017,7 +1083,11 @@ Let me fix the pagination reset issue in the restaurants-table component. The ke
           setData((prevData) =>
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: 3
+
 ```diff
+@@ -357,12 +379,18 @@
             )
           )
 -         // Also update the filtered restaurants, though this isn't typically necessary as it's derived from data
@@ -1041,13 +1111,23 @@ Let me fix the pagination reset issue in the restaurants-table component. The ke
   
 ```
 
+</details>
+
 ---
 
 Now let's update the type for the QR code handler to fix the 'any' type error:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -754,5 +754,5 @@
   
           // Custom handler that closes the dialog after QR generation
 -         const handleQRUpdateAndClose = (updatedRestaurant: any) => {
@@ -1056,13 +1136,23 @@ Now let's update the type for the QR code handler to fix the 'any' type error:
             handleQRCodeUpdate(updatedRestaurant)
 ```
 
+</details>
+
 ---
 
 Also let's fix the final remaining 'any' type error in the refreshRestaurantTable function:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1651,5 +1651,5 @@
   }
   
 - export const refreshRestaurantTable = (router: any) => {
@@ -1070,6 +1160,8 @@ Also let's fix the final remaining 'any' type error in the refreshRestaurantTabl
     // Force Next.js router refresh
     router.refresh()
 ```
+
+</details>
 
 ---
 
@@ -1121,7 +1213,15 @@ Let's fix the reference error by using a ref for the table state instead of dire
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -301,4 +301,7 @@
       RestaurantData[][]
     >([initialData])
 + 
@@ -1131,7 +1231,11 @@ Let's fix the reference error by using a ref for the table state instead of dire
     // Track selection count for visibility check
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -307,6 +310,6 @@
     // Function to refresh the restaurant data
     const refreshData = React.useCallback(() => {
 -     // Store current pagination state
@@ -1142,7 +1246,11 @@ Let's fix the reference error by using a ref for the table state instead of dire
       // Increment trigger to force state update without resetting pagination
 ```
 
+**Chunk 3**
+Lines added: 6, lines removed: 4
+
 ```diff
+@@ -320,14 +323,16 @@
   
       // Ensure we maintain the same pagination state after refresh
 +     if (currentPagination && tableRef.current) {
@@ -1165,7 +1273,11 @@ Let's fix the reference error by using a ref for the table state instead of dire
         // Fetch new data
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -341,9 +346,11 @@
   
         // Ensure we maintain the same pagination state after refresh
 +       if (currentPagination && tableRef.current) {
@@ -1181,7 +1293,11 @@ Let's fix the reference error by using a ref for the table state instead of dire
   
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -368,6 +375,6 @@
       (updatedRestaurant: RestaurantData | undefined) => {
         if (updatedRestaurant) {
 -         // Store current pagination state
@@ -1192,7 +1308,11 @@ Let's fix the reference error by using a ref for the table state instead of dire
           // Update the local state with the updated restaurant
 ```
 
+**Chunk 6**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -384,13 +391,15 @@
   
           // Ensure we maintain the same pagination state
 +         if (currentPagination && tableRef.current) {
@@ -1212,7 +1332,11 @@ Let's fix the reference error by using a ref for the table state instead of dire
   
 ```
 
+**Chunk 7**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -1015,4 +1024,9 @@
       } as TableMeta,
     })
 + 
@@ -1223,6 +1347,8 @@ Let's fix the reference error by using a ref for the table state instead of dire
   
     const getAllRestaurants = () => {
 ```
+
+</details>
 
 ---
 
@@ -1282,7 +1408,15 @@ Let's fix the infinite loop issue in the restaurants-table component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -303,5 +303,5 @@
   
     // Add a ref to safely store table instance
 -   const tableRef = React.useRef<any>(null)
@@ -1291,7 +1425,11 @@ Let's fix the infinite loop issue in the restaurants-table component:
     // Track selection count for visibility check
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -310,7 +310,4 @@
     // Function to refresh the restaurant data
     const refreshData = React.useCallback(() => {
 -     // Safely get current pagination state if table is available
@@ -1301,7 +1439,11 @@ Let's fix the infinite loop issue in the restaurants-table component:
       setRefreshTrigger((prev) => prev + 1)
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 10
+
 ```diff
+@@ -321,19 +318,9 @@
       // Show success message
       toast.success('QR codes updated successfully')
 - 
@@ -1323,7 +1465,11 @@ Let's fix the infinite loop issue in the restaurants-table component:
         fetchRestaurants()
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 7
+
 ```diff
+@@ -344,11 +331,4 @@
         // Show success message with the provided message
         toast.success(message)
 - 
@@ -1337,7 +1483,11 @@ Let's fix the infinite loop issue in the restaurants-table component:
       [fetchRestaurants]
 ```
 
+**Chunk 5**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -375,7 +355,4 @@
       (updatedRestaurant: RestaurantData | undefined) => {
         if (updatedRestaurant) {
 -         // Safely get current pagination state if table is available
@@ -1347,7 +1497,11 @@ Let's fix the infinite loop issue in the restaurants-table component:
           setData((prevData) =>
 ```
 
+**Chunk 6**
+Lines added: undefined, lines removed: 7
+
 ```diff
+@@ -389,11 +366,4 @@
           // Show success message
           toast.success('QR code created successfully')
 - 
@@ -1361,7 +1515,11 @@ Let's fix the infinite loop issue in the restaurants-table component:
           // Fall back to the gentle refresh method
 ```
 
+**Chunk 7**
+Lines added: 25, lines removed: 2
+
 ```diff
+@@ -1025,8 +995,31 @@
     })
   
 -   // Store table instance in ref after initialization
@@ -1396,6 +1554,8 @@ Let's fix the infinite loop issue in the restaurants-table component:
   
     const getAllRestaurants = () => {
 ```
+
+</details>
 
 ---
 
@@ -1457,7 +1617,15 @@ Let's fix the pagination reset issue with a more direct approach:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 2
+
 ```diff
+@@ -302,6 +302,9 @@
     >([initialData])
   
 -   // Add a ref to safely store table instance
@@ -1471,7 +1639,11 @@ Let's fix the pagination reset issue with a more direct approach:
     // Track selection count for visibility check
 ```
 
+**Chunk 2**
+Lines added: 37, lines removed: 25
+
 ```diff
+@@ -310,49 +313,61 @@
     // Function to refresh the restaurant data
     const refreshData = React.useCallback(() => {
 -     // Increment trigger to force state update without resetting pagination
@@ -1560,7 +1732,11 @@ Let's fix the pagination reset issue with a more direct approach:
           setData((prevData) =>
 ```
 
+**Chunk 3**
+Lines added: 10, lines removed: 2
+
 ```diff
+@@ -366,10 +381,18 @@
           // Show success message
           toast.success('QR code created successfully')
 + 
@@ -1583,7 +1759,11 @@ Let's fix the pagination reset issue with a more direct approach:
   
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -955,5 +978,5 @@
     )
   
 -   // Define data table using TanStack
@@ -1592,7 +1772,11 @@ Let's fix the pagination reset issue with a more direct approach:
       data: filteredRestaurants as unknown as RestaurantData[],
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 7
+
 ```diff
+@@ -962,12 +985,8 @@
         sorting,
         rowSelection,
 -     },
@@ -1610,7 +1794,11 @@ Let's fix the pagination reset issue with a more direct approach:
       enableRowSelection: true,
 ```
 
+**Chunk 6**
+Lines added: 4, lines removed: 40
+
 ```diff
+@@ -977,49 +996,13 @@
       getSortedRowModel: getSortedRowModel(),
       getPaginationRowModel: getPaginationRowModel(),
 -     // Add pagination change handler for scroll behavior
@@ -1666,7 +1854,11 @@ Let's fix the pagination reset issue with a more direct approach:
     const getAllRestaurants = () => {
 ```
 
+**Chunk 7**
+Lines added: undefined, lines removed: 11
+
 ```diff
+@@ -1128,15 +1111,4 @@
       [router, refreshTableData]
     )
 - 
@@ -1684,13 +1876,23 @@ Let's fix the pagination reset issue with a more direct approach:
     const next = useCallback(() => {
 ```
 
+</details>
+
 ---
 
 Oops, I see the model accidentally removed the QR code bulk operations hooks. Let's add those back and fix any other issues:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: undefined
+
 ```diff
+@@ -1119,4 +1119,20 @@
       table.previousPage()
     }, [table])
 + 
@@ -1712,6 +1914,8 @@ Oops, I see the model accidentally removed the QR code bulk operations hooks. Le
   
     return (
 ```
+
+</details>
 
 ---
 

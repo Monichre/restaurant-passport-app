@@ -50,8 +50,8 @@ I'll search for `handleDownload` and the QR code container in `qr-code-generator
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` |
 
 </details>
 
@@ -62,30 +62,30 @@ I'll search for `handleDownload` and the QR code container in `qr-code-generator
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L34 | `const handleDownload = useCallback(() => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L181 | `handleDownload,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx` | L36 | `const handleDownload = useCallback(() => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx` | L227 | `handleDownload,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L66 | `const handleDownload = () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L156 | `onClick={handleDownload}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L258 | `onClick={handleDownload}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L85 | `const handleDownload = useCallback(() => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L295 | `const handleDownloadAll = useCallback(async () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L365 | `handleDownload,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L387 | `handleDownloadAll,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L36 | `handleDownloadAll = async () => {},` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L141 | `<Button onClick={handleDownloadAll} variant="outline">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L126 | `handleDownloadAll: fn(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L149 | `handleDownloadAll: fn(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L172 | `handleDownloadAll: fn(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L195 | `handleDownloadAll: fn(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L218 | `handleDownloadAll: fn(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L241 | `handleDownloadAll: fn(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L260 | `handleDownloadAll: fn(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1075 | `handleDownloadAll = () => {},` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1174 | `onClick={handleDownloadAll}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L55 | `handleDownloadAll = async () => {},` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L190 | `onClick={handleDownloadAll}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L35 | `const handleDownload = useCallback(() => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L182 | `handleDownload,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx` | L37 | `const handleDownload = useCallback(() => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx` | L228 | `handleDownload,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L67 | `const handleDownload = () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L157 | `onClick={handleDownload}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L259 | `onClick={handleDownload}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L86 | `const handleDownload = useCallback(() => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L296 | `const handleDownloadAll = useCallback(async () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L366 | `handleDownload,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L388 | `handleDownloadAll,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L37 | `handleDownloadAll = async () => {},` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L142 | `<Button onClick={handleDownloadAll} variant="outline">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L127 | `handleDownloadAll: fn(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L150 | `handleDownloadAll: fn(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L173 | `handleDownloadAll: fn(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L196 | `handleDownloadAll: fn(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L219 | `handleDownloadAll: fn(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L242 | `handleDownloadAll: fn(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L261 | `handleDownloadAll: fn(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1076 | `handleDownloadAll = () => {},` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1175 | `onClick={handleDownloadAll}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L56 | `handleDownloadAll = async () => {},` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L191 | `onClick={handleDownloadAll}` |
 
 </details>
 
@@ -138,7 +138,15 @@ I will now make this change.
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+Attach ref={qrRef} to the main QR code display div in both the saved and preview states, so that handleDownload always has access to the QR code container. This will prevent the 'QR code container not found' error when clicking Download.
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -142,5 +142,5 @@
           {restaurant.qrCodeUrl && !generating ? (
             <div className='flex flex-col items-center'>
 -             <div className='bg-white p-2 rounded-md shadow-sm'>
@@ -147,7 +155,11 @@ I will now make this change.
               </div>
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -244,5 +244,5 @@
           {restaurant.qrCodeUrl && !generating ? (
             <div className='flex flex-col items-center'>
 -             <div className='bg-white p-4 rounded-md shadow-sm mb-3'>
@@ -155,6 +167,8 @@ I will now make this change.
                 <QRCodeSVG value={restaurant.qrCodeUrl} size={200} />
               </div>
 ```
+
+</details>
 
 ---
 

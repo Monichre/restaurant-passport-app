@@ -33,7 +33,17 @@ First, let's examine if there are any console error logs we can check.</think>Le
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - getConsoleErrors: Check our browsers console errors
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -41,7 +51,17 @@ Let's look at the full console logs to get more information about the hydration 
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - getConsoleLogs: Check our browser logs
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -49,7 +69,17 @@ Let's take a screenshot to see the current state of the application.
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: undefined - takeScreenshot: Take a screenshot of the current browser tab
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+Failed to take screenshot: fetch failed
+</details>
 
 ---
 
@@ -127,90 +157,90 @@ Let's search for "use client" directives, which indicate client-side components 
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-server-sent-event.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-geolocation.tsx` | L1 | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSearch.ts` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-mobile.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/user-leaderboard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L55 | `* - The component is client-side only ("use client")` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-detail-modal.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/prize-card.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/punch-cards-list.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-dashboard-content.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-form.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/expandable-admin-menu.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-content.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-deals-display.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/data-table/dashboard-table.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/bento-grid.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/btn-08.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/restaurant-leaderboard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/alert-dialog.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/textarea.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dropdown-menu.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/checkbox.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/separator.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/switch.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/label.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tooltip.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sheet.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/in-view.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punch-card.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/progress.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tabs.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/avatar.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/hero-parallax.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantList.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/layout.tsx` | L20 | `// Render the admin UI with the SidebarProvider (which uses "use client")` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantList.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | Lundefined | `"use client";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | Lundefined | `"use client"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | Lundefined | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.ts` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-server-sent-event.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-geolocation.tsx` | L2 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSearch.ts` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-mobile.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/user-leaderboard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L56 | `* - The component is client-side only ("use client")` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-detail-modal.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/prize-card.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/punch-cards-list.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-dashboard-content.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-form.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/expandable-admin-menu.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-content.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-deals-display.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/data-table/dashboard-table.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/bento-grid.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/btn-08.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/restaurant-leaderboard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/alert-dialog.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/textarea.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dropdown-menu.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/checkbox.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/separator.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/switch.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/label.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tooltip.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sheet.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/in-view.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punch-card.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/progress.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tabs.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/avatar.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/hero-parallax.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantList.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/layout.tsx` | L21 | `// Render the admin UI with the SidebarProvider (which uses "use client")` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantList.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L1 | `"use client";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L1 | `"use client"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L1 | `"use client";` |
 
 </details>
 
@@ -225,63 +255,63 @@ Now, let's look for components that might be using `Date`, `Math.random`, or oth
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/point-balances/point-balances.ts` | L64 | `updatedAt: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L44 | `const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L45 | `const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L190 | ``deal-skeleton-${Math.random().toString(36).substring(2, 11)}-${i}`,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/card-10.tsx` | L87 | `<span className="text-zinc-500 font-medium">{new Date()}</span>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L103 | `delay: Math.random() * 5,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L104 | `duration: Math.random() * 3 + 2,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L21 | `createdAt: new Date("2023-06-15"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L22 | `updatedAt: new Date("2023-06-15"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L40 | `createdAt: new Date("2023-07-01"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L41 | `updatedAt: new Date("2023-07-10"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L59 | `createdAt: new Date("2023-05-20"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L60 | `updatedAt: new Date("2023-07-15"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/sse/route.ts` | L25 | `timestamp: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/sse/route.ts` | L85 | `timestamp: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L18 | `const id = Date.now().toString();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/punch-cards-list.tsx` | L20 | `return new Date(date).toLocaleDateString("en-US", {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L148 | `{new Date(deal.createdAt).toLocaleDateString()}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L151 | `{new Date(deal.updatedAt).toLocaleDateString()}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/prize-card.tsx` | L55 | `Created: {new Date(prize.createdAt)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L654 | `return `${Math.floor(Math.random() * 40) + 50}%`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L100 | `? new Date(prize.createdAt)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L101 | `: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L108 | `? new Date(card.updatedAt)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L109 | `: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L118 | `createdAt: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L119 | `expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L126 | `createdAt: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L127 | `expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L346 | `const updatedDate = new Date(card.updatedAt);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L347 | `const thirtyDaysAgo = new Date();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punch-card.tsx` | L92 | `Last updated: {new Date(lastUpdated)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/scrape-restaurants.js` | L276 | `scrapedAt: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/firecrawl-extractor.js` | L132 | `scrapedAt: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/hybrid-scraper.js` | L324 | `scrapedAt: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L654 | `return `${Math.floor(Math.random() * 40) + 50}%`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L100 | `? new Date(prize.createdAt)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L101 | `: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L108 | `? new Date(card.updatedAt)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L109 | `: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L118 | `createdAt: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L119 | `expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L126 | `createdAt: new Date(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L127 | `expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L346 | `const updatedDate = new Date(card.updatedAt);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L347 | `const thirtyDaysAgo = new Date();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L44 | `const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L45 | `const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L190 | ``deal-skeleton-${Math.random().toString(36).substring(2, 11)}-${i}`,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L148 | `{new Date(deal.createdAt).toLocaleDateString()}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L151 | `{new Date(deal.updatedAt).toLocaleDateString()}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L21 | `createdAt: new Date("2023-06-15"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L22 | `updatedAt: new Date("2023-06-15"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L40 | `createdAt: new Date("2023-07-01"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L41 | `updatedAt: new Date("2023-07-10"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L59 | `createdAt: new Date("2023-05-20"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L60 | `updatedAt: new Date("2023-07-15"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/point-balances/point-balances.ts` | L65 | `updatedAt: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L45 | `const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L46 | `const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L191 | ``deal-skeleton-${Math.random().toString(36).substring(2, 11)}-${i}`,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/card-10.tsx` | L88 | `<span className="text-zinc-500 font-medium">{new Date()}</span>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L104 | `delay: Math.random() * 5,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/magicui/dot-pattern.tsx` | L105 | `duration: Math.random() * 3 + 2,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L22 | `createdAt: new Date("2023-06-15"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L23 | `updatedAt: new Date("2023-06-15"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L41 | `createdAt: new Date("2023-07-01"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L42 | `updatedAt: new Date("2023-07-10"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L60 | `createdAt: new Date("2023-05-20"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L61 | `updatedAt: new Date("2023-07-15"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/sse/route.ts` | L26 | `timestamp: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/sse/route.ts` | L86 | `timestamp: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L19 | `const id = Date.now().toString();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/punch-cards-list.tsx` | L21 | `return new Date(date).toLocaleDateString("en-US", {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L149 | `{new Date(deal.createdAt).toLocaleDateString()}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L152 | `{new Date(deal.updatedAt).toLocaleDateString()}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/prize-card.tsx` | L56 | `Created: {new Date(prize.createdAt)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L655 | `return `${Math.floor(Math.random() * 40) + 50}%`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L101 | `? new Date(prize.createdAt)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L102 | `: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L109 | `? new Date(card.updatedAt)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L110 | `: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L119 | `createdAt: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L120 | `expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L127 | `createdAt: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L128 | `expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L347 | `const updatedDate = new Date(card.updatedAt);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L348 | `const thirtyDaysAgo = new Date();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punch-card.tsx` | L93 | `Last updated: {new Date(lastUpdated)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/scrape-restaurants.js` | L277 | `scrapedAt: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/firecrawl-extractor.js` | L133 | `scrapedAt: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/hybrid-scraper.js` | L325 | `scrapedAt: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L655 | `return `${Math.floor(Math.random() * 40) + 50}%`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L101 | `? new Date(prize.createdAt)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L102 | `: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L109 | `? new Date(card.updatedAt)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L110 | `: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L119 | `createdAt: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L120 | `expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L127 | `createdAt: new Date(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L128 | `expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L347 | `const updatedDate = new Date(card.updatedAt);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L348 | `const thirtyDaysAgo = new Date();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L45 | `const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L46 | `const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L191 | ``deal-skeleton-${Math.random().toString(36).substring(2, 11)}-${i}`,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L149 | `{new Date(deal.createdAt).toLocaleDateString()}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L152 | `{new Date(deal.updatedAt).toLocaleDateString()}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L22 | `createdAt: new Date("2023-06-15"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L23 | `updatedAt: new Date("2023-06-15"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L41 | `createdAt: new Date("2023-07-01"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L42 | `updatedAt: new Date("2023-07-10"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L60 | `createdAt: new Date("2023-05-20"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L61 | `updatedAt: new Date("2023-07-15"),` |
 
 </details>
 
@@ -405,7 +435,15 @@ Let's fix the restaurant-quick-view component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 13, lines removed: undefined
+
 ```diff
+@@ -68,4 +68,17 @@
   	restaurantId: bigint;
   }
 + 
@@ -425,7 +463,11 @@ Let's fix the restaurant-quick-view component:
   export function RestaurantQuickView({
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -96,17 +109,17 @@
   						prizes: data.prizes.map((prize) => ({
   							...prize,
 - 							// Convert createdAt string to Date safely
@@ -451,7 +493,11 @@ Let's fix the restaurant-quick-view component:
   						// Initialize deals with mock data if it doesn't exist
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -117,6 +130,8 @@
   								description: "50% off on all drinks from 5PM to 7PM",
   								isActive: true,
 - 								createdAt: new Date(),
@@ -464,7 +510,11 @@ Let's fix the restaurant-quick-view component:
   							{
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -125,6 +140,8 @@
   								description: "Buy one get one free on desserts on weekends",
   								isActive: true,
 - 								createdAt: new Date(),
@@ -477,6 +527,8 @@ Let's fix the restaurant-quick-view component:
   						],
 ```
 
+</details>
+
 ---
 
 Now let's look for any remaining places in this component where dates might be rendered directly:
@@ -488,26 +540,26 @@ Now let's look for any remaining places in this component where dates might be r
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L76 | `typeof dateString === "string" ? new Date(dateString) : dateString;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `return date.toLocaleDateString();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L114 | `: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L122 | `: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L131 | `createdAt: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L132 | `expiresAt: new Date(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L141 | `createdAt: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L142 | `expiresAt: new Date(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L363 | `const updatedDate = new Date(card.updatedAt);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L364 | `const thirtyDaysAgo = new Date();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L76 | `typeof dateString === "string" ? new Date(dateString) : dateString;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `return date.toLocaleDateString();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L114 | `: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L122 | `: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L131 | `createdAt: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L132 | `expiresAt: new Date(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L141 | `createdAt: new Date().toISOString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L142 | `expiresAt: new Date(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L363 | `const updatedDate = new Date(card.updatedAt);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L364 | `const thirtyDaysAgo = new Date();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `typeof dateString === "string" ? new Date(dateString) : dateString;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `return date.toLocaleDateString();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L115 | `: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L123 | `: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L132 | `createdAt: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L133 | `expiresAt: new Date(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L142 | `createdAt: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L143 | `expiresAt: new Date(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L364 | `const updatedDate = new Date(card.updatedAt);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L365 | `const thirtyDaysAgo = new Date();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `typeof dateString === "string" ? new Date(dateString) : dateString;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `return date.toLocaleDateString();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L115 | `: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L123 | `: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L132 | `createdAt: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L133 | `expiresAt: new Date(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L142 | `createdAt: new Date().toISOString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L143 | `expiresAt: new Date(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L364 | `const updatedDate = new Date(card.updatedAt);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L365 | `const thirtyDaysAgo = new Date();` |
 
 </details>
 

@@ -45,7 +45,15 @@ First, fix the type error in the hook:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-punch-card-subscription.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -41,5 +41,7 @@
   
   				// Call your existing API to get punch cards
 - 				const existingPunchCards: any = await getPunchCardsByUserId(userId);
@@ -56,7 +64,11 @@ First, fix the type error in the hook:
   				console.log("🚀 ~ fetchPunchCards ~ punchCards:", existingPunchCards);
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -107,5 +109,5 @@
   		// Clean up subscription on unmount
   		return () => {
 - 			supabase.channel("punch-cards").unsubscribe();
@@ -65,13 +77,23 @@ First, fix the type error in the hook:
   	}, [userId]);
 ```
 
+</details>
+
 ---
 
 Now, fix the server component issue by creating a client wrapper component:
 
 ---
 
+<details><summary>Edit file: src/app/users/[id]/profile/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,8 +2,8 @@
   import {getUserByClerkId} from '@/db/models/users/users'
   import {auth} from '@clerk/nextjs/server'
 + import {getPunchCardsByUserId} from '@/db/models/punch-cards'
@@ -83,7 +105,11 @@ Now, fix the server component issue by creating a client wrapper component:
   // Define viewport metadata as per Next.js recommendations
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -22,7 +22,6 @@
     if (!user) return <div>Not logged in</div>
   
 -   const {punchCards} = usePunchCardSubscription(user.id)
@@ -95,7 +121,11 @@ Now, fix the server component issue by creating a client wrapper component:
     return (
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -42,5 +41,5 @@
   
         {/* Display user's punch cards with real-time updates */}
 -       <UserPunchCards user={user} initialPunchCards={punchCards} />
@@ -103,6 +133,8 @@ Now, fix the server component issue by creating a client wrapper component:
   
         {/* {user?.id && <UserScanQrCode user={user} />} */}
 ```
+
+</details>
 
 ---
 
@@ -148,7 +180,15 @@ MacBookPro:restaurant-passport-app liamellis$
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 7
+
 ```diff
+@@ -21,13 +21,10 @@
   import {Passport} from '@/features/users/passport'
   
 - interface UserPunchCardsProps {
@@ -168,7 +208,11 @@ MacBookPro:restaurant-passport-app liamellis$
     const highlightId = searchParams.get('highlight')
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -75,5 +72,6 @@
         // Find the punch card with the matching restaurant ID
         const matchingCard = displayPunchCards.find(
 -         (card) => String(card.restaurantId) === highlightId
@@ -178,7 +222,11 @@ MacBookPro:restaurant-passport-app liamellis$
   
 ```
 
+**Chunk 3**
+Lines added: 51, lines removed: 67
+
 ```diff
+@@ -99,88 +97,72 @@
     }, [highlightId, displayPunchCards])
   
 -   // If loading and no initial punch cards
@@ -320,13 +368,23 @@ MacBookPro:restaurant-passport-app liamellis$
     )
 ```
 
+</details>
+
 ---
 
 The file has a lot of unrelated code. Let's start from scratch with a clean implementation:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 2
+
 ```diff
+@@ -23,8 +23,11 @@
   type UserPunchCardsProps = {
     user: User
 -   initialPunchCards: any // We'll handle type conversion inside
@@ -342,7 +400,11 @@ The file has a lot of unrelated code. Let's start from scratch with a clean impl
     const highlightId = searchParams.get('highlight')
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -126,5 +129,5 @@
           {displayPunchCards.map((card: PunchCardWithRestaurant) => (
             <div
 -             key={card.id.toString()}
@@ -350,6 +412,8 @@ The file has a lot of unrelated code. Let's start from scratch with a clean impl
               className='border rounded-lg p-4 hover:shadow-md transition-shadow'
             >
 ```
+
+</details>
 
 ---
 
@@ -368,7 +432,15 @@ MacBookPro:restaurant-passport-app liamellis$
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 172
+
 ```diff
+@@ -1,173 +1,1 @@
 - 'use client'
 - 
 - import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card'
@@ -544,13 +616,23 @@ MacBookPro:restaurant-passport-app liamellis$
    
 ```
 
+</details>
+
 ---
 
 Let's add the new implementation:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 101, lines removed: undefined
+
 ```diff
+@@ -1,1 +1,102 @@
 + 'use client'
 + 
 + import {
@@ -655,13 +737,23 @@ Let's add the new implementation:
   
 ```
 
+</details>
+
 ---
 
 Now we need to fix the type issue in the ProfilePage component:
 
 ---
 
+<details><summary>Edit file: src/app/users/[id]/profile/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -6,4 +6,5 @@
   import {UserPunchCards} from '@/features/users/UserPunchCards'
   import {BentoGrid} from '@/components/kokonutui/bento-grid'
 + import type {PunchCardWithRestaurant} from '@/hooks/use-punch-card-subscription'
@@ -669,7 +761,11 @@ Now we need to fix the type issue in the ProfilePage component:
   // Define viewport metadata as per Next.js recommendations
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -23,5 +24,7 @@
   
     // Fetch initial punch cards data server-side
 -   const initialPunchCards = await getPunchCardsByUserId(user.id)
@@ -679,6 +775,8 @@ Now we need to fix the type issue in the ProfilePage component:
   
     return (
 ```
+
+</details>
 
 ---
 
@@ -782,7 +880,15 @@ But this file is being used in client-side components through the `supabase` var
 
 ---
 
+<details><summary>Edit file: src/db/supabase-client.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 47, lines removed: 1
+
 ```diff
+@@ -1,1 +1,47 @@
 - 
 + import { createClient } from "@supabase/supabase-js";
 + 
@@ -833,13 +939,23 @@ But this file is being used in client-side components through the `supabase` var
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's fix the linter error and update the use-punch-card-subscription.ts file to use this client-safe version:
 
 ---
 
+<details><summary>Edit file: src/db/supabase-client.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -2,6 +2,6 @@
   
   // This version is safe to use in client components
 - const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -850,13 +966,23 @@ Now, let's fix the linter error and update the use-punch-card-subscription.ts fi
   if (!supabaseUrl || !supabaseAnonKey) {
 ```
 
+</details>
+
 ---
 
 Now let's update the use-punch-card-subscription.ts hook to use the client-safe Supabase client:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-punch-card-subscription.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -5,5 +5,5 @@
   import type { PunchCard } from "@/types/db";
   import { getPunchCardsByUserId } from "@/db/models/punch-cards";
 - import { supabase } from "@/db/supabase";
@@ -865,7 +991,11 @@ Now let's update the use-punch-card-subscription.ts hook to use the client-safe 
   export type PunchCardWithRestaurant = {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -70,5 +70,5 @@
   
   		// Subscribe to punch card changes for this user
 - 		const subscription = supabase
@@ -873,6 +1003,8 @@ Now let's update the use-punch-card-subscription.ts hook to use the client-safe 
   			.channel("punch-cards")
   			.on(
 ```
+
+</details>
 
 ---
 
@@ -902,7 +1034,15 @@ Now, let's update our approach by creating a client-safe API endpoint for fetchi
 
 ---
 
+<details><summary>Edit file: src/app/api/punch-cards/route.ts</summary>
+
+Create an API endpoint to fetch punch cards that can be called from the client
+
+**Chunk 1**
+Lines added: 42, lines removed: 1
+
 ```diff
+@@ -1,1 +1,42 @@
 - 
 + import { getPunchCardsByUserId } from "@/db/models/punch-cards";
 + import { type NextRequest, NextResponse } from "next/server";
@@ -948,9 +1088,19 @@ Now, let's update our approach by creating a client-safe API endpoint for fetchi
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/hooks/use-punch-card-subscription.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 14, lines removed: 6
+
 ```diff
+@@ -40,11 +40,19 @@
   				setIsLoading(true);
   
 - 				// Call your existing API to get punch cards
@@ -978,7 +1128,11 @@ Now, let's update our approach by creating a client-safe API endpoint for fetchi
   				console.error("Error fetching punch cards:", err);
 ```
 
+**Chunk 2**
+Lines added: 8, lines removed: 10
+
 ```diff
+@@ -84,20 +92,18 @@
   
   					try {
 - 						// Refresh the entire punch cards list to ensure we have the latest data
@@ -1009,9 +1163,19 @@ Now, let's update our approach by creating a client-safe API endpoint for fetchi
   						console.error("Error updating punch cards:", err);
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/users/[id]/profile/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -2,9 +2,8 @@
   import {getUserByClerkId} from '@/db/models/users/users'
   import {auth} from '@clerk/nextjs/server'
 - import {getPunchCardsByUserId} from '@/db/models/punch-cards'
@@ -1024,7 +1188,11 @@ Now, let's update our approach by creating a client-safe API endpoint for fetchi
   // Define viewport metadata as per Next.js recommendations
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 4
+
 ```diff
+@@ -23,8 +22,6 @@
     if (!user) return <div>Not logged in</div>
   
 -   // Fetch initial punch cards data server-side
@@ -1036,6 +1204,8 @@ Now, let's update our approach by creating a client-safe API endpoint for fetchi
   
     return (
 ```
+
+</details>
 
 ---
 

@@ -38,9 +38,9 @@ Let me search for these files first.</think>Let me add a Deals section to the Ad
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` |
 
 </details>
 
@@ -409,7 +409,8 @@ export default async function handler(req, res) {
 
 13. Summary
 
-This Next.js + TypeScript application integrates Clerk for authentication, Supabase for the database, Tailwind CSS + ShadCN/UI for styling, and Framer Motion for animation. It includes robust role-based authorization for Users, Restaurant Admins, and System Admins. The platform offers digital punch cards, real-time QR code validation, prize management, gamified point transfers, achievements, and analytics dashboards. The included Drizzle ORM schema and CRUD/REST endpoints illustrate how data is managed and accessed, ensuring a clear, maintainable foundation for future growth and enhancements.```
+This Next.js + TypeScript application integrates Clerk for authentication, Supabase for the database, Tailwind CSS + ShadCN/UI for styling, and Framer Motion for animation. It includes robust role-based authorization for Users, Restaurant Admins, and System Admins. The platform offers digital punch cards, real-time QR code validation, prize management, gamified point transfers, achievements, and analytics dashboards. The included Drizzle ORM schema and CRUD/REST endpoints illustrate how data is managed and accessed, ensuring a clear, maintainable foundation for future growth and enhancements.
+```
 
 ---
 
@@ -425,7 +426,15 @@ Now I'll create the necessary files for the Deals management in the admin sectio
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 15, lines removed: 1
+
 ```diff
+@@ -48,5 +48,19 @@
   		],
   	},
 - 
@@ -448,6 +457,8 @@ Now I'll create the necessary files for the Deals management in the admin sectio
   		title: "Settings",
 ```
 
+</details>
+
 ---
 
 Now, let's create the main deals page with a table UI for listing deals:
@@ -469,7 +480,15 @@ Now, let's create the page.tsx file for the deals listing page:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 36, lines removed: 1
+
 ```diff
+@@ -1,1 +1,36 @@
 - 
 + import { DealsTable } from "@/components/admin/deals/deals-table";
 + import { DealFilters } from "@/components/admin/deals/deal-filters";
@@ -509,6 +528,8 @@ Now, let's create the page.tsx file for the deals listing page:
 + 
 ```
 
+</details>
+
 ---
 
 Now let's create the deals components directory and files:
@@ -530,7 +551,15 @@ Now, let's create the deals table component:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 267, lines removed: 1
+
 ```diff
+@@ -1,1 +1,267 @@
 - 
 + "use client";
 + 
@@ -801,13 +830,23 @@ Now, let's create the deals table component:
 + 
 ```
 
+</details>
+
 ---
 
 Let's create the deal filters component:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 116, lines removed: 1
+
 ```diff
+@@ -1,1 +1,116 @@
 - 
 + "use client";
 + 
@@ -927,13 +966,23 @@ Let's create the deal filters component:
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's fix the linter errors in the deals-table component:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -177,4 +177,5 @@
   											</Link>
   											<button
 + 												type="button"
@@ -941,7 +990,11 @@ Now, let's fix the linter errors in the deals-table component:
   												disabled={isDeleting === deal.id}
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -211,16 +212,16 @@
   			<div className="border-t border-gray-200 px-4 py-3 sm:px-6">
   				<div className="flex flex-1 justify-between sm:hidden">
 - 					<a
@@ -966,7 +1019,11 @@ Now, let's fix the linter errors in the deals-table component:
   				<div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: 9
+
 ```diff
+@@ -237,25 +238,25 @@
   							aria-label="Pagination"
   						>
 - 							<a
@@ -1003,18 +1060,30 @@ Now, let's fix the linter errors in the deals-table component:
   					</div>
 ```
 
+</details>
+
 ---
 
 Now let's create an index.ts file in the deals components directory to export the components:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -1,1 +1,3 @@
 - 
 + export { DealsTable } from "./deals-table";
 + export { DealFilters } from "./deal-filters";
 + 
 ```
+
+</details>
 
 ---
 
@@ -1022,7 +1091,15 @@ Let's create the "new deal" page to allow administrators to add new deals:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 24, lines removed: 1
+
 ```diff
+@@ -1,1 +1,24 @@
 - 
 + import { NewDealForm } from "@/components/admin/deals/new-deal-form";
 + 
@@ -1050,13 +1127,23 @@ Let's create the "new deal" page to allow administrators to add new deals:
 + 
 ```
 
+</details>
+
 ---
 
 Let's create the new deal form component:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 248, lines removed: 1
+
 ```diff
+@@ -1,1 +1,248 @@
 - 
 + "use client";
 + 
@@ -1308,18 +1395,30 @@ Let's create the new deal form component:
 + 
 ```
 
+</details>
+
 ---
 
 Now let's update the index file to export the new deal form:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -1,3 +1,4 @@
   export { DealsTable } from "./deals-table";
   export { DealFilters } from "./deal-filters";
 + export { NewDealForm } from "./new-deal-form";
   
 ```
+
+</details>
 
 ---
 
@@ -1327,7 +1426,15 @@ Let's create a detail view page for viewing a specific deal:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 32, lines removed: 1
+
 ```diff
+@@ -1,1 +1,32 @@
 - 
 + import { DealDetail } from "@/components/admin/deals/deal-detail";
 + 
@@ -1363,6 +1470,8 @@ Let's create a detail view page for viewing a specific deal:
 + 
 ```
 
+</details>
+
 ---
 
 Now let's create the deal detail component:
@@ -1396,7 +1505,15 @@ Let's implement these components.</think>I'll create the deal-detail component a
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 280, lines removed: 1
+
 ```diff
+@@ -1,1 +1,280 @@
 - 
 + "use client";
 + 
@@ -1680,13 +1797,23 @@ Let's implement these components.</think>I'll create the deal-detail component a
 + 
 ```
 
+</details>
+
 ---
 
 Now let's create the edit page for deals:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/[id]/edit/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 24, lines removed: 1
+
 ```diff
+@@ -1,1 +1,24 @@
 - 
 + import { EditDealForm } from "@/components/admin/deals/edit-deal-form";
 + 
@@ -1714,13 +1841,23 @@ Now let's create the edit page for deals:
 + 
 ```
 
+</details>
+
 ---
 
 Now let's create the edit form component:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 387, lines removed: 1
+
 ```diff
+@@ -1,1 +1,387 @@
 - 
 + "use client";
 + 
@@ -2111,13 +2248,23 @@ Now let's create the edit form component:
 + 
 ```
 
+</details>
+
 ---
 
 Now let's update the index.ts file to include our new components:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -2,3 +2,5 @@
   export { DealFilters } from "./deal-filters";
   export { NewDealForm } from "./new-deal-form";
 + export { DealDetail } from "./deal-detail";
@@ -2125,13 +2272,23 @@ Now let's update the index.ts file to include our new components:
   
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors in the deal-detail.tsx file:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 5
+
 ```diff
+@@ -139,9 +139,9 @@
   			<div className="bg-white rounded-lg shadow-sm p-6">
   				<div className="animate-pulse space-y-4">
 - 					<div className="h-8 bg-gray-200 rounded w-1/3"></div>
@@ -2148,13 +2305,23 @@ Let's fix the linter errors in the deal-detail.tsx file:
   			</div>
 ```
 
+</details>
+
 ---
 
 Let's also fix the linter errors in the edit-deal-form.tsx file:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -212,8 +212,8 @@
   		return (
   			<div className="animate-pulse space-y-4">
 - 				<div className="h-10 bg-gray-200 rounded w-1/2"></div>
@@ -2168,6 +2335,8 @@ Let's also fix the linter errors in the edit-deal-form.tsx file:
   			</div>
   		);
 ```
+
+</details>
 
 ---
 

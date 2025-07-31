@@ -39,8 +39,8 @@ I'll implement the functionality to display user raffle entries in the UserPunch
 ---
 
 <details>
-            <summary>Searched codebase "usePunchCardSubscription implementation" • **25** results</summary>
-        
+                <summary>Searched codebase "usePunchCardSubscription implementation" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/hooks/use-punch-card-subscription.ts` | L74-137 |
@@ -78,8 +78,8 @@ Now, let me check the raffle entries model/database to understand how to access 
 ---
 
 <details>
-            <summary>Searched codebase "raffle entries model or database" • **25** results</summary>
-        
+                <summary>Searched codebase "raffle entries model or database" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/db.ts` | L57-67 |
@@ -117,8 +117,8 @@ I need to check if there's an API endpoint for raffle entries:
 ---
 
 <details>
-            <summary>Searched codebase "api raffle entries" • **23** results</summary>
-        
+                <summary>Searched codebase "api raffle entries" • **23** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/app/api/raffle-entries/route.ts` | L1-50 |
@@ -154,8 +154,8 @@ Let me check if there's an existing API endpoint specifically for user raffle en
 ---
 
 <details>
-            <summary>Searched codebase "api user raffle entries" • **23** results</summary>
-        
+                <summary>Searched codebase "api user raffle entries" • **23** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/api.ts` | L174-187 |
@@ -195,7 +195,15 @@ First, I'll create a new hook to fetch raffle entries by user ID with real-time 
 
 ---
 
+<details><summary>Edit file: src/hooks/use-raffle-entries-subscription.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 104, lines removed: 1
+
 ```diff
+@@ -1,1 +1,104 @@
 - 
 + "use client";
 + 
@@ -303,13 +311,23 @@ First, I'll create a new hook to fetch raffle entries by user ID with real-time 
 + 
 ```
 
+</details>
+
 ---
 
 Now I need to create an API endpoint for fetching raffle entries by user ID:
 
 ---
 
+<details><summary>Edit file: src/app/api/raffle-entries/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 28, lines removed: 8
+
 ```diff
+@@ -1,16 +1,36 @@
   import { NextResponse } from "next/server";
 - import { getRaffleEntries } from "@/db/models/raffle-entries";
 + import {
@@ -356,7 +374,11 @@ Now I need to create an API endpoint for fetching raffle entries by user ID:
   					punchCard: {
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 3
+
 ```diff
+@@ -22,14 +42,17 @@
   				},
   			});
 + 		}
@@ -379,18 +401,30 @@ Now I need to create an API endpoint for fetching raffle entries by user ID:
   				description: "",
 ```
 
+</details>
+
 ---
 
 Now I'll expose the hook in the hooks index file:
 
 ---
 
+<details><summary>Edit file: src/hooks/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -10,3 +10,4 @@
   export * from "./use-websocket";
   export * from "./use-punch-card-subscription";
 + export * from "./use-raffle-entries-subscription";
   
 ```
+
+</details>
 
 ---
 
@@ -398,7 +432,15 @@ Now I'll update the UserPunchCards component to show the user's raffle entries:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -5,4 +5,8 @@
     type PunchCardWithRestaurant,
   } from '@/hooks/use-punch-card-subscription'
 + import {
@@ -409,7 +451,11 @@ Now I'll update the UserPunchCards component to show the user's raffle entries:
   type User = {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -23,4 +27,5 @@
     // Start with initial data from server, then get real-time updates
     const {punchCards, isLoading, error} = usePunchCardSubscription(user.id)
 +   const {raffleEntries} = useRaffleEntriesSubscription(user.id)
@@ -417,7 +463,11 @@ Now I'll update the UserPunchCards component to show the user's raffle entries:
     // If we have realtime data, use it, otherwise use the initial data
 ```
 
+**Chunk 3**
+Lines added: 21, lines removed: 2
+
 ```diff
+@@ -66,6 +71,25 @@
           </div>
         </div>
 -       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -446,6 +496,8 @@ Now I'll update the UserPunchCards component to show the user's raffle entries:
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
 ```
+
+</details>
 
 ---
 

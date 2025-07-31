@@ -26,7 +26,15 @@ The fix is straightforward: I need to add a colon after `address` for each resta
 
 ---
 
+<details><summary>Edit file: src/db/seed.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -17,5 +17,5 @@
   			.values([
   						{
 - 							address"https://experiencemaplegrove.com/dine-location/the-great-greek-mediterranean-grill/",
@@ -35,7 +43,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -24,5 +24,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/dine-location/benihana/",
@@ -44,7 +56,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -31,5 +31,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/dine-location/potbelly/",
@@ -53,7 +69,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -38,5 +38,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/dine-location/bonchon/",
@@ -62,7 +82,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 5**
+Lines added: 5, lines removed: 5
+
 ```diff
+@@ -45,19 +45,19 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/dine-location/freddys/",
@@ -89,7 +113,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -66,5 +66,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/dine-location/panera/",
@@ -98,7 +126,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 7**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -73,12 +73,12 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/dine-location/wendys/",
@@ -116,7 +148,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -87,5 +87,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/dine-location/lotus/",
@@ -125,7 +161,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -94,5 +94,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/event/lookout-spring-fest-parking-lot-party/",
@@ -134,7 +174,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 10**
+Lines added: 11, lines removed: 11
+
 ```diff
+@@ -101,40 +101,40 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/event/bobs-lookout-foundation-5k-run-walk/",
@@ -188,7 +232,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 11**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -143,5 +143,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/ways-to-celebrate-the-month-of-love/",
@@ -197,7 +245,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 12**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -150,5 +150,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/top-7-brunch-spots-in-maple-grove/",
@@ -206,7 +258,11 @@ The fix is straightforward: I need to add a colon after `address` for each resta
                 description: "",
 ```
 
+**Chunk 13**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -157,5 +157,5 @@
   						},
   						{
 - 							address"https://experiencemaplegrove.com/best-spot-game/",
@@ -214,6 +270,8 @@ The fix is straightforward: I need to add a colon after `address` for each resta
   							name: "Best Places to Watch the Game in Maple Grove",
                 description: "",
 ```
+
+</details>
 
 ---
 

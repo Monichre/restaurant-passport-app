@@ -33,7 +33,15 @@ I'll help you add the restaurant image to the `restaurant-quick-view.tsx` compon
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+I will add the restaurant image to the restaurant info item in the BentoGrid by importing Next.js Image component and including the image in the description section.
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -36,4 +36,5 @@
   import {QRCodeManager} from '@/app/admin/restaurants/qr-code-manager'
   import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'
 + import Image from 'next/image'
@@ -41,7 +49,11 @@ I'll help you add the restaurant image to the `restaurant-quick-view.tsx` compon
   // Define the BentoItem interface to match the BentoGrid component's expected types
 ```
 
+**Chunk 2**
+Lines added: 13, lines removed: undefined
+
 ```diff
+@@ -230,4 +231,17 @@
           description: (
             <div className='py-4'>
 +             {/* Restaurant Image */}
@@ -60,6 +72,8 @@ I'll help you add the restaurant image to the `restaurant-quick-view.tsx` compon
               {restaurantData.description || 'No description available'}
               <br />
 ```
+
+</details>
 
 ---
 
@@ -153,7 +167,15 @@ I'll make the restaurant image editable and updatable in the quick view componen
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+I will add image upload functionality by importing storage functions, adding state for managing uploads, creating UI for file upload, and handling the upload process with proper error handling and state updates.
+
+**Chunk 1**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -1,10 +1,11 @@
   'use client'
   
 - import {useCallback, useEffect, useState, type ReactNode} from 'react'
@@ -169,7 +191,11 @@ I'll make the restaurant image editable and updatable in the quick view componen
   import type {Restaurant, Prize, PunchCard, Deal as DbDeal} from '@/types/db'
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -37,4 +38,13 @@
   import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'
   import Image from 'next/image'
 + import {
@@ -185,7 +211,11 @@ I'll make the restaurant image editable and updatable in the quick view componen
   // Define the BentoItem interface to match the BentoGrid component's expected types
 ```
 
+**Chunk 3**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -89,4 +99,9 @@
       useState<DetailedRestaurant | null>(null)
   
 +   // Image upload state
@@ -197,7 +227,11 @@ I'll make the restaurant image editable and updatable in the quick view componen
     useEffect(() => {
 ```
 
+**Chunk 4**
+Lines added: 86, lines removed: undefined
+
 ```diff
+@@ -200,4 +215,90 @@
       toast.success('New deal created successfully')
     }
 + 
@@ -290,7 +324,11 @@ I'll make the restaurant image editable and updatable in the quick view componen
     // QR code update handler that updates both local state and parent table
 ```
 
+**Chunk 5**
+Lines added: 56, lines removed: 4
+
 ```diff
+@@ -231,16 +332,68 @@
           description: (
             <div className='py-4'>
 -             {/* Restaurant Image */}
@@ -365,7 +403,11 @@ I'll make the restaurant image editable and updatable in the quick view componen
               {restaurantData.description || 'No description available'}
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -403,5 +556,5 @@
   
       return items
 -   }, [restaurantData])
@@ -373,6 +415,8 @@ I'll make the restaurant image editable and updatable in the quick view componen
   
     return (
 ```
+
+</details>
 
 ---
 
@@ -408,10 +452,10 @@ Now I need to ensure the `updateRestaurant` function exists in the restaurants m
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L140 | `export const updateRestaurant = async (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L170 | `export const updateRestaurantDeal = async (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L140 | `export const updateRestaurant = async (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L170 | `export const updateRestaurantDeal = async (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L141 | `export const updateRestaurant = async (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L171 | `export const updateRestaurantDeal = async (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L141 | `export const updateRestaurant = async (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L171 | `export const updateRestaurantDeal = async (` |
 
 </details>
 
@@ -676,7 +720,7 @@ But the issue might be that the import paths are actually wrong. Let me check wh
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L96 | `export const uploadRestaurantImage = async (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L97 | `export const uploadRestaurantImage = async (` |
 
 </details>
 
@@ -691,20 +735,20 @@ But the issue might be that the import paths are actually wrong. Let me check wh
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L9 | `BUCKET_NAMES,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L10 | `ALLOWED_IMAGE_TYPES,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L12 | `validateFileType,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L13 | `validateFileSize,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L30 | `if (!validateFileSize(file)) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L38 | `if (bucket === BUCKET_NAMES.RESTAURANTS && !validateFileType(file, ALLOWED_IMAGE_TYPES)) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L82 | `export const getPublicUrl = (bucket: BucketName, path: string): string => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L90 | `.getPublicUrl(normalizedPath);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L105 | `return uploadFileClient(BUCKET_NAMES.RESTAURANTS, path, file, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L41 | `export const BUCKET_NAMES: Record<string, BucketName> = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L46 | `export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L47 | `export const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'];` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L84 | `export const validateFileType = (file: File, allowedTypes: string[]): boolean => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L88 | `export const validateFileSize = (file: File, maxSize: number = MAX_FILE_SIZE): boolean => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L10 | `BUCKET_NAMES,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L11 | `ALLOWED_IMAGE_TYPES,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L13 | `validateFileType,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L14 | `validateFileSize,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L31 | `if (!validateFileSize(file)) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L39 | `if (bucket === BUCKET_NAMES.RESTAURANTS && !validateFileType(file, ALLOWED_IMAGE_TYPES)) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L83 | `export const getPublicUrl = (bucket: BucketName, path: string): string => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L91 | `.getPublicUrl(normalizedPath);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-client.ts` | L106 | `return uploadFileClient(BUCKET_NAMES.RESTAURANTS, path, file, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L42 | `export const BUCKET_NAMES: Record<string, BucketName> = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L47 | `export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L48 | `export const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'];` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L85 | `export const validateFileType = (file: File, allowedTypes: string[]): boolean => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L89 | `export const validateFileSize = (file: File, maxSize: number = MAX_FILE_SIZE): boolean => {` |
 
 </details>
 

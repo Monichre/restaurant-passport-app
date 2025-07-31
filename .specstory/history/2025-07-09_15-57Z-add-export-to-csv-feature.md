@@ -43,7 +43,15 @@ I'll add a CSV export feature to the admin users page. Let me create a client co
 
 ---
 
+<details><summary>Edit file: src/components/admin/export-users-csv-button.tsx</summary>
+
+Create a new client component that handles CSV export for user data
+
+**Chunk 1**
+Lines added: 100, lines removed: 1
+
 ```diff
+@@ -1,1 +1,100 @@
 - 
 + 'use client'
 + 
@@ -147,13 +155,23 @@ I'll add a CSV export feature to the admin users page. Let me create a client co
 + 
 ```
 
+</details>
+
 ---
 
 Now let's update the admin users page to include the export button:
 
 ---
 
+<details><summary>Edit file: src/app/admin/users/page.tsx</summary>
+
+Import and add the ExportUsersCsvButton component to the page header
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -1,4 +1,5 @@
   import {getUsers} from '@/db/models/users/users'
   import Link from 'next/link'
 + import {ExportUsersCsvButton} from '@/components/admin/export-users-csv-button'
@@ -161,7 +179,11 @@ Now let's update the admin users page to include the export button:
   export default async function AdminUsersPage() {
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -11,4 +12,6 @@
         <div className='flex justify-between items-center mb-6'>
           <h1 className='text-2xl font-bold'>User Management</h1>
 +         <div className='flex gap-3'>
@@ -170,7 +192,11 @@ Now let's update the admin users page to include the export button:
               href='/admin'
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -17,4 +20,5 @@
               Back to Dashboard
             </Link>
 +         </div>
@@ -178,13 +204,23 @@ Now let's update the admin users page to include the export button:
   
 ```
 
+</details>
+
 ---
 
 I need to update the component to handle bigint IDs properly:
 
 ---
 
+<details><summary>Edit file: src/components/admin/export-users-csv-button.tsx</summary>
+
+Update the User interface to accept bigint for id and handle nullable boolean fields
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -5,9 +5,9 @@
   
   interface User {
 -   id: number
@@ -199,13 +235,23 @@ I need to update the component to handle bigint IDs properly:
       completed: boolean
 ```
 
+</details>
+
 ---
 
 Now I need to convert the bigint to string when creating the CSV:
 
 ---
 
+<details><summary>Edit file: src/components/admin/export-users-csv-button.tsx</summary>
+
+Update the CSV export logic to handle bigint conversion to string
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -41,5 +41,5 @@
   
         return [
 -         user.id,
@@ -213,6 +259,8 @@ Now I need to convert the bigint to string when creating the CSV:
           user.name,
           user.email,
 ```
+
+</details>
 
 ---
 

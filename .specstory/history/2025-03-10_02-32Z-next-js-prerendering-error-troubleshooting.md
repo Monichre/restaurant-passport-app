@@ -30,11 +30,11 @@ Let's first check your restaurants page to see what's happening:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/(public)/restaurants/page.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/new/page.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/[id]/page.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/(public)/restaurants/[id]/page.tsx` |
 
 </details>
 
@@ -76,12 +76,22 @@ Let's fix the `RestaurantsList` component by adding the `"use client"` directive
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -1,2 +1,4 @@
 + "use client";
 + 
   import * as motion from "motion/react-client";
   
 ```
+
+</details>
 
 ---
 
@@ -97,12 +107,22 @@ We need to add the "use client" directive to the RestaurantSearchBar component a
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -1,2 +1,4 @@
 + "use client";
 + 
   import type { ChangeEvent } from "react";
   import { Search, ArrowUpDown } from "lucide-react";
 ```
+
+</details>
 
 ---
 
@@ -118,12 +138,22 @@ Since the RestaurantCard component uses Link and other interactive elements, let
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -1,2 +1,4 @@
 + "use client";
 + 
   import Image from "next/image";
   import Link from "next/link";
 ```
+
+</details>
 
 ---
 

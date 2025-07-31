@@ -166,7 +166,15 @@ Looking at the linter error, it appears that the toast usage is incorrect. The e
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 897
+
 ```diff
+@@ -1,899 +1,2 @@
 - // // "use client";
 - 
 - // // import { useState, useCallback, useEffect } from "react";
@@ -1068,7 +1076,11 @@ Looking at the linter error, it appears that the toast usage is incorrect. The e
   
 ```
 
+**Chunk 2**
+Lines added: 66, lines removed: 11
+
 ```diff
+@@ -951,23 +54,78 @@
   		useState<boolean>(false);
   	const [scanResult, setScanResult] = useState<ScanResult | null>(null);
 - 
@@ -1160,7 +1172,11 @@ Looking at the linter error, it appears that the toast usage is incorrect. The e
   				return;
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 7
+
 ```diff
+@@ -1018,11 +176,8 @@
   
   					// Stop all video tracks
 - 					navigator.mediaDevices
@@ -1178,7 +1194,11 @@ Looking at the linter error, it appears that the toast usage is incorrect. The e
   			} catch (err) {
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1032,5 +187,5 @@
   			}
   		},
 - 		[qrCodeData, handleError],
@@ -1187,7 +1207,11 @@ Looking at the linter error, it appears that the toast usage is incorrect. The e
   
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 5
+
 ```diff
+@@ -1052,9 +207,5 @@
   				setCheckingPunchCardStatus(false);
   
 - 				toast({
@@ -1200,7 +1224,11 @@ Looking at the linter error, it appears that the toast usage is incorrect. The e
   				onScanSuccess?.(data as ScanResult);
 ```
 
+**Chunk 6**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -1074,5 +225,11 @@
   		setCheckingPunchCardStatus(false);
   		setScanResult(null);
 - 	}, []);
@@ -1214,6 +1242,8 @@ Looking at the linter error, it appears that the toast usage is incorrect. The e
   
   	// Check scan result when QR code data is available
 ```
+
+</details>
 
 ---
 

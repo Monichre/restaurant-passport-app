@@ -41,7 +41,15 @@ I'll update the restaurants page to implement quiet polling when idle until all 
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -9,4 +9,5 @@
   import {BackArrowIcon} from '@/components/BackArrowIcon'
   import {ArrowLeftIcon} from 'lucide-react'
 + import {RestaurantTableWrapper} from './restaurant-table-wrapper'
@@ -49,7 +57,11 @@ I'll update the restaurants page to implement quiet polling when idle until all 
   // Type for restaurant data
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: 10
+
 ```diff
+@@ -65,18 +66,17 @@
     )
   }
 - 
@@ -79,7 +91,11 @@ I'll update the restaurants page to implement quiet polling when idle until all 
     return (
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -152,8 +152,8 @@
         ) : (
           <Suspense fallback={<RestaurantsLoading />}>
 -           <RestaurantsTable
@@ -94,17 +110,15 @@ I'll update the restaurants page to implement quiet polling when idle until all 
           </Suspense>
 ```
 
+</details>
+
 ---
 
 Now I need to create the RestaurantTableWrapper component to implement the idle polling functionality.
 
 ---
 
-<details>
-            <summary>Searched codebase "getPaginatedRestaurants function implementation" • **0** results</summary>
-        
-No results found
-</details>
+
 
 ---
 
@@ -113,8 +127,8 @@ Let me search for getPaginatedRestaurants again with a broader scope.
 ---
 
 <details>
-            <summary>Searched codebase "getPaginatedRestaurants function" • **25** results</summary>
-        
+                <summary>Searched codebase "getPaginatedRestaurants function" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/restaurants/restaurants.ts` | L34-77 |
@@ -151,7 +165,15 @@ Now I understand the structure. Let me create the RestaurantTableWrapper compone
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -71,5 +71,6 @@
     const paginatedRestaurants: PaginatedRestaurants =
       await getPaginatedRestaurants()
 -   const {restaurants, total, pageIndex, pageSize} = paginatedRestaurants
@@ -160,6 +182,8 @@ Now I understand the structure. Let me create the RestaurantTableWrapper compone
   
     // Create a fetchRestaurantsFunction to pass to the client component
 ```
+
+</details>
 
 ---
 
@@ -216,7 +240,15 @@ Now let's create the RestaurantTableWrapper component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 233, lines removed: 1
+
 ```diff
+@@ -1,1 +1,233 @@
 - 
 + 'use client'
 + 
@@ -453,17 +485,15 @@ Now let's create the RestaurantTableWrapper component:
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the type issues in our RestaurantTableWrapper component:
 
 ---
 
-<details>
-            <summary>Searched codebase "RestaurantData type definition restaurants-table" • **0** results</summary>
-        
-No results found
-</details>
+
 
 ---
 
@@ -479,7 +509,15 @@ Let's fix our component with the proper types:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -5,4 +5,9 @@
   import type {Restaurant} from '@/types/db'
   import {toast} from 'sonner'
 + import type {z} from 'zod'
@@ -491,7 +529,11 @@ Let's fix our component with the proper types:
   // Fallback for browsers that don't support requestIdleCallback
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -41,7 +46,7 @@
   
   type RestaurantTableWrapperProps = {
 -   initialRestaurants: Restaurant[]
@@ -503,7 +545,11 @@ Let's fix our component with the proper types:
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -52,5 +57,5 @@
   }: RestaurantTableWrapperProps) {
     const [restaurants, setRestaurants] =
 -     React.useState<Restaurant[]>(initialRestaurants)
@@ -512,7 +558,11 @@ Let's fix our component with the proper types:
     const [isPolling, setIsPolling] = React.useState(false)
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -187,5 +192,5 @@
   
         // Show toast for user feedback
 -       toast.info(`Loading all remaining restaurants...`)
@@ -520,6 +570,8 @@ Let's fix our component with the proper types:
   
         // Load all missing pages
 ```
+
+</details>
 
 ---
 
@@ -535,7 +587,15 @@ Now let's fix our wrapper component to match the expected props:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 11
+
 ```diff
+@@ -211,16 +211,8 @@
   
     // Create a wrapped version of fetchMoreRestaurants for the RestaurantsTable
 -   const wrappedFetchRestaurants = React.useCallback(
@@ -557,6 +617,8 @@ Now let's fix our wrapper component to match the expected props:
     return (
 ```
 
+</details>
+
 ---
 
 Let's look at the actual type of pagination in the function signature:
@@ -571,7 +633,15 @@ I notice the problem now. The `pagination` property is not defined in the compon
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 10, lines removed: 5
+
 ```diff
+@@ -215,14 +215,19 @@
       return loadAllRestaurants()
     }, [loadAllRestaurants])
 + 
@@ -598,13 +668,23 @@ I notice the problem now. The `pagination` property is not defined in the compon
     )
 ```
 
+</details>
+
 ---
 
 Now let's confirm that our changes fixed the issues by modifying the RestaurantsTable component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -265,4 +265,9 @@
   }: {
     restaurants: RestaurantData[]
 +   pagination: {
@@ -615,6 +695,8 @@ Now let's confirm that our changes fixed the issues by modifying the Restaurants
     fetchRestaurants: () => void
   }) {
 ```
+
+</details>
 
 ---
 
@@ -630,13 +712,23 @@ Let's remove the ts-ignore comment:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -228,5 +228,4 @@
         restaurants={restaurants}
         fetchRestaurants={wrappedFetchRestaurants}
 -       // @ts-ignore - The component uses pagination internally but doesn't declare it in props
         pagination={tablePaginationData}
       />
 ```
+
+</details>
 
 ---
 
@@ -687,7 +779,98 @@ This is especially useful for large datasets that would otherwise require the us
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: sequential_thinking - sequentialthinking: A detailed tool for dynamic and reflective problem-solving through thoughts.
+This tool helps analyze problems through a flexible thinking process that can adapt and evolve.
+Each thought can build on, question, or revise previous insights as understanding deepens.
 
+When to use this tool:
+- Breaking down complex problems into steps
+- Planning and design with room for revision
+- Analysis that might need course correction
+- Problems where the full scope might not be clear initially
+- Problems that require a multi-step solution
+- Tasks that need to maintain context over multiple steps
+- Situations where irrelevant information needs to be filtered out
+
+Key features:
+- You can adjust total_thoughts up or down as you progress
+- You can question or revise previous thoughts
+- You can add more thoughts even after reaching what seemed like the end
+- You can express uncertainty and explore alternative approaches
+- Not every thought needs to build linearly - you can branch or backtrack
+- Generates a solution hypothesis
+- Verifies the hypothesis based on the Chain of Thought steps
+- Repeats the process until satisfied
+- Provides a correct answer
+
+Parameters explained:
+- thought: Your current thinking step, which can include:
+* Regular analytical steps
+* Revisions of previous thoughts
+* Questions about previous decisions
+* Realizations about needing more analysis
+* Changes in approach
+* Hypothesis generation
+* Hypothesis verification
+- next_thought_needed: True if you need more thinking, even if at what seemed like the end
+- thought_number: Current number in sequence (can go beyond initial total if needed)
+- total_thoughts: Current estimate of thoughts needed (can be adjusted up/down)
+- is_revision: A boolean indicating if this thought revises previous thinking
+- revises_thought: If is_revision is true, which thought number is being reconsidered
+- branch_from_thought: If branching, which thought number is the branching point
+- branch_id: Identifier for the current branch (if any)
+- needs_more_thoughts: If reaching end but realizing more thoughts needed
+
+You should:
+1. Start with an initial estimate of needed thoughts, but be ready to adjust
+2. Feel free to question or revise previous thoughts
+3. Don't hesitate to add more thoughts if needed, even at the "end"
+4. Express uncertainty when present
+5. Mark thoughts that revise previous thinking or branch into new paths
+6. Ignore information that is irrelevant to the current step
+7. Generate a solution hypothesis when appropriate
+8. Verify the hypothesis based on the Chain of Thought steps
+9. Repeat the process until satisfied with the solution
+10. Provide a single, ideally correct answer as the final output
+11. Only set next_thought_needed to false when truly done and a satisfactory answer is reached
+
+*Parameters*:
+  * thought: In the implemented solution:
+
+1. We created a client-side wrapper component `RestaurantTableWrapper` that progressively loads all restaurant data in the background using `requestIdleCallback` when the browser is idle.
+
+2. The idle callback polling mechanism checks if there are still more pages to load, finds the next unloaded page, and fetches it without affecting user experience.
+
+3. We maintain a Set of loaded page numbers to avoid duplicate requests and track our progress.
+
+4. We update the main component (`RestaurantsTable`) to properly type its pagination prop.
+
+5. Fixed the server component to pass correct props to our wrapper.
+
+The implementation ensures high performance by:
+- Only loading data when the browser is idle
+- Avoiding duplicate requests
+- Using a throttled approach with proper error handling
+- Providing visual feedback only when major actions happen (like force-loading all)
+- Using memory efficiently by deduplicating restaurants by ID
+
+Overall, this is a clean solution to the problem that allows for progressive loading of all data while maintaining a smooth user experience.
+  * nextThoughtNeeded: false
+  * thoughtNumber: 1
+  * totalThoughts: 1
+
+*Result*:
+{
+  "thoughtNumber": 1,
+  "totalThoughts": 1,
+  "nextThoughtNeeded": false,
+  "branches": [],
+  "thoughtHistoryLength": 1
+}
+</details>
 
 ---
 
@@ -770,7 +953,15 @@ Let's fix this by updating the `RestaurantsTable` component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 10
+
 ```diff
+@@ -793,16 +793,17 @@
       // Add onPaginationChange handler to fetch restaurants when page changes
       onPaginationChange: (updater) => {
 -       // First update the pagination state internally
@@ -800,13 +991,23 @@ Let's fix this by updating the `RestaurantsTable` component:
       meta: {
 ```
 
+</details>
+
 ---
 
 Now let's add a CSS class to enable the smooth scrolling to work:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -970,5 +970,5 @@
   
     return (
 -     <div className='space-y-4 p-4 rounded-xl mb-4 shadow-sm bg-white'>
@@ -815,13 +1016,23 @@ Now let's add a CSS class to enable the smooth scrolling to work:
           searchTerm={searchTerm}
 ```
 
+</details>
+
 ---
 
 Now we need to fix the initialization of the tableRestaurants state to properly handle the expected array of arrays type:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -284,6 +284,7 @@
     const [isImporting, setIsImporting] = React.useState(false)
     const [refreshTrigger, setRefreshTrigger] = React.useState(0)
 -   const [tableRestaurants, setTableRestaurants] =
@@ -833,13 +1044,23 @@ Now we need to fix the initialization of the tableRestaurants state to properly 
     // Track selection count for visibility check
 ```
 
+</details>
+
 ---
 
 Let's fix the callback in the getAllRestaurants function and the export CSV hook dependencies:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -864,5 +864,8 @@
   
             // Update the tableRestaurants state with all fetched data
 -           setTableRestaurants((prev) => [...prev, ...results])
@@ -851,13 +1072,23 @@ Let's fix the callback in the getAllRestaurants function and the export CSV hook
             toast.success(`Successfully loaded all ${total} restaurants`)
 ```
 
+</details>
+
 ---
 
 Now let's fix the handleExportCSV hook dependencies:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -944,5 +944,5 @@
         }
       },
 -     [filteredRestaurants, table]
@@ -866,13 +1097,23 @@ Now let's fix the handleExportCSV hook dependencies:
   
 ```
 
+</details>
+
 ---
 
 Let's fix the getAllRestaurants function to simplify it since we've removed the pagination callback functionality:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -833,5 +833,4 @@
   
       // Check if we have loaded all restaurants from the database
 - 
@@ -880,7 +1121,11 @@ Let's fix the getAllRestaurants function to simplify it since we've removed the 
   
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 39
+
 ```diff
+@@ -844,43 +843,6 @@
         toast.info(`Loading all ${total - loadedCount} remaining restaurants...`)
   
 -       // Create a promise to load all remaining restaurants
@@ -928,13 +1173,23 @@ Let's fix the getAllRestaurants function to simplify it since we've removed the 
   
 ```
 
+</details>
+
 ---
 
 Now we have updated the RestaurantsTable component to properly handle all conditions when the user clicks next or previous page. Let's verify that the wrapper component's idle polling functionality will work correctly with our changes:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -113,4 +113,7 @@
       }
   
 +     // This will be called when the browser is idle
@@ -943,6 +1198,8 @@ Now we have updated the RestaurantsTable component to properly handle all condit
       idleCallbackIdRef.current = requestIdle(
         async () => {
 ```
+
+</details>
 
 ---
 
@@ -1027,7 +1284,15 @@ Let's fix this:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -794,6 +794,6 @@
       // Add onPaginationChange handler to fetch restaurants when page changes
       onPaginationChange: (updater) => {
 -       // Only update the pagination state internally
@@ -1037,6 +1302,8 @@ Let's fix this:
   
         // Scroll to top of table on page change
 ```
+
+</details>
 
 ---
 
@@ -1089,7 +1356,15 @@ I'll update the `RestaurantTableWrapper` to load the first two pages (20 restaur
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -60,4 +60,6 @@
     const [allLoaded, setAllLoaded] = React.useState(false)
     const [isPolling, setIsPolling] = React.useState(false)
 +   // Track if we've loaded additional pages on first mount
@@ -1098,7 +1373,11 @@ I'll update the `RestaurantTableWrapper` to load the first two pages (20 restaur
     const [loadedPages, setLoadedPages] = React.useState<Set<number>>(
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -68,5 +70,5 @@
   
     // Create a wrapped fetchRestaurants function to track state
 -   const fetchMoreRestaurants = React.useCallback(s
@@ -1107,7 +1386,11 @@ I'll update the `RestaurantTableWrapper` to load the first two pages (20 restaur
         // Mark the page as loading to prevent duplicate requests
 ```
 
+**Chunk 3**
+Lines added: 29, lines removed: undefined
+
 ```diff
+@@ -103,4 +105,33 @@
       [fetchRestaurants]
     )
 + 
@@ -1143,7 +1426,11 @@ I'll update the `RestaurantTableWrapper` to load the first two pages (20 restaur
     // Schedule background polling when idle
 ```
 
+**Chunk 4**
+Lines added: 10, lines removed: undefined
+
 ```diff
+@@ -137,4 +168,14 @@
               return
             }
 + 
@@ -1160,7 +1447,11 @@ I'll update the `RestaurantTableWrapper` to load the first two pages (20 restaur
             // Fetch the next page
 ```
 
+**Chunk 5**
+Lines added: 8, lines removed: 1
+
 ```diff
+@@ -157,5 +198,12 @@
         {timeout: 2000} // 2 second timeout
       )
 -   }, [allLoaded, isPolling, loadedPages, pagination, fetchMoreRestaurants])
@@ -1175,6 +1466,8 @@ I'll update the `RestaurantTableWrapper` to load the first two pages (20 restaur
   
     // Start polling on initial render
 ```
+
+</details>
 
 ---
 
@@ -1230,7 +1523,15 @@ Let's fix this by tracking the current page in the `RestaurantsTable` component 
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: undefined
+
 ```diff
+@@ -796,4 +796,20 @@
         // DO NOT call table.setPagination here - it's already been called by TanStack Table
         // and calling it again causes an infinite recursion
 + 
@@ -1253,19 +1554,31 @@ Let's fix this by tracking the current page in the `RestaurantsTable` component 
         // Scroll to top of table on page change
 ```
 
+</details>
+
 ---
 
 Let's also make sure our `RestaurantsTable` component respects the pagination state from TanStack Table. The issue might be related to our filtering:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -785,4 +785,5 @@
         },
       },
 +     manualPagination: false, // Set to false to let TanStack handle pagination
       // Fix to handle row selection properly with pagination
       enableRowSelection: true,
 ```
+
+</details>
 
 ---
 
@@ -1281,7 +1594,15 @@ Let's try a different approach - the key issue might be that the filtered data i
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: undefined
+
 ```diff
+@@ -355,4 +355,15 @@
       setData(initialData)
     }, [initialData])
 + 
@@ -1299,6 +1620,8 @@ Let's try a different approach - the key issue might be that the filtered data i
     // Define a handler for toggling selection
 ```
 
+</details>
+
 ---
 
 We have an issue with the effect - it's referring to `table` before it's defined. Let's move the debug effect after the table definition:
@@ -1313,7 +1636,15 @@ Let's try a different approach - modify how we set up the tables data:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -1391,5 +1391,7 @@
               value={table.getState().pagination.pageSize}
               onChange={(e) => {
 -               table.setPageSize(Number(e.target.value))
@@ -1324,7 +1655,11 @@ Let's try a different approach - modify how we set up the tables data:
               className='h-8 text-xs rounded-md border border-sidebar-border bg-background px-2'
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -1415,5 +1417,8 @@
                 variant='outline'
                 size='icon'
 -               onClick={() => table.setPageIndex(0)}
@@ -1336,7 +1671,11 @@ Let's try a different approach - modify how we set up the tables data:
                 className='h-8 w-8 p-0 rounded-md bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -1425,5 +1430,8 @@
                 variant='outline'
                 size='icon'
 -               onClick={() => table.previousPage()}
@@ -1348,7 +1687,11 @@ Let's try a different approach - modify how we set up the tables data:
                 className='h-8 w-8 p-0 rounded-md bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -1435,5 +1443,8 @@
                 variant='outline'
                 size='icon'
 -               onClick={() => table.nextPage()}
@@ -1360,7 +1703,11 @@ Let's try a different approach - modify how we set up the tables data:
                 className='h-8 w-8 p-0 rounded-md bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
 ```
 
+**Chunk 5**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -1445,5 +1456,8 @@
                 variant='outline'
                 size='icon'
 -               onClick={() => table.setPageIndex(table.getPageCount() - 1)}
@@ -1371,6 +1718,8 @@ Let's try a different approach - modify how we set up the tables data:
                 disabled={!table.getCanNextPage()}
                 className='h-8 w-8 p-0 rounded-md bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
 ```
+
+</details>
 
 ---
 
@@ -1394,7 +1743,15 @@ Let's try a more fundamental approach. Let's explicitly set the table to use man
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -796,5 +796,6 @@
         },
       },
 -     manualPagination: false, // Set to false to let TanStack handle pagination
@@ -1404,7 +1761,11 @@ Let's try a more fundamental approach. Let's explicitly set the table to use man
       enableRowSelection: true,
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 32
+
 ```diff
+@@ -804,36 +805,4 @@
       getSortedRowModel: getSortedRowModel(),
       getPaginationRowModel: getPaginationRowModel(),
 -     // Add onPaginationChange handler to fetch restaurants when page changes
@@ -1443,13 +1804,23 @@ Let's try a more fundamental approach. Let's explicitly set the table to use man
         updateData: (rowIndex, columnId, value) => {
 ```
 
+</details>
+
 ---
 
 We need to fix the circular reference with `table`:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -797,5 +797,5 @@
       },
       manualPagination: true, // Use manual pagination since we're handling data loading externally
 -     pageCount: Math.ceil(total / table?.getState().pagination.pageSize || 10),
@@ -1458,7 +1829,11 @@ We need to fix the circular reference with `table`:
       enableRowSelection: true,
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: undefined
+
 ```diff
+@@ -805,4 +805,14 @@
       getSortedRowModel: getSortedRowModel(),
       getPaginationRowModel: getPaginationRowModel(),
 +     // Add pagination change handler for scroll behavior
@@ -1475,13 +1850,23 @@ We need to fix the circular reference with `table`:
         updateData: (rowIndex, columnId, value) => {
 ```
 
+</details>
+
 ---
 
 Now we need to modify the TableBody to use a sliced version of the data based on the current page:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 14, lines removed: 2
+
 ```diff
+@@ -1314,6 +1314,18 @@
               </TableHeader>
               <TableBody>
 -               {table.getRowModel().rows?.length ? (
@@ -1504,7 +1889,11 @@ Now we need to modify the TableBody to use a sliced version of the data based on
                           key={row.id}
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1338,5 +1350,6 @@
                           ))}
                         </TableRow>
 -                 ))
@@ -1514,7 +1903,11 @@ Now we need to modify the TableBody to use a sliced version of the data based on
                     <TableRow>
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1355,5 +1368,6 @@
                       </TableCell>
                     </TableRow>
 -               )}
@@ -1524,13 +1917,23 @@ Now we need to modify the TableBody to use a sliced version of the data based on
             </Table>
 ```
 
+</details>
+
 ---
 
 Let's try one more approach - let's use the virtualized table feature of TanStack to ensure pagination works correctly:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -796,6 +796,5 @@
         },
       },
 -     manualPagination: true, // Use manual pagination since we're handling data loading externally
@@ -1540,7 +1943,11 @@ Let's try one more approach - let's use the virtualized table feature of TanStac
       enableRowSelection: true,
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -807,4 +806,7 @@
       // Add pagination change handler for scroll behavior
       onPaginationChange: (updater) => {
 +       // Log pagination changes for debugging
@@ -1550,13 +1957,23 @@ Let's try one more approach - let's use the virtualized table feature of TanStac
         if (typeof window !== 'undefined') {
 ```
 
+</details>
+
 ---
 
 Now let's fix the table body to use the pagination rows model:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 14
+
 ```diff
+@@ -1316,18 +1316,6 @@
               </TableHeader>
               <TableBody>
 -               {(() => {
@@ -1579,7 +1996,11 @@ Now let's fix the table body to use the pagination rows model:
                       key={row.id}
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -1352,6 +1340,5 @@
                       ))}
                     </TableRow>
 -                     )
@@ -1589,7 +2010,11 @@ Now let's fix the table body to use the pagination rows model:
                   <TableRow>
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -1370,6 +1357,5 @@
                     </TableCell>
                   </TableRow>
 -                 )
@@ -1598,6 +2023,8 @@ Now let's fix the table body to use the pagination rows model:
               </TableBody>
             </Table>
 ```
+
+</details>
 
 ---
 
@@ -1680,7 +2107,15 @@ To make this work for any restaurant update, I recommend creating a more generic
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 13, lines removed: undefined
+
 ```diff
+@@ -301,4 +301,17 @@
       toast.success('QR codes updated successfully')
     }, [router])
 + 
@@ -1700,13 +2135,23 @@ To make this work for any restaurant update, I recommend creating a more generic
     // Add bulk QR code generation hook with refresh callback
 ```
 
+</details>
+
 ---
 
 Let's fix the RestaurantQuickView prop errors:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -689,5 +689,5 @@
           return (
             <div className='flex justify-center'>
 -             <RestaurantQuickView restaurant={restaurant} />
@@ -1715,13 +2160,23 @@ Let's fix the RestaurantQuickView prop errors:
           )
 ```
 
+</details>
+
 ---
 
 Now, let's update our server action handlers to use the generic `refreshTableData` function:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -750,5 +750,5 @@
   
         if (result.success) {
 -         toast.success(result.message)
@@ -1730,7 +2185,11 @@ Now, let's update our server action handlers to use the generic `refreshTableDat
           toast.error(result.error?._form?.[0] || 'Failed to update restaurant')
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -772,5 +772,5 @@
   
         if (result.success) {
 -         toast.success(result.message)
@@ -1739,13 +2198,23 @@ Now, let's update our server action handlers to use the generic `refreshTableDat
           setData(data.filter((r) => r.id !== restaurantToDelete.id))
 ```
 
+</details>
+
 ---
 
 Also, let's update the CSV import function to use our new `refreshTableData` function:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -930,6 +930,6 @@
   
           if (result.success) {
 -           // Force refresh to get updated data
@@ -1756,7 +2225,11 @@ Also, let's update the CSV import function to use our new `refreshTableData` fun
             toast.error(result.message)
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -945,5 +945,5 @@
         }
       },
 -     [router]
@@ -1765,13 +2238,23 @@ Also, let's update the CSV import function to use our new `refreshTableData` fun
   
 ```
 
+</details>
+
 ---
 
 Now, let's expose this `refreshTableData` function to parent components or for external triggers:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -262,5 +262,4 @@
     restaurants: initialData,
     pagination,
 - 
@@ -1779,13 +2262,23 @@ Now, let's expose this `refreshTableData` function to parent components or for e
   }: {
 ```
 
----
-
-
+</details>
 
 ---
+
+
+
+---
+
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: undefined
 
 ```diff
+@@ -1498,3 +1498,10 @@
     )
   }
 + 
@@ -1798,9 +2291,19 @@ Now, let's expose this `refreshTableData` function to parent components or for e
   
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1499,5 +1499,5 @@
   }
   
 - export const refreshRestaurantTable = (router) => {
@@ -1809,13 +2312,23 @@ Now, let's expose this `refreshTableData` function to parent components or for e
     router.refresh()
 ```
 
+</details>
+
 ---
 
 Now we need to add a way to programmatically update the data in the `RestaurantTableWrapper`:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 30, lines removed: undefined
+
 ```diff
+@@ -261,4 +261,34 @@
       }
     }, [allLoaded, fetchMoreRestaurants, loadedPages, pagination])
 + 
@@ -1852,13 +2365,23 @@ Now we need to add a way to programmatically update the data in the `RestaurantT
     // Create a wrapped version of fetchMoreRestaurants for the RestaurantsTable
 ```
 
+</details>
+
 ---
 
 Now we need to provide a way to access this refresh function from outside the component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -10,4 +10,9 @@
   // Type for restaurant data
   type RestaurantData = z.infer<typeof restaurantSchema>
 + 
@@ -1870,13 +2393,23 @@ Now we need to provide a way to access this refresh function from outside the co
   // Fallback for browsers that don't support requestIdleCallback
 ```
 
----
-
-
+</details>
 
 ---
+
+
+
+---
+
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 5
 
 ```diff
+@@ -56,9 +56,8 @@
   }
   
 - export function RestaurantTableWrapper({
@@ -1892,7 +2425,11 @@ Now we need to provide a way to access this refresh function from outside the co
       React.useState<RestaurantData[]>(initialRestaurants)
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -310,4 +309,8 @@
       pageSize: pagination.pageSize,
     }
 + 
@@ -1903,13 +2440,19 @@ Now we need to provide a way to access this refresh function from outside the co
     return (
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -318,4 +321,4 @@
       />
     )
 - }
 + })
   
 ```
+
+</details>
 
 ---
 
@@ -1921,14 +2464,26 @@ Finally, let's create an example of how to use this from a different component o
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -1,2 +1,4 @@
 + 'use client'
 + 
   import Link from 'next/link'
   import Image from 'next/image'
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -9,5 +11,10 @@
   import {BackArrowIcon} from '@/components/BackArrowIcon'
   import {ArrowLeftIcon} from 'lucide-react'
 - import {RestaurantTableWrapper} from './restaurant-table-wrapper'
@@ -1942,7 +2497,11 @@ Finally, let's create an example of how to use this from a different component o
   // Type for restaurant data
 ```
 
+**Chunk 3**
+Lines added: 19, lines removed: 11
+
 ```diff
+@@ -68,15 +75,23 @@
   
   // Main page component
 - export default async function RestaurantsPage() {
@@ -1979,7 +2538,11 @@ Finally, let's create an example of how to use this from a different component o
   
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -144,5 +159,5 @@
           </div>
         </div>
 -       {restaurants.length === 0 ? (
@@ -1988,7 +2551,11 @@ Finally, let's create an example of how to use this from a different component o
             <h3 className='text-xl font-medium mb-4'>No restaurants found</h3>
 ```
 
+**Chunk 5**
+Lines added: 8, lines removed: 3
+
 ```diff
+@@ -154,7 +169,12 @@
           <Suspense fallback={<RestaurantsLoading />}>
             <RestaurantTableWrapper
 -             initialRestaurants={restaurants}
@@ -2005,6 +2572,8 @@ Finally, let's create an example of how to use this from a different component o
             />
           </Suspense>
 ```
+
+</details>
 
 ---
 
@@ -2128,7 +2697,15 @@ Let's create this actions file with the `fetchRestaurants` function:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -8,4 +8,6 @@
   import { createRestaurant } from "@/db/models/restaurants";
   import { revalidatePath } from "next/cache";
 + import { getPaginatedRestaurants } from "@/db/models";
@@ -2137,7 +2714,11 @@ Let's create this actions file with the `fetchRestaurants` function:
   // Function to convert QR code SVG to a data URL
 ```
 
+**Chunk 2**
+Lines added: 15, lines removed: undefined
+
 ```diff
+@@ -119,3 +121,18 @@
   	}
   }
 + 
@@ -2158,13 +2739,23 @@ Let's create this actions file with the `fetchRestaurants` function:
   
 ```
 
+</details>
+
 ---
 
 Now let's fix the import path for the restaurant table wrapper component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -14,4 +14,5 @@
     RestaurantTableWrapper,
     type RestaurantTableWrapperRef,
 + } from './restaurant-table-wrapper'
@@ -2172,13 +2763,23 @@ Now let's fix the import path for the restaurant table wrapper component:
   import {fetchRestaurants} from '@/app/admin/restaurants/actions'
 ```
 
+</details>
+
 ---
 
 There's an issue with the edit. Let's fix it properly:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -15,6 +15,5 @@
     type RestaurantTableWrapperRef,
   } from './restaurant-table-wrapper'
 - } from '@/components/admin/restaurant-table-wrapper'
@@ -2188,13 +2789,23 @@ There's an issue with the edit. Let's fix it properly:
   
 ```
 
+</details>
+
 ---
 
 Now we need to update the `restaurant-table-wrapper.tsx` file to match the expected types:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -77,5 +77,5 @@
       async (page: number, size: number) => {
         // Mark the page as loading to prevent duplicate requests
 -       if (loadingRef.current) return
@@ -2203,7 +2814,11 @@ Now we need to update the `restaurant-table-wrapper.tsx` file to match the expec
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -88,5 +88,5 @@
           })
   
 -         const newRestaurants = await fetchRestaurants(page, size)
@@ -2212,13 +2827,23 @@ Now we need to update the `restaurant-table-wrapper.tsx` file to match the expec
           setRestaurants((prev) => {
 ```
 
+</details>
+
 ---
 
 Now let's also update the initial load effect and the refreshRestaurants method:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -274,5 +274,5 @@
       try {
         // Fetch the first page again to get the latest data
 -       const newRestaurants = await fetchRestaurants(
@@ -2227,13 +2852,23 @@ Now let's also update the initial load effect and the refreshRestaurants method:
           pagination.pageSize
 ```
 
+</details>
+
 ---
 
 Let's fix the issue with setting the restaurants state:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -280,5 +280,5 @@
   
         // Reset the restaurants state with the fresh data
 -       setRestaurants(newRestaurants)
@@ -2242,13 +2877,23 @@ Let's fix the issue with setting the restaurants state:
         // Start polling again to load the rest
 ```
 
+</details>
+
 ---
 
 Let's fix the uniqueNew filter in fetchMoreRestaurants:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -93,7 +93,7 @@
             // Combine with existing, avoiding duplicates by id
             const existingIds = new Set(prev.map((r) => r.id.toString()))
 -           const uniqueNew = newRestaurants.filter(
@@ -2261,13 +2906,23 @@ Let's fix the uniqueNew filter in fetchMoreRestaurants:
           })
 ```
 
+</details>
+
 ---
 
 Now let's update the `page.tsx` file to correctly use the updated `fetchRestaurants` function:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -86,5 +86,8 @@
     const perPage = Number(searchParams.perPage || '10')
   
 -   const [initialRestaurants, {total}] = await fetchRestaurants(page, perPage)
@@ -2279,7 +2934,11 @@ Now let's update the `page.tsx` file to correctly use the updated `fetchRestaura
     // Example function that could be called from a button or after an action
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -174,5 +177,5 @@
                 pageIndex: page - 1,
                 pageSize: perPage,
 -               total,
@@ -2288,13 +2947,23 @@ Now let's update the `page.tsx` file to correctly use the updated `fetchRestaura
               fetchRestaurants={fetchRestaurants}
 ```
 
+</details>
+
 ---
 
 Let's fix the issue by updating the RestaurantTableWrapper prop types:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -53,5 +53,8 @@
     initialRestaurants: RestaurantData[]
     pagination: PaginationProps
 -   fetchRestaurants: (page: number, size: number) => Promise<RestaurantData[]>
@@ -2305,6 +2974,8 @@ Let's fix the issue by updating the RestaurantTableWrapper prop types:
   }
   
 ```
+
+</details>
 
 ---
 
@@ -2579,7 +3250,15 @@ The infinite loop is happening because:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -1,8 +1,7 @@
 - 
 + 'use client'
   
@@ -2592,7 +3271,11 @@ The infinite loop is happening because:
   import {RestaurantsTable} from '@/components/admin/restaurants-table'
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -41,6 +40,4 @@
   // Restaurant card component
   function RestaurantCard({restaurant}: {restaurant: Restaurant}) {
 -   console.log('🚀 ~ RestaurantCard ~ restaurant:', restaurant)
@@ -2601,7 +3284,11 @@ The infinite loop is happening because:
       <div className='bg-white rounded-lg shadow-md p-0 overflow-hidden transition-all hover:shadow-lg'>
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -74,6 +71,6 @@
   }
   
 - // Main page component
@@ -2612,7 +3299,11 @@ The infinite loop is happening because:
   }: {
 ```
 
+**Chunk 4**
+Lines added: 45, lines removed: 3
+
 ```diff
+@@ -83,13 +80,55 @@
     const tableWrapperRef = React.useRef<RestaurantTableWrapperRef>(null)
   
 +   // State for restaurants and pagination
@@ -2673,7 +3364,11 @@ The infinite loop is happening because:
       // Use the ref to call refreshRestaurants
 ```
 
+**Chunk 5**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -150,5 +189,4 @@
               >
                 <ArrowLeftIcon size={18} />
 -               {/* <BackArrowIcon size={18} /> */}
@@ -2681,7 +3376,11 @@ The infinite loop is happening because:
             </div>
 ```
 
+**Chunk 6**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -162,5 +200,8 @@
           </div>
         </div>
 -       {initialRestaurants.length === 0 ? (
@@ -2693,7 +3392,11 @@ The infinite loop is happening because:
             <h3 className='text-xl font-medium mb-4'>No restaurants found</h3>
 ```
 
+**Chunk 7**
+Lines added: 2, lines removed: 8
+
 ```diff
+@@ -170,16 +211,10 @@
           </div>
         ) : (
 -         <Suspense fallback={<RestaurantsLoading />}>
@@ -2713,6 +3416,8 @@ The infinite loop is happening because:
         )}
       </>
 ```
+
+</details>
 
 ---
 
@@ -2761,7 +3466,15 @@ You're right - Next.js pages should ideally be server components for better perf
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 9
+
 ```diff
+@@ -1,19 +1,12 @@
 - 'use client'
 - 
   import Link from 'next/link'
@@ -2785,7 +3498,11 @@ You're right - Next.js pages should ideally be server components for better perf
   // Type for restaurant data
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 56
+
 ```diff
+@@ -71,70 +64,18 @@
   }
   
 - // Main page component - convert to client component with data loading in useEffect
@@ -2862,7 +3579,11 @@ You're right - Next.js pages should ideally be server components for better perf
     return (
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -201,7 +142,5 @@
         </div>
   
 -       {loading ? (
@@ -2873,7 +3594,11 @@ You're right - Next.js pages should ideally be server components for better perf
             <h3 className='text-xl font-medium mb-4'>No restaurants found</h3>
 ```
 
+**Chunk 4**
+Lines added: 9, lines removed: 4
+
 ```diff
+@@ -211,10 +150,15 @@
           </div>
         ) : (
 -         <RestaurantTableWrapper
@@ -2895,13 +3620,23 @@ You're right - Next.js pages should ideally be server components for better perf
       </>
 ```
 
+</details>
+
 ---
 
 Now let's create the client wrapper component that bridges between the server-rendered page and the client-side table functionality:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-client-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 72, lines removed: 1
+
 ```diff
+@@ -1,1 +1,72 @@
 - 
 + 'use client'
 + 
@@ -2977,6 +3712,8 @@ Now let's create the client wrapper component that bridges between the server-re
 + 
 ```
 
+</details>
+
 ---
 
 Perfect! I've restructured the code to follow Next.js best practices with proper server/client separation:
@@ -3049,7 +3786,15 @@ Let's simplify by using the existing component directly:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -7,5 +7,5 @@
   import {BackArrowIcon} from '@/components/BackArrowIcon'
   import {ArrowLeftIcon} from 'lucide-react'
 - import {RestaurantTableClientWrapper} from './restaurant-table-client-wrapper'
@@ -3058,7 +3803,11 @@ Let's simplify by using the existing component directly:
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -151,5 +151,5 @@
         ) : (
           <Suspense fallback={<RestaurantsLoading />}>
 -           <RestaurantTableClientWrapper
@@ -3066,6 +3815,8 @@ Let's simplify by using the existing component directly:
               initialRestaurants={initialRestaurants}
               pagination={{
 ```
+
+</details>
 
 ---
 

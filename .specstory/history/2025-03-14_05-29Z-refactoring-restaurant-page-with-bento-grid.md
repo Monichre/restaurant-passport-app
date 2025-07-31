@@ -67,7 +67,15 @@ Read file: src/components/ui/punch-card.tsx
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/restaurant-detail/RestaurantDetail.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 18, lines removed: 2
+
 ```diff
+@@ -6,10 +6,26 @@
   import { UserScanQrCode } from "@/features/users";
   import { GetUserRestaurantPunchCard } from "@/features/users/GetUserPunchCard";
 - import { UserPunchCard } from "@/features/users/UserPunchCard";
@@ -98,7 +106,11 @@ Read file: src/components/ui/punch-card.tsx
   export function RestaurantDetail({
 ```
 
+**Chunk 2**
+Lines added: 61, lines removed: 58
+
 ```diff
+@@ -20,90 +36,93 @@
   	restaurant: RestaurantDetailPayload;
   	user: User;
 - 	userPunchCard: PunchCard;
@@ -252,7 +264,11 @@ Read file: src/components/ui/punch-card.tsx
   								Join our rewards program!
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -113,4 +132,5 @@
   								restaurant.
   							</p>
 + 						</div>
@@ -260,7 +276,11 @@ Read file: src/components/ui/punch-card.tsx
   							<Link
 ```
 
+**Chunk 4**
+Lines added: 68, lines removed: 1
+
 ```diff
+@@ -128,5 +148,72 @@
   						</div>
   					</div>
 - 			)}
@@ -336,9 +356,19 @@ Read file: src/components/ui/punch-card.tsx
   	);
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/features/restaurants/restaurant-detail/RestaurantDetail.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 21, lines removed: 1
+
 ```diff
+@@ -47,10 +47,30 @@
   		if (clerkUser?.id && !userData) {
   			getUserByClerkId(clerkUser.id).then((res) => {
 - 				if (res) setUserData(res);
@@ -372,7 +402,11 @@ Read file: src/components/ui/punch-card.tsx
   	return (
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -97,5 +117,5 @@
   							</div>
   							<Link
 - 								href={`/profile?tab=punch-cards`}
@@ -381,7 +415,11 @@ Read file: src/components/ui/punch-card.tsx
   							>
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -183,7 +203,7 @@
   					</div>
   
 - 					{deals && deals.length > 0 ? (
@@ -393,9 +431,19 @@ Read file: src/components/ui/punch-card.tsx
   					) : (
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/features/restaurants/restaurant-detail/RestaurantDetail.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -48,10 +48,9 @@
   			getUserByClerkId(clerkUser.id).then((res) => {
   				if (res) {
 - 					// Type assertion to ensure compatibility with User type
@@ -409,6 +457,8 @@ Read file: src/components/ui/punch-card.tsx
   
   	const { prizes = [], deals = [], ...restaurant } = restaurantDetail;
 ```
+
+</details>
 
 ---
 

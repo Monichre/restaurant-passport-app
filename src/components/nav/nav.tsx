@@ -346,7 +346,7 @@ export const Nav = () => {
             )}
 
             {!currentUser && (
-              <SignInButton>
+              <SignInButton mode='modal'>
                 <Button
                   variant='ghost'
                   size='sm'

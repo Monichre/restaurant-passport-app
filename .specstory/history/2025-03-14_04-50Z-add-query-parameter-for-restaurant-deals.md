@@ -40,9 +40,9 @@ Could not find file 'src/hooks/useRestaurantSearch.tsx' in the workspace.
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSearch.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` |
 
 </details>
 
@@ -66,7 +66,15 @@ Now I'll implement the changes needed to add the query parameter for viewing res
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSearch.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -10,4 +10,5 @@
   	restaurants: Restaurant[];
   	initialSortOption?: SortOption;
 + 	hasDeals?: boolean;
@@ -74,7 +82,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -19,12 +20,16 @@
   	setSortOption: (option: SortOption) => void;
   	isSearching: boolean;
 + 	hasDeals: boolean;
@@ -93,7 +105,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   	// Initialize Fuse.js for fuzzy search
 ```
 
+**Chunk 3**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -40,4 +45,11 @@
   	const filteredRestaurants = useMemo(() => {
   		let results = [...restaurants];
 + 
@@ -107,7 +123,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   		// Apply fuzzy search if search term exists
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -56,5 +68,5 @@
   			return b.name.localeCompare(a.name); // name-desc
   		});
 - 	}, [restaurants, searchTerm, sortOption, fuse]);
@@ -116,7 +136,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   	// Determine if search is active
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -68,4 +80,6 @@
   		setSortOption,
   		isSearching,
 + 		hasDeals,
@@ -125,13 +149,23 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   };
 ```
 
+</details>
+
 ---
 
 2. Now let's update the RestaurantSearchBar component to include a toggle for deals:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantSearchBar.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import type { ChangeEvent } from "react";
 - import { Search, ArrowUpDown } from "lucide-react";
@@ -140,7 +174,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   import {
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -11,4 +11,6 @@
   	SelectValue,
   } from "@/components/ui/select";
 + import { Switch } from "@/components/ui/switch";
@@ -149,7 +187,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -18,4 +20,6 @@
   	sortOption: SortOption;
   	onSortChange: (option: SortOption) => void;
 + 	hasDeals: boolean;
@@ -158,7 +200,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   }
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -26,4 +30,6 @@
   	sortOption,
   	onSortChange,
 + 	hasDeals,
@@ -167,7 +213,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   }: RestaurantSearchBarProps) {
 ```
 
+**Chunk 5**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -35,4 +41,8 @@
   		onSortChange(value as SortOption);
   	};
 + 
@@ -178,7 +228,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   	return (
 ```
 
+**Chunk 6**
+Lines added: 13, lines removed: undefined
+
 ```diff
+@@ -46,4 +56,17 @@
   					onChange={handleSearchChange}
   					className="pl-8 w-full"
 + 				/>
@@ -198,7 +252,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   				</div>
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -60,4 +83,5 @@
   						</SelectContent>
   					</Select>
 + 				</div>
@@ -206,13 +264,23 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   		</div>
 ```
 
+</details>
+
 ---
 
 3. Now let's update the RestaurantsList component to pass the hasDeals prop:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -37,5 +37,9 @@
   export function RestaurantsList({
   	restaurants,
 - }: { restaurants: Restaurant[] }) {
@@ -225,7 +293,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   		filteredRestaurants,
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -45,5 +49,10 @@
   		setSortOption,
   		isSearching,
 - 	} = useRestaurantSearch({ restaurants });
@@ -239,7 +311,11 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   	return (
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -54,4 +63,6 @@
   				sortOption={sortOption}
   				onSortChange={setSortOption}
 + 				hasDeals={hasDeals}
@@ -247,6 +323,8 @@ Now I'll implement the changes needed to add the query parameter for viewing res
   			/>
   
 ```
+
+</details>
 
 ---
 
@@ -299,7 +377,15 @@ Let's create the Switch component:
 
 ---
 
+<details><summary>Edit file: src/components/ui/switch.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 27, lines removed: 1
+
 ```diff
+@@ -1,1 +1,27 @@
 - 
 + "use client";
 + 
@@ -330,13 +416,23 @@ Let's create the Switch component:
 + 
 ```
 
+</details>
+
 ---
 
 5. Finally, let's update the RestaurantsPage to handle the query parameter:
 
 ---
 
+<details><summary>Edit file: src/app/(public)/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 10, lines removed: 1
+
 ```diff
+@@ -6,6 +6,15 @@
   import { RestaurantsList } from "@/features/restaurants/RestaurantList";
   
 - export default async function RestaurantsPage() {
@@ -355,7 +451,11 @@ Let's create the Switch component:
   	// Apply default sorting (A-Z by name)
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -33,5 +42,8 @@
   			</div>
   
 - 			<RestaurantsList restaurants={sortedRestaurants} />
@@ -366,6 +466,8 @@ Let's create the Switch component:
   		</div>
   	);
 ```
+
+</details>
 
 ---
 
@@ -381,7 +483,15 @@ Now let's fix the type issue by creating a new type for the RestaurantListItem:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -7,5 +7,5 @@
   import { RestaurantSearchBar } from "./RestaurantSearchBar";
   import { useRestaurantSearch } from "@/hooks/useRestaurantSearch";
 - import type { Restaurant } from "@/types/db";
@@ -390,7 +500,11 @@ Now let's fix the type issue by creating a new type for the RestaurantListItem:
   // Loading component
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -39,5 +39,5 @@
   	initialHasDeals = false,
   }: {
 - 	restaurants: Restaurant[];
@@ -399,7 +513,11 @@ Now let's fix the type issue by creating a new type for the RestaurantListItem:
   }) {
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -91,5 +91,5 @@
   				>
   					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-7xl px-4 auto-rows-fr">
 - 						{filteredRestaurants.map((restaurant: Restaurant) => (
@@ -407,6 +525,8 @@ Now let's fix the type issue by creating a new type for the RestaurantListItem:
   							<motion.div
   								variants={{
 ```
+
+</details>
 
 ---
 
@@ -418,7 +538,15 @@ Read file: src/features/restaurants/RestaurantCard.tsx
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantCard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -5,5 +5,5 @@
   import { cn } from "@/lib/utils";
   import { ArrowUpRight } from "lucide-react";
 - import type { Restaurant } from "@/types/db";
@@ -427,7 +555,11 @@ Read file: src/features/restaurants/RestaurantCard.tsx
   // 	console.log("🚀 ~ RestaurantCard ~ restaurant:", restaurant);
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -37,5 +37,7 @@
   // }
   
 - export function RestaurantCard({ restaurant }: { restaurant: Restaurant }) {
@@ -438,7 +570,11 @@ Read file: src/features/restaurants/RestaurantCard.tsx
   		<div className="block w-full group h-full">
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -89,5 +91,5 @@
   							<h3 className="text-lg font-semibold text-white dark:text-zinc-100 leading-snug">
   								{restaurant.name}
 - 								{restaurant.deals?.length && (
@@ -447,7 +583,11 @@ Read file: src/features/restaurants/RestaurantCard.tsx
   										{restaurant.deals?.length} deals
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -96,11 +98,11 @@
   							</h3>
   
 - 							{restaurant.deals?.[0] && (
@@ -464,13 +604,23 @@ Read file: src/features/restaurants/RestaurantCard.tsx
   								</div>
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors in the RestaurantCard component:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantCard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -4,5 +4,5 @@
   import Link from "next/link";
   import { cn } from "@/lib/utils";
 - import { ArrowUpRight } from "lucide-react";
@@ -479,7 +629,11 @@ Let's fix the linter errors in the RestaurantCard component:
   // export function RestaurantCard({ restaurant }: { restaurant: any }) {
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -40,4 +40,7 @@
   	restaurant,
   }: { restaurant: RestaurantDetailPayload }) {
 + 	// Safely check if there are deals
@@ -489,7 +643,11 @@ Let's fix the linter errors in the RestaurantCard component:
   		<div className="block w-full group h-full">
 ```
 
+**Chunk 3**
+Lines added: 17, lines removed: undefined
+
 ```diff
+@@ -69,4 +72,21 @@
   					)}
   				/>
 + 
@@ -513,7 +671,11 @@ Let's fix the linter errors in the RestaurantCard component:
   				<div className="absolute top-3 right-3 z-10">
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -91,5 +111,5 @@
   							<h3 className="text-lg font-semibold text-white dark:text-zinc-100 leading-snug">
   								{restaurant.name}
 - 								{restaurant.deals?.length > 0 && (
@@ -522,7 +684,11 @@ Let's fix the linter errors in the RestaurantCard component:
   										{restaurant.deals?.length} deals
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: 5
+
 ```diff
+@@ -98,11 +118,8 @@
   							</h3>
   
 - 							{restaurant.deals && restaurant.deals[0] && (
@@ -537,6 +703,8 @@ Let's fix the linter errors in the RestaurantCard component:
   									</p>
   								</div>
 ```
+
+</details>
 
 ---
 
@@ -598,7 +766,15 @@ Now I'll create the DealsList component:
 
 ---
 
+<details><summary>Edit file: src/features/deals/DealsList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 160, lines removed: 1
+
 ```diff
+@@ -1,1 +1,160 @@
 - 
 + "use client";
 + 
@@ -762,13 +938,23 @@ Now I'll create the DealsList component:
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors in the DealsList component:
 
 ---
 
+<details><summary>Edit file: src/features/deals/DealsList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -66,5 +66,5 @@
   							<div className="flex justify-between items-start mb-2">
   								<h3 className="font-semibold text-gray-900 dark:text-gray-100">
 - 									{deal.name || deal.content.substring(0, 40) + "..."}
@@ -777,7 +963,11 @@ Let's fix the linter errors in the DealsList component:
   								{deal.active ? (
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -91,4 +91,5 @@
   								{deal.content.length > 150 && (
   									<button
 + 										type="button"
@@ -785,7 +975,11 @@ Let's fix the linter errors in the DealsList component:
   										className="mt-2 text-xs text-blue-600 dark:text-blue-400 hover:underline focus:outline-none"
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -134,7 +135,7 @@
   
   			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 - 				{Array.from({ length: count }).map((_, i) => (
@@ -797,17 +991,29 @@ Let's fix the linter errors in the DealsList component:
   					>
 ```
 
+</details>
+
 ---
 
 Now let's create an index file for the deals feature directory to maintain consistency with the project structure:
 
 ---
 
+<details><summary>Edit file: src/features/deals/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1,1 +1,2 @@
 - 
 + export * from "./DealsList";
 + 
 ```
+
+</details>
 
 ---
 
@@ -839,7 +1045,15 @@ Liams-MacBook-Pro-2021:restaurant-passport-app liamellis$
 
 ---
 
+<details><summary>Edit file: src/app/(public)/deals/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 66, lines removed: 1
+
 ```diff
+@@ -1,1 +1,66 @@
 - 
 + import Link from "next/link";
 + import { DealsList } from "@/features/deals";
@@ -909,13 +1123,23 @@ Liams-MacBook-Pro-2021:restaurant-passport-app liamellis$
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the type issues in the DealsPage:
 
 ---
 
+<details><summary>Edit file: src/app/(public)/deals/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -3,5 +3,5 @@
   import { getRestaurants } from "@/db/models/restaurants/restaurants";
   import { Suspense } from "react";
 - import type { Deal } from "@/types/db";
@@ -924,7 +1148,11 @@ Let's fix the type issues in the DealsPage:
   export const metadata = {
 ```
 
+**Chunk 2**
+Lines added: 26, lines removed: 11
+
 ```diff
+@@ -10,24 +10,39 @@
   		"View all current special offers and deals from our partner restaurants",
   };
 + 
@@ -977,13 +1205,23 @@ Let's fix the type issues in the DealsPage:
   	return (
 ```
 
+</details>
+
 ---
 
 Let's create a simplified version for the deals page that avoids type issues:
 
 ---
 
+<details><summary>Edit file: src/app/(public)/deals/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -1,7 +1,6 @@
   import Link from "next/link";
 - import { DealsList } from "@/features/deals";
 + import { DealsList, DealsListSkeleton } from "@/features/deals";
@@ -994,7 +1232,11 @@ Let's create a simplified version for the deals page that avoids type issues:
   export const metadata = {
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: 27
+
 ```diff
+@@ -10,39 +9,21 @@
   		"View all current special offers and deals from our partner restaurants",
   };
 - 
@@ -1045,7 +1287,11 @@ Let's create a simplified version for the deals page that avoids type issues:
   	return (
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -73,5 +54,5 @@
   			</div>
   
 - 			<Suspense fallback={<div>Loading deals...</div>}>
@@ -1054,13 +1300,23 @@ Let's create a simplified version for the deals page that avoids type issues:
   			</Suspense>
 ```
 
+</details>
+
 ---
 
 We need to modify the DealsList component to handle the database deal type rather than trying to make the database match the type definition:
 
 ---
 
+<details><summary>Edit file: src/features/deals/DealsList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 19, lines removed: 3
+
 ```diff
+@@ -7,9 +7,25 @@
   import { motion } from "framer-motion";
   import { cn } from "@/lib/utils";
 - import type { Deal, RestaurantDetailPayload } from "@/types/db";
@@ -1091,7 +1347,11 @@ We need to modify the DealsList component to handle the database deal type rathe
   }
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -66,5 +82,7 @@
   							<div className="flex justify-between items-start mb-2">
   								<h3 className="font-semibold text-gray-900 dark:text-gray-100">
 - 									{deal.name || `${deal.content.substring(0, 40)}...`}
@@ -1101,6 +1361,8 @@ We need to modify the DealsList component to handle the database deal type rathe
   								</h3>
   								{deal.active ? (
 ```
+
+</details>
 
 ---
 
@@ -1176,7 +1438,15 @@ To make the requested change, I should modify this to prioritize `deal.title` in
 
 ---
 
+<details><summary>Edit file: src/features/deals/DealsList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -82,6 +82,6 @@
   							<div className="flex justify-between items-start mb-2">
   								<h3 className="font-semibold text-gray-900 dark:text-gray-100">
 - 									{deal.name ||
@@ -1187,13 +1457,23 @@ To make the requested change, I should modify this to prioritize `deal.title` in
   								</h3>
 ```
 
+</details>
+
 ---
 
 Let's fix that linter error about using an index as a key in the skeleton component:
 
 ---
 
+<details><summary>Edit file: src/features/deals/DealsList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -145,4 +145,10 @@
   // Used for displaying skeleton loading state
   export const DealsListSkeleton = ({ count = 4 }: { count?: number }) => {
 + 	// Generate stable keys for skeleton items
@@ -1206,7 +1486,11 @@ Let's fix that linter error about using an index as a key in the skeleton compon
   		<div className="space-y-4">
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -153,7 +159,7 @@
   
   			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 - 				{Array.from({ length: count }).map((_, index) => (
@@ -1217,6 +1501,8 @@ Let's fix that linter error about using an index as a key in the skeleton compon
   						className="rounded-lg border border-gray-100 dark:border-zinc-800 p-5 animate-pulse"
   					>
 ```
+
+</details>
 
 ---
 

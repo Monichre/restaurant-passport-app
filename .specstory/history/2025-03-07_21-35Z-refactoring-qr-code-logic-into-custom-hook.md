@@ -46,7 +46,15 @@ Now I'll create a new hook to extract the QR scanning logic:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 141, lines removed: 1
+
 ```diff
+@@ -1,1 +1,141 @@
 - 
 + "use client";
 + 
@@ -191,13 +199,23 @@ Now I'll create a new hook to extract the QR scanning logic:
 + 
 ```
 
+</details>
+
 ---
 
 Now I'll update the `UserScanQrCode` component to use our new hook:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 17, lines removed: 188
+
 ```diff
+@@ -1,203 +1,32 @@
   "use client";
   
 - import { useState, useCallback, useEffect, useMemo } from "react";
@@ -420,7 +438,11 @@ Now I'll update the `UserScanQrCode` component to use our new hook:
   	return (
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -228,5 +57,5 @@
   					<div className="space-y-4">
   						<Button
 - 							onClick={requestCameraPermission}
@@ -429,7 +451,11 @@ Now I'll update the `UserScanQrCode` component to use our new hook:
   							// disabled={!isConnected}
 ```
 
+**Chunk 3**
+Lines added: 5, lines removed: 11
+
 ```diff
+@@ -245,17 +74,11 @@
   									}}
   								/>
 - 								<video id="qr-video" />
@@ -454,7 +480,11 @@ Now I'll update the `UserScanQrCode` component to use our new hook:
   							<div className="absolute inset-0 flex items-center">
 ```
 
+**Chunk 4**
+Lines added: 12, lines removed: 11
+
 ```diff
+@@ -268,15 +91,16 @@
   							</div>
   						</div>
 - 						{/* 
@@ -484,13 +514,23 @@ Now I'll update the `UserScanQrCode` component to use our new hook:
   				</CardContent>
 ```
 
+</details>
+
 ---
 
 Let me fix the linter errors in both files:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -23,5 +23,5 @@
   		handleError,
   	} = useScanQrCode({
 - 		userId: user.id,
@@ -499,7 +539,11 @@ Let me fix the linter errors in both files:
   			console.log("Scan successful:", result);
 ```
 
+**Chunk 2**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -66,16 +66,26 @@
   						{isScanning && (
   							<>
 + 								<div className="w-full h-[400px]">
@@ -529,13 +573,23 @@ Let me fix the linter errors in both files:
   						)}
 ```
 
+</details>
+
 ---
 
 Now let's make sure our hook is properly typed to work with the QrReader component:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -3,5 +3,5 @@
   import { useState, useCallback, useEffect } from "react";
   import { toast } from "@/hooks/use-toast";
 - import type { OnResultFunction } from "react-qr-reader";
@@ -544,7 +598,11 @@ Now let's make sure our hook is properly typed to work with the QrReader compone
   interface QrData {
 ```
 
+**Chunk 2**
+Lines added: 24, lines removed: 9
+
 ```diff
+@@ -45,25 +45,40 @@
   
   	// Handle successful scan
 - 	const handleScan: OnResultFunction = useCallback(
@@ -596,13 +654,23 @@ Now let's make sure our hook is properly typed to work with the QrReader compone
   		},
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining type issues:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -3,5 +3,5 @@
   import { useState, useCallback, useEffect } from "react";
   import { toast } from "@/hooks/use-toast";
 - import type { OnResultFunction, Result } from "react-qr-reader";
@@ -611,7 +679,11 @@ Let's fix the remaining type issues:
   interface QrData {
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -10,4 +10,7 @@
   	punchCardId: string;
   }
 + 
@@ -621,7 +693,11 @@ Let's fix the remaining type issues:
   export interface UseScanQrCodeOptions {
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -45,5 +48,5 @@
   
   	// Handle successful scan
 - 	const handleScan = useCallback<OnResultFunction>(
@@ -630,7 +706,11 @@ Let's fix the remaining type issues:
   			if (qrCodeData || !result) {
 ```
 
+**Chunk 4**
+Lines added: 8, lines removed: 4
+
 ```diff
+@@ -55,10 +58,14 @@
   				let scannedText = "";
   
 + 				// Handle different result formats from QR readers
@@ -651,13 +731,23 @@ Let's fix the remaining type issues:
   
 ```
 
+</details>
+
 ---
 
 After analyzing the errors, we need to make a final fix with a different approach to the QrReader's result type:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -10,7 +10,4 @@
   	punchCardId: string;
   }
 - 
@@ -667,7 +757,11 @@ After analyzing the errors, we need to make a final fix with a different approac
   export interface UseScanQrCodeOptions {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -48,4 +45,5 @@
   
   	// Handle successful scan
 + 	// Using 'any' for result since QrReader's type definitions may be problematic
@@ -675,7 +769,11 @@ After analyzing the errors, we need to make a final fix with a different approac
   		(result, error) => {
 ```
 
+**Chunk 3**
+Lines added: 19, lines removed: 7
+
 ```diff
+@@ -55,16 +53,28 @@
   
   			try {
 - 				// Get text from the result based on its type
@@ -713,13 +811,23 @@ After analyzing the errors, we need to make a final fix with a different approac
   				}
 ```
 
+</details>
+
 ---
 
 Let's make one final fix to address the remaining linter error:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -10,4 +10,11 @@
   	punchCardId: string;
   }
 + 
@@ -733,7 +841,11 @@ Let's make one final fix to address the remaining linter error:
   export interface UseScanQrCodeOptions {
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -45,5 +52,4 @@
   
   	// Handle successful scan
 - 	// Using 'any' for result since QrReader's type definitions may be problematic
@@ -741,7 +853,11 @@ Let's make one final fix to address the remaining linter error:
   		(result, error) => {
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -62,5 +68,5 @@
   					// QR library might return different structures
   					// Try common properties where the actual scanned text might be found
 - 					const resultObj = result as Record<string, any>;
@@ -750,13 +866,23 @@ Let's make one final fix to address the remaining linter error:
   					if (typeof resultObj.data === "string") {
 ```
 
+</details>
+
 ---
 
 Let's do the final fix using a different approach:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 18, lines removed: 8
+
 ```diff
+@@ -66,12 +66,22 @@
   					scannedText = result;
   				} else if (result && typeof result === "object") {
 - 					// QR library might return different structures
@@ -788,6 +914,8 @@ Let's do the final fix using a different approach:
   					} else {
   						// If we have the result but can't extract text in expected ways,
 ```
+
+</details>
 
 ---
 
@@ -859,7 +987,15 @@ Let me fix these issues:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 13, lines removed: 2
+
 ```diff
+@@ -27,6 +27,17 @@
   import { useState } from "react";
   import { QrReader } from "react-qr-reader";
 - import { useScanQrCode } from "@/hooks/use-scan-qr-code"
@@ -881,7 +1017,11 @@ Let me fix these issues:
   export type NavProps = {
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -44,4 +55,7 @@
   
   export const NavScanner = () => {
 + 	const { user } = useUser();
@@ -891,7 +1031,11 @@ Let me fix these issues:
   		isScanning,
 ```
 
+**Chunk 3**
+Lines added: 94, lines removed: 12
+
 ```diff
+@@ -51,38 +65,120 @@
   		handleScan,
   		handleError,
 + 		reset,
@@ -1026,13 +1170,23 @@ Let me fix these issues:
   		</div>
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -23,4 +23,6 @@
   	Utensils,
   	UserPlus,
 + 	Loader2,
@@ -1041,7 +1195,11 @@ Let's fix the linter errors:
   import { motion } from "motion/react";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -38,6 +40,6 @@
   	DialogClose,
   } from "@/components/ui/dialog";
 - import { Spinner } from "@/components/ui/spinner";
@@ -1051,7 +1209,11 @@ Let's fix the linter errors:
   export type NavProps = {
 ```
 
+**Chunk 3**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -53,7 +55,12 @@
   	action?: string;
   };
 + 
@@ -1067,7 +1229,11 @@ Let's fix the linter errors:
   
 ```
 
+**Chunk 4**
+Lines added: 5, lines removed: 3
+
 ```diff
+@@ -68,7 +75,9 @@
   	} = useScanQrCode({
   		userId: user?.id
 - 			? typeof user.id === "bigint"
@@ -1082,7 +1248,11 @@ Let's fix the linter errors:
   		onScanSuccess: (result) => {
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -110,5 +119,5 @@
   				className={cn("flex flex-col p-4 gap-1 mx-2 h-auto", "text-primary")}
   			>
 - 				<ScanIcon className="h-5 w-5" />
@@ -1090,6 +1260,8 @@ Let's fix the linter errors:
   				<span className="text-xs">Scan</span>
   			</Button>
 ```
+
+</details>
 
 ---
 
@@ -1102,10 +1274,10 @@ Let's fix the remaining errors:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/lib/auth.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/plop-templates/layout.hbs` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/plop-templates/feature-component.hbs` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` |
 
 </details>
 
@@ -1124,24 +1296,24 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/G
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCard.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/Restaurant.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantList.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantLoading.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx` |
 
 </details>
 
 ---
 
 <details>
-            <summary>Searched codebase "useUser hook declaration" • **25** results</summary>
-        
+                <summary>Searched codebase "useUser hook declaration" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/features/users/UserScanQrCode.tsx` | L1-30 |
@@ -1175,8 +1347,8 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/G
 ---
 
 <details>
-            <summary>Searched codebase "useUser from clerk" • **25** results</summary>
-        
+                <summary>Searched codebase "useUser from clerk" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/UserButton.tsx` | L1-7 |
@@ -1213,7 +1385,15 @@ Now I understand how the user auth is handled. Let's fix our NavScanner componen
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -62,5 +62,5 @@
   
   export const NavScanner = () => {
 - 	const { user } = useAuth();
@@ -1222,7 +1402,11 @@ Now I understand how the user auth is handled. Let's fix our NavScanner componen
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 7
+
 ```diff
+@@ -74,11 +74,5 @@
   		reset,
   	} = useScanQrCode({
 - 		userId: user?.id
@@ -1237,13 +1421,23 @@ Now I understand how the user auth is handled. Let's fix our NavScanner componen
   			console.log("Scan successful:", result);
 ```
 
+</details>
+
 ---
 
 Let's make one final fix to the file:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -41,5 +41,4 @@
   } from "@/components/ui/dialog";
   import { CheckCircle } from "lucide-react";
 - import { useAuth } from "@/hooks/use-auth";
@@ -1251,7 +1445,11 @@ Let's make one final fix to the file:
   export type NavProps = {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -146,5 +145,5 @@
   										<track
   											kind="captions"
 - 											src=""
@@ -1260,22 +1458,42 @@ Let's make one final fix to the file:
   											default
 ```
 
+</details>
+
 ---
 
 Let's create the empty VTT file and make one final fix to the type issue:
 
 ---
 
+<details><summary>Edit file: public/empty.vtt</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -1,1 +1,3 @@
 - 
 + WEBVTT
 + 
 + NOTE This file is intentionally empty for accessibility compliance 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -19,5 +19,5 @@
   
   export interface UseScanQrCodeOptions {
 - 	userId: string | number;
@@ -1284,9 +1502,19 @@ Let's create the empty VTT file and make one final fix to the type issue:
   }
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -136,5 +136,8 @@
   				method: "POST",
   				headers: { "Content-Type": "application/json" },
 - 				body: JSON.stringify({ qrData: qrCodeData, userId }),
@@ -1297,6 +1525,8 @@ Let's create the empty VTT file and make one final fix to the type issue:
   			});
   
 ```
+
+</details>
 
 ---
 
@@ -1362,7 +1592,15 @@ Let me plan the changes:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -25,10 +25,10 @@
   	Loader2,
   	QrCode,
 + 	CheckCircle,
@@ -1376,7 +1614,11 @@ Let me plan the changes:
   	Dialog,
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -40,5 +40,4 @@
   	DialogClose,
   } from "@/components/ui/dialog";
 - import { CheckCircle } from "lucide-react";
@@ -1384,7 +1626,11 @@ Let me plan the changes:
   export type NavProps = {
 ```
 
+**Chunk 3**
+Lines added: 25, lines removed: 2
+
 ```diff
+@@ -60,8 +59,31 @@
   };
   
 - export const NavScanner = () => {
@@ -1420,7 +1666,11 @@ Let me plan the changes:
   		isScanning,
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 21
+
 ```diff
+@@ -103,25 +125,4 @@
   		setShowModal(false);
   	};
 - 
@@ -1448,7 +1698,11 @@ Let me plan the changes:
   	console.log("🚀 ~ Nav ~ user:", user);
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -133,8 +134,8 @@
   	const router = useRouter();
   
 - 	const handleTabChange = (tabId: string) => {
@@ -1462,7 +1716,11 @@ Let me plan the changes:
   
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -178,4 +179,5 @@
   	return (
   		<>
 + 			{/* QR Scanner Modal moved to Nav component */}
@@ -1470,7 +1728,11 @@ Let me plan the changes:
   				<Dialog open={showModal} onOpenChange={handleModalClose}>
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 8
+
 ```diff
+@@ -260,19 +262,12 @@
   							onClick={() => handleTabChange(item.href)}
   						>
 - 						{/* <Link
@@ -1492,6 +1754,8 @@ Let me plan the changes:
   					) : (
   						<>
 ```
+
+</details>
 
 ---
 
@@ -1547,7 +1811,15 @@ I can also see from the code snippet that there's an `<AnimatePresence>` compone
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -27,5 +27,5 @@
   	CheckCircle,
   } from "lucide-react";
 - import { motion } from "motion/react";
@@ -1556,7 +1828,11 @@ I can also see from the code snippet that there's an `<AnimatePresence>` compone
   import { QrReader } from "react-qr-reader";
 ```
 
+**Chunk 2**
+Lines added: 40, lines removed: undefined
+
 ```diff
+@@ -58,4 +58,44 @@
   	return <Loader2 className={cn("animate-spin", className)} />;
   };
 + 
@@ -1603,7 +1879,11 @@ I can also see from the code snippet that there's an `<AnimatePresence>` compone
   // NavScanner is now just a button that triggers the modal
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -99,9 +139,9 @@
   			console.log("Scan successful:", result);
   			// Close modal and show success state on successful scan
 - 			// setTimeout(() => {
@@ -1619,7 +1899,11 @@ I can also see from the code snippet that there's an `<AnimatePresence>` compone
   	});
 ```
 
+**Chunk 4**
+Lines added: 24, lines removed: 5
+
 ```diff
+@@ -179,18 +219,37 @@
   	return (
   		<>
 - 			{/* QR Scanner Modal moved to Nav component */}
@@ -1664,7 +1948,11 @@ I can also see from the code snippet that there's an `<AnimatePresence>` compone
   													videoId="qr-video"
 ```
 
+**Chunk 5**
+Lines added: 21, lines removed: 5
+
 ```diff
+@@ -214,24 +273,40 @@
   													/>
   												</video>
 - 								</div>
@@ -1712,7 +2000,11 @@ I can also see from the code snippet that there's an `<AnimatePresence>` compone
   										<DialogClose asChild>
 ```
 
+**Chunk 6**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -245,7 +320,10 @@
   										</DialogClose>
   									</DialogFooter>
 + 								</motion.div>
@@ -1725,7 +2017,11 @@ I can also see from the code snippet that there's an `<AnimatePresence>` compone
   			<nav className="fixed bottom-0 left-1/2 -translate-x-1/2 py-4 z-20 ">
 ```
 
+**Chunk 7**
+Lines added: undefined, lines removed: 10
+
 ```diff
+@@ -282,14 +360,4 @@
   								</Button>
   							</SignInButton>
 - 							{/* <SignUpButton>
@@ -1741,6 +2037,8 @@ I can also see from the code snippet that there's an `<AnimatePresence>` compone
   						</>
   					)}
 ```
+
+</details>
 
 ---
 

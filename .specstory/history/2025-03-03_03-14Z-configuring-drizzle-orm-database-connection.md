@@ -41,7 +41,15 @@ Let me fix this error:
 
 ---
 
+<details><summary>Edit file: src/db/db.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -3,4 +3,8 @@
   
   const connectionString = process.env.DATABASE_URL;
 + 
@@ -51,6 +59,8 @@ Let me fix this error:
   
   // Disable prefetch as it is not supported for "Transaction" pool mode
 ```
+
+</details>
 
 ---
 

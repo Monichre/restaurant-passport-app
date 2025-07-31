@@ -93,7 +93,157 @@ I'll fix the type annotation for the `createUser` function. The current annotati
 
 ---
 
+<details><summary>Edit file: src/db/models/users/users.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 11
+
+```diff
+@@ -1,21 +1,21 @@
+- "use server";
++ "use server"
+  
+- import { eq } from "drizzle-orm";
+- import { db } from "../../db";
+- import { users } from "@/db/drizzle/schema";
+- import type { User } from "@/types/db";
++ import { eq } from "drizzle-orm"
++ import { db } from "../../db"
++ import { users } from "@/db/drizzle/schema"
++ import type { User } from "@/types/db"
+  
+  export const getUsers = async () => {
+- 	return await db.query.users.findMany({
++ 	return await db.query.users.findMany( {
+  		with: {
+  			punchCards: true,
+  
+  			raffleEntries: true,
+  		},
+- 	});
+- };
+- export const getUserById = async (id: bigint) => {
+- 	return await db.query.users.findFirst({
+- 		where: eq(users.id, id),
++ 	} )
++ }
++ export const getUserById = async ( id: bigint ) => {
++ 	return await db.query.users.findFirst( {
++ 		where: eq( users.id, id ),
+  		with: {
+  			punchCards: {
+```
+
+**Chunk 2**
+Lines added: 5, lines removed: 5
+
+```diff
+@@ -27,10 +27,10 @@
+  			raffleEntries: true,
+  		},
+- 	});
+- };
++ 	} )
++ }
+  
+- export const getUserByClerkId = async (clerkId: string) => {
+- 	const user = await db.query.users.findFirst({
+- 		where: eq(users.clerkId, clerkId),
++ export const getUserByClerkId = async ( clerkId: string ) => {
++ 	const user = await db.query.users.findFirst( {
++ 		where: eq( users.clerkId, clerkId ),
+  		with: {
+  			punchCards: {
+```
+
+**Chunk 3**
+Lines added: 7, lines removed: 7
+
+```diff
+@@ -42,12 +42,12 @@
+  			raffleEntries: true,
+  		},
+- 	});
+- 	console.log(user);
+- 	return user;
+- };
++ 	} )
++ 	console.log( user )
++ 	return user
++ }
+  
+- export const getUserByClerkIdWithPunchCards = async (clerkId: string) => {
+- 	const user = await db.query.users.findFirst({
+- 		where: eq(users.clerkId, clerkId),
++ export const getUserByClerkIdWithPunchCards = async ( clerkId: string ) => {
++ 	const user = await db.query.users.findFirst( {
++ 		where: eq( users.clerkId, clerkId ),
+  		with: {
+  			punchCards: {
+```
+
+**Chunk 4**
+Lines added: 21, lines removed: 21
+
+```diff
+@@ -59,31 +59,31 @@
+  			raffleEntries: true,
+  		},
+- 	});
+- 	console.log(user);
+- 	return user;
+- };
+- export const createUser: User[] = async (data: {
+- 	clerkId: string;
+- 	name: string;
+- 	email: string;
+- 	isStaff?: boolean;
+- 	isAdmin?: boolean;
+- }) => {
+- 	return await db.insert(users).values(data).returning();
+- };
++ 	} )
++ 	console.log( user )
++ 	return user
++ }
++ export const createUser = async ( data: {
++ 	clerkId: string
++ 	name: string
++ 	email: string
++ 	isStaff?: boolean
++ 	isAdmin?: boolean
++ } ): Promise<User[]> => {
++ 	return await db.insert( users ).values( data ).returning()
++ }
+  
+  export const updateUser = async (
+  	id: bigint,
+  	data: Partial<{
+- 		name: string;
+- 		isStaff: boolean;
+- 		isAdmin: boolean;
++ 		name: string
++ 		isStaff: boolean
++ 		isAdmin: boolean
+  	}>,
+  ) => {
+- 	return await db.update(users).set(data).where(eq(users.id, id)).returning();
+- };
++ 	return await db.update( users ).set( data ).where( eq( users.id, id ) ).returning()
++ }
+  
+- export const deleteUser = async (id: bigint) => {
+- 	return await db.delete(users).where(eq(users.id, id)).returning();
+- };
++ export const deleteUser = async ( id: bigint ) => {
++ 	return await db.delete( users ).where( eq( users.id, id ) ).returning()
++ }
+  
+```
+
+</details>
 
 ---
 
@@ -118,7 +268,24 @@ There's still a type mismatch between the database schema (which uses `null`) an
 
 ---
 
+<details><summary>Edit file: src/db/models/users/users.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -69,5 +69,5 @@
+  	isStaff?: boolean
+  	isAdmin?: boolean
+- } ): Promise<User[]> => {
++ } ) => {
+  	return await db.insert( users ).values( data ).returning()
+  }
+```
+
+</details>
 
 ---
 
@@ -250,7 +417,32 @@ Let me add a proper return type annotation to the `createUser` function so the u
 
 ---
 
+<details><summary>Edit file: src/db/models/users/users.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 1
+
+```diff
+@@ -69,5 +69,13 @@
+  	isStaff?: boolean
+  	isAdmin?: boolean
+- } ) => {
++ } ): Promise<{
++ 	id: bigint
++ 	clerkId: string
++ 	name: string
++ 	isStaff: boolean | null
++ 	isAdmin: boolean | null
++ 	email: string
++ 	phone: string | null
++ }[]> => {
+  	return await db.insert( users ).values( data ).returning()
+  }
+```
+
+</details>
 
 ---
 
@@ -571,7 +763,24 @@ Remove the explicit type annotation and let TypeScript infer the correct type:
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -98,5 +98,5 @@
+  
+  			// Create user in Supabase database
+- 			const user: User[] = await createUser( {
++ 			const user = await createUser( {
+  				clerkId,
+  				name,
+```
+
+</details>
 
 ---
 

@@ -51,7 +51,15 @@ Read file: src/components/admin/restaurants-table.tsx
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+Fix the CSS and layout issues in the restaurant table component. I'll focus on the most problematic areas.
+
+**Chunk 1**
+Lines added: 5, lines removed: 9
+
 ```diff
+@@ -338,34 +338,30 @@
       {
         id: 'select',
 -       size: 200,
@@ -93,7 +101,11 @@ Read file: src/components/admin/restaurants-table.tsx
           </div>
 ```
 
+**Chunk 2**
+Lines added: 11, lines removed: 9
+
 ```diff
+@@ -730,14 +726,16 @@
           onSortChange={setSortOption}
         />
 -       <div className='flex justify-between align-middle items-center px-2 bg-white rounded-full'>
@@ -121,7 +133,11 @@ Read file: src/components/admin/restaurants-table.tsx
               <div className='flex items-center'>
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -749,5 +747,5 @@
   
               <div className='flex flex-wrap gap-2 ml-auto'>
 -               {/* Add CSV Export button with dropdown for "Export Selected" and "Export All" */}
@@ -130,7 +146,11 @@ Read file: src/components/admin/restaurants-table.tsx
                   <DropdownMenuTrigger asChild>
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -756,5 +754,5 @@
                       variant='outline'
                       disabled={isExporting}
 -                     className='h-8 bg-[#e0d9d1] border-sidebar-border hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
@@ -139,7 +159,11 @@ Read file: src/components/admin/restaurants-table.tsx
                       <FileSpreadsheet className='h-3.5 w-3.5 mr-1.5' />
 ```
 
+**Chunk 5**
+Lines added: 12, lines removed: 1
+
 ```diff
+@@ -785,5 +783,16 @@
                 </DropdownMenu>
   
 -               {/* Existing buttons for bulk QR code operations */}
@@ -159,7 +183,11 @@ Read file: src/components/admin/restaurants-table.tsx
                   <Button
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 61
+
 ```diff
+@@ -848,70 +857,10 @@
             )}
           </div>
 - 
@@ -233,7 +261,11 @@ Read file: src/components/admin/restaurants-table.tsx
                 const rowId = String(index)
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -921,5 +870,5 @@
                     key={restaurant.id.toString()}
                     className={cn(
 -                     'bg-background rounded-lg border p-4 mb-4 shadow-sm transition-colors',
@@ -242,7 +274,11 @@ Read file: src/components/admin/restaurants-table.tsx
                         ? 'border-primary bg-primary/5'
 ```
 
+**Chunk 8**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -933,6 +882,4 @@
                           onCheckedChange={(value) => {
                             handleToggleRow(rowId, !!value)
 - 
@@ -251,7 +287,11 @@ Read file: src/components/admin/restaurants-table.tsx
                             if (value === true) {
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -944,5 +891,5 @@
                           }}
                           aria-label={`Select ${restaurant.name}`}
 -                         className='translate-y-[2px]'
@@ -260,7 +300,11 @@ Read file: src/components/admin/restaurants-table.tsx
                         <h3 className='font-medium text-base'>
 ```
 
+**Chunk 10**
+Lines added: 4, lines removed: 29
+
 ```diff
+@@ -978,34 +925,9 @@
                     </div>
   
 -                   {/* Result status if this restaurant was part of bulk operation */}
@@ -301,7 +345,11 @@ Read file: src/components/admin/restaurants-table.tsx
                             src={restaurant.imageUrl}
 ```
 
+**Chunk 11**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1016,5 +938,6 @@
                       )}
   
 -                   <div className='flex flex-wrap gap-2 mt-3'>
@@ -311,7 +359,11 @@ Read file: src/components/admin/restaurants-table.tsx
                         <div className='text-xs bg-sidebar-accent/30 px-2 py-1 rounded-md flex items-center'>
 ```
 
+**Chunk 12**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -1042,11 +965,12 @@
   
                       {/* Quick View Button */}
 -                   <div className='flex justify-end mt-4 pt-3 border-t border-sidebar-border'>
@@ -328,7 +380,11 @@ Read file: src/components/admin/restaurants-table.tsx
             <div className='bg-background rounded-lg border border-sidebar-border p-8 text-center'>
 ```
 
+**Chunk 13**
+Lines added: 16, lines removed: 12
+
 ```diff
+@@ -1064,25 +988,29 @@
         <div
           className={cn(
 -           'rounded-xl border border-sidebar-border mt-4 shadow-sm overflow-hidden',
@@ -372,7 +428,11 @@ Read file: src/components/admin/restaurants-table.tsx
                       >
 ```
 
+**Chunk 14**
+Lines added: 5, lines removed: 8
+
 ```diff
+@@ -1104,23 +1032,20 @@
                       key={row.id}
                       data-state={row.getIsSelected() && 'selected'}
 -                     className='group border-b-1 border-sidebar-border hover:bg-sidebar/10'
@@ -402,6 +462,8 @@ Read file: src/components/admin/restaurants-table.tsx
                         </TableCell>
                       ))}
 ```
+
+</details>
 
 ---
 
@@ -548,7 +610,15 @@ Read file: src/components/admin/restaurants-table.tsx
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -602,8 +602,8 @@
         rowSelection,
       },
 -     // Initial page size - adjust for better fit with truncated content
@@ -561,7 +631,11 @@ Read file: src/components/admin/restaurants-table.tsx
       },
 ```
 
+**Chunk 2**
+Lines added: 30, lines removed: 1
+
 ```diff
+@@ -1076,9 +1076,38 @@
         {/* Pagination controls - work for both mobile and desktop */}
         <div className='flex items-center justify-between py-4'>
 +         <div className='flex items-center space-x-2'>
@@ -603,7 +677,11 @@ Read file: src/components/admin/restaurants-table.tsx
               variant='outline'
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -1099,4 +1128,13 @@
               Next
             </Button>
 +           <Button
@@ -618,6 +696,8 @@ Read file: src/components/admin/restaurants-table.tsx
           </div>
         </div>
 ```
+
+</details>
 
 ---
 
@@ -719,7 +799,15 @@ Read file: src/hooks/useRestaurantSearch.tsx
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 7
+
 ```diff
+@@ -321,12 +321,11 @@
     const handleToggleAllRows = (selected: boolean) => {
       if (selected) {
 -       const allRows = filteredRestaurants.reduce<RowSelectionState>(
@@ -740,7 +828,11 @@ Read file: src/hooks/useRestaurantSearch.tsx
         setRowSelection({})
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -596,5 +595,5 @@
     // Define data table using TanStack
     const table = useReactTable({
 -     data: filteredRestaurants as unknown as RestaurantData[], // Use filtered restaurants instead of all data
@@ -749,7 +841,11 @@ Read file: src/hooks/useRestaurantSearch.tsx
       state: {
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 5
+
 ```diff
+@@ -608,10 +607,7 @@
         },
       },
 - 
@@ -764,7 +860,11 @@ Read file: src/hooks/useRestaurantSearch.tsx
       getCoreRowModel: getCoreRowModel(),
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -639,9 +635,9 @@
     })
   
 -   // Add a function to handle bulk QR code generation
@@ -780,7 +880,11 @@ Read file: src/hooks/useRestaurantSearch.tsx
   
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -654,5 +650,5 @@
     }
   
 -   // Add a handler for exporting CSV
@@ -789,7 +893,11 @@ Read file: src/hooks/useRestaurantSearch.tsx
       (exportAll = false) => {
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -663,7 +659,5 @@
           const restaurantsToExport = exportAll
             ? filteredRestaurants
 -           : Object.keys(rowSelection).map(
@@ -800,7 +908,11 @@ Read file: src/hooks/useRestaurantSearch.tsx
           // Create a clean export data structure with only the fields we want
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -689,5 +683,5 @@
         }
       },
 -     [filteredRestaurants, rowSelection]
@@ -808,6 +920,8 @@ Read file: src/hooks/useRestaurantSearch.tsx
     )
   
 ```
+
+</details>
 
 ---
 
@@ -866,7 +980,15 @@ I'll adjust the column definition to have a smaller size value and potentially a
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -373,8 +373,10 @@
         accessorKey: 'id',
         header: 'ID',
 -       size: 200,
@@ -880,6 +1002,8 @@ I'll adjust the column definition to have a smaller size value and potentially a
         },
       },
 ```
+
+</details>
 
 ---
 
@@ -906,7 +1030,15 @@ Let me make these changes.</details></think>
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -436,5 +436,5 @@
       {
         accessorKey: 'punchCardCount',
 -       size: 200,
@@ -915,7 +1047,11 @@ Let me make these changes.</details></think>
           <div className='flex items-center gap-0.5'>
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -455,5 +455,5 @@
           }
           return (
 -           <div className='font-medium text-sm'>
@@ -924,7 +1060,11 @@ Let me make these changes.</details></think>
             </div>
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -463,5 +463,5 @@
       {
         accessorKey: 'dealCount',
 -       size: 200,
@@ -933,7 +1073,11 @@ Let me make these changes.</details></think>
           <div className='flex items-center gap-0.5'>
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -484,5 +484,5 @@
           const restaurant = row.original as ExtendedRestaurant
           return (
 -           <div className='font-medium text-sm'>
@@ -942,13 +1086,19 @@ Let me make these changes.</details></think>
             </div>
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -493,4 +493,5 @@
         id: 'quickView',
         header: 'Quick View',
 +       size: 100,
         cell: ({row}) => {
           const restaurant = row.original
 ```
+
+</details>
 
 ---
 
@@ -982,7 +1132,15 @@ I'll also need to enhance the current page display to make it more prominent.</d
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -31,4 +31,6 @@
     FileSpreadsheet,
     Upload,
 +   ChevronsLeft,
@@ -991,7 +1149,11 @@ I'll also need to enhance the current page display to make it more prominent.</d
   import {Checkbox} from '@/components/ui/checkbox'
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1072,5 +1074,5 @@
   
         {/* Pagination controls - work for both mobile and desktop */}
 -       <div className='flex items-center justify-between py-4'>
@@ -1000,7 +1162,11 @@ I'll also need to enhance the current page display to make it more prominent.</d
             <span className='text-xs text-sidebar-foreground/70'>
 ```
 
+**Chunk 3**
+Lines added: 22, lines removed: 14
+
 ```diff
+@@ -1092,46 +1094,54 @@
           </div>
   
 -         <div className='text-xs text-sidebar-foreground/70'>
@@ -1070,6 +1236,8 @@ I'll also need to enhance the current page display to make it more prominent.</d
           </div>
         </div>
 ```
+
+</details>
 
 ---
 

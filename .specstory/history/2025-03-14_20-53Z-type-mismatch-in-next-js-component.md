@@ -72,7 +72,15 @@ Let's fix the code:
 
 ---
 
+<details><summary>Edit file: src/app/(public)/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -7,7 +7,7 @@
   
   export interface RestaurantsPageProps {
 - 	searchParams: {
@@ -84,7 +92,11 @@ Let's fix the code:
   
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -16,5 +16,6 @@
   }: RestaurantsPageProps) {
   	const restaurants = await getRestaurants();
 - 	const hasDeals = searchParams.deals === "true";
@@ -93,6 +105,8 @@ Let's fix the code:
   
   	// Apply default sorting (A-Z by name)
 ```
+
+</details>
 
 ---
 
@@ -153,10 +167,10 @@ Now let's check each directory to find page files:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L106 | `export default async function RestaurantPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L13 | `export default async function RestaurantsPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L9 | `export default async function EditDealPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L13 | `export default async function RestaurantsPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L107 | `export default async function RestaurantPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L14 | `export default async function RestaurantsPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L10 | `export default async function EditDealPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L14 | `export default async function RestaurantsPage({` |
 
 </details>
 
@@ -171,24 +185,24 @@ Let me search more thoroughly to find all pages:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/page.tsx` | L5 | `export default async function Home() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/sign-in/%5B%5B...sign-in%5D%5D/page.tsx` | L2 | `export default function Page() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L13 | `export default async function RestaurantsPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/leaderboard/page.tsx` | L21 | `export default async function LeaderboardPage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/sign-up/%5B%5B...sign-up%5D%5D/page.tsx` | L2 | `export default function Page() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/%5Bid%5D/page.tsx` | L3 | `export default function RestaurantPage({ params }: { params: { id: string } }) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/page.tsx` | L5 | `export default async function AdminDashboardPage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L7 | `export default async function ProfilePage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/users/page.tsx` | L3 | `export default async function AdminUsersPage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L9 | `export default async function DealsAdminPage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L7 | `export default function NewDealPage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L7 | `export default function DealDetailPage({ params }: { params: { id: string } }) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L72 | `export default async function RestaurantsPage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L106 | `export default async function RestaurantPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/new/page.tsx` | L8 | `export default function NewRestaurantPage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L9 | `export default async function EditDealPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L11 | `export default async function DealsPage() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L13 | `export default async function RestaurantsPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/page.tsx` | L6 | `export default async function Home() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/sign-in/%5B%5B...sign-in%5D%5D/page.tsx` | L3 | `export default function Page() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L14 | `export default async function RestaurantsPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/leaderboard/page.tsx` | L22 | `export default async function LeaderboardPage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/sign-up/%5B%5B...sign-up%5D%5D/page.tsx` | L3 | `export default function Page() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/%5Bid%5D/page.tsx` | L4 | `export default function RestaurantPage({ params }: { params: { id: string } }) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/page.tsx` | L6 | `export default async function AdminDashboardPage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L8 | `export default async function ProfilePage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/users/page.tsx` | L4 | `export default async function AdminUsersPage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L10 | `export default async function DealsAdminPage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L8 | `export default function NewDealPage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L8 | `export default function DealDetailPage({ params }: { params: { id: string } }) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L73 | `export default async function RestaurantsPage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L107 | `export default async function RestaurantPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/new/page.tsx` | L9 | `export default function NewRestaurantPage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L10 | `export default async function EditDealPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L12 | `export default async function DealsPage() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L14 | `export default async function RestaurantsPage({` |
 
 </details>
 
@@ -206,7 +220,15 @@ Let me update the restaurant detail page:
 
 ---
 
+<details><summary>Edit file: src/app/(public)/restaurants/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 2
+
 ```diff
+@@ -2,6 +2,9 @@
   import { UserFacingRestaurantDetail } from "@/features/restaurants/UserFacingRestaurantDetail";
   
 - export default function RestaurantPage({ params }: { params: { id: string } }) {
@@ -219,6 +241,8 @@ Let me update the restaurant detail page:
   }
   
 ```
+
+</details>
 
 ---
 
@@ -234,7 +258,15 @@ I need to update the admin restaurant detail page:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -107,8 +107,9 @@
   export default async function RestaurantPage({
   	params,
 - }: { params: { id: string } }) {
@@ -247,6 +279,8 @@ I need to update the admin restaurant detail page:
   
   	console.log("🚀 ~ id:", id);
 ```
+
+</details>
 
 ---
 
@@ -262,7 +296,15 @@ Let's update the admin deal detail page:
 
 ---
 
+<details><summary>Edit file: src/app/admin/deals/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -6,5 +6,9 @@
   };
   
 - export default function DealDetailPage({ params }: { params: { id: string } }) {
@@ -275,7 +317,11 @@ Let's update the admin deal detail page:
   		<div className="space-y-6">
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -18,5 +22,5 @@
   				<div className="flex items-center gap-2">
   					<a
 - 						href={`/admin/deals/${params.id}/edit`}
@@ -284,7 +330,11 @@ Let's update the admin deal detail page:
   					>
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -26,5 +30,5 @@
   			</div>
   
 - 			<DealDetail id={params.id} />
@@ -292,6 +342,8 @@ Let's update the admin deal detail page:
   		</div>
   	);
 ```
+
+</details>
 
 ---
 
@@ -307,7 +359,15 @@ Let's update the admin deal edit page:
 
 ---
 
+<details><summary>Edit file: src/app/admin/deals/[id]/edit/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -10,8 +10,10 @@
   export default async function EditDealPage({
   	params,
 - }: { params: { id: string } }) {
@@ -322,7 +382,11 @@ Let's update the admin deal edit page:
   	// If the deal doesn't exist, show 404
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -30,5 +32,5 @@
   
   			<div className="bg-white rounded-lg shadow-sm p-6">
 - 				<EditDealForm id={params.id} deal={deal} />
@@ -330,6 +394,8 @@ Let's update the admin deal edit page:
   			</div>
   		</div>
 ```
+
+</details>
 
 ---
 
@@ -354,12 +420,12 @@ Let's check for searchParams specifically:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L8 | `searchParams: Promise<{` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L14 | `searchParams,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L17 | `const params = await searchParams;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L8 | `searchParams: Promise<{` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L14 | `searchParams,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L17 | `const params = await searchParams;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L9 | `searchParams: Promise<{` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L15 | `searchParams,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L18 | `const params = await searchParams;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L9 | `searchParams: Promise<{` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L15 | `searchParams,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L18 | `const params = await searchParams;` |
 
 </details>
 
@@ -374,16 +440,16 @@ Let's search for any other instances of props destructuring in page components:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L13 | `export default async function RestaurantsPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/%5Bid%5D/page.tsx` | L3 | `export default async function RestaurantPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L106 | `export default async function RestaurantPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L7 | `export default async function DealDetailPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L9 | `export default async function EditDealPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L13 | `export default async function RestaurantsPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/%5Bid%5D/page.tsx` | L3 | `export default async function RestaurantPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L106 | `export default async function RestaurantPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L7 | `export default async function DealDetailPage({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L9 | `export default async function EditDealPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L14 | `export default async function RestaurantsPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/%5Bid%5D/page.tsx` | L4 | `export default async function RestaurantPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L107 | `export default async function RestaurantPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L8 | `export default async function DealDetailPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L10 | `export default async function EditDealPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/page.tsx` | L14 | `export default async function RestaurantsPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/restaurants/%5Bid%5D/page.tsx` | L4 | `export default async function RestaurantPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L107 | `export default async function RestaurantPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L8 | `export default async function DealDetailPage({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L10 | `export default async function EditDealPage({` |
 
 </details>
 

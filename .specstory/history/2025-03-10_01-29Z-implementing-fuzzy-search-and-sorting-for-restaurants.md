@@ -44,7 +44,15 @@ First, let's create a custom hook for restaurant search and sorting functionalit
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSearch.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 70, lines removed: 1
+
 ```diff
+@@ -1,1 +1,70 @@
 - 
 + import { useState, useMemo, useCallback } from "react";
 + import type { Restaurant } from "@/types/db";
@@ -118,6 +126,8 @@ First, let's create a custom hook for restaurant search and sorting functionalit
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's fix the linter errors in the hook and create the search bar component:
@@ -150,14 +160,26 @@ I'll fix those issues and then move on to creating our search bar UI component a
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSearch.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,3 +1,3 @@
 - import { useState, useMemo, useCallback } from "react";
 + import { useState, useMemo } from "react";
   import type { Restaurant } from "@/types/db";
   import Fuse from "fuse.js";
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -42,5 +42,7 @@
   		if (searchTerm.trim()) {
   			const searchResults = fuse.search(searchTerm);
 - 			results = searchResults.map((result) => result.item);
@@ -168,7 +190,11 @@ I'll fix those issues and then move on to creating our search bar UI component a
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -49,8 +51,6 @@
   			if (sortOption === "name-asc") {
   				return a.name.localeCompare(b.name);
 - 			} else if (sortOption === "name-desc") {
@@ -180,13 +206,23 @@ I'll fix those issues and then move on to creating our search bar UI component a
   	}, [restaurants, searchTerm, sortOption, fuse]);
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining linter error and create the restaurant search bar component:
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSearch.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -2,4 +2,5 @@
   import type { Restaurant } from "@/types/db";
   import Fuse from "fuse.js";
 + import type { FuseResult } from "fuse.js";
@@ -194,7 +230,11 @@ Let's fix the remaining linter error and create the restaurant search bar compon
   export type SortOption = "name-asc" | "name-desc";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -43,5 +44,5 @@
   			const searchResults = fuse.search(searchTerm);
   			results = searchResults.map(
 - 				(result: Fuse.FuseResult<Restaurant>) => result.item,
@@ -203,13 +243,23 @@ Let's fix the remaining linter error and create the restaurant search bar compon
   		}
 ```
 
+</details>
+
 ---
 
 Now, let's create a reusable restaurant search bar component:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantSearchBar.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 65, lines removed: 1
+
 ```diff
+@@ -1,1 +1,65 @@
 - 
 + import type { ChangeEvent } from "react";
 + import { Search, ArrowUpDown } from "lucide-react";
@@ -278,13 +328,23 @@ Now, let's create a reusable restaurant search bar component:
 + 
 ```
 
+</details>
+
 ---
 
 Let's update our import statements assuming ShadCN/UI is being used:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantSearchBar.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -2,5 +2,4 @@
   import { Search, ArrowUpDown } from "lucide-react";
   import { Input } from "@/components/ui/input";
 - import { Button } from "@/components/ui/button";
@@ -292,13 +352,23 @@ Let's update our import statements assuming ShadCN/UI is being used:
   	Select,
 ```
 
+</details>
+
 ---
 
 Now let's update the RestaurantList component to use our new search functionality:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -3,4 +3,6 @@
   import { InView } from "@/components/ui/in-view";
   import { RestaurantCard } from "./RestaurantCard";
 + import { RestaurantSearchBar } from "./RestaurantSearchBar";
@@ -307,7 +377,11 @@ Now let's update the RestaurantList component to use our new search functionalit
   
 ```
 
+**Chunk 2**
+Lines added: 26, lines removed: undefined
+
 ```diff
+@@ -34,5 +36,31 @@
   	restaurants,
   }: { restaurants: Restaurant[] }) {
 + 	const {
@@ -341,7 +415,11 @@ Now let's update the RestaurantList component to use our new search functionalit
   					viewOptions={{}}
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -50,5 +78,5 @@
   				>
   					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-7xl px-4 auto-rows-fr">
 - 				{restaurants.map((restaurant: Restaurant) => (
@@ -350,7 +428,11 @@ Now let's update the RestaurantList component to use our new search functionalit
   								variants={{
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -68,4 +96,6 @@
   					</div>
   				</InView>
 + 			)}
@@ -358,6 +440,8 @@ Now let's update the RestaurantList component to use our new search functionalit
   	);
   }
 ```
+
+</details>
 
 ---
 
@@ -377,7 +461,15 @@ Let's create a new component for the admin search bar and update the Restaurants
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/AdminRestaurantSearchBar.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 64, lines removed: 1
+
 ```diff
+@@ -1,1 +1,64 @@
 - 
 + import type { ChangeEvent } from "react";
 + import { Search, ArrowUpDown } from "lucide-react";
@@ -445,13 +537,23 @@ Let's create a new component for the admin search bar and update the Restaurants
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's create an index.ts file in the restaurants feature folder to export all our components:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -1,1 +1,5 @@
 - 
 + export { RestaurantCard } from "./RestaurantCard";
 + export { RestaurantsList, RestaurantsLoading } from "./RestaurantList";
@@ -460,13 +562,23 @@ Now, let's create an index.ts file in the restaurants feature folder to export a
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's modify the page.tsx files to implement our new search functionality. First, the public restaurants page:
 
 ---
 
+<details><summary>Edit file: src/app/(public)/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -8,4 +8,10 @@
   export default async function RestaurantsPage() {
   	const restaurants = await getRestaurants();
 + 
@@ -479,7 +591,11 @@ Now, let's modify the page.tsx files to implement our new search functionality. 
   		<div className="px-4 py-8 h-full w-full overflow-auto">
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -27,5 +33,5 @@
   			</div>
   
 - 			<RestaurantsList restaurants={restaurants} />
@@ -488,13 +604,23 @@ Now, let's modify the page.tsx files to implement our new search functionality. 
   	);
 ```
 
+</details>
+
 ---
 
 Now, let's update the admin restaurants page to use our search component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -37,4 +37,6 @@
   } from "@/actions/restaurants";
   import { toast } from "sonner";
 + import { useRestaurantSearch } from "@/hooks/useRestaurantSearch";
@@ -503,7 +629,11 @@ Now, let's update the admin restaurants page to use our search component:
   // Styled components imports
 ```
 
+**Chunk 2**
+Lines added: 13, lines removed: undefined
+
 ```diff
+@@ -215,4 +217,17 @@
   		React.useState<RestaurantData | null>(null);
   	const router = useRouter();
 + 
@@ -523,7 +653,11 @@ Now, let's update the admin restaurants page to use our search component:
   	// Update local data when initialData changes
 ```
 
+**Chunk 3**
+Lines added: 8, lines removed: 1
+
 ```diff
+@@ -423,5 +438,12 @@
   
   	return (
 - 		<>
@@ -539,7 +673,11 @@ Now, let's update the admin restaurants page to use our search component:
   				<Table>
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -443,5 +465,5 @@
   					</TableHeader>
   					<TableBody>
 - 						{table.getRowModel().rows.length ? (
@@ -548,7 +686,11 @@ Now, let's update the admin restaurants page to use our search component:
   								<TableRow
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -466,5 +488,7 @@
   									className="h-24 text-center"
   								>
 - 									No restaurants found.
@@ -559,7 +701,11 @@ Now, let's update the admin restaurants page to use our search component:
   							</TableRow>
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -516,5 +540,5 @@
   				</AlertDialogContent>
   			</AlertDialog>
 - 		</>
@@ -568,13 +714,23 @@ Now, let's update the admin restaurants page to use our search component:
   }
 ```
 
+</details>
+
 ---
 
 Finally, let's update the table component to use the filtered restaurants:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 17, lines removed: 21
+
 ```diff
+@@ -401,36 +401,32 @@
   	};
   
 + 	// Define data table using TanStack
@@ -630,17 +786,29 @@ Finally, let's update the table component to use the filtered restaurants:
   		} as TableMeta,
 ```
 
+</details>
+
 ---
 
 Now, let's export the useRestaurantSearch hook in an index file to keep our code organized:
 
 ---
 
+<details><summary>Edit file: src/hooks/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1,1 +1,2 @@
 - 
 + export { useRestaurantSearch, type SortOption } from "./useRestaurantSearch";
 + 
 ```
+
+</details>
 
 ---
 

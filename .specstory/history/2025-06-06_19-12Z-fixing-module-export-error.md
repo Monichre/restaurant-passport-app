@@ -60,7 +60,33 @@ Looking at the storage module structure, the issue is likely with the barrel exp
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 3
+
+```diff
+@@ -38,13 +38,12 @@
+  import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'
+  import Image from 'next/image'
++ import {uploadRestaurantImage, getPublicUrl} from '@/db/storage/storage-client'
+  import {
+-   uploadRestaurantImage,
+-   getPublicUrl,
+    BUCKET_NAMES,
+    validateFileType,
+    validateFileSize,
+    ALLOWED_IMAGE_TYPES,
+    MAX_FILE_SIZE,
+- } from '@/db/storage'
++ } from '@/db/storage/storage-types'
+  
+  // Define the BentoItem interface to match the BentoGrid component's expected types
+```
+
+</details>
 
 ---
 
@@ -79,7 +105,26 @@ Now I need to fix the `updateRestaurant` usage since it returns an array directl
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -269,6 +269,6 @@
+        })
+  
+-       if (!updateResult.success) {
+-         throw new Error(updateResult.error || 'Failed to update restaurant')
++       if (!updateResult || updateResult.length === 0) {
++         throw new Error('Failed to update restaurant')
+        }
+  
+```
+
+</details>
 
 ---
 
@@ -175,7 +220,7 @@ For admin operations like restaurant image uploads, you should use **server-side
 
 ---
 
-
+The string to replace was not found in the file.
 
 ---
 
@@ -224,7 +269,15 @@ The issue is that `uploadRestaurantImage` doesn't exist in the server storage mo
 
 ---
 
+<details><summary>Edit file: src/app/actions/upload-restaurant-image.ts</summary>
+
+Create a server action for uploading restaurant images that uses server-side storage
+
+**Chunk 1**
+Lines added: 100, lines removed: 1
+
 ```diff
+@@ -1,1 +1,100 @@
 - 
 + 'use server'
 + 
@@ -328,6 +381,8 @@ The issue is that `uploadRestaurantImage` doesn't exist in the server storage mo
 + } 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Great! Now I need to update the component to use this server action instead of the client-side storage function. I'll need to:
@@ -344,7 +399,31 @@ Now update the component to use the server action:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
+```diff
+@@ -38,12 +38,11 @@
+  import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'
+  import Image from 'next/image'
+- import {uploadRestaurantImage, getPublicUrl} from '@/db/storage/storage-client'
+  import {
+-   BUCKET_NAMES,
+    validateFileType,
+    validateFileSize,
+    ALLOWED_IMAGE_TYPES,
+    MAX_FILE_SIZE,
+  } from '@/db/storage/storage-types'
++ import {uploadRestaurantImageAction} from '@/app/actions/upload-restaurant-image'
+  
+  // Define the BentoItem interface to match the BentoGrid component's expected types
+```
+
+</details>
 
 ---
 
@@ -359,7 +438,65 @@ Now update the component to use the server action:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 25
+
+```diff
+@@ -244,36 +244,22 @@
+  
+      try {
+-       // Upload image to storage
+-       const uploadResult = await uploadRestaurantImage(
++       // Create FormData for server action
++       const formData = new FormData()
++       formData.append('image', file)
++ 
++       // Upload image using server action
++       const result = await uploadRestaurantImageAction(
+          restaurantData.id.toString(),
+-         file,
+-         'logo'
++         formData
+        )
+  
+-       if (!uploadResult.success) {
+-         throw new Error(uploadResult.error || 'Failed to upload image')
++       if (!result.success) {
++         throw new Error(result.error || 'Failed to upload image')
+        }
+  
+-       // Generate public URL for the uploaded image
+-       const imagePath = uploadResult.data?.path
+-       if (!imagePath) {
+-         throw new Error('No image path returned from upload')
+-       }
+- 
+-       const imageUrl = getPublicUrl(BUCKET_NAMES.RESTAURANTS, imagePath)
+- 
+-       // Update restaurant in database
+-       const updateResult = await updateRestaurant(restaurantData.id, {
+-         imageUrl: imageUrl,
+-       })
+- 
+-       if (!updateResult || updateResult.length === 0) {
+-         throw new Error('Failed to update restaurant')
+-       }
+- 
+-       // Update local state
++       // Update local state with the returned restaurant data
+        const updatedRestaurant = {
+          ...restaurantData,
+-         imageUrl: imageUrl,
++         imageUrl: result.data?.imageUrl,
+        }
+        setRestaurantData(updatedRestaurant)
+```
+
+</details>
 
 ---
 
@@ -403,7 +540,32 @@ The issue is that `imageUrl` is required (`string`) in the `Restaurant` type, bu
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
+```diff
+@@ -257,9 +257,13 @@
+          throw new Error(result.error || 'Failed to upload image')
+        }
++ 
++       if (!result.data?.imageUrl) {
++         throw new Error('No image URL returned from upload')
++       }
+  
+        // Update local state with the returned restaurant data
+        const updatedRestaurant = {
+          ...restaurantData,
+-         imageUrl: result.data?.imageUrl,
++         imageUrl: result.data.imageUrl,
+        }
+        setRestaurantData(updatedRestaurant)
+```
+
+</details>
 
 ---
 
@@ -436,8 +598,8 @@ The RLS policy violation is still occurring even with the server action. This su
 ---
 
 <details>
-            <summary>Searched codebase "supabase storage bucket policy RLS restaurants" • **25** results</summary>
-        
+                <summary>Searched codebase "supabase storage bucket policy RLS restaurants" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `.cursor/rules/derived-cursor-rules.mdc` | L358-372 |
@@ -476,7 +638,15 @@ Let me create a SQL migration to properly configure the storage bucket policies:
 
 ---
 
+<details><summary>Edit file: scripts/setup-storage-policies.sql</summary>
+
+Create SQL script to set up Supabase storage bucket policies for the restaurants bucket
+
+**Chunk 1**
+Lines added: 97, lines removed: 1
+
 ```diff
+@@ -1,1 +1,97 @@
 - 
 + -- Setup Storage Buckets and RLS Policies for Restaurant Passport App
 + 
@@ -577,6 +747,8 @@ Let me create a SQL migration to properly configure the storage bucket policies:
 + ORDER BY policyname; 
 ```
 
+</details>
+
 ---
 
 Now let me create a more streamlined approach using Supabase's apply_migration tool:
@@ -626,7 +798,47 @@ I need to create a service role client for admin operations. Let me update the s
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
+```diff
+@@ -1,3 +1,4 @@
+  import { createServerClient } from "@supabase/ssr";
++ import { createClient } from "@supabase/supabase-js";
+  import { cookies } from "next/headers";
+  
+```
+
+**Chunk 2**
+Lines added: 14, lines removed: undefined
+
+```diff
+@@ -28,4 +29,18 @@
+  	);
+  }
++ 
++ // Service role client for admin operations (bypasses RLS)
++ export function createSupabaseServiceClient() {
++ 	return createClient(
++ 		process.env.NEXT_PUBLIC_SUPABASE_URL!,
++ 		process.env.SUPABASE_SERVICE_ROLE_KEY!,
++ 		{
++ 			auth: {
++ 				autoRefreshToken: false,
++ 				persistSession: false
++ 			}
++ 		}
++ 	);
++ }
+  
+  export const supabaseServerClient = createSupabaseServerClient();
+```
+
+</details>
 
 ---
 
@@ -634,11 +846,28 @@ Now let me update the storage server to use the service client for admin operati
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1,5 +1,5 @@
+  "use server";
+  
+- import { createSupabaseServerClient } from "@/db/supabase/supabase.server";
++ import { createSupabaseServiceClient } from "@/db/supabase/supabase.server";
+  import {
+    BucketName,
+```
+
+</details>
 
 ---
 
-
+The model provided an ambiguous search string to replace.
 
 ---
 
@@ -651,22 +880,22 @@ Let me replace all instances systematically:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L27 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L73 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L112 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L159 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L202 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L245 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L289 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L334 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L27 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L73 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L112 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L159 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L202 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L245 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L289 | `const supabase = await createSupabaseServerClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L334 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L28 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L74 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L113 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L160 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L203 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L246 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L290 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L335 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L28 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L74 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L113 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L160 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L203 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L246 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L290 | `const supabase = await createSupabaseServerClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L335 | `const supabase = await createSupabaseServerClient();` |
 
 </details>
 
@@ -684,7 +913,7 @@ Let me use a more direct approach and replace the entire file content at once:
 
 ---
 
-
+The model provided an ambiguous search string to replace.
 
 ---
 
@@ -692,7 +921,24 @@ Let me do the replacements one by one, starting with the first one for the uploa
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -26,5 +26,5 @@
+      }
+  
+-     const supabase = await createSupabaseServerClient();
++     const supabase = createSupabaseServiceClient();
+      const normalizedPath = normalizeFilePath(path);
+  
+```
+
+</details>
 
 ---
 
@@ -724,7 +970,7 @@ You're absolutely right! I was updating the wrong functions. Since we're using t
 
 ---
 
-
+The model provided an ambiguous search string to replace.
 
 ---
 
@@ -732,31 +978,150 @@ Let me do this systematically, one function at a time:
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
 
----
+**Chunk 1**
+Lines added: 1, lines removed: 1
 
+```diff
+@@ -72,5 +72,5 @@
+      }
+  
+-     const supabase = await createSupabaseServerClient();
++     const supabase = createSupabaseServiceClient();
+      const normalizedPath = normalizeFilePath(path);
+  
+```
 
-
----
-
-
-
----
-
-
-
----
-
-
-
----
-
-
+</details>
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -111,5 +111,5 @@
+  ): Promise<StorageResponse<FileObject[]>> => {
+    try {
+-     const supabase = await createSupabaseServerClient();
++     const supabase = createSupabaseServiceClient();
+      const folderPath = folder ? normalizeFilePath(folder) : undefined;
+  
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -158,5 +158,5 @@
+      }
+  
+-     const supabase = await createSupabaseServerClient();
++     const supabase = createSupabaseServiceClient();
+      const normalizedPath = normalizeFilePath(path);
+  
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -201,5 +201,5 @@
+      }
+  
+-     const supabase = await createSupabaseServerClient();
++     const supabase = createSupabaseServiceClient();
+      const normalizedPaths = validPaths.map(normalizeFilePath);
+  
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -244,5 +244,5 @@
+      }
+  
+-     const supabase = await createSupabaseServerClient();
++     const supabase = createSupabaseServiceClient();
+      const normalizedFromPath = normalizeFilePath(fromPath);
+      const normalizedToPath = normalizeFilePath(toPath);
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -288,5 +288,5 @@
+      }
+  
+-     const supabase = await createSupabaseServerClient();
++     const supabase = createSupabaseServiceClient();
+      const normalizedFromPath = normalizeFilePath(fromPath);
+      const normalizedToPath = normalizeFilePath(toPath);
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -333,5 +333,5 @@
+      }
+  
+-     const supabase = await createSupabaseServerClient();
++     const supabase = createSupabaseServiceClient();
+      const normalizedPath = normalizeFilePath(path);
+  
+```
+
+</details>
 
 ---
 

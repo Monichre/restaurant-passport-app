@@ -89,14 +89,14 @@ No results found
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L8 | `const SIGNING_SECRET = process.env.SIGNING_SECRET` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L10 | `if ( !SIGNING_SECRET ) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L12 | `"Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L17 | `const wh = new Webhook( SIGNING_SECRET )` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L8 | `const SIGNING_SECRET = process.env.SIGNING_SECRET` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L10 | `if ( !SIGNING_SECRET ) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L12 | `"Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L17 | `const wh = new Webhook( SIGNING_SECRET )` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L9 | `const SIGNING_SECRET = process.env.SIGNING_SECRET` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L11 | `if ( !SIGNING_SECRET ) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L13 | `"Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L18 | `const wh = new Webhook( SIGNING_SECRET )` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L9 | `const SIGNING_SECRET = process.env.SIGNING_SECRET` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L11 | `if ( !SIGNING_SECRET ) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L13 | `"Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L18 | `const wh = new Webhook( SIGNING_SECRET )` |
 
 </details>
 
@@ -125,8 +125,8 @@ Let me also check if there have been any recent changes to the webhook implement
 ---
 
 <details>
-            <summary>Searched codebase "What environment variables are used for Clerk configuration?" • **25** results</summary>
-        
+                <summary>Searched codebase "What environment variables are used for Clerk configuration?" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `scripts/sync-clerk-to-supabase.ts` | L171-209 |
@@ -179,11 +179,51 @@ Let me fix this webhook implementation:
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
+```diff
+@@ -7,9 +7,9 @@
+  
+  export async function POST( req: Request ) {
+- 	const SIGNING_SECRET = process.env.SIGNING_SECRET
++ 	const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || process.env.CLERK_WEBHOOK_SECRET
+  
+- 	if ( !SIGNING_SECRET ) {
++ 	if ( !WEBHOOK_SECRET ) {
+  		throw new Error(
+- 			"Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local",
++ 			"Error: Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local",
+  		)
+  	}
+```
+
+</details>
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -16,5 +16,5 @@
+  
+  	// Create new Svix instance with secret
+- 	const wh = new Webhook( SIGNING_SECRET )
++ 	const wh = new Webhook( WEBHOOK_SECRET )
+  
+  	// Get headers
+```
+
+</details>
 
 ---
 
@@ -212,16 +252,16 @@ No results found
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_04-33Z-enhancing-quick-view-with-qr-code-features.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_13-17Z-hydration-error-invalid-html-structure.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-24_05-26Z-investigate-user-sign-up-persistence-issue.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-07_06-19Z-convert-ideas-into-tasks.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/features/mouse-sensitive-nav-implementation.mdc` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_06-05Z-date-conversion-error-in-javascript.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_05-44Z-rendering-svg-qr-code-in-react.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-03_19-28Z-csv-to-json-conversion-request.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-03_20-53Z-merge-navigation-items-into-component.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-14_04-54Z-improve-nav-scanner-select-menu-design.md` |
 
 </details>
 

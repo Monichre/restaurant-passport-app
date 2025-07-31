@@ -48,7 +48,30 @@ Perfect! Now I'll update the layout file to include those favicon and manifest l
 
 ---
 
+<details><summary>Edit file: src/app/layout.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 8, lines removed: undefined
+
+```diff
+@@ -27,4 +27,12 @@
+    // viewport:
+    //   'width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover',
++   icons: {
++     icon: [
++       {url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png'},
++       {url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png'},
++     ],
++     apple: [{url: '/apple-touch-icon.png', sizes: '180x180'}],
++   },
++   manifest: '/site.webmanifest',
+  }
+  
+```
+
+</details>
 
 ---
 

@@ -53,7 +53,15 @@ _**User**_
 
 _**Assistant**_
 
+<details><summary>Edit file: src/features/restaurants/restaurant-detail/RestaurantDetail.tsx</summary>
+
+I'm updating the hero section to apply the sophisticated styling from RestaurantsHero.tsx, including motion animations, floating sparkles, BoxReveal components, better responsive design, and enhanced visual effects.
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -28,9 +28,12 @@
     User as UserIcon,
     ExternalLink,
 +   Sparkles,
@@ -69,7 +77,11 @@ _**Assistant**_
   export function RestaurantDetail({
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -46,4 +49,5 @@
   
     const [userData, setUserData] = useState<User | null>(user)
 +   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -77,7 +89,11 @@ _**Assistant**_
     const {user: clerkUser} = useUser()
 ```
 
+**Chunk 3**
+Lines added: 131, lines removed: 15
+
 ```diff
+@@ -86,26 +90,142 @@
   
     return (
 +     <AnimatePresence>
@@ -237,7 +253,11 @@ _**Assistant**_
           {/* Bento Grid Layout */}
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 7
+
 ```diff
+@@ -128,11 +248,4 @@
                 </div>
               </div>
 -           {distance ? (
@@ -251,7 +271,11 @@ _**Assistant**_
               {formattedDeals && formattedDeals.length > 0 ? (
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -202,5 +315,6 @@
                           <div className='flex justify-between items-start mb-2'>
                             <h3 className='font-semibold text-gray-900 dark:text-gray-100'>
 -                           {deal.title || `${deal.content.substring(0, 40)}...`}
@@ -261,13 +285,19 @@ _**Assistant**_
                             {deal.active ? (
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -253,4 +367,5 @@
           </div>
         </div>
 +     </AnimatePresence>
     )
   }
 ```
+
+</details>
 
 ---
 

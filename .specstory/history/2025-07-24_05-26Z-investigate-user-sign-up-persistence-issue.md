@@ -39,8 +39,8 @@ I'll help you diagnose the issue with users not being persisted to Supabase. Let
 ---
 
 <details>
-            <summary>Searched codebase "createUser function implementation in users model" • **8** results</summary>
-        
+                <summary>Searched codebase "createUser function implementation in users model" • **8** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/users/users.ts` | L64-73 |
@@ -61,8 +61,8 @@ I'll help you diagnose the issue with users not being persisted to Supabase. Let
 ---
 
 <details>
-            <summary>Searched codebase "users table schema definition with fields clerkId name email" • **25** results</summary>
-        
+                <summary>Searched codebase "users table schema definition with fields clerkId name email" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/drizzle/schema.ts` | L1-31 |
@@ -100,8 +100,8 @@ I'll help you diagnose the issue with users not being persisted to Supabase. Let
 ---
 
 <details>
-            <summary>Searched codebase "database connection configuration Supabase setup" • **25** results</summary>
-        
+                <summary>Searched codebase "database connection configuration Supabase setup" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/supabase/supabase.client.ts` | L1-8 |
@@ -143,40 +143,40 @@ I'll help you diagnose the issue with users not being persisted to Supabase. Let
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/db.ts` | L5 | `const connectionString = process.env.DATABASE_URL;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.client.ts` | L5 | `process.env.NEXT_PUBLIC_SUPABASE_URL!,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.client.ts` | L6 | `process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.client.ts` | L14 | `process.env.NEXT_PUBLIC_SUPABASE_URL!,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.client.ts` | L15 | `process.env.SUPABASE_SERVICE_ROLE_KEY!,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.server.ts` | L7 | `process.env.NEXT_PUBLIC_SUPABASE_URL!,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.server.ts` | L8 | `process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase-middleware.ts` | L9 | `process.env.NEXT_PUBLIC_SUPABASE_URL!,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase-middleware.ts` | L10 | `process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/instrumentation-client.ts` | L2 | `posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/instrumentation-client.ts` | L8 | `debug: process.env.NODE_ENV === "development",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.tsx` | L15 | `const wsUrl = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001/ws";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L12 | `)}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/qr-utils.ts` | L15 | `: process.env.NEXT_PUBLIC_APP_URL || 'https://experiencemaplegrove.app';` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/providers.tsx` | L17 | `posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/providers.tsx` | L19 | `process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L6 | `// const SIGNING_SECRET = process.env.SIGNING_SECRET;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/dev/stagewise-dev-toolbar.tsx` | L10 | `if (process.env.NODE_ENV !== 'development') {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/utils.ts` | L12 | `: process.env.NEXT_PUBLIC_APP_URL || '';` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/middleware.ts` | L19 | `secure: process.env.NODE_ENV === 'production',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/next.config.ts` | L3 | `enabled: process.env.ANALYZE === "true", // Enable only when ANALYZE environment variable is set` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/next.config.ts` | L7 | `const isProduction = process.env.NODE_ENV === "production";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/drizzle.config.ts` | L11 | `url: process.env.DATABASE_URL || "",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/firecrawl-extractor.js` | L29 | `const app = new FirecrawlApp({ apiKey: process.env.FIRECRAWL_API_KEY });` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/firecrawl-extractor.js` | L108 | `const apiKey = process.env.FIRECRAWL_API_KEY;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L17 | `apiKey: process.env.FIRECRAWL_API_KEY,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L847 | `// 		process.env.FIRECRAWL_API_ENDPOINT || "https://api.firecrawl.dev/v1/search",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L848 | `// 	firecrawlApiKey: process.env.FIRECRAWL_API_KEY || "your-api-key-here",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/dev.js` | L11 | `if (process.env.DEBUG === '1') {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/hybrid-scraper.js` | L278 | `const apiKey = process.env.FIRECRAWL_API_KEY;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/supabase-batch/config.js` | L7 | `const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/supabase-batch/config.js` | L8 | `const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/supabase-batch/config.js` | L9 | `const DATABASE_URL = process.env.DATABASE_URL;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L6 | `// const SIGNING_SECRET = process.env.SIGNING_SECRET;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/db.ts` | L6 | `const connectionString = process.env.DATABASE_URL;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.client.ts` | L6 | `process.env.NEXT_PUBLIC_SUPABASE_URL!,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.client.ts` | L7 | `process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.client.ts` | L15 | `process.env.NEXT_PUBLIC_SUPABASE_URL!,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.client.ts` | L16 | `process.env.SUPABASE_SERVICE_ROLE_KEY!,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.server.ts` | L8 | `process.env.NEXT_PUBLIC_SUPABASE_URL!,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase.server.ts` | L9 | `process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase-middleware.ts` | L10 | `process.env.NEXT_PUBLIC_SUPABASE_URL!,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/supabase/supabase-middleware.ts` | L11 | `process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/instrumentation-client.ts` | L3 | `posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/instrumentation-client.ts` | L9 | `debug: process.env.NODE_ENV === "development",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-websocket.tsx` | L16 | `const wsUrl = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001/ws";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L13 | `)}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/qr-utils.ts` | L16 | `: process.env.NEXT_PUBLIC_APP_URL || 'https://experiencemaplegrove.app';` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/providers.tsx` | L18 | `posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/providers.tsx` | L20 | `process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L7 | `// const SIGNING_SECRET = process.env.SIGNING_SECRET;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/dev/stagewise-dev-toolbar.tsx` | L11 | `if (process.env.NODE_ENV !== 'development') {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/utils.ts` | L13 | `: process.env.NEXT_PUBLIC_APP_URL || '';` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/middleware.ts` | L20 | `secure: process.env.NODE_ENV === 'production',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/next.config.ts` | L4 | `enabled: process.env.ANALYZE === "true", // Enable only when ANALYZE environment variable is set` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/next.config.ts` | L8 | `const isProduction = process.env.NODE_ENV === "production";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/drizzle.config.ts` | L12 | `url: process.env.DATABASE_URL || "",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/firecrawl-extractor.js` | L30 | `const app = new FirecrawlApp({ apiKey: process.env.FIRECRAWL_API_KEY });` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/firecrawl-extractor.js` | L109 | `const apiKey = process.env.FIRECRAWL_API_KEY;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L18 | `apiKey: process.env.FIRECRAWL_API_KEY,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L848 | `// 		process.env.FIRECRAWL_API_ENDPOINT || "https://api.firecrawl.dev/v1/search",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L849 | `// 	firecrawlApiKey: process.env.FIRECRAWL_API_KEY || "your-api-key-here",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/dev.js` | L12 | `if (process.env.DEBUG === '1') {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/hybrid-scraper.js` | L279 | `const apiKey = process.env.FIRECRAWL_API_KEY;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/supabase-batch/config.js` | L8 | `const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/supabase-batch/config.js` | L9 | `const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/supabase-batch/config.js` | L10 | `const DATABASE_URL = process.env.DATABASE_URL;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L7 | `// const SIGNING_SECRET = process.env.SIGNING_SECRET;` |
 
 </details>
 
@@ -400,7 +400,15 @@ Let me fix these issues:</details></think>
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
+
+I'm fixing the webhook code by re-enabling webhook verification, using proper metadata fields, and improving error handling to ensure users are properly persisted to Supabase.
+
+**Chunk 1**
+Lines added: 87, lines removed: 52
+
 ```diff
+@@ -1,73 +1,108 @@
   
 - import { clerkClient } from "@clerk/nextjs/server";
 - import { createUser } from "@/db/models/users";
@@ -563,13 +571,15 @@ Let me fix these issues:</details></think>
   }
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>I need to fix the TypeScript errors by properly typing the webhook event. Let me add proper types for the Svix webhook event.</details></think>
 
 ---
 
-
+The string to replace was not found in the file.
 
 ---
 
@@ -577,7 +587,37 @@ Let me fix these issues:</details></think>
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -38,5 +38,5 @@
+  
+  	// Verify payload with the headers
+- 	let evt
++ 	let evt: any
+  	try {
+  		evt = wh.verify( payload, {
+```
+
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -53,5 +53,5 @@
+  
+  	try {
+- 		const { data, type } = evt
++ 		const { data, type } = evt as { data: any; type: string }
+  
+  		if ( type === "user.created" ) {
+```
+
+</details>
 
 ---
 
@@ -614,7 +654,7 @@ __tests__/  drizzle/  node_modules/  plop-templates/  public/  scripts/  src/  s
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L105 | `"svix": "^1.66.0",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L106 | `"svix": "^1.66.0",` |
 
 </details>
 
@@ -624,7 +664,15 @@ __tests__/  drizzle/  node_modules/  plop-templates/  public/  scripts/  src/  s
 
 ---
 
+<details><summary>Edit file: WEBHOOK_DEBUGGING_REPORT.md</summary>
+
+I'm creating a comprehensive debugging report documenting the issues found and fixes applied to resolve the user persistence problem.
+
+**Chunk 1**
+Lines added: 114, lines removed: 1
+
 ```diff
+@@ -1,1 +1,114 @@
 - 
 + # Webhook Debugging Report: User Persistence Issues
 + 
@@ -741,6 +789,8 @@ __tests__/  drizzle/  node_modules/  plop-templates/  public/  scripts/  src/  s
 + The webhook should now properly persist users to Supabase while maintaining security best practices.
 + 
 ```
+
+</details>
 
 ---
 
@@ -904,7 +954,7 @@ No results found
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/auth.ts` | L26 | `user?.publicMetadata?.role === "admin"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/auth.ts` | L27 | `user?.publicMetadata?.role === "admin"` |
 
 </details>
 
@@ -919,8 +969,8 @@ No results found
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L84 | `privateMetadata: {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L84 | `privateMetadata: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L85 | `privateMetadata: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L85 | `privateMetadata: {` |
 
 </details>
 
@@ -939,8 +989,8 @@ Read file: src/lib/auth.ts
 ---
 
 <details>
-            <summary>Searched codebase "How is user metadata accessed from Clerk in the application?" • **25** results</summary>
-        
+                <summary>Searched codebase "How is user metadata accessed from Clerk in the application?" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/context/user-context.tsx` | L34-105 |
@@ -978,8 +1028,8 @@ Read file: src/lib/auth.ts
 ---
 
 <details>
-            <summary>Searched codebase "How is Supabase user ID retrieved from Clerk user metadata?" • **25** results</summary>
-        
+                <summary>Searched codebase "How is Supabase user ID retrieved from Clerk user metadata?" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/app/api/webhooks/route.ts` | L52-108 |
@@ -1034,8 +1084,8 @@ However, let me double-check by searching for any hardcoded references to the ol
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L85 | `supabaseUserId: user[0].id.toString(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L85 | `supabaseUserId: user[0].id.toString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L86 | `supabaseUserId: user[0].id.toString(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L86 | `supabaseUserId: user[0].id.toString(),` |
 
 </details>
 
@@ -1062,33 +1112,33 @@ No results found
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L26 | `metadata: Record<string, any>;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L16 | `// Add count metadata to each restaurant` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L42 | `// First get total count for pagination metadata` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L58 | `// Add count metadata to each restaurant` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L65 | `// Return both the restaurants and pagination metadata` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/auth.ts` | L26 | `user?.publicMetadata?.role === "admin"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L386 | `preload='metadata'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L104 | `// Define interfaces for TanStack Table metadata` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L22 | `* Pagination metadata` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | Lundefined | `import type {Metadata} from 'next'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L22 | `export const metadata: Metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L17 | `// Define viewport metadata as per Next.js recommendations` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L81 | `// Update Clerk user's metadata with Supabase user ID` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L83 | `await client.users.updateUserMetadata( clerkId, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L84 | `privateMetadata: {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L89 | `console.log( "✅ Updated Clerk user metadata with Supabase user ID:", user[0].id )` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L92 | `message: "User created and metadata updated successfully",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L6 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/leaderboard/page.tsx` | L22 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L8 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/new/page.tsx` | L3 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L3 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L81 | `// Update Clerk user's metadata with Supabase user ID` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L83 | `await client.users.updateUserMetadata( clerkId, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L84 | `privateMetadata: {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L89 | `console.log( "✅ Updated Clerk user metadata with Supabase user ID:", user[0].id )` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L92 | `message: "User created and metadata updated successfully",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-types.ts` | L27 | `metadata: Record<string, any>;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L17 | `// Add count metadata to each restaurant` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L43 | `// First get total count for pagination metadata` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L59 | `// Add count metadata to each restaurant` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L66 | `// Return both the restaurants and pagination metadata` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/auth.ts` | L27 | `user?.publicMetadata?.role === "admin"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L387 | `preload='metadata'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L105 | `// Define interfaces for TanStack Table metadata` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L23 | `* Pagination metadata` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L1 | `import type {Metadata} from 'next'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L23 | `export const metadata: Metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L18 | `// Define viewport metadata as per Next.js recommendations` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L82 | `// Update Clerk user's metadata with Supabase user ID` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L84 | `await client.users.updateUserMetadata( clerkId, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L85 | `privateMetadata: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L90 | `console.log( "✅ Updated Clerk user metadata with Supabase user ID:", user[0].id )` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L93 | `message: "User created and metadata updated successfully",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L7 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/leaderboard/page.tsx` | L23 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L9 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/new/page.tsx` | L4 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L4 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L82 | `// Update Clerk user's metadata with Supabase user ID` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L84 | `await client.users.updateUserMetadata( clerkId, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L85 | `privateMetadata: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L90 | `console.log( "✅ Updated Clerk user metadata with Supabase user ID:", user[0].id )` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/api/webhooks/route.ts` | L93 | `message: "User created and metadata updated successfully",` |
 
 </details>
 
@@ -1175,8 +1225,8 @@ I'll help you create a script to sync all Clerk users who didn't make it into Su
 ---
 
 <details>
-            <summary>Searched codebase "How to get all users from Clerk clerkClient users list" • **25** results</summary>
-        
+                <summary>Searched codebase "How to get all users from Clerk clerkClient users list" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/app/admin/users/page.tsx` | L1-25 |
@@ -1250,7 +1300,15 @@ Perfect! I'll create a comprehensive script that can take Clerk user data and sy
 
 ---
 
+<details><summary>Edit file: scripts/sync-clerk-to-supabase.ts</summary>
+
+I'm creating a comprehensive script to sync Clerk users to Supabase, with proper error handling, logging, and metadata updates.
+
+**Chunk 1**
+Lines added: 270, lines removed: 1
+
 ```diff
+@@ -1,1 +1,270 @@
 - 
 + #!/usr/bin/env bun
 + /**
@@ -1524,6 +1582,8 @@ Perfect! I'll create a comprehensive script that can take Clerk user data and sy
 + } 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>I need to fix the linter error about `import.meta.main`. This is a Bun-specific property that TypeScript doesn't recognize by default. I should use a different approach to detect if the script is being run directly.
@@ -1532,7 +1592,24 @@ Let me fix this by checking if the script is being run directly in a different w
 
 ---
 
+<details><summary>Edit file: scripts/sync-clerk-to-supabase.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -252,5 +252,5 @@
+  
+  // If running directly, expect JSON input as command line argument
+- if ( import.meta.main ) {
++ if ( typeof process !== 'undefined' && process.argv.length > 2 ) {
+    const clerkUsersJson = process.argv[2]
+  
+```
+
+</details>
 
 ---
 
@@ -1540,7 +1617,15 @@ Let me fix this by checking if the script is being run directly in a different w
 
 ---
 
+<details><summary>Edit file: scripts/sync-clerk-users-from-file.ts</summary>
+
+I'm creating a helper script that can read Clerk users from a JSON file and sync them to Supabase.
+
+**Chunk 1**
+Lines added: 64, lines removed: 1
+
 ```diff
+@@ -1,1 +1,64 @@
 - 
 + #!/usr/bin/env bun
 + /**
@@ -1608,6 +1693,8 @@ Let me fix this by checking if the script is being run directly in a different w
 + main() 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now let me also create a README file specifically for this sync operation to document how to use it.</details></think>
@@ -1641,7 +1728,15 @@ You're absolutely right! I need to create a script to export/fetch all users fro
 
 ---
 
+<details><summary>Edit file: scripts/export-clerk-users.ts</summary>
+
+I'm creating a script to export all users from Clerk using the Clerk API with pagination, and save them to a JSON file.
+
+**Chunk 1**
+Lines added: 306, lines removed: 1
+
 ```diff
+@@ -1,1 +1,306 @@
 - 
 + #!/usr/bin/env bun
 + /**
@@ -1951,13 +2046,23 @@ You're absolutely right! I need to create a script to export/fetch all users fro
 + } 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now let me create one more script that combines both operations - export from Clerk and sync to Supabase in one go.</details></think>
 
 ---
 
+<details><summary>Edit file: scripts/full-clerk-sync.ts</summary>
+
+I'm creating a complete sync script that exports users from Clerk and syncs them directly to Supabase in one operation.
+
+**Chunk 1**
+Lines added: 153, lines removed: 1
+
 ```diff
+@@ -1,1 +1,153 @@
 - 
 + #!/usr/bin/env bun
 + /**
@@ -2114,13 +2219,23 @@ You're absolutely right! I need to create a script to export/fetch all users fro
 + } 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now let me create a simple README file to document how to use these scripts.</details></think>
 
 ---
 
+<details><summary>Edit file: scripts/CLERK_SYNC_README.md</summary>
+
+I'm creating documentation for the Clerk sync scripts to explain how to use them.
+
+**Chunk 1**
+Lines added: 241, lines removed: 1
+
 ```diff
+@@ -1,1 +1,241 @@
 - 
 + # Clerk to Supabase User Sync Scripts
 + 
@@ -2365,6 +2480,8 @@ You're absolutely right! I need to create a script to export/fetch all users fro
 + 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Perfect! I've created a comprehensive set of scripts to handle the Clerk to Supabase user sync. Let me also test that the main script works properly.</details></think>
@@ -2486,7 +2603,26 @@ I need to make the CLI detection more specific to only run when the script is ex
 
 ---
 
+<details><summary>Edit file: scripts/export-clerk-users.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -246,6 +246,6 @@
+  }
+  
+- // CLI usage
+- if ( typeof process !== 'undefined' && process.argv.length > 2 ) {
++ // CLI usage - only run if this script is executed directly
++ if ( typeof process !== 'undefined' && process.argv.length > 2 && process.argv[1]?.includes( 'export-clerk-users.ts' ) ) {
+    const args = process.argv.slice( 2 )
+    const options: ExportOptions = {}
+```
+
+</details>
 
 ---
 
@@ -2494,7 +2630,26 @@ I need to make the CLI detection more specific to only run when the script is ex
 
 ---
 
+<details><summary>Edit file: scripts/full-clerk-sync.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -86,6 +86,6 @@
+  }
+  
+- // CLI usage
+- if ( typeof process !== 'undefined' && process.argv.length > 2 ) {
++ // CLI usage - only run if this script is executed directly
++ if ( typeof process !== 'undefined' && process.argv.length > 2 && process.argv[1]?.includes( 'full-clerk-sync.ts' ) ) {
+    const args = process.argv.slice( 2 )
+    const options: FullSyncOptions = {}
+```
+
+</details>
 
 ---
 
@@ -2502,7 +2657,24 @@ I need to make the CLI detection more specific to only run when the script is ex
 
 ---
 
+<details><summary>Edit file: scripts/sync-clerk-to-supabase.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -252,5 +252,5 @@
+  
+  // If running directly, expect JSON input as command line argument
+- if ( typeof process !== 'undefined' && process.argv.length > 2 ) {
++ if ( typeof process !== 'undefined' && process.argv.length > 2 && process.argv[1]?.includes( 'sync-clerk-to-supabase.ts' ) ) {
+    const clerkUsersJson = process.argv[2]
+  
+```
+
+</details>
 
 ---
 
@@ -2789,7 +2961,24 @@ Let me fix this so it runs by default when executed directly, even without argum
 
 ---
 
+<details><summary>Edit file: scripts/full-clerk-sync.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -87,5 +87,5 @@
+  
+  // CLI usage - only run if this script is executed directly
+- if ( typeof process !== 'undefined' && process.argv.length > 2 && process.argv[1]?.includes( 'full-clerk-sync.ts' ) ) {
++ if ( typeof process !== 'undefined' && process.argv[1]?.includes( 'full-clerk-sync.ts' ) ) {
+    const args = process.argv.slice( 2 )
+    const options: FullSyncOptions = {}
+```
+
+</details>
 
 ---
 
@@ -2797,7 +2986,24 @@ Let me fix this so it runs by default when executed directly, even without argum
 
 ---
 
+<details><summary>Edit file: scripts/export-clerk-users.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -247,5 +247,5 @@
+  
+  // CLI usage - only run if this script is executed directly
+- if ( typeof process !== 'undefined' && process.argv.length > 2 && process.argv[1]?.includes( 'export-clerk-users.ts' ) ) {
++ if ( typeof process !== 'undefined' && process.argv[1]?.includes( 'export-clerk-users.ts' ) ) {
+    const args = process.argv.slice( 2 )
+    const options: ExportOptions = {}
+```
+
+</details>
 
 ---
 

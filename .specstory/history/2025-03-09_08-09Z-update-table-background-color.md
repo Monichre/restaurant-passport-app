@@ -26,7 +26,15 @@ Now I'll update the table to have a white background. The main table component i
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -371,5 +371,5 @@
   	return (
   		<div className="w-full">
 - 			<div className="rounded-md border border-gray-200">
@@ -34,6 +42,8 @@ Now I'll update the table to have a white background. The main table component i
   				<Table>
   					<TableHeader>
 ```
+
+</details>
 
 ---
 
@@ -71,18 +81,18 @@ Let me first search for any uses of DialogContent in the codebase.</think>Let me
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | L31 | `const DialogContent = React.forwardRef<` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | L53 | `DialogContent.displayName = DialogPrimitive.Content.displayName` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | L116 | `DialogContent,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L34 | `DialogContent,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L224 | `<DialogContent className="sm:max-w-md p-0 overflow-hidden">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L323 | `</DialogContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L8 | `import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L66 | `<DialogContent className="max-w-md p-6">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L83 | `</DialogContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L34 | `DialogContent,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L224 | `<DialogContent className="sm:max-w-md p-0 overflow-hidden">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L323 | `</DialogContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | L32 | `const DialogContent = React.forwardRef<` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | L54 | `DialogContent.displayName = DialogPrimitive.Content.displayName` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dialog.tsx` | L117 | `DialogContent,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L35 | `DialogContent,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L225 | `<DialogContent className="sm:max-w-md p-0 overflow-hidden">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L324 | `</DialogContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L9 | `import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L67 | `<DialogContent className="max-w-md p-6">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L84 | `</DialogContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L35 | `DialogContent,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L225 | `<DialogContent className="sm:max-w-md p-0 overflow-hidden">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L324 | `</DialogContent>` |
 
 </details>
 
@@ -132,7 +142,15 @@ I'll fix both issues. First, let's fix the QR code manager component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -7,5 +7,11 @@
   import { useHandleQRCode } from "@/hooks/use-handle-qrCode";
   import type { Restaurant } from "@/types/db";
 - import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -147,7 +165,11 @@ I'll fix both issues. First, let's fix the QR code manager component:
   import { QrCode, Download, Plus, X, Check } from "lucide-react";
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -66,5 +72,7 @@
   				</DialogTrigger>
   				<DialogContent className="max-w-md p-6">
 - 					<h3 className="text-lg font-medium mb-4">QR Code Manager</h3>
@@ -158,13 +180,23 @@ I'll fix both issues. First, let's fix the QR code manager component:
   						<FullQRManager
 ```
 
+</details>
+
 ---
 
 Now, let's create the VisuallyHidden component since it doesn't exist in the codebase yet. This component will be used when you want to hide dialog titles visually while keeping them accessible to screen readers.
 
 ---
 
+<details><summary>Edit file: src/components/ui/visually-hidden.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 25, lines removed: 1
+
 ```diff
+@@ -1,1 +1,25 @@
 - 
 + import * as React from "react";
 + import { cn } from "@/lib/utils";
@@ -192,6 +224,8 @@ Now, let's create the VisuallyHidden component since it doesn't exist in the cod
 + export { VisuallyHidden };
 + 
 ```
+
+</details>
 
 ---
 

@@ -29,7 +29,15 @@ The main difference in the architecture will be:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 3
+
 ```diff
+@@ -1,10 +1,16 @@
   "use client";
   
 - import { useState, useEffect } from "react";
@@ -51,7 +59,11 @@ The main difference in the architecture will be:
   // Define a simplified restaurant type for the select dropdown
 ```
 
+**Chunk 2**
+Lines added: 82, lines removed: undefined
+
 ```diff
+@@ -13,4 +19,86 @@
   	name: string;
   };
 + 
@@ -140,7 +152,11 @@ The main difference in the architecture will be:
   export function NewDealForm() {
 ```
 
+**Chunk 3**
+Lines added: 26, lines removed: 90
+
 ```diff
+@@ -19,108 +107,44 @@
   	const [isLoadingRestaurants, setIsLoadingRestaurants] = useState(true);
   
 - 	const [formData, setFormData] = useState({
@@ -277,7 +293,11 @@ The main difference in the architecture will be:
   					</div>
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -141,6 +165,4 @@
   						id="title"
   						name="title"
 - 						value={formData.title}
@@ -286,7 +306,11 @@ The main difference in the architecture will be:
   						placeholder="e.g., 'Happy Hour Special' or 'Weekend Brunch Offer'"
 ```
 
+**Chunk 5**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -160,6 +182,4 @@
   						id="content"
   						name="content"
 - 						value={formData.content}
@@ -295,7 +319,11 @@ The main difference in the architecture will be:
   						className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#818cf8] focus:outline-none focus:ring-1 focus:ring-[#818cf8] sm:text-sm"
 ```
 
+**Chunk 6**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -180,6 +200,4 @@
   						id="restaurantId"
   						name="restaurantId"
 - 						value={formData.restaurantId}
@@ -304,7 +332,11 @@ The main difference in the architecture will be:
   						required
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -205,6 +223,5 @@
   							id="active"
   							name="active"
 - 							checked={formData.active}
@@ -314,7 +346,11 @@ The main difference in the architecture will be:
   						/>
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 7
+
 ```diff
+@@ -231,11 +248,5 @@
   					Cancel
   				</button>
 - 				<button
@@ -329,13 +365,23 @@ The main difference in the architecture will be:
   		</form>
 ```
 
+</details>
+
 ---
 
 There's a linter error in the code related to the `useState` hook. Let me fix that by using `useEffect` for the side effects instead of `useState`.
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,5 +1,5 @@
   "use client";
   
 - import { useState } from "react";
@@ -344,7 +390,11 @@ There's a linter error in the code related to the `useState` hook. Let me fix th
   import { revalidatePath } from "next/cache";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -114,5 +114,5 @@
   
   	// Fetch restaurants on component mount
 - 	useState(() => {
@@ -353,7 +403,11 @@ There's a linter error in the code related to the `useState` hook. Let me fix th
   			.then((data) => {
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -123,8 +123,8 @@
   				setIsLoadingRestaurants(false);
   			});
 - 	});
@@ -365,6 +419,8 @@ There's a linter error in the code related to the `useState` hook. Let me fix th
   		if (formState.success) {
   			toast("Deal created", {
 ```
+
+</details>
 
 ---
 

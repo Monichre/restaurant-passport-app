@@ -38,7 +38,15 @@ I'll create a RaffleEntriesCardList component and integrate it into the AdminDas
 
 ---
 
+<details><summary>Edit file: src/hooks/useRaffleEntriesSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -28,6 +28,6 @@
   
   /**
 -  * A hook for subscribing to real-time restaurant deals updates for all restaurants
@@ -49,7 +57,11 @@ I'll create a RaffleEntriesCardList component and integrate it into the AdminDas
   export function useRaffleEntriesSubscription() {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -40,5 +40,5 @@
         setIsLoading(true)
   
 -       // Use the client-side API endpoint to get all deals
@@ -58,7 +70,11 @@ I'll create a RaffleEntriesCardList component and integrate it into the AdminDas
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -53,5 +53,5 @@
         setDeals(data)
       } catch (err) {
 -       console.error('Error fetching deals:', err)
@@ -67,7 +83,11 @@ I'll create a RaffleEntriesCardList component and integrate it into the AdminDas
       } finally {
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -60,5 +60,5 @@
     }, [])
   
 -   // Fetch initial deals
@@ -76,7 +96,11 @@ I'll create a RaffleEntriesCardList component and integrate it into the AdminDas
       fetchRaffleEntries()
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -67,6 +67,5 @@
     // Set up real-time subscription
     useEffect(() => {
 -     // Subscribe to INSERT events on restaurant_deals table
@@ -86,7 +110,11 @@ I'll create a RaffleEntriesCardList component and integrate it into the AdminDas
         .channel('raffle')
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -84,5 +83,5 @@
       // Clean up subscriptions on unmount
       return () => {
 -       return subscription.unsubscribe()
@@ -95,13 +123,23 @@ I'll create a RaffleEntriesCardList component and integrate it into the AdminDas
     }, [fetchRaffleEntries])
 ```
 
+</details>
+
 ---
 
 Now let's create the RaffleEntriesCardList component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/RaffleEntriesCardList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 104, lines removed: 1
+
 ```diff
+@@ -1,1 +1,104 @@
 - 
 + 'use client'
 + 
@@ -209,6 +247,8 @@ Now let's create the RaffleEntriesCardList component:
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's modify the AdminDashboardContent component to include the RaffleEntriesCardList:
@@ -220,7 +260,7 @@ Now, let's modify the AdminDashboardContent component to include the RaffleEntri
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-dashboard-content.tsx` |
 
 </details>
 
@@ -234,7 +274,15 @@ Let's update the AdminDashboardContent component to include the RaffleEntriesCar
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-dashboard-content.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -3,4 +3,5 @@
   import Link from 'next/link'
   import type {User} from '@/types/db'
 + import {RaffleEntriesCardList} from './RaffleEntriesCardList'
@@ -242,7 +290,11 @@ Let's update the AdminDashboardContent component to include the RaffleEntriesCar
   type AdminDashboardContentProps = {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -25,5 +26,5 @@
         </div>
   
 -       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -251,7 +303,11 @@ Let's update the AdminDashboardContent component to include the RaffleEntriesCar
             href='/admin/users'
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -50,4 +51,13 @@
           </Link>
         </div>
 + 
@@ -267,13 +323,23 @@ Let's update the AdminDashboardContent component to include the RaffleEntriesCar
     )
 ```
 
+</details>
+
 ---
 
 Now, let's make sure we have an API endpoint to fetch the raffle entries:
 
 ---
 
+<details><summary>Edit file: src/app/api/raffle-entries/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 79, lines removed: 27
+
 ```diff
+@@ -1,31 +1,83 @@
 - import { getPunchCardsByUserId } from "@/db/models/punch-cards";
 - import { type NextRequest, NextResponse } from "next/server";
 - import { auth } from "@clerk/nextjs/server";
@@ -385,6 +451,8 @@ Now, let's make sure we have an API endpoint to fetch the raffle entries:
   			{ status: 500 },
   		);
 ```
+
+</details>
 
 ---
 

@@ -36,7 +36,15 @@ I'll create comprehensive TypeScript type definitions for the Clerk auth event p
 
 ---
 
+<details><summary>Edit file: src/types/clerk-webhook.ts</summary>
+
+Creating comprehensive TypeScript type definitions for Clerk webhook event payloads
+
+**Chunk 1**
+Lines added: 155, lines removed: 1
+
 ```diff
+@@ -1,1 +1,155 @@
 - 
 + // Clerk Webhook Event Type Definitions
 + 
@@ -195,6 +203,8 @@ I'll create comprehensive TypeScript type definitions for the Clerk auth event p
 +   | "organizationInvitation.revoked" 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now I need to update the webhook route to use these new types. This will improve type safety and make the code more maintainable.</details></think>
@@ -205,7 +215,15 @@ Now let's update the webhook route to use these new type definitions:
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
+
+Update the webhook route to use the new TypeScript type definitions for better type safety
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -5,4 +5,5 @@
   import { createUser } from "@/db/models/users"
   import { convertBigInts } from "@/lib/utils"
 + import { ClerkWebhookEvent, isUserCreatedEvent } from "@/types/clerk-webhook"
@@ -213,7 +231,11 @@ Now let's update the webhook route to use these new type definitions:
   export async function POST( req: Request ) {
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -62,11 +63,11 @@
   
   	// Verify payload with the headers
 - 	let evt: any = body
@@ -229,7 +251,11 @@ Now let's update the webhook route to use these new type definitions:
   	// 	console.error( "Error verifying webhook:", err )
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -77,7 +78,7 @@
   
   	try {
 - 		const { data, type } = evt as { data: any; type: string }
@@ -241,6 +267,8 @@ Now let's update the webhook route to use these new type definitions:
   
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Let me also update the index file in the types directory to export these new types for easier importing throughout the application.</details></think>
@@ -251,7 +279,15 @@ Let's also update the types index file to export these new webhook types:
 
 ---
 
+<details><summary>Edit file: src/types/index.ts</summary>
+
+Add exports for the new Clerk webhook types
+
+**Chunk 1**
+Lines added: 36, lines removed: 33
+
 ```diff
+@@ -4,64 +4,67 @@
   
   // Database model types
 - export * from "./db";
@@ -353,6 +389,8 @@ Let's also update the types index file to export these new webhook types:
 + export * from './clerk-webhook'
   
 ```
+
+</details>
 
 ---
 
@@ -466,7 +504,15 @@ I should update the middleware to:
 
 ---
 
+<details><summary>Edit file: src/middleware.ts</summary>
+
+Update middleware to ensure webhook routes are public and API routes are properly handled
+
+**Chunk 1**
+Lines added: 21, lines removed: 13
+
 ```diff
+@@ -1,30 +1,38 @@
 - import { updateSession } from "@/db/supabase/supabase-middleware";
 - import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 + import { updateSession } from "@/db/supabase/supabase-middleware"
@@ -520,7 +566,11 @@ I should update the middleware to:
   export const config = {
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -33,6 +41,6 @@
   		"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
   		// Always run for API routes
 - 		// "/(api|trpc)(.*)",
@@ -530,6 +580,8 @@ I should update the middleware to:
 + }
   
 ```
+
+</details>
 
 ---
 

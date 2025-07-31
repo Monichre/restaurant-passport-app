@@ -24,8 +24,8 @@ Let me search for files related to bento cards in the codebase:
 ---
 
 <details>
-            <summary>Searched codebase "bento card component" • **25** results</summary>
-        
+                <summary>Searched codebase "bento card component" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/kokonutui/bento-grid.tsx` | L1-26 |
@@ -76,7 +76,15 @@ Let's edit the file to make the border more prominent by changing its color and 
 
 ---
 
+<details><summary>Edit file: src/components/kokonutui/bento-grid.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -75,5 +75,5 @@
   					className={cn(
   						"group relative p-4 rounded-xl overflow-hidden transition-all duration-300",
 - 						"border border-gray-100/80 dark:border-white/10 bg-white dark:bg-black",
@@ -84,6 +92,8 @@ Let's edit the file to make the border more prominent by changing its color and 
   						"hover:shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_2px_12px_rgba(255,255,255,0.03)]",
   						"hover:-translate-y-0.5 will-change-transform",
 ```
+
+</details>
 
 ---
 
@@ -125,7 +135,15 @@ The issue is likely related to how Tailwind CSS processes the border classes. Le
 
 ---
 
+<details><summary>Edit file: src/components/kokonutui/bento-grid.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -75,5 +75,5 @@
   					className={cn(
   						"group relative p-4 rounded-xl overflow-hidden transition-all duration-300",
 - 						"border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-black",
@@ -134,13 +152,23 @@ The issue is likely related to how Tailwind CSS processes the border classes. Le
   						"hover:-translate-y-0.5 will-change-transform",
 ```
 
+</details>
+
 ---
 
 If the border is still not showing after this change, let's try a completely different approach using a direct inline style which will bypass any potential Tailwind issues:
 
 ---
 
+<details><summary>Edit file: src/components/kokonutui/bento-grid.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -86,4 +86,10 @@
   						},
   					)}
 + 					style={{
@@ -152,6 +180,8 @@ If the border is still not showing after this change, let's try a completely dif
   				>
   					<div
 ```
+
+</details>
 
 ---
 
@@ -167,7 +197,15 @@ Consider also adding `!important` directly to the inline style for maximum overr
 
 ---
 
+<details><summary>Edit file: src/components/kokonutui/bento-grid.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 4
+
 ```diff
+@@ -87,8 +87,7 @@
   					)}
   					style={{
 - 						borderWidth: "2px",
@@ -180,6 +218,8 @@ Consider also adding `!important` directly to the inline style for maximum overr
   					}}
   				>
 ```
+
+</details>
 
 ---
 
@@ -201,7 +241,15 @@ I'll also make sure to keep the dark mode version appropriately lighter as well.
 
 ---
 
+<details><summary>Edit file: src/components/kokonutui/bento-grid.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -75,5 +75,5 @@
   					className={cn(
   						"group relative p-4 rounded-xl overflow-hidden transition-all duration-300",
 - 						"!border-2 !border-gray-300 dark:!border-gray-700 ring-1 ring-gray-300 dark:ring-gray-700 bg-white dark:bg-black",
@@ -210,7 +258,11 @@ I'll also make sure to keep the dark mode version appropriately lighter as well.
   						"hover:-translate-y-0.5 will-change-transform",
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 5
+
 ```diff
+@@ -86,9 +86,4 @@
   						},
   					)}
 - 					style={{
@@ -221,6 +273,8 @@ I'll also make sure to keep the dark mode version appropriately lighter as well.
   				>
   					<div
 ```
+
+</details>
 
 ---
 

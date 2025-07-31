@@ -93,7 +93,15 @@ First, let's create a server actions file for restaurants:
 
 ---
 
+<details><summary>Edit file: src/actions/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 125, lines removed: 1
+
 ```diff
+@@ -1,1 +1,125 @@
 - 
 + "use server";
 + 
@@ -222,13 +230,23 @@ First, let's create a server actions file for restaurants:
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's update the RestaurantsTable component to use these server actions. I'm going to create a new version that integrates our server actions:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -25,9 +25,16 @@
   	QrCode,
   	MoreHorizontal,
 + 	Trash2,
@@ -247,7 +265,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   // Styled components imports
 ```
 
+**Chunk 2**
+Lines added: 17, lines removed: undefined
+
 ```diff
+@@ -43,4 +50,21 @@
   import { Input } from "@/components/ui/input";
   import { Badge } from "@/components/ui/badge";
 + import {
@@ -271,7 +293,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   // Define interfaces for TanStack Table metadata
 ```
 
+**Chunk 3**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -84,4 +108,9 @@
   	const [value, setValue] = React.useState(initialValue);
   	const [editing, setEditing] = React.useState(false);
 + 
@@ -283,7 +309,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   	const onBlur = () => {
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -107,4 +136,5 @@
   	if (
   		columnId === "id" ||
 + 		columnId === "qrCodeUrl" ||
@@ -291,7 +321,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   	) {
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -116,4 +146,6 @@
   		switch (columnId) {
   			case "name":
 + 				return <Building className="h-4 w-4 text-gray-500 mr-2" />;
@@ -300,7 +334,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   			case "address":
 ```
 
+**Chunk 6**
+Lines added: 8, lines removed: undefined
+
 ```diff
+@@ -180,4 +212,12 @@
   	const [sorting, setSorting] = React.useState<SortingState>([]);
   	const [pending, setPending] = React.useState<Record<number, boolean>>({});
 + 	const [restaurantToDelete, setRestaurantToDelete] =
@@ -315,7 +353,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   	// Define columns for the table
 ```
 
+**Chunk 7**
+Lines added: 3, lines removed: 11
+
 ```diff
+@@ -223,15 +263,7 @@
   		},
   		{
 - 			accessorKey: "qrCodeUrl",
@@ -336,7 +378,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   		{
 ```
 
+**Chunk 8**
+Lines added: 34, lines removed: 35
+
 ```diff
+@@ -254,48 +286,47 @@
   		{
   			accessorKey: "imageUrl",
 - 			header: ({ column }) => (
@@ -421,7 +467,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   				);
 ```
 
+**Chunk 9**
+Lines added: 46, lines removed: 33
+
 ```diff
+@@ -304,54 +335,67 @@
   	];
   
 - 	// Function to handle saving a restaurant
@@ -524,7 +574,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   					old.map((row, index) => {
 ```
 
+**Chunk 10**
+Lines added: 13, lines removed: 7
+
 ```diff
+@@ -365,20 +409,26 @@
   					}),
   				);
 + 
@@ -560,7 +614,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   											? null
 ```
 
+**Chunk 11**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -393,10 +443,10 @@
   					</TableHeader>
   					<TableBody>
 - 						{table.getRowModel().rows?.length ? (
@@ -577,7 +635,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   									{row.getVisibleCells().map((cell) => (
 ```
 
+**Chunk 12**
+Lines added: 2, lines removed: 10
+
 ```diff
+@@ -409,20 +459,12 @@
   									))}
   								</TableRow>
 - 									{i < arr.length - 1 && (
@@ -602,7 +664,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   							</TableRow>
 ```
 
+**Chunk 13**
+Lines added: 1, lines removed: 8
+
 ```diff
+@@ -431,18 +473,11 @@
   				</Table>
   			</div>
 - 			<div className="flex items-center justify-between space-x-2 py-4">
@@ -624,7 +690,11 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   				</Button>
 ```
 
+**Chunk 14**
+Lines added: 26, lines removed: 4
+
 ```diff
+@@ -452,12 +487,34 @@
   					onClick={() => table.nextPage()}
   					disabled={!table.getCanNextPage()}
 - 						className="h-8"
@@ -664,6 +734,8 @@ Now, let's update the RestaurantsTable component to use these server actions. I'
   	);
   }
 ```
+
+</details>
 
 ---
 

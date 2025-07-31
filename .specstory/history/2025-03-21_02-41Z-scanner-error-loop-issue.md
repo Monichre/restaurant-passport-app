@@ -43,7 +43,15 @@ The issue is caused by undefined `qrDataValue` variables in your code that trigg
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 13
+
 ```diff
+@@ -284,18 +284,12 @@
   	const handleScan: OnResultFunction = useCallback(
   		(result, error) => {
 - 
@@ -71,7 +79,11 @@ The issue is caused by undefined `qrDataValue` variables in your code that trigg
   			try {
 ```
 
+**Chunk 2**
+Lines added: 8, lines removed: 14
+
 ```diff
+@@ -352,25 +346,19 @@
   				}
   			} catch (err) {
 - 				console.log("🚀 ~ err:", err)
@@ -107,7 +119,11 @@ The issue is caused by undefined `qrDataValue` variables in your code that trigg
   			const qrDataValue =
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -381,6 +369,4 @@
   					: qrCodeData;
   
 - 			
@@ -116,7 +132,11 @@ The issue is caused by undefined `qrDataValue` variables in your code that trigg
   			// Use that URL directly for the POST request
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -405,8 +391,8 @@
   			});
   
 - 			// if (!response.ok) {
@@ -131,7 +151,11 @@ The issue is caused by undefined `qrDataValue` variables in your code that trigg
   			const data = await response.json();
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -444,5 +430,7 @@
   				}
   
 - 				// onScanSuccess(formattedResult);
@@ -142,7 +166,11 @@ The issue is caused by undefined `qrDataValue` variables in your code that trigg
   				// Reset QR code data to prevent re-scanning
 ```
 
+**Chunk 6**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -465,7 +453,4 @@
   		}
   	}, [qrCodeData, userId, handleError, onScanSuccess, checkingPunchCardStatus]);
 - 
@@ -152,13 +180,23 @@ The issue is caused by undefined `qrDataValue` variables in your code that trigg
   	// Reset the scanner state
 ```
 
+</details>
+
 ---
 
 Now let's fix the scanner component in the Nav component to ensure it works properly with our updated hook:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 29, lines removed: 23
+
 ```diff
+@@ -149,30 +149,36 @@
   		onScanSuccess: (result) => {
   			console.log("Scan successful:", result);
 - 			// // Close modal and show success state on successful scan
@@ -220,7 +258,11 @@ Now let's fix the scanner component in the Nav component to ensure it works prop
   	// Handle opening/closing the modal and scanner together
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -189,10 +195,10 @@
   	// Handle modal close
   	const handleModalClose = useCallback(() => {
 - 		if (isScanning && showModal) {
@@ -236,6 +278,8 @@ Now let's fix the scanner component in the Nav component to ensure it works prop
   
   	console.log("🚀 ~ Nav ~ user:", user);
 ```
+
+</details>
 
 ---
 
@@ -285,7 +329,15 @@ Let's fix the core issue with the scanner initialization. The problem might be w
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -143,8 +143,11 @@
   			}
   			setMediaStream(null);
 + 			setIsScanning(false);
@@ -300,7 +352,11 @@ Let's fix the core issue with the scanner initialization. The problem might be w
   			setScanAttempts(0);
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -155,6 +158,6 @@
   	const handleError = useCallback(
   		(err: Error | string, type: ScanErrorType = "UNKNOWN_ERROR") => {
 - 
@@ -311,7 +367,11 @@ Let's fix the core issue with the scanner initialization. The problem might be w
   			const errorMessage = typeof err === "string" ? err : err.message;
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 4
+
 ```diff
+@@ -197,8 +200,5 @@
   
   			if (onScanError) {
 - 
@@ -323,7 +383,11 @@ Let's fix the core issue with the scanner initialization. The problem might be w
   				try {
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -212,5 +212,5 @@
   			}
   		},
 - 		[],
@@ -332,13 +396,23 @@ Let's fix the core issue with the scanner initialization. The problem might be w
   
 ```
 
+</details>
+
 ---
 
 Let's also fix the QR scanner implementation in the Nav component to ensure it works correctly:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -296,6 +296,10 @@
   														facingMode: "environment",
   													}}
 + 													scanDelay={500}
@@ -351,13 +425,23 @@ Let's also fix the QR scanner implementation in the Nav component to ensure it w
   													id="qr-video"
 ```
 
+</details>
+
 ---
 
 Now let's fix the issue with how `getCamera` is being called in the hook:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 21, lines removed: undefined
+
 ```diff
+@@ -280,4 +280,25 @@
   		}
   	}, [hasCameraSupport, handleError, mediaStream]);
 + 
@@ -385,13 +469,23 @@ Now let's fix the issue with how `getCamera` is being called in the hook:
   	// Handle successful scan
 ```
 
+</details>
+
 ---
 
 Finally, let's address any other potential issues with the QR scanner integration:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: 1
+
 ```diff
+@@ -182,14 +182,29 @@
   	}, [isScanning, reset]);
   	
 + 	// Effect to handle modal state changes
@@ -423,6 +517,8 @@ Finally, let's address any other potential issues with the QR scanner integratio
   
   	// Handle modal close
 ```
+
+</details>
 
 ---
 
@@ -491,7 +587,15 @@ Let's update the Nav component with the improved implementation:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -322,4 +322,5 @@
   													controls={false}
   													className="hidden"
 + 													playsInline
@@ -499,13 +603,23 @@ Let's update the Nav component with the improved implementation:
   													<track
 ```
 
+</details>
+
 ---
 
 Now let's also update the scanner toggle function to make it more robust:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 23, lines removed: 2
+
 ```diff
+@@ -190,21 +190,42 @@
   		}
   	}, [showModal, isScanning, reset, toggleScanner]);
 + 
@@ -552,6 +666,8 @@ Now let's also update the scanner toggle function to make it more robust:
   	// Handle modal close
 ```
 
+</details>
+
 ---
 
 Finally, let's make one more improvement to the handleModalClose function to ensure proper cleanup:
@@ -566,7 +682,15 @@ Let me try again with that edit:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -231,10 +231,20 @@
   	// Handle modal close
   	const handleModalClose = useCallback(() => {
 + 		// Prevent closing if toggling is in progress
@@ -589,6 +713,8 @@ Let me try again with that edit:
   
   	console.log("🚀 ~ Nav ~ user:", user);
 ```
+
+</details>
 
 ---
 
@@ -655,7 +781,15 @@ The error shows a permission denied issue with the camera. This is common on mob
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 31, lines removed: 2
+
 ```diff
+@@ -133,6 +133,35 @@
   	}, [isScanning, scanAttempts, error]);
   
 - 	// Toggle scanner on/off
@@ -695,7 +829,11 @@ The error shows a permission denied issue with the camera. This is common on mob
   
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: 2
+
 ```diff
+@@ -143,12 +172,20 @@
   			}
   			setMediaStream(null);
 + 			setIsScanning(false);
@@ -720,13 +858,23 @@ The error shows a permission denied issue with the camera. This is common on mob
   	// Handle scanning errors with categorization
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors by moving the requestCameraPermission function after handleError is defined:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 56
+
 ```diff
+@@ -132,60 +132,4 @@
   		}
   	}, [isScanning, scanAttempts, error]);
 - 
@@ -789,7 +937,11 @@ Let's fix the linter errors by moving the requestCameraPermission function after
   	// Handle scanning errors with categorization
 ```
 
+**Chunk 2**
+Lines added: 56, lines removed: undefined
+
 ```diff
+@@ -245,4 +189,60 @@
   		[onScanError],
   	);
 + 
@@ -852,13 +1004,23 @@ Let's fix the linter errors by moving the requestCameraPermission function after
   	// Get user-friendly error message
 ```
 
+</details>
+
 ---
 
 Now let's fix the navigation component to work with the async toggleScanner function and add a proper permission request message:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -31,4 +31,6 @@
   	WalletCards,
   	Wallet,
 + 	AlertTriangle,
@@ -867,7 +1029,11 @@ Now let's fix the navigation component to work with the async toggleScanner func
   import { motion, AnimatePresence } from "motion/react";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -145,4 +147,5 @@
   		handleError,
   		reset,
 + 		error,
@@ -875,7 +1041,11 @@ Now let's fix the navigation component to work with the async toggleScanner func
   		userId: user?.id || "guest",
 ```
 
+**Chunk 3**
+Lines added: 15, lines removed: 3
+
 ```diff
+@@ -219,20 +222,32 @@
   			
   			// Small delay before starting scanner to ensure modal is fully open
 - 			setTimeout(() => {
@@ -913,7 +1083,11 @@ Now let's fix the navigation component to work with the async toggleScanner func
   	}, [isScanning, toggleScanner, reset, isTogglingScanner]);
 ```
 
+**Chunk 4**
+Lines added: 34, lines removed: undefined
+
 ```diff
+@@ -325,4 +340,38 @@
   
   	const navItems: NavItem[] = [...staticNavItems, ...authNavItems];
 + 
@@ -954,7 +1128,11 @@ Now let's fix the navigation component to work with the async toggleScanner func
   	return (
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -352,5 +401,5 @@
   								<div className="flex flex-col items-center space-y-4 mt-4">
   									<AnimatePresence mode="wait">
 - 										{isScanning && (
@@ -963,7 +1141,11 @@ Now let's fix the navigation component to work with the async toggleScanner func
   												key="scanner"
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -377,5 +426,5 @@
   													aria-label="QR code scanner video output"
   													controls={false}
 - 													className=""
@@ -972,7 +1154,11 @@ Now let's fix the navigation component to work with the async toggleScanner func
   												>
 ```
 
+**Chunk 7**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -389,4 +438,6 @@
   											</motion.div>
   										)}
 + 										
@@ -981,13 +1167,23 @@ Now let's fix the navigation component to work with the async toggleScanner func
   										{checkingPunchCardStatus && (
 ```
 
+</details>
+
 ---
 
 The changes look good. Let's add one more improvement to ensure the camera permission is properly handled on iOS:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 40, lines removed: undefined
+
 ```diff
+@@ -502,4 +502,44 @@
   		}
   	}, [checkScanResult, qrCodeData, scanResult, checkingPunchCardStatus]);
 + 
@@ -1033,6 +1229,8 @@ The changes look good. Let's add one more improvement to ensure the camera permi
   
   	return {
 ```
+
+</details>
 
 ---
 
@@ -1087,7 +1285,15 @@ Let's add specific handling for incognito mode:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -345,4 +345,10 @@
   		if (!error || error.type !== "CAMERA_PERMISSION_DENIED") return null;
   		
 + 		// Check if likely in incognito mode
@@ -1100,7 +1306,11 @@ Let's add specific handling for incognito mode:
   			<motion.div
 ```
 
+**Chunk 2**
+Lines added: 14, lines removed: undefined
+
 ```diff
+@@ -357,4 +363,18 @@
   						Please allow camera access to scan QR codes.
   					</p>
 + 					
@@ -1121,13 +1331,23 @@ Let's add specific handling for incognito mode:
   						<RefreshCw className="mr-2 h-4 w-4" />
 ```
 
+</details>
+
 ---
 
 Now let's update the scanner to be more robust with Arc's incognito mode by using a more forceful permission request approach:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 44, lines removed: 1
+
 ```diff
+@@ -190,7 +190,50 @@
   	);
   
 - 	// Request camera permission explicitly
@@ -1181,13 +1401,23 @@ Now let's update the scanner to be more robust with Arc's incognito mode by usin
   			const stream = await navigator.mediaDevices.getUserMedia({ 
 ```
 
+</details>
+
 ---
 
 Now let's update the nav component to better handle incognito mode in Arc:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 59, lines removed: 33
+
 ```diff
+@@ -342,45 +342,71 @@
   
   	// Add permission error message component
 - 	const PermissionMessage = () => {
@@ -1294,7 +1524,11 @@ Now let's update the nav component to better handle incognito mode in Arc:
   	};
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -459,5 +485,5 @@
   										)}
   										
 - 										{error && <PermissionMessage />}
@@ -1303,13 +1537,23 @@ Now let's update the nav component to better handle incognito mode in Arc:
   										{checkingPunchCardStatus && (
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors in the nav.tsx file:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -356,8 +356,8 @@
   					
   					// Common ways to detect incognito mode
 - 					const fs = window.RequestFileSystem || (window as any).webkitRequestFileSystem;
@@ -1322,13 +1566,23 @@ Let's fix the linter errors in the nav.tsx file:
   							() => setIsInIncognito(false),
 ```
 
+</details>
+
 ---
 
 Let's completely update the scanner toggle code in the Nav component to ensure it works well with Arc's incognito mode:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 39, lines removed: 53
+
 ```diff
+@@ -206,69 +206,55 @@
   	const [isTogglingScanner, setIsTogglingScanner] = useState(false);
   
 - 	// Handle opening/closing the modal and scanner together
@@ -1439,7 +1693,11 @@ Let's completely update the scanner toggle code in the Nav component to ensure i
   	useEffect(() => {
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 9
+
 ```diff
+@@ -411,13 +397,4 @@
   		);
   	};
 - 	
@@ -1455,7 +1713,11 @@ Let's completely update the scanner toggle code in the Nav component to ensure i
   	return (
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -426,5 +403,5 @@
   			<AnimatePresence>
   				{showModal && (
 - 					<Dialog open={showModal} onOpenChange={handleModalClose}>
@@ -1464,7 +1726,11 @@ Let's completely update the scanner toggle code in the Nav component to ensure i
   							<motion.div
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -525,5 +502,5 @@
   												type="button"
   												variant="secondary"
 - 												onClick={handleModalClose}
@@ -1473,13 +1739,23 @@ Let's completely update the scanner toggle code in the Nav component to ensure i
   												Close
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors with the handleError function:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -216,5 +216,5 @@
   				// Opening scanner
   				setShowModal(true); // Show modal immediately for better UX
 - 				handleError(null); // Clear any previous errors
@@ -1488,7 +1764,11 @@ Let's fix the linter errors with the handleError function:
   				// Check for Arc browser incognito mode
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -250,5 +250,5 @@
   	// Handle retry attempts for permission issues
   	const handleRetry = () => {
 - 		handleError(null);
@@ -1496,6 +1776,8 @@ Let's fix the linter errors with the handleError function:
   		
   		// Small delay to ensure previous scanner is fully cleaned up
 ```
+
+</details>
 
 ---
 
@@ -1511,7 +1793,15 @@ Let's fix the error issues in the Nav file:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -216,5 +216,6 @@
   				// Opening scanner
   				setShowModal(true); // Show modal immediately for better UX
 - 				setError(null); // Clear any previous errors
@@ -1521,7 +1811,11 @@ Let's fix the error issues in the Nav file:
   				// Check for Arc browser incognito mode
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -250,5 +251,6 @@
   	// Handle retry attempts for permission issues
   	const handleRetry = () => {
 - 		setError(null);
@@ -1530,6 +1824,8 @@ Let's fix the error issues in the Nav file:
   		
   		// Small delay to ensure previous scanner is fully cleaned up
 ```
+
+</details>
 
 ---
 
@@ -1586,7 +1882,15 @@ I'll add explicit instructions for Arc browser incognito mode and implement an a
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -47,4 +47,5 @@
   	DialogClose,
   } from "@/components/ui/dialog";
 + import { toast } from "react-hot-toast";
@@ -1594,7 +1898,11 @@ I'll add explicit instructions for Arc browser incognito mode and implement an a
   export type NavProps = {
 ```
 
+**Chunk 2**
+Lines added: 27, lines removed: undefined
+
 ```diff
+@@ -333,4 +334,31 @@
   		const [isInIncognito, setIsInIncognito] = useState(false);
   		const [isArcBrowser, setIsArcBrowser] = useState(false);
 + 		
@@ -1628,7 +1936,11 @@ I'll add explicit instructions for Arc browser incognito mode and implement an a
   		useEffect(() => {
 ```
 
+**Chunk 3**
+Lines added: 31, lines removed: 10
+
 ```diff
+@@ -376,18 +404,39 @@
   				{isArcBrowser && isInIncognito ? (
   					<>
 - 						<p>It looks like you're using Arc browser in incognito mode.</p>
@@ -1680,7 +1992,11 @@ I'll add explicit instructions for Arc browser incognito mode and implement an a
   							onClick={onRetry}
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -396,4 +445,6 @@
   							Try Again
   						</button>
 + 					</>
@@ -1689,13 +2005,23 @@ I'll add explicit instructions for Arc browser incognito mode and implement an a
   		);
 ```
 
+</details>
+
 ---
 
 Let's fix the toast import error:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -47,5 +47,5 @@
   	DialogClose,
   } from "@/components/ui/dialog";
 - import { toast } from "react-hot-toast";
@@ -1704,13 +2030,23 @@ Let's fix the toast import error:
   export type NavProps = {
 ```
 
+</details>
+
 ---
 
 Now let's add an additional helper function in the QR scan hook to specifically handle Arc browser's incognito mode:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 45, lines removed: undefined
+
 ```diff
+@@ -261,4 +261,49 @@
   		}
   	}, [handleError]);
 + 
@@ -1762,7 +2098,11 @@ Now let's add an additional helper function in the QR scan hook to specifically 
   	// Toggle scanner on/off with permission check
 ```
 
+**Chunk 2**
+Lines added: 18, lines removed: 1
+
 ```diff
+@@ -278,5 +323,22 @@
   		// Only start scanning if not already scanning and we have permission
   		if (!isScanning) {
 - 			// First request camera permission explicitly
@@ -1788,7 +2128,11 @@ Now let's add an additional helper function in the QR scan hook to specifically 
   			
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -287,5 +349,5 @@
   			}
   		}
 - 	}, [isScanning, mediaStream, requestCameraPermission]);
@@ -1797,13 +2141,23 @@ Now let's add an additional helper function in the QR scan hook to specifically 
   	// Get user-friendly error message
 ```
 
+</details>
+
 ---
 
 Finally, let's add another fallback mechanism to attempt a simpler camera permission request in the scanner UI:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 15, lines removed: undefined
+
 ```diff
+@@ -486,4 +486,19 @@
   												className="w-full max-w-[350px] h-[350px] mx-auto relative rounded-lg overflow-hidden"
   											>
 + 												{/* Add Arc camera permission helper overlay for incognito mode */}
@@ -1824,6 +2178,8 @@ Finally, let's add another fallback mechanism to attempt a simpler camera permis
   												<QrReader
   													videoId="qr-video"
 ```
+
+</details>
 
 ---
 
@@ -1931,7 +2287,15 @@ Let's move the `requestPermissionDirectly` function out to the main Nav componen
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 83, lines removed: 4
+
 ```diff
+@@ -131,11 +131,90 @@
   	const [activeTab, setActiveTab] = useState(initialActiveTab);
   	const { isSignedIn, user } = useUser();
 - 
@@ -2028,7 +2392,11 @@ Let's move the `requestPermissionDirectly` function out to the main Nav componen
   	// QR scanning logic moved from NavScanner to Nav
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 4
+
 ```diff
+@@ -176,13 +255,10 @@
   	});
   
 - 		console.log("🚀 ~ Nav ~ scanResult:", scanResult)
@@ -2045,7 +2413,11 @@ Let's move the `requestPermissionDirectly` function out to the main Nav componen
   	useEffect(() => {
 ```
 
+**Chunk 3**
+Lines added: 11, lines removed: 3
+
 ```diff
+@@ -250,20 +326,28 @@
   	};
   
 - 	// Handle retry attempts for permission issues
@@ -2079,7 +2451,11 @@ Let's move the `requestPermissionDirectly` function out to the main Nav componen
   		}
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -280,6 +364,4 @@
   
   	const userIsAdmin = user?.publicMetadata?.role === "admin";
 - 
@@ -2088,7 +2464,11 @@ Let's move the `requestPermissionDirectly` function out to the main Nav componen
   	const navigateToPage = useCallback(
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 66
+
 ```diff
+@@ -330,71 +412,6 @@
   	const navItems: NavItem[] = [...staticNavItems, ...authNavItems];
   
 - 	// Add permission error message component
@@ -2163,7 +2543,11 @@ Let's move the `requestPermissionDirectly` function out to the main Nav componen
   			<div className="flex flex-col items-center justify-center p-4 text-center space-y-4">
 ```
 
+**Chunk 6**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -418,5 +435,7 @@
   						<div className="flex flex-col space-y-2 w-full">
   							<Button 
 - 								onClick={requestPermissionDirectly}
@@ -2174,13 +2558,23 @@ Let's move the `requestPermissionDirectly` function out to the main Nav componen
   							>
 ```
 
+</details>
+
 ---
 
 Let's also update the `handleScannerToggle` function to use `requestPermissionDirectly` for Arc incognito mode:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -255,5 +255,5 @@
   	});
   
 - 	console.log("�� ~ Nav ~ scanResult:", scanResult)
@@ -2189,7 +2583,11 @@ Let's also update the `handleScannerToggle` function to use `requestPermissionDi
   	console.log("🚀 ~ Nav ~ checkingPunchCardStatus:", checkingPunchCardStatus)
 ```
 
+**Chunk 2**
+Lines added: 8, lines removed: undefined
+
 ```diff
+@@ -298,4 +298,12 @@
   				// Check for Arc browser incognito mode
   				const isArc = navigator.userAgent.includes("Arc");
 + 				
@@ -2204,13 +2602,23 @@ Let's also update the `handleScannerToggle` function to use `requestPermissionDi
   				// Add a slight delay to give scanner time to mount properly
 ```
 
+</details>
+
 ---
 
 Now let's add a public method to the Nav component to allow executing `requestPermissionDirectly` from outside:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -35,5 +35,5 @@
   } from "lucide-react";
   import { motion, AnimatePresence } from "motion/react";
 - import { useCallback, useState, useEffect } from "react";
@@ -2219,7 +2627,11 @@ Now let's add a public method to the Nav component to allow executing `requestPe
   import { useScanQrCode } from "@/hooks/use-scan-qr-code";
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -48,4 +48,9 @@
   } from "@/components/ui/dialog";
   import { toast } from "sonner";
 + 
@@ -2231,7 +2643,11 @@ Now let's add a public method to the Nav component to allow executing `requestPe
   export type NavProps = {
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -128,5 +133,6 @@
   };
   
 - export const Nav = ({ initialActiveTab = "home", onTabChange }: NavProps) => {
@@ -2241,7 +2657,11 @@ Now let's add a public method to the Nav component to allow executing `requestPe
   	const { isSignedIn, user } = useUser();
 ```
 
+**Chunk 4**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -477,4 +483,9 @@
   		);
   	};
 + 
@@ -2253,7 +2673,11 @@ Now let's add a public method to the Nav component to allow executing `requestPe
   	return (
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -692,4 +703,4 @@
   		</>
   	);
 - };
@@ -2261,13 +2685,23 @@ Now let's add a public method to the Nav component to allow executing `requestPe
   
 ```
 
+</details>
+
 ---
 
 Let's update the scanner toggle button to directly call `requestPermissionDirectly` before triggering the toggle:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 14, lines removed: 1
+
 ```diff
+@@ -661,5 +661,18 @@
   								size="icon"
   								className="rounded-full h-16 w-16 flex items-center justify-center"
 - 								onClick={handleScannerToggle}
@@ -2289,13 +2723,23 @@ Let's update the scanner toggle button to directly call `requestPermissionDirect
   							>
 ```
 
+</details>
+
 ---
 
 Now let's create a separate PermissionChecker component that users can render independently anywhere to check and request camera permissions:
 
 ---
 
+<details><summary>Edit file: src/components/camera-permission-checker.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 241, lines removed: 1
+
 ```diff
+@@ -1,1 +1,241 @@
 - 
 + "use client";
 + 
@@ -2540,6 +2984,8 @@ Now let's create a separate PermissionChecker component that users can render in
 + }; 
 ```
 
+</details>
+
 ---
 
 Now let's update the Nav component to use this checker:
@@ -2554,7 +3000,15 @@ Now let's integrate the CameraPermissionChecker component within the app:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -48,4 +48,5 @@
   } from "@/components/ui/dialog";
   import { toast } from "sonner";
 + import { CameraPermissionChecker } from "@/components/camera-permission-checker";
@@ -2562,7 +3016,11 @@ Now let's integrate the CameraPermissionChecker component within the app:
   // Define a public interface for Nav component
 ```
 
+**Chunk 2**
+Lines added: 13, lines removed: 51
+
 ```diff
+@@ -426,58 +427,20 @@
   	const navItems: NavItem[] = [...staticNavItems, ...authNavItems];
   
 - 	// Update PermissionMessage component to accept requestPermissionDirectly as a prop
@@ -2636,7 +3094,11 @@ Now let's integrate the CameraPermissionChecker component within the app:
   		);
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 14
+
 ```diff
+@@ -661,18 +624,5 @@
   								size="icon"
   								className="rounded-full h-16 w-16 flex items-center justify-center"
 - 								onClick={async () => {
@@ -2658,16 +3120,28 @@ Now let's integrate the CameraPermissionChecker component within the app:
   							>
 ```
 
+</details>
+
 ---
 
 Let's also create an index.ts file for the new camera-permission-checker component:
 
 ---
 
+<details><summary>Edit file: src/components/camera-permission-checker/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,1 +1,1 @@
 - 
 + export { CameraPermissionChecker } from "../camera-permission-checker"; 
 ```
+
+</details>
 
 ---
 
@@ -2683,7 +3157,15 @@ Let's update the use-scan-qr-code.tsx file to use our CameraPermissionChecker co
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 18
+
 ```diff
+@@ -114,22 +114,4 @@
   		};
   	}, [mediaStream]);
 - 
@@ -2708,7 +3190,11 @@ Let's update the use-scan-qr-code.tsx file to use our CameraPermissionChecker co
   	// Handle scanning errors with categorization
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 161
+
 ```diff
+@@ -189,165 +171,4 @@
   		[onScanError],
   	);
 - 
@@ -2876,7 +3362,11 @@ Let's update the use-scan-qr-code.tsx file to use our CameraPermissionChecker co
   	// Get user-friendly error message
 ```
 
+**Chunk 3**
+Lines added: 22, lines removed: 1
+
 ```diff
+@@ -371,5 +192,26 @@
   	};
   
 - 	// Get camera with retry for Safari compatibility
@@ -2906,7 +3396,11 @@ Let's update the use-scan-qr-code.tsx file to use our CameraPermissionChecker co
   		if (!hasCameraSupport) return null;
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -387,7 +229,8 @@
   				navigator.userAgent,
   			);
 + 			const isArc = navigator.userAgent.includes("Arc");
@@ -2917,6 +3411,8 @@ Let's update the use-scan-qr-code.tsx file to use our CameraPermissionChecker co
   					? { facingMode: "environment" }
   					: {
 ```
+
+</details>
 
 ---
 
@@ -2955,7 +3451,15 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -61,5 +61,4 @@
   	handleError: (err: Error | string, type?: ScanErrorType) => void;
   	reset: () => void;
 - 	hasCameraSupport: boolean;
@@ -2963,7 +3467,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 32
+
 ```diff
+@@ -71,44 +70,14 @@
   	const [qrCodeData, setQrCodeData] = useState<string>("");
   	const [isScanning, setIsScanning] = useState<boolean>(false);
 - 	const [checkingPunchCardStatus, setCheckingPunchCardStatus] =
@@ -3012,7 +3520,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   		};
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -196,7 +165,5 @@
   		// If turning off the scanner, clean up media stream
   		if (isScanning && mediaStream) {
 - 			for (const track of mediaStream.getTracks()) {
@@ -3023,7 +3535,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   			setIsScanning(false);
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 8
+
 ```diff
+@@ -215,18 +182,12 @@
   	// Get camera with proper constraints
   	const getCamera = useCallback(async (): Promise<MediaStream | null> => {
 - 		if (!hasCameraSupport) return null;
@@ -3046,7 +3562,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -245,6 +206,5 @@
   			return stream;
   		} catch (err) {
 - 			const error =
@@ -3056,7 +3576,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   			if (error.message.includes("Permission")) {
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -258,5 +218,5 @@
   			return null;
   		}
 - 	}, [hasCameraSupport, handleError, mediaStream]);
@@ -3065,7 +3589,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   	// Handle successful scan
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -318,7 +278,5 @@
   					// Stop all video tracks
   					if (mediaStream) {
 - 						for (const track of mediaStream.getTracks()) {
@@ -3076,7 +3604,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   					}
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -437,7 +395,5 @@
   		// Clean up media stream
   		if (mediaStream) {
 - 			for (const track of mediaStream.getTracks()) {
@@ -3087,7 +3619,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   		}
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -457,8 +413,7 @@
   		
   		const initializeCamera = async () => {
 - 			if (isScanning && !mediaStream && hasCameraSupport) {
@@ -3099,7 +3635,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   						initTimeout = setTimeout(resolve, 300);
 ```
 
+**Chunk 10**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -489,5 +444,5 @@
   			clearTimeout(initTimeout);
   		};
 - 	}, [isScanning, mediaStream, hasCameraSupport, getCamera, handleError, error]);
@@ -3108,7 +3648,11 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   	return {
 ```
 
+**Chunk 11**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -501,5 +456,4 @@
   		handleError,
   		reset,
 - 		hasCameraSupport,
@@ -3116,13 +3660,23 @@ Let me fix the issue in the use-scan-qr-code.tsx file to remove the hasCameraSup
   }
 ```
 
+</details>
+
 ---
 
 Let me fix those linter errors:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 11
+
 ```diff
+@@ -113,15 +113,4 @@
   
   			setError(scanError);
 - 
@@ -3140,13 +3694,23 @@ Let me fix those linter errors:
   			if (onScanError) {
 ```
 
+</details>
+
 ---
 
 Now let's update the UserScanQrCode component since it also uses the hasCameraSupport property:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -18,4 +18,5 @@
   	RefreshCw,
   } from "lucide-react";
 + import { CameraPermissionChecker } from "@/components/camera-permission-checker";
@@ -3154,7 +3718,11 @@ Now let's update the UserScanQrCode component since it also uses the hasCameraSu
   // Simple confetti animation component using Framer Motion
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -181,5 +182,4 @@
   		handleError,
   		reset,
 - 		hasCameraSupport,
@@ -3162,7 +3730,11 @@ Now let's update the UserScanQrCode component since it also uses the hasCameraSu
   		userId: typeof user.id === "bigint" ? user.id.toString() : user.id,
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -219,5 +219,5 @@
   
   	// Check if we need to show compatibility warning
 - 	const showCompatibilityWarning = !browserSupported || !hasCameraSupport;
@@ -3171,7 +3743,11 @@ Now let's update the UserScanQrCode component since it also uses the hasCameraSu
   	// Get appropriate error message for the current error
 ```
 
+**Chunk 4**
+Lines added: 7, lines removed: 19
+
 ```diff
+@@ -228,23 +228,11 @@
   			case "CAMERA_PERMISSION_DENIED":
   				return (
 - 					<Alert variant="warning" className="mb-4 animate-in">
@@ -3204,7 +3780,11 @@ Now let's update the UserScanQrCode component since it also uses the hasCameraSu
   			case "CAMERA_NOT_FOUND":
 ```
 
+**Chunk 5**
+Lines added: 13, lines removed: 3
+
 ```diff
+@@ -315,10 +303,20 @@
   							<AlertTitle>Compatibility Issue</AlertTitle>
   							<AlertDescription>
 - 								{!browserSupported
@@ -3230,13 +3810,23 @@ Now let's update the UserScanQrCode component since it also uses the hasCameraSu
   					{/* Error message display */}
 ```
 
+</details>
+
 ---
 
 Let's create a simple example of how to use the standalone CameraPermissionChecker:
 
 ---
 
+<details><summary>Edit file: src/components/camera-permission-checker/README.md</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 120, lines removed: 1
+
 ```diff
+@@ -1,1 +1,120 @@
 - 
 + # Camera Permission Checker Component
 + 
@@ -3360,6 +3950,8 @@ Let's create a simple example of how to use the standalone CameraPermissionCheck
 + 
 ```
 
+</details>
+
 ---
 
 The `CameraPermissionChecker` component has been successfully created and integrated into your app's components. Here's a summary of the changes:
@@ -3449,7 +4041,15 @@ Let's modify the Nav component to check permissions proactively:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -143,4 +143,5 @@
   	const [isInIncognito, setIsInIncognito] = useState(false);
   	const [isArcBrowser, setIsArcBrowser] = useState(false);
 + 	const [permissionStatus, setPermissionStatus] = useState<"granted" | "denied" | "checking" | null>(null);
@@ -3457,7 +4057,11 @@ Let's modify the Nav component to check permissions proactively:
   	// Move requestPermissionDirectly to main component
 ```
 
+**Chunk 2**
+Lines added: 35, lines removed: 1
+
 ```diff
+@@ -290,5 +291,39 @@
   	const [isTogglingScanner, setIsTogglingScanner] = useState(false);
   
 - 	// Handle toggling the QR scanner
@@ -3500,7 +4104,11 @@ Let's modify the Nav component to check permissions proactively:
   		if (isTogglingScanner) return;
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: 24
+
 ```diff
+@@ -298,31 +333,16 @@
   			
   			if (!isScanning) {
 - 				// Opening scanner
@@ -3543,7 +4151,11 @@ Let's modify the Nav component to check permissions proactively:
   			} else {
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -332,8 +352,6 @@
   			}
   		} catch (err) {
 - 			// Error will be handled by the useScanQrCode hook's error handler
@@ -3554,7 +4166,11 @@ Let's modify the Nav component to check permissions proactively:
   			setTimeout(() => setIsTogglingScanner(false), 1000);
 ```
 
+**Chunk 5**
+Lines added: 4, lines removed: 11
+
 ```diff
+@@ -427,18 +445,11 @@
   	const navItems: NavItem[] = [...staticNavItems, ...authNavItems];
   
 - 	// Replace PermissionMessage component with CameraPermissionChecker import
@@ -3579,7 +4195,11 @@ Let's modify the Nav component to check permissions proactively:
   				/>
 ```
 
+**Chunk 6**
+Lines added: 16, lines removed: 1
+
 ```diff
+@@ -478,5 +489,20 @@
   								<div className="flex flex-col items-center space-y-4 mt-4">
   									<AnimatePresence mode="wait">
 - 										{isScanning && !error && (
@@ -3603,7 +4223,11 @@ Let's modify the Nav component to check permissions proactively:
   												key="scanner"
 ```
 
+**Chunk 7**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -531,4 +557,11 @@
   										)}
   										
 + 										{/* Show error UI if there's a non-permission error */}
@@ -3617,13 +4241,23 @@ Let's modify the Nav component to check permissions proactively:
   
 ```
 
+</details>
+
 ---
 
 Let me fix the issues in the edit:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -49,4 +49,5 @@
   import { toast } from "sonner";
   import { CameraPermissionChecker } from "@/components/camera-permission-checker";
 + import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -3631,7 +4265,11 @@ Let me fix the issues in the edit:
   // Define a public interface for Nav component
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -564,5 +565,5 @@
   												<AlertDescription>{error.message}</AlertDescription>
   											</Alert>
 - 										{error && <PermissionMessage onRetry={handleRetry} />}
@@ -3640,13 +4278,23 @@ Let me fix the issues in the edit:
   										{checkingPunchCardStatus && (
 ```
 
+</details>
+
 ---
 
 The change looks good, but I need to make sure we properly integrate the retry flow and other remaining parts:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 22, lines removed: 17
+
 ```diff
+@@ -360,24 +360,29 @@
   	};
   
 - 	// Handle retry attempts for permission issues with permission request
@@ -3695,7 +4343,11 @@ The change looks good, but I need to make sure we properly integrate the retry f
   	useEffect(() => {
 ```
 
+**Chunk 2**
+Lines added: 28, lines removed: 2
+
 ```diff
+@@ -600,14 +605,40 @@
   
   								<motion.div variants={itemVariants} className="mt-6">
 - 									<DialogFooter className="sm:justify-start">
@@ -3740,13 +4392,23 @@ The change looks good, but I need to make sure we properly integrate the retry f
   								</motion.div>
 ```
 
+</details>
+
 ---
 
 Now let's update the QR scanner button in the Nav to check permissions first:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -33,4 +33,5 @@
   	AlertTriangle,
   	RefreshCw,
 + 	Camera,
@@ -3754,7 +4416,11 @@ Now let's update the QR scanner button in the Nav to check permissions first:
   import { motion, AnimatePresence } from "motion/react";
 ```
 
+**Chunk 2**
+Lines added: 40, lines removed: 8
+
 ```diff
+@@ -685,13 +686,45 @@
   					{isSignedIn && (
   						<div className="flex-1 flex items-center justify-center">
 - 							<Button
@@ -3809,6 +4475,8 @@ Now let's update the QR scanner button in the Nav to check permissions first:
   						</div>
   					)}
 ```
+
+</details>
 
 ---
 

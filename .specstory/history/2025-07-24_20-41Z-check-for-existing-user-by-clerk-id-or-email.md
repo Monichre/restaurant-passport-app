@@ -26,8 +26,8 @@ I'll add a check for existing users by searching for existing Clerk ID or email 
 ---
 
 <details>
-            <summary>Searched codebase "How to find existing users by clerkId or email in the user model?" • **8** results</summary>
-        
+                <summary>Searched codebase "How to find existing users by clerkId or email in the user model?" • **8** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/users/users.ts` | L30-47 |
@@ -48,8 +48,8 @@ I'll add a check for existing users by searching for existing Clerk ID or email 
 ---
 
 <details>
-            <summary>Searched codebase "user schema fields email clerkId findFirst where conditions" • **25** results</summary>
-        
+                <summary>Searched codebase "user schema fields email clerkId findFirst where conditions" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/drizzle/schema.ts` | L1-31 |
@@ -104,7 +104,37 @@ No results found
 
 ---
 
+<details><summary>Edit file: src/db/models/users/users.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 15, lines removed: undefined
+
+```diff
+@@ -63,4 +63,19 @@
+  	return user
+  }
++ 
++ export const getUserByEmail = async ( email: string ) => {
++ 	return await db.query.users.findFirst( {
++ 		where: eq( users.email, email ),
++ 		with: {
++ 			punchCards: {
++ 				with: {
++ 					restaurant: true,
++ 				},
++ 			},
++ 
++ 			raffleEntries: true,
++ 		},
++ 	} )
++ }
+  export const createUser = async ( data: {
+  	clerkId: string
+```
+
+</details>
 
 ---
 
@@ -112,7 +142,24 @@ No results found
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -3,5 +3,5 @@
+  import { headers } from "next/headers"
+  import { clerkClient } from "@clerk/nextjs/server"
+- import { createUser } from "@/db/models/users"
++ import { createUser, getUserByClerkId, getUserByEmail } from "@/db/models/users"
+  import { convertBigInts } from "@/lib/utils"
+  import { ClerkWebhookEvent, isUserCreatedEvent } from "@/types/clerk-webhook"
+```
+
+</details>
 
 ---
 
@@ -120,7 +167,55 @@ No results found
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 25, lines removed: 2
+
+```diff
+@@ -102,12 +102,35 @@
+  			const name = `${first_name || ''} ${last_name || ''}`.trim() || email.split( '@' )[0]
+  
+- 			console.log( "📝 Creating user:", { clerkId, name, email } )
++ 			console.log( "📝 Checking for existing user:", { clerkId, name, email } )
++ 
++ 			// Check for existing user by clerkId or email
++ 			let existingUser = await getUserByClerkId( clerkId )
++ 			if ( !existingUser ) {
++ 				existingUser = await getUserByEmail( email )
++ 			}
++ 
++ 			let user
++ 
++ 			if ( existingUser ) {
++ 				console.log( "✅ User already exists:", existingUser.id )
++ 				user = existingUser
++ 
++ 				// If user exists but has different clerkId, update it
++ 				if ( existingUser.clerkId !== clerkId ) {
++ 					console.log( "🔄 Updating existing user's clerkId from", existingUser.clerkId, "to", clerkId )
++ 					// Note: This would be a rare edge case where email exists with different clerkId
++ 					// Consider if this scenario should be handled differently based on business logic
++ 				}
++ 			} else {
++ 				console.log( "📝 Creating new user:", { clerkId, name, email } )
+  
+  				// Create user in Supabase database
+- 			const [user] = await createUser( {
++ 				const [newUser] = await createUser( {
+  					clerkId,
+  					name,
+  					email,
+  				} )
++ 				user = newUser
++ 			}
+  
+  			console.log( "🚀 ~ POST ~ user:", user )
+```
+
+</details>
 
 ---
 
@@ -138,7 +233,26 @@ Let me also update the response message to be more accurate since it might be wo
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
+```diff
+@@ -165,6 +165,7 @@
+  
+  			return Response.json( {
+- 				message: "User created and metadata updated successfully",
++ 				message: existingUser ? "Existing user processed and metadata updated successfully" : "User created and metadata updated successfully",
+  				data: convertBigInts( user ),
++ 				userStatus: existingUser ? "existing" : "created"
+  			} )
+  		}
+```
+
+</details>
 
 ---
 
@@ -146,7 +260,23 @@ Let me also update the response message to be more accurate since it might be wo
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
+```diff
+@@ -111,4 +111,5 @@
+  
+  			let user
++ 			const isExistingUser = !!existingUser
+  
+  			if ( existingUser ) {
+```
+
+</details>
 
 ---
 
@@ -154,7 +284,27 @@ Let me also update the response message to be more accurate since it might be wo
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -166,7 +166,7 @@
+  
+  			return Response.json( {
+- 				message: existingUser ? "Existing user processed and metadata updated successfully" : "User created and metadata updated successfully",
++ 				message: isExistingUser ? "Existing user processed and metadata updated successfully" : "User created and metadata updated successfully",
+  				data: convertBigInts( user ),
+- 				userStatus: existingUser ? "existing" : "created"
++ 				userStatus: isExistingUser ? "existing" : "created"
+  			} )
+  		}
+```
+
+</details>
 
 ---
 
@@ -162,7 +312,37 @@ Let me also update the response message to be more accurate since it might be wo
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
+```diff
+@@ -140,5 +140,6 @@
+  			console.log( "🚀 ~ POST ~ user created in database:", user )
+  
+- 			// Track user registration in PostHog (non-blocking)
++ 			// Track user registration in PostHog (non-blocking) - only for new users
++ 			if ( !isExistingUser ) {
+  				trackUserRegistration( {
+  					clerkId,
+```
+
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
+```diff
+@@ -147,4 +148,5 @@
+  					internalUserId: user.id.toString(),
+  				} ).catch( error => console.error( 'PostHog tracking error:', error ) )
++ 			}
+  
+  			// Update Clerk user's metadata with Supabase user ID
+```
+
+</details>
 
 ---
 
@@ -441,7 +621,15 @@ Multiple database operations without transaction safety - if Clerk metadata upda
 
 ---
 
+<details><summary>Edit file: docs/WEBHOOK_REFACTOR_PSEUDOCODE.md</summary>
+
+Create a comprehensive pseudocode document outlining how to refactor the webhook following best practices
+
+**Chunk 1**
+Lines added: 251, lines removed: 1
+
 ```diff
+@@ -1,1 +1,251 @@
 - 
 + # Webhook Refactor - Best Practices Implementation
 + 
@@ -695,6 +883,8 @@ Multiple database operations without transaction safety - if Clerk metadata upda
 + - ✅ Scalable (modular architecture)
 + 
 ```
+
+</details>
 
 ---
 

@@ -87,7 +87,15 @@ Based on my research, I'll now create a refactored version of the restaurants ta
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 24, lines removed: 20
+
 ```diff
+@@ -1,37 +1,41 @@
   "use client";
   
 - import { useState } from "react";
@@ -151,7 +159,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   	editable?: boolean;
 ```
 
+**Chunk 2**
+Lines added: 19, lines removed: 7
+
 ```diff
+@@ -42,15 +46,27 @@
   }
   
 - // Create a custom cell type that includes editing capabilities
@@ -188,7 +200,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -59,6 +75,6 @@
   	const initialValue = getValue();
   	const columnId = column.id;
 - 	const [value, setValue] = useState(initialValue);
@@ -199,7 +215,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   	const onBlur = () => {
 ```
 
+**Chunk 4**
+Lines added: 16, lines removed: 2
+
 ```diff
+@@ -81,11 +97,25 @@
   	};
   
 - 	// If the column is not editable or it's the id column, just show the value
@@ -229,7 +249,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   	return editing ? (
 ```
 
+**Chunk 5**
+Lines added: 20, lines removed: 17
+
 ```diff
+@@ -96,36 +126,39 @@
   				onBlur={onBlur}
   				autoFocus
 - 				className="h-8 w-full"
@@ -288,7 +312,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   	);
 ```
 
+**Chunk 6**
+Lines added: 37, lines removed: 11
+
 ```diff
+@@ -134,24 +167,50 @@
   export function RestaurantsTable({
   	restaurants: initialData,
 - }: { restaurants: Restaurant[] }) {
@@ -352,7 +380,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   		},
 ```
 
+**Chunk 7**
+Lines added: 33, lines removed: 4
+
 ```diff
+@@ -160,16 +219,45 @@
   			header: "QR Code",
   			cell: ({ row }) => {
 - 				const restaurant = row.original;
@@ -404,7 +436,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   		},
 ```
 
+**Chunk 8**
+Lines added: 10, lines removed: 5
+
 ```diff
+@@ -183,19 +271,24 @@
   				return (
   					<div className="flex items-center space-x-2">
 - 						<Button
@@ -436,7 +472,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   				);
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -205,5 +298,5 @@
   
   	// Function to handle saving a restaurant
 - 	const handleSave = async (rowIndex: number, restaurant: Restaurant) => {
@@ -445,7 +485,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   			setPending((prev) => ({ ...prev, [rowIndex]: true }));
 ```
 
+**Chunk 10**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -226,9 +319,9 @@
   			}
   
 - 			// Success feedback could be added here
@@ -459,7 +503,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   			setPending((prev) => ({ ...prev, [rowIndex]: false }));
 ```
 
+**Chunk 11**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -242,8 +335,7 @@
   
   	// Create the table instance
 - 	const table = useReactTable<Restaurant>({
@@ -471,7 +519,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   		getPaginationRowModel: getPaginationRowModel(),
 ```
 
+**Chunk 12**
+Lines added: 9, lines removed: 5
+
 ```diff
+@@ -271,11 +363,15 @@
   
   	return (
 - 		<div className="rounded-md border">
@@ -494,7 +546,11 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   											? null
 ```
 
+**Chunk 13**
+Lines added: 45, lines removed: 25
+
 ```diff
+@@ -284,49 +380,69 @@
   													header.getContext(),
   												)}
 - 								</TableHead>
@@ -591,13 +647,23 @@ Based on my research, I'll now create a refactored version of the restaurants ta
   		</div>
 ```
 
+</details>
+
 ---
 
 Let me fix those linter errors. The issue is with the namespaced component imports. It seems the Button component in this codebase doesn't have a Root property, so I'll adjust the refactoring to use the existing component structure.
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 10, lines removed: 3
+
 ```diff
+@@ -32,8 +32,15 @@
   
   // Styled components imports
 - import * as Table from "@/components/ui/table";
@@ -618,7 +684,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   // Define interfaces for TanStack Table metadata
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -129,20 +136,20 @@
   			/>
   			<div className="flex space-x-1">
 - 				<Button.Root
@@ -651,7 +721,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   		</div>
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -153,12 +160,12 @@
   				<span>{value?.toString()}</span>
   			</div>
 - 			<Button.Root
@@ -670,7 +744,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   	);
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -181,12 +188,12 @@
   				<div className="flex items-center gap-0.5">
   					ID
 - 					<Button.Root
@@ -688,7 +766,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   			),
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -203,12 +210,12 @@
   				<div className="flex items-center gap-0.5">
   					Restaurant Name
 - 					<Button.Root
@@ -706,7 +788,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   			),
 ```
 
+**Chunk 6**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -233,12 +240,12 @@
   				<div className="flex items-center gap-0.5">
   					Address
 - 					<Button.Root
@@ -724,7 +810,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   			),
 ```
 
+**Chunk 7**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -250,12 +257,12 @@
   				<div className="flex items-center gap-0.5">
   					Image URL
 - 					<Button.Root
@@ -742,7 +832,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   			),
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -271,5 +278,5 @@
   				return (
   					<div className="flex items-center space-x-2">
 - 						<Button.Root
@@ -751,7 +845,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   							disabled={isPending}
 ```
 
+**Chunk 9**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -279,6 +286,6 @@
   						>
   							{isPending ? "Saving..." : "Save"}
 - 						</Button.Root>
@@ -762,7 +860,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   							size="sm"
 ```
 
+**Chunk 10**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -287,8 +294,8 @@
   						>
   							View
 - 						</Button.Root>
@@ -776,7 +878,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   				);
 ```
 
+**Chunk 11**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -365,10 +372,10 @@
   		<div className="w-full">
   			<div className="rounded-md border border-gray-200">
 - 				<Table.Root>
@@ -793,7 +899,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   										className="py-3.5 text-left text-sm font-medium text-gray-700"
 ```
 
+**Chunk 12**
+Lines added: 17, lines removed: 15
+
 ```diff
+@@ -380,41 +387,43 @@
   													header.getContext(),
   												)}
 - 									</Table.Head>
@@ -854,7 +964,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   			<div className="flex items-center justify-between space-x-2 py-4">
 ```
 
+**Chunk 13**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -424,5 +433,5 @@
   				</div>
   				<div className="flex items-center space-x-2">
 - 					<Button.Root
@@ -863,7 +977,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   						size="sm"
 ```
 
+**Chunk 14**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -433,6 +442,6 @@
   						<ChevronLeft className="h-4 w-4 mr-1" />
   						Previous
 - 					</Button.Root>
@@ -874,7 +992,11 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   						size="sm"
 ```
 
+**Chunk 15**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -443,5 +452,5 @@
   						Next
   						<ChevronRight className="h-4 w-4 ml-1" />
 - 					</Button.Root>
@@ -882,6 +1004,8 @@ Let me fix those linter errors. The issue is with the namespaced component impor
   				</div>
   			</div>
 ```
+
+</details>
 
 ---
 
@@ -942,7 +1066,15 @@ Key improvements needed:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: 3
+
 ```diff
+@@ -1,16 +1,25 @@
   "use client";
   
 - import React, { useState, useRef } from "react";
@@ -973,7 +1105,11 @@ Key improvements needed:
   		generating,
 ```
 
+**Chunk 2**
+Lines added: 192, lines removed: 7
+
 ```diff
+@@ -24,19 +33,204 @@
   		handleSave,
   		handleDownload,
 - 	} = useHandleQRCode({ restaurant: restaurant as Restaurant });
@@ -1187,7 +1323,11 @@ Key improvements needed:
   				</div>
 ```
 
+**Chunk 3**
+Lines added: 21, lines removed: 18
+
 ```diff
+@@ -48,43 +242,46 @@
   
   			{!generating ? (
 - 				<button
@@ -1254,7 +1394,11 @@ Key improvements needed:
   				</div>
 ```
 
+**Chunk 4**
+Lines added: 8, lines removed: 7
+
 ```diff
+@@ -98,19 +295,20 @@
   
   			{success && (
 - 				<div className="mt-4">
@@ -1284,13 +1428,23 @@ Key improvements needed:
   
 ```
 
+</details>
+
 ---
 
 Now I'll fix those type errors and then update the restaurants table to use our improved QRCodeManager component.
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -198,5 +198,5 @@
   	success: boolean;
   	error: string | null;
 - 	qrRef: React.RefObject<HTMLDivElement>;
@@ -1299,9 +1453,19 @@ Now I'll fix those type errors and then update the restaurants table to use our 
   	handleGenerate: () => void;
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -230,5 +230,5 @@
   					<div className="flex items-center">
   						<QrCode className="h-4 w-4 text-gray-500 mr-2" />
 - 						<QRCodeManager restaurant={restaurant} />
@@ -1309,6 +1473,8 @@ Now I'll fix those type errors and then update the restaurants table to use our 
   					</div>
   				);
 ```
+
+</details>
 
 ---
 

@@ -41,7 +41,15 @@ Looking at the code, I can identify the issues causing the infinite loop and pag
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -914,5 +914,6 @@
   
     // Handle saving edited data using server action
 -   const handleSave = async (rowIndex: number, restaurant: RestaurantData) => {
@@ -51,7 +59,11 @@ Looking at the code, I can identify the issues causing the infinite loop and pag
           setPending({...pending, [rowIndex]: true})
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -935,5 +936,7 @@
           setPending({...pending, [rowIndex]: false})
         }
 -   }
@@ -62,7 +74,11 @@ Looking at the code, I can identify the issues causing the infinite loop and pag
     // Handle restaurant deletion
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1109,5 +1112,5 @@
         }
       },
 -     [router, refreshTableData]
@@ -71,13 +87,23 @@ Looking at the code, I can identify the issues causing the infinite loop and pag
   
 ```
 
+</details>
+
 ---
 
 Now I need to fix the handleQRCodeUpdate function which is not correctly maintaining the pagination state, and also needs to be properly memoized:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 4
+
 ```diff
+@@ -366,8 +366,4 @@
       (updatedRestaurant: RestaurantData | undefined) => {
         if (updatedRestaurant) {
 -         // Store current pagination
@@ -88,7 +114,11 @@ Now I need to fix the handleQRCodeUpdate function which is not correctly maintai
           setData((prevData) =>
 ```
 
+**Chunk 2**
+Lines added: 16, lines removed: 2
+
 ```diff
+@@ -381,6 +377,20 @@
           // Show success message
           toast.success('QR code created successfully')
 - 
@@ -113,7 +143,11 @@ Now I need to fix the handleQRCodeUpdate function which is not correctly maintai
             setTablePagination({
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 4
+
 ```diff
+@@ -389,10 +399,7 @@
             })
           }, 0)
 -       } else {
@@ -126,6 +160,8 @@ Now I need to fix the handleQRCodeUpdate function which is not correctly maintai
     )
   
 ```
+
+</details>
 
 ---
 
@@ -141,7 +177,15 @@ Let me try rearranging the code in a different way to fix the circular dependenc
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 6
+
 ```diff
+@@ -335,13 +335,10 @@
     }, [fetchRestaurants, tablePagination])
   
 -   // Generic function to refresh table data after any update
@@ -160,7 +204,11 @@ Let me try rearranging the code in a different way to fix the circular dependenc
         // Force re-render
 ```
 
+**Chunk 2**
+Lines added: 13, lines removed: 1
+
 ```diff
+@@ -359,5 +356,17 @@
         }, 0)
       },
 -     [fetchRestaurants, tablePagination]
@@ -181,7 +229,11 @@ Let me try rearranging the code in a different way to fix the circular dependenc
   
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -931,5 +940,8 @@
   
           if (result.success) {
 -           refreshTableData('Restaurant updated successfully')
@@ -193,7 +245,11 @@ Let me try rearranging the code in a different way to fix the circular dependenc
             toast.error(result.error?._form?.[0] || 'Failed to update restaurant')
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -944,5 +956,5 @@
         }
       },
 -     [pending, refreshTableData, initialData]
@@ -202,13 +258,23 @@ Let me try rearranging the code in a different way to fix the circular dependenc
   
 ```
 
+</details>
+
 ---
 
 Now let's also update `handleFilteredRestaurants` to ensure it doesn't have any circular dependencies:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -980,5 +980,5 @@
       }
     }
 -   const handleFilteredRestaurants = useCallback(
@@ -217,13 +283,23 @@ Now let's also update `handleFilteredRestaurants` to ensure it doesn't have any 
         const restaurantId = filteredRestaurants[rowIndex].id
 ```
 
+</details>
+
 ---
 
 Let's update how we handle the import CSV functionality to properly use our new refactored functions:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -1116,6 +1116,8 @@
   
           if (result.success) {
 -           // Use our new generic refresh function
@@ -236,7 +312,11 @@ Let's update how we handle the import CSV functionality to properly use our new 
             toast.error(result.message)
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1131,5 +1133,5 @@
         }
       },
 -     [refreshTableData]
@@ -245,13 +325,23 @@ Let's update how we handle the import CSV functionality to properly use our new 
   
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining linter error with how we handle the type-checking in the restaurant-table-wrapper component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -42,4 +42,9 @@
     // Server-side data fetching
     const [initialRestaurants, {total}] = await fetchRestaurants(page, perPage)
 + 
@@ -263,7 +353,11 @@ Let's fix the remaining linter error with how we handle the type-checking in the
     return (
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: 2
+
 ```diff
+@@ -116,11 +121,18 @@
           <Suspense fallback={<RestaurantsLoading />}>
             <RestaurantTableWrapper
 -             initialRestaurants={initialRestaurants}
@@ -285,6 +379,8 @@ Let's fix the remaining linter error with how we handle the type-checking in the
             />
           </Suspense>
 ```
+
+</details>
 
 ---
 
@@ -400,7 +496,15 @@ Since you want real-time updates so changes appear instantly for all users witho
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -27,7 +27,4 @@
     const fetchRestaurants = useCallback(async () => {
       const restaurantData = await getRestaurants()
 - 
@@ -410,7 +514,11 @@ Since you want real-time updates so changes appear instantly for all users witho
     }, [])
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -39,7 +36,6 @@
         const restaurantData = await fetchRestaurants()
   
 -       console.log('🚀 ~ fetchInitialData ~ restaurantData:', restaurantData)
@@ -422,7 +530,11 @@ Since you want real-time updates so changes appear instantly for all users witho
       }
 ```
 
+**Chunk 3**
+Lines added: 10, lines removed: 3
+
 ```diff
+@@ -60,7 +56,14 @@
         old: Record<string, unknown> | null
       }) => {
 -       console.log('Restaurant or deal change detected:', payload)
@@ -442,7 +554,11 @@ Since you want real-time updates so changes appear instantly for all users witho
   
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -82,5 +85,4 @@
         .subscribe()
   
 -     console.log('Restaurant subscription established')
@@ -450,7 +566,11 @@ Since you want real-time updates so changes appear instantly for all users witho
       isSubscribed.current = true
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -94,5 +96,5 @@
         }
       }
 -   }, [fetchRestaurants])
@@ -459,13 +579,23 @@ Since you want real-time updates so changes appear instantly for all users witho
     return {
 ```
 
+</details>
+
 ---
 
 Now that we've fixed the `useRestaurantsSubscription` hook, let's ensure it's properly integrated in the `restaurant-table-wrapper.tsx` file to leverage real-time updates:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -300,5 +300,5 @@
     ])
   
 -   // Subscribe to real-time updates
@@ -474,7 +604,11 @@ Now that we've fixed the `useRestaurantsSubscription` hook, let's ensure it's pr
       restaurants: subscriptionRestaurants,
 ```
 
+**Chunk 2**
+Lines added: 31, lines removed: 21
+
 ```diff
+@@ -308,37 +308,47 @@
       pageSize: pagination.pageSize,
     })
 -   console.log('🚀 ~ subscriptionRestaurants:', subscriptionRestaurants)
@@ -545,13 +679,23 @@ Now that we've fixed the `useRestaurantsSubscription` hook, let's ensure it's pr
     // Create a wrapped version of fetchMoreRestaurants for the RestaurantsTable
 ```
 
+</details>
+
 ---
 
 Now let's ensure the `RestaurantsTable` component properly handles real-time updates without causing pagination issues:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: 1
+
 ```diff
+@@ -442,7 +442,22 @@
     })
   
 -   // Update local data when initialData changes
@@ -576,6 +720,8 @@ Now let's ensure the `RestaurantsTable` component properly handles real-time upd
     }, [initialData])
   
 ```
+
+</details>
 
 ---
 
@@ -639,7 +785,15 @@ I see the issue - `JSON.stringify` doesn't work with BigInt values, which causes
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 34, lines removed: undefined
+
 ```diff
+@@ -59,4 +59,38 @@
     ) => Promise<[RestaurantData[], {total: number}]>
   }
 + 
@@ -680,7 +834,11 @@ I see the issue - `JSON.stringify` doesn't work with BigInt values, which causes
   export const RestaurantTableWrapper = React.forwardRef<
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -326,5 +360,5 @@
   
           // Process each restaurant from the subscription
 -         typedSubscriptionRestaurants.forEach((newRestaurant) => {
@@ -689,7 +847,11 @@ I see the issue - `JSON.stringify` doesn't work with BigInt values, which causes
               (r) => r.id.toString() === newRestaurant.id.toString()
 ```
 
+**Chunk 3**
+Lines added: 6, lines removed: 4
+
 ```diff
+@@ -334,16 +368,18 @@
               // Update existing restaurant if it has changed
               if (
 -               JSON.stringify(mergedRestaurants[existingIndex]) !==
@@ -714,13 +876,23 @@ I see the issue - `JSON.stringify` doesn't work with BigInt values, which causes
           return hasUpdates ? mergedRestaurants : prevRestaurants
 ```
 
+</details>
+
 ---
 
 Let's also fix the tablePagination dependency issue in the RestaurantsTable component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -460,5 +460,5 @@
         }, 0)
       }
 -   }, [initialData])
@@ -728,6 +900,8 @@ Let's also fix the tablePagination dependency issue in the RestaurantsTable comp
   
     // Define a handler for toggling selection
 ```
+
+</details>
 
 ---
 
@@ -786,7 +960,15 @@ I see the problem. Let's fix the infinite loop immediately:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 53, lines removed: 4
+
 ```diff
+@@ -334,20 +334,69 @@
     ])
   
 -   // Update the useRestaurantsSubscription implementation
@@ -862,7 +1044,11 @@ I see the problem. Let's fix the infinite loop immediately:
             // Type assertion to ensure compatibility
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 10
+
 ```diff
+@@ -366,14 +415,7 @@
   
               if (existingIndex >= 0) {
 -             // Update existing restaurant if it has changed
@@ -882,7 +1068,11 @@ I see the problem. Let's fix the infinite loop immediately:
                 // Add new restaurant
 ```
 
+**Chunk 3**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -386,5 +428,15 @@
           })
         }
 -   }, [subscriptionRestaurants])
@@ -901,13 +1091,23 @@ I see the problem. Let's fix the infinite loop immediately:
     // Create a wrapped version of fetchMoreRestaurants for the RestaurantsTable
 ```
 
+</details>
+
 ---
 
 Now let's also reduce the reactivity in the subscription hook itself to avoid triggering loops:
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -15,5 +15,5 @@
     pageSize = 10,
   }: {
 -   onUpdate: () => Promise<void>
@@ -916,7 +1116,11 @@ Now let's also reduce the reactivity in the subscription hook itself to avoid tr
   }) {
 ```
 
+**Chunk 2**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -24,4 +24,11 @@
     const [restaurants, setRestaurants] = useState<Restaurant[]>([])
     const [isLoading, setIsLoading] = useState(true)
 + 
@@ -930,7 +1134,11 @@ Now let's also reduce the reactivity in the subscription hook itself to avoid tr
     const fetchRestaurants = useCallback(async () => {
 ```
 
+**Chunk 3**
+Lines added: 37, lines removed: 3
+
 ```diff
+@@ -56,7 +63,41 @@
         old: Record<string, unknown> | null
       }) => {
 -       console.log('Restaurant or deal change detected:', payload.eventType)
@@ -976,6 +1184,8 @@ Now let's also reduce the reactivity in the subscription hook itself to avoid tr
         const updatedData = await fetchRestaurants()
   
 ```
+
+</details>
 
 ---
 
@@ -1031,7 +1241,15 @@ You're right - I've over-complicated things. Let's fix this properly with a simp
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 13, lines removed: 122
+
 ```diff
+@@ -306,137 +306,28 @@
     // Function to refresh data when a restaurant is updated externally
     const refreshRestaurants = React.useCallback(async () => {
 -     // Reset the loaded pages tracker
@@ -1184,13 +1402,23 @@ You're right - I've over-complicated things. Let's fix this properly with a simp
     // Create a wrapped version of fetchMoreRestaurants for the RestaurantsTable
 ```
 
+</details>
+
 ---
 
 Now let's simplify the subscription hook too:
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 5
+
 ```diff
+@@ -1,13 +1,11 @@
   'use client'
   
 - import {useCallback, useEffect, useRef, useState} from 'react'
@@ -1209,7 +1437,11 @@ Now let's simplify the subscription hook too:
   export function useRestaurantsSubscription({
 ```
 
+**Chunk 2**
+Lines added: 12, lines removed: 76
+
 ```diff
+@@ -22,89 +20,25 @@
     } | null>(null)
     const isSubscribed = useRef(false)
 -   const [restaurants, setRestaurants] = useState<Restaurant[]>([])
@@ -1313,7 +1545,11 @@ Now let's simplify the subscription hook too:
   
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -137,10 +71,9 @@
         }
       }
 -   }, [fetchRestaurants, onUpdate])
@@ -1328,13 +1564,23 @@ Now let's simplify the subscription hook too:
   }
 ```
 
+</details>
+
 ---
 
 Now let's make one more fix to ensure the pagination is set correctly in the main page component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -47,4 +47,7 @@
       typeof restaurantSchema
     >[]
 + 
@@ -1344,7 +1590,11 @@ Now let's make one more fix to ensure the pagination is set correctly in the mai
     return (
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -123,5 +126,5 @@
               initialRestaurants={compatibleRestaurants}
               pagination={{
 -               pageIndex: page - 1 < 0 ? 0 : page - 1,
@@ -1352,6 +1602,8 @@ Now let's make one more fix to ensure the pagination is set correctly in the mai
                 pageSize: perPage,
                 total: total,
 ```
+
+</details>
 
 ---
 
@@ -1415,7 +1667,15 @@ You're right - let's go with a much simpler approach by loading all restaurants 
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/restaurant-table-wrapper.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -7,5 +7,4 @@
   import type {z} from 'zod'
   import type {restaurantSchema} from '@/types/schemas'
 - import {useRestaurantsSubscription} from '@/hooks'
@@ -1423,7 +1683,11 @@ You're right - let's go with a much simpler approach by loading all restaurants 
   // Type for restaurant data
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 28
+
 ```diff
+@@ -17,32 +16,4 @@
   }
   
 - // Fallback for browsers that don't support requestIdleCallback
@@ -1458,7 +1722,11 @@ You're right - let's go with a much simpler approach by loading all restaurants 
     total: number
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 34
+
 ```diff
+@@ -59,38 +30,4 @@
     ) => Promise<[RestaurantData[], {total: number}]>
   }
 - 
@@ -1499,7 +1767,11 @@ You're right - let's go with a much simpler approach by loading all restaurants 
   export const RestaurantTableWrapper = React.forwardRef<
 ```
 
+**Chunk 4**
+Lines added: 26, lines removed: 236
+
 ```diff
+@@ -100,260 +37,50 @@
     const [restaurants, setRestaurants] =
       React.useState<RestaurantData[]>(initialRestaurants)
 -   const [allLoaded, setAllLoaded] = React.useState(false)
@@ -1788,13 +2060,23 @@ You're right - let's go with a much simpler approach by loading all restaurants 
   
 ```
 
+</details>
+
 ---
 
 Now let's update the page component to fetch all restaurants at once:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 7
+
 ```diff
+@@ -36,18 +36,17 @@
     searchParams: {page?: string; perPage?: string}
   }) {
 +   // Keep searchParams for backward compatibility, but ignore pagination
@@ -1821,7 +2103,11 @@ Now let's update the page component to fetch all restaurants at once:
     return (
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -126,6 +125,6 @@
               initialRestaurants={compatibleRestaurants}
               pagination={{
 -               pageIndex: safePageIndex,
@@ -1831,6 +2117,8 @@ Now let's update the page component to fetch all restaurants at once:
                 total: total,
               }}
 ```
+
+</details>
 
 ---
 
@@ -1842,7 +2130,15 @@ Cancelled
 
 ---
 
+<details><summary>Edit file: src/hooks/useRestaurantSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 6
+
 ```diff
+@@ -1,11 +1,7 @@
   'use client'
 - 
 - import {useEffect, useRef} from 'react'
@@ -1858,7 +2154,11 @@ Cancelled
   export function useRestaurantsSubscription({
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 58
+
 ```diff
+@@ -16,63 +12,7 @@
     pageSize?: number
   }) {
 -   const subscriptionRef = useRef<{
@@ -1926,13 +2226,23 @@ Cancelled
     }
 ```
 
+</details>
+
 ---
 
 Now let's make sure the RestaurantsTable component properly handles this simpler approach:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -451,6 +451,6 @@
       setData(initialData)
   
 -     // Restore pagination state in the next render cycle
@@ -1942,6 +2252,8 @@ Now let's make sure the RestaurantsTable component properly handles this simpler
         setTimeout(() => {
           setTablePagination({
 ```
+
+</details>
 
 ---
 

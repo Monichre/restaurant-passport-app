@@ -54,7 +54,7 @@ Liams-MacBook-Pro-2021:restaurant-passport-app liamellis$
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/middleware.ts` |
 
 </details>
 
@@ -69,16 +69,16 @@ Read file: src/middleware.ts
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/lib/auth.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSearch.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.js` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-specific-user-punch-card.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/plop-templates/feature/feature-component.hbs` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/plop-templates/feature/feature-index.hbs` |
 
 </details>
 
@@ -267,7 +267,15 @@ Command contains newline characters.
 
 ---
 
+<details><summary>Edit file: notes/supabase_clerk_integration.md</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 167, lines removed: 1
+
 ```diff
+@@ -1,1 +1,167 @@
 - 
 + # Supabase Integration with Clerk Middleware
 + 
@@ -437,6 +445,8 @@ Command contains newline characters.
 + - [Next.js with Supabase](https://supabase.com/docs/guides/auth/auth-helpers/nextjs)
 + 
 ```
+
+</details>
 
 ---
 

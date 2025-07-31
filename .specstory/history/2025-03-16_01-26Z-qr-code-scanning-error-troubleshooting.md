@@ -47,7 +47,15 @@ Let's fix the issue by modifying the error handling to safely check for toast av
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import { useState, useCallback, useEffect } from "react";
 - import { toast } from "@/hooks/use-toast";
@@ -56,7 +64,11 @@ Let's fix the issue by modifying the error handling to safely check for toast av
   import { processQrScan } from "@/actions/scan-actions";
 ```
 
+**Chunk 2**
+Lines added: 13, lines removed: 3
+
 ```diff
+@@ -192,7 +192,17 @@
   				onScanError(scanError);
   			} else {
 - 				toast.error("Scanner Error", {
@@ -79,6 +91,8 @@ Let's fix the issue by modifying the error handling to safely check for toast av
   		},
 ```
 
+</details>
+
 ---
 
 I need to fix the import path for the toast component. Let me check for the correct path:
@@ -90,15 +104,15 @@ I need to fix the import path for the toast component. Let me check for the corr
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/index.ts` | L6 | `export * from "./use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L3 | `import { toast } from "@/components/ui/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L3 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L9 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L7 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L27 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L3 | `import { toast } from "@/components/ui/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/index.ts` | L7 | `export * from "./use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L4 | `import { toast } from "@/components/ui/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L11 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L4 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L8 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L28 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L11 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L4 | `import { toast } from "@/components/ui/use-toast";` |
 
 </details>
 
@@ -108,7 +122,15 @@ Let me fix the import path back to the correct one and update the error handling
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import { useState, useCallback, useEffect } from "react";
 - import { toast } from "@/components/ui/use-toast";
@@ -117,7 +139,11 @@ Let me fix the import path back to the correct one and update the error handling
   import { processQrScan } from "@/actions/scan-actions";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -194,5 +194,5 @@
   				try {
   					// Safely use toast if available
 - 					if (toast?.error) {
@@ -125,6 +151,8 @@ Let me fix the import path back to the correct one and update the error handling
   						toast.error("Scanner Error", {
   							description: getErrorUserMessage(scanError),
 ```
+
+</details>
 
 ---
 
@@ -204,7 +232,15 @@ Now let's edit the `.env.local` file to add the Supabase credentials:
 
 ---
 
+<details><summary>Edit file: .env.local</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 3
+
 ```diff
+@@ -1,3 +1,6 @@
 - # Supabase for real-time subscriptions
 - NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
 - NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key 
@@ -215,6 +251,8 @@ Now let's edit the `.env.local` file to add the Supabase credentials:
 + # Other environment variables
 + # ... 
 ```
+
+</details>
 
 ---
 
@@ -262,7 +300,15 @@ Let's fix that:
 
 ---
 
+<details><summary>Edit file: .env</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -1,6 +1,6 @@
 - 
   SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2aml1dXpwdXBnbWNrdXlmYWhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkyODk5NTQsImV4cCI6MjA1NDg2NTk1NH0.cUnZQYHNn3RZtqtpu2FHPsiCB6k_PRoMqD8RdqPLRZg
   SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2aml1dXpwdXBnbWNrdXlmYWhlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTI4OTk1NCwiZXhwIjoyMDU0ODY1OTU0fQ.AR5fm_plm8HGJVubRlb5_8jt2v5N-KiKOl4rma7eDQ8
@@ -272,6 +318,8 @@ Let's fix that:
   RESEND_API_KEY=re_8RSUtGLW_EH2SXHyD3MjVqae9HbrHwJk1
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_cG9saXNoZWQtbWFsYW11dGUtNTcuY2xlcmsuYWNjb3VudHMuZGV2JA
 ```
+
+</details>
 
 ---
 
@@ -373,8 +421,8 @@ Now let's check the `use-scan-qr-code.ts` file again, specifically the part wher
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L355 | `const data = await processQrScan({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L355 | `const data = await processQrScan({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L356 | `const data = await processQrScan({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L356 | `const data = await processQrScan({` |
 
 </details>
 
@@ -388,7 +436,15 @@ There's the issue - in `use-scan-qr-code.ts`, on line 357 it's trying to access 
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -355,5 +355,5 @@
   			// Use the server action directly instead of fetch
   			const data = await processQrScan({
 - 				qrData: qrCodeData.text,
@@ -396,6 +452,8 @@ There's the issue - in `use-scan-qr-code.ts`, on line 357 it's trying to access 
   				userId,
   			});
 ```
+
+</details>
 
 ---
 
@@ -411,7 +469,15 @@ Let's fix the route handler to properly handle the params:
 
 ---
 
+<details><summary>Edit file: src/app/api/users/[id]/punch-cards/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 8, lines removed: undefined
+
 ```diff
+@@ -20,4 +20,12 @@
   			);
   		}
 + 
@@ -425,6 +491,8 @@ Let's fix the route handler to properly handle the params:
   
   		const userId = BigInt(params.id);
 ```
+
+</details>
 
 ---
 
@@ -464,7 +532,15 @@ Looking at the code, I see the issue. The QR result object might have a nested s
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -352,8 +352,18 @@
   		try {
   			setCheckingPunchCardStatus(true);
 + 
@@ -486,7 +562,11 @@ Looking at the code, I see the issue. The QR result object might have a nested s
   			});
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -366,7 +376,13 @@
   				setError(null);
   
 + 				try {
@@ -502,13 +582,23 @@ Looking at the code, I see the issue. The QR result object might have a nested s
   				onScanSuccess?.(data as ScanResult);
 ```
 
+</details>
+
 ---
 
 Let's fix the linter error by adding type assertion:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -358,5 +358,5 @@
   				qrCodeData !== null &&
   				"text" in qrCodeData
 - 					? qrCodeData.text
@@ -517,13 +607,23 @@ Let's fix the linter error by adding type assertion:
   
 ```
 
+</details>
+
 ---
 
 Now, let's update the scan-actions.ts file to ensure it can handle various QR code formats correctly:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 30, lines removed: 2
+
 ```diff
+@@ -15,9 +15,37 @@
   	const { qrData, userId } = formData;
   
 - 	console.log("🚀 ~ qrData:", qrData);
@@ -565,13 +665,23 @@ Now, let's update the scan-actions.ts file to ensure it can handle various QR co
   		console.log("🚀 ~ qrCodeUrl:", qrCodeUrl);
 ```
 
+</details>
+
 ---
 
 Now let's also fix the linter warnings about using `forEach` instead of `for...of` loops for the media streams:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -108,5 +108,7 @@
   		return () => {
   			if (mediaStream) {
 - 				mediaStream.getTracks().forEach((track) => track.stop());
@@ -582,7 +692,11 @@ Now let's also fix the linter warnings about using `forEach` instead of `for...o
   		};
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -137,5 +139,7 @@
   		// If turning off the scanner, clean up media stream
   		if (isScanning && mediaStream) {
 - 			mediaStream.getTracks().forEach((track) => track.stop());
@@ -593,7 +707,11 @@ Now let's also fix the linter warnings about using `forEach` instead of `for...o
   		}
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -237,5 +241,7 @@
   			// Release any existing stream first
   			if (mediaStream) {
 - 				mediaStream.getTracks().forEach((track) => track.stop());
@@ -604,7 +722,11 @@ Now let's also fix the linter warnings about using `forEach` instead of `for...o
   
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -332,5 +338,7 @@
   					// Stop all video tracks
   					if (mediaStream) {
 - 						mediaStream.getTracks().forEach((track) => track.stop());
@@ -615,7 +737,11 @@ Now let's also fix the linter warnings about using `forEach` instead of `for...o
   					}
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -407,5 +415,7 @@
   		// Clean up media stream
   		if (mediaStream) {
 - 			mediaStream.getTracks().forEach((track) => track.stop());
@@ -625,6 +751,8 @@ Now let's also fix the linter warnings about using `forEach` instead of `for...o
   			setMediaStream(null);
   		}
 ```
+
+</details>
 
 ---
 
@@ -686,7 +814,7 @@ Let's fix these issues one by one:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/index.ts` | L6 | `export * from "./use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/index.ts` | L7 | `export * from "./use-toast";` |
 
 </details>
 
@@ -723,14 +851,14 @@ Let's double-check the file structure to ensure we're targeting the right file:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L3 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L9 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L7 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L27 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L3 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L3 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L4 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L11 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L8 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L28 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L4 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L11 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L4 | `import { toast } from "@/hooks/use-toast";` |
 
 </details>
 
@@ -770,16 +898,24 @@ Let's replace the custom toast wrapper with direct usage of Sonner's toast in th
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L1 | `import { toast as sonnerToast } from "sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L7 | `import { Toaster } from "@/components/ui/sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L38 | `import { toast } from "sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sonner.tsx` | L3 | `import { Toaster as Sonner, ToasterProps } from "sonner"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L2 | `import { toast as sonnerToast } from "sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L8 | `import { Toaster } from "@/components/ui/sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L39 | `import { toast } from "sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sonner.tsx` | L4 | `import { Toaster as Sonner, ToasterProps } from "sonner"` |
 
 </details>
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import { useState, useCallback, useEffect } from "react";
 - import { toast } from "@/hooks/use-toast";
@@ -788,13 +924,23 @@ Let's replace the custom toast wrapper with direct usage of Sonner's toast in th
   import { processQrScan } from "@/actions/scan-actions";
 ```
 
+</details>
+
 ---
 
 Now let's update the toast usage in the error handling and success messaging sections:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 5
+
 ```diff
+@@ -197,12 +197,7 @@
   			} else {
   				try {
 - 					// Safely use toast if available
@@ -809,7 +955,11 @@ Now let's update the toast usage in the error handling and success messaging sec
   					// Fallback to console error if toast fails
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -385,9 +380,7 @@
   
   				try {
 - 					if (typeof toast?.success === "function") {
@@ -821,13 +971,23 @@ Now let's update the toast usage in the error handling and success messaging sec
   					console.log("Scan successful, but toast failed to display");
 ```
 
+</details>
+
 ---
 
 Now let's fix the API route issue with `params.id` in the route.ts file:
 
 ---
 
+<details><summary>Edit file: src/app/api/users/[id]/punch-cards/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -7,5 +7,5 @@
   export async function GET(
   	request: NextRequest,
 - 	{ params }: { params: { id: string } },
@@ -836,7 +996,11 @@ Now let's fix the API route issue with `params.id` in the route.ts file:
   	try {
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -21,6 +21,8 @@
   		}
   
 - 		// Ensure params.id is properly used - await the params object
@@ -849,7 +1013,11 @@ Now let's fix the API route issue with `params.id` in the route.ts file:
   				{ success: false, error: "User ID is required" } as ApiResponse,
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -29,5 +31,5 @@
   		}
   
 - 		const userId = BigInt(params.id);
@@ -857,6 +1025,8 @@ Now let's fix the API route issue with `params.id` in the route.ts file:
   
   		// Get the user's punch cards with restaurant information
 ```
+
+</details>
 
 ---
 
@@ -998,7 +1168,15 @@ Let's fix this BigInt parsing error:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 2
+
 ```diff
+@@ -52,7 +52,10 @@
   
   		const pathname = qrCodeUrl.pathname;
 - 		const restaurantId = pathname.split("/").filter(Boolean).pop();
@@ -1013,7 +1191,11 @@ Let's fix this BigInt parsing error:
   				error: "Missing required parameters",
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -67,10 +70,10 @@
   
   		// Get restaurant details for response
 - 		const restaurant = await getRestaurantById(BigInt(restaurantId));
@@ -1028,7 +1210,11 @@ Let's fix this BigInt parsing error:
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -93,5 +96,5 @@
   		const punchCard = await createPunchCard({
   			userId: userIdBigInt,
 - 			restaurantId: BigInt(restaurantId),
@@ -1037,13 +1223,23 @@ Let's fix this BigInt parsing error:
   			completed: false, // Set to false initially
 ```
 
+</details>
+
 ---
 
 Now let's add better error handling for the BigInt conversions to prevent any further parsing issues:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -56,4 +56,6 @@
   		const restaurantId = pathParts.pop();
   		const numericRestaurantId = restaurantId?.replace(/\D/g, "");
 + 
@@ -1052,7 +1248,11 @@ Now let's add better error handling for the BigInt conversions to prevent any fu
   		if (!numericRestaurantId || !userId) {
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 2
+
 ```diff
+@@ -65,15 +67,19 @@
   		}
   
 + 		try {
@@ -1076,7 +1276,11 @@ Now let's add better error handling for the BigInt conversions to prevent any fu
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -96,5 +102,5 @@
   			const punchCard = await createPunchCard({
   				userId: userIdBigInt,
 - 			restaurantId: BigInt(numericRestaurantId),
@@ -1085,7 +1289,11 @@ Now let's add better error handling for the BigInt conversions to prevent any fu
   				completed: false, // Set to false initially
 ```
 
+**Chunk 4**
+Lines added: 18, lines removed: undefined
+
 ```diff
+@@ -107,4 +113,22 @@
   				isExisting: false,
   			};
 + 		} catch (error) {
@@ -1110,13 +1318,23 @@ Now let's add better error handling for the BigInt conversions to prevent any fu
   		console.error("Error processing QR scan:", error);
 ```
 
+</details>
+
 ---
 
 The code now has a double try-catch block, which is redundant. Let's fix that:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -67,5 +67,4 @@
   		}
   
 - 		try {
@@ -1124,7 +1342,11 @@ The code now has a double try-catch block, which is redundant. Let's fix that:
   		const userIdBigInt =
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -114,5 +113,5 @@
   		};
   	} catch (error) {
 - 			console.error("Error processing data:", error);
@@ -1133,7 +1355,11 @@ The code now has a double try-catch block, which is redundant. Let's fix that:
   		// Check if this is a BigInt conversion error
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 8
+
 ```diff
+@@ -125,12 +124,4 @@
   		}
   
 - 			return {
@@ -1147,6 +1373,8 @@ The code now has a double try-catch block, which is redundant. Let's fix that:
   		return {
   			error: "Failed to process QR scan",
 ```
+
+</details>
 
 ---
 
@@ -1200,12 +1428,12 @@ Let's find all the files that are importing the custom toast hook:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L3 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L9 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L7 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L27 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L4 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L11 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L10 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L8 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L28 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L11 | `import { toast } from "@/hooks/use-toast";` |
 
 </details>
 
@@ -1215,7 +1443,15 @@ Now let's update each of these files to import toast directly from Sonner:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import { useState, useEffect, useRef } from "react";
 - import { toast } from "@/hooks/use-toast";
@@ -1223,6 +1459,8 @@ Now let's update each of these files to import toast directly from Sonner:
   import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
   import { Button } from "@/components/ui/button";
 ```
+
+</details>
 
 ---
 
@@ -1238,7 +1476,15 @@ Let's fix the toast usage to match Sonner's API:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 4
+
 ```diff
+@@ -72,11 +72,12 @@
   			console.log("Scan successful:", result);
   			// Show appropriate toast based on result
 - 			toast({
@@ -1257,13 +1503,23 @@ Let's fix the toast usage to match Sonner's API:
   			// Redirect to user profile after a short delay
 ```
 
+</details>
+
 ---
 
 Now let's update the imports in the other files:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -9,5 +9,5 @@
   } from "@/db/models/restaurants/restaurants";
   import type { Restaurant, Prize, PunchCard } from "@/types/db";
 - import { toast } from "@/hooks/use-toast";
@@ -1271,6 +1527,8 @@ Now let's update the imports in the other files:
   import { BentoGrid } from "@/components/kokonutui/bento-grid";
   import {
 ```
+
+</details>
 
 ---
 
@@ -1283,12 +1541,12 @@ Let's check if there are any toast usage issues in this file:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L37 | `) => toast(title, { ...options, variant: "destructive" });` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L198 | `toast("Success", {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L129 | `toast("Deal created", {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L110 | `toast("Deal updated", {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L72 | `toast("Deal deleted", {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L198 | `toast("Success", {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L38 | `) => toast(title, { ...options, variant: "destructive" });` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L199 | `toast("Success", {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L130 | `toast("Deal created", {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L111 | `toast("Deal updated", {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L73 | `toast("Deal deleted", {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L199 | `toast("Success", {` |
 
 </details>
 
@@ -1306,7 +1564,15 @@ Let's fix the toast usage in restaurant-quick-view.tsx to match Sonner's API:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -197,7 +197,5 @@
   
   		// Show a success toast
 - 		toast("Success", {
@@ -1317,13 +1583,23 @@ Let's fix the toast usage in restaurant-quick-view.tsx to match Sonner's API:
   
 ```
 
+</details>
+
 ---
 
 Now let's update the remaining files:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/edit-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -8,5 +8,5 @@
   	updateRestaurantDeal,
   } from "@/db/models/restaurants/restaurants";
 - import { toast } from "@/hooks/use-toast";
@@ -1331,6 +1607,8 @@ Now let's update the remaining files:
   
   // Define a simplified restaurant type for the select dropdown
 ```
+
+</details>
 
 ---
 
@@ -1342,7 +1620,15 @@ Read file: src/components/admin/deals/edit-deal-form.tsx
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/edit-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -109,5 +109,5 @@
   			});
   
 - 			toast("Deal updated", {
@@ -1351,9 +1637,19 @@ Read file: src/components/admin/deals/edit-deal-form.tsx
   			});
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -6,5 +6,5 @@
   import { useFormState, useFormStatus } from "react-dom";
   import type { Restaurant } from "@/types/db";
 - import { toast } from "@/hooks/use-toast";
@@ -1361,6 +1657,8 @@ Read file: src/components/admin/deals/edit-deal-form.tsx
   
   // Server actions (placed outside the component)
 ```
+
+</details>
 
 ---
 
@@ -1372,7 +1670,15 @@ Read file: src/components/admin/deals/new-deal-form.tsx
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -128,5 +128,5 @@
   	useEffect(() => {
   		if (formState.success) {
 - 			toast("Deal created", {
@@ -1381,9 +1687,19 @@ Read file: src/components/admin/deals/new-deal-form.tsx
   			});
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -26,5 +26,5 @@
   import { Button } from "@/components/ui/button";
   import { cn } from "@/lib/utils";
 - import { toast } from "@/hooks/use-toast";
@@ -1391,6 +1707,8 @@ Read file: src/components/admin/deals/new-deal-form.tsx
   
   // Define the type for the deals with restaurant name
 ```
+
+</details>
 
 ---
 
@@ -1402,7 +1720,15 @@ Read file: src/components/admin/deals/deals-table.tsx
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -71,5 +71,5 @@
   			setIsDeleting(dealToDelete);
   			await deleteRestaurantDeal(dealToDelete);
 - 			toast("Deal deleted", {
@@ -1410,6 +1736,8 @@ Read file: src/components/admin/deals/deals-table.tsx
   				description: "The deal has been successfully deleted.",
   			});
 ```
+
+</details>
 
 ---
 
@@ -1429,13 +1757,23 @@ Read file: src/hooks/index.ts
 
 ---
 
+<details><summary>Edit file: src/hooks/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -5,5 +5,4 @@
   export * from "./use-scan-qr-code";
   export * from "./use-server-sent-event";
 - export * from "./use-toast";
   export * from "./use-websocket";
   export * from "./use-punch-card-subscription";
 ```
+
+</details>
 
 ---
 
@@ -1486,7 +1824,15 @@ Let's debug this specific BigInt conversion error:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 14, lines removed: undefined
+
 ```diff
+@@ -72,5 +72,19 @@
   
   		// Convert restaurant ID to BigInt
 + 		try {
@@ -1508,7 +1854,11 @@ Let's debug this specific BigInt conversion error:
   			// Get restaurant details for response
 ```
 
+**Chunk 2**
+Lines added: 18, lines removed: undefined
+
 ```diff
+@@ -112,4 +126,22 @@
   				isExisting: false,
   			};
 + 		} catch (error) {
@@ -1533,13 +1883,23 @@ Let's debug this specific BigInt conversion error:
   		console.error("Error processing QR scan:", error);
 ```
 
+</details>
+
 ---
 
 Let's also update the userId conversion to use the same approach since it might be the source of the error:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 20, lines removed: 3
+
 ```diff
+@@ -68,8 +68,25 @@
   
   		// Convert userId to the correct format if needed
 - 		const userIdBigInt =
@@ -1570,7 +1930,11 @@ Let's also update the userId conversion to use the same approach since it might 
   				console.log(
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -82,5 +99,7 @@
   				// Make absolutely sure we have a valid numeric string
   				if (!numericRestaurantId || !/^\d+$/.test(numericRestaurantId)) {
 - 				throw new Error(`Invalid restaurant ID format: ${numericRestaurantId}`);
@@ -1581,7 +1945,11 @@ Let's also update the userId conversion to use the same approach since it might 
   
 ```
 
+**Chunk 3**
+Lines added: 18, lines removed: undefined
+
 ```diff
+@@ -126,4 +145,22 @@
   					isExisting: false,
   				};
 + 			} catch (error) {
@@ -1606,13 +1974,23 @@ Let's also update the userId conversion to use the same approach since it might 
   			console.error("Error processing QR scan:", error);
 ```
 
+</details>
+
 ---
 
 Now we need to fix the duplicate error handling blocks:
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -68,5 +68,4 @@
   
   		// Convert userId to the correct format if needed
 - 		try {
@@ -1620,7 +1998,11 @@ Now we need to fix the duplicate error handling blocks:
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -88,6 +87,5 @@
   		console.log("Successfully converted userId to BigInt");
   
 - 			// Continue with restaurant ID conversion
@@ -1630,7 +2012,11 @@ Now we need to fix the duplicate error handling blocks:
   			"Converting restaurantId to BigInt:",
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -99,7 +97,5 @@
   		// Make absolutely sure we have a valid numeric string
   		if (!numericRestaurantId || !/^\d+$/.test(numericRestaurantId)) {
 - 					throw new Error(
@@ -1641,7 +2027,11 @@ Now we need to fix the duplicate error handling blocks:
   
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 36
+
 ```diff
+@@ -145,40 +141,4 @@
   			isExisting: false,
   		};
 - 			} catch (error) {
@@ -1683,6 +2073,8 @@ Now we need to fix the duplicate error handling blocks:
   	} catch (error) {
   		console.error("Error processing QR scan:", error);
 ```
+
+</details>
 
 ---
 
@@ -1744,18 +2136,18 @@ Let's add a function to get the user's database ID by their Clerk ID and update 
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L27 | `export const getUserByClerkId = async (clerkId: string) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L45 | `export const getUserByClerkIdWithPunchCards = async (clerkId: string) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/page.tsx` | L1 | `import { getUserByClerkId } from "@/db";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/page.tsx` | L7 | `const user = session?.userId ? await getUserByClerkId(session?.userId) : null;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L1 | `import { getUserByClerkId } from "@/db/models/users/users";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L11 | `const user = userId ? await getUserByClerkId(userId) : null;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/Restaurant.tsx` | L2 | `import { getUserByClerkId } from "@/db/models/users/users";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/Restaurant.tsx` | L15 | `const user = userId ? await getUserByClerkId(userId) : null;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L2 | `import { getUserByClerkId } from "@/db/models/users/users";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L46 | `getUserByClerkId(clerkUser.id).then((res) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/UserFacingRestaurantDetail.tsx` | L5 | `import { getUserByClerkId } from "@/db/models/users/users";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/UserFacingRestaurantDetail.tsx` | L24 | `const user = userId ? await getUserByClerkId(userId) : null;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L28 | `export const getUserByClerkId = async (clerkId: string) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L46 | `export const getUserByClerkIdWithPunchCards = async (clerkId: string) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/page.tsx` | L2 | `import { getUserByClerkId } from "@/db";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/page.tsx` | L8 | `const user = session?.userId ? await getUserByClerkId(session?.userId) : null;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L2 | `import { getUserByClerkId } from "@/db/models/users/users";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L12 | `const user = userId ? await getUserByClerkId(userId) : null;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/Restaurant.tsx` | L3 | `import { getUserByClerkId } from "@/db/models/users/users";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/Restaurant.tsx` | L16 | `const user = userId ? await getUserByClerkId(userId) : null;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L3 | `import { getUserByClerkId } from "@/db/models/users/users";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L47 | `getUserByClerkId(clerkUser.id).then((res) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/UserFacingRestaurantDetail.tsx` | L6 | `import { getUserByClerkId } from "@/db/models/users/users";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/UserFacingRestaurantDetail.tsx` | L25 | `const user = userId ? await getUserByClerkId(userId) : null;` |
 
 </details>
 
@@ -1773,7 +2165,15 @@ Now let's update the scan-actions.ts to check for Clerk ID and get the database 
 
 ---
 
+<details><summary>Edit file: src/actions/scan-actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -7,4 +7,5 @@
   } from "@/db/models/punch-cards/punch-cards";
   import { getRestaurantById } from "@/db/models/restaurants/restaurants";
 + import { getUserByClerkId } from "@/db/models/users/users";
@@ -1781,7 +2181,11 @@ Now let's update the scan-actions.ts to check for Clerk ID and get the database 
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -67,5 +68,5 @@
   		}
   
 - 		// Convert userId to the correct format if needed
@@ -1790,7 +2194,11 @@ Now let's update the scan-actions.ts to check for Clerk ID and get the database 
   
 ```
 
+**Chunk 3**
+Lines added: 18, lines removed: 2
+
 ```diff
+@@ -78,12 +79,28 @@
   			console.log("userId as string:", userIdStr);
   
 + 			// Check if the userId string is a numeric value or a Clerk ID
@@ -1823,7 +2231,11 @@ Now let's update the scan-actions.ts to check for Clerk ID and get the database 
   		// Convert restaurant ID to BigInt
 ```
 
+**Chunk 4**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -152,4 +169,13 @@
   			};
   		}
 + 
@@ -1838,6 +2250,8 @@ Now let's update the scan-actions.ts to check for Clerk ID and get the database 
   
   		return {
 ```
+
+</details>
 
 ---
 
@@ -1991,7 +2405,7 @@ Let's check the profile page file for the viewport metadata issue:
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/users/[id]/profile/page.tsx` |
 
 </details>
 
@@ -2014,14 +2428,14 @@ Let's see if there's metadata for the profile page:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L4 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L2 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L5 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/new/page.tsx` | L3 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L19 | `export const metadata: Metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L2 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L4 | `export const metadata = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/leaderboard/page.tsx` | L16 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L5 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L3 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L6 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/new/page.tsx` | L4 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L20 | `export const metadata: Metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L3 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L5 | `export const metadata = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/leaderboard/page.tsx` | L17 | `export const metadata = {` |
 
 </details>
 
@@ -2048,7 +2462,15 @@ Now let's make the necessary fixes:
 
 ---
 
+<details><summary>Edit file: src/db/models/punch-cards/punch-cards.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -94,5 +94,5 @@
   
   export const incrementPunchCard = async (id: bigint, increment = 1) => {
 - 	const [card] = await getPunchCardById(id);
@@ -2057,13 +2479,23 @@ Now let's make the necessary fixes:
   
 ```
 
+</details>
+
 ---
 
 Let's fix the additional linter error in punch-cards.ts:
 
 ---
 
+<details><summary>Edit file: src/db/models/punch-cards/punch-cards.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -97,5 +97,7 @@
   	if (!card) return null;
   
 - 	const newPunches = card.punches + increment;
@@ -2074,13 +2506,23 @@ Let's fix the additional linter error in punch-cards.ts:
   		.update(punchCards)
 ```
 
+</details>
+
 ---
 
 2. Now, let's fix the viewport metadata issue in the profile page:
 
 ---
 
+<details><summary>Edit file: src/app/users/[id]/profile/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -6,4 +6,11 @@
   import { BentoGrid } from "@/components/kokonutui/bento-grid";
   import { usePunchCardSubscription } from "@/hooks/use-punch-card-subscription";
 + 
@@ -2094,13 +2536,23 @@ Let's fix the additional linter error in punch-cards.ts:
   export default async function ProfilePage() {
 ```
 
+</details>
+
 ---
 
 3. Finally, let's fix the potential scanning loop issue in the use-scan-qr-code.ts:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -351,5 +351,5 @@
   	// Process scan result using Server Action
   	const checkScanResult = useCallback(async () => {
 - 		if (!qrCodeData || !userId) return;
@@ -2109,7 +2561,11 @@ Let's fix the additional linter error in punch-cards.ts:
   		try {
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -388,4 +388,13 @@
   
   				onScanSuccess?.(data as ScanResult);
 + 
@@ -2125,7 +2581,11 @@ Let's fix the additional linter error in punch-cards.ts:
   		} catch (error) {
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -395,6 +404,8 @@
   			);
   			setCheckingPunchCardStatus(false);
 + 			// Reset QR code data on error to prevent loops
@@ -2137,7 +2597,11 @@ Let's fix the additional linter error in punch-cards.ts:
   	// Reset the scanner state
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -417,8 +428,8 @@
   	// Check scan result when QR code data is available
   	useEffect(() => {
 - 		if (qrCodeData && !scanResult) {
@@ -2149,6 +2613,8 @@ Let's fix the additional linter error in punch-cards.ts:
   
   	return {
 ```
+
+</details>
 
 ---
 
@@ -2219,7 +2685,7 @@ You need to add "experiencemaplegrove.com" to your allowed image domains in next
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/next.config.ts` |
 
 </details>
 
@@ -2233,7 +2699,15 @@ Now let's update the Next.js config file to add the missing domain:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/next.config.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -31,4 +31,9 @@
   	// Improved bundling
   	swcMinify: true,
 + 
@@ -2244,6 +2718,8 @@ Now let's update the Next.js config file to add the missing domain:
   };
   
 ```
+
+</details>
 
 ---
 
@@ -2293,7 +2769,7 @@ I'll create a notification component for when users scan a restaurant where they
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` |
 
 </details>
 
@@ -2315,7 +2791,15 @@ Now I'll create a more engaging and informative UI for the case when a user scan
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 100, lines removed: 24
+
 ```diff
+@@ -315,33 +315,109 @@
   								className="mb-4"
   							>
 - 								<Alert variant={scanResult.isExisting ? "info" : "success"}>
@@ -2451,13 +2935,23 @@ Now I'll create a more engaging and informative UI for the case when a user scan
   						)}
 ```
 
+</details>
+
 ---
 
 Let's fix those linter errors:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 2
+
 ```diff
+@@ -339,8 +339,11 @@
   												<div className="flex items-center space-x-1">
   													<span className="font-bold text-xl">
 - 														{scanResult.data?.punches || 0}
@@ -2473,7 +2967,11 @@ Let's fix those linter errors:
   															: "punches"}
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -352,7 +355,8 @@
   												{Array.from({ length: 10 }, (_, i) => (
   													<div
 - 														key={i}
@@ -2486,7 +2984,11 @@ Let's fix those linter errors:
   																: "bg-gray-100 text-gray-400"
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -402,5 +406,5 @@
   												{Array.from({ length: 10 }, (_, i) => (
   													<div
 - 														key={i}
@@ -2495,13 +2997,23 @@ Let's fix those linter errors:
   															i === 0
 ```
 
+</details>
+
 ---
 
 Let's create a PunchCircle component to properly handle the rendering and resolve the linter issues:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 23, lines removed: undefined
+
 ```diff
+@@ -18,4 +18,27 @@
   	RefreshCw,
   } from "lucide-react";
 + 
@@ -2531,7 +3043,11 @@ Let's create a PunchCircle component to properly handle the rendering and resolv
   // Dynamically import QR scanner to avoid SSR issues
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: 8
+
 ```diff
+@@ -354,15 +377,12 @@
   											<div className="grid grid-cols-5 gap-2 mb-4">
   												{Array.from({ length: 10 }, (_, i) => (
 - 													<div
@@ -2554,7 +3070,11 @@ Let's create a PunchCircle component to properly handle the rendering and resolv
   											</div>
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 9
+
 ```diff
+@@ -405,14 +425,9 @@
   											<div className="grid grid-cols-5 gap-2 mb-4">
   												{Array.from({ length: 10 }, (_, i) => (
 - 													<div
@@ -2575,13 +3095,23 @@ Let's create a PunchCircle component to properly handle the rendering and resolv
   											</div>
 ```
 
+</details>
+
 ---
 
 Let's create a PunchCardGrid component to fix the linter issues properly:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 29, lines removed: undefined
+
 ```diff
+@@ -41,4 +41,33 @@
   	);
   };
 + 
@@ -2617,7 +3147,11 @@ Let's create a PunchCardGrid component to fix the linter issues properly:
   // Dynamically import QR scanner to avoid SSR issues
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: 10
+
 ```diff
+@@ -375,16 +404,11 @@
   											</div>
   
 - 											<div className="grid grid-cols-5 gap-2 mb-4">
@@ -2641,7 +3175,11 @@ Let's create a PunchCardGrid component to fix the linter issues properly:
   											<div className="text-sm text-center text-muted-foreground">
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 9
+
 ```diff
+@@ -423,13 +447,5 @@
   											</div>
   
 - 											<div className="grid grid-cols-5 gap-2 mb-4">
@@ -2658,13 +3196,23 @@ Let's create a PunchCardGrid component to fix the linter issues properly:
   											<div className="text-sm text-center text-muted-foreground">
 ```
 
+</details>
+
 ---
 
 Now let's update the second punch card grid to use green color for the new punch card:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -447,5 +447,5 @@
   											</div>
   
 - 											<PunchCardGrid activePunches={0} />
@@ -2673,13 +3221,23 @@ Now let's update the second punch card grid to use green color for the new punch
   											<div className="text-sm text-center text-muted-foreground">
 ```
 
+</details>
+
 ---
 
 Let's add a bit more visual flair to our new UI with a small animation on the last added punch:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -23,8 +23,10 @@
   	number,
   	isActive,
 + 	isLastActive = false,
@@ -2692,7 +3250,11 @@ Let's add a bit more visual flair to our new UI with a small animation on the la
   }) => {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -35,5 +37,5 @@
   			className={`aspect-square rounded-full flex items-center justify-center ${
   				isActive ? `${activeColor} text-white` : "bg-gray-100 text-gray-400"
 - 			}`}
@@ -2701,7 +3263,11 @@ Let's add a bit more visual flair to our new UI with a small animation on the la
   			{number}
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -58,9 +60,13 @@
   				// Use a deterministic ID that doesn't rely on array index
   				const uniqueId = `punch-${color}-${punchNumber}`;
 + 				// Determine if this is the last active punch (most recently added)
@@ -2717,13 +3283,23 @@ Let's add a bit more visual flair to our new UI with a small animation on the la
   					/>
 ```
 
+</details>
+
 ---
 
 Finally, let's add a subtle confetti effect to make the success message more engaging:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 54, lines removed: undefined
+
 ```diff
+@@ -18,4 +18,58 @@
   	RefreshCw,
   } from "lucide-react";
 + 
@@ -2784,7 +3360,11 @@ Finally, let's add a subtle confetti effect to make the success message more eng
   // Component for displaying a punch circle
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -371,9 +425,11 @@
   								animate={{ opacity: 1, y: 0 }}
   								exit={{ opacity: 0 }}
 - 								className="mb-4"
@@ -2800,7 +3380,11 @@ Finally, let's add a subtle confetti effect to make the success message more eng
   												<div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -425,5 +481,7 @@
   								) : (
   									<div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
 - 										<div className="bg-green-50 p-4 border-b">
@@ -2811,13 +3395,23 @@ Finally, let's add a subtle confetti effect to make the success message more eng
   												<div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
 ```
 
+</details>
+
 ---
 
 Let's fix the last linter warning:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -40,8 +40,11 @@
   		// Random sizes
   		const size = Math.random() * 8 + 5; // 5 to 13px
 + 
@@ -2831,6 +3425,8 @@ Let's fix the last linter warning:
   				style={{
   					position: "absolute",
 ```
+
+</details>
 
 ---
 

@@ -40,8 +40,8 @@ Now, let's see where we use this hook to add the redirection functionality.
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L8 | `import { useScanQrCode } from "@/hooks/use-scan-qr-code";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L31 | `import { useScanQrCode } from "@/hooks/use-scan-qr-code";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L9 | `import { useScanQrCode } from "@/hooks/use-scan-qr-code";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L32 | `import { useScanQrCode } from "@/hooks/use-scan-qr-code";` |
 
 </details>
 
@@ -107,7 +107,15 @@ Let's update both components to ensure consistent behavior. In the `Nav` compone
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -142,5 +142,11 @@
   				setShowModal(false);
   				// Allow time for success message before reset
 - 				setTimeout(() => reset(), 1500);
@@ -122,13 +130,23 @@ Let's update both components to ensure consistent behavior. In the `Nav` compone
   		},
 ```
 
+</details>
+
 ---
 
 Now, let's also add an effect in the `Nav` component similar to what's in the `UserScanQrCode` component to ensure redirection happens even if the `onScanSuccess` callback doesn't fire for some reason:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -28,5 +28,5 @@
   } from "lucide-react";
   import { motion, AnimatePresence } from "motion/react";
 - import { useCallback, useState } from "react";
@@ -137,7 +155,11 @@ Now, let's also add an effect in the `Nav` component similar to what's in the `U
   import { useScanQrCode } from "@/hooks/use-scan-qr-code";
 ```
 
+**Chunk 2**
+Lines added: 12, lines removed: undefined
+
 ```diff
+@@ -152,4 +152,16 @@
   		},
   	});
 + 
@@ -156,13 +178,23 @@ Now, let's also add an effect in the `Nav` component similar to what's in the `U
   	// Handle opening/closing the modal and scanner together
 ```
 
+</details>
+
 ---
 
 I need to fix the linter errors. The issue is that `router` is used in the `useEffect` hook before it's declared in the code.
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -124,4 +124,5 @@
   	const { isSignedIn, user } = useUser();
   	const [showModal, setShowModal] = useState(false);
 + 	const router = useRouter();
@@ -170,7 +202,11 @@ I need to fix the linter errors. The issue is that `router` is used in the `useE
   	// QR scanning logic moved from NavScanner to Nav
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -189,6 +190,4 @@
   
   	console.log("🚀 ~ Nav ~ userIsAdmin:", userIsAdmin);
 - 
@@ -178,6 +214,8 @@ I need to fix the linter errors. The issue is that `router` is used in the `useE
   
   	const handleTabChange = (tabId?: string) => {
 ```
+
+</details>
 
 ---
 

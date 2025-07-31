@@ -30,7 +30,15 @@ Let me create the .mdc file based on the task information:</details></think>
 
 ---
 
+<details><summary>Edit file: analytics_dashboard.mdc</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 166, lines removed: 1
+
 ```diff
+@@ -1,1 +1,166 @@
 - 
 + ---
 + description: Guidelines for implementing analytics dashboards for restaurant and system admins
@@ -199,6 +207,8 @@ Let me create the .mdc file based on the task information:</details></think>
 +   }
 +   ``` 
 ```
+
+</details>
 
 ---
 

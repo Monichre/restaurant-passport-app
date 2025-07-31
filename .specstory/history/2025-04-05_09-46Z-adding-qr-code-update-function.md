@@ -38,7 +38,15 @@ I'll add the functionality to update the QR code by implementing the proper refr
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/AdminRestaurantDetail.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 20, lines removed: undefined
+
 ```diff
+@@ -5,6 +5,26 @@
   import Link from 'next/link'
   import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'
 + import {useState, useCallback} from 'react'
@@ -67,7 +75,11 @@ I'll add the functionality to update the QR code by implementing the proper refr
     if (!restaurant) {
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -25,6 +45,7 @@
       <motion.div
         className='container mx-auto px-4 py-8'
 -       animate={{opacity: [0, 1, 0], y: [10, 0, 10]}}
@@ -79,7 +91,11 @@ I'll add the functionality to update the QR code by implementing the proper refr
         <div className='mb-6'>
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -61,4 +82,7 @@
             priority
             sizes='100vw'
 +           initial={{opacity: 0}}
@@ -89,7 +105,11 @@ I'll add the functionality to update the QR code by implementing the proper refr
   
 ```
 
+**Chunk 4**
+Lines added: 6, lines removed: 4
+
 ```diff
+@@ -67,13 +91,15 @@
             <motion.h1
               className='text-3xl font-bold text-white mb-2'
 -             animate={{opacity: [0, 1, 0], y: [10, 0, 10]}}
@@ -111,7 +131,11 @@ I'll add the functionality to update the QR code by implementing the proper refr
               {restaurant.address}
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -89,6 +115,7 @@
         <motion.div
           className='mt-4 grid grid-cols-1 md:grid-cols-3 gap-6'
 -         animate={{opacity: [0, 1, 0], y: [10, 0, 10]}}
@@ -123,7 +147,11 @@ I'll add the functionality to update the QR code by implementing the proper refr
           {/* QR Code Section */}
 ```
 
+**Chunk 6**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -98,6 +125,10 @@
               onUpdate={() => {
                 // Force refresh the data
 +               refreshData()
@@ -135,6 +163,8 @@ I'll add the functionality to update the QR code by implementing the proper refr
           </motion.div>
   
 ```
+
+</details>
 
 ---
 
@@ -201,7 +231,15 @@ I'll replace my implementation with the pattern from restaurants-table.tsx:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/AdminRestaurantDetail.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 22, lines removed: 9
+
 ```diff
+@@ -7,23 +7,36 @@
   import {useState, useCallback} from 'react'
   import {useRouter} from 'next/navigation'
 + import {toast} from 'sonner'
@@ -249,7 +287,11 @@ I'll replace my implementation with the pattern from restaurants-table.tsx:
     // Handle case where restaurant is not found
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -45,7 +58,6 @@
       <motion.div
         className='container mx-auto px-4 py-8'
 -       initial={{opacity: 0, y: 10}}
@@ -261,7 +303,11 @@ I'll replace my implementation with the pattern from restaurants-table.tsx:
         <div className='mb-6'>
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 5
+
 ```diff
+@@ -76,13 +88,10 @@
         <motion.div className='relative h-64 w-full mb-8 rounded-lg overflow-hidden'>
           <MotionImage
 -           src={restaurant.imageUrl || '/RWP.jpg'}
@@ -279,7 +325,11 @@ I'll replace my implementation with the pattern from restaurants-table.tsx:
   
 ```
 
+**Chunk 4**
+Lines added: 6, lines removed: 8
+
 ```diff
+@@ -91,17 +100,15 @@
             <motion.h1
               className='text-3xl font-bold text-white mb-2'
 -             initial={{opacity: 0, y: 10}}
@@ -305,7 +355,11 @@ I'll replace my implementation with the pattern from restaurants-table.tsx:
           </motion.div>
 ```
 
+**Chunk 5**
+Lines added: 5, lines removed: 12
+
 ```diff
+@@ -110,25 +117,18 @@
         <div className='mb-8'>
           <h2 className='text-2xl font-semibold mb-4'>About</h2>
 -         <p className='text-gray-700'>{restaurant.description}</p>
@@ -337,6 +391,8 @@ I'll replace my implementation with the pattern from restaurants-table.tsx:
           </motion.div>
   
 ```
+
+</details>
 
 ---
 

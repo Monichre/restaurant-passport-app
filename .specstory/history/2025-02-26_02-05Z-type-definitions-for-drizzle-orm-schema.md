@@ -29,7 +29,15 @@ I'll create TypeScript interfaces for each of these tables, making sure to match
 
 ---
 
+<details><summary>Edit file: src/types/db.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 154, lines removed: 1
+
 ```diff
+@@ -1,1 +1,154 @@
 - 
 + /**
 +  * Type definitions for database models
@@ -187,6 +195,8 @@ I'll create TypeScript interfaces for each of these tables, making sure to match
 + }; 
 ```
 
+</details>
+
 ---
 
 
@@ -195,7 +205,15 @@ Now let's create some Zod validation schemas that match these types, which will 
 
 ---
 
+<details><summary>Edit file: src/types/schemas.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 197, lines removed: 1
+
 ```diff
+@@ -1,1 +1,197 @@
 - 
 + import { z } from "zod";
 + import type { 
@@ -396,6 +414,8 @@ Now let's create some Zod validation schemas that match these types, which will 
 + export type CreateAchievementInput = z.infer<typeof createAchievementSchema>; 
 ```
 
+</details>
+
 ---
 
 
@@ -404,7 +424,15 @@ Now let's create a file with helper types for API responses and requests:
 
 ---
 
+<details><summary>Edit file: src/types/api.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 151, lines removed: 1
+
 ```diff
+@@ -1,1 +1,151 @@
 - 
 + import type { 
 +   User, 
@@ -559,6 +587,8 @@ Now let's create a file with helper types for API responses and requests:
 + }; 
 ```
 
+</details>
+
 ---
 
 
@@ -567,7 +597,15 @@ Finally, let's create an index file to export all the types for easier importing
 
 ---
 
+<details><summary>Edit file: src/types/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 62, lines removed: 1
+
 ```diff
+@@ -1,1 +1,62 @@
 - 
 + /**
 +  * Re-export all types from the types subdirectory
@@ -632,6 +670,8 @@ Finally, let's create an index file to export all the types for easier importing
 +   description?: string;
 + }; 
 ```
+
+</details>
 
 ---
 

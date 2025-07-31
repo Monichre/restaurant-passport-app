@@ -31,7 +31,15 @@ My plan is to add this new table definition near other restaurant-related tables
 
 ---
 
+<details><summary>Edit file: src/db/schema.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 26, lines removed: undefined
+
 ```diff
+@@ -20,4 +20,30 @@
   	qrCodeUrl: text("qr_code_url"),
   });
 + 
@@ -63,6 +71,8 @@ My plan is to add this new table definition near other restaurant-related tables
   
   export const users = pgTable(
 ```
+
+</details>
 
 ---
 
@@ -109,7 +119,15 @@ In Drizzle ORM, this is typically done by adding a relation definition after the
 
 ---
 
+<details><summary>Edit file: src/db/schema.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -11,4 +11,5 @@
   	uniqueIndex,
   	bigint,
 + 	relations,
@@ -117,7 +135,11 @@ In Drizzle ORM, this is typically done by adding a relation definition after the
   
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -21,4 +22,10 @@
   	qrCodeUrl: text("qr_code_url"),
   });
 + 
@@ -130,12 +152,18 @@ In Drizzle ORM, this is typically done by adding a relation definition after the
   export const restaurantDeals = pgTable(
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -254,4 +261,3 @@
   	],
   );
 - 
   
 ```
+
+</details>
 
 ---
 
@@ -143,7 +171,15 @@ Let me fix those linter errors. We need to import the relations from the correct
 
 ---
 
+<details><summary>Edit file: src/db/schema.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -11,6 +11,6 @@
   	uniqueIndex,
   	bigint,
 - 	relations,
@@ -153,13 +189,23 @@ Let me fix those linter errors. We need to import the relations from the correct
   export const restaurants = pgTable("restaurants", {
 ```
 
+</details>
+
 ---
 
 Now we also need to define the relations for the restaurantDeals table:
 
 ---
 
+<details><summary>Edit file: src/db/schema.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 10, lines removed: undefined
+
 ```diff
+@@ -54,4 +54,14 @@
   	],
   );
 + 
@@ -175,6 +221,8 @@ Now we also need to define the relations for the restaurantDeals table:
   
   export const users = pgTable(
 ```
+
+</details>
 
 ---
 

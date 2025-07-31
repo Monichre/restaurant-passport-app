@@ -86,7 +86,15 @@ I'll fix the webpack configuration error. The issue is that webpack requires the
 
 ---
 
+<details><summary>Edit file: next.config.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -40,4 +40,6 @@
   		// Customize webpack config
   		if (config.cache) {
 + 			// Set explicit cache type to memory as required by webpack
@@ -94,6 +102,8 @@ I'll fix the webpack configuration error. The issue is that webpack requires the
   			config.cache.cacheDirectory =
   				config.cache.cacheDirectory || ".next/cache/webpack";
 ```
+
+</details>
 
 ---
 
@@ -132,7 +142,15 @@ I'll update the configuration to use "filesystem" cache type instead of "memory"
 
 ---
 
+<details><summary>Edit file: next.config.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -40,6 +40,6 @@
   		// Customize webpack config
   		if (config.cache) {
 - 			// Set explicit cache type to memory as required by webpack
@@ -142,6 +160,8 @@ I'll update the configuration to use "filesystem" cache type instead of "memory"
   			config.cache.cacheDirectory =
   				config.cache.cacheDirectory || ".next/cache/webpack";
 ```
+
+</details>
 
 ---
 
@@ -183,7 +203,15 @@ You're right, the original warning was related to the middleware compilation. Le
 
 ---
 
+<details><summary>Edit file: next.config.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -37,5 +37,8 @@
   		domains: ["experiencemaplegrove.com"],
   	},
 - 	webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -195,7 +223,11 @@ You're right, the original warning was related to the middleware compilation. Le
   		if (config.cache) {
 ```
 
+**Chunk 2**
+Lines added: 8, lines removed: undefined
+
 ```diff
+@@ -45,8 +48,16 @@
   				config.cache.cacheDirectory || ".next/cache/webpack";
   			config.cache.serializer = config.cache.serializer || {};
 + 
@@ -213,6 +245,8 @@ You're right, the original warning was related to the middleware compilation. Le
   		}
   
 ```
+
+</details>
 
 ---
 

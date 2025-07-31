@@ -74,7 +74,15 @@ Now I'll update the deal detail page to include the EditDealForm in a modal:
 
 ---
 
+<details><summary>Edit file: src/app/admin/deals/[id]/page.tsx</summary>
+
+Update the page to include EditDealForm in a modal dialog instead of linking to a separate edit page
+
+**Chunk 1**
+Lines added: 10, lines removed: 1
+
 ```diff
+@@ -1,4 +1,13 @@
 - import {DealDetail} from '@/components/admin/deals'
 + 'use client'
 + 
@@ -91,7 +99,11 @@ Now I'll update the deal detail page to include the EditDealForm in a modal:
   export const metadata = {
 ```
 
+**Chunk 2**
+Lines added: 20, lines removed: 9
+
 ```diff
+@@ -7,17 +16,28 @@
   }
   
 - export default async function DealDetailPage({
@@ -131,7 +143,11 @@ Now I'll update the deal detail page to include the EditDealForm in a modal:
     return (
 ```
 
+**Chunk 3**
+Lines added: 21, lines removed: 5
+
 ```diff
+@@ -31,15 +51,31 @@
           </div>
           <div className='flex items-center gap-2'>
 -           <a
@@ -170,6 +186,8 @@ Now I'll update the deal detail page to include the EditDealForm in a modal:
     )
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>I see the issue. The `EditDealForm` component doesn't currently have an `onSuccess` prop. I need to update the EditDealForm component to accept an optional `onSuccess` callback and call it after successful submission. Let me update the EditDealForm component:</details></think>
@@ -180,7 +198,15 @@ Now I need to update the EditDealForm component to accept an optional `onSuccess
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/edit-deal-form.tsx</summary>
+
+Update the component to accept an optional onSuccess callback prop and call it after successful submission instead of router navigation
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -21,7 +21,8 @@
     id: string
     deal: Deal & {restaurant?: {id: bigint; name: string}}
 +   onSuccess?: () => void
@@ -192,7 +218,11 @@ Now I need to update the EditDealForm component to accept an optional `onSuccess
     const [restaurants, setRestaurants] = useState<SimpleRestaurant[]>([])
 ```
 
+**Chunk 2**
+Lines added: 8, lines removed: 3
+
 ```diff
+@@ -119,7 +120,12 @@
         })
   
 -       // Redirect to deal detail page on success
@@ -210,6 +240,8 @@ Now I need to update the EditDealForm component to accept an optional `onSuccess
         setError(err instanceof Error ? err.message : 'Failed to update deal')
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Good! Now I should also update the cancel button behavior to close the modal when inside a modal context. Let me make that change:</details></think>
@@ -220,7 +252,32 @@ Let me also update the cancel button behavior in the EditDealForm to handle moda
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/edit-deal-form.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 1
+
+```diff
+@@ -287,5 +287,13 @@
+          <button
+            type='button'
+-           onClick={() => router.back()}
++           onClick={() => {
++             if (onSuccess) {
++               // If in modal context, just close it
++               onSuccess()
++             } else {
++               // Otherwise, go back
++               router.back()
++             }
++           }}
+            className='rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#818cf8] focus:ring-offset-2'
+          >
+```
+
+</details>
 
 ---
 
@@ -244,7 +301,27 @@ Let me fix the metadata issue in the page.tsx file since it's now a client compo
 
 ---
 
+<details><summary>Edit file: src/app/admin/deals/[id]/page.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 5
+
+```diff
+@@ -10,9 +10,4 @@
+    DialogTitle,
+  } from '@/components/ui/dialog'
+- 
+- export const metadata = {
+-   title: 'Admin - Deal Details',
+-   description: 'View and manage deal details',
+- }
+  
+  export default function DealDetailPage({
+```
+
+</details>
 
 ---
 
@@ -256,7 +333,35 @@ Let's also improve the loading state with a proper skeleton:
 
 ---
 
+<details><summary>Edit file: src/app/admin/deals/[id]/page.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: 1
+
+```diff
+@@ -33,5 +33,16 @@
+  
+    if (!deal || !resolvedParams) {
+-     return <div>Loading...</div>
++     return (
++       <div className='space-y-6'>
++         <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
++           <div className='space-y-2'>
++             <div className='h-8 w-48 bg-gray-200 rounded animate-pulse'></div>
++             <div className='h-5 w-64 bg-gray-200 rounded animate-pulse'></div>
++           </div>
++           <div className='h-10 w-24 bg-gray-200 rounded animate-pulse'></div>
++         </div>
++         <div className='h-96 bg-gray-200 rounded animate-pulse'></div>
++       </div>
++     )
+    }
+  
+```
+
+</details>
 
 ---
 
@@ -273,10 +378,10 @@ Let me check if there are any other references to the edit page route that need 
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L415 | `href={`/admin/deals/${deal.id}/edit`}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L567 | `<Link href={`/admin/deals/${deal.id}/edit`}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L88 | `href={`/admin/deals/${id}/edit`}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L88 | `href={`/admin/deals/${id}/edit`}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L416 | `href={`/admin/deals/${deal.id}/edit`}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L568 | `<Link href={`/admin/deals/${deal.id}/edit`}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L89 | `href={`/admin/deals/${id}/edit`}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L89 | `href={`/admin/deals/${id}/edit`}` |
 
 </details>
 
@@ -306,7 +411,28 @@ Let me update the deal-detail component:</details></think>
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deal-detail.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 6
+
+```diff
+@@ -86,10 +86,4 @@
+  
+          <div className='flex items-center mt-4 md:mt-0 space-x-3'>
+-           <Link
+-             href={`/admin/deals/${id}/edit`}
+-             className='inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+-           >
+-             <Edit className='mr-2 h-4 w-4' /> Edit
+-           </Link>
+            <button
+              type='button'
+```
+
+</details>
 
 ---
 
@@ -322,7 +448,37 @@ Let me fix the date formatting issues in the deal-detail component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deal-detail.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 8, lines removed: 2
+
+```diff
+@@ -135,11 +135,17 @@
+                  <Calendar className='mr-1.5 h-4 w-4 text-gray-400' />
+                  <span className='text-gray-500'>
+-                   Created: {deal.createdAt.toLocaleDateString()}
++                   Created:{' '}
++                   {deal.createdAt
++                     ? new Date(deal.createdAt).toLocaleDateString()
++                     : 'N/A'}
+                  </span>
+                </div>
+                <div className='flex items-center text-sm'>
+                  <Calendar className='mr-1.5 h-4 w-4 text-gray-400' />
+                  <span className='text-gray-500'>
+-                   Last updated: {deal.updatedAt.toLocaleDateString()}
++                   Last updated:{' '}
++                   {deal.updatedAt
++                     ? new Date(deal.updatedAt).toLocaleDateString()
++                     : 'N/A'}
+                  </span>
+                </div>
+```
+
+</details>
 
 ---
 
@@ -334,7 +490,24 @@ Now let me update the deals-table component to redirect to the detail page inste
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -414,5 +414,5 @@
+                </Link>
+                <Link
+-                 href={`/admin/deals/${deal.id}/edit`}
++                 href={`/admin/deals/${deal.id}`}
+                  className='rounded p-1 text-blue-500 hover:bg-blue-100 hover:text-blue-700'
+                  title='Edit'
+```
+
+</details>
 
 ---
 
@@ -346,7 +519,24 @@ Let me update the second reference to the edit route in the deals-table componen
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -566,5 +566,5 @@
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+-                           <Link href={`/admin/deals/${deal.id}/edit`}>
++                           <Link href={`/admin/deals/${deal.id}`}>
+                              <Edit className='mr-2 h-4 w-4' />
+                              Edit Deal
+```
+
+</details>
 
 ---
 

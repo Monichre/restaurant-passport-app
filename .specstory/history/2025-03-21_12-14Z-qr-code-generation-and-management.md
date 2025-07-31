@@ -39,7 +39,15 @@ I'll fix the `useHandleQRCode` hook to properly generate QR codes and handle sav
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 13, lines removed: 9
+
 ```diff
+@@ -10,32 +10,36 @@
   	const [success, setSuccess] = useState(false);
   	const [error, setError] = useState<string | null>(null);
 - 	const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null);
@@ -87,7 +95,11 @@ I'll fix the `useHandleQRCode` hook to properly generate QR codes and handle sav
   	// Download QR code as image with browser compatibility handling
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -149,5 +153,4 @@
   		setError(null);
   		try {
 - 
@@ -95,7 +107,11 @@ I'll fix the `useHandleQRCode` hook to properly generate QR codes and handle sav
   			if (!qrRef.current) {
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -172,9 +175,9 @@
   				clonedSvg.setAttribute("height", "200");
   			}
 + 
@@ -110,7 +126,11 @@ I'll fix the `useHandleQRCode` hook to properly generate QR codes and handle sav
   			// Use safe encoding for all browsers
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -199,12 +202,12 @@
   
   			// Save to database
 - 			const result = await saveQRCodeUrl(restaurant?.id.toString(), dataUrl);
@@ -128,7 +148,11 @@ I'll fix the `useHandleQRCode` hook to properly generate QR codes and handle sav
   		} catch (err) {
 ```
 
+**Chunk 5**
+Lines added: 5, lines removed: 5
+
 ```diff
+@@ -218,12 +221,12 @@
   			setSaving(false);
   		}
 - 	}, [restaurant?.id]);
@@ -147,6 +171,8 @@ I'll fix the `useHandleQRCode` hook to properly generate QR codes and handle sav
   
   	return {
 ```
+
+</details>
 
 ---
 
@@ -174,7 +200,15 @@ Let's fix all the TypeScript errors comprehensively:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -103,11 +103,11 @@
   		success,
   		error,
 - 		qrRef = useRef<HTMLDivElement>(null),
@@ -195,13 +229,23 @@ Let's fix all the TypeScript errors comprehensively:
   	const [downloadSupported, setDownloadSupported] = useState(true);
 ```
 
+</details>
+
 ---
 
 Now let's update the server action to properly handle the QR code URL update:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -21,4 +21,11 @@
   			.returning();
   
 + 		if (!updatedRestaurant || updatedRestaurant.length === 0) {
@@ -215,7 +259,11 @@ Now let's update the server action to properly handle the QR code URL update:
   			success: true,
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -29,5 +36,5 @@
   		return {
   			success: false,
 - 			error: "Failed to save QR code"
@@ -223,6 +271,8 @@ Now let's update the server action to properly handle the QR code URL update:
   		};
   	}
 ```
+
+</details>
 
 ---
 
@@ -272,7 +322,15 @@ Let me make these changes to the useHandleQRCode hook.</details></think>
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 10
+
 ```diff
+@@ -11,20 +11,12 @@
   	const [error, setError] = useState<string | null>(null);
   	const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(restaurant.qrCodeUrl || null);
 - 	const [qrCodeValue, setQrCodeValue] = useState<string>(`${getBaseUrl()}/api/restaurants/${restaurant.id}/scan`);	
@@ -297,7 +355,11 @@ Let me make these changes to the useHandleQRCode hook.</details></think>
   		setQrCodeValue(newQrCodeValue);
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -40,5 +32,5 @@
   		setError(null);
   		// Reset to original QR code value if exists
 - 		setQrCodeValue(`${getBaseUrl()}/api/restaurants/${restaurant.id}/scan`);
@@ -306,7 +368,11 @@ Let me make these changes to the useHandleQRCode hook.</details></think>
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -226,5 +218,5 @@
   	useEffect(() => {
   		if (restaurant?.id) {
 - 			setQrCodeValue(`${getBaseUrl()}/api/restaurants/${restaurant.id}/scan`);
@@ -314,6 +380,8 @@ Let me make these changes to the useHandleQRCode hook.</details></think>
   		}
   	}, [restaurant?.id]);
 ```
+
+</details>
 
 ---
 
@@ -343,7 +411,15 @@ _**Assistant**_
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -16,7 +16,6 @@
   	// Generate QR code and show save/cancel buttons
   	const handleGenerate = useCallback(() => {
 - 		// Generate a new QR code value with timestamp to ensure uniqueness
@@ -354,6 +430,8 @@ _**Assistant**_
   		
   		setQrCodeValue(newQrCodeValue);
 ```
+
+</details>
 
 ---
 

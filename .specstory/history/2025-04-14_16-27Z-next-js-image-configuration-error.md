@@ -49,7 +49,15 @@ I'll edit the `next.config.ts` file to fix this issue.</details></think>
 
 ---
 
+<details><summary>Edit file: next.config.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -34,7 +34,7 @@
   	images: {
   		domains: [
 - 			"experiencemaplegrove.com/",
@@ -61,6 +69,8 @@ I'll edit the `next.config.ts` file to fix this issue.</details></think>
   		],
   	},
 ```
+
+</details>
 
 ---
 
@@ -351,11 +361,47 @@ I can see that stagewise has already been partially integrated! However, it need
 
 ---
 
+<details><summary>Edit file: src/app/layout.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 2
+
+```diff
+@@ -10,6 +10,4 @@
+  import './globals.css'
+  import {StyleWrapper} from '@/context/style-wrapper'
+- import {StagewiseToolbar} from '@stagewise/toolbar-next'
+- const stagewiseConfig = {plugins: []}
+  
+  const geistSans = Geist({
+```
+
+</details>
 
 ---
 
+<details><summary>Edit file: src/app/layout.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
+```diff
+@@ -45,5 +45,7 @@
+                <Toaster />
+                <Analytics />
+-               <StagewiseToolbar config={stagewiseConfig} />
++               {process.env.NODE_ENV === 'development' && (
++                 <StagewiseDevToolbar />
++               )}
+              </body>
+            </html>
+```
+
+</details>
 
 ---
 
@@ -363,7 +409,15 @@ I can see that stagewise has already been partially integrated! However, it need
 
 ---
 
+<details><summary>Edit file: src/components/dev/stagewise-dev-toolbar.tsx</summary>
+
+Create a new stagewise development toolbar component that only runs in development mode
+
+**Chunk 1**
+Lines added: 17, lines removed: 1
+
 ```diff
+@@ -1,1 +1,17 @@
 - 
 + 'use client'
 + 
@@ -384,13 +438,31 @@ I can see that stagewise has already been partially integrated! However, it need
 + 
 ```
 
+</details>
+
 ---
 
 ## Step 5: Import the component in the layout
 
 ---
 
+<details><summary>Edit file: src/app/layout.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
+```diff
+@@ -10,4 +10,5 @@
+  import './globals.css'
+  import {StyleWrapper} from '@/context/style-wrapper'
++ import {StagewiseDevToolbar} from '@/components/dev/stagewise-dev-toolbar'
+  
+  const geistSans = Geist({
+```
+
+</details>
 
 ---
 
@@ -504,8 +576,8 @@ I need to find the admin dashboard layout and sidebar components to increase con
 ---
 
 <details>
-            <summary>Searched codebase "admin dashboard sidebar layout" • **25** results</summary>
-        
+                <summary>Searched codebase "admin dashboard sidebar layout" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/admin/admin-content.tsx` | L1-37 |
@@ -542,23 +614,140 @@ Perfect! I can see the issue. Looking at the `Sidebar.tsx` component, I can see 
 
 ---
 
+<details><summary>Edit file: src/components/admin/Sidebar.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -182,5 +182,5 @@
+  
+          {/* Navigation */}
+-         <nav className='flex-1 overflow-y-auto py-4 bg-white text-gray-700 border-r border-[#e5e5e5b3]'>
++         <nav className='flex-1 overflow-y-auto py-4 bg-gray-50 text-gray-700 border-r-2 border-gray-200 shadow-sm'>
+            <ul className='space-y-1 px-3'>
+              {menuItems.map((item) => (
+```
+
+</details>
 
 ---
 
+<details><summary>Edit file: src/components/admin/Sidebar.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -149,5 +149,5 @@
+            ${collapsed ? 'md:w-20' : 'md:w-64'} 
+            fixed top-0 left-0 h-full text-white transition-all duration-300 ease-in-out z-50
+-           flex flex-col border-r border-[#e5e5e5b3]
++           flex flex-col border-r-2 border-gray-200 shadow-sm bg-gray-50
+          `}
+        >
+```
+
+</details>
 
 ---
 
+<details><summary>Edit file: src/components/admin/admin-content.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 5
+
+```diff
+@@ -1,9 +1,9 @@
+- "use client";
++ 'use client'
+  
+- import { useSidebar } from "@/components/admin/SidebarContext";
+- import { AdminSidebar } from "@/components/admin/Sidebar";
++ import {useSidebar} from '@/components/admin/SidebarContext'
++ import {AdminSidebar} from '@/components/admin/Sidebar'
+  
+- export function AdminContent({ children }: { children: React.ReactNode }) {
+- 	const { collapsed } = useSidebar();
++ export function AdminContent({children}: {children: React.ReactNode}) {
++   const {collapsed} = useSidebar()
+  
+    return (
+```
+
+**Chunk 2**
+Lines added: 4, lines removed: 4
+
+```diff
+@@ -15,11 +15,11 @@
+        <div
+          className={`transition-all duration-300 min-h-screen ${
+- 					collapsed ? "md:ml-20" : "md:ml-64"
++           collapsed ? 'md:ml-20' : 'md:ml-64'
+          }`}
+        >
+          {/* Header */}
+- 				<header className="bg-white shadow-xs">
+- 					<div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+- 						<h1 className="text-lg font-semibold text-gray-900">
++         <header className='bg-white shadow-sm border-b border-gray-200'>
++           <div className='max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8'>
++             <h1 className='text-lg font-semibold text-gray-900'>
+                Admin Dashboard
+              </h1>
+```
+
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -29,10 +29,10 @@
+          {/* Main content */}
+          {/* max-w-7xl */}
+- 				<main className="w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
++         <main className='w-full mx-auto py-6 px-4 sm:px-6 lg:px-8'>
+            {children}
+          </main>
+        </div>
+      </>
+- 	);
++   )
+  }
+  
+```
+
+</details>
 
 ---
 
-
+The string to replace was not found in the file.
 
 ---
 
+<details><summary>Edit file: src/components/admin/admin-content.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -29,5 +29,5 @@
+          {/* Main content */}
+          {/* max-w-7xl */}
+-         <main className='w-full mx-auto py-6 px-4 sm:px-6 lg:px-8'>
++         <main className='w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-gray-25 min-h-[calc(100vh-80px)]'>
+            {children}
+          </main>
+```
+
+</details>
 
 ---
 

@@ -181,108 +181,108 @@ Read file: src/app/admin/layout.tsx
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/passport/passport.tsx` | L25 | `console.log('🚀 ~ Passport ~ punchesLeft:', punchesLeft)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/passport/passport.tsx` | L29 | `console.log('🚀 ~ Passport ~ emptyPunches:', emptyPunches)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/share-punch-menu.tsx` | L80 | `console.log('Error sharing:', error)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/share-punch-menu.tsx` | L95 | `console.log('Error copying to clipboard:', error)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/lottery-status.tsx` | L21 | `console.log('🚀 ~ punchCards:', punchCards)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | L12 | `console.log("🚀 ~ userId:", userId);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | L14 | `console.log("🚀 ~ restaurant:", restaurant);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | L18 | `console.log("🚀 ~ punchCard:", punchCard);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/Restaurant.tsx` | L18 | `console.log('🚀 ~ restaurant ~ restaurant:', restaurant)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx` | L21 | `// 	console.log("🚀 ~ RestaurantCard ~ restaurant:", restaurant);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L48 | `console.log('🚀 ~ restaurantDetail:', restaurantDetail)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L58 | `console.log('🚀 ~ distance:', distance)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L72 | `console.log('🚀 ~ deals:', deals)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L44 | `console.log(user);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L61 | `console.log(user);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/auth.ts` | L19 | `console.log("🚀 ~ isAdmin ~ user:", user);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L111 | `// Removed console.log for production performance` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserRaffleSubscription.tsx` | L22 | `console.log('🚀 ~ fetchUserRaffleEntries ~ entry:', entry)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/motion-primitives/animated-number.tsx` | L12 | `console.log('🚀 ~ AnimatedNumberInView ~ num:', num)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/motion-primitives/animated-number.tsx` | L51 | `console.log('🚀 ~ value:', value)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/motion-primitives/animated-number.tsx` | L57 | `console.log('🚀 ~ spring:', spring)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/camera-permission-checker/camera-permission-checker.tsx` | L82 | `console.log("Permissions API not supported, falling back to getUserMedia");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/camera-permission-checker/camera-permission-checker.tsx` | L119 | `console.log("Basic permission request failed:", firstErr);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L83 | `console.log('🚀 ~ result:', result)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L105 | `console.log('🚀 ~ NavScanner ~ result:', result)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L123 | `console.log('🚀 ~ handleScan ~ data:', data)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L134 | `console.log('🚀 ~ handleScan ~ res:', res)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L146 | `console.log(error)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L204 | `console.log('🚀 ~ NavScanner ~ error:', error)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L206 | `console.log(`onError: ${error}'`)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/progress-indicator/progress-indicator.tsx` | L13 | `console.log(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/progress-indicator/progress-indicator.tsx` | L41 | `// console.log('🚀 ~ spring:', spring)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/progress-indicator/progress-indicator.tsx` | L50 | `console.log('🚀 ~ ProgressIndicator ~ width:', width)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-deals-display.tsx` | L18 | `console.log("🚀 ~ deals:", deals);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L129 | `console.log('🚀 ~ handleOpen ~ data:', data)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L188 | `console.log('🚀 ~ handleCreateDeal ~ createdDeal:', createdDeal)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L199 | `console.log(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L294 | `console.log(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L57 | `console.log({search, restaurant, status})` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/BookTestimonial3D.tsx` | L37 | `onFlip={(e) => console.log(e.data)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/BookTestimonial3D.tsx` | L38 | `onChangeState={(e) => console.log(e.data)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L969 | `console.log('Pagination state:', tablePagination)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1514 | `console.log('Set page size to:', newPageSize)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punchcard.tsx` | L107 | `console.log('🚀 ~ restaurants:', restaurants)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L48 | `console.log("🚀 ~ fetchPunchCards ~ error:", error);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L50 | `console.log("🚀 ~ fetchPunchCards ~ data:", data);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L56 | `console.log("🚀 ~ fetchPunchCards ~ punchCards:", data);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L82 | `console.log("🚀 ~ useEffect ~ userIdStr:", userIdStr);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L96 | `console.log("Punch card change received:", payload);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L108 | `console.log("🚀 ~ success:", success);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L110 | `console.log("🚀 ~ data:", data);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L124 | `console.log("🚀 ~ useEffect ~ subscription:", subscription);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSubscription.tsx` | L29 | `console.log('🚀 ~ restaurantData:', restaurantData)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSubscription.tsx` | L40 | `console.log('🚀 ~ fetchInitialData ~ restaurantData:', restaurantData)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSubscription.tsx` | L61 | `console.log('Restaurant or deal change detected:', payload)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSubscription.tsx` | L83 | `console.log('Restaurant subscription established')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L15 | `console.log('🚀 ~ getCoordinatesFromAddress ~ response:', response)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L19 | `console.log('🚀 ~ getCoordinatesFromAddress ~ data:', data)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L29 | `console.log('🚀 ~ restaurantAddress:', restaurantAddress)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L36 | `console.log('🚀 ~ restaurantAddress:', restaurantAddress)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L38 | `console.log('🚀 ~ coords:', coords)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L44 | `console.log('🚀 ~ restaurantCoordinates:', restaurantCoordinates)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L52 | `console.log('🚀 ~ getCoordinatesFromAddress ~ distance:', distance)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L147 | `console.log('About to save QR code URL', {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L155 | `console.log('Save result:', result)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L44 | `console.log('🚀 ~ fetchDeals ~ response:', response)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L47 | `console.log('🚀 ~ fetchDeals ~ response:', response)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L49 | `console.log('🚀 ~ fetchDeals ~ error:', error)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L51 | `console.log('🚀 ~ fetchDeals ~ deals:', data)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L76 | `console.log('Change received!', payload)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L81 | `console.log('🚀 ~ useEffect ~ subscription:', subscription)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRaffleEntriesSubscription.tsx` | L22 | `console.log('🚀 ~ fetchRaffleEntries ~ entries:', entries)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRaffleEntriesSubscription.tsx` | L59 | `console.log('🚀 ~ useEffect ~ subscription:', subscription)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L17 | `console.log('🚀 ~ coords:', coords)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L854 | `console.log("🚀 ~ processRestaurants ~ app:", app);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L880 | `console.log(batchScrapeJob);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L883 | `console.log(batchScrapeStatus);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L886 | `console.log("No URLs to process");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L889 | `console.log("🚀 ~ urls ~ urls:", urls);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L905 | `console.log(jobStatus);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L906 | `// console.log("🚀 ~ processRestaurants ~ extractedInfo:", extractedInfo);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L908 | `// console.log(results);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L80 | `console.log("🚀 Starting restaurant image updates...");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L84 | `console.log("📊 Fetching restaurants from database...");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L86 | `console.log(`Found ${restaurants.length} restaurants in database`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L94 | `console.log(`\n🔍 Processing: ${imageUpdate.name}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L99 | `console.log(`❌ No matching restaurant found for: ${imageUpdate.name}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L110 | `console.log(`✅ Found match: ${restaurant.name} (ID: ${restaurant.id})`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L111 | `console.log(`🔄 Updating image URL...`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L112 | `console.log(`   Old: ${restaurant.imageUrl}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L113 | `console.log(`   New: ${imageUpdate.imageUrl}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L120 | `console.log(`✅ Successfully updated ${restaurant.name}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L134 | `console.log(`❌ Failed to update ${restaurant.name}: ${error}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L148 | `console.log("\n" + "=".repeat(60));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L149 | `console.log("📋 UPDATE SUMMARY");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L150 | `console.log("=".repeat(60));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L151 | `console.log(`Total restaurants processed: ${imageUpdates.length}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L152 | `console.log(`✅ Successful updates: ${successCount}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L153 | `console.log(`❌ Failed updates: ${failureCount}`);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L156 | `console.log("\n❌ FAILED UPDATES:");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/passport/passport.tsx` | L25 | `console.log('🚀 ~ Passport ~ punchesLeft:', punchesLeft)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/passport/passport.tsx` | L29 | `console.log('🚀 ~ Passport ~ emptyPunches:', emptyPunches)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/passport/passport.tsx` | L26 | `console.log('🚀 ~ Passport ~ punchesLeft:', punchesLeft)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/passport/passport.tsx` | L30 | `console.log('🚀 ~ Passport ~ emptyPunches:', emptyPunches)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/share-punch-menu.tsx` | L81 | `console.log('Error sharing:', error)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/share-punch-menu.tsx` | L96 | `console.log('Error copying to clipboard:', error)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/lottery-status.tsx` | L22 | `console.log('🚀 ~ punchCards:', punchCards)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | L13 | `console.log("🚀 ~ userId:", userId);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | L15 | `console.log("🚀 ~ restaurant:", restaurant);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/GetUserPunchCard.tsx` | L19 | `console.log("🚀 ~ punchCard:", punchCard);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/Restaurant.tsx` | L19 | `console.log('🚀 ~ restaurant ~ restaurant:', restaurant)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx` | L22 | `// 	console.log("🚀 ~ RestaurantCard ~ restaurant:", restaurant);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L49 | `console.log('🚀 ~ restaurantDetail:', restaurantDetail)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L59 | `console.log('🚀 ~ distance:', distance)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L73 | `console.log('🚀 ~ deals:', deals)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L45 | `console.log(user);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L62 | `console.log(user);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/auth.ts` | L20 | `console.log("🚀 ~ isAdmin ~ user:", user);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L112 | `// Removed console.log for production performance` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserRaffleSubscription.tsx` | L23 | `console.log('🚀 ~ fetchUserRaffleEntries ~ entry:', entry)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/motion-primitives/animated-number.tsx` | L13 | `console.log('🚀 ~ AnimatedNumberInView ~ num:', num)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/motion-primitives/animated-number.tsx` | L52 | `console.log('🚀 ~ value:', value)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/motion-primitives/animated-number.tsx` | L58 | `console.log('🚀 ~ spring:', spring)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/camera-permission-checker/camera-permission-checker.tsx` | L83 | `console.log("Permissions API not supported, falling back to getUserMedia");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/camera-permission-checker/camera-permission-checker.tsx` | L120 | `console.log("Basic permission request failed:", firstErr);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L84 | `console.log('🚀 ~ result:', result)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L106 | `console.log('🚀 ~ NavScanner ~ result:', result)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L124 | `console.log('🚀 ~ handleScan ~ data:', data)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L135 | `console.log('🚀 ~ handleScan ~ res:', res)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L147 | `console.log(error)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L205 | `console.log('🚀 ~ NavScanner ~ error:', error)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L207 | `console.log(`onError: ${error}'`)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/progress-indicator/progress-indicator.tsx` | L14 | `console.log(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/progress-indicator/progress-indicator.tsx` | L42 | `// console.log('🚀 ~ spring:', spring)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/progress-indicator/progress-indicator.tsx` | L51 | `console.log('🚀 ~ ProgressIndicator ~ width:', width)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-deals-display.tsx` | L19 | `console.log("🚀 ~ deals:", deals);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L130 | `console.log('🚀 ~ handleOpen ~ data:', data)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L189 | `console.log('🚀 ~ handleCreateDeal ~ createdDeal:', createdDeal)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L200 | `console.log(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L295 | `console.log(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L58 | `console.log({search, restaurant, status})` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/BookTestimonial3D.tsx` | L38 | `onFlip={(e) => console.log(e.data)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/BookTestimonial3D.tsx` | L39 | `onChangeState={(e) => console.log(e.data)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L970 | `console.log('Pagination state:', tablePagination)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1515 | `console.log('Set page size to:', newPageSize)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/punchcard.tsx` | L108 | `console.log('🚀 ~ restaurants:', restaurants)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L49 | `console.log("🚀 ~ fetchPunchCards ~ error:", error);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L51 | `console.log("🚀 ~ fetchPunchCards ~ data:", data);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L57 | `console.log("🚀 ~ fetchPunchCards ~ punchCards:", data);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L83 | `console.log("🚀 ~ useEffect ~ userIdStr:", userIdStr);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L97 | `console.log("Punch card change received:", payload);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L109 | `console.log("🚀 ~ success:", success);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L111 | `console.log("🚀 ~ data:", data);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L125 | `console.log("🚀 ~ useEffect ~ subscription:", subscription);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSubscription.tsx` | L30 | `console.log('🚀 ~ restaurantData:', restaurantData)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSubscription.tsx` | L41 | `console.log('🚀 ~ fetchInitialData ~ restaurantData:', restaurantData)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSubscription.tsx` | L62 | `console.log('Restaurant or deal change detected:', payload)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRestaurantSubscription.tsx` | L84 | `console.log('Restaurant subscription established')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L16 | `console.log('🚀 ~ getCoordinatesFromAddress ~ response:', response)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L20 | `console.log('🚀 ~ getCoordinatesFromAddress ~ data:', data)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L30 | `console.log('🚀 ~ restaurantAddress:', restaurantAddress)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L37 | `console.log('🚀 ~ restaurantAddress:', restaurantAddress)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L39 | `console.log('🚀 ~ coords:', coords)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L45 | `console.log('🚀 ~ restaurantCoordinates:', restaurantCoordinates)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useUserDistance.tsx` | L53 | `console.log('🚀 ~ getCoordinatesFromAddress ~ distance:', distance)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L148 | `console.log('About to save QR code URL', {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L156 | `console.log('Save result:', result)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L45 | `console.log('🚀 ~ fetchDeals ~ response:', response)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L48 | `console.log('🚀 ~ fetchDeals ~ response:', response)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L50 | `console.log('🚀 ~ fetchDeals ~ error:', error)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L52 | `console.log('🚀 ~ fetchDeals ~ deals:', data)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L77 | `console.log('Change received!', payload)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L82 | `console.log('🚀 ~ useEffect ~ subscription:', subscription)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRaffleEntriesSubscription.tsx` | L23 | `console.log('🚀 ~ fetchRaffleEntries ~ entries:', entries)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useRaffleEntriesSubscription.tsx` | L60 | `console.log('🚀 ~ useEffect ~ subscription:', subscription)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L18 | `console.log('🚀 ~ coords:', coords)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L855 | `console.log("🚀 ~ processRestaurants ~ app:", app);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L881 | `console.log(batchScrapeJob);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L884 | `console.log(batchScrapeStatus);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L887 | `console.log("No URLs to process");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L890 | `console.log("🚀 ~ urls ~ urls:", urls);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L906 | `console.log(jobStatus);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L907 | `// console.log("🚀 ~ processRestaurants ~ extractedInfo:", extractedInfo);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L909 | `// console.log(results);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L81 | `console.log("🚀 Starting restaurant image updates...");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L85 | `console.log("📊 Fetching restaurants from database...");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L87 | `console.log(`Found ${restaurants.length} restaurants in database`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L95 | `console.log(`\n🔍 Processing: ${imageUpdate.name}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L100 | `console.log(`❌ No matching restaurant found for: ${imageUpdate.name}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L111 | `console.log(`✅ Found match: ${restaurant.name} (ID: ${restaurant.id})`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L112 | `console.log(`🔄 Updating image URL...`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L113 | `console.log(`   Old: ${restaurant.imageUrl}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L114 | `console.log(`   New: ${imageUpdate.imageUrl}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L121 | `console.log(`✅ Successfully updated ${restaurant.name}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L135 | `console.log(`❌ Failed to update ${restaurant.name}: ${error}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L149 | `console.log("\n" + "=".repeat(60));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L150 | `console.log("📋 UPDATE SUMMARY");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L151 | `console.log("=".repeat(60));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L152 | `console.log(`Total restaurants processed: ${imageUpdates.length}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L153 | `console.log(`✅ Successful updates: ${successCount}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L154 | `console.log(`❌ Failed updates: ${failureCount}`);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/update-restaurant-images.ts` | L157 | `console.log("\n❌ FAILED UPDATES:");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/passport/passport.tsx` | L26 | `console.log('🚀 ~ Passport ~ punchesLeft:', punchesLeft)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/passport/passport.tsx` | L30 | `console.log('🚀 ~ Passport ~ emptyPunches:', emptyPunches)` |
 
 </details>
 

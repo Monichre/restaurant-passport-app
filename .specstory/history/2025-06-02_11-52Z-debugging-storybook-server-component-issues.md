@@ -138,7 +138,7 @@ Could not find file 'src/stories' in the workspace.
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/users/[id]/profile/ProfilePage.stories.tsx` |
 
 </details>
 
@@ -223,7 +223,15 @@ Let me create a comprehensive solution. I'll start with step-by-step planning:
 
 ---
 
+<details><summary>Edit file: STORYBOOK_DATABASE_MOCKING_PSEUDOCODE.md</summary>
+
+Create detailed pseudocode for implementing database mocking in Storybook
+
+**Chunk 1**
+Lines added: 156, lines removed: 1
+
 ```diff
+@@ -1,1 +1,156 @@
 - 
 + # Storybook Database Mocking Implementation Plan
 + 
@@ -383,6 +391,8 @@ Let me create a comprehensive solution. I'll start with step-by-step planning:
 + - Clear separation of client/server concerns 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Great! Now I have a comprehensive plan. Let me implement the solution step by step. I'll start with creating the mock layer and then configure Storybook to use it.
@@ -395,7 +405,15 @@ Now let me implement the solution. I'll start by creating the database mock laye
 
 ---
 
+<details><summary>Edit file: src/lib/storybook-mocks/database-mocks.ts</summary>
+
+Create mock implementations of database functions for Storybook
+
+**Chunk 1**
+Lines added: 115, lines removed: 1
+
 ```diff
+@@ -1,1 +1,115 @@
 - 
 + import type { PunchCardWithRestaurant } from "@/hooks/use-punch-card-subscription";
 + import type { RaffleEntry } from "@/types/db";
@@ -514,13 +532,23 @@ Now let me implement the solution. I'll start by creating the database mock laye
 + export const getRestaurantById = mockGetRestaurantById; 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now let me create the mock Supabase client:</details></think>
 
 ---
 
+<details><summary>Edit file: src/lib/storybook-mocks/supabase-mock.ts</summary>
+
+Create a mock Supabase client for Storybook that doesn't make real API calls
+
+**Chunk 1**
+Lines added: 56, lines removed: 1
+
 ```diff
+@@ -1,1 +1,56 @@
 - 
 + // Mock Supabase client for Storybook
 + 
@@ -580,13 +608,23 @@ Now let me implement the solution. I'll start by creating the database mock laye
 + export default supabaseBrowserClient; 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now let me create a mock context provider that can be used in Storybook stories:</details></think>
 
 ---
 
+<details><summary>Edit file: src/lib/storybook-mocks/mock-context.tsx</summary>
+
+Create a React context provider for mock data in Storybook
+
+**Chunk 1**
+Lines added: 122, lines removed: 1
+
 ```diff
+@@ -1,1 +1,122 @@
 - 
 + 'use client'
 + 
@@ -712,6 +750,8 @@ Now let me implement the solution. I'll start by creating the database mock laye
 + 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>
@@ -734,7 +774,7 @@ Perfect! I can see that Storybook is using Vite, so I need to add aliases to the
 
 ---
 
-
+Cancelled
 
 ---
 

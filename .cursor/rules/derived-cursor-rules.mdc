@@ -331,11 +331,10 @@ This document defines the rules and guidelines for the AI coding assistant. It c
     -   The DialogDescription should have these classes: `text-sm text-gray-600 dark:text-gray-400`.
     -   Each section (Basic, Contact, Additional Info) should have these classes: `space-y-4 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg`.
     -   Each Label should have these classes: `text-sm font-medium text-gray-700 dark:text-gray-300`.
-    -   Each Input should have these classes: `bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary text-gray-900 dark:text-gray-100`.
+    -   Each Input should have these classes: `bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 text-gray-900 dark:text-gray-100`.
     -   The save/cancel buttons container should have these classes: `flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700`.
     -   The cancel button should have these classes: `border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300`.
     -   The save button should have these classes: `bg-primary hover:bg-primary/90 text-white`.
--   In the Admin `@restaurants-table.tsx` component, add borders around the inputs.
 
 ## DATA FETCHING & API
 
@@ -478,3 +477,4 @@ This document defines the rules and guidelines for the AI coding assistant. It c
 -   For webhooks, follow a clear separation of concerns:
     -   **Route Handler**: Handles HTTP requests, verifies signatures, and routes events.
     -   **Service Classes**: Encaps
+</rules-file

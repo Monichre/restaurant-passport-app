@@ -101,8 +101,8 @@ Let's search for files related to QR code functionality:
 ---
 
 <details>
-            <summary>Searched codebase "QR code generation save" • **25** results</summary>
-        
+                <summary>Searched codebase "QR code generation save" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/hooks/use-handle-qrCode.tsx` | L1-34 |
@@ -180,8 +180,8 @@ Now I need to look at how the QR code component is being used:
 ---
 
 <details>
-            <summary>Searched codebase "import { QRCodeManager }" • **25** results</summary>
-        
+                <summary>Searched codebase "import { QRCodeManager }" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/app/admin/restaurants/qr-code-manager.tsx` | L470-486 |
@@ -220,8 +220,8 @@ Let's examine the page where the restaurants are managed:
 ---
 
 <details>
-            <summary>Searched codebase "restaurant detail page" • **25** results</summary>
-        
+                <summary>Searched codebase "restaurant detail page" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L76-102 |
@@ -290,7 +290,15 @@ Let's test the QR code saving functionality to see if it's working:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -11,4 +11,7 @@
   // Function to convert QR code SVG to a data URL
   export async function saveQRCodeUrl(restaurantId: string, qrCodeUrl: string) {
 + 	console.log("Saving QR code URL for restaurant:", restaurantId);
@@ -300,7 +308,11 @@ Let's test the QR code saving functionality to see if it's working:
   		const updatedRestaurant = await db
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -18,5 +21,8 @@
   			.returning();
   
 + 		console.log("Update result:", updatedRestaurant);
@@ -311,7 +323,11 @@ Let's test the QR code saving functionality to see if it's working:
   				success: false,
 ```
 
+**Chunk 3**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -25,4 +31,9 @@
   		}
   
 + 		// Revalidate the restaurant detail page and admin pages
@@ -323,13 +339,23 @@ Let's test the QR code saving functionality to see if it's working:
   			success: true,
 ```
 
+</details>
+
 ---
 
 Now let's fix the QR code component itself. There seems to be a mismatch between the file name imported and the actual files. Let's update the QR code manager component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -5,5 +5,5 @@
   import QRCode from 'react-qr-code'
   import Image from 'next/image'
 - import {useHandleQRCode} from '@/hooks/use-handle-qrCode'
@@ -338,7 +364,11 @@ Now let's fix the QR code component itself. There seems to be a mismatch between
   import {
 ```
 
+**Chunk 2**
+Lines added: 26, lines removed: undefined
+
 ```diff
+@@ -661,3 +661,29 @@
     )
   }
 + 
@@ -370,13 +400,23 @@ Now let's fix the QR code component itself. There seems to be a mismatch between
   
 ```
 
+</details>
+
 ---
 
 Now, let's update the QR code generation component to use our new `FixedQRCodeBlock` component where the QR code needs to be rendered:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 7
+
 ```diff
+@@ -405,15 +405,11 @@
           {generating && (
             <div className='mt-2 flex flex-col gap-2'>
 -             <div
@@ -397,13 +437,23 @@ Now, let's update the QR code generation component to use our new `FixedQRCodeBl
                 <Button
 ```
 
+</details>
+
 ---
 
 Let's fix the TypeScript errors by updating the `FixedQRCodeBlock` component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 2
+
 ```diff
+@@ -670,8 +670,13 @@
     viewBox: string
     className: string
 -   qrRef: React.RefObject<HTMLDivElement>
@@ -421,13 +471,23 @@ Let's fix the TypeScript errors by updating the `FixedQRCodeBlock` component:
           size={size}
 ```
 
+</details>
+
 ---
 
 It seems there are still some TypeScript errors. Let's address these in the hook itself to ensure the QR code data is properly processed and saved:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 4
+
 ```diff
+@@ -274,17 +274,22 @@
   
         // Save to database - only access props.restaurant when in single mode
 -       if (props.mode === 'single') {
@@ -456,13 +516,23 @@ It seems there are still some TypeScript errors. Let's address these in the hook
       } catch (err) {
 ```
 
+</details>
+
 ---
 
 Now let's create a fully functional implementation to solve the QR code saving issue:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 191, lines removed: 1
+
 ```diff
+@@ -1,1 +1,191 @@
 - 
 + 'use client'
 + 
@@ -657,13 +727,23 @@ Now let's create a fully functional implementation to solve the QR code saving i
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's create a simpler version of the QR code manager component using our new hook:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 143, lines removed: 1
+
 ```diff
+@@ -1,1 +1,143 @@
 - 
 + 'use client'
 + 
@@ -810,13 +890,23 @@ Now, let's create a simpler version of the QR code manager component using our n
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's update the restaurant detail page to use our new QR code generator component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -4,5 +4,6 @@
   import {Suspense} from 'react'
   import {auth} from '@clerk/nextjs/server'
 - import {QRCodeManager} from '../qr-code-manager'
@@ -826,7 +916,11 @@ Now, let's update the restaurant detail page to use our new QR code generator co
   import {RestaurantLoading} from '@/features/restaurants/RestaurantLoading'
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: 15
+
 ```diff
+@@ -59,20 +60,10 @@
   
         <div className='mb-8'>
 -         <div className='flex justify-between items-center mb-4'>
@@ -854,13 +948,23 @@ Now, let's update the restaurant detail page to use our new QR code generator co
           </div>
 ```
 
+</details>
+
 ---
 
 Let's also update the RestaurantQuickView component to use our new QR code generator:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -35,4 +35,5 @@
   import {DealsList, EmptyDeals} from './restaurant-deals-display'
   import {QRCodeManager} from '@/app/admin/restaurants/qr-code-manager'
 + import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'
@@ -868,7 +972,11 @@ Let's also update the RestaurantQuickView component to use our new QR code gener
   // Define the BentoItem interface to match the BentoGrid component's expected types
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -255,5 +256,9 @@
             )}
             <div className='mt-2'>
 -             <QRCodeManager restaurant={restaurantData} variant='compact' />
@@ -881,13 +989,23 @@ Let's also update the RestaurantQuickView component to use our new QR code gener
           </div>
 ```
 
+</details>
+
 ---
 
 Let's update the QRCodeGenerator component to support the compact variant:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -13,4 +13,5 @@
     onUpdate?: () => void
     className?: string
 +   variant?: 'default' | 'compact' | 'table'
@@ -895,7 +1013,11 @@ Let's update the QRCodeGenerator component to support the compact variant:
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -19,4 +20,5 @@
     onUpdate,
     className = '',
 +   variant = 'default',
@@ -903,7 +1025,11 @@ Let's update the QRCodeGenerator component to support the compact variant:
     const {
 ```
 
+**Chunk 3**
+Lines added: 97, lines removed: undefined
+
 ```diff
+@@ -41,4 +43,101 @@
     }, [success, onUpdate])
   
 +   // Compact variant
@@ -1007,6 +1133,8 @@ Let's update the QRCodeGenerator component to support the compact variant:
       <div className={`space-y-4 ${className}`}>
 ```
 
+</details>
+
 ---
 
 After implementing these fixes, the QR code generation and saving issue should be resolved. Here's a summary of the changes made:
@@ -1071,7 +1199,15 @@ The error "QR Code container not found" is occurring because the QR code ref isn
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 3
+
 ```diff
+@@ -254,15 +254,16 @@
                 // QR code generation state
                 <div className='space-y-4'>
 -                 {/* <div
@@ -1093,13 +1229,23 @@ The error "QR Code container not found" is occurring because the QR code ref isn
                   <p className='text-sm text-gray-600'>
 ```
 
+</details>
+
 ---
 
 Now let's fix the remaining QR code null reference issues in the hooks:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 42, lines removed: 4
+
 ```diff
+@@ -242,11 +242,49 @@
         // Make sure we have a valid QR code to save
         if (!qrRef.current) {
 -         throw new Error('QR code container not found')
@@ -1155,7 +1301,11 @@ Now let's fix the remaining QR code null reference issues in the hooks:
   
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -273,8 +311,10 @@
         }
   
 -       // Save to database - only access props.restaurant when in single mode
@@ -1169,7 +1319,11 @@ Now let's fix the remaining QR code null reference issues in the hooks:
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -286,5 +326,5 @@
         console.log('Save result:', result)
   
 -       if (result && result.success) {
@@ -1178,13 +1332,23 @@ Now let's fix the remaining QR code null reference issues in the hooks:
           setGenerating(false)
 ```
 
+</details>
+
 ---
 
 Now, let's enhance our QR code generator component to handle more robust DOM element referencing with data attributes:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 8
+
 ```diff
+@@ -1,13 +1,12 @@
   'use client'
   
 - import React from 'react'
@@ -1207,7 +1371,11 @@ Now, let's enhance our QR code generator component to handle more robust DOM ele
     onUpdate?: () => void
 ```
 
+**Chunk 2**
+Lines added: 361, lines removed: 150
+
 ```diff
+@@ -16,225 +15,436 @@
   }
   
 + /**
@@ -1796,13 +1964,23 @@ Now, let's enhance our QR code generator component to handle more robust DOM ele
     )
 ```
 
+</details>
+
 ---
 
 Let's fix the QR code generator component with the correct imports and type fixes:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -4,5 +4,5 @@
   import type {Restaurant} from '@/db/drizzle/schema'
   import {saveQRCodeUrl} from '@/app/admin/restaurants/actions'
 - import {QRCode} from 'react-qrcode-logo'
@@ -1811,7 +1989,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
   import clsx from 'clsx'
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -260,4 +260,5 @@
               <div className='flex space-x-2 mt-2'>
                 <button
 +                 type='button'
@@ -1819,7 +2001,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                   className='text-xs bg-blue-500 text-white rounded px-2 py-1 hover:bg-blue-600'
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -266,4 +267,5 @@
                 </button>
                 <button
 +                 type='button'
@@ -1827,7 +2013,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                   className='text-xs bg-gray-100 text-gray-700 rounded px-2 py-1 hover:bg-gray-200 flex items-center'
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -290,5 +292,4 @@
                       }
                       size={100}
 -                     quietZone={10}
@@ -1835,7 +2025,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                   </div>
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -297,4 +298,5 @@
                   <div className='flex space-x-2 mt-2'>
                     <button
 +                     type='button'
@@ -1843,7 +2037,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                       disabled={saving}
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -304,4 +306,5 @@
                     </button>
                     <button
 +                     type='button'
@@ -1851,7 +2049,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                       disabled={saving}
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -334,4 +337,5 @@
                   </div>
                   <button
 +                   type='button'
@@ -1859,7 +2061,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                     className='text-xs bg-blue-500 text-white rounded px-2 py-1 hover:bg-blue-600 mt-2'
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -365,4 +369,5 @@
               <div className='flex space-x-3'>
                 <button
 +                 type='button'
@@ -1867,7 +2073,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                   className='bg-blue-500 text-white rounded-md px-3 py-2 hover:bg-blue-600'
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -371,4 +376,5 @@
                 </button>
                 <button
 +                 type='button'
@@ -1875,7 +2085,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                   className='bg-gray-100 text-gray-700 rounded-md px-3 py-2 hover:bg-gray-200 flex items-center'
 ```
 
+**Chunk 10**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -395,5 +401,4 @@
                       }
                       size={200}
 -                     quietZone={15}
@@ -1883,7 +2097,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                   </div>
 ```
 
+**Chunk 11**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -402,4 +407,5 @@
                   <div className='flex space-x-3'>
                     <button
 +                     type='button'
@@ -1891,7 +2109,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                       disabled={saving}
 ```
 
+**Chunk 12**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -409,4 +415,5 @@
                     </button>
                     <button
 +                     type='button'
@@ -1899,7 +2121,11 @@ Let's fix the QR code generator component with the correct imports and type fixe
                       disabled={saving}
 ```
 
+**Chunk 13**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -437,4 +444,5 @@
                   </div>
                   <button
 +                   type='button'
@@ -1907,13 +2133,23 @@ Let's fix the QR code generator component with the correct imports and type fixe
                     className='bg-blue-500 text-white rounded-md px-3 py-2 hover:bg-blue-600'
 ```
 
+</details>
+
 ---
 
 Let's fix the Restaurant type import issue:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import React, {useState, useRef, useEffect} from 'react'
 - import type {Restaurant} from '@/db/drizzle/schema'
@@ -1922,13 +2158,23 @@ Let's fix the Restaurant type import issue:
   import QRCode from 'react-qr-code'
 ```
 
+</details>
+
 ---
 
 Now let's update the `QRCodeBlock` component in the QR code manager to use the improved error handling:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 15, lines removed: 2
+
 ```diff
+@@ -675,12 +675,25 @@
       | React.RefObject<HTMLDivElement | null>
   }) => {
 +   useEffect(() => {
@@ -1958,13 +2204,23 @@ Now let's update the `QRCodeBlock` component in the QR code manager to use the i
           className={className}
 ```
 
+</details>
+
 ---
 
 It appears that the QR code manager component has some deep-seated type issues. Let's update the component completely with a more robust implementation that uses our improved component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 14
+
 ```diff
+@@ -1,29 +1,17 @@
   import Link from 'next/link'
   import Image from 'next/image'
 - 
@@ -1998,7 +2254,11 @@ It appears that the QR code manager component has some deep-seated type issues. 
     console.log('🚀 ~ restaurant ~ restaurant:', restaurant)
 ```
 
+**Chunk 2**
+Lines added: 16, lines removed: 5
+
 ```diff
+@@ -59,13 +47,24 @@
         </div>
   
 -       <div className='mb-8'>
@@ -2030,13 +2290,23 @@ It appears that the QR code manager component has some deep-seated type issues. 
       </div>
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining issues by adding proper null checks:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 38, lines removed: 1
+
 ```diff
+@@ -20,7 +20,44 @@
     const {userId} = await auth()
     const isAuthenticated = !!userId
 + 
@@ -2084,13 +2354,23 @@ Let's fix the remaining issues by adding proper null checks:
           <Image
 ```
 
+</details>
+
 ---
 
 Let's fix the missing alt text issue with the image element:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -62,6 +62,6 @@
         <div className='relative h-64 w-full mb-8 rounded-lg overflow-hidden'>
           <Image
 -           src={restaurant.imageUrl || '/RWP.jpg'}
@@ -2100,6 +2380,8 @@ Let's fix the missing alt text issue with the image element:
             fill
             className='object-cover'
 ```
+
+</details>
 
 ---
 
@@ -2115,7 +2397,15 @@ Let's fix the SVG missing alt text issues:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -53,5 +53,8 @@
               strokeLinecap='round'
               strokeLinejoin='round'
 +             aria-label='Back arrow'
@@ -2126,7 +2416,11 @@ Let's fix the SVG missing alt text issues:
             </svg>
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -139,5 +142,8 @@
               strokeLinecap='round'
               strokeLinejoin='round'
 +             aria-label='Back arrow'
@@ -2136,6 +2430,8 @@ Let's fix the SVG missing alt text issues:
               <path d='M19 12H5M12 19l-7-7 7-7' />
             </svg>
 ```
+
+</details>
 
 ---
 
@@ -2190,7 +2486,7 @@ Let's find and update the RestaurantQuickView component to add the QR code gener
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` |
 
 </details>
 
@@ -2209,245 +2505,245 @@ Let's read a bit more of this file to understand how the QR code is currently im
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L30 | `qrCodeUrl: string | null;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/index.ts` | L54 | `export type QRCodeSize = "sm" | "md" | "lg";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L38 | `qrCodeUrl: text("qr_code_url"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L45 | `qrCode: varchar("qr_code"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L106 | `export type QrCodePayload =` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L132 | `qrCodeUrl?: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L144 | `qrCodeUrl: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L216 | `qrCodeUrl: z.string().url().nullable(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L231 | `qrCodeUrl: true,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L21 | `qrCodeUrl: string | null;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/actions/scan-actions.ts` | L57 | `// const qrCodeUrl = new URL(qrDataString);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/actions/scan-actions.ts` | L59 | `// console.log("🚀 ~ qrCodeUrl:", qrCodeUrl);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/actions/scan-actions.ts` | L61 | `// const pathname = qrCodeUrl.pathname;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L3 | `saveQRCodeUrl,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L4 | `saveBulkQRCodeUrls,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L11 | `type QRCodeResult = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L14 | `qrCodeDataUrl?: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L17 | `type UseHandleQRCodeProps =` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L21 | `export const useHandleQRCode = (props: UseHandleQRCodeProps) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L29 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L37 | `const [results, setResults] = useState<QRCodeResult[]>([])` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L48 | `const qrCodeValue = useCallback((restaurantId: string | number | bigint) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L53 | `const generateQRCodeDataUrl = useCallback(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L60 | `<!-- QR code pattern for ${qrCodeValue(restaurantId)} -->` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L65 | `[qrCodeValue]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L139 | `if (!qrCodeDataUrl && !qrRef.current) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L146 | `let dataUrl = qrCodeDataUrl` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L173 | `.toLowerCase()}-qrcode.svg`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L174 | `: 'qrcode.svg'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L231 | `}, [props, qrCodeDataUrl])` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L320 | `const result = await saveQRCodeUrl(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L330 | `setQrCodeDataUrl(dataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L396 | `const generatedResults: QRCodeResult[] = []` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L402 | `const dataUrl = generateQRCodeDataUrl(restaurant.id)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L407 | `qrCodeDataUrl: dataUrl,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L425 | `[props.mode, selectedRestaurants, generateQRCodeDataUrl]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L443 | `qrCodeUrl: result.qrCodeDataUrl || '',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L447 | `const validBulkData = bulkData.filter((data) => data.qrCodeUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L453 | `const saveResult = await saveBulkQRCodeUrls(validBulkData)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L505 | `if (!result.qrCodeDataUrl) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L526 | `.toLowerCase()}-qrcode.svg`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L530 | `const svgData = await extractSvgData(null, result.qrCodeDataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L537 | `const response = await fetch(result.qrCodeDataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L605 | `qrCodeDataUrl,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L606 | `qrCodeValue: qrCodeValue(props.restaurant.id),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L74 | `const [qrCodeData, setQrCodeData] = useState<string>("");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L26 | `QrCode,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L30 | `QrCodeIcon,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L123 | `<QrCodeIcon className='h-6 w-6 text-white' />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L264 | `<QrCodeIcon className='h-6 w-6' />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L1 | `import { QRCodeManager } from "@/app/admin/restaurants/qr-code-manager";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L8 | `import type { UseHandleQRCodeProps } from "@/hooks/use-handle-qr-code";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L11 | `* The QRCodeManager component allows restaurant administrators to generate,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L16 | `const meta: Meta<typeof QRCodeManager> = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L17 | `title: "Admin/Restaurants/QRCodeManager",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L18 | `component: QRCodeManager,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L60 | `qrCodeUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogd2hpdGUiPjxwYXRoIGQ9Ik0wIDBoMjAwdjIwMEgwei` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L68 | `qrCodeUrl: null,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L73 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L79 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L89 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L95 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L105 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L111 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L121 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L127 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L137 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L143 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L152 | `* Default view of the QRCodeManager component with an existing QR code.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L176 | `* QRCodeManager when no QR code has been generated yet.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L179 | `export const NoQRCode: Story = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L200 | `* Compact variant of the QRCodeManager.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L224 | `* Table cell variant of the QRCodeManager.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L248 | `* QRCodeManager in the generating state.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L272 | `* QRCodeManager in the saving state.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L296 | `* QRCodeManager with a success message.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L320 | `* QRCodeManager with an error message.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L344 | `* Mobile view of the QRCodeManager component.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L358 | `story: "The QRCodeManager as displayed on mobile devices with responsive adaptations.",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L371 | `* Tablet view of the QRCodeManager component.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L385 | `story: "The QRCodeManager as displayed on tablet devices.",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L413 | `qrCodeUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogd2hpdGUiPjxwYXRoIGQ9Ik0wIDBoMjAwdjIwMEgwei` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L4 | `import {saveQRCodeUrl} from '@/app/admin/restaurants/actions'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L5 | `import QRCode from 'react-qr-code'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L9 | `export interface QRCodeGeneratorProps {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L20 | `export function QRCodeGenerator({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L25 | `}: QRCodeGeneratorProps) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L31 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | undefined>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L32 | `restaurant.qrCodeUrl || undefined` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L34 | `const [qrCodeValue, setQrCodeValue] = useState<string>('')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L48 | `setQrCodeValue(value)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L55 | `setQrCodeValue('')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L26 | `QrCode,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L30 | `QrCodeIcon,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L123 | `<QrCodeIcon className='h-6 w-6 text-white' />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L264 | `<QrCodeIcon className='h-6 w-6' />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L21 | `QrCode,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L35 | `import {QRCodeManager} from '@/app/admin/restaurants/qr-code-manager'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L36 | `import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L234 | `id: `qrcode-${restaurantData.id.toString()}`,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L238 | `{restaurantData.qrCodeUrl ? (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L242 | `src={restaurantData.qrCodeUrl}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L257 | `<QRCodeGenerator` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L265 | `icon: <QrCode className='w-4 h-4 text-purple-500' />,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L266 | `status: restaurantData.qrCodeUrl ? 'Active' : 'Not Generated',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L4 | `import QRCode from 'react-qr-code'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L6 | `import {useHandleQRCode} from '@/hooks/use-handle-qr-code'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L19 | `QrCode,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L29 | `type QRCodeVariant = 'default' | 'compact' | 'table'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L31 | `interface QRCodeManagerProps {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L33 | `variant?: QRCodeVariant` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L44 | `const downloadQRCodeFromElement = (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L89 | `.toLowerCase()}-qrcode.png`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L106 | `export function QRCodeManager({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L110 | `}: QRCodeManagerProps) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L113 | `qrCodeDataUrl,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L114 | `qrCodeValue,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L124 | `} = useHandleQRCode({restaurant, mode: 'single'} as SingleModeProps)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L165 | `downloadQRCodeFromElement(qrContainer, restaurant.name)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L167 | `downloadQRCodeFromElement(tableQrRef.current, restaurant.name)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L179 | `{restaurant.qrCodeUrl ? (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L185 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L186 | `value={qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L205 | `{restaurant.qrCodeUrl` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L213 | `{restaurant.qrCodeUrl ? (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L221 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L223 | `value={qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L232 | `{qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L247 | `<QrCode className='h-4 w-4' />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L260 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L262 | `value={qrCodeValue || ''}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L271 | `{qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L304 | `<QrCode className='h-4 w-4' />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L343 | `downloadQRCodeFromElement(compactQrRef.current, restaurant.name)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L348 | `{restaurant.qrCodeUrl ? (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L354 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L356 | `value={qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L400 | `<QrCode className='h-3 w-3 mr-1' />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L407 | `<FixedQRCodeBlock` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L409 | `value={qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L457 | `qrCodeValue={qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L476 | `qrCodeValue: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L491 | `qrCodeValue,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L503 | `downloadQRCodeFromElement(currentQrRef.current, restaurant.name)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L509 | `navigator.clipboard.writeText(qrCodeValue)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L519 | `{restaurant.qrCodeUrl ? (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L527 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L529 | `value={qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L546 | `{/* <QrCode className='h-4 w-4' />; */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L547 | `{restaurant.qrCodeUrl ? 'Generate New QR Code' : 'Generate QR Code'}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L555 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L557 | `value={qrCodeValue}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L565 | `<span className='font-mono text-xs break-all'>{qrCodeValue}</span>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L661 | `const FixedQRCodeBlock = ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L678 | `console.log('QRCodeBlock mounted, ref attached:', {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L681 | `qrCodeValue: value,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L694 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L11 | `export async function saveQRCodeUrl(restaurantId: string, qrCodeUrl: string) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L13 | `console.log("QR code URL length:", qrCodeUrl.length);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L18 | `.set({ qrCodeUrl })` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L51 | `export async function saveBulkQRCodeUrls(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L52 | `restaurantQRCodes: { restaurantId: string; qrCodeUrl: string }[],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L61 | `for (const { restaurantId, qrCodeUrl } of restaurantQRCodes) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L65 | `.set({ qrCodeUrl })` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L3 | `saveQRCodeUrl,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L4 | `saveBulkQRCodeUrls,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L11 | `type QRCodeResult = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L14 | `qrCodeDataUrl?: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L17 | `type UseHandleQRCodeProps =` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L21 | `export const useHandleQRCode = (props: UseHandleQRCodeProps) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L29 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L37 | `const [results, setResults] = useState<QRCodeResult[]>([])` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L48 | `const qrCodeValue = useCallback((restaurantId: string | number | bigint) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L53 | `const generateQRCodeDataUrl = useCallback(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L60 | `<!-- QR code pattern for ${qrCodeValue(restaurantId)} -->` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L65 | `[qrCodeValue]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L139 | `if (!qrCodeDataUrl && !qrRef.current) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L146 | `let dataUrl = qrCodeDataUrl` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L173 | `.toLowerCase()}-qrcode.svg`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L174 | `: 'qrcode.svg'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L231 | `}, [props, qrCodeDataUrl])` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L320 | `const result = await saveQRCodeUrl(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L330 | `setQrCodeDataUrl(dataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L396 | `const generatedResults: QRCodeResult[] = []` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L402 | `const dataUrl = generateQRCodeDataUrl(restaurant.id)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L407 | `qrCodeDataUrl: dataUrl,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L425 | `[props.mode, selectedRestaurants, generateQRCodeDataUrl]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L443 | `qrCodeUrl: result.qrCodeDataUrl || '',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L447 | `const validBulkData = bulkData.filter((data) => data.qrCodeUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L453 | `const saveResult = await saveBulkQRCodeUrls(validBulkData)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L505 | `if (!result.qrCodeDataUrl) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L526 | `.toLowerCase()}-qrcode.svg`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L530 | `const svgData = await extractSvgData(null, result.qrCodeDataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L537 | `const response = await fetch(result.qrCodeDataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L605 | `qrCodeDataUrl,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L606 | `qrCodeValue: qrCodeValue(props.restaurant.id),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L2 | `import {saveQRCodeUrl} from '@/app/admin/restaurants/actions'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L6 | `export function useQRCodeGenerator(restaurant: Restaurant) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L11 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L12 | `restaurant.qrCodeUrl || null` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L14 | `const [qrCodeValue, setQrCodeValue] = useState<string>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L21 | `setQrCodeValue(`/api/restaurants/${restaurant.id}/scan`)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L35 | `if (!qrCodeDataUrl && !qrRef.current) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L42 | `let dataUrl = qrCodeDataUrl` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L82 | `.toLowerCase()}-qrcode.svg`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L92 | `}, [qrCodeDataUrl, restaurant.name])` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L153 | `const result = await saveQRCodeUrl(restaurant.id.toString(), dataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L160 | `setQrCodeDataUrl(dataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L177 | `qrCodeDataUrl,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L178 | `qrCodeValue,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L4 | `import {saveQRCodeUrl} from '@/app/admin/restaurants/actions'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L5 | `import QRCode from 'react-qr-code'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L9 | `export interface QRCodeGeneratorProps {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L20 | `export function QRCodeGenerator({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L25 | `}: QRCodeGeneratorProps) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L31 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | undefined>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L32 | `restaurant.qrCodeUrl || undefined` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L34 | `const [qrCodeValue, setQrCodeValue] = useState<string>('')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L48 | `setQrCodeValue(value)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L55 | `setQrCodeValue('')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L62 | `if (qrCodeDataUrl) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L64 | `a.href = qrCodeDataUrl` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L65 | `a.download = `qrcode-${restaurant.name` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L120 | `a.download = `qrcode-${restaurant.name` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L221 | `const result = await saveQRCodeUrl(restaurant.id.toString(), dataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L228 | `setQrCodeDataUrl(dataUrl)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L250 | `{qrCodeDataUrl && !generating ? (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L254 | `src={qrCodeDataUrl}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L287 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L289 | `qrCodeValue ||` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L359 | `{qrCodeDataUrl && !generating ? (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L363 | `src={qrCodeDataUrl}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L396 | `<QRCode` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L398 | `qrCodeValue ||` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L4 | `import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L92 | `<QRCodeGenerator` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-detail-modal.tsx` | L13 | `import {QRCodeManager} from '@/app/admin/restaurants/qr-code-manager'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-detail-modal.tsx` | L74 | `{restaurant.qrCodeUrl ? (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-detail-modal.tsx` | L77 | `src={restaurant.qrCodeUrl}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L31 | `qrCodeUrl: string | null;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/index.ts` | L55 | `export type QRCodeSize = "sm" | "md" | "lg";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L39 | `qrCodeUrl: text("qr_code_url"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L46 | `qrCode: varchar("qr_code"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L107 | `export type QrCodePayload =` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L133 | `qrCodeUrl?: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L145 | `qrCodeUrl: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L217 | `qrCodeUrl: z.string().url().nullable(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L232 | `qrCodeUrl: true,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-punch-card-subscription.ts` | L22 | `qrCodeUrl: string | null;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/actions/scan-actions.ts` | L58 | `// const qrCodeUrl = new URL(qrDataString);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/actions/scan-actions.ts` | L60 | `// console.log("🚀 ~ qrCodeUrl:", qrCodeUrl);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/actions/scan-actions.ts` | L62 | `// const pathname = qrCodeUrl.pathname;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L4 | `saveQRCodeUrl,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L5 | `saveBulkQRCodeUrls,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L12 | `type QRCodeResult = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L15 | `qrCodeDataUrl?: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L18 | `type UseHandleQRCodeProps =` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L22 | `export const useHandleQRCode = (props: UseHandleQRCodeProps) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L30 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L38 | `const [results, setResults] = useState<QRCodeResult[]>([])` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L49 | `const qrCodeValue = useCallback((restaurantId: string | number | bigint) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L54 | `const generateQRCodeDataUrl = useCallback(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L61 | `<!-- QR code pattern for ${qrCodeValue(restaurantId)} -->` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L66 | `[qrCodeValue]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L140 | `if (!qrCodeDataUrl && !qrRef.current) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L147 | `let dataUrl = qrCodeDataUrl` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L174 | `.toLowerCase()}-qrcode.svg`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L175 | `: 'qrcode.svg'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L232 | `}, [props, qrCodeDataUrl])` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L321 | `const result = await saveQRCodeUrl(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L331 | `setQrCodeDataUrl(dataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L397 | `const generatedResults: QRCodeResult[] = []` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L403 | `const dataUrl = generateQRCodeDataUrl(restaurant.id)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L408 | `qrCodeDataUrl: dataUrl,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L426 | `[props.mode, selectedRestaurants, generateQRCodeDataUrl]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L444 | `qrCodeUrl: result.qrCodeDataUrl || '',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L448 | `const validBulkData = bulkData.filter((data) => data.qrCodeUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L454 | `const saveResult = await saveBulkQRCodeUrls(validBulkData)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L506 | `if (!result.qrCodeDataUrl) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L527 | `.toLowerCase()}-qrcode.svg`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L531 | `const svgData = await extractSvgData(null, result.qrCodeDataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L538 | `const response = await fetch(result.qrCodeDataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L606 | `qrCodeDataUrl,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L607 | `qrCodeValue: qrCodeValue(props.restaurant.id),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav-scanner.tsx` | L75 | `const [qrCodeData, setQrCodeData] = useState<string>("");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L27 | `QrCode,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L31 | `QrCodeIcon,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L124 | `<QrCodeIcon className='h-6 w-6 text-white' />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L265 | `<QrCodeIcon className='h-6 w-6' />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L2 | `import { QRCodeManager } from "@/app/admin/restaurants/qr-code-manager";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L9 | `import type { UseHandleQRCodeProps } from "@/hooks/use-handle-qr-code";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L12 | `* The QRCodeManager component allows restaurant administrators to generate,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L17 | `const meta: Meta<typeof QRCodeManager> = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L18 | `title: "Admin/Restaurants/QRCodeManager",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L19 | `component: QRCodeManager,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L61 | `qrCodeUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogd2hpdGUiPjxwYXRoIGQ9Ik0wIDBoMjAwdjIwMEgwei` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L69 | `qrCodeUrl: null,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L74 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L80 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L90 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L96 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L106 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L112 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L122 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L128 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L138 | `(useHandleQRCode as jest.Mock).mockImplementation(({ restaurant }) => ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L144 | `qrCodeValue: `/api/restaurants/${restaurant.id}/scan`,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L153 | `* Default view of the QRCodeManager component with an existing QR code.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L177 | `* QRCodeManager when no QR code has been generated yet.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L180 | `export const NoQRCode: Story = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L201 | `* Compact variant of the QRCodeManager.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L225 | `* Table cell variant of the QRCodeManager.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L249 | `* QRCodeManager in the generating state.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L273 | `* QRCodeManager in the saving state.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L297 | `* QRCodeManager with a success message.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L321 | `* QRCodeManager with an error message.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L345 | `* Mobile view of the QRCodeManager component.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L359 | `story: "The QRCodeManager as displayed on mobile devices with responsive adaptations.",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L372 | `* Tablet view of the QRCodeManager component.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L386 | `story: "The QRCodeManager as displayed on tablet devices.",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L414 | `qrCodeUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogd2hpdGUiPjxwYXRoIGQ9Ik0wIDBoMjAwdjIwMEgwei` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L5 | `import {saveQRCodeUrl} from '@/app/admin/restaurants/actions'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L6 | `import QRCode from 'react-qr-code'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L10 | `export interface QRCodeGeneratorProps {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L21 | `export function QRCodeGenerator({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L26 | `}: QRCodeGeneratorProps) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L32 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | undefined>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L33 | `restaurant.qrCodeUrl || undefined` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L35 | `const [qrCodeValue, setQrCodeValue] = useState<string>('')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L49 | `setQrCodeValue(value)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L56 | `setQrCodeValue('')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L27 | `QrCode,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L31 | `QrCodeIcon,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L124 | `<QrCodeIcon className='h-6 w-6 text-white' />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L265 | `<QrCodeIcon className='h-6 w-6' />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L22 | `QrCode,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L36 | `import {QRCodeManager} from '@/app/admin/restaurants/qr-code-manager'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L37 | `import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L235 | `id: `qrcode-${restaurantData.id.toString()}`,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L239 | `{restaurantData.qrCodeUrl ? (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L243 | `src={restaurantData.qrCodeUrl}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L258 | `<QRCodeGenerator` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L266 | `icon: <QrCode className='w-4 h-4 text-purple-500' />,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L267 | `status: restaurantData.qrCodeUrl ? 'Active' : 'Not Generated',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L5 | `import QRCode from 'react-qr-code'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L7 | `import {useHandleQRCode} from '@/hooks/use-handle-qr-code'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L20 | `QrCode,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L30 | `type QRCodeVariant = 'default' | 'compact' | 'table'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L32 | `interface QRCodeManagerProps {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L34 | `variant?: QRCodeVariant` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L45 | `const downloadQRCodeFromElement = (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L90 | `.toLowerCase()}-qrcode.png`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L107 | `export function QRCodeManager({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L111 | `}: QRCodeManagerProps) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L114 | `qrCodeDataUrl,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L115 | `qrCodeValue,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L125 | `} = useHandleQRCode({restaurant, mode: 'single'} as SingleModeProps)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L166 | `downloadQRCodeFromElement(qrContainer, restaurant.name)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L168 | `downloadQRCodeFromElement(tableQrRef.current, restaurant.name)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L180 | `{restaurant.qrCodeUrl ? (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L186 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L187 | `value={qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L206 | `{restaurant.qrCodeUrl` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L214 | `{restaurant.qrCodeUrl ? (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L222 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L224 | `value={qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L233 | `{qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L248 | `<QrCode className='h-4 w-4' />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L261 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L263 | `value={qrCodeValue || ''}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L272 | `{qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L305 | `<QrCode className='h-4 w-4' />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L344 | `downloadQRCodeFromElement(compactQrRef.current, restaurant.name)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L349 | `{restaurant.qrCodeUrl ? (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L355 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L357 | `value={qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L401 | `<QrCode className='h-3 w-3 mr-1' />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L408 | `<FixedQRCodeBlock` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L410 | `value={qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L458 | `qrCodeValue={qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L477 | `qrCodeValue: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L492 | `qrCodeValue,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L504 | `downloadQRCodeFromElement(currentQrRef.current, restaurant.name)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L510 | `navigator.clipboard.writeText(qrCodeValue)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L520 | `{restaurant.qrCodeUrl ? (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L528 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L530 | `value={qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L547 | `{/* <QrCode className='h-4 w-4' />; */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L548 | `{restaurant.qrCodeUrl ? 'Generate New QR Code' : 'Generate QR Code'}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L556 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L558 | `value={qrCodeValue}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L566 | `<span className='font-mono text-xs break-all'>{qrCodeValue}</span>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L662 | `const FixedQRCodeBlock = ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L679 | `console.log('QRCodeBlock mounted, ref attached:', {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L682 | `qrCodeValue: value,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L695 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L12 | `export async function saveQRCodeUrl(restaurantId: string, qrCodeUrl: string) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L14 | `console.log("QR code URL length:", qrCodeUrl.length);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L19 | `.set({ qrCodeUrl })` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L52 | `export async function saveBulkQRCodeUrls(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L53 | `restaurantQRCodes: { restaurantId: string; qrCodeUrl: string }[],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L62 | `for (const { restaurantId, qrCodeUrl } of restaurantQRCodes) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/actions.ts` | L66 | `.set({ qrCodeUrl })` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L4 | `saveQRCodeUrl,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L5 | `saveBulkQRCodeUrls,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L12 | `type QRCodeResult = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L15 | `qrCodeDataUrl?: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L18 | `type UseHandleQRCodeProps =` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L22 | `export const useHandleQRCode = (props: UseHandleQRCodeProps) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L30 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L38 | `const [results, setResults] = useState<QRCodeResult[]>([])` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L49 | `const qrCodeValue = useCallback((restaurantId: string | number | bigint) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L54 | `const generateQRCodeDataUrl = useCallback(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L61 | `<!-- QR code pattern for ${qrCodeValue(restaurantId)} -->` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L66 | `[qrCodeValue]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L140 | `if (!qrCodeDataUrl && !qrRef.current) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L147 | `let dataUrl = qrCodeDataUrl` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L174 | `.toLowerCase()}-qrcode.svg`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L175 | `: 'qrcode.svg'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L232 | `}, [props, qrCodeDataUrl])` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L321 | `const result = await saveQRCodeUrl(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L331 | `setQrCodeDataUrl(dataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L397 | `const generatedResults: QRCodeResult[] = []` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L403 | `const dataUrl = generateQRCodeDataUrl(restaurant.id)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L408 | `qrCodeDataUrl: dataUrl,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L426 | `[props.mode, selectedRestaurants, generateQRCodeDataUrl]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L444 | `qrCodeUrl: result.qrCodeDataUrl || '',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L448 | `const validBulkData = bulkData.filter((data) => data.qrCodeUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L454 | `const saveResult = await saveBulkQRCodeUrls(validBulkData)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L506 | `if (!result.qrCodeDataUrl) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L527 | `.toLowerCase()}-qrcode.svg`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L531 | `const svgData = await extractSvgData(null, result.qrCodeDataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L538 | `const response = await fetch(result.qrCodeDataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L606 | `qrCodeDataUrl,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L607 | `qrCodeValue: qrCodeValue(props.restaurant.id),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L3 | `import {saveQRCodeUrl} from '@/app/admin/restaurants/actions'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L7 | `export function useQRCodeGenerator(restaurant: Restaurant) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L12 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L13 | `restaurant.qrCodeUrl || null` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L15 | `const [qrCodeValue, setQrCodeValue] = useState<string>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L22 | `setQrCodeValue(`/api/restaurants/${restaurant.id}/scan`)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L36 | `if (!qrCodeDataUrl && !qrRef.current) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L43 | `let dataUrl = qrCodeDataUrl` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L83 | `.toLowerCase()}-qrcode.svg`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L93 | `}, [qrCodeDataUrl, restaurant.name])` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L154 | `const result = await saveQRCodeUrl(restaurant.id.toString(), dataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L161 | `setQrCodeDataUrl(dataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L178 | `qrCodeDataUrl,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-qr-code-generator.tsx` | L179 | `qrCodeValue,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L5 | `import {saveQRCodeUrl} from '@/app/admin/restaurants/actions'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L6 | `import QRCode from 'react-qr-code'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L10 | `export interface QRCodeGeneratorProps {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L21 | `export function QRCodeGenerator({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L26 | `}: QRCodeGeneratorProps) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L32 | `const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | undefined>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L33 | `restaurant.qrCodeUrl || undefined` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L35 | `const [qrCodeValue, setQrCodeValue] = useState<string>('')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L49 | `setQrCodeValue(value)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L56 | `setQrCodeValue('')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L63 | `if (qrCodeDataUrl) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L65 | `a.href = qrCodeDataUrl` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L66 | `a.download = `qrcode-${restaurant.name` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L121 | `a.download = `qrcode-${restaurant.name` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L222 | `const result = await saveQRCodeUrl(restaurant.id.toString(), dataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L229 | `setQrCodeDataUrl(dataUrl)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L251 | `{qrCodeDataUrl && !generating ? (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L255 | `src={qrCodeDataUrl}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L288 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L290 | `qrCodeValue ||` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L360 | `{qrCodeDataUrl && !generating ? (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L364 | `src={qrCodeDataUrl}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L397 | `<QRCode` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/qr-code/qr-code-generator.tsx` | L399 | `qrCodeValue ||` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L5 | `import {QRCodeGenerator} from '@/components/qr-code/qr-code-generator'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/%5Bid%5D/page.tsx` | L93 | `<QRCodeGenerator` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-detail-modal.tsx` | L14 | `import {QRCodeManager} from '@/app/admin/restaurants/qr-code-manager'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-detail-modal.tsx` | L75 | `{restaurant.qrCodeUrl ? (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-detail-modal.tsx` | L78 | `src={restaurant.qrCodeUrl}` |
 
 </details>
 
@@ -2462,13 +2758,13 @@ Now let's look at the specific part of the RestaurantQuickView component that ha
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L31 | `description: 'Array of restaurant data including QR code URLs',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L33 | `description: "The display variant of the QR code manager",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L38 | `description: "Restaurant data including QR code URL",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L327 | `<AlertDescription>QR code saved successfully!</AlertDescription>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L607 | `<AlertDescription>QR code saved successfully!</AlertDescription>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L327 | `<AlertDescription>QR code saved successfully!</AlertDescription>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L607 | `<AlertDescription>QR code saved successfully!</AlertDescription>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L32 | `description: 'Array of restaurant data including QR code URLs',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L34 | `description: "The display variant of the QR code manager",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/qr-code-manager.stories.tsx` | L39 | `description: "Restaurant data including QR code URL",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L328 | `<AlertDescription>QR code saved successfully!</AlertDescription>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L608 | `<AlertDescription>QR code saved successfully!</AlertDescription>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L328 | `<AlertDescription>QR code saved successfully!</AlertDescription>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L608 | `<AlertDescription>QR code saved successfully!</AlertDescription>` |
 
 </details>
 
@@ -2495,94 +2791,94 @@ Let's try to find the QR code section in the RestaurantQuickView component more 
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L85 | `title: text().notNull(),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L160 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L171 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/stories/Header.stories.ts` | L6 | `title: 'Example/Header',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/BookTestimonial3D.tsx` | L10 | `jobtitle: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L6 | `title: 'Special Deals | Restaurant Passport',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L183 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L4 | `title: 'Admin - Add New Deal',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/index.ts` | L31 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/wallet-ui/wallet-ui.stories.tsx` | L4 | `title: 'Components/WalletUI',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L64 | `title: deal.title,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/list-02.tsx` | L12 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/bento-grid.tsx` | L14 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/NotificationCard.tsx` | L10 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/list-01.tsx` | L5 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L25 | `title: 'Dashboard',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L30 | `title: 'Users',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L35 | `title: 'Restaurants',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L40 | `title: 'All Restaurants',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L44 | `title: 'Add Restaurant',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L50 | `title: 'Deals',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L55 | `title: 'All Deals',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L59 | `title: 'Add Deal',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L65 | `title: 'Settings',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L88 | `const toggleSubmenu = (title: string) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L16 | `title: 'Admin/Restaurants/BulkQRCodeManager',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L29 | `title: deal.title,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L107 | `deals?: {id: string; title: string; isActive: boolean}[]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L114 | `title: deal.title,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L41 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L54 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `title: '',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L106 | `title: 'Happy Hour',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L114 | `title: 'Weekend Special',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L159 | `title: newDeal.title,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L183 | `title: '',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L201 | `title: restaurantData.name,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L235 | `title: 'Restaurant QR Code',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L279 | `title: 'Restaurant Deals',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L297 | `title: 'Restaurant Deals',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L313 | `title: 'Punch Cards',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L331 | `title: 'Customer Engagement',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L350 | `title: 'Recent Activity',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L370 | `title: 'Completion Rate',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L429 | `setNewDeal({...newDeal, title: e.target.value})` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/home/home.stories.tsx` | L10 | `title: 'Components/Home',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/hero-parallax.tsx` | L16 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/hero-parallax.tsx` | L123 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L23 | `title: 'Experience Maple Grove Restaurant Passport',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/stories/Page.stories.ts` | L6 | `title: 'Example/Page',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/stories/Button.stories.ts` | L7 | `title: 'Example/Button',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L10 | `title: 'UI/BookTestimonial3D',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L39 | `jobtitle: 'Food Blogger',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L46 | `jobtitle: 'Business Consultant',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L53 | `jobtitle: 'Restaurant Owner',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L60 | `jobtitle: 'Software Engineer',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L67 | `jobtitle: 'Travel Influencer',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L82 | `jobtitle: 'Marketing Specialist',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L89 | `jobtitle: 'UX Designer',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L1432 | `jobtitle: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L4489 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L4959 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L4994 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L6591 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L7641 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L7836 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L7849 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L8116 | `const toggleSubmenu = (title: string) =>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L8268 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L8277 | `title: string;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L8414 | `deals?: {id: string; title: string; isActive: boolean}[]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L23 | `title: 'Experience Maple Grove Restaurant Passport',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L41 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L54 | `title: string` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `title: '',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L106 | `title: 'Happy Hour',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L114 | `title: 'Weekend Special',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L159 | `title: newDeal.title,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L183 | `title: '',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L201 | `title: restaurantData.name,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L235 | `title: 'Restaurant QR Code',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L279 | `title: 'Restaurant Deals',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L297 | `title: 'Restaurant Deals',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L313 | `title: 'Punch Cards',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L331 | `title: 'Customer Engagement',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L350 | `title: 'Recent Activity',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L370 | `title: 'Completion Rate',` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L429 | `setNewDeal({...newDeal, title: e.target.value})` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L86 | `title: text().notNull(),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L161 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L172 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/stories/Header.stories.ts` | L7 | `title: 'Example/Header',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/BookTestimonial3D.tsx` | L11 | `jobtitle: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L7 | `title: 'Special Deals | Restaurant Passport',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L184 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L5 | `title: 'Admin - Add New Deal',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/index.ts` | L32 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/wallet-ui/wallet-ui.stories.tsx` | L5 | `title: 'Components/WalletUI',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L65 | `title: deal.title,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/list-02.tsx` | L13 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/bento-grid.tsx` | L15 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/NotificationCard.tsx` | L11 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/list-01.tsx` | L6 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L26 | `title: 'Dashboard',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L31 | `title: 'Users',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L36 | `title: 'Restaurants',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L41 | `title: 'All Restaurants',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L45 | `title: 'Add Restaurant',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L51 | `title: 'Deals',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L56 | `title: 'All Deals',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L60 | `title: 'Add Deal',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L66 | `title: 'Settings',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/Sidebar.tsx` | L89 | `const toggleSubmenu = (title: string) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants/bulk-qr-code-manager.stories.tsx` | L17 | `title: 'Admin/Restaurants/BulkQRCodeManager',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L30 | `title: deal.title,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L108 | `deals?: {id: string; title: string; isActive: boolean}[]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L115 | `title: deal.title,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L42 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L55 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L79 | `title: '',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L107 | `title: 'Happy Hour',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L115 | `title: 'Weekend Special',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L160 | `title: newDeal.title,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L184 | `title: '',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L202 | `title: restaurantData.name,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L236 | `title: 'Restaurant QR Code',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L280 | `title: 'Restaurant Deals',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L298 | `title: 'Restaurant Deals',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L314 | `title: 'Punch Cards',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L332 | `title: 'Customer Engagement',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L351 | `title: 'Recent Activity',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L371 | `title: 'Completion Rate',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L430 | `setNewDeal({...newDeal, title: e.target.value})` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/home/home.stories.tsx` | L11 | `title: 'Components/Home',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/hero-parallax.tsx` | L17 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/hero-parallax.tsx` | L124 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L24 | `title: 'Experience Maple Grove Restaurant Passport',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/stories/Page.stories.ts` | L7 | `title: 'Example/Page',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/stories/Button.stories.ts` | L8 | `title: 'Example/Button',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L11 | `title: 'UI/BookTestimonial3D',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L40 | `jobtitle: 'Food Blogger',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L47 | `jobtitle: 'Business Consultant',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L54 | `jobtitle: 'Restaurant Owner',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L61 | `jobtitle: 'Software Engineer',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L68 | `jobtitle: 'Travel Influencer',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L83 | `jobtitle: 'Marketing Specialist',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/book-testimonial-3d.stories.tsx` | L90 | `jobtitle: 'UX Designer',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L1433 | `jobtitle: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L4490 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L4960 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L4995 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L6592 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L7642 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L7837 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L7850 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L8117 | `const toggleSubmenu = (title: string) =>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L8269 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L8278 | `title: string;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L8415 | `deals?: {id: string; title: string; isActive: boolean}[]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L24 | `title: 'Experience Maple Grove Restaurant Passport',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L42 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L55 | `title: string` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L79 | `title: '',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L107 | `title: 'Happy Hour',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L115 | `title: 'Weekend Special',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L160 | `title: newDeal.title,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L184 | `title: '',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L202 | `title: restaurantData.name,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L236 | `title: 'Restaurant QR Code',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L280 | `title: 'Restaurant Deals',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L298 | `title: 'Restaurant Deals',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L314 | `title: 'Punch Cards',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L332 | `title: 'Customer Engagement',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L351 | `title: 'Recent Activity',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L371 | `title: 'Completion Rate',` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L430 | `setNewDeal({...newDeal, title: e.target.value})` |
 
 </details>
 
@@ -2593,7 +2889,15 @@ Now we can see in the restaurant-quick-view.tsx file there's a section with:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 23
+
 ```diff
+@@ -237,35 +237,17 @@
         description: (
           <div className='flex flex-col items-center space-y-2'>
 -           {restaurantData.qrCodeUrl ? (
@@ -2636,13 +2940,23 @@ Now we can see in the restaurant-quick-view.tsx file there's a section with:
   
 ```
 
+</details>
+
 ---
 
 There are some TypeScript errors related to the Deal interface. The QR code functionality works, but let's fix these TypeScript errors to ensure the component operates correctly:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -8,5 +8,5 @@
     getRestaurantByIdWithAll,
   } from '@/db/models/restaurants/restaurants'
 - import type {Restaurant, Prize, PunchCard} from '@/types/db'
@@ -2651,7 +2965,11 @@ There are some TypeScript errors related to the Deal interface. The QR code func
   import {BentoGrid} from '@/components/kokonutui/bento-grid'
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -50,5 +50,5 @@
   
   // Define types for deal
 - export interface Deal {
@@ -2660,7 +2978,11 @@ There are some TypeScript errors related to the Deal interface. The QR code func
     restaurantId: bigint
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -59,9 +59,9 @@
   
   // Define a type for the detailed restaurant with associated data
 - interface DetailedRestaurant extends Restaurant {
@@ -2674,13 +2996,23 @@ There are some TypeScript errors related to the Deal interface. The QR code func
   
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining linter errors related to the restaurantDeals property and type conversion:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -92,5 +92,4 @@
             const transformedData = {
               ...data,
 - 
@@ -2688,7 +3020,11 @@ Let's fix the remaining linter errors related to the restaurantDeals property an
                 ...card,
 ```
 
+**Chunk 2**
+Lines added: 12, lines removed: 4
+
 ```diff
+@@ -101,20 +100,28 @@
                     : new Date(),
               })),
 -             // Initialize deals with mock data if it doesn't exist
@@ -2723,7 +3059,11 @@ Let's fix the remaining linter errors related to the restaurantDeals property an
                 },
 ```
 
+**Chunk 3**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -238,5 +245,9 @@
           <div className='flex flex-col items-center space-y-2'>
             <QRCodeGenerator
 -             restaurant={restaurantData}
@@ -2735,6 +3075,8 @@ Let's fix the remaining linter errors related to the restaurantDeals property an
               variant='compact'
               onUpdate={() => {
 ```
+
+</details>
 
 ---
 

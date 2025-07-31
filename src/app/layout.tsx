@@ -6,9 +6,9 @@ import {Analytics} from '@vercel/analytics/react'
 import {Nav} from '@/components/nav/nav'
 import {Toaster} from '@/components/ui/sonner'
 import {GoogleAnalytics} from '@next/third-parties/google'
-import './globals.css'
 import {StyleWrapper} from '@/context/style-wrapper'
 import {AppProviders} from '@/context/providers'
+import './globals.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,8 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Experience Maple Grove Restaurant Passport',
   description: 'Track your restaurant visits and experiences',
-  // viewport:
-  //   'width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover',
+
   icons: {
     icon: [
       {url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png'},
@@ -51,7 +50,6 @@ export default function RootLayout({
             className={`${geistSans.variable} ${geistMono.variable} antialiased relative h-screen overflow-scroll bg-[#faf9f6] overflow-x-hidden`}
           >
             <GoogleAnalytics gaId='G-SZWPFKRGP3' />
-            {/* <StagewiseDevToolbar /> */}
 
             <StyleWrapper>{children}</StyleWrapper>
             <Nav />

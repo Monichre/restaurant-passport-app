@@ -97,7 +97,15 @@ Here’s a step-by-step plan to implement the requested QR onboarding logic for 
 
 ---
 
+<details><summary>Edit file: QrOnboarding_PSEUDOCODE.md</summary>
+
+Write detailed pseudocode for QR onboarding logic on the /restaurants/[id] route, covering detection of direct QR scan entry, Clerk session check, context preservation, and onboarding reward trigger after signup. Follow the plan above.
+
+**Chunk 1**
+Lines added: 32, lines removed: 1
+
 ```diff
+@@ -1,1 +1,32 @@
 - 
 + # QR Onboarding for /restaurants/[id] Route
 + 
@@ -132,6 +140,8 @@ Here’s a step-by-step plan to implement the requested QR onboarding logic for 
 + - Prevent duplicate rewards for the same user/restaurant
 + - Handle abandoned signups (no reward until signup completes) 
 ```
+
+</details>
 
 ---
 
@@ -228,7 +238,15 @@ Great! Since you want to use `@TriggerSignUp.tsx` for this QR onboarding logic, 
 
 ---
 
+<details><summary>Edit file: src/app/(public)/restaurants/[id]/TriggerSignUp_PSEUDOCODE.md</summary>
+
+Write detailed pseudocode for TriggerSignUp.tsx to handle QR onboarding: detect unauthenticated direct entry, show modal/banner, store restaurantId, and trigger onboarding reward after signup. Follow the plan above.
+
+**Chunk 1**
+Lines added: 16, lines removed: 1
+
 ```diff
+@@ -1,1 +1,16 @@
 - 
 + # TriggerSignUp.tsx Pseudocode
 + 
@@ -247,6 +265,8 @@ Great! Since you want to use `@TriggerSignUp.tsx` for this QR onboarding logic, 
 +   - Redirect to restaurant detail or punch card page
 + - If user is signed in, render nothing (or null) 
 ```
+
+</details>
 
 ---
 
@@ -273,7 +293,15 @@ yes. proceed
 
 _**Assistant**_
 
+<details><summary>Edit file: src/app/(public)/restaurants/[id]/TriggerSignUp.tsx</summary>
+
+Implement the QR onboarding logic in TriggerSignUp.tsx as described in the pseudocode. Use Clerk's useSession, Next.js useRouter, and show a modal/banner if unauthenticated and direct entry. Store restaurantId in localStorage. On sign up completion, trigger onboarding reward. Render nothing if user is signed in. Use functional, modular code and named exports.
+
+**Chunk 1**
+Lines added: 87, lines removed: 6
+
 ```diff
+@@ -1,9 +1,90 @@
   import {useSession} from '@clerk/nextjs'
 - 
 - export const TriggerSignUp = () => {
@@ -371,6 +399,8 @@ _**Assistant**_
   }
   
 ```
+
+</details>
 
 ---
 

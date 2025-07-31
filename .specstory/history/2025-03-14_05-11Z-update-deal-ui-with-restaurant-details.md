@@ -37,7 +37,15 @@ For the updated implementation, I'll:
 
 ---
 
+<details><summary>Edit file: src/features/deals/DealsList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 30, lines removed: undefined
+
 ```diff
+@@ -79,4 +79,34 @@
   						)}
   					>
 + 						{/* Show restaurant info only when not in restaurant-specific context */}
@@ -74,7 +82,11 @@ For the updated implementation, I'll:
   							<div className="flex justify-between items-start mb-2">
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -120,5 +150,4 @@
   							</div>
   
 - 							{restaurant && (
@@ -82,7 +94,11 @@ For the updated implementation, I'll:
   								<div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -128,11 +157,10 @@
   
   								<Link
 - 										href={`/restaurants/${restaurant.id}`}
@@ -96,6 +112,8 @@ For the updated implementation, I'll:
   						</div>
   					</motion.div>
 ```
+
+</details>
 
 ---
 
@@ -139,7 +157,15 @@ I need to update the component to handle this correctly. Since the existing impl
 
 ---
 
+<details><summary>Edit file: src/features/deals/DealsList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -20,4 +20,9 @@
   	name?: string;
   	imageUrl?: string;
 + 	restaurant?: {
@@ -151,7 +177,11 @@ I need to update the component to handle this correctly. Since the existing impl
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -27,4 +32,5 @@
   		id: bigint;
   		name: string;
 + 		imageUrl?: string;
@@ -159,7 +189,11 @@ I need to update the component to handle this correctly. Since the existing impl
   	className?: string;
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -80,15 +86,15 @@
   					>
   						{/* Show restaurant info only when not in restaurant-specific context */}
 - 						{!restaurant && deal.name && (
@@ -181,7 +215,11 @@ I need to update the component to handle this correctly. Since the existing impl
   												className="object-cover"
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -99,5 +105,5 @@
   									<div>
   										<h4 className="font-medium text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
 - 											{deal.name}
@@ -189,6 +227,8 @@ I need to update the component to handle this correctly. Since the existing impl
   										</h4>
   										<p className="text-xs text-gray-500 dark:text-gray-400">
 ```
+
+</details>
 
 ---
 
@@ -230,7 +270,15 @@ The main changes are:
 
 ---
 
+<details><summary>Edit file: src/features/deals/DealsList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,5 +1,5 @@
   "use client";
   
 - import { useState } from "react";
@@ -239,7 +287,11 @@ The main changes are:
   import Link from "next/link";
 ```
 
+**Chunk 2**
+Lines added: 14, lines removed: 1
+
 ```diff
+@@ -29,10 +29,23 @@
   interface DealsListProps {
   	deals: DatabaseDeal[];
 - 
@@ -266,7 +318,11 @@ The main changes are:
   	if (!deals || deals.length === 0) {
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -63,5 +76,5 @@
   
   			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 - 				{deals.map((deal) => (
@@ -275,7 +331,11 @@ The main changes are:
   						key={deal.id.toString()}
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -79,5 +92,5 @@
   						)}
   					>
 - 						{/* Show restaurant info only when not in restaurant-specific context */}
@@ -284,7 +344,11 @@ The main changes are:
   							<Link
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -157,5 +170,5 @@
   
   								<Link
 - 									href={`/restaurants/${restaurant ? restaurant.id : deal.restaurantId}`}
@@ -292,6 +356,8 @@ The main changes are:
   									className="inline-flex items-center text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline"
   								>
 ```
+
+</details>
 
 ---
 

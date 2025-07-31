@@ -34,8 +34,8 @@ Model provided invalid arguments for tool call.
 ---
 
 <details>
-            <summary>Searched codebase "import from '@tanstack/react-table'" • **25** results</summary>
-        
+                <summary>Searched codebase "import from '@tanstack/react-table'" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/table.tsx` | L1-81 |
@@ -77,8 +77,8 @@ Read file: src/components/admin/deals/deals-table.tsx
 ---
 
 <details>
-            <summary>Searched codebase "components/ui/table" • **25** results</summary>
-        
+                <summary>Searched codebase "components/ui/table" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/data-table.tsx` | L1-76 |
@@ -115,7 +115,15 @@ Read file: src/types/db.ts
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,5 +1,5 @@
   'use client'
   
 - import {useState, useEffect} from 'react'
@@ -124,7 +132,11 @@ Read file: src/types/db.ts
   import Image from 'next/image'
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -12,4 +12,9 @@
     FileSpreadsheet,
     Upload,
 +   ChevronDown,
@@ -136,7 +148,11 @@ Read file: src/types/db.ts
   import type {Deal} from '@/types/db'
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -19,4 +24,13 @@
   import {CSVUpload} from '@/components/admin/csv-upload'
   import {importDealsFromCSV} from '@/actions/deals'
 + import {
@@ -152,7 +168,11 @@ Read file: src/types/db.ts
     AlertDialog,
 ```
 
+**Chunk 4**
+Lines added: 8, lines removed: undefined
+
 ```diff
+@@ -35,4 +49,12 @@
     DropdownMenuTrigger,
   } from '@/components/ui/dropdown-menu'
 + import {
@@ -167,7 +187,11 @@ Read file: src/types/db.ts
   import {cn} from '@/lib/utils'
 ```
 
+**Chunk 5**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -47,5 +69,9 @@
   }
   
 - export function DealsTable({deals}: {deals: DealWithRestaurant[]}) {
@@ -180,7 +204,11 @@ Read file: src/types/db.ts
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 ```
 
+**Chunk 6**
+Lines added: 8, lines removed: undefined
+
 ```diff
+@@ -54,5 +80,13 @@
     const [isExporting, setIsExporting] = useState(false)
     const [isImporting, setIsImporting] = useState(false)
 +   const [sorting, setSorting] = useState<SortingState>([])
@@ -196,7 +224,11 @@ Read file: src/types/db.ts
     // Check viewport size on mount and window resize
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -111,5 +145,5 @@
   
         // Create a clean export data structure with only the fields we want
 -       const exportData = deals.map((deal) => ({
@@ -205,7 +237,11 @@ Read file: src/types/db.ts
           title: deal.title,
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -124,5 +158,5 @@
         exportToCSV(exportData, 'deals-export')
   
 -       toast.success(`Successfully exported ${deals.length} deals to CSV`)
@@ -214,7 +250,11 @@ Read file: src/types/db.ts
         console.error('Error exporting CSV:', error)
 ```
 
+**Chunk 9**
+Lines added: 202, lines removed: 2
+
 ```diff
+@@ -155,10 +189,210 @@
       }
     }
 + 
@@ -429,7 +469,11 @@ Read file: src/types/db.ts
               key={String(deal.id)}
 ```
 
+**Chunk 10**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -273,5 +507,5 @@
             variant='outline'
             onClick={handleExportCSV}
 -           disabled={isExporting || deals.length === 0}
@@ -438,7 +482,11 @@ Read file: src/types/db.ts
           >
 ```
 
+**Chunk 11**
+Lines added: 36, lines removed: 108
+
 ```diff
+@@ -286,118 +520,46 @@
         </div>
   
 -       {/* Desktop table view */}
@@ -595,7 +643,11 @@ Read file: src/types/db.ts
                       >
 ```
 
+**Chunk 12**
+Lines added: 66, lines removed: 31
+
 ```diff
+@@ -409,46 +571,81 @@
                           Create one
                         </Link>
 -                     </td>
@@ -709,6 +761,8 @@ Read file: src/types/db.ts
                   </nav>
                 </div>
 ```
+
+</details>
 
 ---
 

@@ -27,7 +27,7 @@ Now I'll check the RestaurantCard component to understand its structure:
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantCard.tsx` |
 
 </details>
 
@@ -41,7 +41,15 @@ I'll now update the CSS in the RestaurantsList component to create an evenly spa
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -11,5 +11,5 @@
   			{[...Array(6)].map((_, i) => (
   				<div
 - 					key={i}
@@ -50,7 +58,11 @@ I'll now update the CSS in the RestaurantsList component to create an evenly spa
   				>
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -27,5 +27,4 @@
   }
   
 - // Restaurant card component
@@ -58,7 +70,11 @@ I'll now update the CSS in the RestaurantsList component to create an evenly spa
   export function RestaurantsList({
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -47,5 +46,5 @@
   			}}
   		>
 - 			<div className="flex justify-center items-center align-middle flex-wrap gap-4">
@@ -67,7 +83,11 @@ I'll now update the CSS in the RestaurantsList component to create an evenly spa
   					<motion.div
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -59,5 +58,5 @@
   						}}
   						key={restaurant.id.toString()}
 - 						className="my-4 mx-auto w-[300px]"
@@ -76,13 +96,23 @@ I'll now update the CSS in the RestaurantsList component to create an evenly spa
   						<RestaurantCard restaurant={restaurant} />
 ```
 
+</details>
+
 ---
 
 I need to fix the linter error about using array index as a key. Let me update the loading component:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -11,5 +11,5 @@
   			{[...Array(6)].map((_, i) => (
   				<div
 - 					key={`skeleton-${i}`}
@@ -91,13 +121,23 @@ I need to fix the linter error about using array index as a key. Let me update t
   				>
 ```
 
+</details>
+
 ---
 
 The linter is still complaining about using the array index as a key, even with a prefix. Let's try a different approach by using a UUID for each skeleton item:
 
 ---
 
+<details><summary>Edit file: src/features/restaurants/RestaurantList.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 2
+
 ```diff
+@@ -7,9 +7,12 @@
   // Loading component
   export function RestaurantsLoading() {
 + 	// Create an array of unique identifiers for skeleton items
@@ -113,6 +153,8 @@ The linter is still complaining about using the array index as a key, even with 
   					className="bg-white rounded-lg shadow-md p-0 overflow-hidden animate-pulse"
   				>
 ```
+
+</details>
 
 ---
 

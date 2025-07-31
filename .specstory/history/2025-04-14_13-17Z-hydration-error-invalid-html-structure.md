@@ -101,8 +101,8 @@ Now, let's find the component where you're using Framer Motion with the table ro
 ---
 
 <details>
-            <summary>Searched codebase "motion.div table row" • **25** results</summary>
-        
+                <summary>Searched codebase "motion.div table row" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/data-table.tsx` | L1-76 |
@@ -168,7 +168,15 @@ The solution is to move the animation from the div wrapper to the individual cel
 
 ---
 
+<details><summary>Edit file: src/components/leaderboard/user-leaderboard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -1,6 +1,6 @@
 - "use client";
 + 'use client'
   
@@ -180,7 +188,11 @@ The solution is to move the animation from the div wrapper to the individual cel
     Table,
 ```
 
+**Chunk 2**
+Lines added: 29, lines removed: 29
+
 ```diff
+@@ -10,70 +10,70 @@
     TableHeader,
     TableRow,
 - } from "@/components/ui/table";
@@ -282,7 +294,11 @@ The solution is to move the animation from the div wrapper to the individual cel
                       </Badge>
 ```
 
+**Chunk 3**
+Lines added: 7, lines removed: 8
+
 ```diff
+@@ -83,24 +83,23 @@
                   </TableCell>
                   <TableCell>
 - 										<div className="flex items-center gap-2">
@@ -316,13 +332,23 @@ The solution is to move the animation from the div wrapper to the individual cel
   
 ```
 
+</details>
+
 ---
 
 Now, let's fix the restaurant leaderboard component:
 
 ---
 
+<details><summary>Edit file: src/components/leaderboard/restaurant-leaderboard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -19,4 +19,7 @@
     restaurants: RestaurantLeaderboardEntry[]
   }
 + 
@@ -332,7 +358,11 @@ Now, let's fix the restaurant leaderboard component:
   export function RestaurantLeaderboard({
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 7
+
 ```diff
+@@ -56,19 +59,14 @@
             ) : (
               restaurants.map((restaurant, index) => (
 -               <TableRow
@@ -356,7 +386,11 @@ Now, let's fix the restaurant leaderboard component:
                           <Trophy className='mr-1 h-3 w-3' />
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -105,6 +103,5 @@
                     {restaurant.punchCardCount}
                   </TableCell>
 -                 </motion.div>
@@ -366,13 +400,23 @@ Now, let's fix the restaurant leaderboard component:
             )}
 ```
 
+</details>
+
 ---
 
 I also see that there's an issue with the import in the restaurant-leaderboard.tsx file. Let's fix the incorrect import from 'motion/react':
 
 ---
 
+<details><summary>Edit file: src/components/leaderboard/restaurant-leaderboard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -11,5 +11,5 @@
   } from '@/components/ui/table'
   import {Trophy} from 'lucide-react'
 - import {motion} from 'motion/react'
@@ -380,6 +424,8 @@ I also see that there's an issue with the import in the restaurant-leaderboard.t
   import Image from 'next/image'
   import Link from 'next/link'
 ```
+
+</details>
 
 ---
 

@@ -14,7 +14,18 @@ I'll help you add real functionality to export raffle entries and leaderboard da
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: byterover-mcp - byterover-retrive-knowledge: Retrive a curated knowledge base of past coding solutions and insights to find relevant help for your current task. Use 'query' to specify search terms and 'limit' to control the number of results based on your task's complexity.
 
+*Parameters*:
+  * query: export CSV functionality raffle entries leaderboard data
+  * limit: 5
+
+*Result*:
+Cannot perform memory search for the current session. - 51001
+</details>
 
 ---
 
@@ -23,8 +34,8 @@ Let me search for existing export functionality and data models in the codebase.
 ---
 
 <details>
-            <summary>Searched codebase "How are raffle entries and leaderboard data fetched and structured?" • **25** results</summary>
-        
+                <summary>Searched codebase "How are raffle entries and leaderboard data fetched and structured?" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/app/api/raffle-entries/route.ts` | L1-73 |
@@ -66,106 +77,106 @@ Now let me search for existing CSV export functionality to understand the patter
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/derived-cursor-rules.mdc` | L203 | `-   When implementing export functionality, create a client component for the export button that takes the data and exports it to CSV. Ensure the CSV data is properly formatted, escaping commas and quotes in cell content.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L1 | `* Utility functions for CSV export and handling` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L10 | `export function convertToCSV<T extends Record<string, unknown>>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L42 | `* Export data as a CSV file` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L47 | `export function exportToCSV<T extends Record<string, unknown>>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L86 | `export async function parseCSV<T extends Record<string, unknown>>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/analytics_dashboard.mdc` | L147 | `- Implement standard CSV/Excel export functionality` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/analytics_dashboard.mdc` | L152 | `export const exportAnalyticsToCSV = async (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/csv-upload.tsx` | L27 | `export function CSVUpload({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L16 | `interface ExportUsersCsvButtonProps {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L20 | `export function ExportUsersCsvButton({users}: ExportUsersCsvButtonProps) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L21 | `const exportToCSV = () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L80 | `link.setAttribute('download', `users-export-${timestamp}.csv`)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L90 | `onClick={exportToCSV}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L95 | `Export to CSV` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L58 | `import {exportToCSV} from '@/lib/csv'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L995 | `// Update CSV export to use table row selections` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L996 | `const handleExportCSV = React.useCallback(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1014 | `// Export to CSV with all columns from our clean data structure` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1015 | `exportToCSV(exportData, 'restaurants-export')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1018 | ``Successfully exported ${restaurantsToExport.length} restaurants to CSV`` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1021 | `console.error('Error exporting CSV:', error)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1022 | `toast.error('Failed to export CSV. Please try again.')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1129 | `onClick={() => handleExportCSV(false)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1137 | `onClick={() => handleExportCSV(true)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L26 | `import {exportToCSV} from '@/lib/csv'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L171 | `// Function to handle CSV export` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L172 | `const handleExportCSV = async () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L187 | `// Export to CSV` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L188 | `exportToCSV(exportData, 'deals-export')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L190 | `toast.success(`Successfully exported ${data.length} deals to CSV`)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L192 | `console.error('Error exporting CSV:', error)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L193 | `toast.error('Failed to export CSV. Please try again.')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L605 | `{/* Export CSV Button */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L625 | `onClick={handleExportCSV}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L630 | `{isExporting ? 'Exporting...' : 'Export to CSV'}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/users/page.tsx` | L2 | `import {ExportUsersCsvButton} from '@/components/admin/export-users-csv-button'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/users/page.tsx` | L14 | `<ExportUsersCsvButton users={users} />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/actions/restaurants.ts` | L133 | `export async function importRestaurantsFromCSV(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/actions/deals.ts` | L16 | `export async function importDealsFromCSV(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L840 | `// 	inputFile: path.join(__dirname, "restaurants-export.csv"),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_20-32Z-exploring-table-options.md` | L156 | `onClick={() => handleExportCSV(false)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_20-32Z-exploring-table-options.md` | L163 | `onClick={() => handleExportCSV(true)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_20-32Z-exploring-table-options.md` | L187 | `This removes the duplicate "Export All to CSV" button and consolidates the export functionality into a single dropdown menu. The QR code generation button now only appears when items are selected, eliminating the redundancy betw` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_06-32Z-qr-code-rendering-and-data-management-issues.md` | L3339 | `import {exportToCSV} from '@/lib/csv'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L23 | `- Has functionality for sorting, pagination, deletion, and export/import to CSV` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L490 | `import {exportToCSV} from '@/lib/csv'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L683 | `{/* Export CSV Button */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L24 | `7. Export and Reporting Features - CSV/Excel export, consistent report formatting, scheduled reporting` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L341 | `- No CSV/Excel export functionality` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L672 | `import { exportAnalyticsToCSV } from '@/services/export';` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L692 | `await exportAnalyticsToCSV(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L719 | `Export CSV` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L808 | `export const exportAnalyticsToCSV = async (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L958 | `describe('exportAnalyticsToCSV', () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L126 | `-               {/* Add CSV Export button with dropdown for "Export Selected" and "Export All" */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L195 | `-                   onClick={() => handleExportCSV(false)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L202 | `-                 onClick={() => handleExportCSV(true)}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L785 | `-   // Add a handler for exporting CSV` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L786 | `+   // Update CSV export to use table row selections` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L787 | `const handleExportCSV = React.useCallback(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L826 | `- Updated CSV export logic to work with the table's selected rows instead of tracking indices` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L2 | `# Add export to CSV feature (2025-07-09 15:57Z)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L6 | `@page.tsx add an export to csv feature for the users page in the admin view` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L12 | `<think><details><summary>Thought Process</summary>The user wants to add a CSV export feature to the admin users page. Looking at the file, it's showing a table of users with information like:` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L20 | `1. Create a function to export user data to CSV` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L26 | `- Create an API endpoint for CSV export` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L29 | `The simplest approach would be to create a client component that handles the CSV export on the client side.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L35 | `- Handle the CSV export properly` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L37 | `I'll create a client component for the export button that takes the users data and exports it to CSV.</details></think>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L41 | `I'll add a CSV export feature to the admin users page. Let me create a client component to handle the CSV export functionality.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L63 | `+ interface ExportUsersCsvButtonProps {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L67 | `+ export function ExportUsersCsvButton({users}: ExportUsersCsvButtonProps) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L68 | `+   const exportToCSV = () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L127 | `+     link.setAttribute('download', `users-export-${timestamp}.csv`)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L137 | `+       onClick={exportToCSV}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L142 | `+       Export to CSV` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L17 | `- It includes functionality for deleting deals, exporting to CSV, and importing from CSV.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L208 | `exportToCSV(exportData, 'deals-export')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L210 | `-       toast.success(`Successfully exported ${deals.length} deals to CSV`)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L211 | `+       toast.success(`Successfully exported ${data.length} deals to CSV`)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L213 | `console.error('Error exporting CSV:', error)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L433 | `onClick={handleExportCSV}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L714 | `⟪ 131 characters skipped ⟫ll functionality including mobile view, CSV export/import, and deletion capabilities. Here are the key improvements:` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-03_02-18Z-qr-code-generation-and-table-update.md` | L122 | `// Update CSV export to use table row selections` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_01-17Z-polling-mechanism-for-restaurant-fetch-query.md` | L837 | `Let's fix the callback in the getAllRestaurants function and the export CSV hook dependencies:` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_01-17Z-polling-mechanism-for-restaurant-fetch-query.md` | L855 | `Now let's fix the handleExportCSV hook dependencies:` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_01-17Z-polling-mechanism-for-restaurant-fetch-query.md` | L956 | `4. **Fixed type issues**: We've corrected the initialization of the `tableRestaurants` state and the dependencies in the `handleExportCSV` callback.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L2 | `# CSV Export Feature for Admin Tables (2025-03-26 18:48Z)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L6 | `Add an 'Export to CSV' feature to the admin usage of the table component so that the user can export all or the selected records to csv and the file will download automatically. Name the download file after t` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L12 | `I'll implement an "Export to CSV" feature for the admin tables. Looking at the provided code, I can see there are multiple table components, but I'll focus on the `RestaurantsTable` component which has the most complete` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L17 | `<summary>Searched codebase "csv export file download" • **25** results</summary>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L80 | `+  * Utility functions for CSV export and handling` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L89 | `+ export function convertToCSV<T extends Record<string, any>>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L121 | `+  * Export data as a CSV file` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L126 | `+ export function exportToCSV<T extends Record<string, any>>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L170 | `- export function convertToCSV<T extends Record<string, any>>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L171 | `+ export function convertToCSV<T extends Record<string, unknown>>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L179 | `- export function exportToCSV<T extends Record<string, any>>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L180 | `+ export function exportToCSV<T extends Record<string, unknown>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/derived-cursor-rules.mdc` | L204 | `-   When implementing export functionality, create a client component for the export button that takes the data and exports it to CSV. Ensure the CSV data is properly formatted, escaping commas and quotes in cell content.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L2 | `* Utility functions for CSV export and handling` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L11 | `export function convertToCSV<T extends Record<string, unknown>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L43 | `* Export data as a CSV file` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L48 | `export function exportToCSV<T extends Record<string, unknown>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/lib/csv.ts` | L87 | `export async function parseCSV<T extends Record<string, unknown>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/analytics_dashboard.mdc` | L148 | `- Implement standard CSV/Excel export functionality` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/analytics_dashboard.mdc` | L153 | `export const exportAnalyticsToCSV = async (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/csv-upload.tsx` | L28 | `export function CSVUpload({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L17 | `interface ExportUsersCsvButtonProps {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L21 | `export function ExportUsersCsvButton({users}: ExportUsersCsvButtonProps) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L22 | `const exportToCSV = () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L81 | `link.setAttribute('download', `users-export-${timestamp}.csv`)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L91 | `onClick={exportToCSV}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/export-users-csv-button.tsx` | L96 | `Export to CSV` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L59 | `import {exportToCSV} from '@/lib/csv'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L996 | `// Update CSV export to use table row selections` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L997 | `const handleExportCSV = React.useCallback(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1015 | `// Export to CSV with all columns from our clean data structure` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1016 | `exportToCSV(exportData, 'restaurants-export')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1019 | ``Successfully exported ${restaurantsToExport.length} restaurants to CSV`` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1022 | `console.error('Error exporting CSV:', error)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1023 | `toast.error('Failed to export CSV. Please try again.')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1130 | `onClick={() => handleExportCSV(false)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L1138 | `onClick={() => handleExportCSV(true)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L27 | `import {exportToCSV} from '@/lib/csv'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L172 | `// Function to handle CSV export` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L173 | `const handleExportCSV = async () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L188 | `// Export to CSV` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L189 | `exportToCSV(exportData, 'deals-export')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L191 | `toast.success(`Successfully exported ${data.length} deals to CSV`)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L193 | `console.error('Error exporting CSV:', error)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L194 | `toast.error('Failed to export CSV. Please try again.')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L606 | `{/* Export CSV Button */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L626 | `onClick={handleExportCSV}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L631 | `{isExporting ? 'Exporting...' : 'Export to CSV'}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/users/page.tsx` | L3 | `import {ExportUsersCsvButton} from '@/components/admin/export-users-csv-button'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/users/page.tsx` | L15 | `<ExportUsersCsvButton users={users} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/actions/restaurants.ts` | L134 | `export async function importRestaurantsFromCSV(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/actions/deals.ts` | L17 | `export async function importDealsFromCSV(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/scripts/final-restaurant-enricher.ts` | L841 | `// 	inputFile: path.join(__dirname, "restaurants-export.csv"),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_20-32Z-exploring-table-options.md` | L157 | `onClick={() => handleExportCSV(false)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_20-32Z-exploring-table-options.md` | L164 | `onClick={() => handleExportCSV(true)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_20-32Z-exploring-table-options.md` | L188 | `This removes the duplicate "Export All to CSV" button and consolidates the export functionality into a single dropdown menu. The QR code generation button now only appears when items are selected, eliminating the redundancy betw` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_06-32Z-qr-code-rendering-and-data-management-issues.md` | L3340 | `import {exportToCSV} from '@/lib/csv'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L24 | `- Has functionality for sorting, pagination, deletion, and export/import to CSV` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L491 | `import {exportToCSV} from '@/lib/csv'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L684 | `{/* Export CSV Button */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L25 | `7. Export and Reporting Features - CSV/Excel export, consistent report formatting, scheduled reporting` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L342 | `- No CSV/Excel export functionality` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L673 | `import { exportAnalyticsToCSV } from '@/services/export';` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L693 | `await exportAnalyticsToCSV(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L720 | `Export CSV` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L809 | `export const exportAnalyticsToCSV = async (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-02_21-39Z-code-review-and-testing-outline.md` | L959 | `describe('exportAnalyticsToCSV', () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L127 | `-               {/* Add CSV Export button with dropdown for "Export Selected" and "Export All" */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L196 | `-                   onClick={() => handleExportCSV(false)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L203 | `-                 onClick={() => handleExportCSV(true)}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L786 | `-   // Add a handler for exporting CSV` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L787 | `+   // Update CSV export to use table row selections` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L788 | `const handleExportCSV = React.useCallback(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-31_02-04Z-fix-css-and-layout-for-restaurants-table.md` | L827 | `- Updated CSV export logic to work with the table's selected rows instead of tracking indices` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L3 | `# Add export to CSV feature (2025-07-09 15:57Z)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L7 | `@page.tsx add an export to csv feature for the users page in the admin view` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L13 | `<think><details><summary>Thought Process</summary>The user wants to add a CSV export feature to the admin users page. Looking at the file, it's showing a table of users with information like:` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L21 | `1. Create a function to export user data to CSV` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L27 | `- Create an API endpoint for CSV export` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L30 | `The simplest approach would be to create a client component that handles the CSV export on the client side.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L36 | `- Handle the CSV export properly` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L38 | `I'll create a client component for the export button that takes the users data and exports it to CSV.</details></think>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L42 | `I'll add a CSV export feature to the admin users page. Let me create a client component to handle the CSV export functionality.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L64 | `+ interface ExportUsersCsvButtonProps {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L68 | `+ export function ExportUsersCsvButton({users}: ExportUsersCsvButtonProps) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L69 | `+   const exportToCSV = () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L128 | `+     link.setAttribute('download', `users-export-${timestamp}.csv`)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L138 | `+       onClick={exportToCSV}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-07-09_15-57Z-add-export-to-csv-feature.md` | L143 | `+       Export to CSV` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L18 | `- It includes functionality for deleting deals, exporting to CSV, and importing from CSV.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L209 | `exportToCSV(exportData, 'deals-export')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L211 | `-       toast.success(`Successfully exported ${deals.length} deals to CSV`)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L212 | `+       toast.success(`Successfully exported ${data.length} deals to CSV`)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L214 | `console.error('Error exporting CSV:', error)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L434 | `onClick={handleExportCSV}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L715 | `⟪ 131 characters skipped ⟫ll functionality including mobile view, CSV export/import, and deletion capabilities. Here are the key improvements:` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-03_02-18Z-qr-code-generation-and-table-update.md` | L123 | `// Update CSV export to use table row selections` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_01-17Z-polling-mechanism-for-restaurant-fetch-query.md` | L838 | `Let's fix the callback in the getAllRestaurants function and the export CSV hook dependencies:` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_01-17Z-polling-mechanism-for-restaurant-fetch-query.md` | L856 | `Now let's fix the handleExportCSV hook dependencies:` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_01-17Z-polling-mechanism-for-restaurant-fetch-query.md` | L957 | `4. **Fixed type issues**: We've corrected the initialization of the `tableRestaurants` state and the dependencies in the `handleExportCSV` callback.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L3 | `# CSV Export Feature for Admin Tables (2025-03-26 18:48Z)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L7 | `Add an 'Export to CSV' feature to the admin usage of the table component so that the user can export all or the selected records to csv and the file will download automatically. Name the download file after t` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L13 | `I'll implement an "Export to CSV" feature for the admin tables. Looking at the provided code, I can see there are multiple table components, but I'll focus on the `RestaurantsTable` component which has the most complete` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L18 | `<summary>Searched codebase "csv export file download" • **25** results</summary>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L81 | `+  * Utility functions for CSV export and handling` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L90 | `+ export function convertToCSV<T extends Record<string, any>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L122 | `+  * Export data as a CSV file` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L127 | `+ export function exportToCSV<T extends Record<string, any>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L171 | `- export function convertToCSV<T extends Record<string, any>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L172 | `+ export function convertToCSV<T extends Record<string, unknown>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L180 | `- export function exportToCSV<T extends Record<string, any>>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L181 | `+ export function exportToCSV<T extends Record<string, unknown>>(` |
 
 </details>
 
@@ -199,11 +210,23 @@ Now I'll create the implementation plan and then update the admin leaderboard ac
 
 ---
 
+## Todo List
 
+- [ ] Create server actions to fetch leaderboard data for export
+- [ ] Create server actions to fetch raffle entries data for export
+- [ ] Implement CSV export functionality for leaderboard data
+- [ ] Implement CSV export functionality for raffle entries data
+- [ ] Update AdminLeaderboardActions component with real export functionality
 
 ---
 
+## Todo List
 
+- [-] Create server actions to fetch leaderboard data for export
+- [ ] Create server actions to fetch raffle entries data for export
+- [ ] Implement CSV export functionality for leaderboard data
+- [ ] Implement CSV export functionality for raffle entries data
+- [ ] Update AdminLeaderboardActions component with real export functionality
 
 ---
 
@@ -211,7 +234,15 @@ First, let me create server actions to fetch the complete leaderboard and raffle
 
 ---
 
+<details><summary>Edit file: src/app/actions/leaderboard-export.ts</summary>
+
+Create server actions to fetch leaderboard and raffle data for CSV export
+
+**Chunk 1**
+Lines added: 105, lines removed: 1
+
 ```diff
+@@ -1,1 +1,105 @@
 - 
 + "use server"
 + 
@@ -320,9 +351,17 @@ First, let me create server actions to fetch the complete leaderboard and raffle
 + } 
 ```
 
+</details>
+
 ---
 
+## Todo List
 
+- [x] Create server actions to fetch leaderboard data for export
+- [x] Create server actions to fetch raffle entries data for export
+- [-] Implement CSV export functionality for leaderboard data
+- [ ] Implement CSV export functionality for raffle entries data
+- [ ] Update AdminLeaderboardActions component with real export functionality
 
 ---
 
@@ -330,7 +369,15 @@ Now let me update the AdminLeaderboardActions component to include real export f
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-leaderboard-actions.tsx</summary>
+
+Update the AdminLeaderboardActions component to include real CSV export functionality for leaderboard and raffle data
+
+**Chunk 1**
+Lines added: 98, lines removed: 8
+
 ```diff
+@@ -13,28 +13,118 @@
   import {Trophy, Gift, RefreshCw, Download} from 'lucide-react'
   import {toast} from 'sonner'
 + import {exportToCSV} from '@/lib/csv'
@@ -459,7 +506,11 @@ Now let me update the AdminLeaderboardActions component to include real export f
         toast.error('Failed to update statistics')
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -66,5 +156,5 @@
               variant='outline'
               size='sm'
 -             onClick={handleExportData}
@@ -468,7 +519,11 @@ Now let me update the AdminLeaderboardActions component to include real export f
             >
 ```
 
+**Chunk 3**
+Lines added: 17, lines removed: 3
+
 ```diff
+@@ -112,12 +202,26 @@
           <CardContent className='pb-2'>
             <p className='text-sm text-gray-500'>
 -             The next raffle drawing is scheduled for the end of the month. There
@@ -500,13 +555,45 @@ Now let me update the AdminLeaderboardActions component to include real export f
             <Button variant='default' size='sm'>
 ```
 
+</details>
+
 ---
 
 I need to fix the TypeScript errors by adding proper type guards. Let me fix these issues:
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-leaderboard-actions.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -30,5 +30,5 @@
+        // Fetch user leaderboard data
+        const userResult = await getLeaderboardDataForExport()
+-       if (!userResult.success) {
++       if (!userResult.success || !userResult.data) {
+          throw new Error(
+            userResult.error || 'Failed to fetch user leaderboard data'
+```
+
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -38,5 +38,5 @@
+        // Fetch restaurant leaderboard data
+        const restaurantResult = await getRestaurantLeaderboardDataForExport()
+-       if (!restaurantResult.success) {
++       if (!restaurantResult.success || !restaurantResult.data) {
+          throw new Error(
+            restaurantResult.error ||
+```
+
+</details>
 
 ---
 
@@ -514,11 +601,34 @@ Now let me fix the remaining TypeScript errors in the raffle export function:
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-leaderboard-actions.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -88,5 +88,5 @@
+      try {
+        const result = await getRaffleEntriesDataForExport()
+-       if (!result.success) {
++       if (!result.success || !result.data) {
+          throw new Error(result.error || 'Failed to fetch raffle entries data')
+        }
+```
+
+</details>
 
 ---
 
+## Todo List
 
+- [x] Create server actions to fetch leaderboard data for export
+- [x] Create server actions to fetch raffle entries data for export
+- [x] Implement CSV export functionality for leaderboard data
+- [x] Implement CSV export functionality for raffle entries data
+- [x] Update AdminLeaderboardActions component with real export functionality
 
 ---
 
@@ -526,7 +636,289 @@ Now let me also update the AdminRaffleEntries component to add export functional
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-raffle-entries.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1,5 +1,5 @@
+  'use client'
+  
+- import React, { useState } from 'react'
++ import React, {useState} from 'react'
+  import {
+    Table,
+```
+
+**Chunk 2**
+Lines added: 14, lines removed: 5
+
+```diff
+@@ -10,9 +10,18 @@
+    TableRow,
+  } from '@/components/ui/table'
+- import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+- import { Badge } from '@/components/ui/badge'
+- import { Button } from '@/components/ui/button'
+- import { formatDistanceToNow } from 'date-fns'
+- import { Gift, MoreHorizontal, Check, UserCheck } from 'lucide-react'
++ import {Avatar, AvatarFallback} from '@/components/ui/avatar'
++ import {Badge} from '@/components/ui/badge'
++ import {Button} from '@/components/ui/button'
++ import {formatDistanceToNow} from 'date-fns'
++ import {
++   Gift,
++   MoreHorizontal,
++   Check,
++   UserCheck,
++   Download,
++   RefreshCw,
++ } from 'lucide-react'
++ import {exportToCSV} from '@/lib/csv'
++ import {toast} from 'sonner'
+  import {
+    DropdownMenu,
+```
+
+**Chunk 3**
+Lines added: 4, lines removed: 4
+
+```diff
+@@ -23,17 +32,17 @@
+    DropdownMenuTrigger,
+  } from '@/components/ui/dropdown-menu'
+- import { toast } from 'sonner'
+- import type { RaffleEntryWithUser } from '@/types/api'
++ import {toast} from 'sonner'
++ import type {RaffleEntryWithUser} from '@/types/api'
+  
+  interface AdminRaffleEntriesProps {
+    entries: RaffleEntryWithUser[]
+  }
+  
+- export function AdminRaffleEntries({ entries }: AdminRaffleEntriesProps) {
++ export function AdminRaffleEntries({entries}: AdminRaffleEntriesProps) {
+    const [selectedEntries, setSelectedEntries] = useState<string[]>([])
+  
+    const toggleEntrySelection = (id: string) => {
+      if (selectedEntries.includes(id)) {
+-       setSelectedEntries(selectedEntries.filter(entryId => entryId !== id))
++       setSelectedEntries(selectedEntries.filter((entryId) => entryId !== id))
+      } else {
+        setSelectedEntries([...selectedEntries, id])
+```
+
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -45,5 +54,5 @@
+        setSelectedEntries([])
+      } else {
+-       setSelectedEntries(entries.map(entry => entry.raffleEntryId.toString()))
++       setSelectedEntries(entries.map((entry) => entry.raffleEntryId.toString()))
+      }
+    }
+```
+
+**Chunk 5**
+Lines added: 17, lines removed: 15
+
+```diff
+@@ -63,36 +72,38 @@
+  
+    return (
+-     <div className="space-y-4">
+-       <div className="flex justify-between items-center mb-4">
+-         <div className="text-sm text-muted-foreground">
++     <div className='space-y-4'>
++       <div className='flex justify-between items-center mb-4'>
++         <div className='text-sm text-muted-foreground'>
+            {selectedEntries.length} of {entries.length} entries selected
+          </div>
+-         <div className="flex gap-2">
++         <div className='flex gap-2'>
+            {selectedEntries.length > 0 && (
+-             <Button size="sm" variant="outline">
+-               <Gift className="w-4 h-4 mr-2" />
++             <Button size='sm' variant='outline'>
++               <Gift className='w-4 h-4 mr-2' />
+                Add to Drawing
+              </Button>
+            )}
+-           <Button size="sm" variant="default" onClick={selectAll}>
+-             {selectedEntries.length === entries.length ? 'Deselect All' : 'Select All'}
++           <Button size='sm' variant='default' onClick={selectAll}>
++             {selectedEntries.length === entries.length
++               ? 'Deselect All'
++               : 'Select All'}
+            </Button>
+          </div>
+        </div>
+  
+-       <div className="rounded-md border">
++       <div className='rounded-md border'>
+          <Table>
+            <TableHeader>
+              <TableRow>
+-               <TableHead className="w-[40px]">
+-                 <span className="sr-only">Select</span>
++               <TableHead className='w-[40px]'>
++                 <span className='sr-only'>Select</span>
+                </TableHead>
+-               <TableHead className="w-[50px]">Rank</TableHead>
++               <TableHead className='w-[50px]'>Rank</TableHead>
+                <TableHead>User</TableHead>
+                <TableHead>Restaurant</TableHead>
+                <TableHead>Entered</TableHead>
+-               <TableHead className="text-right">Status</TableHead>
+-               <TableHead className="w-[50px]">
+-                 <span className="sr-only">Actions</span>
++               <TableHead className='text-right'>Status</TableHead>
++               <TableHead className='w-[50px]'>
++                 <span className='sr-only'>Actions</span>
+                </TableHead>
+              </TableRow>
+```
+
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -103,5 +114,5 @@
+                  <TableCell
+                    colSpan={7}
+-                   className="text-center py-6 text-muted-foreground"
++                   className='text-center py-6 text-muted-foreground'
+                  >
+                    No entries in the current raffle
+```
+
+**Chunk 7**
+Lines added: 12, lines removed: 8
+
+```diff
+@@ -113,15 +124,19 @@
+                    <TableCell>
+                      <input
+-                       type="checkbox"
+-                       checked={selectedEntries.includes(entry.raffleEntryId.toString())}
+-                       onChange={() => toggleEntrySelection(entry.raffleEntryId.toString())}
+-                       className="h-4 w-4 rounded border-gray-300"
++                       type='checkbox'
++                       checked={selectedEntries.includes(
++                         entry.raffleEntryId.toString()
++                       )}
++                       onChange={() =>
++                         toggleEntrySelection(entry.raffleEntryId.toString())
++                       }
++                       className='h-4 w-4 rounded border-gray-300'
+                      />
+                    </TableCell>
+-                   <TableCell className="font-medium">{index + 1}</TableCell>
++                   <TableCell className='font-medium'>{index + 1}</TableCell>
+                    <TableCell>
+-                     <div className="flex items-center gap-2">
+-                       <Avatar className="h-8 w-8">
+-                         <AvatarFallback className="bg-primary text-primary-foreground">
++                     <div className='flex items-center gap-2'>
++                       <Avatar className='h-8 w-8'>
++                         <AvatarFallback className='bg-primary text-primary-foreground'>
+                            {entry.userName.charAt(0)}
+                          </AvatarFallback>
+```
+
+**Chunk 8**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -136,6 +151,6 @@
+                      })}
+                    </TableCell>
+-                   <TableCell className="text-right">
+-                     <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
++                   <TableCell className='text-right'>
++                     <Badge className='bg-green-100 text-green-800 hover:bg-green-100'>
+                        Active
+                      </Badge>
+```
+
+**Chunk 9**
+Lines added: 24, lines removed: 10
+
+```diff
+@@ -144,24 +159,38 @@
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+-                         <Button variant="ghost" size="icon">
+-                           <MoreHorizontal className="h-4 w-4" />
+-                           <span className="sr-only">Open menu</span>
++                         <Button variant='ghost' size='icon'>
++                           <MoreHorizontal className='h-4 w-4' />
++                           <span className='sr-only'>Open menu</span>
+                          </Button>
+                        </DropdownMenuTrigger>
+-                       <DropdownMenuContent align="end">
++                       <DropdownMenuContent align='end'>
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+-                         <DropdownMenuItem onClick={() => handleVerifyEntry(entry.raffleEntryId.toString(), entry.userName)}>
+-                           <Check className="mr-2 h-4 w-4" />
++                         <DropdownMenuItem
++                           onClick={() =>
++                             handleVerifyEntry(
++                               entry.raffleEntryId.toString(),
++                               entry.userName
++                             )
++                           }
++                         >
++                           <Check className='mr-2 h-4 w-4' />
+                            Verify Entry
+                          </DropdownMenuItem>
+-                         <DropdownMenuItem onClick={() => handleContactUser(entry.userName)}>
+-                           <UserCheck className="mr-2 h-4 w-4" />
++                         <DropdownMenuItem
++                           onClick={() => handleContactUser(entry.userName)}
++                         >
++                           <UserCheck className='mr-2 h-4 w-4' />
+                            Contact User
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem
+-                           className="text-red-600" 
+-                           onClick={() => handleRemoveEntry(entry.raffleEntryId.toString(), entry.userName)}
++                           className='text-red-600'
++                           onClick={() =>
++                             handleRemoveEntry(
++                               entry.raffleEntryId.toString(),
++                               entry.userName
++                             )
++                           }
+                          >
+                            Remove Entry
+```
+
+**Chunk 10**
+Lines added: 2, lines removed: 1
+
+```diff
+@@ -176,8 +205,9 @@
+          </Table>
+        </div>
+-       <p className="text-sm text-muted-foreground text-center">
++       <p className='text-sm text-muted-foreground text-center'>
+          Users who complete punch cards are automatically entered into the raffle
+        </p>
+      </div>
+    )
+  }
++ 
+```
+
+</details>
 
 ---
 
@@ -534,7 +926,23 @@ I need to fix the duplicate import issue:
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-raffle-entries.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
+```diff
+@@ -32,5 +32,4 @@
+    DropdownMenuTrigger,
+  } from '@/components/ui/dropdown-menu'
+- import {toast} from 'sonner'
+  import type {RaffleEntryWithUser} from '@/types/api'
+  
+```
+
+</details>
 
 ---
 
@@ -542,7 +950,95 @@ Now let me add the export functionality to the AdminRaffleEntries component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-raffle-entries.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
+```diff
+@@ -40,4 +40,5 @@
+  export function AdminRaffleEntries({entries}: AdminRaffleEntriesProps) {
+    const [selectedEntries, setSelectedEntries] = useState<string[]>([])
++   const [isExporting, setIsExporting] = useState(false)
+  
+    const toggleEntrySelection = (id: string) => {
+```
+
+**Chunk 2**
+Lines added: 61, lines removed: undefined
+
+```diff
+@@ -56,4 +57,65 @@
+      }
+    }
++ 
++   const handleExportEntries = async () => {
++     setIsExporting(true)
++     try {
++       // Determine which entries to export
++       const entriesToExport =
++         selectedEntries.length > 0
++           ? entries.filter((entry) =>
++               selectedEntries.includes(entry.raffleEntryId.toString())
++             )
++           : entries
++ 
++       if (entriesToExport.length === 0) {
++         toast.error('No entries to export')
++         return
++       }
++ 
++       // Transform data for CSV export
++       const csvData = entriesToExport.map((entry, index) => ({
++         rank: index + 1,
++         raffleEntryId: entry.raffleEntryId.toString(),
++         userId: entry.userId.toString(),
++         userName: entry.userName,
++         restaurantId: entry.restaurantId.toString(),
++         restaurantName: entry.restaurantName,
++         punchCardId: entry.punchCardId.toString(),
++         enteredAt: entry.enteredAt,
++         status: 'Active',
++         exportedAt: new Date().toISOString(),
++       }))
++ 
++       // Export to CSV
++       const timestamp = new Date().toISOString().split('T')[0]
++       const filename =
++         selectedEntries.length > 0
++           ? `selected-raffle-entries-${timestamp}`
++           : `all-raffle-entries-${timestamp}`
++ 
++       exportToCSV(csvData, filename, [
++         'rank',
++         'userName',
++         'restaurantName',
++         'enteredAt',
++         'status',
++         'raffleEntryId',
++         'userId',
++         'restaurantId',
++         'punchCardId',
++         'exportedAt',
++       ])
++ 
++       toast.success(
++         `Successfully exported ${entriesToExport.length} raffle entries to CSV`
++       )
++     } catch (error) {
++       console.error('Error exporting raffle entries:', error)
++       toast.error('Failed to export raffle entries')
++     } finally {
++       setIsExporting(false)
++     }
++   }
+  
+    const handleVerifyEntry = (id: string, userName: string) => {
+```
+
+</details>
 
 ---
 
@@ -550,7 +1046,40 @@ Now let me add the export button to the UI:
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-raffle-entries.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 18, lines removed: undefined
+
+```diff
+@@ -139,4 +139,22 @@
+          </div>
+          <div className='flex gap-2'>
++           <Button
++             size='sm'
++             variant='outline'
++             onClick={handleExportEntries}
++             disabled={isExporting}
++           >
++             {isExporting ? (
++               <>
++                 <RefreshCw className='w-4 h-4 mr-2 animate-spin' />
++                 Exporting...
++               </>
++             ) : (
++               <>
++                 <Download className='w-4 h-4 mr-2' />
++                 Export {selectedEntries.length > 0 ? 'Selected' : 'All'}
++               </>
++             )}
++           </Button>
+            {selectedEntries.length > 0 && (
+              <Button size='sm' variant='outline'>
+```
+
+</details>
 
 ---
 
@@ -558,7 +1087,17 @@ Perfect! Now let me store the knowledge about this implementation:
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: byterover-mcp - byterover-store-knowledge: Create a new knowledge by capturing key coding insights from human-agent interactions to help solve similar tasks in the future.
 
+*Parameters*:
+  * messages: [object Object],[object Object]
+
+*Result*:
+Cannot perform memory creation for the current session. - 51102
+</details>
 
 ---
 
@@ -637,7 +1176,119 @@ I'll update the leaderboard export functionality to export all three datasets (p
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-leaderboard-actions.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 8, lines removed: 2
+
+```diff
+@@ -28,6 +28,12 @@
+      setIsExporting(true)
+      try {
+-       // Fetch user leaderboard data
+-       const userResult = await getLeaderboardDataForExport()
++       // Fetch all three datasets in parallel
++       const [userResult, restaurantResult, raffleResult] = await Promise.all([
++         getLeaderboardDataForExport(),
++         getRestaurantLeaderboardDataForExport(),
++         getRaffleEntriesDataForExport(),
++       ])
++ 
++       // Validate all results
+        if (!userResult.success || !userResult.data) {
+          throw new Error(
+```
+
+**Chunk 2**
+Lines added: undefined, lines removed: 2
+
+```diff
+@@ -36,6 +42,4 @@
+        }
+  
+-       // Fetch restaurant leaderboard data
+-       const restaurantResult = await getRestaurantLeaderboardDataForExport()
+        if (!restaurantResult.success || !restaurantResult.data) {
+          throw new Error(
+```
+
+**Chunk 3**
+Lines added: 10, lines removed: 2
+
+```diff
+@@ -45,7 +49,15 @@
+        }
+  
+-       // Export user leaderboard
++       if (!raffleResult.success || !raffleResult.data) {
++         throw new Error(
++           raffleResult.error || 'Failed to fetch raffle entries data'
++         )
++       }
++ 
++       // Export all three datasets
+        const timestamp = new Date().toISOString().split('T')[0]
+-       exportToCSV(userResult.data, `user-leaderboard-${timestamp}`, [
++ 
++       // Export top users
++       exportToCSV(userResult.data, `top-users-${timestamp}`, [
+          'rank',
+          'userName',
+```
+
+**Chunk 4**
+Lines added: 2, lines removed: 5
+
+```diff
+@@ -55,9 +67,6 @@
+        ])
+  
+-       // Export restaurant leaderboard
+-       exportToCSV(
+-         restaurantResult.data,
+-         `restaurant-leaderboard-${timestamp}`,
+-         [
++       // Export popular restaurants
++       exportToCSV(restaurantResult.data, `popular-restaurants-${timestamp}`, [
+          'rank',
+          'restaurantName',
+```
+
+**Chunk 5**
+Lines added: 16, lines removed: 3
+
+```diff
+@@ -66,9 +75,22 @@
+          'imageUrl',
+          'exportedAt',
+-         ]
+-       )
++       ])
++ 
++       // Export raffle status
++       exportToCSV(raffleResult.data, `raffle-status-${timestamp}`, [
++         'rank',
++         'userName',
++         'restaurantName',
++         'enteredAt',
++         'status',
++         'raffleEntryId',
++         'userId',
++         'restaurantId',
++         'punchCardId',
++         'exportedAt',
++       ])
+  
+        toast.success(
+-         `Successfully exported leaderboard data - ${userResult.data.length} users and ${restaurantResult.data.length} restaurants`
++         `Successfully exported complete leaderboard data - ${userResult.data.length} users, ${restaurantResult.data.length} restaurants, and ${raffleResult.data.length} raffle entries`
+        )
+      } catch (error) {
+```
+
+</details>
 
 ---
 
@@ -725,8 +1376,8 @@ Let me implement a comprehensive raffle management system. I'll create a modal o
 ---
 
 <details>
-            <summary>Searched codebase "How are raffle drawings conducted and managed in the system?" • **25** results</summary>
-        
+                <summary>Searched codebase "How are raffle drawings conducted and managed in the system?" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `README.md` | L108-159 |
@@ -763,7 +1414,15 @@ Now I understand the raffle system better. Let me create a comprehensive raffle 
 
 ---
 
+<details><summary>Edit file: src/components/admin/raffle-management-modal.tsx</summary>
+
+Create a comprehensive raffle management modal component that provides real functionality for conducting raffle drawings
+
+**Chunk 1**
+Lines added: 405, lines removed: 1
+
 ```diff
+@@ -1,1 +1,405 @@
 - 
 + 'use client'
 + 
@@ -1172,17 +1831,36 @@ Now I understand the raffle system better. Let me create a comprehensive raffle 
 + 
 ```
 
+</details>
+
 ---
 
 Now let me update the AdminLeaderboardActions component to use the new RaffleManagementModal:
 
 ---
 
-
+The string to replace was not found in the file.
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-leaderboard-actions.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
+```diff
+@@ -19,4 +19,6 @@
+    getRaffleEntriesDataForExport,
+  } from '@/app/actions/leaderboard-export'
++ import {RaffleManagementModal} from './raffle-management-modal'
++ import type {RaffleEntryWithUser} from '@/types/api'
+  
+  export function AdminLeaderboardActions() {
+```
+
+</details>
 
 ---
 
@@ -1190,11 +1868,28 @@ I need to fix the import path. Let me update it:
 
 ---
 
-
+The string to replace was not found in the file.
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-leaderboard-actions.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -19,5 +19,5 @@
+    getRaffleEntriesDataForExport,
+  } from '@/app/actions/leaderboard-export'
+- import {RaffleManagementModal} from './raffle-management-modal'
++ import {RaffleManagementModal} from '../raffle-management-modal'
+  import type {RaffleEntryWithUser} from '@/types/api'
+  
+```
+
+</details>
 
 ---
 
@@ -1202,7 +1897,30 @@ Now let me update the AdminLeaderboardActions component to accept raffle entries
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-leaderboard-actions.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 1
+
+```diff
+@@ -22,5 +22,11 @@
+  import type {RaffleEntryWithUser} from '@/types/api'
+  
+- export function AdminLeaderboardActions() {
++ interface AdminLeaderboardActionsProps {
++   raffleEntries?: RaffleEntryWithUser[]
++ }
++ 
++ export function AdminLeaderboardActions({
++   raffleEntries = [],
++ }: AdminLeaderboardActionsProps) {
+    const [isExporting, setIsExporting] = useState(false)
+    const [isUpdating, setIsUpdating] = useState(false)
+```
+
+</details>
 
 ---
 
@@ -1210,7 +1928,27 @@ Now let me update the "Manage Raffle" button to use the new modal:
 
 ---
 
+<details><summary>Edit file: src/components/admin/leaderboard/admin-leaderboard-actions.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 4
+
+```diff
+@@ -255,8 +255,5 @@
+              )}
+            </Button>
+-           <Button variant='default' size='sm'>
+-             <Trophy size={16} className='mr-2' />
+-             Manage Raffle
+-           </Button>
++           <RaffleManagementModal entries={raffleEntries} />
+          </CardFooter>
+        </Card>
+```
+
+</details>
 
 ---
 
@@ -1218,7 +1956,24 @@ Now I need to update the admin leaderboard page to pass the raffle entries to th
 
 ---
 
+<details><summary>Edit file: src/app/admin/leaderboard/page.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -84,5 +84,5 @@
+        </div>
+  
+-       <AdminLeaderboardActions />
++       <AdminLeaderboardActions raffleEntries={serializedRaffleEntries} />
+  
+        <Tabs defaultValue='users' className='w-full'>
+```
+
+</details>
 
 ---
 
@@ -1326,7 +2081,43 @@ Let me fix these issues first:
 
 ---
 
+<details><summary>Edit file: src/app/(public)/restaurants/[id]/page.tsx</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
+```diff
+@@ -10,4 +10,9 @@
+    const {id} = resolvedParams
+    const restaurant = await getRestaurantByIdWithAll(BigInt(id))
++ 
++   if (!restaurant) {
++     return <div>Restaurant not found</div>
++   }
++ 
+    const {name, id: restaurantId} = restaurant
+  
+```
+
+**Chunk 2**
+Lines added: 4, lines removed: 1
+
+```diff
+@@ -16,5 +21,8 @@
+    return (
+      <>
+-       <TriggerSignUp restaurantName={name} restaurantId={restaurantId} />
++       <TriggerSignUp
++         restaurantName={name}
++         restaurantId={restaurantId.toString()}
++       />
+        <RestaurantDetail restaurant={restaurant} />
+      </>
+```
+
+</details>
 
 ---
 
@@ -1334,7 +2125,7 @@ Now let me fix the TriggerSignUp component:
 
 ---
 
-
+The string to replace was not found in the file.
 
 ---
 
@@ -1350,7 +2141,7 @@ I can see the issue - there's a stray console.log that references `hasDirectEntr
 
 ---
 
-
+The string to replace was not found in the file.
 
 ---
 

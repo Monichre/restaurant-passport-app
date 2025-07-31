@@ -39,10 +39,10 @@ Let's check the Deal type definition to understand what type `createdAt` is expe
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L22 | `type DealWithRestaurant = Deal & {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L169 | `export type Deal = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L169 | `export type Deal = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L22 | `type DealWithRestaurant = Deal & {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L23 | `type DealWithRestaurant = Deal & {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L170 | `export type Deal = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L170 | `export type Deal = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L23 | `type DealWithRestaurant = Deal & {` |
 
 </details>
 
@@ -62,7 +62,15 @@ Let's fix the issue by editing the deals-table.tsx file:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -147,8 +147,8 @@
   										</td>
   										<td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
 - 											{deal.createdAt.toLocaleDateString()}
@@ -74,6 +82,8 @@ Let's fix the issue by editing the deals-table.tsx file:
   										</td>
   										<td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
 ```
+
+</details>
 
 ---
 
@@ -108,8 +118,8 @@ Let's search for any Select components in the codebase to find where this issue 
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L103 | `data-slot="select-item"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L103 | `data-slot="select-item"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L104 | `data-slot="select-item"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L104 | `data-slot="select-item"` |
 
 </details>
 
@@ -124,90 +134,90 @@ Let's try a more general search for Select components:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L50 | `<Select value={sortOption} onValueChange={handleSortChange}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L51 | `<SelectTrigger className="w-[160px]">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L52 | `<SelectValue placeholder="Sort by" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L54 | `<SelectContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L55 | `<SelectItem value="name-asc">Name (A-Z)</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L56 | `<SelectItem value="name-desc">Name (Z-A)</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L75 | `<Select value={sortOption} onValueChange={handleSortChange}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L76 | `<SelectTrigger className="w-[160px]">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L77 | `<SelectValue placeholder="Sort by" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L79 | `<SelectContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L80 | `<SelectItem value="name-asc">Name (A-Z)</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L81 | `<SelectItem value="name-desc">Name (Z-A)</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L11 | `return <SelectPrimitive.Root data-slot="select" {...props} />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L17 | `return <SelectPrimitive.Group data-slot="select-group" {...props} />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L23 | `return <SelectPrimitive.Value data-slot="select-value" {...props} />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L32 | `<SelectPrimitive.Trigger` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L41 | `<SelectPrimitive.Icon asChild>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L55 | `<SelectPrimitive.Portal>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L56 | `<SelectPrimitive.Content` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L67 | `<SelectScrollUpButton />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L68 | `<SelectPrimitive.Viewport` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L77 | `<SelectScrollDownButton />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L88 | `<SelectPrimitive.Label` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L102 | `<SelectPrimitive.Item` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L111 | `<SelectPrimitive.ItemIndicator>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L115 | `<SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L125 | `<SelectPrimitive.Separator` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L138 | `<SelectPrimitive.ScrollUpButton` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L156 | `<SelectPrimitive.ScrollDownButton` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L212 | `<select` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L76 | `<Select value={restaurant} onValueChange={setRestaurant}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L77 | `<SelectTrigger id="restaurant">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L78 | `<SelectValue placeholder="All Restaurants" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L80 | `<SelectContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L81 | `<SelectItem value="">All Restaurants</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L83 | `<SelectItem value="loading" disabled>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L91 | `<SelectItem key={r.id.toString()} value={r.id || r.name}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L104 | `<Select value={status} onValueChange={setStatus}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L105 | `<SelectTrigger id="status">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L106 | `<SelectValue placeholder="All Statuses" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L108 | `<SelectContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L109 | `{/* <SelectItem value="">All Statuses</SelectItem> */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L110 | `<SelectItem value="active">Active</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L111 | `<SelectItem value="inactive">Inactive</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L182 | `<select` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L76 | `<Select value={restaurant} onValueChange={setRestaurant}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L77 | `<SelectTrigger id="restaurant">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L78 | `<SelectValue placeholder="All Restaurants" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L80 | `<SelectContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L81 | `<SelectItem value="">All Restaurants</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L83 | `<SelectItem value="loading" disabled>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L91 | `<SelectItem key={r.id.toString()} value={r.id || r.name}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L104 | `<Select value={status} onValueChange={setStatus}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L105 | `<SelectTrigger id="status">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L106 | `<SelectValue placeholder="All Statuses" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L108 | `<SelectContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L109 | `{/* <SelectItem value="">All Statuses</SelectItem> */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L110 | `<SelectItem value="active">Active</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L111 | `<SelectItem value="inactive">Inactive</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L182 | `<select` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L212 | `<select` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L11 | `return <SelectPrimitive.Root data-slot="select" {...props} />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L17 | `return <SelectPrimitive.Group data-slot="select-group" {...props} />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L23 | `return <SelectPrimitive.Value data-slot="select-value" {...props} />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L32 | `<SelectPrimitive.Trigger` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L41 | `<SelectPrimitive.Icon asChild>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L55 | `<SelectPrimitive.Portal>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L56 | `<SelectPrimitive.Content` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L67 | `<SelectScrollUpButton />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L68 | `<SelectPrimitive.Viewport` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L77 | `<SelectScrollDownButton />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L88 | `<SelectPrimitive.Label` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L102 | `<SelectPrimitive.Item` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L111 | `<SelectPrimitive.ItemIndicator>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L115 | `<SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L125 | `<SelectPrimitive.Separator` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L138 | `<SelectPrimitive.ScrollUpButton` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L156 | `<SelectPrimitive.ScrollDownButton` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L75 | `<Select value={sortOption} onValueChange={handleSortChange}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L76 | `<SelectTrigger className="w-[160px]">` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L77 | `<SelectValue placeholder="Sort by" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L79 | `<SelectContent>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L80 | `<SelectItem value="name-asc">Name (A-Z)</SelectItem>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L81 | `<SelectItem value="name-desc">Name (Z-A)</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L51 | `<Select value={sortOption} onValueChange={handleSortChange}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L52 | `<SelectTrigger className="w-[160px]">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L53 | `<SelectValue placeholder="Sort by" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L55 | `<SelectContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L56 | `<SelectItem value="name-asc">Name (A-Z)</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/AdminRestaurantSearchBar.tsx` | L57 | `<SelectItem value="name-desc">Name (Z-A)</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L76 | `<Select value={sortOption} onValueChange={handleSortChange}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L77 | `<SelectTrigger className="w-[160px]">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L78 | `<SelectValue placeholder="Sort by" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L80 | `<SelectContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L81 | `<SelectItem value="name-asc">Name (A-Z)</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L82 | `<SelectItem value="name-desc">Name (Z-A)</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L12 | `return <SelectPrimitive.Root data-slot="select" {...props} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L18 | `return <SelectPrimitive.Group data-slot="select-group" {...props} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L24 | `return <SelectPrimitive.Value data-slot="select-value" {...props} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L33 | `<SelectPrimitive.Trigger` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L42 | `<SelectPrimitive.Icon asChild>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L56 | `<SelectPrimitive.Portal>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L57 | `<SelectPrimitive.Content` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L68 | `<SelectScrollUpButton />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L69 | `<SelectPrimitive.Viewport` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L78 | `<SelectScrollDownButton />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L89 | `<SelectPrimitive.Label` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L103 | `<SelectPrimitive.Item` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L112 | `<SelectPrimitive.ItemIndicator>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L116 | `<SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L126 | `<SelectPrimitive.Separator` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L139 | `<SelectPrimitive.ScrollUpButton` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L157 | `<SelectPrimitive.ScrollDownButton` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L213 | `<select` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L77 | `<Select value={restaurant} onValueChange={setRestaurant}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L78 | `<SelectTrigger id="restaurant">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L79 | `<SelectValue placeholder="All Restaurants" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L81 | `<SelectContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L82 | `<SelectItem value="">All Restaurants</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L84 | `<SelectItem value="loading" disabled>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L92 | `<SelectItem key={r.id.toString()} value={r.id || r.name}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L105 | `<Select value={status} onValueChange={setStatus}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L106 | `<SelectTrigger id="status">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L107 | `<SelectValue placeholder="All Statuses" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L109 | `<SelectContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L110 | `{/* <SelectItem value="">All Statuses</SelectItem> */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L111 | `<SelectItem value="active">Active</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L112 | `<SelectItem value="inactive">Inactive</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L183 | `<select` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L77 | `<Select value={restaurant} onValueChange={setRestaurant}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L78 | `<SelectTrigger id="restaurant">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L79 | `<SelectValue placeholder="All Restaurants" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L81 | `<SelectContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L82 | `<SelectItem value="">All Restaurants</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L84 | `<SelectItem value="loading" disabled>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L92 | `<SelectItem key={r.id.toString()} value={r.id || r.name}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L105 | `<Select value={status} onValueChange={setStatus}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L106 | `<SelectTrigger id="status">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L107 | `<SelectValue placeholder="All Statuses" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L109 | `<SelectContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L110 | `{/* <SelectItem value="">All Statuses</SelectItem> */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L111 | `<SelectItem value="active">Active</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-filters.tsx` | L112 | `<SelectItem value="inactive">Inactive</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L183 | `<select` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L213 | `<select` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L12 | `return <SelectPrimitive.Root data-slot="select" {...props} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L18 | `return <SelectPrimitive.Group data-slot="select-group" {...props} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L24 | `return <SelectPrimitive.Value data-slot="select-value" {...props} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L33 | `<SelectPrimitive.Trigger` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L42 | `<SelectPrimitive.Icon asChild>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L56 | `<SelectPrimitive.Portal>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L57 | `<SelectPrimitive.Content` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L68 | `<SelectScrollUpButton />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L69 | `<SelectPrimitive.Viewport` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L78 | `<SelectScrollDownButton />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L89 | `<SelectPrimitive.Label` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L103 | `<SelectPrimitive.Item` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L112 | `<SelectPrimitive.ItemIndicator>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L116 | `<SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L126 | `<SelectPrimitive.Separator` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L139 | `<SelectPrimitive.ScrollUpButton` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L157 | `<SelectPrimitive.ScrollDownButton` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L76 | `<Select value={sortOption} onValueChange={handleSortChange}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L77 | `<SelectTrigger className="w-[160px]">` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L78 | `<SelectValue placeholder="Sort by" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L80 | `<SelectContent>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L81 | `<SelectItem value="name-asc">Name (A-Z)</SelectItem>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/RestaurantSearchBar.tsx` | L82 | `<SelectItem value="name-desc">Name (Z-A)</SelectItem>` |
 
 </details>
 
@@ -239,7 +249,15 @@ Let's fix this by editing the file:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deal-filters.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -80,5 +80,5 @@
   							</SelectTrigger>
   							<SelectContent>
 - 								<SelectItem value="">All Restaurants</SelectItem>
@@ -248,13 +266,23 @@ Let's fix this by editing the file:
   									<SelectItem value="loading" disabled>
 ```
 
+</details>
+
 ---
 
 I see we also need to handle the state update with the new value. Let's make further adjustments:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deal-filters.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -23,5 +23,5 @@
   }) {
   	const [search, setSearch] = useState("");
 - 	const [restaurant, setRestaurant] = useState("");
@@ -263,7 +291,11 @@ I see we also need to handle the state update with the new value. Let's make fur
   	const [restaurants, setRestaurants] =
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -34,5 +34,5 @@
   			try {
   				const data = await getRestaurants();
 - 				setRestaurants(data);
@@ -272,7 +304,11 @@ I see we also need to handle the state update with the new value. Let's make fur
   				console.error("Failed to fetch restaurants:", error);
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -53,5 +53,5 @@
   	const handleReset = () => {
   		setSearch("");
 - 		setRestaurant("");
@@ -281,7 +317,11 @@ I see we also need to handle the state update with the new value. Let's make fur
   	};
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -90,5 +90,5 @@
   
   										return (
 - 											<SelectItem key={r.id.toString()} value={r.id || r.name}>
@@ -289,6 +329,8 @@ I see we also need to handle the state update with the new value. Let's make fur
   												{r.name}
   											</SelectItem>
 ```
+
+</details>
 
 ---
 
@@ -301,16 +343,16 @@ We have another type issue to fix. Let's look at the Restaurant type to understa
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/actions/restaurants.ts` | L11 | `export type RestaurantFormData = z.infer<typeof createRestaurantSchema>;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L9 | `type Restaurant = z.infer<typeof restaurantSchema>;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L82 | `type RestaurantData = z.infer<typeof restaurantSchema>;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L24 | `export type Restaurant = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L64 | `export type RestaurantWithPrizes = Restaurant & {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L68 | `export type RestaurantDetailResponse = ApiResponse<RestaurantWithPrizes>;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L120 | `export type RestaurantAnalytics = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L167 | `export type RestaurantLeaderboardEntry = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L82 | `type RestaurantData = z.infer<typeof restaurantSchema>;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L24 | `export type Restaurant = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/actions/restaurants.ts` | L12 | `export type RestaurantFormData = z.infer<typeof createRestaurantSchema>;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L10 | `type Restaurant = z.infer<typeof restaurantSchema>;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L83 | `type RestaurantData = z.infer<typeof restaurantSchema>;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L25 | `export type Restaurant = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L65 | `export type RestaurantWithPrizes = Restaurant & {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L69 | `export type RestaurantDetailResponse = ApiResponse<RestaurantWithPrizes>;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L121 | `export type RestaurantAnalytics = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L168 | `export type RestaurantLeaderboardEntry = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L83 | `type RestaurantData = z.infer<typeof restaurantSchema>;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L25 | `export type Restaurant = {` |
 
 </details>
 
@@ -344,7 +386,15 @@ Let's fix the type issues in the deal-filters.tsx file with a proper solution:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deal-filters.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -14,4 +14,11 @@
   } from "@/components/ui/select";
   import { Button } from "@/components/ui/button";
 + 
@@ -358,7 +408,11 @@ Let's fix the type issues in the deal-filters.tsx file with a proper solution:
   export function DealFilters({
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -25,6 +32,7 @@
   	const [restaurant, setRestaurant] = useState("all");
   	const [status, setStatus] = useState("");
 - 	const [restaurants, setRestaurants] =
@@ -370,7 +424,11 @@ Let's fix the type issues in the deal-filters.tsx file with a proper solution:
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -34,5 +42,5 @@
   			try {
   				const data = await getRestaurants();
 - 				setRestaurants(data as Restaurant[]);
@@ -379,7 +437,11 @@ Let's fix the type issues in the deal-filters.tsx file with a proper solution:
   				console.error("Failed to fetch restaurants:", error);
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 6
+
 ```diff
+@@ -86,13 +94,9 @@
   									</SelectItem>
   								) : restaurants && restaurants.length > 0 ? (
 - 									restaurants.map((r) => {
@@ -397,7 +459,11 @@ Let's fix the type issues in the deal-filters.tsx file with a proper solution:
   							</SelectContent>
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -108,5 +112,6 @@
   							</SelectTrigger>
   							<SelectContent>
 - 								{/* <SelectItem value="">All Statuses</SelectItem> */}
@@ -407,13 +473,23 @@ Let's fix the type issues in the deal-filters.tsx file with a proper solution:
   								<SelectItem value="inactive">Inactive</SelectItem>
 ```
 
+</details>
+
 ---
 
 It looks like there's still a type mismatch. Let's simplify the solution to just use `any` for the restaurants data since we only care about the id and name properties for the select component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deal-filters.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 5
+
 ```diff
+@@ -15,9 +15,8 @@
   import { Button } from "@/components/ui/button";
   
 - // Type for the response from getRestaurants
@@ -429,7 +505,11 @@ It looks like there's still a type mismatch. Let's simplify the solution to just
   
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -31,7 +30,7 @@
   	const [search, setSearch] = useState("");
   	const [restaurant, setRestaurant] = useState("all");
 - 	const [status, setStatus] = useState("");
@@ -442,7 +522,11 @@ It looks like there's still a type mismatch. Let's simplify the solution to just
   	const [isLoading, setIsLoading] = useState(false);
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -42,5 +41,6 @@
   			try {
   				const data = await getRestaurants();
 - 				setRestaurants(data as RestaurantWithCounts[]);
@@ -452,7 +536,11 @@ It looks like there's still a type mismatch. Let's simplify the solution to just
   				console.error("Failed to fetch restaurants:", error);
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -62,5 +62,5 @@
   		setSearch("");
   		setRestaurant("all");
 - 		setStatus("");
@@ -461,13 +549,19 @@ It looks like there's still a type mismatch. Let's simplify the solution to just
   
 ```
 
+**Chunk 5**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -112,5 +112,4 @@
   							</SelectTrigger>
   							<SelectContent>
 - 								{/* Use "all" instead of empty string */}
   								<SelectItem value="all">All Statuses</SelectItem>
   								<SelectItem value="active">Active</SelectItem>
 ```
+
+</details>
 
 ---
 

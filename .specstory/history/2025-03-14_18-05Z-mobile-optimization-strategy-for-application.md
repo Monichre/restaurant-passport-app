@@ -407,7 +407,15 @@ Let's update the viewport configuration in layout.tsx:
 
 ---
 
+<details><summary>Edit file: src/app/layout.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -19,4 +19,6 @@
   	title: "Experience Maple Grove Restaurant Passport",
   	description: "Track your restaurant visits and experiences",
 + 	viewport:
@@ -416,7 +424,11 @@ Let's update the viewport configuration in layout.tsx:
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -31,5 +33,5 @@
   				<html lang="en">
   					<body
 - 						className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen bg-[#faf9f6]`}
@@ -425,7 +437,11 @@ Let's update the viewport configuration in layout.tsx:
   						<div
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -42,5 +44,5 @@
   						/>
   						<div className="grid-bg" />
 - 						<div className="app relative z-10 h-screen w-screen">
@@ -433,6 +449,8 @@ Let's update the viewport configuration in layout.tsx:
   							{children}
   						</div>
 ```
+
+</details>
 
 ---
 
@@ -545,7 +563,15 @@ Let's create a Tailwind configuration file where we can add our mobile-specific 
 
 ---
 
+<details><summary>Edit file: tailwind.config.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 35, lines removed: 1
+
 ```diff
+@@ -1,1 +1,35 @@
 - 
 + import type { Config } from "tailwindcss";
 + 
@@ -583,6 +609,8 @@ Let's create a Tailwind configuration file where we can add our mobile-specific 
 + export default config;
 + 
 ```
+
+</details>
 
 ---
 
@@ -630,7 +658,15 @@ Now let's optimize the Nav component for mobile:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 59, lines removed: 37
+
 ```diff
+@@ -355,64 +355,86 @@
   			</AnimatePresence>
   
 - 			<nav className="fixed bottom-0 left-1/2 -translate-x-1/2 py-4 z-40 ">
@@ -756,13 +792,23 @@ Now let's optimize the Nav component for mobile:
   				</div>
 ```
 
+</details>
+
 ---
 
 Let's fix the linter error:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -394,5 +394,9 @@
   						<div
   							onClick={handleScannerToggle}
 - 							className="flex-1 flex items-center justify-center"
@@ -775,13 +821,23 @@ Let's fix the linter error:
   							<Button
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining linter issues:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 8
+
 ```diff
+@@ -392,16 +392,11 @@
   
   					{isSignedIn && (
 - 						<div
@@ -803,6 +859,8 @@ Let's fix the remaining linter issues:
   								<QrCode className="h-7 w-7" />
 ```
 
+</details>
+
 ---
 
 ## 4. Now let's optimize the punch card component for mobile
@@ -817,7 +875,15 @@ Let's optimize the punch card component for mobile:
 
 ---
 
+<details><summary>Edit file: src/components/ui/punch-card.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 31, lines removed: 4
+
 ```diff
+@@ -42,13 +42,40 @@
   		const [isAnimating, setIsAnimating] = React.useState(false);
   		const [punchPosition, setPunchPosition] = React.useState({ x: 0, y: 0 });
 + 		const buttonRef = React.useRef<HTMLButtonElement>(null);
@@ -864,7 +930,11 @@ Let's optimize the punch card component for mobile:
   			setIsAnimating(true);
 ```
 
+**Chunk 2**
+Lines added: 11, lines removed: undefined
+
 ```diff
+@@ -58,4 +85,15 @@
   			}, 800);
   		};
 + 
@@ -882,7 +952,11 @@ Let's optimize the punch card component for mobile:
   		return (
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -68,5 +106,5 @@
   				className={cn(
   					"relative overflow-hidden rounded-xl bg-card shadow-lg",
 - 					"w-full h-full touch-none flex flex-col",
@@ -891,7 +965,11 @@ Let's optimize the punch card component for mobile:
   				)}
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -75,11 +113,12 @@
   			>
   				{/* Restaurant Image */}
 - 				<div className="relative h-36 w-full">
@@ -908,7 +986,11 @@ Let's optimize the punch card component for mobile:
   
 ```
 
+**Chunk 5**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -88,8 +127,10 @@
   					{/* Restaurant Info Overlay */}
   					<div className="absolute bottom-0 w-full p-4">
 - 						<h3 className="text-lg font-bold text-white">{restaurantName}</h3>
@@ -923,7 +1005,11 @@ Let's optimize the punch card component for mobile:
   						)}
 ```
 
+**Chunk 6**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -98,7 +139,7 @@
   
   				{/* Punch Card Content */}
 - 				<div className="flex flex-col flex-grow p-4">
@@ -935,7 +1021,11 @@ Let's optimize the punch card component for mobile:
   						</span>
 ```
 
+**Chunk 7**
+Lines added: 11, lines removed: 2
+
 ```diff
+@@ -113,6 +154,15 @@
   					</div>
   
 - 					{/* Punch Grid */}
@@ -955,7 +1045,11 @@ Let's optimize the punch card component for mobile:
   							<motion.div
 ```
 
+**Chunk 8**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -151,11 +201,13 @@
   
   					{/* Action Buttons */}
 - 					<div className="mt-auto flex gap-2">
@@ -973,7 +1067,11 @@ Let's optimize the punch card component for mobile:
   							>
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -184,5 +236,5 @@
   						) : (
   							<motion.button
 - 								className="py-2 px-4 rounded-lg bg-green-600 text-white font-medium flex items-center justify-center gap-2 flex-1"
@@ -982,7 +1080,11 @@ Let's optimize the punch card component for mobile:
   								whileTap={{ scale: 0.98 }}
 ```
 
+**Chunk 10**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -195,5 +247,5 @@
   						<Link
   							href={`/restaurants/${restaurantId}`}
 - 							className="py-2 px-4 rounded-lg border border-border bg-background hover:bg-muted transition-colors flex items-center justify-center text-sm"
@@ -990,6 +1092,8 @@ Let's optimize the punch card component for mobile:
   						>
   							View Restaurant
 ```
+
+</details>
 
 ---
 
@@ -1005,7 +1109,15 @@ Let's optimize the input component for mobile:
 
 ---
 
+<details><summary>Edit file: src/components/ui/input.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -1,5 +1,5 @@
 - import * as React from "react"
 + import * as React from "react";
   
@@ -1015,7 +1127,11 @@ Let's optimize the input component for mobile:
   const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
 ```
 
+**Chunk 2**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -9,15 +9,15 @@
   				type={type}
   				className={cn(
 -           "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
@@ -1040,6 +1156,8 @@ Let's optimize the input component for mobile:
   
 ```
 
+</details>
+
 ---
 
 Now let's optimize the button component:
@@ -1054,7 +1172,15 @@ Let's optimize the button component for mobile:
 
 ---
 
+<details><summary>Edit file: src/components/ui/button.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: 14
+
 ```diff
+@@ -1,29 +1,31 @@
 - import * as React from "react"
 - import { Slot } from "@radix-ui/react-slot"
 - import { cva, type VariantProps } from "class-variance-authority"
@@ -1102,7 +1228,11 @@ Let's optimize the button component for mobile:
   		},
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -32,6 +34,6 @@
   			size: "default",
   		},
 -   }
@@ -1113,7 +1243,11 @@ Let's optimize the button component for mobile:
   function Button({
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -43,7 +45,7 @@
   }: React.ComponentProps<"button"> &
   	VariantProps<typeof buttonVariants> & {
 -     asChild?: boolean
@@ -1125,7 +1259,11 @@ Let's optimize the button component for mobile:
   	return (
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -53,7 +55,7 @@
   			{...props}
   		/>
 -   )
@@ -1137,13 +1275,23 @@ Let's optimize the button component for mobile:
   
 ```
 
+</details>
+
 ---
 
 ## 6. Let's add a custom CSS file for additional mobile-specific adjustments
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 46, lines removed: undefined
+
 ```diff
+@@ -212,2 +212,48 @@
   }
   
 + /* Mobile-specific optimizations */
@@ -1194,6 +1342,8 @@ Let's optimize the button component for mobile:
 + 	.touch-manipulation {
 ```
 
+</details>
+
 ---
 
 Let's fix the linter error in the CSS file:
@@ -1208,7 +1358,15 @@ Let's fix the CSS file by completing the missing closing tags:
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 36, lines removed: undefined
+
 ```diff
+@@ -258,2 +258,38 @@
   	/* Improve touch experience */
   	.touch-manipulation {
 + 		touch-action: manipulation;
@@ -1248,6 +1406,8 @@ Let's fix the CSS file by completing the missing closing tags:
 + }
 + 
 ```
+
+</details>
 
 ---
 
@@ -1474,7 +1634,15 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 17, lines removed: undefined
+
 ```diff
+@@ -28,8 +28,25 @@
   	status?: number;
   }
 + 
@@ -1502,7 +1670,11 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
   
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -39,13 +56,16 @@
   	checkingPunchCardStatus: boolean;
   	scanResult: ScanResult | null;
 + 	error: ScanError | null;
@@ -1522,7 +1694,11 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
   	const [qrCodeData, setQrCodeData] = useState<string>("");
 ```
 
+**Chunk 3**
+Lines added: 188, lines removed: 5
+
 ```diff
+@@ -54,21 +74,204 @@
   		useState<boolean>(false);
   	const [scanResult, setScanResult] = useState<ScanResult | null>(null);
 + 	const [error, setError] = useState<ScanError | null>(null);
@@ -1734,7 +1910,11 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
   				return;
 ```
 
+**Chunk 4**
+Lines added: 6, lines removed: 7
+
 ```diff
+@@ -117,21 +320,20 @@
   					setIsScanning(false);
   					setCheckingPunchCardStatus(true);
 + 					setError(null);
@@ -1764,7 +1944,11 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
   
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -152,4 +354,5 @@
   				setScanResult(data as ScanResult);
   				setCheckingPunchCardStatus(false);
 + 				setError(null);
@@ -1772,7 +1956,11 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
   				toast({
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -164,4 +367,5 @@
   			handleError(
   				error instanceof Error ? error : new Error("Failed to process scan"),
 + 				"NETWORK_ERROR",
@@ -1780,7 +1968,11 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
   			setCheckingPunchCardStatus(false);
 ```
 
+**Chunk 7**
+Lines added: 8, lines removed: 1
+
 ```diff
+@@ -175,5 +379,12 @@
   		setCheckingPunchCardStatus(false);
   		setScanResult(null);
 - 	}, []);
@@ -1796,7 +1988,11 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
   	// Check scan result when QR code data is available
 ```
 
+**Chunk 8**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -189,8 +400,10 @@
   		checkingPunchCardStatus,
   		scanResult,
 + 		error,
@@ -1809,6 +2005,8 @@ First, let's improve the QR code scanning hooks to handle Safari and Chrome diff
   }
 ```
 
+</details>
+
 ---
 
 ## 2. Improve UserScanQrCode Component with Error Handling
@@ -1817,7 +2015,15 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,5 +1,5 @@
   "use client";
   
 - import { useState, useEffect } from "react";
@@ -1826,7 +2032,11 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
   import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 ```
 
+**Chunk 2**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -11,5 +11,11 @@
   import { useRouter } from "next/navigation";
   import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 - import { CheckCircle, Info } from "lucide-react";
@@ -1841,7 +2051,11 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
   // Dynamically import QR scanner to avoid SSR issues
 ```
 
+**Chunk 3**
+Lines added: 35, lines removed: undefined
+
 ```diff
+@@ -19,12 +25,47 @@
   	const [isConnected, setIsConnected] = useState(true);
   	const router = useRouter();
 + 	const qrContainerRef = useRef<HTMLDivElement>(null);
@@ -1891,7 +2105,11 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
   		userId: typeof user.id === "bigint" ? user.id.toString() : user.id,
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -45,4 +86,8 @@
   			}, 2000);
   		},
 + 		onScanError: (scanError) => {
@@ -1902,7 +2120,11 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
   
 ```
 
+**Chunk 5**
+Lines added: 73, lines removed: undefined
+
 ```diff
+@@ -58,4 +103,77 @@
   		}
   	}, [scanResult, router, user.id]);
 + 
@@ -1982,7 +2204,11 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
   	return (
 ```
 
+**Chunk 6**
+Lines added: 44, lines removed: 6
+
 ```diff
+@@ -83,17 +201,55 @@
   						</div>
   					</div>
 + 
@@ -2046,7 +2272,11 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
   											videoId="qr-video"
 ```
 
+**Chunk 7**
+Lines added: 9, lines removed: 2
+
 ```diff
+@@ -103,19 +259,26 @@
   											}}
   											className="w-full h-full"
 + 											scanDelay={500} // Add delay to reduce CPU usage
@@ -2077,7 +2307,11 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
   						</AnimatePresence>
 ```
 
+**Chunk 8**
+Lines added: 10, lines removed: 3
+
 ```diff
+@@ -127,13 +290,20 @@
   							<div className="relative flex justify-center text-xs uppercase">
   								<span className="bg-background px-2 text-muted-foreground">
 - 									Or
@@ -2103,6 +2337,8 @@ Let's update the UserScanQrCode component to work properly with the enhanced hoo
   
 ```
 
+</details>
+
 ---
 
 ## 3. Improve QR Code Manager Component for Mobile Browser Compatibility
@@ -2111,7 +2347,15 @@ Now let's update the QR Code Manager for better compatibility:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import type React from "react";
 - import { useState, useRef } from "react";
@@ -2120,7 +2364,11 @@ Now let's update the QR Code Manager for better compatibility:
   import Image from "next/image";
 ```
 
+**Chunk 2**
+Lines added: 12, lines removed: 1
+
 ```diff
+@@ -13,7 +13,18 @@
   	DialogTitle,
   	DialogHeader,
 + 	DialogDescription,
@@ -2142,7 +2390,11 @@ Now let's update the QR Code Manager for better compatibility:
   type QRCodeVariant = "default" | "compact" | "table";
 ```
 
+**Chunk 3**
+Lines added: 15, lines removed: undefined
+
 ```diff
+@@ -40,4 +51,19 @@
   		handleDownload,
   	} = useHandleQRCode({ restaurant });
 + 
@@ -2164,7 +2416,11 @@ Now let's update the QR Code Manager for better compatibility:
   	// Table cell variant
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -49,5 +75,5 @@
   						variant="ghost"
   						size="sm"
 - 						className="flex items-center gap-1 px-2 h-8"
@@ -2173,7 +2429,11 @@ Now let's update the QR Code Manager for better compatibility:
   						{restaurant.qrCodeUrl ? (
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -59,4 +85,5 @@
   										fill
   										className="object-contain"
 + 										sizes="32px"
@@ -2181,7 +2441,11 @@ Now let's update the QR Code Manager for better compatibility:
   								</div>
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -88,4 +115,5 @@
   							handleSave={handleSave}
   							handleDownload={handleDownload}
 + 							downloadSupported={downloadSupported}
@@ -2189,7 +2453,11 @@ Now let's update the QR Code Manager for better compatibility:
   					</div>
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -107,4 +135,5 @@
   								fill
   								className="object-contain"
 + 								sizes="64px"
@@ -2197,7 +2465,11 @@ Now let's update the QR Code Manager for better compatibility:
   						</div>
 ```
 
+**Chunk 8**
+Lines added: 9, lines removed: 3
+
 ```diff
+@@ -113,22 +142,28 @@
   								size="sm"
   								variant="outline"
 - 								className="text-xs h-8"
@@ -2231,7 +2503,11 @@ Now let's update the QR Code Manager for better compatibility:
   						Generate QR
 ```
 
+**Chunk 9**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -138,5 +173,8 @@
   				{generating && (
   					<div className="mt-2 flex flex-col gap-2">
 - 						<div className="relative w-24 h-24 mx-auto" ref={qrRef}>
@@ -2243,7 +2519,11 @@ Now let's update the QR Code Manager for better compatibility:
   								size={96}
 ```
 
+**Chunk 10**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -151,5 +189,5 @@
   								onClick={handleSave}
   								disabled={saving}
 - 								className="text-xs h-8"
@@ -2252,7 +2532,11 @@ Now let's update the QR Code Manager for better compatibility:
   								<Check className="h-3 w-3 mr-1" />
 ```
 
+**Chunk 11**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -161,5 +199,5 @@
   								onClick={handleCancel}
   								disabled={saving}
 - 								className="text-xs h-8"
@@ -2261,7 +2545,11 @@ Now let's update the QR Code Manager for better compatibility:
   								<X className="h-3 w-3 mr-1" />
 ```
 
+**Chunk 12**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -194,4 +232,5 @@
   				handleSave={handleSave}
   				handleDownload={handleDownload}
 + 				downloadSupported={downloadSupported}
@@ -2269,7 +2557,11 @@ Now let's update the QR Code Manager for better compatibility:
   		</div>
 ```
 
+**Chunk 13**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -212,4 +251,5 @@
   	handleSave: () => void;
   	handleDownload: () => void;
 + 	downloadSupported: boolean;
@@ -2277,7 +2569,11 @@ Now let's update the QR Code Manager for better compatibility:
   
 ```
 
+**Chunk 14**
+Lines added: 37, lines removed: undefined
+
 ```diff
+@@ -226,5 +266,42 @@
   	handleSave,
   	handleDownload,
 + 	downloadSupported,
@@ -2322,7 +2618,11 @@ Now let's update the QR Code Manager for better compatibility:
   		<div className="space-y-4">
 ```
 
+**Chunk 15**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -239,4 +316,6 @@
   								fill
   								className="object-contain"
 + 								sizes="(max-width: 640px) 144px, 192px"
@@ -2331,7 +2631,11 @@ Now let's update the QR Code Manager for better compatibility:
   						</div>
 ```
 
+**Chunk 16**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -250,5 +329,8 @@
   
   			{!generating ? (
 - 				<Button onClick={handleGenerate} className="flex items-center gap-1">
@@ -2343,7 +2647,11 @@ Now let's update the QR Code Manager for better compatibility:
   					{restaurant.qrCodeUrl ? "Generate New QR Code" : "Generate QR Code"}
 ```
 
+**Chunk 17**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -277,5 +359,5 @@
   							onClick={handleSave}
   							disabled={saving}
 - 							className="flex items-center gap-1"
@@ -2352,7 +2660,11 @@ Now let's update the QR Code Manager for better compatibility:
   							<Check className="h-4 w-4" />
 ```
 
+**Chunk 18**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -287,5 +369,5 @@
   							disabled={saving}
   							variant="outline"
 - 							className="flex items-center gap-1"
@@ -2361,7 +2673,11 @@ Now let's update the QR Code Manager for better compatibility:
   							<X className="h-4 w-4" />
 ```
 
+**Chunk 19**
+Lines added: 41, lines removed: 7
+
 ```diff
+@@ -297,22 +379,56 @@
   
   			{error && (
 - 				<div className="mt-4 p-3 bg-red-100 border border-red-200 text-red-700 rounded-md text-sm">
@@ -2427,13 +2743,23 @@ Now let's update the QR Code Manager for better compatibility:
   			)}
 ```
 
+</details>
+
 ---
 
 ## 4. Improve the `use-handle-qrCode` Hook for Cross-Browser Compatibility
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -1,7 +1,7 @@
 - "use context";
 + "use client";
   
@@ -2445,7 +2771,11 @@ Now let's update the QR Code Manager for better compatibility:
   export const useHandleQRCode = ({ restaurant }: { restaurant: Restaurant }) => {
 ```
 
+**Chunk 2**
+Lines added: 146, lines removed: 17
+
 ```diff
+@@ -26,42 +26,171 @@
   
   	// Generate QR code and show save/cancel buttons
 - 	const handleGenerate = () => {
@@ -2636,7 +2966,11 @@ Now let's update the QR Code Manager for better compatibility:
   			// Save to database
 ```
 
+**Chunk 3**
+Lines added: 7, lines removed: 2
+
 ```diff
+@@ -76,9 +205,14 @@
   			}
   		} catch (err) {
 - 			setError(err instanceof Error ? err.message : "An error occurred");
@@ -2654,6 +2988,8 @@ Now let's update the QR Code Manager for better compatibility:
   
   	return {
 ```
+
+</details>
 
 ---
 
@@ -2687,7 +3023,15 @@ Let's fix the remaining two linter errors:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -141,5 +141,5 @@
   			);
   		}
 - 	}, [qrCodeDataUrl, qrRef, restaurant.name]);
@@ -2696,7 +3040,11 @@ Let's fix the remaining two linter errors:
   	// Save QR code URL to database with improved error handling
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -175,5 +175,5 @@
   
   			// Use safe encoding for all browsers
 - 			let dataUrl;
@@ -2705,13 +3053,23 @@ Let's fix the remaining two linter errors:
   				// Modern approach - safer for all characters
 ```
 
+</details>
+
 ---
 
 Now let's enhance the mobile touch interactions in the form components to ensure they work well across all mobile browsers:
 
 ---
 
+<details><summary>Edit file: src/components/ui/input.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 69, lines removed: 4
+
 ```diff
+@@ -3,14 +3,79 @@
   import { cn } from "@/lib/utils";
   
 - const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
@@ -2797,13 +3155,23 @@ Now let's enhance the mobile touch interactions in the form components to ensure
   			/>
 ```
 
+</details>
+
 ---
 
 Now let's improve the button component for better touch interactions:
 
 ---
 
+<details><summary>Edit file: src/components/ui/button.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: 15
+
 ```diff
+@@ -1,31 +1,28 @@
 - import type * as React from "react";
 + import * as React from "react";
   import { Slot } from "@radix-ui/react-slot";
@@ -2849,7 +3217,11 @@ Now let's improve the button component for better touch interactions:
   		},
 ```
 
+**Chunk 2**
+Lines added: 60, lines removed: 11
+
 ```diff
+@@ -37,24 +34,73 @@
   );
   
 - function Button({
@@ -2936,13 +3308,23 @@ Now let's improve the button component for better touch interactions:
   export { Button, buttonVariants };
 ```
 
+</details>
+
 ---
 
 Finally, let's add some global CSS for better cross-browser compatibility, especially for iOS and Android browsers:
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 147, lines removed: 32
+
 ```diff
+@@ -212,63 +212,178 @@
   }
   
 - /* Mobile-specific optimizations */
@@ -3154,6 +3536,8 @@ Finally, let's add some global CSS for better cross-browser compatibility, espec
   }
   
 ```
+
+</details>
 
 ---
 

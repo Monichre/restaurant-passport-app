@@ -29,7 +29,15 @@ Let's modify the component to include this functionality.</think>I'll add a down
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/[id]/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -24,4 +24,5 @@
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
 +   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null);
@@ -37,7 +45,11 @@ Let's modify the component to include this functionality.</think>I'll add a down
   
 ```
 
+**Chunk 2**
+Lines added: 13, lines removed: 1
+
 ```diff
+@@ -44,5 +45,17 @@
       setError(null);
     };
 - 
@@ -58,7 +70,11 @@ Let's modify the component to include this functionality.</think>I'll add a down
     const handleSave = async () => {
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -66,4 +79,5 @@
           setSuccess(true);
           setGenerating(false);
 +         setQrCodeDataUrl(dataUrl);
@@ -66,7 +82,11 @@ Let's modify the component to include this functionality.</think>I'll add a down
           throw new Error("Failed to save QR code");
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -95,4 +109,5 @@
         {!generating ? (
           <button
 +           type="button"
@@ -74,7 +94,11 @@ Let's modify the component to include this functionality.</think>I'll add a down
             className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors"
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -116,4 +131,5 @@
             <div className="flex gap-3">
               <button
 +               type="button"
@@ -82,7 +106,11 @@ Let's modify the component to include this functionality.</think>I'll add a down
                 disabled={saving}
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -124,4 +140,5 @@
               
               <button
 +               type="button"
@@ -90,7 +118,11 @@ Let's modify the component to include this functionality.</think>I'll add a down
                 disabled={saving}
 ```
 
+**Chunk 7**
+Lines added: 11, lines removed: 2
+
 ```diff
+@@ -141,6 +158,15 @@
   
         {success && (
 -         <div className="mt-4 p-3 bg-green-100 border border-green-200 text-green-700 rounded-md text-sm">
@@ -109,6 +141,8 @@ Let's modify the component to include this functionality.</think>I'll add a down
           </div>
         )}
 ```
+
+</details>
 
 ---
 

@@ -107,12 +107,14 @@ export default async function ProfilePage({
         >
           <div className='flex items-center space-x-4'>
             <div className='font-medium'>
-              <div
-                className='font-bold'
-                style={{fontFamily: 'courier-std, monospace'}}
-              >
-                {user.name}
-              </div>
+              {user?.name && (
+                <div
+                  className='font-bold'
+                  style={{fontFamily: 'courier-std, monospace'}}
+                >
+                  {user?.name}
+                </div>
+              )}
               <div
                 className='text-sm text-gray-500'
                 style={{fontFamily: 'courier-std, monospace', fontWeight: 400}}

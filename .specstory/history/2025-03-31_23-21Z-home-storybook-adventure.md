@@ -35,9 +35,9 @@ Let me first check if there's a corresponding Home component:</details></think>
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/home/home.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/home/home.stories.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-mobile.tsx` |
 
 </details>
 
@@ -47,7 +47,15 @@ Read file: src/components/home/home.tsx
 
 ---
 
+<details><summary>Edit file: src/components/home/home.stories.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 43, lines removed: 1
+
 ```diff
+@@ -1,1 +1,43 @@
 - 
 + import type {Meta, StoryObj} from '@storybook/react'
 + import {Home} from './home'
@@ -94,13 +102,23 @@ Read file: src/components/home/home.tsx
 + 
 ```
 
+</details>
+
 ---
 
 Read file: src/components/home/home.tsx
 
 ---
 
+<details><summary>Edit file: src/components/home/home.stories.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 13, lines removed: 1
+
 ```diff
+@@ -2,9 +2,21 @@
   import {Home} from './home'
   
 + /**
@@ -125,7 +143,11 @@ Read file: src/components/home/home.tsx
     tags: ['autodocs'],
 ```
 
+**Chunk 2**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -14,8 +26,15 @@
   type Story = StoryObj<typeof Home>
   
 + /**
@@ -143,7 +165,11 @@ Read file: src/components/home/home.tsx
     parameters: {
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -26,4 +45,8 @@
   }
   
 + /**
@@ -154,7 +180,11 @@ Read file: src/components/home/home.tsx
     parameters: {
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -34,4 +57,8 @@
   }
   
 + /**
@@ -165,19 +195,31 @@ Read file: src/components/home/home.tsx
     parameters: {
 ```
 
+</details>
+
 ---
 
 Read file: src/components/home/home.tsx
 
 ---
 
+<details><summary>Edit file: src/components/home/home.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,4 +1,4 @@
   import Image from 'next/image'
 - import Link from 'next/link's
 + import Link from 'next/link'
   
   export const Home = () => {
 ```
+
+</details>
 
 ---
 

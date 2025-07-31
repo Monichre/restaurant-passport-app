@@ -145,7 +145,15 @@ Read file: src/stories/Button.stories.ts
 
 ---
 
+<details><summary>Edit file: src/components/wallet-ui/wallet-ui.stories.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 37, lines removed: 1
+
 ```diff
+@@ -1,1 +1,37 @@
 - 
 + import type {Meta, StoryObj} from '@storybook/react'
 + import {WalletUI} from './wallet-ui'
@@ -186,13 +194,25 @@ Read file: src/stories/Button.stories.ts
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/wallet-ui/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1,1 +1,2 @@
 - 
 + export { WalletUI } from "./wallet-ui";
 + 
 ```
+
+</details>
 
 ---
 
@@ -241,7 +261,15 @@ Read file: src/components/wallet-ui/wallet-ui.tsx
 
 ---
 
+<details><summary>Edit file: src/components/wallet-ui/wallet-ui.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -8,18 +8,18 @@
       id: 1,
       name: 'Monzo',
 -     color: 'bg-[#f76707]',
@@ -268,7 +296,11 @@ Read file: src/components/wallet-ui/wallet-ui.tsx
   ]
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 2
+
 ```diff
+@@ -58,8 +58,12 @@
                   <motion.div
                     key={card.id}
 -                   className={`absolute w-full h-48 rounded-2xl ${card.color} ${card.textColor} p-6 flex flex-col justify-between`}
@@ -284,6 +316,8 @@ Read file: src/components/wallet-ui/wallet-ui.tsx
                     whileHover={{y: index * 20 - 10}}
                     transition={{
 ```
+
+</details>
 
 ---
 

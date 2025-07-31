@@ -19,9 +19,9 @@ Let me create a global decorator for your Storybook stories.
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.storybook/main.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.storybook/preview.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.storybook/vitest.setup.ts` |
 
 </details>
 
@@ -52,7 +52,7 @@ Let's check if there are any existing decorators in the project to understand th
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L156 | `// This is a decorator component that shows what tab was last clicked` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L157 | `// This is a decorator component that shows what tab was last clicked` |
 
 </details>
 
@@ -87,58 +87,58 @@ Now let's check for Next.js Providers or context providers in the project that m
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L154 | `<InfoCardContext.Provider value={cardContextValue}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L155 | `<InfoCardImageContext.Provider value={imageContextValue}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L178 | `</InfoCardImageContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L179 | `</InfoCardContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L321 | `<InfoCardImageContext.Provider` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L420 | `</InfoCardImageContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L7 | `FormProvider,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L18 | `const Form = FormProvider` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L38 | `<FormFieldContext.Provider value={{ name: props.name }}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L40 | `</FormFieldContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L79 | `<FormItemContext.Provider value={{ id }}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L85 | `</FormItemContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L16 | `export function SidebarProvider({ children }: { children: ReactNode }) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L24 | `<SidebarContext.Provider value={{ collapsed, toggleCollapse }}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L26 | `</SidebarContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L33 | `throw new Error("useSidebar must be used within a SidebarProvider");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L2 | `import { SidebarProvider } from "@/components/admin/SidebarContext";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L8 | `<SidebarProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L12 | `</SidebarProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L2 | `import {ClerkProvider} from '@clerk/nextjs'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L4 | `import {LocationProvider} from '@/context/location-context'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L8 | `import {UserProvider} from '@/context/user-context'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L33 | `<ClerkProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L34 | `<LocationProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L35 | `<UserProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L57 | `</UserProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L58 | `</LocationProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L59 | `</ClerkProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/layout.tsx` | L20 | `// Render the admin UI with the SidebarProvider (which uses "use client")` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tooltip.tsx` | L7 | `const TooltipProvider = TooltipPrimitive.Provider` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tooltip.tsx` | L31 | `export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L17 | `TooltipProvider,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L43 | `throw new Error("useSidebar must be used within a SidebarProvider.");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L49 | `const SidebarProvider = React.forwardRef<` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L140 | `<SidebarContext.Provider value={contextValue}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L141 | `<TooltipProvider delayDuration={0}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L159 | `</TooltipProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L160 | `</SidebarContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L164 | `SidebarProvider.displayName = "SidebarProvider";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L765 | `SidebarProvider,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L20 | `export const ModalProvider = ({children}: {children: ReactNode}) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L24 | `<ModalContext.Provider value={{open, setOpen}}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L26 | `</ModalContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L33 | `throw new Error('useModal must be used within a ModalProvider')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L39 | `return <ModalProvider>{children}</ModalProvider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/user-context.tsx` | L33 | `export const UserProvider: React.FC<{children: React.ReactNode}> = ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/user-context.tsx` | L113 | `<UserContext.Provider value={{currentUser, isLoading, error, reloadUser}}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/user-context.tsx` | L115 | `</UserContext.Provider>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/user-context.tsx` | L122 | `throw new Error('useUserContext must be used within a UserProvider')` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L14 | `export const LocationProvider = ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L23 | `<LocationContext.Provider value={value}>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L25 | `</LocationContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L155 | `<InfoCardContext.Provider value={cardContextValue}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L156 | `<InfoCardImageContext.Provider value={imageContextValue}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L179 | `</InfoCardImageContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L180 | `</InfoCardContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L322 | `<InfoCardImageContext.Provider` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/icons/info-card.tsx` | L421 | `</InfoCardImageContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L8 | `FormProvider,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L19 | `const Form = FormProvider` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L39 | `<FormFieldContext.Provider value={{ name: props.name }}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L41 | `</FormFieldContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L80 | `<FormItemContext.Provider value={{ id }}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L86 | `</FormItemContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L17 | `export function SidebarProvider({ children }: { children: ReactNode }) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L25 | `<SidebarContext.Provider value={{ collapsed, toggleCollapse }}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L27 | `</SidebarContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/SidebarContext.tsx` | L34 | `throw new Error("useSidebar must be used within a SidebarProvider");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L3 | `import { SidebarProvider } from "@/components/admin/SidebarContext";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L9 | `<SidebarProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/admin-ui.tsx` | L13 | `</SidebarProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L3 | `import {ClerkProvider} from '@clerk/nextjs'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L5 | `import {LocationProvider} from '@/context/location-context'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L9 | `import {UserProvider} from '@/context/user-context'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L34 | `<ClerkProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L35 | `<LocationProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L36 | `<UserProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L58 | `</UserProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L59 | `</LocationProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L60 | `</ClerkProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/layout.tsx` | L21 | `// Render the admin UI with the SidebarProvider (which uses "use client")` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tooltip.tsx` | L8 | `const TooltipProvider = TooltipPrimitive.Provider` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/tooltip.tsx` | L32 | `export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L18 | `TooltipProvider,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L44 | `throw new Error("useSidebar must be used within a SidebarProvider.");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L50 | `const SidebarProvider = React.forwardRef<` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L141 | `<SidebarContext.Provider value={contextValue}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L142 | `<TooltipProvider delayDuration={0}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L160 | `</TooltipProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L161 | `</SidebarContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L165 | `SidebarProvider.displayName = "SidebarProvider";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sidebar.tsx` | L766 | `SidebarProvider,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L21 | `export const ModalProvider = ({children}: {children: ReactNode}) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L25 | `<ModalContext.Provider value={{open, setOpen}}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L27 | `</ModalContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L34 | `throw new Error('useModal must be used within a ModalProvider')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/animated-modal.tsx` | L40 | `return <ModalProvider>{children}</ModalProvider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/user-context.tsx` | L34 | `export const UserProvider: React.FC<{children: React.ReactNode}> = ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/user-context.tsx` | L114 | `<UserContext.Provider value={{currentUser, isLoading, error, reloadUser}}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/user-context.tsx` | L116 | `</UserContext.Provider>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/user-context.tsx` | L123 | `throw new Error('useUserContext must be used within a UserProvider')` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L15 | `export const LocationProvider = ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L24 | `<LocationContext.Provider value={value}>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/context/location-context.tsx` | L26 | `</LocationContext.Provider>` |
 
 </details>
 
@@ -156,7 +156,15 @@ Based on my analysis, I'll now create a global decorator for your Storybook stor
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/.storybook/preview.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 36, lines removed: undefined
+
 ```diff
+@@ -1,4 +1,40 @@
   import type { Preview } from "@storybook/react";
   import "../src/app/globals.css";
 + import { LocationProvider } from "../src/context/location-context";
@@ -199,13 +207,19 @@ Based on my analysis, I'll now create a global decorator for your Storybook stor
   const preview: Preview = {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -11,4 +47,5 @@
   		},
   	},
 + 	decorators: [withGlobalWrapper],
   };
   
 ```
+
+</details>
 
 ---
 
@@ -221,7 +235,15 @@ It looks like there are some issues with the JSX syntax in the TypeScript file. 
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/.storybook/preview.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 46, lines removed: 1
+
 ```diff
+@@ -1,1 +1,46 @@
 - 
 + import type {Preview} from '@storybook/react'
 + import '../src/app/globals.css'
@@ -270,6 +292,8 @@ It looks like there are some issues with the JSX syntax in the TypeScript file. 
 + export default preview
 + 
 ```
+
+</details>
 
 ---
 
@@ -327,7 +351,15 @@ I'll update the preview.tsx file to remove the UserProvider and implement the pa
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/.storybook/preview.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 26
+
 ```diff
+@@ -2,32 +2,6 @@
   import '../src/app/globals.css'
   import {LocationProvider} from '../src/context/location-context'
 - import {UserProvider} from '../src/context/user-context'
@@ -362,7 +394,11 @@ I'll update the preview.tsx file to remove the UserProvider and implement the pa
   const preview: Preview = {
 ```
 
+**Chunk 2**
+Lines added: 60, lines removed: 1
+
 ```diff
+@@ -40,5 +14,64 @@
       },
     },
 -   decorators: [withGlobalWrapper],
@@ -429,6 +465,8 @@ I'll update the preview.tsx file to remove the UserProvider and implement the pa
   }
   
 ```
+
+</details>
 
 ---
 

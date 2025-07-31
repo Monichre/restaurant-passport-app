@@ -41,7 +41,15 @@ I'll add a card display with a badge for raffle entries by updating the componen
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -8,5 +8,6 @@
   } from '@/hooks/use-punch-card-subscription'
   import {useUserRaffleSubscription} from '@/hooks/useUserRaffleSubscription'
 - import {AwardIcon, CheckIcon} from 'lucide-react'
@@ -51,7 +59,11 @@ I'll add a card display with a badge for raffle entries by updating the componen
   type User = {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -20,5 +21,5 @@
     initialPunchCards: PunchCardWithRestaurant[]
     showRaffleAnimation: boolean
 -   raffleEntry: any | null
@@ -60,7 +72,11 @@ I'll add a card display with a badge for raffle entries by updating the componen
   
 ```
 
+**Chunk 3**
+Lines added: 34, lines removed: 13
+
 ```diff
+@@ -78,23 +79,44 @@
           <RaffleSuccessAnimation raffleEntry={raffleEntry} />
         )}
 -       {!showRaffleAnimation && raffleEntries.length && (
@@ -120,6 +136,8 @@ I'll add a card display with a badge for raffle entries by updating the componen
             <div
 ```
 
+</details>
+
 ---
 
 I've added a new section to display raffle entries with a badge. The changes include:
@@ -171,7 +189,15 @@ I'll fix the code to access restaurant data from the punch card instead. Let me 
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: undefined
+
 ```diff
+@@ -60,4 +60,16 @@
       )
     }
 + 
@@ -190,7 +216,11 @@ I'll fix the code to access restaurant data from the punch card instead. Let me 
     return (
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -80,14 +92,14 @@
         )}
         {!showRaffleAnimation && raffleEntries.length > 0 && (
 -         <RaffleSuccessAnimation raffleEntry={raffleEntries[0] as any} />
@@ -211,7 +241,11 @@ I'll fix the code to access restaurant data from the punch card instead. Let me 
                     <div className='bg-yellow-400 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center'>
 ```
 
+**Chunk 3**
+Lines added: 7, lines removed: 9
+
 ```diff
+@@ -96,20 +108,18 @@
                     </div>
                   </div>
 -                 <Card_10>
@@ -240,6 +274,8 @@ I'll fix the code to access restaurant data from the punch card instead. Let me 
                 </div>
               ))}
 ```
+
+</details>
 
 ---
 
@@ -278,7 +314,15 @@ You're right, the term "matching" is unnecessary and might be confusing. Let me 
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 5
+
 ```diff
+@@ -61,13 +61,13 @@
     }
   
 -   // Find the matching restaurant for each raffle entry
@@ -299,7 +343,11 @@ You're right, the term "matching" is unnecessary and might be confusing. Let me 
     })
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -96,9 +96,9 @@
   
         {/* Raffle Entry Cards */}
 -       {raffleEntriesWithDetails.length > 0 && (
@@ -313,7 +361,11 @@ You're right, the term "matching" is unnecessary and might be confusing. Let me 
                   <div className='absolute -top-2 -right-2 z-10'>
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -110,5 +110,5 @@
                   <div className='border rounded-lg p-4 shadow-sm'>
                     <h4 className='font-medium text-lg'>
 -                     {entry.matchingPunchCard?.restaurant?.name || 'Restaurant'}
@@ -321,6 +373,8 @@ You're right, the term "matching" is unnecessary and might be confusing. Let me 
                     </h4>
                     <p className='text-sm text-gray-500'>
 ```
+
+</details>
 
 ---
 

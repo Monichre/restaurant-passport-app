@@ -53,7 +53,15 @@ Now let me create a step-by-step plan and pseudocode for updating the restaurant
 
 ---
 
+<details><summary>Edit file: RESTAURANT_IMAGE_UPDATE_PSEUDOCODE.md</summary>
+
+Creating pseudocode file for restaurant image URL updates
+
+**Chunk 1**
+Lines added: 88, lines removed: 1
+
 ```diff
+@@ -1,1 +1,88 @@
 - 
 + # Restaurant Image Update Pseudocode
 + 
@@ -144,6 +152,8 @@ Now let me create a step-by-step plan and pseudocode for updating the restaurant
 + ## Expected Matches (23 total):
 + All restaurants in the new images list should have corresponding entries in the current database, as the counts match exactly. 
 ```
+
+</details>
 
 ---
 
@@ -320,7 +330,15 @@ Now I'll create a script to update the restaurant images. Let me create a compre
 
 ---
 
+<details><summary>Edit file: scripts/update-restaurant-images.ts</summary>
+
+Creating a script to update restaurant image URLs based on the mapping between new images and existing database entries
+
+**Chunk 1**
+Lines added: 192, lines removed: 1
+
 ```diff
+@@ -1,1 +1,192 @@
 - 
 + #!/usr/bin/env tsx
 + 
@@ -515,6 +533,8 @@ Now I'll create a script to update the restaurant images. Let me create a compre
 + 
 + export { updateRestaurantImages }; 
 ```
+
+</details>
 
 ---
 

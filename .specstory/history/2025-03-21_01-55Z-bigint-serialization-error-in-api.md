@@ -14,7 +14,15 @@ Error in scan route: TypeError: JSON.stringify cannot serialize BigInt.
 
 _**Assistant**_
 
+<details><summary>Edit file: src/app/api/restaurants/[id]/scan/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -8,4 +8,10 @@
   import type { PunchCard } from "@/types/db";
   
 + // NEW: Helper to safely serialize data with BigInt conversion
@@ -27,7 +35,11 @@ _**Assistant**_
   	console.log("🚀 ~ POST ~ request:", request);
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -22,10 +28,10 @@
   
   		if (!restaurantId || !body?.userId) {
 - 			return Response.json(
@@ -44,7 +56,11 @@ _**Assistant**_
   		}
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -37,10 +43,10 @@
   		const restaurant = await getRestaurantById(BigInt(restaurantId));
   		if (!restaurant) {
 - 			return Response.json(
@@ -61,7 +77,11 @@ _**Assistant**_
   		}
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -97,5 +103,6 @@
   		}
   
 - 		return Response.json({
@@ -71,7 +91,11 @@ _**Assistant**_
   					? "Punch added to existing card"
 ```
 
+**Chunk 5**
+Lines added: 11, lines removed: 4
+
 ```diff
+@@ -110,13 +117,20 @@
   				restaurantName: restaurant.name,
   				status: 200,
 - 		});
@@ -98,9 +122,19 @@ _**Assistant**_
   	}
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/api/restaurants/[id]/scan/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -93,4 +93,8 @@
   			console.log("🚀 ~ POST ~ newCard:", punchCardData);
   		}
 + 
@@ -110,6 +144,8 @@ _**Assistant**_
   
   		// Check if the punch card is now completed
 ```
+
+</details>
 
 ---
 

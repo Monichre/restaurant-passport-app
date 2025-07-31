@@ -33,7 +33,15 @@ Let me optimize both components:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -26,4 +26,5 @@
   	MoreHorizontal,
   	Trash2,
 + 	ExternalLink,
@@ -41,7 +49,11 @@ Let me optimize both components:
   import type { z } from "zod";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -70,4 +71,5 @@
   	DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu";
 + import { cn } from "@/lib/utils";
@@ -49,7 +61,11 @@ Let me optimize both components:
   // Define interfaces for TanStack Table metadata
 ```
 
+**Chunk 3**
+Lines added: 17, lines removed: undefined
+
 ```diff
+@@ -226,4 +228,21 @@
   		React.useState<RestaurantData | null>(null);
   	const router = useRouter();
 + 	const [isMobileView, setIsMobileView] = React.useState(false);
@@ -73,7 +89,11 @@ Let me optimize both components:
   	// Add restaurant search hook
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -236,5 +255,5 @@
   		isSearching,
   	} = useRestaurantSearch({
 - 		restaurants: data,
@@ -82,7 +102,11 @@ Let me optimize both components:
   	});
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -506,5 +525,5 @@
   	// Define data table using TanStack
   	const table = useReactTable({
 - 		data: filteredRestaurants, // Use filtered restaurants instead of all data
@@ -91,7 +115,11 @@ Let me optimize both components:
   		state: {
 ```
 
+**Chunk 6**
+Lines added: 92, lines removed: undefined
+
 ```diff
+@@ -535,4 +554,96 @@
   		} as TableMeta,
   	});
 + 
@@ -190,7 +218,11 @@ Let me optimize both components:
   	return (
 ```
 
+**Chunk 7**
+Lines added: 24, lines removed: 1
+
 ```diff
+@@ -545,5 +656,28 @@
   			/>
   
 - 			<div className="rounded-xl border border-sidebar-border shadow-sm overflow-hidden">
@@ -222,7 +254,11 @@ Let me optimize both components:
   						<TableHeader
 ```
 
+**Chunk 8**
+Lines added: 10, lines removed: 2
+
 ```diff
+@@ -608,11 +742,19 @@
   					</Table>
   				</div>
 - 			<div className="flex items-center justify-end space-x-2 py-4">
@@ -246,7 +282,11 @@ Let me optimize both components:
   						Previous
 ```
 
+**Chunk 9**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -623,8 +765,9 @@
   						onClick={() => table.nextPage()}
   						disabled={!table.getCanNextPage()}
 - 					className="rounded-lg px-4 bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
@@ -259,13 +299,23 @@ Let me optimize both components:
   
 ```
 
+</details>
+
 ---
 
 Now let's optimize the DealsTable component for mobile:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -1,8 +1,8 @@
   "use client";
   
 - import { useState } from "react";
@@ -278,7 +328,11 @@ Now let's optimize the DealsTable component for mobile:
   import { deleteRestaurantDeal } from "@/db/models/restaurants/restaurants";
 ```
 
+**Chunk 2**
+Lines added: 8, lines removed: undefined
+
 ```diff
+@@ -18,4 +18,12 @@
   	AlertDialogTitle,
   } from "@/components/ui/alert-dialog";
 + import {
@@ -293,7 +347,11 @@ Now let's optimize the DealsTable component for mobile:
   
 ```
 
+**Chunk 3**
+Lines added: 17, lines removed: undefined
+
 ```diff
+@@ -32,5 +40,22 @@
   	const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   	const [dealToDelete, setDealToDelete] = useState<bigint | null>(null);
 + 	const [isMobileView, setIsMobileView] = useState(false);
@@ -318,7 +376,11 @@ Now let's optimize the DealsTable component for mobile:
   	// Function to handle deal deletion
 ```
 
+**Chunk 4**
+Lines added: 109, lines removed: undefined
+
 ```diff
+@@ -66,7 +91,116 @@
   		setDealToDelete(null);
   	};
 + 
@@ -437,7 +499,11 @@ Now let's optimize the DealsTable component for mobile:
   					<div className="overflow-x-auto">
 ```
 
+**Chunk 5**
+Lines added: 4, lines removed: 19
+
 ```diff
+@@ -197,26 +331,11 @@
   					</div>
   
 - 				{/* Pagination could be added here */}
@@ -470,13 +536,19 @@ Now let's optimize the DealsTable component for mobile:
   							</div>
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -248,4 +367,5 @@
   									</button>
   								</nav>
 + 							</div>
   						</div>
   					</div>
 ```
+
+</details>
 
 ---
 

@@ -40,7 +40,15 @@ Here's how I'll approach the refactoring:
 
 ---
 
+<details><summary>Edit file: src/components/ui/punchcard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 85, lines removed: 19
+
 ```diff
+@@ -12,40 +12,106 @@
   export const PUNCH_THRESHOLD = 10
   
 - interface PunchCardProps
@@ -168,7 +176,11 @@ Here's how I'll approach the refactoring:
       if (currentPunches >= totalPunches || isAnimating || completed) return
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -82,5 +148,5 @@
       setTimeout(() => {
         setIsAnimating(false)
 -         onAddPunch?.()
@@ -177,7 +189,11 @@ Here's how I'll approach the refactoring:
     }
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: 41
+
 ```diff
+@@ -98,50 +164,18 @@
   
     return (
 -       <motion.div
@@ -239,7 +255,11 @@ Here's how I'll approach the refactoring:
                 <Badge
 ```
 
+**Chunk 4**
+Lines added: 20, lines removed: 19
+
 ```diff
+@@ -154,30 +188,31 @@
             </div>
   
 -           {/* Punch Grid - Adaptive grid layout based on screen size */}
@@ -292,7 +312,11 @@ Here's how I'll approach the refactoring:
                   }
 ```
 
+**Chunk 5**
+Lines added: 4, lines removed: 6
+
 ```diff
+@@ -194,18 +229,16 @@
                         delay: index === currentPunches - 1 ? 0.2 : 0,
                       }}
 -                   >
@@ -317,7 +341,11 @@ Here's how I'll approach the refactoring:
                 whileTap={{scale: 0.98}}
 ```
 
+**Chunk 6**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -222,10 +255,10 @@
                         left: punchPosition.x,
                         top: punchPosition.y,
 -                         width: 10,
@@ -333,7 +361,11 @@ Here's how I'll approach the refactoring:
                       }}
 ```
 
+**Chunk 7**
+Lines added: 6, lines removed: 9
+
 ```diff
+@@ -238,27 +271,24 @@
             ) : (
               <motion.button
 -                 className='py-3 px-4 rounded-lg bg-green-600 text-white font-medium flex items-center justify-center gap-2 flex-1 text-base touch-manipulation'
@@ -369,9 +401,19 @@ Here's how I'll approach the refactoring:
   export {PunchCard}
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/ui/punchcard.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -206,5 +206,7 @@
               {Array.from({length: totalPunches}).map((_, index) => (
                 <motion.div
 -                 key={`punch-${restaurantId}-${index}`}
@@ -381,6 +423,8 @@ Here's how I'll approach the refactoring:
                   className={cn(
                     'h-2 rounded-full',
 ```
+
+</details>
 
 ---
 

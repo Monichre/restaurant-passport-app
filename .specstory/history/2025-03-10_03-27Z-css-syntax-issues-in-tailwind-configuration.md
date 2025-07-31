@@ -54,7 +54,15 @@ Here's how this file should look using proper Tailwind syntax:
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -1,3 +1,5 @@
 - @import "tailwindcss";
 + @tailwind base;
 + @tailwind components;
@@ -63,7 +71,11 @@ Here's how this file should look using proper Tailwind syntax:
   @plugin 'tailwindcss-animate';
 ```
 
+**Chunk 2**
+Lines added: 58, lines removed: 106
+
 ```diff
+@@ -77,138 +79,90 @@
   @layer base {
   	:root {
 + 		--font-geist-sans: var(--font-geist-sans);
@@ -262,19 +274,31 @@ Here's how this file should look using proper Tailwind syntax:
   }
 ```
 
+</details>
+
 ---
 
 It appears the project is using Tailwind CSS v4, which has different syntax requirements. Let me fix those linter errors:
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -1,4 +1,3 @@
 - @tailwind base;
 - @tailwind components;
 + @import "tailwindcss/preflight";
   @tailwind utilities;
   
 ```
+
+</details>
 
 ---
 
@@ -336,7 +360,15 @@ Here's how to fix your CSS file:
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   @tailwind utilities;
   
 - @plugin 'tailwindcss-animate';
@@ -344,6 +376,8 @@ Here's how to fix your CSS file:
   
   @custom-variant dark (&:is(.dark *));
 ```
+
+</details>
 
 ---
 
@@ -359,7 +393,15 @@ Now I can see that we have both the `@theme` directive and CSS variables defined
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 52
+
 ```diff
+@@ -5,56 +5,4 @@
   
   @custom-variant dark (&:is(.dark *));
 - 
@@ -418,7 +460,11 @@ Now I can see that we have both the `@theme` directive and CSS variables defined
   /*
 ```
 
+**Chunk 2**
+Lines added: 48, lines removed: undefined
+
 ```diff
+@@ -125,4 +73,52 @@
   
   		--radius: 0.5rem;
 + 
@@ -473,7 +519,11 @@ Now I can see that we have both the `@theme` directive and CSS variables defined
   
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 26
+
 ```diff
+@@ -198,30 +194,4 @@
   		border-color: #e5e7eb;
   	}
 - 	/* 
@@ -505,6 +555,8 @@ Now I can see that we have both the `@theme` directive and CSS variables defined
   
   	.grid-bg {
 ```
+
+</details>
 
 ---
 
@@ -575,13 +627,23 @@ Let me fix that:
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -1,4 +1,3 @@
 - @import "tailwindcss/preflight";
 - @tailwind utilities;
 + @import "tailwindcss";
   
   /* Plugin should be configured in tailwind.config.js instead */
 ```
+
+</details>
 
 ---
 
@@ -625,7 +687,15 @@ Let me fix that by restoring the `@theme` directive:
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 52, lines removed: undefined
+
 ```diff
+@@ -4,4 +4,56 @@
   
   @custom-variant dark (&:is(.dark *));
 + 
@@ -684,7 +754,11 @@ Let me fix that by restoring the `@theme` directive:
   /*
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -25,7 +77,4 @@
   @layer base {
   	:root {
 - 		--font-geist-sans: var(--font-geist-sans);
@@ -694,7 +768,11 @@ Let me fix that by restoring the `@theme` directive:
   		--foreground: 222.2 84% 4.9%;
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 48
+
 ```diff
+@@ -72,52 +121,4 @@
   
   		--radius: 0.5rem;
 - 
@@ -748,6 +826,8 @@ Let me fix that by restoring the `@theme` directive:
   	}
   
 ```
+
+</details>
 
 ---
 

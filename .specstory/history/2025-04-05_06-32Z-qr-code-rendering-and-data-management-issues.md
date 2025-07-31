@@ -235,7 +235,15 @@ Let me start by implementing these changes:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -1,12 +1,11 @@
   'use client'
   
 - import React, {useState, useRef, useEffect, useCallback} from 'react'
@@ -252,7 +260,11 @@ Let me start by implementing these changes:
   export interface QRCodeGeneratorProps {
 ```
 
+**Chunk 2**
+Lines added: 23, lines removed: 62
+
 ```diff
+@@ -27,91 +26,52 @@
     variant = 'default',
   }: QRCodeGeneratorProps) {
 -   console.log('🚀 ~ restaurant:', restaurant)
@@ -369,7 +381,11 @@ Let me start by implementing these changes:
         // Serialize SVG to string
 ```
 
+**Chunk 3**
+Lines added: 7, lines removed: 27
+
 ```diff
+@@ -123,33 +83,13 @@
   
         // Create and download the image
 -       const img = new Image()
@@ -412,7 +428,11 @@ Let me start by implementing these changes:
         console.error('Download error:', err)
 ```
 
+**Chunk 4**
+Lines added: 13, lines removed: 77
+
 ```diff
+@@ -163,94 +103,30 @@
     const handleSave = useCallback(async () => {
       setSaving(true)
 - 
@@ -522,7 +542,11 @@ Let me start by implementing these changes:
     // Render compact variant
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: 6
+
 ```diff
+@@ -259,12 +135,8 @@
         <div className={clsx('space-y-2', className)}>
           {/* QR Code Display */}
 -         {qrCodeDataUrl && !generating ? (
@@ -539,7 +563,11 @@ Let me start by implementing these changes:
               <div className='flex space-x-2 mt-2'>
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 7
+
 ```diff
+@@ -296,11 +168,5 @@
                     data-qr-container='true'
                   >
 -                   <QRCode
@@ -554,7 +582,11 @@ Let me start by implementing these changes:
   
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -341,5 +207,5 @@
               ) : (
                 <div className='flex flex-col items-center'>
 -                 <div className='bg-gray-100 p-2 rounded-md h-full  flex flex-col items-centerjustify-center'>
@@ -563,7 +595,11 @@ Let me start by implementing these changes:
                       <AlertCircle className='w-4 h-4 mr-1' />
 ```
 
+**Chunk 8**
+Lines added: 2, lines removed: 6
+
 ```diff
+@@ -371,12 +237,8 @@
         {/* QR Code Display or Generator */}
         <div className='space-y-4'>
 -         {qrCodeDataUrl && !generating ? (
@@ -580,7 +616,11 @@ Let me start by implementing these changes:
               <div className='flex space-x-3'>
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 7
+
 ```diff
+@@ -408,11 +270,5 @@
                     data-qr-container='true'
                   >
 -                   <QRCode
@@ -595,13 +635,23 @@ Let me start by implementing these changes:
   
 ```
 
+</details>
+
 ---
 
 Next, let's update the server action that saves the QR codes to simplify its behavior:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 4
+
 ```diff
+@@ -11,9 +11,6 @@
   import type { Restaurant } from "@/types/db";
   
 - // Function to convert QR code SVG to a data URL
@@ -614,7 +664,11 @@ Next, let's update the server action that saves the QR codes to simplify its beh
   		const updatedRestaurant = await db
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -23,6 +20,4 @@
   			.returning();
   
 - 		console.log("Update result:", updatedRestaurant);
@@ -623,7 +677,11 @@ Next, let's update the server action that saves the QR codes to simplify its beh
   			console.error("No restaurant updated");
 ```
 
+**Chunk 3**
+Lines added: 5, lines removed: 6
+
 ```diff
+@@ -36,11 +31,10 @@
   		);
   
 - 		console.log("🚀 ~ saveQRCodeUrl ~ enrichedRestaurant:", enrichedRestaurant);
@@ -642,7 +700,11 @@ Next, let's update the server action that saves the QR codes to simplify its beh
   			success: true,
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 4
+
 ```diff
+@@ -59,13 +53,10 @@
   	restaurantId,
   	qrCodeUrl,
 - 	qrCodeDataUrl,
@@ -659,7 +721,11 @@ Next, let's update the server action that saves the QR codes to simplify its beh
   		const updatedRestaurant = await db
 ```
 
+**Chunk 5**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -75,6 +66,4 @@
   			.returning();
   
 - 		console.log("Update result:", updatedRestaurant);
@@ -668,7 +734,11 @@ Next, let's update the server action that saves the QR codes to simplify its beh
   			console.error("No restaurant updated");
 ```
 
+**Chunk 6**
+Lines added: 5, lines removed: 6
+
 ```diff
+@@ -88,11 +77,10 @@
   		);
   
 - 		console.log("🚀 ~ saveQRCodeUrl ~ enrichedRestaurant:", enrichedRestaurant);
@@ -687,7 +757,11 @@ Next, let's update the server action that saves the QR codes to simplify its beh
   			success: true,
 ```
 
+**Chunk 7**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -136,6 +124,6 @@
   		}
   
 - 		// Revalidate the restaurants page to show updates
@@ -698,13 +772,23 @@ Next, let's update the server action that saves the QR codes to simplify its beh
   		// Consider the operation successful if at least one QR code was saved
 ```
 
+</details>
+
 ---
 
 Now, let's update the QR code display in the restaurant table to simplify it and avoid the oversized renderings:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -91,4 +91,13 @@
   import {cn} from '@/lib/utils'
   import {useCallback, useEffect} from 'react'
 + import {
@@ -720,7 +804,11 @@ Now, let's update the QR code display in the restaurant table to simplify it and
   // Define interfaces for TanStack Table metadata
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -608,5 +617,5 @@
       {
         accessorKey: 'qrCodeUrl',
 -       size: 200,
@@ -729,7 +817,11 @@ Now, let's update the QR code display in the restaurant table to simplify it and
         cell: ({row}) => {
 ```
 
+**Chunk 3**
+Lines added: 25, lines removed: 2
+
 ```diff
+@@ -615,9 +624,32 @@
             <div className='flex items-center'>
               <QrCode className='h-4 w-4 text-sidebar-foreground/50 mr-2' />
 -             <QRCodeManager
@@ -766,13 +858,23 @@ Now, let's update the QR code display in the restaurant table to simplify it and
           )
 ```
 
+</details>
+
 ---
 
 Let's fix the path to the QRCodeGenerator component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -99,5 +99,5 @@
     DialogTrigger,
   } from '@/components/ui/dialog'
 - import {QRCodeGenerator} from '@/components/admin/QRCodeGenerator'
@@ -781,13 +883,23 @@ Let's fix the path to the QRCodeGenerator component:
   // Define interfaces for TanStack Table metadata
 ```
 
+</details>
+
 ---
 
 Let's update the hooks for handling QR codes to fix the remaining type issues:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 25, lines removed: 11
+
 ```diff
+@@ -13,24 +13,38 @@
     restaurantId: string
     success: boolean
 -   qrCodeDataUrl?: string
@@ -839,7 +951,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
     const qrRef = useRef<HTMLDivElement>(null)
 ```
 
+**Chunk 2**
+Lines added: 31, lines removed: 154
+
 ```diff
+@@ -43,189 +57,66 @@
     const [results, setResults] = useState<QRCodeResult[]>([])
   
 -   // Get restaurant ID based on mode
@@ -1062,7 +1178,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
         console.error('Download failed:', err)
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: 89
+
 ```diff
+@@ -234,96 +125,16 @@
         )
       }
 -   }, [mode, restaurant?.name, qrCodeDataUrl])
@@ -1170,7 +1290,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
         if (result?.success) {
 ```
 
+**Chunk 4**
+Lines added: 12, lines removed: 11
+
 ```diff
+@@ -333,35 +144,36 @@
           throw new Error(result?.error || 'Failed to save QR code')
         }
 - 
@@ -1220,7 +1344,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
         if (select) {
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -371,14 +183,13 @@
         }
       },
 -     [mode]
@@ -1239,7 +1367,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
           setError('Please select at least one restaurant to generate QR codes')
 ```
 
+**Chunk 6**
+Lines added: 4, lines removed: 5
+
 ```diff
+@@ -395,14 +206,13 @@
           const generatedResults: QRCodeResult[] = []
   
 +         // Process each restaurant
@@ -1260,7 +1392,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
   
 ```
 
+**Chunk 7**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -422,10 +232,10 @@
         }
       },
 -     [mode, selectedRestaurants, generateQRCodeDataUrl]
@@ -1275,7 +1411,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
       if (results.length === 0) {
 ```
 
+**Chunk 8**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -440,8 +250,8 @@
         const bulkData = results.map((result) => ({
           restaurantId: result.restaurantId,
 -         qrCodeUrl: result.qrCodeDataUrl || '',
@@ -1288,7 +1428,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
   
 ```
 
+**Chunk 9**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -465,4 +275,9 @@
             })
           )
 + 
@@ -1300,7 +1444,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
           throw new Error('Failed to save QR codes to database')
 ```
 
+**Chunk 10**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -478,9 +293,9 @@
         setSaving(false)
       }
 -   }, [mode, results])
@@ -1315,7 +1463,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
       if (results.length === 0) {
 ```
 
+**Chunk 11**
+Lines added: 9, lines removed: 55
+
 ```diff
+@@ -498,65 +313,19 @@
   
         let successCount = 0
 -       const failedItems: string[] = []
@@ -1392,7 +1544,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
   
 ```
 
+**Chunk 12**
+Lines added: 1, lines removed: 9
+
 ```diff
+@@ -565,14 +334,6 @@
         saveAs(content, 'restaurant-qr-codes.zip')
   
 -       // Provide feedback
@@ -1410,7 +1566,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
       } catch (error) {
 ```
 
+**Chunk 13**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -581,12 +342,12 @@
           `Failed to download QR codes: ${
             error instanceof Error ? error.message : 'Unknown error'
 -         }. Check your browser's download permissions.`
@@ -1428,7 +1588,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
       setSelectedRestaurants([])
 ```
 
+**Chunk 14**
+Lines added: 2, lines removed: 4
+
 ```diff
+@@ -597,13 +358,11 @@
       setProgress(0)
       setResults([])
 -   }, [mode])
@@ -1446,7 +1610,11 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
         handleDownload,
 ```
 
+**Chunk 15**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -616,4 +375,5 @@
       }
     }
 + 
@@ -1454,13 +1622,23 @@ Let's update the hooks for handling QR codes to fix the remaining type issues:
       selectedRestaurants,
 ```
 
+</details>
+
 ---
 
 Now let's update the QRCodeManager component in the restaurants table to use our improved QRCodeGenerator:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -66,6 +66,8 @@
   }
   
 - interface RestaurantQuickViewProps {
@@ -1473,13 +1651,23 @@ Now let's update the QRCodeManager component in the restaurants table to use our
   
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.tsx:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 4
+
 ```diff
+@@ -2,8 +2,5 @@
   
   import type React from 'react'
 - import {useState, useRef, useEffect} from 'react'
@@ -1491,7 +1679,11 @@ Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.t
   import {
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 14
+
 ```diff
+@@ -13,20 +10,8 @@
     DialogTitle,
     DialogHeader,
 -   DialogDescription,
@@ -1516,7 +1708,11 @@ Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.t
   type QRCodeVariant = 'default' | 'compact' | 'table'
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 69
+
 ```diff
+@@ -37,73 +22,4 @@
     onUpdate?: () => void
   }
 - 
@@ -1592,7 +1788,11 @@ Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.t
   export function QRCodeManager({
 ```
 
+**Chunk 4**
+Lines added: 6, lines removed: 57
+
 ```diff
+@@ -112,64 +28,13 @@
     onUpdate,
   }: QRCodeManagerProps) {
 -   // Use proper typing for the hook props
@@ -1665,7 +1865,11 @@ Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.t
         <Dialog>
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 24
+
 ```diff
+@@ -180,28 +45,5 @@
               className='flex items-center gap-1 px-2 h-8 touch-manipulation'
             >
 -             {restaurant.qrCodeUrl ? (
@@ -1697,7 +1901,11 @@ Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.t
           </DialogTrigger>
 ```
 
+**Chunk 6**
+Lines added: 5, lines removed: 121
+
 ```diff
+@@ -215,126 +57,10 @@
             </DialogHeader>
   
 -           {/* Simplified QR Code Content */}
@@ -1831,7 +2039,11 @@ Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.t
           </DialogContent>
 ```
 
+**Chunk 7**
+Lines added: 5, lines removed: 103
+
 ```diff
+@@ -345,109 +71,11 @@
     // Compact variant for smaller spaces
     if (variant === 'compact') {
 -     // Create a ref for the displayed QR code
@@ -1948,7 +2160,11 @@ Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.t
       )
 ```
 
+**Chunk 8**
+Lines added: 3, lines removed: 248
+
 ```diff
+@@ -457,253 +85,8 @@
     return (
       <div className='w-full max-w-md'>
 -       <FullQRManager
@@ -2207,13 +2423,23 @@ Let's fix the remaining issues with the QRCodeGenerator in the qr-code-manager.t
       </div>
 ```
 
+</details>
+
 ---
 
 Let's create a utils file to generate QR codes if we need one:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/utils.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 17, lines removed: undefined
+
 ```diff
+@@ -1,2 +1,19 @@
 + /**
 +  * Utility functions for handling restaurant QR codes
 +  */
@@ -2234,6 +2460,8 @@ Let's create a utils file to generate QR codes if we need one:
   // Generate QR code SVG data URL
   export const generateQRCodeDataUrl = (qrCodeValue: string) => {
 ```
+
+</details>
 
 ---
 
@@ -2299,7 +2527,15 @@ I'll update the QR code column in the table to display a QR code icon with a dow
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 79, lines removed: undefined
+
 ```diff
+@@ -622,4 +622,83 @@
         cell: ({row}) => {
           const restaurant = row.original as Restaurant
 + 
@@ -2385,7 +2621,11 @@ I'll update the QR code column in the table to display a QR code icon with a dow
             <div className='flex items-center'>
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 6
+
 ```diff
+@@ -632,14 +711,10 @@
                     className='flex items-center gap-1 px-2 h-8 touch-manipulation'
                   >
 -                   {restaurant.qrCodeUrl ? 'View QR' : 'Create QR'}
@@ -2404,6 +2644,8 @@ I'll update the QR code column in the table to display a QR code icon with a dow
   
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining type issue with the Restaurant type. We need to update the Restaurant type definition or modify our usage of the type:
@@ -2418,7 +2660,15 @@ I can see that the `Restaurant` type requires a `qrCodeSvg` property but we're n
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -10,5 +10,5 @@
   
   export interface QRCodeGeneratorProps {
 -   restaurant: Restaurant
@@ -2427,13 +2677,23 @@ I can see that the `Restaurant` type requires a `qrCodeSvg` property but we're n
     className?: string
 ```
 
+</details>
+
 ---
 
 Now let's fix the same issue in the RestaurantQuickView component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -68,5 +68,5 @@
   // Update the component props to accept either restaurant or restaurantId
   export interface RestaurantQuickViewProps {
 -   restaurant?: Restaurant
@@ -2442,13 +2702,23 @@ Now let's fix the same issue in the RestaurantQuickView component:
   }
 ```
 
+</details>
+
 ---
 
 Let's fix the QR code download functionality to work with our updated types:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -118,4 +118,9 @@
     deals?: {id: string; title: string; isActive: boolean}[]
   }
 + 
@@ -2460,7 +2730,11 @@ Let's fix the QR code download functionality to work with our updated types:
   // Props for editable cells
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -621,5 +626,5 @@
         header: 'QR Code',
         cell: ({row}) => {
 -         const restaurant = row.original as Restaurant
@@ -2469,13 +2743,23 @@ Let's fix the QR code download functionality to work with our updated types:
           // If restaurant has a QR code, show icon and download button
 ```
 
+</details>
+
 ---
 
 Let's fix this by using a more lenient type approach. Instead of trying to match the exact types, we'll focus on ensuring the QRCodeGenerator has what it needs:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -626,5 +626,5 @@
         header: 'QR Code',
         cell: ({row}) => {
 -         const restaurant = row.original as TableRestaurant
@@ -2484,13 +2768,23 @@ Let's fix this by using a more lenient type approach. Instead of trying to match
           // If restaurant has a QR code, show icon and download button
 ```
 
+</details>
+
 ---
 
 Let's try a more direct approach. Since we're dealing with a downloaded QR code in the table and not reading/modifying properties, let's just update the QRCodeGenerator component with a simpler type definition:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -10,5 +10,10 @@
   
   export interface QRCodeGeneratorProps {
 -   restaurant: Omit<Restaurant, 'qrCodeSvg'> & {qrCodeSvg?: string | null}
@@ -2504,13 +2798,23 @@ Let's try a more direct approach. Since we're dealing with a downloaded QR code 
     className?: string
 ```
 
+</details>
+
 ---
 
 Now let's update the restaurant-quick-view.tsx file similarly to fix those type issues:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -68,5 +68,10 @@
   // Update the component props to accept either restaurant or restaurantId
   export interface RestaurantQuickViewProps {
 -   restaurant?: Omit<Restaurant, 'qrCodeSvg'> & {qrCodeSvg?: string | null}
@@ -2523,6 +2827,8 @@ Now let's update the restaurant-quick-view.tsx file similarly to fix those type 
     restaurantId?: bigint | string
   }
 ```
+
+</details>
 
 ---
 
@@ -2660,7 +2966,15 @@ Let's modify the `handleQRCodeUpdate` function to update the local data array by
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 20, lines removed: 3
+
 ```diff
+@@ -345,8 +345,25 @@
     })
   
 -   // Function to handle individual QR code updates
@@ -2691,13 +3005,23 @@ Let's modify the `handleQRCodeUpdate` function to update the local data array by
     // Check viewport size on mount and window resize
 ```
 
+</details>
+
 ---
 
 Now let's update the `saveQRCodeUrl` action to return the updated restaurant and modify the `QRCodeGenerator` component to pass the updated restaurant to the `onUpdate` callback:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -16,5 +16,5 @@
       [key: string]: any // Allow any other properties
     }
 -   onUpdate?: () => void
@@ -2706,7 +3030,11 @@ Now let's update the `saveQRCodeUrl` action to return the updated restaurant and
     variant?: 'default' | 'compact' | 'table'
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -120,7 +120,7 @@
           setSuccess(true)
           setGenerating(false)
 -         // Call onUpdate callback if provided
@@ -2719,13 +3047,23 @@ Now let's update the `saveQRCodeUrl` action to return the updated restaurant and
         } else {
 ```
 
+</details>
+
 ---
 
 Now let's update the `QRCodeManager` component to pass the updated restaurant to the handleQRCodeUpdate function:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -20,5 +20,5 @@
     restaurant: Restaurant
     variant?: QRCodeVariant
 -   onUpdate?: () => void
@@ -2734,7 +3072,11 @@ Now let's update the `QRCodeManager` component to pass the updated restaurant to
   
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 3
+
 ```diff
+@@ -29,9 +29,12 @@
   }: QRCodeManagerProps) {
     // Handle QR code update
 -   const handleQRCodeUpdate = useCallback(() => {
@@ -2752,13 +3094,23 @@ Now let's update the `QRCodeManager` component to pass the updated restaurant to
     // Compact variant for table cells
 ```
 
+</details>
+
 ---
 
 Let's also add type safety to avoid the TypeScript errors:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -347,5 +347,5 @@
     // Function to handle QR code updates
     const handleQRCodeUpdate = React.useCallback(
 -     (updatedRestaurant) => {
@@ -2767,13 +3119,23 @@ Let's also add type safety to avoid the TypeScript errors:
           // Update the local state with the updated restaurant
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining type issues by making the type more flexible:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -20,5 +20,5 @@
     restaurant: Restaurant
     variant?: QRCodeVariant
 -   onUpdate?: (updatedRestaurant: Restaurant) => void
@@ -2782,13 +3144,23 @@ Let's fix the remaining type issues by making the type more flexible:
   
 ```
 
+</details>
+
 ---
 
 Let's fix the last type issue:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -30,5 +30,5 @@
     // Handle QR code update
     const handleQRCodeUpdate = useCallback(
 -     (updatedRestaurant) => {
@@ -2796,6 +3168,8 @@ Let's fix the last type issue:
         if (onUpdate) {
           onUpdate(updatedRestaurant)
 ```
+
+</details>
 
 ---
 
@@ -2805,7 +3179,15 @@ Let's also make sure the QR generator in the dialog immediately closes after suc
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -645,4 +645,6 @@
         cell: ({row}) => {
           const restaurant = row.original
 +         // State to manage dialog visibility
@@ -2814,7 +3196,11 @@ Let's also make sure the QR generator in the dialog immediately closes after suc
           // If restaurant has a QR code, show icon and download button
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: 1
+
 ```diff
+@@ -722,10 +724,18 @@
             )
           }
 + 
@@ -2836,7 +3222,11 @@ Let's also make sure the QR generator in the dialog immediately closes after suc
                   <Button
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -746,5 +756,5 @@
                       restaurant={restaurant}
                       variant='compact'
 -                     onUpdate={handleQRCodeUpdate}
@@ -2844,6 +3234,8 @@ Let's also make sure the QR generator in the dialog immediately closes after suc
                     />
                   </div>
 ```
+
+</details>
 
 ---
 
@@ -2903,7 +3295,15 @@ Now let's update the RestaurantQuickView component to pass updates back to the t
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -75,7 +75,12 @@
     }
     restaurantId?: bigint | string
 +   onQRCodeUpdate?: (updatedRestaurant: any) => void
@@ -2919,7 +3319,11 @@ Now let's update the RestaurantQuickView component to pass updates back to the t
     const [isLoading, setIsLoading] = useState(false)
 ```
 
+**Chunk 2**
+Lines added: 19, lines removed: undefined
+
 ```diff
+@@ -185,4 +190,23 @@
       toast.success('New deal created successfully')
     }
 + 
@@ -2945,7 +3349,11 @@ Now let's update the RestaurantQuickView component to pass updates back to the t
     // Convert restaurant data to bento grid items
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 7
+
 ```diff
+@@ -238,11 +262,5 @@
               }}
               variant='compact'
 -             onUpdate={(updatedRestaurant) => {
@@ -2960,13 +3368,23 @@ Now let's update the RestaurantQuickView component to pass updates back to the t
           </div>
 ```
 
+</details>
+
 ---
 
 Now that we've updated the RestaurantQuickView component, let's update the restaurants-table.tsx to pass the handleQRCodeUpdate function to the RestaurantQuickView component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -829,5 +829,8 @@
           return (
             <div className='flex justify-center'>
 -             <RestaurantQuickView restaurant={restaurant} />
@@ -2978,13 +3396,23 @@ Now that we've updated the RestaurantQuickView component, let's update the resta
           )
 ```
 
+</details>
+
 ---
 
 Let's also fix the RestaurantQuickView component for the mobile view:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -830,5 +830,5 @@
             <div className='flex justify-center'>
               <RestaurantQuickView
 -               restaurant={restaurant}
@@ -2993,7 +3421,11 @@ Let's also fix the RestaurantQuickView component for the mobile view:
               />
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -1424,5 +1424,8 @@
                       {/* Quick View Button */}
                       <div className='flex justify-end pt-3 border-t border-sidebar-border'>
 -                       <RestaurantQuickView restaurantId={restaurant.id} />
@@ -3005,13 +3437,23 @@ Let's also fix the RestaurantQuickView component for the mobile view:
                     </div>
 ```
 
+</details>
+
 ---
 
 Let's fix the type error in the RestaurantQuickView component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 10, lines removed: 3
+
 ```diff
+@@ -86,7 +86,14 @@
     const [isLoading, setIsLoading] = useState(false)
     const [restaurantData, setRestaurantData] =
 -     useState<DetailedRestaurant | null>(restaurant)
@@ -3031,7 +3473,11 @@ Let's fix the type error in the RestaurantQuickView component:
     const [isDealDialogOpen, setIsDealDialogOpen] = useState(false)
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -103,5 +110,7 @@
   
         try {
 -         const data = await getRestaurantByIdWithAll(restaurant.id)
@@ -3042,7 +3488,11 @@ Let's fix the type error in the RestaurantQuickView component:
           console.log('🚀 ~ handleOpen ~ data:', data)
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 4
+
 ```diff
+@@ -381,8 +390,4 @@
       return items
     }, [restaurantData])
 - 
@@ -3052,6 +3502,8 @@ Let's fix the type error in the RestaurantQuickView component:
   
     return (
 ```
+
+</details>
 
 ---
 
@@ -3201,7 +3653,15 @@ I'll create a utility function to check if a URL is valid, which can be used for
 
 ---
 
+<details><summary>Edit file: src/lib/utils.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 31, lines removed: undefined
+
 ```diff
+@@ -66,3 +66,34 @@
   	return data;
   }
 + 
@@ -3238,13 +3698,23 @@ I'll create a utility function to check if a URL is valid, which can be used for
   
 ```
 
+</details>
+
 ---
 
 Now let's create a more robust version for the QR Code URL validation:
 
 ---
 
+<details><summary>Edit file: src/lib/qr-utils.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 82, lines removed: 1
+
 ```diff
+@@ -1,1 +1,82 @@
 - 
 + /**
 +  * Utility functions for QR code handling
@@ -3330,13 +3800,23 @@ Now let's create a more robust version for the QR Code URL validation:
 + } 
 ```
 
+</details>
+
 ---
 
 Now let's update the QR code download functionality in the restaurants table to use our new utility functions:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -59,4 +59,5 @@
   import {exportToCSV} from '@/lib/csv'
   import {CSVUpload} from '@/components/admin/csv-upload'
 + import {downloadQrCode} from '@/lib/qr-utils'
@@ -3344,7 +3824,11 @@ Now let's update the QR code download functionality in the restaurants table to 
   // Styled components imports
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 6
+
 ```diff
+@@ -659,15 +660,11 @@
                   onClick={(e) => {
                     e.stopPropagation()
 -                   // Create an anchor element for download
@@ -3364,7 +3848,11 @@ Now let's update the QR code download functionality in the restaurants table to 
                       const root = createRoot(tempDiv)
 ```
 
+**Chunk 3**
+Lines added: 5, lines removed: 26
+
 ```diff
+@@ -683,34 +680,13 @@
                         )
   
 -                       // Get the SVG element
@@ -3406,13 +3894,23 @@ Now let's update the QR code download functionality in the restaurants table to 
                       })
 ```
 
+</details>
+
 ---
 
 Let's also update the QRCodeGenerator component to use our new utility functions:
 
 ---
 
+<details><summary>Edit file: src/components/qr-code/qr-code-generator.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -8,4 +8,5 @@
   import clsx from 'clsx'
   import {Button} from '@/components/ui/button'
 + import {downloadQrCode, getRestaurantQrCodeUrl} from '@/lib/qr-utils'
@@ -3420,7 +3918,11 @@ Let's also update the QRCodeGenerator component to use our new utility functions
   export interface QRCodeGeneratorProps {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -46,5 +47,5 @@
     // Get default target URL for a restaurant
     function getDefaultTargetUrl(restaurantId: bigint | number | string): string {
 -     return `${window.location.origin}/api/restaurants/${restaurantId}/scan`
@@ -3429,7 +3931,11 @@ Let's also update the QRCodeGenerator component to use our new utility functions
   
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 36
+
 ```diff
+@@ -66,40 +67,7 @@
     // Download QR code as image
     const handleDownload = () => {
 -     try {
@@ -3475,13 +3981,23 @@ Let's also update the QRCodeGenerator component to use our new utility functions
     }
 ```
 
+</details>
+
 ---
 
 Finally, let's also update the bulk QR code generation hook to use our new utilities:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -9,4 +9,5 @@
   import JSZip from 'jszip'
   import {saveAs} from 'file-saver'
 + import {getRestaurantQrCodeUrl, downloadQrCode} from '@/lib/qr-utils'
@@ -3489,7 +4005,11 @@ Finally, let's also update the bulk QR code generation hook to use our new utili
   type QRCodeResult = {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -61,7 +62,5 @@
       restaurantId: bigint | number | string
     ): string {
 -     return `${
@@ -3500,7 +4020,11 @@ Finally, let's also update the bulk QR code generation hook to use our new utili
   
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -73,6 +72,4 @@
       setQrCodeValue(newQrCodeValue)
       setGenerating(true)
 -     setError(null)
@@ -3509,7 +4033,11 @@ Finally, let's also update the bulk QR code generation hook to use our new utili
   
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 32
+
 ```diff
+@@ -92,36 +89,7 @@
       }
   
 -     try {
@@ -3550,6 +4078,8 @@ Finally, let's also update the bulk QR code generation hook to use our new utili
       }
     }, [isSingleMode, restaurant])
 ```
+
+</details>
 
 ---
 

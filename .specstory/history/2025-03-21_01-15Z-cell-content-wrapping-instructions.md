@@ -30,7 +30,15 @@ Let me modify the table cells to make content wrap properly instead of truncatin
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -158,5 +158,5 @@
   		(column.columnDef.meta as ColumnMeta)?.editable === false
   	) {
 - 		return <div className="py-2 text-sm">{value?.toString()}</div>;
@@ -39,7 +47,11 @@ Let me modify the table cells to make content wrap properly instead of truncatin
   
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: 4
+
 ```diff
+@@ -165,12 +165,18 @@
   		switch (columnId) {
   			case "name":
 - 				return <Building className="h-4 w-4 text-sidebar-foreground/50 mr-2" />;
@@ -64,7 +76,11 @@ Let me modify the table cells to make content wrap properly instead of truncatin
   			default:
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -209,13 +215,13 @@
   	) : (
   		<div className="flex items-center justify-between space-x-2">
 - 			<div className="flex items-center truncate py-2 text-sm">
@@ -83,7 +99,11 @@ Let me modify the table cells to make content wrap properly instead of truncatin
   				<Edit className="h-4 w-4" />
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -889,5 +895,8 @@
   									>
   										{row.getVisibleCells().map((cell) => (
 - 											<TableCell key={cell.id} className="px-4 py-3">
@@ -94,6 +114,8 @@ Let me modify the table cells to make content wrap properly instead of truncatin
   												{flexRender(
   													cell.column.columnDef.cell,
 ```
+
+</details>
 
 ---
 
@@ -222,7 +244,15 @@ The issue might be with how the selection state is being tracked or how the tool
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -244,4 +244,13 @@
   	const router = useRouter();
   	const [isMobileView, setIsMobileView] = React.useState(false);
 + 
@@ -238,13 +268,23 @@ The issue might be with how the selection state is being tracked or how the tool
   	// Add bulk QR code generation hook
 ```
 
+</details>
+
 ---
 
 Let's add a more comprehensive fix to ensure the bulk toolbar appears correctly:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 8
+
 ```diff
+@@ -245,12 +245,6 @@
   	const [isMobileView, setIsMobileView] = React.useState(false);
   
 - 	// Debug selection state
@@ -261,7 +301,11 @@ Let's add a more comprehensive fix to ensure the bulk toolbar appears correctly:
   	// Add bulk QR code generation hook
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -307,10 +301,10 @@
   			id: "select",
   			header: ({ table }) => (
 - 				<div className=" flex items-center justify-center">
@@ -278,7 +322,11 @@ Let's add a more comprehensive fix to ensure the bulk toolbar appears correctly:
   						className="translate-y-[2px] border-gray-400 dark:border-gray-600"
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -322,7 +316,7 @@
   					<Checkbox
   						checked={row.getIsSelected()}
 - 						onCheckedChange={(value: boolean | "indeterminate") =>
@@ -291,7 +339,11 @@ Let's add a more comprehensive fix to ensure the bulk toolbar appears correctly:
   						className="translate-y-[2px] border-gray-400 dark:border-gray-600"
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -572,5 +566,7 @@
   		},
   		enableRowSelection: true,
 - 		onRowSelectionChange: setRowSelection,
@@ -302,7 +354,11 @@ Let's add a more comprehensive fix to ensure the bulk toolbar appears correctly:
   		getCoreRowModel: getCoreRowModel(),
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -623,11 +619,11 @@
   
   			{/* Bulk Actions Toolbar */}
 - 			{Object.keys(rowSelection).length > 0 && (
@@ -319,7 +375,11 @@ Let's add a more comprehensive fix to ensure the bulk toolbar appears correctly:
   						</div>
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 4
+
 ```diff
+@@ -904,8 +900,5 @@
   									>
   										{row.getVisibleCells().map((cell) => (
 - 											<TableCell
@@ -331,13 +391,23 @@ Let's add a more comprehensive fix to ensure the bulk toolbar appears correctly:
   													cell.column.columnDef.cell,
 ```
 
+</details>
+
 ---
 
 Let's check if a style issue might be preventing the toolbar from displaying properly:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -617,8 +617,13 @@
   				onSortChange={setSortOption}
   			/>
 + 
@@ -354,7 +424,11 @@ Let's check if a style issue might be preventing the toolbar from displaying pro
   						<div className="flex items-center">
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -635,5 +640,5 @@
   									onClick={handleBulkGenerate}
   									disabled={bulkGenerating}
 - 									className="h-8 bg-background border-sidebar-border hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
@@ -363,13 +437,23 @@ Let's check if a style issue might be preventing the toolbar from displaying pro
   									<QrCode className="h-3.5 w-3.5 mr-1.5" />
 ```
 
+</details>
+
 ---
 
 Let's fix potential issues with how selections are processed by making more comprehensive changes:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 29, lines removed: undefined
+
 ```diff
+@@ -295,4 +295,33 @@
   		setData(initialData);
   	}, [initialData]);
 + 
@@ -405,7 +489,11 @@ Let's fix potential issues with how selections are processed by making more comp
   	// Define columns for the table
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 2
+
 ```diff
+@@ -303,6 +332,10 @@
   				<div className="flex items-center justify-center">
   					<Checkbox
 - 						checked={table.getIsAllPageRowsSelected()}
@@ -420,7 +508,11 @@ Let's fix potential issues with how selections are processed by making more comp
   						}}
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -316,5 +349,6 @@
   					<Checkbox
   						checked={row.getIsSelected()}
 - 						onCheckedChange={(value: boolean | "indeterminate") => {
@@ -430,7 +522,11 @@ Let's fix potential issues with how selections are processed by making more comp
   						}}
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -732,5 +766,8 @@
   											<Checkbox
   												checked={isSelected}
 - 												onCheckedChange={(value: boolean | "indeterminate") => {
@@ -442,13 +538,23 @@ Let's fix potential issues with how selections are processed by making more comp
   													if (value === true) {
 ```
 
+</details>
+
 ---
 
 Let's fix the linter error and further improve the selection handling:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 4
+
 ```diff
+@@ -332,8 +332,6 @@
   				<div className="flex items-center justify-center">
   					<Checkbox
 - 						checked={
@@ -460,6 +566,8 @@ Let's fix the linter error and further improve the selection handling:
   						onCheckedChange={(value) => {
   							handleToggleAllRows(!!value);
 ```
+
+</details>
 
 ---
 
@@ -488,7 +596,15 @@ Let's also ensure the row selection and bulk toolbar issues are still addressed 
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -158,5 +158,9 @@
   		(column.columnDef.meta as ColumnMeta)?.editable === false
   	) {
 - 		return <div className="py-2 text-sm break-words">{value?.toString()}</div>;
@@ -501,7 +617,11 @@ Let's also ensure the row selection and bulk toolbar issues are still addressed 
   
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 10
+
 ```diff
+@@ -165,18 +169,12 @@
   		switch (columnId) {
   			case "name":
 - 				return (
@@ -526,7 +646,11 @@ Let's also ensure the row selection and bulk toolbar issues are still addressed 
   			default:
 ```
 
+**Chunk 3**
+Lines added: 6, lines removed: 3
+
 ```diff
+@@ -215,13 +213,16 @@
   	) : (
   		<div className="flex items-center justify-between space-x-2">
 - 			<div className="flex items-center py-2 text-sm break-words whitespace-normal">
@@ -548,7 +672,11 @@ Let's also ensure the row selection and bulk toolbar issues are still addressed 
   				<Edit className="h-4 w-4" />
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -940,5 +941,8 @@
   									>
   										{row.getVisibleCells().map((cell) => (
 - 											<TableCell key={cell.id} className="px-4 py-3 ">
@@ -560,13 +688,23 @@ Let's also ensure the row selection and bulk toolbar issues are still addressed 
   													cell.column.columnDef.cell,
 ```
 
+</details>
+
 ---
 
 Let's fix the indeterminate prop issue with the Checkbox component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -334,5 +334,4 @@
   					<Checkbox
   						checked={table.getIsAllPageRowsSelected()}
 - 						indeterminate={table.getIsSomePageRowsSelected()}
@@ -574,7 +712,11 @@ Let's fix the indeterminate prop issue with the Checkbox component:
   							handleToggleAllRows(!!value);
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -943,5 +942,5 @@
   											<TableCell
   												key={cell.id}
 - 												className="px-4 py-3 max-w-[200px] overflow-hidden"
@@ -583,13 +725,23 @@ Let's fix the indeterminate prop issue with the Checkbox component:
   												{flexRender(
 ```
 
+</details>
+
 ---
 
 Now I'll adjust the cell styles for better truncation and add hover functionality to see full content:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 3
+
 ```diff
+@@ -212,11 +212,13 @@
   		</div>
   	) : (
 - 		<div className="flex items-center justify-between space-x-2">
@@ -608,7 +760,11 @@ Now I'll adjust the cell styles for better truncation and add hover functionalit
   			<Button
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -944,8 +946,10 @@
   												className="px-4 py-3 max-w-[200px] overflow-hidden whitespace-nowrap"
   											>
 + 												<div className="relative">
@@ -621,13 +777,23 @@ Now I'll adjust the cell styles for better truncation and add hover functionalit
   										))}
 ```
 
+</details>
+
 ---
 
 Finally, let's make a couple more adjustments to ensure the best possible truncation behavior:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -159,5 +159,8 @@
   	) {
   		return (
 - 			<div className="py-2 text-sm truncate" title={value?.toString()}>
@@ -639,7 +805,11 @@ Finally, let's make a couple more adjustments to ensure the best possible trunca
   			</div>
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -218,7 +221,5 @@
   			>
   				{getColumnIcon()}
 - 				<span className="truncate group-hover/cell:overflow-visible group-hover/cell:whitespace-normal group-hover/cell:z-10">
@@ -650,7 +820,11 @@ Finally, let's make a couple more adjustments to ensure the best possible trunca
   			<Button
 ```
 
+**Chunk 3**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -599,4 +600,10 @@
   			rowSelection,
   		},
 + 		// Initial page size - adjust for better fit with truncated content
@@ -663,7 +837,11 @@ Finally, let's make a couple more adjustments to ensure the best possible trunca
   		onRowSelectionChange: (updatedSelection) => {
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -944,5 +951,5 @@
   											<TableCell
   												key={cell.id}
 - 												className="px-4 py-3 max-w-[200px] overflow-hidden whitespace-nowrap"
@@ -671,6 +849,8 @@ Finally, let's make a couple more adjustments to ensure the best possible trunca
   											>
   												<div className="relative">
 ```
+
+</details>
 
 ---
 
@@ -720,7 +900,15 @@ Let me fix these issues:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 44, lines removed: 10
+
 ```diff
+@@ -294,16 +294,50 @@
   
   				try {
 - 					// Extract base64 content from data URL
@@ -783,13 +971,23 @@ Let me fix these issues:
   					console.error(`Error processing ${restaurant.name}:`, itemError);
 ```
 
+</details>
+
 ---
 
 Now let's fix the checkbox deselection issue:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -338,6 +338,8 @@
   						checked={table.getIsAllPageRowsSelected()}
   						onCheckedChange={(value) => {
 - 							handleToggleAllRows(!!value);
@@ -802,7 +1000,11 @@ Now let's fix the checkbox deselection issue:
   						aria-label="Select all rows"
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 2
+
 ```diff
+@@ -351,6 +353,8 @@
   						checked={row.getIsSelected()}
   						onCheckedChange={(value) => {
 - 							handleToggleRow(row.id, !!value);
@@ -815,7 +1017,11 @@ Now let's fix the checkbox deselection issue:
   						aria-label="Select row"
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -608,4 +612,5 @@
   		enableRowSelection: true,
   		onRowSelectionChange: (updatedSelection) => {
 + 			console.log("Row selection changed:", updatedSelection);
@@ -823,13 +1029,23 @@ Now let's fix the checkbox deselection issue:
   		},
 ```
 
+</details>
+
 ---
 
 Let's also fix the same issue in the BulkQRCodeManager component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -154,5 +154,5 @@
   						checked={allSelected}
   						onCheckedChange={(checked) =>
 - 							toggleSelectAll(restaurants, !!checked)
@@ -838,7 +1054,11 @@ Let's also fix the same issue in the BulkQRCodeManager component:
   						disabled={generating || saving}
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -233,5 +233,7 @@
   											<Checkbox
   												checked={isSelected}
 - 												onCheckedChange={() => toggleRestaurant(restaurant)}
@@ -849,13 +1069,23 @@ Let's also fix the same issue in the BulkQRCodeManager component:
   											/>
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining issue in the BulkQRPage component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -106,5 +106,5 @@
   							checked={allSelected}
   							onCheckedChange={(checked) =>
 - 								toggleSelectAll(restaurants, !!checked)
@@ -864,7 +1094,11 @@ Let's fix the remaining issue in the BulkQRPage component:
   							disabled={generating || saving}
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -120,5 +120,5 @@
   						{!generating && !success && (
   							<Button
 - 								onClick={() => handleGenerateAll(selectedRestaurants)}
@@ -873,7 +1107,11 @@ Let's fix the remaining issue in the BulkQRPage component:
   							>
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -183,5 +183,7 @@
   										<Checkbox
   											checked={isSelected}
 - 											onCheckedChange={() => toggleRestaurant(restaurant)}
@@ -884,13 +1122,23 @@ Let's fix the remaining issue in the BulkQRPage component:
   											aria-label={`Select ${restaurant.name}`}
 ```
 
+</details>
+
 ---
 
 Now let's fix the issue in the BulkQRCodeManager component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -166,5 +166,5 @@
   						{!generating && !success && (
   							<Button
 - 								onClick={handleGenerateAll}
@@ -898,6 +1146,8 @@ Now let's fix the issue in the BulkQRCodeManager component:
   								disabled={selectedRestaurants.length === 0 || generating}
   								className="text-xs h-8"
 ```
+
+</details>
 
 ---
 
@@ -961,7 +1211,15 @@ Let's update the bulk handler to use techniques from the single QR code hook:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 43, lines removed: 41
+
 ```diff
+@@ -294,48 +294,50 @@
   
   				try {
 - 					// Safer handling of dataURL by using a more robust approach
@@ -1055,6 +1313,8 @@ Let's update the bulk handler to use techniques from the single QR code hook:
   					}
 ```
 
+</details>
+
 ---
 
 _**User**_
@@ -1108,7 +1368,15 @@ Read file: src/hooks/use-handle-qrCode.tsx
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -77,5 +77,5 @@
   					document.body.appendChild(tempContainer);
   
 - 					// Create a div for QR code to render into
@@ -1117,7 +1385,11 @@ Read file: src/hooks/use-handle-qrCode.tsx
   					qrContainer.style.width = "200px";
 ```
 
+**Chunk 2**
+Lines added: 50, lines removed: 11
+
 ```diff
+@@ -84,19 +84,58 @@
   					tempContainer.appendChild(qrContainer);
   
 - 					// Create SVG element manually
@@ -1189,7 +1461,11 @@ Read file: src/hooks/use-handle-qrCode.tsx
   								<text x="100" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" fill="black">
 ```
 
+**Chunk 3**
+Lines added: 52, lines removed: 47
+
 ```diff
+@@ -107,63 +146,68 @@
   								</text>
   							</svg>`;
 - 					const qrSvg = qrDiv.querySelector("svg");
@@ -1307,7 +1583,11 @@ Read file: src/hooks/use-handle-qrCode.tsx
   									<text x="100" y="100" text-anchor="middle" font-family="sans-serif" fill="black">
 ```
 
+**Chunk 4**
+Lines added: 7, lines removed: 6
+
 ```diff
+@@ -172,14 +216,15 @@
   								</svg>
   							`)}`;
 + 
@@ -1331,6 +1611,8 @@ Read file: src/hooks/use-handle-qrCode.tsx
   					// Update progress
 ```
 
+</details>
+
 ---
 
 
@@ -1341,7 +1623,15 @@ Could not find file 'node_modules/react-qr-code/lib/index.d.ts' in the workspace
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 8, lines removed: 36
+
 ```diff
+@@ -109,49 +109,21 @@
   						qrContainer.appendChild(qrCodeNode);
   
 - 						// Create the QR code using the library
@@ -1400,6 +1690,8 @@ Could not find file 'node_modules/react-qr-code/lib/index.d.ts' in the workspace
   					} catch (qrError) {
   						console.error("Error creating QR code:", qrError);
 ```
+
+</details>
 
 ---
 
@@ -1533,7 +1825,15 @@ The approach will be:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 583, lines removed: 1
+
 ```diff
+@@ -1,1 +1,583 @@
 - 
 + "use client";
 + 
@@ -2120,9 +2420,19 @@ The approach will be:
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -53,5 +53,5 @@
   	// Generate QR code SVG data URL
   	const generateQRCodeDataUrl = useCallback(
 - 		(restaurantId: string | number) => {
@@ -2131,7 +2441,11 @@ The approach will be:
   			const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" style="background-color: white">
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -167,5 +167,10 @@
   				navigator.userAgent,
   			);
 - 			const filename = `${props.restaurant.name.replace(/\s+/g, "-").toLowerCase()}-qrcode.svg`;
@@ -2145,7 +2459,11 @@ The approach will be:
   			if (isSafari) {
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 5
+
 ```diff
+@@ -223,9 +228,5 @@
   			);
   		}
 - 	}, [
@@ -2158,7 +2476,11 @@ The approach will be:
   	// Single mode: Save QR code URL to database
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -271,5 +272,6 @@
   			}
   
 - 			// Save to database
@@ -2168,7 +2490,11 @@ The approach will be:
   					props.restaurant.id.toString(),
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -283,4 +285,5 @@
   				} else {
   					throw new Error("Failed to save QR code");
 + 				}
@@ -2176,7 +2502,11 @@ The approach will be:
   		} catch (err) {
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 5
+
 ```diff
+@@ -294,9 +297,5 @@
   			setSaving(false);
   		}
 - 	}, [
@@ -2189,9 +2519,19 @@ The approach will be:
   	// Bulk mode: Toggle selection of a single restaurant
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -47,5 +47,5 @@
   
   	// Construct QR code value
 - 	const qrCodeValue = useCallback((restaurantId: string | number) => {
@@ -2200,7 +2540,11 @@ The approach will be:
   	}, []);
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -81,7 +81,6 @@
   							if (dataUrl.includes(";base64,")) {
   								return atob(base64Data);
 - 							} else {
@@ -2211,9 +2555,19 @@ The approach will be:
   					}
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -212,5 +212,7 @@
   					);
   				}
 - 			} else {
@@ -2224,13 +2578,19 @@ The approach will be:
   			const link = document.createElement("a");
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -220,5 +222,4 @@
   			link.click();
   			document.body.removeChild(link);
 - 			}
   		} catch (err) {
   			console.error("Download failed:", err);
 ```
+
+</details>
 
 ---
 
@@ -2285,7 +2645,15 @@ Let's start with modifying these files one by one.</details></think>
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import { useState, useRef, useEffect } from "react";
 - import { useHandleBulkQRCode } from "@/hooks/use-handle-bulk-qr-code";
@@ -2294,7 +2662,11 @@ Let's start with modifying these files one by one.</details></think>
   import {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -56,5 +56,5 @@
   		handleDownloadAll,
   		handleReset,
 - 	} = useHandleBulkQRCode();
@@ -2303,9 +2675,19 @@ Let's start with modifying these files one by one.</details></think>
   	const allSelected =
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -43,11 +43,11 @@
   	const [open, setOpen] = useState(false);
   	const {
 - 		selectedRestaurants,
@@ -2322,7 +2704,11 @@ Let's start with modifying these files one by one.</details></think>
   		toggleRestaurant,
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -56,5 +56,5 @@
   		handleDownloadAll,
   		handleReset,
 - 	} = useHandleQRCode({ mode: "bulk" });
@@ -2331,9 +2717,19 @@ Let's start with modifying these files one by one.</details></think>
   	const allSelected =
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -50,10 +50,10 @@
   		progress = 0,
   		results = [],
 - 		toggleSelectAll,
@@ -2352,6 +2748,8 @@ Let's start with modifying these files one by one.</details></think>
   
 ```
 
+</details>
+
 ---
 
 <details>
@@ -2359,7 +2757,7 @@ Let's start with modifying these files one by one.</details></think>
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr/page.tsx` |
 
 </details>
 
@@ -2382,10 +2780,10 @@ No results found
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-bulk-qr-code.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr/page.tsx` |
 
 </details>
 
@@ -2395,7 +2793,15 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restau
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import { useState, useEffect } from "react";
 - import { useHandleBulkQRCode } from "@/hooks/use-handle-bulk-qr-code";
@@ -2404,7 +2810,11 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restau
   import { Checkbox } from "@/components/ui/checkbox";
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -24,18 +24,18 @@
   export function BulkQRPage({ restaurants }: { restaurants: Restaurant[] }) {
   	const {
 - 		selectedRestaurants,
@@ -2435,6 +2845,8 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restau
   	const [isClient, setIsClient] = useState(false);
 ```
 
+</details>
+
 ---
 
 Could not find file '/Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/[id]/qr/page.tsx' in the workspace.
@@ -2446,20 +2858,20 @@ Could not find file '/Users/liamellis/Desktop/restaurant-passport-app/src/app/ad
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L17 | `type UseHandleQRCodeProps =` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L21 | `export const useHandleQRCode = (props: UseHandleQRCodeProps) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx` | L6 | `export const useHandleQRCode = ({ restaurant }: { restaurant: Restaurant }) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L6 | `import { useHandleQRCode } from "@/hooks/use-handle-qrCode";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L51 | `} = useHandleQRCode({ restaurant });` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L3 | `import { useHandleQRCode } from "@/hooks/use-handle-qr-code";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L38 | `} = useHandleQRCode({ restaurants, mode: "bulk" });` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L3 | `import { useHandleQRCode } from "@/hooks/use-handle-qr-code";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L57 | `} = useHandleQRCode({ restaurants, mode: "bulk" });` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx` | L6 | `export const useHandleQRCode = ({ restaurant }: { restaurant: Restaurant }) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L3 | `import { useHandleQRCode } from "@/hooks/use-handle-qr-code";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L57 | `} = useHandleQRCode({ restaurants, mode: "bulk" });` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L3 | `import { useHandleQRCode } from "@/hooks/use-handle-qr-code";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L38 | `} = useHandleQRCode({ restaurants, mode: "bulk" });` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L18 | `type UseHandleQRCodeProps =` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qr-code.tsx` | L22 | `export const useHandleQRCode = (props: UseHandleQRCodeProps) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx` | L7 | `export const useHandleQRCode = ({ restaurant }: { restaurant: Restaurant }) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L7 | `import { useHandleQRCode } from "@/hooks/use-handle-qrCode";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx` | L52 | `} = useHandleQRCode({ restaurant });` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L4 | `import { useHandleQRCode } from "@/hooks/use-handle-qr-code";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L39 | `} = useHandleQRCode({ restaurants, mode: "bulk" });` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L4 | `import { useHandleQRCode } from "@/hooks/use-handle-qr-code";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L58 | `} = useHandleQRCode({ restaurants, mode: "bulk" });` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx` | L7 | `export const useHandleQRCode = ({ restaurant }: { restaurant: Restaurant }) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L4 | `import { useHandleQRCode } from "@/hooks/use-handle-qr-code";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr-code-manager.tsx` | L58 | `} = useHandleQRCode({ restaurants, mode: "bulk" });` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L4 | `import { useHandleQRCode } from "@/hooks/use-handle-qr-code";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/bulk-qr.tsx` | L39 | `} = useHandleQRCode({ restaurants, mode: "bulk" });` |
 
 </details>
 
@@ -2469,7 +2881,15 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restau
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -5,5 +5,5 @@
   import QRCode from "react-qr-code";
   import Image from "next/image";
 - import { useHandleQRCode } from "@/hooks/use-handle-qrCode";
@@ -2478,9 +2898,19 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restau
   import {
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -45,10 +45,10 @@
   		error,
   		qrRef,
 - 		qrCodeValue,
@@ -2499,9 +2929,19 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restau
   	const [downloadSupported, setDownloadSupported] = useState(true);
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -44,5 +44,5 @@
   		success,
   		error,
 - 		qrRef,
@@ -2510,9 +2950,19 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restau
   		handleGenerate = () => {},
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 412
+
 ```diff
+@@ -1,419 +1,9 @@
   "use client";
   
 - import { saveBulkQRCodeUrls } from "@/app/admin/restaurants/actions";
@@ -2936,13 +3386,23 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restau
   
 ```
 
+</details>
+
 ---
 
 Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle-qrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 217
+
 ```diff
+@@ -1,224 +1,9 @@
   "use client";
   
 - import { saveQRCodeUrl } from "@/app/admin/restaurants/actions";
@@ -3170,6 +3630,8 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-handle
   };
   
 ```
+
+</details>
 
 ---
 

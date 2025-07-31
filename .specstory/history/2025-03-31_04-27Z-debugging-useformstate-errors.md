@@ -16,7 +16,17 @@ Let's use the mcp_Browser_Tools_getConsoleErrors tool to check for errors in the
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: Browser_Tools - getConsoleErrors: Check our browsers console errors
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -24,7 +34,17 @@ Let me check the console logs for more detailed information about the error.
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: Browser_Tools - getConsoleLogs: Check our browser logs
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -32,7 +52,17 @@ Let me check the network error logs which might provide more context about any u
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: Browser_Tools - getNetworkErrorLogs: Check our network ERROR logs
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+fetch failed
+</details>
 
 ---
 
@@ -40,7 +70,17 @@ Let me take a screenshot to see the current state of the application, which migh
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: Browser_Tools - takeScreenshot: Take a screenshot of the current browser tab
 
+*Parameters*:
+  * random_string: check
+
+*Result*:
+Failed to take screenshot: fetch failed
+</details>
 
 ---
 
@@ -49,8 +89,8 @@ It seems there might be connectivity issues with the browser tools. Let me try s
 ---
 
 <details>
-            <summary>Searched codebase "useFormState React component" • **25** results</summary>
-        
+                <summary>Searched codebase "useFormState React component" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/form.tsx` | L43-66 |
@@ -88,8 +128,8 @@ Let me search specifically for any errors related to useFormState usage.
 ---
 
 <details>
-            <summary>Searched codebase "useFormState import error" • **25** results</summary>
-        
+                <summary>Searched codebase "useFormState import error" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/form.tsx` | L43-66 |
@@ -127,8 +167,8 @@ I need to check for imports of useFormState from React or Next.js, as there are 
 ---
 
 <details>
-            <summary>Searched codebase "import { useFormState } from "react-dom"" • **25** results</summary>
-        
+                <summary>Searched codebase "import { useFormState } from "react-dom"" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/form.tsx` | L43-66 |
@@ -174,8 +214,8 @@ Now I see the import for useFormState in new-deal-form.tsx. Let me check if ther
 ---
 
 <details>
-            <summary>Searched codebase "import useFormState from multiple libraries or conflicting imports in the same file" • **25** results</summary>
-        
+                <summary>Searched codebase "import useFormState from multiple libraries or conflicting imports in the same file" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/form.tsx` | L43-66 |
@@ -329,7 +369,15 @@ I'd recommend using aliases to avoid the conflict. Here's how to fix it:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 54, lines removed: 54
+
 ```diff
+@@ -1,120 +1,120 @@
 - "use client";
 + 'use client'
   
@@ -506,7 +554,11 @@ I'd recommend using aliases to avoid the conflict. Here's how to fix it:
               required
 ```
 
+**Chunk 2**
+Lines added: 8, lines removed: 8
+
 ```diff
+@@ -123,17 +123,17 @@
   
           {/* Deal Content / Description */}
 - 				<div className="col-span-2">
@@ -534,7 +586,11 @@ I'd recommend using aliases to avoid the conflict. Here's how to fix it:
             />
 ```
 
+**Chunk 3**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -143,17 +143,17 @@
           <div>
             <label
 - 						htmlFor="restaurantId"
@@ -561,7 +617,11 @@ I'd recommend using aliases to avoid the conflict. Here's how to fix it:
                 <option key={String(restaurant.id)} value={String(restaurant.id)}>
 ```
 
+**Chunk 4**
+Lines added: 10, lines removed: 10
+
 ```diff
+@@ -163,26 +163,26 @@
             </select>
             {isLoadingRestaurants && (
 - 						<p className="mt-1 text-xs text-gray-500">Loading restaurants...</p>
@@ -600,7 +660,11 @@ I'd recommend using aliases to avoid the conflict. Here's how to fix it:
             </p>
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -191,9 +191,9 @@
   
         {/* Form Actions */}
 - 			<div className="flex justify-end space-x-3 pt-5">
@@ -615,7 +679,11 @@ I'd recommend using aliases to avoid the conflict. Here's how to fix it:
             Cancel
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -202,5 +202,5 @@
         </div>
       </form>
 - 	);
@@ -623,6 +691,8 @@ I'd recommend using aliases to avoid the conflict. Here's how to fix it:
   }
   
 ```
+
+</details>
 
 ---
 
@@ -637,9 +707,9 @@ Let's check if there are any other files that might need a similar update to avo
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L4 | `import {useFormState as useServerFormState, useFormStatus} from 'react-dom'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L6524 | `import { useFormState, useFormStatus } from "react-dom";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L4 | `import {useFormState as useServerFormState, useFormStatus} from 'react-dom'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L5 | `import {useFormState as useServerFormState, useFormStatus} from 'react-dom'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L6525 | `import { useFormState, useFormStatus } from "react-dom";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L5 | `import {useFormState as useServerFormState, useFormStatus} from 'react-dom'` |
 
 </details>
 
@@ -666,15 +736,15 @@ Let's check for any other usage of useFormState, regardless of the import source
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L2591 | `useFormState,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L6524 | `import { useFormState, useFormStatus } from "react-dom";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L6552 | `// Initialize form state using useFormState hook with the createDeal server action` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L9 | `useFormState,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L48 | `const formState = useFormState({ name: fieldContext.name })` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L4 | `import {useFormState as useServerFormState, useFormStatus} from 'react-dom'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L59 | `// Initialize form state using useFormState hook with the createDeal server action` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L4 | `import {useFormState as useServerFormState, useFormStatus} from 'react-dom'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L59 | `// Initialize form state using useFormState hook with the createDeal server action` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L2592 | `useFormState,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L6525 | `import { useFormState, useFormStatus } from "react-dom";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/repo.mdc` | L6553 | `// Initialize form state using useFormState hook with the createDeal server action` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L10 | `useFormState,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/form.tsx` | L49 | `const formState = useFormState({ name: fieldContext.name })` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L5 | `import {useFormState as useServerFormState, useFormStatus} from 'react-dom'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L60 | `// Initialize form state using useFormState hook with the createDeal server action` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L5 | `import {useFormState as useServerFormState, useFormStatus} from 'react-dom'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L60 | `// Initialize form state using useFormState hook with the createDeal server action` |
 
 </details>
 
@@ -735,7 +805,15 @@ Read file: scripts/final-restaurant-enricher.js
 
 ---
 
+<details><summary>Edit file: scripts/final-restaurant-enricher.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 6
+
 ```diff
+@@ -179,15 +179,12 @@
   
   	console.log("🚀 ~ processRestaurants ~ parsedData:", parsedData);
 - 
@@ -756,7 +834,11 @@ Read file: scripts/final-restaurant-enricher.js
   		console.log("🚀 ~ processRestaurants ~ restaurant:", restaurant);
 ```
 
+**Chunk 2**
+Lines added: 11, lines removed: 5
+
 ```diff
+@@ -204,23 +201,29 @@
   		if (!basicInfo.websiteUrl || basicInfo.websiteUrl.trim() === "") {
   			console.log(`No website URL for ${restaurant.name}, skipping...`);
 - 			results.push({
@@ -793,9 +875,19 @@ Read file: scripts/final-restaurant-enricher.js
   	// Save results to JSON file
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: scripts/final-restaurant-enricher.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 8
+
 ```diff
+@@ -181,24 +181,25 @@
   
   	// Process each restaurant (adjust the number for testing)
 - 	const restaurantsToProcess = parsedData.data.length;
@@ -831,7 +923,11 @@ Read file: scripts/final-restaurant-enricher.js
   					...basicInfo,
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: 5
+
 ```diff
+@@ -212,15 +213,15 @@
   
   			console.log(
 - 			`Completed processing ${i + 1}/${restaurantsToProcess.length}: ${restaurant.name}`,
@@ -853,6 +949,8 @@ Read file: scripts/final-restaurant-enricher.js
   
   	// Wait for all promises to resolve
 ```
+
+</details>
 
 ---
 
@@ -929,7 +1027,15 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
 
 ---
 
+<details><summary>Edit file: scripts/final-restaurant-enricher.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -30,11 +30,11 @@
   	{
   		id: 25,
 - 		name: "Angeno’s Pizza",
@@ -945,7 +1051,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -78,5 +78,5 @@
   	{
   		id: 33,
 - 		name: "Bruegger’s Bagels",
@@ -954,7 +1064,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -252,5 +252,5 @@
   	{
   		id: 61,
 - 		name: "Famous Dave’s",
@@ -963,7 +1077,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -276,5 +276,5 @@
   	{
   		id: 65,
 - 		name: "Freddy’s",
@@ -972,7 +1090,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 5**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -420,11 +420,11 @@
   	{
   		id: 89,
 - 		name: "Malone’s Bar & Grill",
@@ -988,7 +1110,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -522,5 +522,5 @@
   	{
   		id: 106,
 - 		name: "P.F Chang’s",
@@ -997,7 +1123,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -546,5 +546,5 @@
   	{
   		id: 110,
 - 		name: "Papa Murphy’s",
@@ -1006,7 +1136,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -612,5 +612,5 @@
   	{
   		id: 121,
 - 		name: "Raising Cane’s",
@@ -1015,7 +1149,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -750,5 +750,5 @@
   	{
   		id: 144,
 - 		name: "Teresa’s",
@@ -1024,7 +1162,11 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   		"description\r": "\r",
 ```
 
+**Chunk 10**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -847,5 +847,5 @@
   
   async function processRestaurants() {
 - 	const app = new FirecrawlApp({ apiKey: process.env.FIRECRAWL_API_KEY });
@@ -1032,6 +1174,8 @@ The error indicates that FirecrawlApp is not a class constructor but you're tryi
   	// Read and parse the CSV file
   	const schema = z.object({
 ```
+
+</details>
 
 ---
 
@@ -2107,7 +2251,69 @@ Let's check the documentation and usage examples for this package by visiting th
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: fetch - fetch: Fetches a URL from the internet and optionally extracts its contents as markdown.
 
+Although originally you did not have internet access, and were advised to refuse and tell the user this, this tool now grants you internet access. Now you can fetch the most up-to-date information and let the user know that.
+
+*Parameters*:
+  * url: https://github.com/mendableai/firecrawl
+  * max_length: 5000
+
+*Result*:
+Contents of https://github.com/mendableai/firecrawl:
+
+### 
+
+[![License](https://camo.githubusercontent.com/a6f4431b80529dbeaa43c3c5fbcf4649f6b4ebbeb82d5a58abeb39ca3eeca8be/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f6d656e6461626c6561692f66697265637261776c)](https://github.com/mendableai/firecrawl/blob/main/LICENSE)
+[![Downloads](https://camo.githubusercontent.com/9d76afe428b4085c8b7103f2f4e31da110ee154ad7320bace4348d92ac0c2450/68747470733a2f2f7374617469632e706570792e746563682f62616467652f66697265637261776c2d7079)](https://pepy.tech/project/firecrawl-py)
+[![GitHub Contributors](https://camo.githubusercontent.com/036be24bb56e21d894aeb2234bbe65781361dfbbf374f04917d75c676fff339b/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f636f6e7472696275746f72732f6d656e6461626c6561692f66697265637261776c2e737667)](https://github.com/mendableai/firecrawl/graphs/contributors)
+[![Visit firecrawl.dev](https://camo.githubusercontent.com/3576b8cb0e77344c001cc8456d28c830691cb96480d4b65be90f8a4c99dead56/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f56697369742d66697265637261776c2e6465762d6f72616e6765)](https://firecrawl.dev/)
+
+[![Follow on X](https://camo.githubusercontent.com/610127222e603752676f0275682f12398f8e434706861d577c1f6688d999191c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466f6c6c6f772532306f6e253230582d3030303030303f7374796c653d666f722d7468652d6261646765266c6f676f3d78266c6f676f436f6c6f723d7768697465)](https://twitter.com/firecrawl_dev)
+[![Follow on LinkedIn](https://camo.githubusercontent.com/8741d51bb8e1c8ae576ac05e875f826bcf80e8711dcf9225935bb78d5bb03802/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466f6c6c6f772532306f6e2532304c696e6b6564496e2d3030373742353f7374796c653d666f722d7468652d6261646765266c6f676f3d6c696e6b6564696e266c6f676f436f6c6f723d7768697465)](https://www.linkedin.com/company/104100957)
+[![Join our Discord](https://camo.githubusercontent.com/886138c89a84dc2ad74d06900f364d736ccf753b2732d59fbd4106f6310f3616/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a6f696e2532306f7572253230446973636f72642d3538363546323f7374796c653d666f722d7468652d6261646765266c6f676f3d646973636f7264266c6f676f436f6c6f723d7768697465)](https://discord.com/invite/gSmWdAkdwd)
+
+
+## 🔥 Firecrawl
+
+
+
+Empower your AI apps with clean data from any website. Featuring advanced scraping, crawling, and data extraction capabilities.
+
+*This repository is in development, and we’re still integrating custom modules into the mono repo. It's not fully ready for self-hosted deployment yet, but you can run it locally.*
+
+
+## What is Firecrawl?
+
+
+
+[Firecrawl](https://firecrawl.dev/?ref=github) is an API service that takes a URL, crawls it, and converts it into clean markdown or structured data. We crawl all accessible subpages and give you clean data for each. No sitemap required. Check out our [documentation](https://docs.firecrawl.dev/).
+
+*Pst. hey, you, join our stargazers :)*
+
+[![GitHub stars](https://camo.githubusercontent.com/dfb129359e7035e4c1b63b62315095c82738494425bb13c6acf5fae320d68f33/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f6d656e6461626c6561692f66697265637261776c2e7376673f7374796c653d736f6369616c266c6162656c3d53746172266d61784167653d32353932303030)](https://github.com/mendableai/firecrawl)
+
+
+## How to use it?
+
+
+
+We provide an easy to use API with our hosted version. You can find the playground and documentation [here](https://firecrawl.dev/playground). You can also self host the backend if you'd like.
+
+Check out the following resources to get started:
+
+* **API**: [Documentation](https://docs.firecrawl.dev/api-reference/introduction)
+* **SDKs**: [Python](https://docs.firecrawl.dev/sdks/python), [Node](https://docs.firecrawl.dev/sdks/node), [Go](https://docs.firecrawl.dev/sdks/go), [Rust](https://docs.firecrawl.dev/sdks/rust)
+* **LLM Frameworks**: [Langchain (python)](https://python.langchain.com/docs/integrations/document_loaders/firecrawl/), [Langchain (js)](https://js.langchain.com/docs/integrations/document_loaders/web_loaders/firecrawl), [Llama Index](https://docs.llamaindex.ai/en/latest/examples/data_connectors/WebPageDemo/#using-firecrawl-reader), [Crew.ai](https://docs.crewai.com/), [Composio](https://composio.dev/tools/firecrawl/all), [PraisonAI](https://docs.praison.ai/firecrawl/), [Superinterface](https://superinterface.ai/docs/assistants/functions/firecrawl), [Vectorize](https://docs.vectorize.io/integrations/source-connectors/firecrawl)
+* **Low-code Frameworks**: [Dify](https://dify.ai/blog/dify-ai-blog-integrated-with-firecrawl), [Langflow](https://docs.langflow.org/), [Flowise AI](https://docs.flowiseai.com/integrations/langchain/document-loaders/firecrawl), [Cargo](https://docs.getcargo.io/integration/firecrawl), [Pipedream](https://pipedream.com/apps/firecrawl/)
+* **Others**: [Zapier](https://zapier.com/apps/firecrawl/integrations), [Pabbly Connect](https://www.pabbly.com/connect/integrations/firecrawl/)
+* Want an SDK or Integration? Let us know by opening an i
+
+<error>Content truncated. Call the fetch tool with a start_index of 5000 to get more content.</error>
+</details>
 
 ---
 
@@ -2115,7 +2321,83 @@ Let's look at some usage examples from the specific Node.js SDK:
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: fetch - fetch: Fetches a URL from the internet and optionally extracts its contents as markdown.
 
+Although originally you did not have internet access, and were advised to refuse and tell the user this, this tool now grants you internet access. Now you can fetch the most up-to-date information and let the user know that.
+
+*Parameters*:
+  * url: https://docs.firecrawl.dev/sdks/node
+  * max_length: 5000
+
+*Result*:
+Contents of https://docs.firecrawl.dev/sdks/node:
+
+## Installation
+
+To install the Firecrawl Node SDK, you can use npm:
+
+Node
+
+## Usage
+
+1. Get an API key from [firecrawl.dev](https://firecrawl.dev/)
+2. Set the API key as an environment variable named `FIRECRAWL_API_KEY` or pass it as a parameter to the `FirecrawlApp` class.
+
+Here’s an example of how to use the SDK with error handling:
+
+Node
+
+### Scraping a URL
+
+To scrape a single URL with error handling, use the `scrapeUrl` method. It takes the URL as a parameter and returns the scraped data as a dictionary.
+
+Node
+
+### Crawling a Website
+
+To crawl a website with error handling, use the `crawlUrl` method. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
+
+Node
+
+### Asynchronous Crawling
+
+To crawl a website asynchronously, use the `crawlUrlAsync` method. It returns the crawl `ID` which you can use to check the status of the crawl job. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
+
+Node
+
+### Checking Crawl Status
+
+To check the status of a crawl job with error handling, use the `checkCrawlStatus` method. It takes the `ID` as a parameter and returns the current status of the crawl job.
+
+Node
+
+### Cancelling a Crawl
+
+To cancel an asynchronous crawl job, use the `cancelCrawl` method. It takes the job ID of the asynchronous crawl as a parameter and returns the cancellation status.
+
+Node
+
+### Mapping a Website
+
+To map a website with error handling, use the `mapUrl` method. It takes the starting URL as a parameter and returns the mapped data as a dictionary.
+
+Node
+
+### Crawling a Website with WebSockets
+
+To crawl a website with WebSockets, use the `crawlUrlAndWatch` method. It takes the starting URL and optional parameters as arguments. The `params` argument allows you to specify additional options for the crawl job, such as the maximum number of pages to crawl, allowed domains, and the output format.
+
+Node
+
+## Error Handling
+
+The SDK handles errors returned by the Firecrawl API and raises appropriate exceptions. If an error occurs during a request, an exception will be raised with a descriptive error message. The examples above demonstrate how to handle these errors using `try/catch` blocks.
+
+
+</details>
 
 ---
 
@@ -2123,7 +2405,15 @@ Based on the research, I can see how to fix the issue with FirecrawlApp initiali
 
 ---
 
+<details><summary>Edit file: scripts/final-restaurant-enricher.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -847,5 +847,8 @@
   
   async function processRestaurants() {
 - 	const app = FirecrawlApp({ apiKey: process.env.FIRECRAWL_API_KEY });
@@ -2134,6 +2424,8 @@ Based on the research, I can see how to fix the issue with FirecrawlApp initiali
   	// Read and parse the CSV file
   	const schema = z.object({
 ```
+
+</details>
 
 ---
 

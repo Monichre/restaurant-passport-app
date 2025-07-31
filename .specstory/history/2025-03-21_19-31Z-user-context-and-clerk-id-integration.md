@@ -10,7 +10,15 @@ Generate a user context and provider that gets the clerk ID from clerk auth and 
 
 _**Assistant**_
 
+<details><summary>Edit file: src/context/user-context.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 80, lines removed: 1
+
 ```diff
+@@ -1,1 +1,80 @@
 - 
 + // use client
 + 'use client'
@@ -94,9 +102,19 @@ _**Assistant**_
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/context/user-context.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -3,5 +3,11 @@
   
   import type React from 'react'
 - import {createContext, useContext, useEffect, useState} from 'react'
@@ -111,7 +129,11 @@ _**Assistant**_
   
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -33,6 +39,6 @@
     const [error, setError] = useState<string | null>(null)
   
 -   // Function to fetch full user data from the DB using the clerk ID
@@ -122,7 +144,11 @@ _**Assistant**_
       try {
 ```
 
+**Chunk 3**
+Lines added: 6, lines removed: 2
+
 ```diff
+@@ -43,10 +49,14 @@
         const data = await res.json()
         setCurrentUser(data)
 -     } catch (err: any) {
@@ -141,7 +167,11 @@ _**Assistant**_
     // When clerk auth is loaded and we have a clerk ID, fetch the full user data
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -55,5 +65,5 @@
         fetchUser(clerkUser.id)
       }
 -   }, [clerkLoaded, clerkUser])
@@ -149,6 +179,8 @@ _**Assistant**_
   
     // Allows manual refresh of the full user data
 ```
+
+</details>
 
 ---
 

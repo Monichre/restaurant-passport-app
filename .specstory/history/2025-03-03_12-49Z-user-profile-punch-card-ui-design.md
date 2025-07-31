@@ -15,8 +15,8 @@ I'll create a UI component to display all of a user's punch cards by restaurant 
 ---
 
 <details>
-            <summary>Searched codebase "punch card model schema or functions" • **25** results</summary>
-        
+                <summary>Searched codebase "punch card model schema or functions" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/db.ts` | L28-40 |
@@ -56,8 +56,8 @@ Now I need to check if we have a restaurant model to display restaurant informat
 ---
 
 <details>
-            <summary>Searched codebase "restaurant model schema or functions" • **25** results</summary>
-        
+                <summary>Searched codebase "restaurant model schema or functions" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/schemas.ts` | L36-48 |
@@ -97,8 +97,8 @@ Now I need to check if there are any existing components for displaying punch ca
 ---
 
 <details>
-            <summary>Searched codebase "punch card component or UI" • **25** results</summary>
-        
+                <summary>Searched codebase "punch card component or UI" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/features/users/UserPunchCard.tsx` | L1-20 |
@@ -160,8 +160,8 @@ Let me check if there's a function to get punch cards with restaurant informatio
 ---
 
 <details>
-            <summary>Searched codebase "get punch cards with restaurant information" • **25** results</summary>
-        
+                <summary>Searched codebase "get punch cards with restaurant information" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/api.ts` | L83-90 |
@@ -203,8 +203,8 @@ Now I need to check if there's a function to get all punch cards for a user with
 ---
 
 <details>
-            <summary>Searched codebase "get all punch cards for user with restaurant information" • **25** results</summary>
-        
+                <summary>Searched codebase "get all punch cards for user with restaurant information" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/punch-cards/punch-cards.ts` | L48-65 |
@@ -245,7 +245,15 @@ I need to create a function to get all punch cards for a user with restaurant in
 
 ---
 
+<details><summary>Edit file: src/db/models/punch-cards/punch-cards.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -3,5 +3,5 @@
   import { and, eq } from "drizzle-orm";
   import { db } from "../../db";
 - import { punchCards } from "../../schema";
@@ -254,7 +262,11 @@ I need to create a function to get all punch cards for a user with restaurant in
   export const getPunchCards = async () => {
 ```
 
+**Chunk 2**
+Lines added: 23, lines removed: undefined
+
 ```diff
+@@ -23,4 +23,27 @@
   		.where(eq(punchCards.userId, userId));
   };
 + 
@@ -284,6 +296,8 @@ I need to create a function to get all punch cards for a user with restaurant in
   export const getUserPunchCardForRestaurant = async (
 ```
 
+</details>
+
 ---
 
 
@@ -294,7 +308,15 @@ Now I need to create a component to display the punch cards by restaurant. Let's
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 118, lines removed: 1
+
 ```diff
+@@ -1,1 +1,118 @@
 - 
 + "use client";
 + 
@@ -416,6 +438,8 @@ Now I need to create a component to display the punch cards by restaurant. Let's
 + } 
 ```
 
+</details>
+
 ---
 
 
@@ -426,7 +450,15 @@ Let's fix the Badge variant error:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -92,5 +92,5 @@
   										{punchCard.completed && (
   											<Badge
 - 												variant="success"
@@ -434,6 +466,8 @@ Let's fix the Badge variant error:
   												className="bg-green-100 text-green-800"
   											>
 ```
+
+</details>
 
 ---
 
@@ -447,13 +481,23 @@ Now let's create an index.ts file to export the component:
 
 ---
 
+<details><summary>Edit file: src/features/users/index.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1,3 +1,4 @@
 + export * from "./UserPunchCard";
 + export * from "./UserPunchCards";
   export * from "./UserScanQrCode";
 - export * from "./UserPunchCard";
   
 ```
+
+</details>
 
 ---
 
@@ -467,7 +511,15 @@ Now let's update the profile page to display the user's punch cards:
 
 ---
 
+<details><summary>Edit file: src/app/users/[id]/profile/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: 8
+
 ```diff
+@@ -1,17 +1,21 @@
 - import { UserButton } from "@/components/UserButton";
 + import { UserButton } from "@clerk/nextjs";
 + import { getUserByClerkId } from "@/db/models/users/users";
@@ -499,7 +551,11 @@ Now let's update the profile page to display the user's punch cards:
   	return (
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -21,5 +25,5 @@
   				<UserButton />
   			</div>
 - 			<div className="bg-white shadow rounded-lg p-6">
@@ -508,7 +564,11 @@ Now let's update the profile page to display the user's punch cards:
   					<div className="font-medium">
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -29,4 +33,8 @@
   				</div>
   			</div>
 + 
@@ -518,6 +578,8 @@ Now let's update the profile page to display the user's punch cards:
   			<UserScanQrCode user={user} />
   		</div>
 ```
+
+</details>
 
 ---
 
@@ -531,7 +593,15 @@ Let's fix the type error in the UserPunchCards component:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserPunchCards.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -12,7 +12,7 @@
   	userId: bigint;
   	restaurantId: bigint;
 - 	punches: number;
@@ -544,7 +614,11 @@ Let's fix the type error in the UserPunchCards component:
   		id: bigint;
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -88,5 +88,5 @@
   									<div className="flex items-center gap-2">
   										<span className="font-medium">
 - 											Punches: {punchCard.punches}/{PUNCH_THRESHOLD}
@@ -553,7 +627,11 @@ Let's fix the type error in the UserPunchCards component:
   										{punchCard.completed && (
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -101,10 +101,10 @@
   									<span className="text-xs text-gray-500">
   										Last updated:{" "}
 - 										{new Date(punchCard.updatedAt).toLocaleDateString()}
@@ -567,6 +645,8 @@ Let's fix the type error in the UserPunchCards component:
   									className="h-2 mb-3"
   								/>
 ```
+
+</details>
 
 ---
 
@@ -583,8 +663,8 @@ Let's create a utility function to handle the convertBigInts function if it does
 ---
 
 <details>
-            <summary>Searched codebase "convertBigInts function" • **25** results</summary>
-        
+                <summary>Searched codebase "convertBigInts function" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/lib/utils.ts` | L14-32 |
@@ -643,7 +723,15 @@ Let's update the convertBigInts function to handle arrays:
 
 ---
 
+<details><summary>Edit file: src/lib/utils.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 26, lines removed: 13
+
 ```diff
+@@ -14,20 +14,33 @@
   }
   
 - export function convertBigInts<T extends Record<string, any>>(
@@ -692,6 +780,8 @@ Let's update the convertBigInts function to handle arrays:
   
 ```
 
+</details>
+
 ---
 
 
@@ -706,7 +796,15 @@ Let's fix the linter error in the convertBigInts function:
 
 ---
 
+<details><summary>Edit file: src/lib/utils.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -26,7 +26,6 @@
   	if (obj && typeof obj === "object" && !Array.isArray(obj)) {
   		return Object.entries(obj).reduce(
 - 			(acc, [key, value]) => ({
@@ -718,7 +816,11 @@ Let's fix the linter error in the convertBigInts function:
   						? dataType === "number"
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -35,6 +34,7 @@
   						: value instanceof Object
   						? convertBigInts(value, dataType)
 - 							: value,
@@ -729,6 +831,8 @@ Let's fix the linter error in the convertBigInts function:
   			{} as T,
   		);
 ```
+
+</details>
 
 ---
 

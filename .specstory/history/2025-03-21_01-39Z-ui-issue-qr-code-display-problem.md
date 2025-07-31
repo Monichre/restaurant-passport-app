@@ -108,7 +108,15 @@ Let me fix the QR code display issue in the table variant of the QRCodeManager c
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 7
+
 ```diff
+@@ -79,11 +79,10 @@
   						{restaurant.qrCodeUrl ? (
   							<>
 - 								<div className="relative w-8 h-8 shrink-0">
@@ -128,9 +136,19 @@ Let me fix the QR code display issue in the table variant of the QRCodeManager c
   								</div>
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 10
+
 ```diff
+@@ -308,15 +308,11 @@
   				<div className="mb-4">
   					<p className="text-sm text-gray-600 mb-2">Current QR code:</p>
 - 					<div className="border border-gray-200 rounded-lg p-4 inline-block">
@@ -154,9 +172,19 @@ Let me fix the QR code display issue in the table variant of the QRCodeManager c
   				</div>
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 7
+
 ```diff
+@@ -128,11 +128,10 @@
   				{restaurant.qrCodeUrl ? (
   					<div className="flex flex-col sm:flex-row gap-3 items-center">
 - 						<div className="relative w-16 h-16 shrink-0">
@@ -176,9 +204,19 @@ Let me fix the QR code display issue in the table variant of the QRCodeManager c
   						</div>
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -258,6 +258,6 @@
   		success: bulkSuccess,
   		error: bulkError,
 - 		progress,
@@ -189,9 +227,19 @@ Let me fix the QR code display issue in the table variant of the QRCodeManager c
   		handleSaveAll,
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -260,8 +260,8 @@
   		progress = 0,
   		results = [],
 - 		handleGenerateAll,
@@ -205,6 +253,8 @@ Let me fix the QR code display issue in the table variant of the QRCodeManager c
   	} = useHandleBulkQRCode();
   
 ```
+
+</details>
 
 ---
 
@@ -251,8 +301,8 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
 ---
 
 <details>
-            <summary>Searched codebase "useHandleQRCode hook implementation" • **25** results</summary>
-        
+                <summary>Searched codebase "useHandleQRCode hook implementation" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/hooks/use-scan-qr-code.tsx` | L275-349 |
@@ -286,8 +336,8 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
 ---
 
 <details>
-            <summary>Searched codebase "handleDownload function in useHandleQRCode" • **25** results</summary>
-        
+                <summary>Searched codebase "handleDownload function in useHandleQRCode" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/hooks/use-handle-qr-code.tsx` | L173-230 |
@@ -320,7 +370,15 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 39, lines removed: undefined
+
 ```diff
+@@ -34,4 +34,43 @@
   	variant?: QRCodeVariant;
   }
 + 
@@ -366,7 +424,11 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   export function QRCodeManager({
 ```
 
+**Chunk 2**
+Lines added: 8, lines removed: undefined
+
 ```diff
+@@ -266,4 +305,12 @@
   	downloadSupported,
   }: FullQRManagerProps) => {
 + 	// Create refs for the displayed QR codes
@@ -381,7 +443,11 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   	const handleCopyQrValue = () => {
 ```
 
+**Chunk 3**
+Lines added: undefined, lines removed: 25
+
 ```diff
+@@ -276,29 +323,4 @@
   		}
   	};
 - 
@@ -413,7 +479,11 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   	return (
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -307,5 +329,8 @@
   				<div className="mb-4">
   					<p className="text-sm text-gray-600 mb-2">Current QR code:</p>
 - 					<div className="border border-gray-200 rounded-lg p-4 inline-block bg-white">
@@ -425,7 +495,11 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   							size={200}
 ```
 
+**Chunk 5**
+Lines added: 12, lines removed: 2
+
 ```diff
+@@ -393,12 +418,22 @@
   					<div className="flex flex-wrap gap-2">
   						{downloadSupported ? (
 + 							<>
@@ -452,9 +526,19 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   							<>
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: 1
+
 ```diff
+@@ -163,9 +163,20 @@
   	// Compact variant for smaller spaces
   	if (variant === "compact") {
 + 		// Create a ref for the displayed QR code
@@ -478,7 +562,11 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   								size={64}
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: undefined
+
 ```diff
+@@ -185,4 +196,14 @@
   							</Button>
   							{downloadSupported && (
 + 								<>
@@ -495,7 +583,11 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   										size="sm"
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -192,6 +213,7 @@
   									>
   										<Download className="h-3 w-3 mr-1" />
 - 									Download
@@ -506,9 +598,19 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   						</div>
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 17, lines removed: undefined
+
 ```diff
+@@ -108,4 +108,21 @@
   	// Table cell variant
   	if (variant === "table") {
 + 		// Create ref for the QR code in dialog
@@ -532,7 +634,11 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   			<Dialog>
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -118,5 +135,8 @@
   						{restaurant.qrCodeUrl ? (
   							<>
 - 								<div className="relative w-8 h-8 shrink-0 bg-white p-1 rounded">
@@ -544,7 +650,11 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   										value={restaurant.qrCodeUrl}
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -156,4 +176,13 @@
   						/>
   					</div>
 + 
@@ -560,15 +670,27 @@ I'll add a direct download mechanism to ensure the downloaded QR code matches ex
   			</Dialog>
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -383,4 +383,5 @@
   						className="border border-gray-200 rounded-lg p-4 inline-block bg-white"
   						ref={currentQrRef}
 + 						data-qr-container="true"
   					>
   						<QRCode
 ```
+
+</details>
 
 ---
 

@@ -107,8 +107,8 @@ performWorkUntilDeadline @ webpack-internal:///…r.development.js:45
 _**Assistant**_
 
 <details>
-            <summary>Searched codebase "QRCodeManager (webpack-internal:///(app-pages-browser)/./src/app/admin/restaurants/qr-code-manager.tsx" • **25** results</summary>
-        
+                <summary>Searched codebase "QRCodeManager (webpack-internal:///(app-pages-browser)/./src/app/admin/restaurants/qr-code-manager.tsx" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/app/admin/restaurants/qr-code-manager.tsx` | L30-35 |
@@ -142,8 +142,8 @@ _**Assistant**_
 ---
 
 <details>
-            <summary>Searched codebase "useHandleQRCode" • **25** results</summary>
-        
+                <summary>Searched codebase "useHandleQRCode" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/hooks/use-scan-qr-code.tsx` | L275-349 |
@@ -176,7 +176,15 @@ _**Assistant**_
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -140,5 +140,5 @@
   								>
   									<QRCode
 - 										value={restaurant.qrCodeUrl}
@@ -185,7 +193,11 @@ _**Assistant**_
   										viewBox="0 0 32 32"
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -210,5 +210,5 @@
   							<QRCode
   								size={64}
 - 								value={restaurant.qrCodeUrl}
@@ -194,7 +206,11 @@ _**Assistant**_
   								className="w-full h-full"
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -387,5 +387,5 @@
   						<QRCode
   							size={200}
 - 							value={restaurant.qrCodeUrl}
@@ -202,6 +218,8 @@ _**Assistant**_
   							viewBox="0 0 200 200"
   							className="w-36 h-36 sm:w-48 sm:h-48"
 ```
+
+</details>
 
 ---
 

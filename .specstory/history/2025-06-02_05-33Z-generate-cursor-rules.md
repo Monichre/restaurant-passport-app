@@ -86,8 +86,8 @@ Now let me examine the project structure to identify key patterns that need rule
 ---
 
 <details>
-            <summary>Searched codebase "Drizzle ORM schema models database tables" • **25** results</summary>
-        
+                <summary>Searched codebase "Drizzle ORM schema models database tables" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/deals/deals.ts` | L1-23 |
@@ -129,8 +129,8 @@ Now let me look at component patterns and API endpoint patterns:
 ---
 
 <details>
-            <summary>Searched codebase "API route handler patterns error handling" • **13** results</summary>
-        
+                <summary>Searched codebase "API route handler patterns error handling" • **13** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/app/api/deals/route.ts` | L48-129 |
@@ -152,8 +152,8 @@ Now let me look at component patterns and API endpoint patterns:
 ---
 
 <details>
-            <summary>Searched codebase "React component patterns props types interfaces" • **25** results</summary>
-        
+                <summary>Searched codebase "React component patterns props types interfaces" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/magicui/dot-pattern.tsx` | L1-32 |
@@ -190,7 +190,15 @@ Now, based on my analysis of the codebase, I'll create comprehensive Cursor Rule
 
 ---
 
+<details><summary>Edit file: .cursor/rules/drizzle-orm.mdc</summary>
+
+Creating a new Cursor rule for Drizzle ORM patterns and database interactions
+
+**Chunk 1**
+Lines added: 160, lines removed: 1
+
 ```diff
+@@ -1,1 +1,160 @@
 - 
 + # Drizzle ORM Patterns & Database Standards
 + 
@@ -353,6 +361,8 @@ Now, based on my analysis of the codebase, I'll create comprehensive Cursor Rule
 + Reference: [schema.ts](mdc:src/db/drizzle/schema.ts) for table definitions and relationships.
 + 
 ```
+
+</details>
 
 ---
 

@@ -29,7 +29,125 @@ I'll help you update the Clerk user's metadata with the Supabase user ID. Let me
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: context7-mcp - resolve-library-id: Resolves a package/product name to a Context7-compatible library ID and returns a list of matching libraries.
 
+You MUST call this function before 'get-library-docs' to obtain a valid Context7-compatible library ID UNLESS the user explicitly provides a library ID in the format '/org/project' or '/org/project/version' in their query.
+
+Selection Process:
+1. Analyze the query to understand what library/package the user is looking for
+2. Return the most relevant match based on:
+- Name similarity to the query (exact matches prioritized)
+- Description relevance to the query's intent
+- Documentation coverage (prioritize libraries with higher Code Snippet counts)
+- Trust score (consider libraries with scores of 7-10 more authoritative)
+
+Response Format:
+- Return the selected library ID in a clearly marked section
+- Provide a brief explanation for why this library was chosen
+- If multiple good matches exist, acknowledge this but proceed with the most relevant one
+- If no good matches exist, clearly state this and suggest query refinements
+
+For ambiguous queries, request clarification before proceeding with a best-guess match.
+
+*Parameters*:
+  * libraryName: clerk
+
+*Result*:
+Available Libraries (top matches):
+
+Each result includes:
+- Library ID: Context7-compatible identifier (format: /org/project)
+- Name: Library or package name
+- Description: Short summary
+- Code Snippets: Number of available code examples
+- Trust Score: Authority indicator
+- Versions: List of versions if available. Use one of those versions if and only if the user explicitly provides a version in their query.
+
+For best results, select libraries based on name match, trust score, snippet coverage, and relevance to your use case.
+
+----------
+
+- Title: Clerk
+- Context7-compatible library ID: /clerk/clerk-docs
+- Description: The documentation content for Clerk, an authentication and user management platform.
+- Code Snippets: 2911
+- Trust Score: 8.4
+----------
+- Title: Clerk SDK Go
+- Context7-compatible library ID: /clerk/clerk-sdk-go
+- Description: Access the Clerk Backend API from Go
+- Code Snippets: 28
+- Trust Score: 8.4
+----------
+- Title: Clerk JavaScript
+- Context7-compatible library ID: /clerk/javascript
+- Description: Official JavaScript repository for Clerk authentication
+- Code Snippets: 763
+- Trust Score: 8.4
+----------
+- Title: Clerk SDK Java
+- Context7-compatible library ID: /clerk/clerk-sdk-java
+- Description: 
+- Code Snippets: 421
+- Trust Score: 8.4
+----------
+- Title: Clerk SDK Python
+- Context7-compatible library ID: /clerk/clerk-sdk-python
+- Description: 
+- Code Snippets: 389
+- Trust Score: 8.4
+----------
+- Title: Clerk Rust SDK
+- Context7-compatible library ID: /darrenbaldwin07/clerk-rs
+- Description: The official community-maintained Clerk SDK for Rust
+- Code Snippets: 129
+- Trust Score: 9.2
+----------
+- Title: Clerk Flutter SDK
+- Context7-compatible library ID: /clerk/clerk-sdk-flutter
+- Description: 
+- Code Snippets: 358
+- Trust Score: 8.4
+----------
+- Title: Clerk Migration Script
+- Context7-compatible library ID: /clerk/migration-script
+- Description: 
+- Code Snippets: 8
+- Trust Score: 8.4
+----------
+- Title: Clerk React Quickstart
+- Context7-compatible library ID: /clerk/clerk-react-quickstart
+- Description: 
+- Code Snippets: 3
+- Trust Score: 8.4
+----------
+- Title: Clerk Next.js App Quickstart
+- Context7-compatible library ID: /clerk/clerk-nextjs-app-quickstart
+- Description: The official companion repo for Clerk's Next.js Quickstart using the app router
+- Code Snippets: 3
+- Trust Score: 8.4
+----------
+- Title: Clerk React Router Quickstart
+- Context7-compatible library ID: /clerk/clerk-react-router-quickstart
+- Description: The official companion repo for Clerk's React Router Quickstart
+- Code Snippets: 3
+- Trust Score: 8.4
+----------
+- Title: Svelte Clerk
+- Context7-compatible library ID: /wobsoriano/svelte-clerk
+- Description: Community Clerk Svelte SDK.
+- Code Snippets: 25
+- Trust Score: 9.8
+----------
+- Title: Next.js Auth Starter Template
+- Context7-compatible library ID: /clerk/nextjs-auth-starter-template
+- Description: A modern auth and user management starter template, built for the Next.js App Router and powered by Clerk
+- Code Snippets: 3
+- Trust Score: 8.4
+</details>
 
 ---
 
@@ -37,7 +155,1250 @@ I'll help you update the Clerk user's metadata with the Supabase user ID. Let me
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: context7-mcp - get-library-docs: Fetches up-to-date documentation for a library. You must call 'resolve-library-id' first to obtain the exact Context7-compatible library ID required to use this tool, UNLESS the user explicitly provides a library ID in the format '/org/project' or '/org/project/version' in their query.
 
+*Parameters*:
+  * context7CompatibleLibraryID: /clerk/clerk-docs
+  * topic: update user metadata backend API
+  * tokens: 5000
+
+*Result*:
+TITLE: Updating User Metadata with Clerk Backend SDK in Next.js
+DESCRIPTION: Demonstrates how to update a user's unsafe metadata using the Clerk Backend SDK within a Next.js API route. It extracts the user ID from the request body and calls `clerkClient.users.updateUserMetadata`.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_8
+
+LANGUAGE: ts
+CODE:
+```
+export async function POST(req) {
+  const { userId } = await req.json()
+
+  await clerkClient.users.updateUserMetadata(userId, {
+    unsafeMetadata: {
+      birthday: '11-30-1969',
+    },
+  })
+
+  return Response.json({ success: true })
+}
+```
+
+----------------------------------------
+
+TITLE: Updating User Metadata via Clerk Backend API with cURL
+DESCRIPTION: Shows how to update user metadata directly via the Clerk Backend API using a cURL command. It sends a PATCH request to the `/v1/users/{user_id}/metadata` endpoint with `unsafe_metadata` in the request body, authenticated with a Bearer token.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_12
+
+LANGUAGE: bash
+CODE:
+```
+curl -XPATCH -H 'Authorization: Bearer CLERK_SECRET_KEY' -H "Content-type: application/json" -d '{
+  "unsafe_metadata": {
+    "birthday": "11-30-1969"
+  }
+}' 'https://api.clerk.com/v1/users/{user_id}/metadata'
+```
+
+----------------------------------------
+
+TITLE: Updating User Metadata with Clerk Backend SDK in Express
+DESCRIPTION: Shows how to update a user's unsafe metadata using the Clerk Backend SDK in an Express route handler. It imports `clerkClient` from `@clerk/express` and uses `clerkClient.users.updateUserMetadata`.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_9
+
+LANGUAGE: ts
+CODE:
+```
+import { clerkClient } from '@clerk/express'
+
+app.post('/updateStripe', async (req, res) => {
+  const { stripeId, userId } = await req.body
+
+  await clerkClient.users.updateUserMetadata(userId, {
+    unsafeMetadata: {
+      birthday: '11-30-1969',
+    },
+  })
+
+  res.status(200).json({ success: true })
+})
+```
+
+----------------------------------------
+
+TITLE: Setting Private Metadata with Clerk Backend SDKs and API
+DESCRIPTION: Demonstrates how to update a user's private metadata, typically used for sensitive information like a Stripe customer ID, using different backend SDKs and a direct API call via cURL. Private metadata is only accessible from the backend.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_0
+
+LANGUAGE: ts
+CODE:
+```
+export async function POST(req) {
+  const { stripeId, userId } = await req.json()
+
+  await clerkClient.users.updateUserMetadata(userId, {
+    privateMetadata: {
+      stripeId: stripeId,
+    },
+  })
+
+  return Response.json({ success: true })
+}
+```
+
+LANGUAGE: ts
+CODE:
+```
+import { clerkClient } from '@clerk/express'
+
+app.post('/updateStripe', async (req, res) => {
+  const { stripeId, userId } = req.body
+
+  await clerkClient.users.updateUserMetadata(userId, {
+    privateMetadata: {
+      stripeId: stripeId,
+    },
+  })
+
+  res.status(200).json({ success: true })
+})
+```
+
+LANGUAGE: go
+CODE:
+```
+var client clerk.Client
+
+func addStripeCustomerID(user *clerk.User, stripeCustomerID string) error {
+    stripeID := map[string]interface{}{
+        "stripeID": stripeCustomerID,
+    }
+	user, err := s.clerkClient.Users().UpdateMetadata(sess.UserID, &clerk.updateMetadataRequest{
+		PrivateMetadata: stripeID,
+	})
+
+	if err != nil {
+		panic(err)
+	}
+}
+```
+
+LANGUAGE: ruby
+CODE:
+```
+# ruby json example with a private metadata and stripe id
+require 'clerk'
+require 'json'
+
+privateMetadata = {
+  "stripeID": stripeCustomerID
+}
+
+
+clerk = Clerk::SDK.new(api_key: "your_clerk_secret_key")
+clerk.users.updateMetadata("user_xyz", private_metadata: privateMetadata)
+```
+
+LANGUAGE: bash
+CODE:
+```
+curl -XPATCH -H 'Authorization: Bearer CLERK_SECRET_KEY' -H "Content-type: application/json" -d '{
+  "private_metadata": {
+    "stripeId": "12356"
+  }
+}' 'https://api.clerk.com/v1/users/{user_id}/metadata'
+```
+
+----------------------------------------
+
+TITLE: Updating User Profile with Clerk Backend API (TypeScript)
+DESCRIPTION: This snippet demonstrates how to update a user's profile using the Clerk Backend API client. It initializes a user ID and defines parameters for updating the first and last name, then calls the `updateUser` method. This SDK method acts as a wrapper around the `PATCH /users/{user_id}` BAPI endpoint.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/user/update-user.mdx#_snippet_1
+
+LANGUAGE: TypeScript
+CODE:
+```
+const userId = 'user_123'
+
+const params = { firstName: 'John', lastName: 'Wick' }
+
+const response = await clerkClient.users.updateUser(userId, params)
+```
+
+----------------------------------------
+
+TITLE: Example Usage: Updating User Metadata with Clerk (TSX)
+DESCRIPTION: Demonstrates how to use the `updateUserMetadata` function from the Clerk Backend SDK. This example shows updating a user's public metadata by providing a specific user ID and a `publicMetadata` object. The function performs a deep merge, integrating the new metadata with any existing values.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/user/update-user-metadata.mdx#_snippet_1
+
+LANGUAGE: TSX
+CODE:
+```
+const userId = 'user_123'
+
+const response = await clerkClient.users.updateUserMetadata(userId, {
+  publicMetadata: {
+    example: 'metadata',
+  },
+})
+```
+
+----------------------------------------
+
+TITLE: Updating User Public Metadata in Backend with Clerk
+DESCRIPTION: This server-side action, `completeOnboarding`, updates a user's `publicMetadata` in Clerk with information submitted from the onboarding form. It uses `auth` to get the `userId` and `clerkClient` to interact with the Clerk Backend API. It sets `onboardingComplete` to true and stores `applicationName` and `applicationType`, returning a success message or an error if the update fails or no user is logged in.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/nextjs/add-onboarding-flow.mdx#_snippet_6
+
+LANGUAGE: tsx
+CODE:
+```
+'use server'
+
+import { auth, clerkClient } from '@clerk/nextjs/server'
+
+export const completeOnboarding = async (formData: FormData) => {
+  const { userId } = await auth()
+
+  if (!userId) {
+    return { message: 'No Logged In User' }
+  }
+
+  const client = await clerkClient()
+
+  try {
+    const res = await client.users.updateUser(userId, {
+      publicMetadata: {
+        onboardingComplete: true,
+        applicationName: formData.get('applicationName'),
+        applicationType: formData.get('applicationType'),
+      },
+    })
+    return { message: res.publicMetadata }
+  } catch (err) {
+    return { error: 'There was an error updating the user metadata.' }
+  }
+}
+```
+
+----------------------------------------
+
+TITLE: Updating User Metadata with Clerk Ruby SDK
+DESCRIPTION: Provides an example of updating user metadata using the Clerk Ruby SDK. It requires the `clerk` gem, initializes the SDK with an API key, and calls `clerk.users.updateMetadata`.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_11
+
+LANGUAGE: ruby
+CODE:
+```
+require 'clerk'
+require 'json'
+
+unsafeMetadata = {
+  "birthday": "04-20-1969"
+}
+
+clerk = Clerk::SDK.new(api_key: "your_clerk_secret_key")
+clerk.users.updateMetadata("user_123", unsafe_metadata: unsafeMetadata)
+```
+
+----------------------------------------
+
+TITLE: Setting Public Metadata using Clerk Backend SDK (Next.js)
+DESCRIPTION: Demonstrates how to set public metadata for a user using the Clerk Backend SDK within a Next.js route handler. It extracts the user ID and role from the request body and updates the user's public metadata.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_2
+
+LANGUAGE: ts
+CODE:
+```
+export async function POST(req) {
+  const { role, userId } = await req.json()
+
+  await clerkClient.users.updateUserMetadata(userId, {
+    publicMetadata: {
+      role,
+    },
+  })
+
+  return Response.json({ success: true })
+}
+```
+
+----------------------------------------
+
+TITLE: Setting Public Metadata using Clerk API (cURL)
+DESCRIPTION: Demonstrates how to update a user's public metadata directly via the Clerk API using a cURL command. It shows sending a PATCH request with the necessary headers and JSON payload.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_7
+
+LANGUAGE: bash
+CODE:
+```
+curl -XPATCH -H 'Authorization: Bearer CLERK_SECRET_KEY' -H "Content-type: application/json" -d '{
+  "public_metadata": {
+    "role": "shopper"
+  }
+}' 'https://api.clerk.com/v1/users/{user_id}/metadata'
+```
+
+----------------------------------------
+
+TITLE: Updating User Metadata with Clerk-JS Frontend SDK
+DESCRIPTION: Illustrates updating user metadata using the core `@clerk/clerk-js` library. It initializes Clerk with a publishable key, loads the user, and calls `clerk.user.update` to set `unsafeMetadata`.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_14
+
+LANGUAGE: js
+CODE:
+```
+import { Clerk } from '@clerk/clerk-js'
+
+// Initialize Clerk with your Clerk Publishable Key
+const pubKey = import.meta.env.VITE_CLERK_PUBLISHable_KEY
+
+const clerk = new Clerk(pubKey)
+await clerk.load()
+
+if (clerk.user) {
+  await clerk.user
+    .update({
+      unsafeMetadata: {
+        birthday: '01-01-2000',
+      },
+    })
+    .then((res) => console.log(res))
+    .catch((error) => console.log('An error occurred:', error.errors))
+} else {
+  document.getElementById('app').innerHTML = `
+        <div id="sign-in"></div>
+      `
+
+  const signInDiv = document.getElementById('sign-in')
+
+  clerk.mountSignIn(signInDiv)
+}
+```
+
+----------------------------------------
+
+TITLE: Updating User Metadata with Clerk Go SDK
+DESCRIPTION: Illustrates updating user metadata using the Clerk Go SDK. It defines a function `addStripeCustomerID` that calls `s.clerkClient.Users().UpdateMetadata` to set unsafe metadata.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_10
+
+LANGUAGE: go
+CODE:
+```
+var client clerk.Client
+
+func addStripeCustomerID(user *clerk.User, stripeCustomerID string) error {
+    birthday := map[string]interface{}{
+        "birthday": "04-20-1969",
+    }
+  user, err := s.clerkClient.Users().UpdateMetadata(sess.UserID, &clerk.updateMetadataRequest{
+    UnsafeMetadata: birthday,
+  })
+
+  if err != nil {
+    panic(err)
+  }
+}
+```
+
+----------------------------------------
+
+TITLE: Setting Public Metadata using Clerk Express SDK
+DESCRIPTION: Shows how to update a user's public metadata within an Express route using the `@clerk/express` package. It retrieves user ID and role from the request body and updates the metadata.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_4
+
+LANGUAGE: ts
+CODE:
+```
+import { clerkClient } from '@clerk/express'
+
+app.post('/updateRole', async (req, res) => {
+  const { role, userId } = req.body
+
+  await clerkClient.users.updateUserMetadata(userId, {
+    publicMetadata: {
+      role,
+    },
+  })
+  res.status(200).json({ success: true })
+})
+```
+
+----------------------------------------
+
+TITLE: Function Signature: updateUserMetadata (TypeScript)
+DESCRIPTION: Defines the signature for the `updateUserMetadata` function in Clerk's Backend SDK. It takes a user ID and parameters for updating metadata, returning a Promise that resolves to a User object. This function performs a deep merge of metadata, allowing nested JSON objects to be merged and keys to be removed by setting their value to `null`.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/user/update-user-metadata.mdx#_snippet_0
+
+LANGUAGE: TypeScript
+CODE:
+```
+function updateUserMetadata(userId: string, params: UpdateUserMetadataParams): Promise<User>
+```
+
+----------------------------------------
+
+TITLE: Updating User Metadata with Clerk React SDK (useUser hook)
+DESCRIPTION: Demonstrates updating user metadata on the frontend using the Clerk React SDK's `useUser` hook. It accesses the current user object and calls the `user.update` method to set `unsafeMetadata`.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_13
+
+LANGUAGE: tsx
+CODE:
+```
+export default function Page() {
+  const { user } = useUser()
+  const [birthday, setBirthday] = useState('')
+
+  return (
+    <div>
+      <input type="text" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
+
+      <button
+        onClick={() => {
+          user?.update({
+            unsafeMetadata: { birthday },
+          })
+        }}
+      >
+        Update birthday
+      </button>
+    </div>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Retrieving Private Metadata with Clerk Backend SDKs and API
+DESCRIPTION: Shows how to fetch a user's private metadata from the backend using various Clerk SDKs and a direct API call via cURL. Private metadata is not accessible from the frontend, ensuring sensitive data remains secure.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_1
+
+LANGUAGE: ts
+CODE:
+```
+export async function GET(req) {
+  const { userId } = await req.json()
+
+  const user = await clerkClient.users.getUser(userId)
+
+  return Response.json(user.privateMetadata)
+}
+```
+
+LANGUAGE: ts
+CODE:
+```
+import { clerkClient } from '@clerk/express'
+
+app.post('/updateStripe', async (req, res) => {
+  const { userId } = req.body
+
+  const user = await clerkClient.users.getUser(userId)
+
+  res.status(200).json(user.privateMetadata)
+})
+```
+
+LANGUAGE: go
+CODE:
+```
+var client clerk.Client
+
+func GetUserMetadata(user *clerk.User, stripeCustomerID string) error {
+  user, err := s.clerkClient.Users().Read(sess.UserID)
+
+  if err != nil {
+    panic(err);
+  }
+}
+```
+
+LANGUAGE: ruby
+CODE:
+```
+# ruby json example with a private metadata and stripe id
+require 'clerk'
+clerk = Clerk::SDK.new(api_key: "your_clerk_secret_key")
+clerk.users.getUser("user_xyz")
+```
+
+LANGUAGE: bash
+CODE:
+```
+curl -XGET -H 'Authorization: CLERK_SECRET_KEY' -H "Content-type: application/json" 'https://api.clerk.com/v1/users/{user_id}'
+```
+
+----------------------------------------
+
+TITLE: Updating User with Clerk Backend SDK (TypeScript)
+DESCRIPTION: This snippet demonstrates how to update a user's details using the Clerk Backend SDK. It first checks for a userId and redirects if not present. It then prepares user data and uses createClerkClient to initialize the client and call users.updateUser. The updated user object is then returned.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/overview.mdx#_snippet_14
+
+LANGUAGE: TypeScript
+CODE:
+```
+// If there is no userId, then redirect to sign-in route
+              if (!userId) {
+                return redirect('/sign-in?redirect_url=' + args.request.url)
+              }
+
+              // Prepare the data for the mutation
+              const params = { firstName: 'John', lastName: 'Wicker' }
+
+              // Initialize clerkClient and perform the mutations
+              const updatedUser = await createClerkClient({
+                secretKey: process.env.CLERK_SECRET_KEY,
+              }).users.updateUser(userId, params)
+
+              // Return the updated user
+              return { serialisedUser: JSON.stringify(updatedUser) }
+```
+
+----------------------------------------
+
+TITLE: Reloading User Data in React with Clerk
+DESCRIPTION: This React component demonstrates how to fetch updated user metadata from an API endpoint and then reload the user's data using `$userStore.reload()` to reflect changes on the client-side. It handles loading states and displays the user's role from public metadata.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/astro/user-store.mdx#_snippet_3
+
+LANGUAGE: tsx
+CODE:
+```
+import { useStore } from '@nanostores/react'
+import { $userStore } from '@clerk/astro/client'
+
+export default function User() {
+  const user = useStore($userStore)
+
+  if (user === undefined) {
+    // Handle loading state however you like
+    return null
+  }
+
+  if (user === null) return null
+
+  const updateUser = async () => {
+    // Update data via an API endpoint
+    const updateMetadata = await fetch('/api/updateMetadata')
+
+    // Check if the update was successful
+    if (updateMetadata.message !== 'success') {
+      throw new Error('Error updating')
+    }
+
+    // If the update was successful, reload the user data
+    await user.reload()
+  }
+
+  return (
+    <>
+      <button onClick={updateUser}>Click me to update your metadata</button>
+      <p>user role: {user?.publicMetadata.role}</p>
+    </>
+  )
+}
+```
+
+----------------------------------------
+
+TITLE: Setting Public Metadata using Clerk Go SDK
+DESCRIPTION: Provides an example of updating a user's public metadata using the Clerk Go SDK. It demonstrates calling the `UpdateMetadata` method on the Users client.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_5
+
+LANGUAGE: go
+CODE:
+```
+var client clerk.Client
+
+func addStripeCustomerID(user *clerk.User, role string) error {
+    Role := map[string]interface{}{
+        "role": role,
+    }
+  user, err := s.clerkClient.Users().UpdateMetadata(sess.UserID, &clerk.updateMetadataRequest{
+    PublicMetadata: role,
+  })
+
+  if err != nil {
+    panic(err)
+  }
+}
+```
+
+----------------------------------------
+
+TITLE: Updating a User with Clerk's Backend SDK (TypeScript)
+DESCRIPTION: This snippet shows the TypeScript signature for the `updateUser` function, part of Clerk's Backend SDK. It takes a `userId` (string) to identify the user and `params` (UpdateUserParams) containing the fields to update. The function returns a Promise that resolves to the updated `User` object.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/user/update-user.mdx#_snippet_0
+
+LANGUAGE: TypeScript
+CODE:
+```
+function updateUser(userId: string, params: UpdateUserParams): Promise<User>
+```
+
+----------------------------------------
+
+TITLE: Interacting with Clerk Backend API in Astro Endpoints (TypeScript)
+DESCRIPTION: This example illustrates how to use `clerkClient` from `@clerk/astro/server` to interact with Clerk's Backend API within an Astro endpoint. It demonstrates updating a user's profile (e.g., `firstName`, `lastName`) after verifying the user's authentication status.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/astro/endpoints.mdx#_snippet_3
+
+LANGUAGE: TypeScript
+CODE:
+```
+import { clerkClient } from '@clerk/astro/server'
+
+export async function POST(context) {
+  const { userId } = context.locals.auth()
+
+  if (!userId) {
+    return new Response('Unauthorized', { status: 401 })
+  }
+
+  const params = { firstName: 'Clerk', lastName: 'Cookie' }
+
+  const user = await clerkClient(context).users.updateUser(userId, params)
+
+  return new Response(JSON.stringify({ user }))
+}
+```
+
+----------------------------------------
+
+TITLE: Updating Users.getUserList Return Type in JavaScript
+DESCRIPTION: This snippet illustrates the updated response payload for `clerkClient.users.getUserList()`. The function now returns an object `{ data, totalCount }` instead of just `data`, aligning with paginated Backend API responses and including the total count of users.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/upgrade-guides/core-2/backend.mdx#_snippet_38
+
+LANGUAGE: js
+CODE:
+```
+const data = await clerkClient.users.getUserList()
+const { data, totalCount } = await clerkClient.users.getUserList()
+```
+
+----------------------------------------
+
+TITLE: Reloading User Data in Svelte with Clerk
+DESCRIPTION: This Svelte component demonstrates reloading user data after an API update. It aliases `$userStore` to `userStore` to avoid conflicts with Svelte's reserved reactivity prefix and uses `$user.reload()` to refresh the user object, updating the displayed public metadata.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/astro/user-store.mdx#_snippet_5
+
+LANGUAGE: svelte
+CODE:
+```
+<script>
+  // The $ prefix is reserved in Svelte for its own reactivity system.
+  // Alias the imports to avoid conflicts.
+  import { useStore } from '@nanostores/svelte'
+  import { $userStore as userStore } from '@clerk/astro/client'
+
+  const user = useStore(userStore)
+
+  const updateUser = async () => {
+    if ($user) {
+      try {
+        // Update data via an API endpoint
+        const response = await fetch('/api/updateMetadata')
+        const updateMetadata = await response.json()
+
+        // Check if the update was successful
+        if (updateMetadata.message !== 'success') {
+          throw new Error('Error updating')
+        }
+
+        // If the update was successful, reload the user data
+        await $user.reload()
+      } catch (error) {
+        console.error('Failed to update metadata:', error)
+        // Handle the error appropriately
+      }
+    }
+  }
+</script>
+
+{#if $user === undefined}
+  <!-- Handle loading state however you like -->
+{:else if $user !== null}
+  <button on:click={updateUser}>Click me to update your metadata</button>
+  <p>user role: {$user.publicMetadata?.role}</p>
+{/if}
+```
+
+----------------------------------------
+
+TITLE: Reloading User Data in Vue with Clerk
+DESCRIPTION: This Vue component uses `useStore` with `$userStore` to manage user data. It shows how to update user metadata via an API call and subsequently invoke `user.value.reload()` to refresh the local user state, ensuring the UI reflects the latest data from the backend.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/astro/user-store.mdx#_snippet_4
+
+LANGUAGE: vue
+CODE:
+```
+<script setup>
+import { useStore } from '@nanostores/vue'
+import { $userStore } from '@clerk/astro/client'
+
+const user = useStore($userStore)
+
+const updateUser = async () => {
+  // Update data via an API endpoint
+  const updateMetadata = await fetch('/api/updateMetadata')
+
+  // Check if the update was successful
+  if (updateMetadata.message !== 'success') {
+    throw new Error('Error updating')
+  }
+
+  // If the update was successful, reload the user data
+  await user.value.reload()
+}
+</script>
+
+<template>
+  <div v-if="user === undefined">
+    <!-- Handle loading state however you like -->
+  </div>
+
+  <div v-else-if="user !== null">
+    <button @click="updateUser">Click me to update your metadata</button>
+    <p>user role: {{ user?.publicMetadata.role }}</p>
+  </div>
+</template>
+```
+
+----------------------------------------
+
+TITLE: Updating User OAuth Access Token Response Payload - JavaScript
+DESCRIPTION: This snippet illustrates the updated response structure for `users.getUserOauthAccessToken()`. The method now returns an object with `data` and `totalCount` instead of just `data`, reflecting the paginated nature of Backend API responses and providing the total count of items.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/upgrade-guides/core-2/backend.mdx#_snippet_42
+
+LANGUAGE: js
+CODE:
+```
+const data = await clerkClient.users.getUserOauthAccessToken()
+const { data, totalCount } = await clerkClient.users.getUserOauthAccessToken()
+```
+
+----------------------------------------
+
+TITLE: Example Usage: Updating User Profile Image with Backend SDK (TSX)
+DESCRIPTION: This TSX example demonstrates how to use `clerkClient.users.updateUserProfileImage` to update a user's profile image. It shows how to construct a `File` object from content bits and then pass it within a `params` object along with the `userId`. It's important to note that using this backend method can contribute to rate limiting, and the frontend `user.setProfileImage()` is generally recommended for this operation.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/user/update-user-profile-image.mdx#_snippet_1
+
+LANGUAGE: TSX
+CODE:
+```
+const userId = 'user_123'
+const fileBits = ['profile-pic-content']
+const fileName = 'profile-pic.png'
+const file = new File(fileBits, fileName, { type: 'image/png' })
+
+const params = {
+  file,
+}
+
+const response = await clerkClient.users.updateUserProfileImage(userId, params)
+```
+
+----------------------------------------
+
+TITLE: Interacting with Clerk Backend API in Next.js Route Handlers
+DESCRIPTION: This snippet shows how to use `clerkClient` within a Next.js Route Handler to interact with Clerk's Backend API. It demonstrates updating a user's profile (e.g., `firstName`, `lastName`) using the `users.updateUser` method. This allows server-side operations on user data, requiring authentication and redirecting unauthenticated users.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/nextjs/route-handlers.mdx#_snippet_4
+
+LANGUAGE: ts
+CODE:
+```
+import { NextResponse, NextRequest } from 'next/server'
+import { auth, clerkClient } from '@clerk/nextjs/server'
+
+export async function POST(req: NextRequest) {
+  const { userId } = await auth()
+
+  if (!userId) return NextResponse.redirect(new URL('/sign-in', req.url))
+
+  const params = { firstName: 'John', lastName: 'Wick' }
+
+  const client = await clerkClient()
+
+  const user = await client.users.updateUser(userId, params)
+
+  return NextResponse.json({ user })
+}
+```
+
+----------------------------------------
+
+TITLE: Updating User List Return Type in Clerk Backend SDK
+DESCRIPTION: This snippet illustrates the updated return signature for `clerkClient.users.getUserList()`. The function now returns an object `{ data, totalCount }` instead of a direct `data` array, aligning with paginated Backend API responses and including the `totalCount` property.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/upgrade-guides/core-2/javascript.mdx#_snippet_24
+
+LANGUAGE: JavaScript
+CODE:
+```
+const data = await clerkClient.users.getUserList()
+```
+
+LANGUAGE: JavaScript
+CODE:
+```
+const { data, totalCount } = await clerkClient.users.getUserList()
+```
+
+----------------------------------------
+
+TITLE: Domain Update Forbidden JSON Response
+DESCRIPTION: This error occurs when an attempt is made to update a domain for a non-production instance. Domain updates are restricted to production instances only.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/errors/backend-api.mdx#_snippet_24
+
+LANGUAGE: JSON
+CODE:
+```
+{
+  "shortMessage": "Domain update was forbidden",
+  "longMessage": "Domain can be only updated for production instances",
+  "code": "domain_update_forbidden"
+}
+```
+
+----------------------------------------
+
+TITLE: API Endpoint Deprecated JSON Response
+DESCRIPTION: This error signifies that the API endpoint being accessed is deprecated and is scheduled for removal. Users should update their integrations to use current endpoints.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/errors/backend-api.mdx#_snippet_23
+
+LANGUAGE: JSON
+CODE:
+```
+{
+  "shortMessage": "endpoint is deprecated and pending removal",
+  "longMessage": "endpoint is deprecated and pending removal",
+  "code": "operation_deprecated"
+}
+```
+
+----------------------------------------
+
+TITLE: Updating User Attributes - TypeScript Definition
+DESCRIPTION: Defines the `update()` method, used to modify various user attributes such as username, first name, last name, primary identification IDs, and `unsafeMetadata`. This method requires specific settings to be enabled in the Clerk Dashboard for attributes to be modifiable.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/javascript/user.mdx#_snippet_24
+
+LANGUAGE: TypeScript
+CODE:
+```
+function update(params: UpdateUserParams): Promise<User>
+```
+
+----------------------------------------
+
+TITLE: Example of Updating Organization Membership Public Metadata (TSX)
+DESCRIPTION: This TSX example demonstrates how to use `clerkClient.organizations.updateOrganizationMembershipMetadata` to update the `publicMetadata` of an organization membership. It specifies the `organizationId` and `userId`, then provides an object for `publicMetadata` to merge with existing values, showing how to update a specific key.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/organization/update-organization-membership-metadata.mdx#_snippet_1
+
+LANGUAGE: TSX
+CODE:
+```
+const organizationId = 'org_123'
+
+const userId = 'user_123'
+
+const response = await clerkClient.organizations.updateOrganizationMembershipMetadata({
+  organizationId,
+  userId,
+  publicMetadata: {
+    example: 'this value is updated!',
+  },
+})
+```
+
+----------------------------------------
+
+TITLE: Performing Clerk Backend API Operations with Go
+DESCRIPTION: This snippet demonstrates how to interact with the Clerk Backend API using the Go SDK. It covers initializing the SDK with a secret key, creating and updating an organization, listing organization memberships, and retrieving user details associated with a membership. Error handling for API responses is also shown. A Clerk Secret Key is required for authentication.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/go/other-examples.mdx#_snippet_0
+
+LANGUAGE: Go
+CODE:
+```
+import (
+    "github.com/clerk/clerk-sdk-go/v2"
+    "github.com/clerk/clerk-sdk-go/v2/organization"
+    "github.com/clerk/clerk-sdk-go/v2/organizationmembership"
+    "github.com/clerk/clerk-sdk-go/v2/user"
+)
+
+func main() {
+  // Each API operation requires a context.Context as the first argument.
+  ctx := context.Background()
+
+  // Set the API key
+  clerk.SetKey("{{secret}}")
+
+  // Create an organization
+  org, err := organization.Create(ctx, &organization.CreateParams{
+      Name: clerk.String("Clerk Inc"),
+  })
+  if err != nil {
+    // You can get additional information on the error, if it can
+    // be type-cast to clerk.APIErrorResponse.
+    if apiErr, ok := err.(*clerk.APIErrorResponse); ok {
+      apiErr.TraceID
+      apiErr.Error()
+      apiErr.Response.RawJSON
+    }
+    // handle the error
+    panic(err)
+  }
+
+  // Update the organization
+  org, err = organization.Update(ctx, org.ID, &organization.UpdateParams{
+      Slug: clerk.String("clerk"),
+  })
+  if err != nil {
+    // handle the error
+    panic(err)
+  }
+
+  // List organization memberships
+  listParams := organizationmembership.ListParams{}
+  listParams.Limit = clerk.Int64(10)
+  memberships, err := organizationmembership.List(ctx, params)
+  if err != nil {
+    // handle the error
+    panic(err)
+  }
+  if memberships.TotalCount < 0 {
+      return
+  }
+  membership := memberships[0]
+
+  // Get a user
+  usr, err := user.Get(ctx, membership.UserID)
+  if err != nil {
+    // handle the error
+    panic(err)
+  }
+}
+```
+
+----------------------------------------
+
+TITLE: Handling Missing User Data Error - JSON
+DESCRIPTION: Describes an error response indicating that required user data is missing or does not match the instance's requirements. The `meta.names` field specifies the missing parameters, which are crucial for form validation.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/errors/backend-api.mdx#_snippet_179
+
+LANGUAGE: JSON
+CODE:
+```
+{
+  "shortMessage": "missing data",
+  "longMessage": "%q data doesn't match user requirements set for this instance",
+  "code": "form_data_missing",
+  "meta": {
+    "names": "missingparams"
+  }
+}
+```
+
+----------------------------------------
+
+TITLE: Updating createClerkClient Frontend API Parameter in JavaScript
+DESCRIPTION: This snippet illustrates the deprecated `frontendApi` parameter when initializing the Clerk client via `createClerkClient`. This parameter must be updated to `publishableKey`, and it's crucial to note that the values for these keys are different and must be retrieved from the Clerk Dashboard.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/upgrade-guides/core-2/node.mdx#_snippet_14
+
+LANGUAGE: JavaScript
+CODE:
+```
+import { createClerkClient } from '@clerk/clerk-sdk-node'
+
+createClerkClient({ frontendApi: '...' })
+```
+
+----------------------------------------
+
+TITLE: Reload User Data with Clerk's useUser() in Vue
+DESCRIPTION: This example demonstrates how to refresh the current user's data using the `reload()` method on the `User` object, accessed via `useUser()`. It simulates an API call to update metadata and then reloads the user object to reflect the latest information, such as a user's role.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/vue/use-user.mdx#_snippet_2
+
+LANGUAGE: Vue
+CODE:
+```
+<script setup>
+import { useUser } from '@clerk/vue'
+
+const { isLoaded, user } = useUser()
+
+const updateUser = async () => {
+  // Update user data via an API endpoint
+  const updateMetadata = await fetch('/api/updateMetadata')
+
+  // Check if the update was successful
+  if (updateMetadata.message !== 'success') {
+    throw new Error('Error updating')
+  }
+
+  // If the update was successful, reload the user data
+  await user.value?.reload()
+}
+</script>
+
+<template>
+  <div v-if="!isLoaded">
+    <!-- Handle loading state -->
+  </div>
+
+  <div v-else-if="user">
+    <button @click="updateUser">Update your metadata</button>
+    <p>user role: {{ user.publicMetadata?.role }}</p>
+  </div>
+</template>
+```
+
+----------------------------------------
+
+TITLE: Handling Deprecated User Password Update Method Error (JSON)
+DESCRIPTION: This JSON snippet defines the error when attempting to update a user's password via a deprecated API endpoint. It informs the user that password updates should now be performed exclusively through the `/v1/me/change_password` endpoint, along with a specific error code.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/errors/frontend-api.mdx#_snippet_257
+
+LANGUAGE: JSON
+CODE:
+```
+{
+  "shortMessage": "deprecated feature",
+  "longMessage": "Password is not a valid parameter and can only be updated via /v1/me/change_password",
+  "code": "updating_user_password_deprecated"
+}
+```
+
+----------------------------------------
+
+TITLE: Setting Public Metadata using Clerk Ruby SDK
+DESCRIPTION: Illustrates how to set public metadata for a user using the Clerk Ruby SDK. It shows initializing the SDK and calling the `updateMetadata` method with the user ID and public metadata.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/metadata.mdx#_snippet_6
+
+LANGUAGE: ruby
+CODE:
+```
+# ruby json example with a private metadata and stripe id
+require 'clerk'
+require 'json'
+
+publicMetadata = {
+  "role": "awesome-user",
+}
+
+clerk = Clerk::SDK.new(api_key: "your_clerk_secret_key")
+clerk.users.updateMetadata("user_xyz", public_metadata: publicMetadata)
+```
+
+----------------------------------------
+
+TITLE: Updating Users.getUserList Response in JavaScript
+DESCRIPTION: The `Users.getUserList` function's response payload has been updated in Clerk's Core 2 release. Previously, it returned data directly; now, it returns an object `{ data, totalCount }`. This change aligns with the paginated nature of the Backend API, providing `totalCount` for easier determination of total items.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/upgrade-guides/core-2/nextjs.mdx#_snippet_42
+
+LANGUAGE: JavaScript
+CODE:
+```
+const data = await clerkClient.users.getUserList()
+```
+
+LANGUAGE: JavaScript
+CODE:
+```
+const { data, totalCount } = await clerkClient.users.getUserList()
+```
+
+----------------------------------------
+
+TITLE: Manually Setting User Role in Clerk Dashboard (JSON)
+DESCRIPTION: This JSON snippet is used to manually update a user's `publicMetadata` in the Clerk Dashboard, assigning them the 'admin' role. This step is for initial setup and testing, allowing a specific user to access protected content before a dynamic role management tool is implemented.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/nextjs/basic-rbac.mdx#_snippet_2
+
+LANGUAGE: JSON
+CODE:
+```
+{
+  "role": "admin"
+}
+```
+
+----------------------------------------
+
+TITLE: Example Usage: Updating Organization Public Metadata (TSX)
+DESCRIPTION: Illustrates how to invoke the `updateOrganizationMetadata` function using `clerkClient.organizations` to modify an organization's public metadata. This example updates the 'example' key within the `publicMetadata` for a specific organization ID, demonstrating an asynchronous operation that returns a response.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/organization/update-organization-metadata.mdx#_snippet_1
+
+LANGUAGE: TSX
+CODE:
+```
+const organizationId = 'org_123'
+
+const response = await clerkClient.organizations.updateOrganizationMetadata(organizationId, {
+  publicMetadata: {
+    example: 'metadata',
+  },
+})
+```
+
+----------------------------------------
+
+TITLE: Fetching User List in TanStack React Start API (TypeScript)
+DESCRIPTION: This snippet illustrates how to create an API route in TanStack React Start to fetch a list of users using the Clerk Backend SDK. It initializes createClerkClient with the secret key from import.meta.env, and then retrieves the user list via clerkClient.users.getUserList().
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/overview.mdx#_snippet_17
+
+LANGUAGE: TypeScript
+CODE:
+```
+import { createClerkClient } from '@clerk/backend'
+import { json } from '@tanstack/react-start'
+import { createAPIFileRoute } from '@tanstack/react-start/api'
+
+export const Route = createAPIFileRoute('/api/example')({
+  GET: async ({ request, params }) => {
+    const clerkClient = createClerkClient({ secretKey: import.meta.env.CLERK_SECRET_KEY })
+
+    const userList = await clerkClient.users.getUserList()
+
+    return json({ userList })
+  }
+})
+```
+
+----------------------------------------
+
+TITLE: Function Signature for Updating Organization Membership Metadata (TypeScript)
+DESCRIPTION: This TypeScript function signature defines `updateOrganizationMembershipMetadata`, which is used to update metadata for an organization membership. It accepts `UpdateOrganizationMembershipMetadataParams` as input and returns a `Promise` that resolves to an `OrganizationMembership` object.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/organization/update-organization-membership-metadata.mdx#_snippet_0
+
+LANGUAGE: TypeScript
+CODE:
+```
+function updateOrganizationMembershipMetadata(
+  params: UpdateOrganizationMembershipMetadataParams,
+): Promise<OrganizationMembership>
+```
+
+----------------------------------------
+
+TITLE: Creating a User with Clerk Backend API in TypeScript
+DESCRIPTION: This TypeScript snippet illustrates how to create a new user using the `clerkClient.users.createUser` method. It accepts parameters for `firstName`, `lastName`, `emailAddress`, and `password`. This SDK method is a wrapper for the `POST /users` Backend API endpoint.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/user/create-user.mdx#_snippet_7
+
+LANGUAGE: TypeScript
+CODE:
+```
+const response = await clerkClient.users.createUser({
+  firstName: 'Test',
+  lastName: 'User',
+  emailAddress: ['testclerk123@gmail.com'],
+  password: 'password',
+})
+```
+
+----------------------------------------
+
+TITLE: Updating authMiddleware frontendApi to publishableKey (JavaScript)
+DESCRIPTION: The `frontendApi` parameter for `authMiddleware` has been deprecated and replaced by `publishableKey`. This update ensures consistency with Clerk's new naming conventions for public API keys.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/upgrade-guides/core-2/nextjs.mdx#_snippet_28
+
+LANGUAGE: javascript
+CODE:
+```
+import { authMiddleware } from '@clerk/nextjs/server'
+
+authMiddleware({ publishableKey: '...' })
+```
+
+----------------------------------------
+
+TITLE: Migrating `frontendApi` to `publishableKey` in Clerk Client Initialization
+DESCRIPTION: This snippet illustrates the transition from using `frontendApi` to `publishableKey` when initializing `createClerkClient` and authenticating requests. It also highlights the updated import statement for `createClerkClient` from `@clerk/backend`. Users must update both the key name and its corresponding value, which can be found in the Clerk Dashboard.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/upgrade-guides/core-2/backend.mdx#_snippet_45
+
+LANGUAGE: JavaScript
+CODE:
+```
+import { Clerk } from '@clerk/backend'
+import { createClerkClient } from '@clerk/backend'
+
+const clerkClient = Clerk({ frontendApi: '...' })
+const clerkClient = createClerkClient({ publishableKey: '...' })
+
+clerkClient.authenticateRequest({ frontendApi: '...' })
+clerkClient.authenticateRequest({ publishableKey: '...' })
+```
+
+----------------------------------------
+
+TITLE: Fetching Backend User in Next.js API Route with Clerk
+DESCRIPTION: This snippet demonstrates how to create a protected API route in Next.js Pages Router using Clerk. It uses `getAuth()` to retrieve the `userId` for authentication and `clerkClient()` to fetch the full `Backend User` object, returning it as a JSON response. It requires `@clerk/nextjs/server` and `next`.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/nextjs/read-session-data.mdx#_snippet_2
+
+LANGUAGE: tsx
+CODE:
+```
+import { getAuth, clerkClient } from '@clerk/nextjs/server'
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Use `getAuth()` to get the user's ID
+  const { userId } = getAuth(req)
+
+  // Protect the route by checking if the user is signed in
+  if (!userId) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+
+  // Initialize the Backend SDK
+  const client = await clerkClient()
+
+  // Get the user's full `Backend User` object
+  const user = await client.users.getUser(userId)
+
+  return res.status(200).json({ user })
+}
+```
+
+----------------------------------------
+
+TITLE: Deleting User via Clerk API with cURL (Bash)
+DESCRIPTION: This snippet provides a cURL command example for deleting a user directly via the Clerk Backend API. It uses the `DELETE` HTTP method, targets the user endpoint with the user ID, and requires an Authorization header with a Bearer token (your secret key).
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/deleting-users.mdx#_snippet_3
+
+LANGUAGE: bash
+CODE:
+```
+curl 'https://api.clerk.com/v1/users/{user_id}' -X DELETE -H 'Authorization:Bearer {{secret}}' -H 'Content-Type:application/json'
+```
+
+----------------------------------------
+
+TITLE: Function Signature: updateUserProfileImage (TypeScript)
+DESCRIPTION: This is the TypeScript signature for the `updateUserProfileImage` function, part of Clerk's Backend SDK. It takes a `userId` (string) and a `params` object containing the `file` (Blob or File) to be set as the profile image. The function returns a Promise that resolves to a `User` object upon successful update.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/references/backend/user/update-user-profile-image.mdx#_snippet_0
+
+LANGUAGE: TypeScript
+CODE:
+```
+function updateUserProfileImage(userId: string, params: { file: Blob | File }): Promise<User>
+```
+
+----------------------------------------
+
+TITLE: Create Actor Token using Clerk Backend API (bash)
+DESCRIPTION: Demonstrates how to create a Clerk actor token using the Backend API via a `curl` command. The token allows an actor user (`user_21Ufcy98STcA11s3QckIwtwHIES`) to impersonate a subject user (`user_1o4qfak5AdI2qlXSXENGL05iei6`) for 600 seconds. The `actor` object's `sub` property will be included in the session token's `act` claim.
+SOURCE: https://github.com/clerk/clerk-docs/blob/main/docs/users/user-impersonation.mdx#_snippet_0
+
+LANGUAGE: bash
+CODE:
+```
+curl -X POST https://api.clerk.com/v1/actor_tokens -d '{ \
+  "user_id": "user_1o4qfak5AdI2qlXSXENGL05iei6", \
+  "expires_in_seconds": 600 \
+  "actor": { \
+    "sub": "user_21Ufcy98STcA11s3QckIwtwHIES", \
+  } \
+}'
+```
+</details>
 
 ---
 
@@ -58,7 +1419,15 @@ Now I'll update your webhook to properly store the Supabase user ID in the Clerk
 
 ---
 
+<details><summary>Edit file: src/app/api/webhooks/route.ts</summary>
+
+I'm updating the webhook to add the clerkClient import and update the user's metadata with the Supabase user ID after creating the user in the database.
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -2,4 +2,5 @@
   import { headers } from "next/headers";
   import type { User, WebhookEvent } from "@clerk/nextjs/server";
 + import { clerkClient } from "@clerk/nextjs/server";
@@ -66,7 +1435,11 @@ Now I'll update your webhook to properly store the Supabase user ID in the Clerk
   import { convertBigInts } from "@/lib/utils";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -42,4 +43,5 @@
   			const name = `${first_name} ${last_name}`;
   
 + 			// Create user in Supabase database
@@ -74,7 +1447,11 @@ Now I'll update your webhook to properly store the Supabase user ID in the Clerk
   				clerkId,
 ```
 
+**Chunk 3**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -49,7 +51,17 @@
   
   			console.log("🚀 ~ POST ~ user:", user);
 + 
@@ -94,6 +1471,8 @@ Now I'll update your webhook to properly store the Supabase user ID in the Clerk
   				data: convertBigInts(user),
   			});
 ```
+
+</details>
 
 ---
 

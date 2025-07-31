@@ -34,7 +34,15 @@ The data structure seems to include restaurants with their deals (as we can see 
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -82,4 +82,10 @@
   // Type for restaurant from schema
   type RestaurantData = z.infer<typeof restaurantSchema>;
 + 
@@ -47,7 +55,11 @@ The data structure seems to include restaurants with their deals (as we can see 
   // Props for editable cells
 ```
 
+**Chunk 2**
+Lines added: 24, lines removed: undefined
+
 ```diff
+@@ -344,4 +350,28 @@
   			},
   		},
 + 		{
@@ -78,7 +90,11 @@ The data structure seems to include restaurants with their deals (as we can see 
   			id: "quickView",
 ```
 
+**Chunk 3**
+Lines added: 20, lines removed: undefined
+
 ```diff
+@@ -357,4 +387,24 @@
   			meta: { editable: false } as ColumnMeta,
   		},
 + 		{
@@ -105,6 +121,8 @@ The data structure seems to include restaurants with their deals (as we can see 
   			id: "actions",
 ```
 
+</details>
+
 ---
 
 Now I need to fix the TypeScript errors in the RestaurantQuickView component to ensure the BentoGrid items can handle React elements in the description field.
@@ -130,7 +148,15 @@ Let's fix the linter errors in the RestaurantQuickView component to resolve the 
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: undefined
+
 ```diff
+@@ -33,4 +33,16 @@
   import { Checkbox } from "@/components/ui/checkbox";
   import { DealsList, EmptyDeals } from "./restaurant-deals-display";
 + 
@@ -149,7 +175,11 @@ Let's fix the linter errors in the RestaurantQuickView component to resolve the 
   // Define types for deal
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -200,5 +212,5 @@
   
   		// Create base item for restaurant info
 - 		const items = [
@@ -157,6 +187,8 @@ Let's fix the linter errors in the RestaurantQuickView component to resolve the 
   			{
   				id: `restaurant-${restaurantData.id.toString()}`,
 ```
+
+</details>
 
 ---
 
@@ -190,7 +222,15 @@ Let's make one more improvement to the Restaurants table by ensuring the deal co
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -365,4 +365,8 @@
   				</div>
   			),
 + 			accessorFn: (row) => {
@@ -200,6 +240,8 @@ Let's make one more improvement to the Restaurants table by ensuring the deal co
   			cell: ({ row }) => {
   				const restaurant = row.original as ExtendedRestaurant;
 ```
+
+</details>
 
 ---
 
@@ -230,7 +272,15 @@ In the RestaurantsTable component, the table is wrapped in a div with `rounded-m
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 2
+
 ```diff
+@@ -536,11 +536,14 @@
   			/>
   
 - 			<div className="rounded-md border">
@@ -249,7 +299,11 @@ In the RestaurantsTable component, the table is wrapped in a div with `rounded-m
   											? null
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -560,9 +563,9 @@
   									key={row.id}
   									data-state={row.getIsSelected() && "selected"}
 - 									className="group border-b-1 border-b-gray-200"
@@ -263,13 +317,23 @@ In the RestaurantsTable component, the table is wrapped in a div with `rounded-m
   												cell.column.columnDef.cell,
 ```
 
+</details>
+
 ---
 
 Now let's also improve the button styling in both the navigate column and the pagination buttons for a more cohesive look:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -402,5 +402,5 @@
   							size="sm"
   							variant="outline"
 - 							className="h-8"
@@ -278,7 +342,11 @@ Now let's also improve the button styling in both the navigate column and the pa
   							View Restaurant
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -597,4 +597,5 @@
   					onClick={() => table.previousPage()}
   					disabled={!table.getCanPreviousPage()}
 + 					className="rounded-lg px-4"
@@ -286,7 +354,11 @@ Now let's also improve the button styling in both the navigate column and the pa
   					Previous
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -605,4 +606,5 @@
   					onClick={() => table.nextPage()}
   					disabled={!table.getCanNextPage()}
 + 					className="rounded-lg px-4"
@@ -294,13 +366,23 @@ Now let's also improve the button styling in both the navigate column and the pa
   					Next
 ```
 
+</details>
+
 ---
 
 Finally, let's also enhance the styling of the empty state and add a subtle background to the entire table container for a more polished look:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -528,5 +528,5 @@
   
   	return (
 - 		<div className="space-y-4">
@@ -309,7 +391,11 @@ Finally, let's also enhance the styling of the empty state and add a subtle back
   				searchTerm={searchTerm}
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: 4
+
 ```diff
+@@ -580,9 +580,14 @@
   								<TableCell
   									colSpan={columns.length}
 - 									className="h-24 text-center"
@@ -329,6 +415,8 @@ Finally, let's also enhance the styling of the empty state and add a subtle back
   								</TableCell>
   							</TableRow>
 ```
+
+</details>
 
 ---
 
@@ -380,7 +468,15 @@ I'll update the restaurants table styling to match these characteristics, applyi
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -528,5 +528,5 @@
   
   	return (
 - 		<div className="space-y-4 p-4 bg-gray-50/30 rounded-2xl">
@@ -389,7 +485,11 @@ I'll update the restaurants table styling to match these characteristics, applyi
   				searchTerm={searchTerm}
 ```
 
+**Chunk 2**
+Lines added: 7, lines removed: 4
+
 ```diff
+@@ -536,13 +536,16 @@
   			/>
   
 - 			<div className="rounded-xl border shadow-sm overflow-hidden">
@@ -412,7 +512,11 @@ I'll update the restaurants table styling to match these characteristics, applyi
   										{header.isPlaceholder
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -563,6 +566,6 @@
   									key={row.id}
   									data-state={row.getIsSelected() && "selected"}
 - 									className="group border-b-1 border-b-gray-200 hover:bg-gray-50/50"
@@ -423,7 +527,11 @@ I'll update the restaurants table styling to match these characteristics, applyi
   									{row.getVisibleCells().map((cell) => (
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -582,6 +585,6 @@
   									className="h-24 text-center py-8"
   								>
 - 									<div className="flex flex-col items-center justify-center text-gray-500">
@@ -434,7 +542,11 @@ I'll update the restaurants table styling to match these characteristics, applyi
   											<p>No restaurants found matching your search</p>
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -602,5 +605,5 @@
   					onClick={() => table.previousPage()}
   					disabled={!table.getCanPreviousPage()}
 - 					className="rounded-lg px-4"
@@ -443,7 +555,11 @@ I'll update the restaurants table styling to match these characteristics, applyi
   					Previous
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -611,5 +614,5 @@
   					onClick={() => table.nextPage()}
   					disabled={!table.getCanNextPage()}
 - 					className="rounded-lg px-4"
@@ -452,13 +568,23 @@ I'll update the restaurants table styling to match these characteristics, applyi
   					Next
 ```
 
+</details>
+
 ---
 
 Now, let's also update the styling of the "View Restaurant" button and dropdown menu to match the sidebar's styling:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -402,5 +402,5 @@
   							size="sm"
   							variant="outline"
 - 							className="h-8 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-colors"
@@ -467,7 +593,11 @@ Now, let's also update the styling of the "View Restaurant" button and dropdown 
   							View Restaurant
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: 3
+
 ```diff
+@@ -420,17 +420,24 @@
   						<DropdownMenu>
   							<DropdownMenuTrigger asChild>
 - 								<Button variant="ghost" className="h-8 w-8 p-0">
@@ -497,13 +627,23 @@ Now, let's also update the styling of the "View Restaurant" button and dropdown 
   									Delete
 ```
 
+</details>
+
 ---
 
 Finally, let's update the delete confirmation dialog to match the sidebar styling:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 5
+
 ```diff
+@@ -632,17 +632,21 @@
   				onOpenChange={(open) => !open && setRestaurantToDelete(null)}
   			>
 - 				<AlertDialogContent>
@@ -532,13 +672,23 @@ Finally, let's update the delete confirmation dialog to match the sidebar stylin
   							Delete
 ```
 
+</details>
+
 ---
 
 Let's do one more enhancement to the table's editing features to match the sidebar styling:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 4
+
 ```diff
+@@ -155,11 +155,13 @@
   		switch (columnId) {
   			case "name":
 - 				return <Building className="h-4 w-4 text-gray-500 mr-2" />;
@@ -558,7 +708,11 @@ Let's do one more enhancement to the table's editing features to match the sideb
   				return null;
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -174,5 +176,5 @@
   				onBlur={onBlur}
   				autoFocus
 - 				className="h-8 w-full text-sm"
@@ -567,7 +721,11 @@ Let's do one more enhancement to the table's editing features to match the sideb
   			<div className="flex space-x-1">
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -181,5 +183,5 @@
   					size="sm"
   					variant="ghost"
 - 					className="h-8 w-8 p-0"
@@ -576,7 +734,11 @@ Let's do one more enhancement to the table's editing features to match the sideb
   					<Check className="h-4 w-4" />
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -189,5 +191,5 @@
   					size="sm"
   					variant="ghost"
 - 					className="h-8 w-8 p-0"
@@ -585,7 +747,11 @@ Let's do one more enhancement to the table's editing features to match the sideb
   					<X className="h-4 w-4" />
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -205,5 +207,5 @@
   				size="sm"
   				variant="ghost"
 - 				className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -594,13 +760,23 @@ Let's do one more enhancement to the table's editing features to match the sideb
   				<Edit className="h-4 w-4" />
 ```
 
+</details>
+
 ---
 
 Finally, let's update the QR code icon and ensure consistent styling for all icons in the table:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -320,5 +320,5 @@
   				return (
   					<div className="flex items-center">
 - 						<QrCode className="h-4 w-4 text-gray-500 mr-2" />
@@ -609,7 +785,11 @@ Finally, let's update the QR code icon and ensure consistent styling for all ico
   					</div>
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -334,5 +334,5 @@
   						size="sm"
   						variant="ghost"
 - 						className="h-8 w-8 ml-1 p-0"
@@ -618,7 +798,11 @@ Finally, let's update the QR code icon and ensure consistent styling for all ico
   					>
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -360,5 +360,5 @@
   						size="sm"
   						variant="ghost"
 - 						className="h-8 w-8 ml-1 p-0"
@@ -626,6 +810,8 @@ Finally, let's update the QR code icon and ensure consistent styling for all ico
   						onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
   					>
 ```
+
+</details>
 
 ---
 

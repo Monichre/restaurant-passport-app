@@ -33,7 +33,15 @@ I'll create a new hook called `useDealsSubscription` that subscribes to real-tim
 
 ---
 
+<details><summary>Edit file: src/hooks/useDealsSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 133, lines removed: 83
+
 ```diff
+@@ -1,128 +1,178 @@
 - 
 -   "use client";
 - 
@@ -297,6 +305,8 @@ I'll create a new hook called `useDealsSubscription` that subscribes to real-tim
   
 ```
 
+</details>
+
 ---
 
 I've implemented the `useDealsSubscription` hook which subscribes to real-time updates for restaurant deals using Supabase. This hook:
@@ -368,7 +378,15 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
 
 ---
 
+<details><summary>Edit file: src/hooks/useDealsSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -28,9 +28,8 @@
   
   /**
 -  * A hook for subscribing to real-time restaurant deals updates
@@ -382,7 +400,11 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
     const [isLoading, setIsLoading] = useState(true)
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 7
+
 ```diff
+@@ -43,11 +42,6 @@
           setIsLoading(true)
   
 -         // Create the API URL with optional restaurant filter
@@ -398,7 +420,11 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
           if (!response.ok) {
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 6
+
 ```diff
+@@ -74,13 +68,8 @@
   
       fetchDeals()
 -   }, [restaurantId])
@@ -415,7 +441,11 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
       const insertChannel = supabaseClient
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -92,7 +81,7 @@
             schema: 'public',
             table: 'restaurant_deals',
 -           filter,
@@ -426,7 +456,11 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
             await refreshDeals()
 ```
 
+**Chunk 5**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -110,9 +99,7 @@
             schema: 'public',
             table: 'restaurant_deals',
 -           filter,
@@ -438,7 +472,11 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
             await refreshDeals()
 ```
 
+**Chunk 6**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -130,5 +117,4 @@
             schema: 'public',
             table: 'restaurant_deals',
 -           filter,
@@ -446,7 +484,11 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
           async (payload) => {
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 5
+
 ```diff
+@@ -142,9 +128,5 @@
       const refreshDeals = async () => {
         try {
 -         const apiUrl = restaurantId
@@ -459,7 +501,11 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
           if (!response.ok) {
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -170,5 +152,5 @@
         deleteChannel.unsubscribe()
       }
 -   }, [restaurantId])
@@ -467,6 +513,8 @@ I'll update the hook to subscribe to all deal inserts without filtering by resta
   
     return {
 ```
+
+</details>
 
 ---
 
@@ -510,7 +558,15 @@ I'll create the API route for dealing with restaurant deals at `src/app/api/deal
 
 ---
 
+<details><summary>Edit file: src/app/api/deals/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 140, lines removed: 1
+
 ```diff
+@@ -1,1 +1,140 @@
 - 
 + import { type NextRequest, NextResponse } from "next/server";
 + import { db } from "@/db";
@@ -654,6 +710,8 @@ I'll create the API route for dealing with restaurant deals at `src/app/api/deal
 + 
 ```
 
+</details>
+
 ---
 
 Now I need to create the schema definition for the restaurant deals table. Let's add it to the database schema file.
@@ -661,8 +719,8 @@ Now I need to create the schema definition for the restaurant deals table. Let's
 ---
 
 <details>
-            <summary>Searched codebase "database schema drizzle" • **25** results</summary>
-        
+                <summary>Searched codebase "database schema drizzle" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/drizzle/meta/0000_snapshot.json` | L304-380 |
@@ -704,9 +762,9 @@ Let's find the main database schema file.
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/camera-permission-checker/camera-permission-checker.tsx` |
 
 </details>
 
@@ -729,7 +787,15 @@ Great, I found the database schema. Now, I'll check if we need to modify the exi
 
 ---
 
+<details><summary>Edit file: src/db/drizzle/schema.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -84,6 +84,7 @@
   		id: bigserial({ mode: "bigint" }).primaryKey().notNull(),
   		restaurantId: bigserial("restaurant_id", { mode: "bigint" }).notNull(),
 - 		title: text().notNull(),
@@ -741,13 +807,23 @@ Great, I found the database schema. Now, I'll check if we need to modify the exi
   		createdAt: timestamp("created_at", {
 ```
 
+</details>
+
 ---
 
 Now let's modify the Schema import in the API route:
 
 ---
 
+<details><summary>Edit file: src/app/api/deals/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   import { db } from "@/db";
   import { and, eq } from "drizzle-orm";
 - import { restaurantDeals, restaurants } from "@/db/schema";
@@ -755,6 +831,8 @@ Now let's modify the Schema import in the API route:
   
   /**
 ```
+
+</details>
 
 ---
 
@@ -902,7 +980,15 @@ Let's create a migration instructions file to guide how to complete the migratio
 
 ---
 
+<details><summary>Edit file: MIGRATION_INSTRUCTIONS.md</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 59, lines removed: 1
+
 ```diff
+@@ -1,1 +1,59 @@
 - 
 + # Migration Instructions for Restaurant Deals Table
 + 
@@ -964,6 +1050,8 @@ Let's create a migration instructions file to guide how to complete the migratio
 + 3. Restoring data from a backup if necessary
 + 
 ```
+
+</details>
 
 ---
 

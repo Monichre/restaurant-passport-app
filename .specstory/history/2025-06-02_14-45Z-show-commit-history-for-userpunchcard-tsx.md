@@ -798,71 +798,71 @@ Let me check if there's any mention of confetti or other animations that might b
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.tsx` | L4 | `import confetti from 'canvas-confetti'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.tsx` | L24 | `// Trigger confetti animation when component mounts` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.tsx` | L43 | `confetti({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.tsx` | L48 | `confetti({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.stories.tsx` | L19 | `* RaffleSuccessAnimation displays a celebratory animation with confetti` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.stories.tsx` | L30 | `"A celebratory animation component that shows confetti and congratulatory message when user gets a raffle entry.",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.stories.tsx` | L64 | `"The default raffle success animation showing confetti and congratulatory message.",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.stories.tsx` | L152 | `"Shows multiple raffle animations stacked for comparison (note: confetti will overlap).",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L46 | `"@types/canvas-confetti": "^1.9.0",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L54 | `"canvas-confetti": "^1.9.3",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L36 | `"@types/canvas-confetti": "^1.9.0",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L44 | `"canvas-confetti": "^1.9.3",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L1948 | `"@neoconfetti/react": "^1.0.0",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L3249 | `"node_modules/@neoconfetti/react": {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L5502 | `"node_modules/@types/canvas-confetti": {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L7627 | `"node_modules/canvas-confetti": {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L32 | `"@types/canvas-confetti": "latest",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L40 | `"canvas-confetti": "latest",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L367 | `"@chromatic-com/storybook": ["@chromatic-com/storybook@4.0.0", "", { "dependencies": { "@neoconfetti/react": "^1.0.0", "chromatic": "^12.0.0", "filesize": "^10.0.12", "jsonfile": "^6.1.0", "strip-ansi": "^7.1.0" }, "peerDependencies": { "storybook": "^0.0.0-0 || ^9.0.0 || ^9.1.0-0" } }, "sha` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L597 | `"@neoconfetti/react": ["@neoconfetti/react@1.0.0", "", {}, "sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A=="],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L939 | `"@types/canvas-confetti": ["@types/canvas-confetti@1.9.0", "", {}, "sha512-aBGj/dULrimR1XDZLtG9JwxX1b4HPRF6CX9Yfwh3NvstZEm1ZL7RBnel4keCPSqs1ANRu1u2Aoz9R+VmtjYuTg=="],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L1309 | `"canvas-confetti": ["canvas-confetti@1.9.3", "", {}, "sha512-rFfTURMvmVEX1gyXFgn5QMn81bYk70qa0HLzcIOSVEyl57n6o9ItHeBtUSWdvKAPY0xlvBHno4/v3QPrT83q9g=="],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L2555 | `⟪ 974 characters skipped ⟫react-table": "^8.21.2", "@types/canvas-confetti": "^1.9.0", "@types/file-saver": "^2.0.7", "@types/jszip": "^3.4.1", "@vercel/analytics": "^1.5.0", "@yudiel/react-qr-scanner": "^2.2.1", "ai": "^4.2.10", "axios": "^1.8.4", "boxen": "^8.0.1", "canvas-confetti": "^1.9.3", "chalk": "^5.4.1", "class-variance-authority": "^0.7.1", "cli-table3": "^0.6.5", "clsx": "^2.1.1", "commander": "^13.1.0", "date-fns": "^4.1.0", "dotenv": "^16.4.7", "drizzle-orm"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-21_02-41-scanner-error-loop-issue.md` | L3021 | `// Simple confetti animation component using Framer Motion` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L111 | `npm install canvas-confetti @types/canvas-confetti` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L115 | `fetti @types/canvas-confettiurant-passport-app liamellis$ npm install canvas-con` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L138 | `bun add canvas-confetti @types/canvas-confetti` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L142 | `i @types/canvas-confettiestaurant-passport-app liamellis$ bun add canvas-confett` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L148 | `installed canvas-confetti@1.9.3` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L149 | `installed @types/canvas-confetti@1.9.0` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L190 | `+ import confetti from 'canvas-confetti'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L210 | `+     // Trigger confetti animation when component mounts` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L229 | `+       confetti({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L234 | `+       confetti({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L316 | `- Shows confetti animation using canvas-confetti` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L320 | `- canvas-confetti (and types)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L323 | `⟪ 105 characters skipped ⟫h the appropriate query parameters. The confetti animation creates a celebratory effect, and the component will politely disappear after 5 seconds so it doesn't distract from the main content.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2585 | `Finally, let's add a subtle confetti effect to make the success message more engaging:` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2593 | `+ // Simple confetti animation component using Framer Motion` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2594 | `+ const Confetti = () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2595 | `+ 	// Create 20 confetti particles` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2617 | `+ 				key={`confetti-${index}`}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2660 | `+ 											{/* Show confetti for existing cards too, since it's a successful punch */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2661 | `+ 											<Confetti />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2671 | `+ 											{/* Show confetti for new cards */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2672 | `+ 											<Confetti />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2688 | `+ 		const uniqueKey = `confetti-${index}-${Math.random().toString(36).substring(2, 9)}`;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2692 | `- 				key={`confetti-${index}`}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2705 | `4. A confetti animation for both new and existing punch cards to make the experience more delightful` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-45-debugging-storybook-buffer-error.md` | L224 | `npm error   74 more (lucide-react, next, next-themes, nuqs, react-confetti, ...)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/derived-cursor-rules.mdc` | L19 | `-   canvas-confetti` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/derived-cursor-rules.mdc` | L109 | `-   Use canvas-confetti for confetti animations.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L111 | `npm install canvas-confetti @types/canvas-confetti` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L115 | `fetti @types/canvas-confettiurant-passport-app liamellis$ npm install canvas-con` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L138 | `bun add canvas-confetti @types/canvas-confetti` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L142 | `i @types/canvas-confettiestaurant-passport-app liamellis$ bun add canvas-confett` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L148 | `installed canvas-confetti@1.9.3` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L149 | `installed @types/canvas-confetti@1.9.0` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L190 | `+ import confetti from 'canvas-confetti'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L210 | `+     // Trigger confetti animation when component mounts` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L229 | `+       confetti({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L234 | `+       confetti({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L316 | `- Shows confetti animation using canvas-confetti` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L320 | `- canvas-confetti (and types)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L323 | `⟪ 105 characters skipped ⟫h the appropriate query parameters. The confetti animation creates a celebratory effect, and the component will politely disappear after 5 seconds so it doesn't distract from the main content.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.tsx` | L5 | `import confetti from 'canvas-confetti'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.tsx` | L25 | `// Trigger confetti animation when component mounts` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.tsx` | L44 | `confetti({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.tsx` | L49 | `confetti({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.stories.tsx` | L20 | `* RaffleSuccessAnimation displays a celebratory animation with confetti` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.stories.tsx` | L31 | `"A celebratory animation component that shows confetti and congratulatory message when user gets a raffle entry.",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.stories.tsx` | L65 | `"The default raffle success animation showing confetti and congratulatory message.",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/raffle/RaffleSuccessAnimation.stories.tsx` | L153 | `"Shows multiple raffle animations stacked for comparison (note: confetti will overlap).",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L47 | `"@types/canvas-confetti": "^1.9.0",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L55 | `"canvas-confetti": "^1.9.3",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L37 | `"@types/canvas-confetti": "^1.9.0",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L45 | `"canvas-confetti": "^1.9.3",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L1949 | `"@neoconfetti/react": "^1.0.0",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L3250 | `"node_modules/@neoconfetti/react": {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L5503 | `"node_modules/@types/canvas-confetti": {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package-lock.json` | L7628 | `"node_modules/canvas-confetti": {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L33 | `"@types/canvas-confetti": "latest",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L41 | `"canvas-confetti": "latest",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L368 | `"@chromatic-com/storybook": ["@chromatic-com/storybook@4.0.0", "", { "dependencies": { "@neoconfetti/react": "^1.0.0", "chromatic": "^12.0.0", "filesize": "^10.0.12", "jsonfile": "^6.1.0", "strip-ansi": "^7.1.0" }, "peerDependencies": { "storybook": "^0.0.0-0 || ^9.0.0 || ^9.1.0-0" } }, "sha` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L598 | `"@neoconfetti/react": ["@neoconfetti/react@1.0.0", "", {}, "sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A=="],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L940 | `"@types/canvas-confetti": ["@types/canvas-confetti@1.9.0", "", {}, "sha512-aBGj/dULrimR1XDZLtG9JwxX1b4HPRF6CX9Yfwh3NvstZEm1ZL7RBnel4keCPSqs1ANRu1u2Aoz9R+VmtjYuTg=="],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L1310 | `"canvas-confetti": ["canvas-confetti@1.9.3", "", {}, "sha512-rFfTURMvmVEX1gyXFgn5QMn81bYk70qa0HLzcIOSVEyl57n6o9ItHeBtUSWdvKAPY0xlvBHno4/v3QPrT83q9g=="],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L2556 | `⟪ 974 characters skipped ⟫react-table": "^8.21.2", "@types/canvas-confetti": "^1.9.0", "@types/file-saver": "^2.0.7", "@types/jszip": "^3.4.1", "@vercel/analytics": "^1.5.0", "@yudiel/react-qr-scanner": "^2.2.1", "ai": "^4.2.10", "axios": "^1.8.4", "boxen": "^8.0.1", "canvas-confetti": "^1.9.3", "chalk": "^5.4.1", "class-variance-authority": "^0.7.1", "cli-table3": "^0.6.5", "clsx": "^2.1.1", "commander": "^13.1.0", "date-fns": "^4.1.0", "dotenv": "^16.4.7", "drizzle-orm"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-21_02-41-scanner-error-loop-issue.md` | L3022 | `// Simple confetti animation component using Framer Motion` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L112 | `npm install canvas-confetti @types/canvas-confetti` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L116 | `fetti @types/canvas-confettiurant-passport-app liamellis$ npm install canvas-con` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L139 | `bun add canvas-confetti @types/canvas-confetti` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L143 | `i @types/canvas-confettiestaurant-passport-app liamellis$ bun add canvas-confett` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L149 | `installed canvas-confetti@1.9.3` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L150 | `installed @types/canvas-confetti@1.9.0` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L191 | `+ import confetti from 'canvas-confetti'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L211 | `+     // Trigger confetti animation when component mounts` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L230 | `+       confetti({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L235 | `+       confetti({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L317 | `- Shows confetti animation using canvas-confetti` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L321 | `- canvas-confetti (and types)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L324 | `⟪ 105 characters skipped ⟫h the appropriate query parameters. The confetti animation creates a celebratory effect, and the component will politely disappear after 5 seconds so it doesn't distract from the main content.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2586 | `Finally, let's add a subtle confetti effect to make the success message more engaging:` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2594 | `+ // Simple confetti animation component using Framer Motion` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2595 | `+ const Confetti = () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2596 | `+ 	// Create 20 confetti particles` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2618 | `+ 				key={`confetti-${index}`}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2661 | `+ 											{/* Show confetti for existing cards too, since it's a successful punch */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2662 | `+ 											<Confetti />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2672 | `+ 											{/* Show confetti for new cards */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2673 | `+ 											<Confetti />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2689 | `+ 		const uniqueKey = `confetti-${index}-${Math.random().toString(36).substring(2, 9)}`;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2693 | `- 				key={`confetti-${index}`}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-16_01-26-qr-code-scanning-error-troubleshooting.md` | L2706 | `4. A confetti animation for both new and existing punch cards to make the experience more delightful` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-45-debugging-storybook-buffer-error.md` | L225 | `npm error   74 more (lucide-react, next, next-themes, nuqs, react-confetti, ...)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/derived-cursor-rules.mdc` | L20 | `-   canvas-confetti` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/derived-cursor-rules.mdc` | L110 | `-   Use canvas-confetti for confetti animations.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L112 | `npm install canvas-confetti @types/canvas-confetti` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L116 | `fetti @types/canvas-confettiurant-passport-app liamellis$ npm install canvas-con` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L139 | `bun add canvas-confetti @types/canvas-confetti` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L143 | `i @types/canvas-confettiestaurant-passport-app liamellis$ bun add canvas-confett` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L149 | `installed canvas-confetti@1.9.3` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L150 | `installed @types/canvas-confetti@1.9.0` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L191 | `+ import confetti from 'canvas-confetti'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L211 | `+     // Trigger confetti animation when component mounts` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L230 | `+       confetti({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L235 | `+       confetti({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L317 | `- Shows confetti animation using canvas-confetti` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L321 | `- canvas-confetti (and types)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_12-57-url-query-parameter-detection-for-raffle.md` | L324 | `⟪ 105 characters skipped ⟫h the appropriate query parameters. The confetti animation creates a celebratory effect, and the component will politely disappear after 5 seconds so it doesn't distract from the main content.` |
 
 </details>
 
@@ -894,7 +894,15 @@ Looking at the search results, I can see there was supposed to be a confetti eff
 
 ---
 
+<details><summary>Edit file: src/components/ui/punchcard.tsx</summary>
+
+Add confetti animation imports and trigger confetti when a new punch is added
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -9,4 +9,5 @@
   import {Badge} from '@/components/ui/badge'
   import {ProgressIndicator} from '@/components/progress-indicator/progress-indicator'
 + import confetti from 'canvas-confetti'
@@ -902,7 +910,11 @@ Looking at the search results, I can see there was supposed to be a confetti eff
   // Constant for punch threshold
 ```
 
+**Chunk 2**
+Lines added: 20, lines removed: undefined
+
 ```diff
+@@ -28,4 +29,24 @@
     restaurants: RestaurantPunch[]
   }
 + 
@@ -929,7 +941,11 @@ Looking at the search results, I can see there was supposed to be a confetti eff
   export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
 ```
 
+**Chunk 3**
+Lines added: 12, lines removed: undefined
+
 ```diff
+@@ -34,4 +55,16 @@
       const currentPunches = restaurants.length
       const MAX_PUNCH_THRESHOLD = 6
 +     const [lastPunchCount, setLastPunchCount] = React.useState(currentPunches)
@@ -948,7 +964,11 @@ Looking at the search results, I can see there was supposed to be a confetti eff
       return (
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 6
+
 ```diff
+@@ -74,10 +107,5 @@
             ) : (
               <div className='space-y-4'>
 -               <div
@@ -962,7 +982,11 @@ Looking at the search results, I can see there was supposed to be a confetti eff
                     <motion.div
 ```
 
+**Chunk 5**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -96,5 +124,10 @@
                               scale: [1, 1.3, 1.1, 1],
                               rotate: [0, 10, -5, 0],
 -                             backgroundColor: ['#ddd', '#10b981', '#059669', '#ddd']
@@ -976,7 +1000,11 @@ Looking at the search results, I can see there was supposed to be a confetti eff
                           : {}
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -103,5 +136,5 @@
                         duration: 0.8,
                         ease: 'easeInOut',
 -                       times: [0, 0.3, 0.7, 1]
@@ -985,7 +1013,11 @@ Looking at the search results, I can see there was supposed to be a confetti eff
                     >
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -112,5 +145,5 @@
                             scale: [0, 1.2, 1],
                             opacity: [0, 1, 1],
 -                           rotate: [-180, 10, 0]
@@ -994,7 +1026,11 @@ Looking at the search results, I can see there was supposed to be a confetti eff
                           transition={{
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -119,5 +152,5 @@
                             damping: 25,
                             delay: index === currentPunches - 1 ? 0.3 : 0,
 -                           duration: 0.6
@@ -1003,7 +1039,11 @@ Looking at the search results, I can see there was supposed to be a confetti eff
                           className='relative'
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -130,5 +163,5 @@
                               animate={{
                                 scale: [1, 2, 3],
 -                               opacity: [1, 0.5, 0]
@@ -1011,6 +1051,8 @@ Looking at the search results, I can see there was supposed to be a confetti eff
                               }}
                               transition={{duration: 0.6, delay: 0.2}}
 ```
+
+</details>
 
 ---
 
@@ -1024,7 +1066,15 @@ Let me also add a **MEGA confetti celebration** for when someone completes their
 
 ---
 
+<details><summary>Edit file: src/components/ui/punchcard.tsx</summary>
+
+Add mega confetti celebration for completing punch card and enhance the normal confetti
+
+**Chunk 1**
+Lines added: 51, lines removed: undefined
+
 ```diff
+@@ -49,4 +49,55 @@
     }, 200)
   }
 + 
@@ -1082,13 +1132,23 @@ Let me also add a **MEGA confetti celebration** for when someone completes their
   export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now I need to update the useEffect to trigger the mega confetti when the user reaches the punch threshold (completes their punch card).</details></think>
 
 ---
 
+<details><summary>Edit file: src/components/ui/punchcard.tsx</summary>
+
+Update the useEffect to trigger mega confetti when punch card is completed
+
+**Chunk 1**
+Lines added: 10, lines removed: 2
+
 ```diff
+@@ -111,11 +111,19 @@
       React.useEffect(() => {
         if (currentPunches > lastPunchCount && lastPunchCount > 0) {
 -         // Trigger confetti with a slight delay to sync with animations
@@ -1112,13 +1172,23 @@ Let me also add a **MEGA confetti celebration** for when someone completes their
       return (
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Perfect! Now let me also enhance the visual feedback for when the punch card is completed by adding a special glow effect or badge animation. Let me add that to make the completion even more special.</details></think>
 
 ---
 
+<details><summary>Edit file: src/components/ui/punchcard.tsx</summary>
+
+Add a completion badge with animation when punch card is completed
+
+**Chunk 1**
+Lines added: 20, lines removed: undefined
+
 ```diff
+@@ -144,4 +144,24 @@
           <div className='relative h-36 sm:h-48 w-full bg-gradient-to-r from-primary/80 to-primary'>
             <div className='absolute inset-0 bg-gradient-to-t from-black/70 to-transparent' />
 + 
@@ -1145,7 +1215,11 @@ Let me also add a **MEGA confetti celebration** for when someone completes their
             <div className='absolute bottom-0 w-full p-4'>
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -150,5 +170,7 @@
               </h3>
               <p className='text-xs text-white/70'>
 -               Collect punches from your favorite restaurants
@@ -1156,13 +1230,23 @@ Let me also add a **MEGA confetti celebration** for when someone completes their
             </div>
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Perfect! Now let me also add some additional visual flair - a pulsing glow effect around completed punch cards to make them really stand out.</details></think>
 
 ---
 
+<details><summary>Edit file: src/components/ui/punchcard.tsx</summary>
+
+Add pulsing glow effect for completed punch cards
+
+**Chunk 1**
+Lines added: 8, lines removed: 1
+
 ```diff
+@@ -136,7 +136,14 @@
             'relative overflow-hidden rounded-xl bg-card shadow-lg',
             'w-full flex flex-col',
 +           currentPunches >= MAX_PUNCH_THRESHOLD &&
@@ -1180,13 +1264,23 @@ Let me also add a **MEGA confetti celebration** for when someone completes their
         >
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Perfect! Now let me create a quick documentation of all the awesome animations that are now in the punch card system.</details></think>
 
 ---
 
+<details><summary>Edit file: PunchCardAnimations.md</summary>
+
+Create documentation for all the cool animations in the punch card system
+
+**Chunk 1**
+Lines added: 134, lines removed: 1
+
 ```diff
+@@ -1,1 +1,134 @@
 - 
 + # Punch Card Animations Documentation
 + 
@@ -1323,6 +1417,8 @@ Let me also add a **MEGA confetti celebration** for when someone completes their
 + 
 + This comprehensive animation system transforms a simple punch card into an engaging, rewarding experience that delights users and encourages continued app usage. 
 ```
+
+</details>
 
 ---
 

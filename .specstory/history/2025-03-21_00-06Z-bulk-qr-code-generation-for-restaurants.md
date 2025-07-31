@@ -74,7 +74,15 @@ Read file: src/types/db.ts
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/actions.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 42, lines removed: undefined
+
 ```diff
+@@ -26,4 +26,46 @@
   	}
   }
 + 
@@ -123,9 +131,19 @@ Read file: src/types/db.ts
   // Function to create a new restaurant
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 240, lines removed: 1
+
 ```diff
+@@ -1,1 +1,240 @@
 - 
 + "use client";
 + 
@@ -368,6 +386,8 @@ Read file: src/types/db.ts
 + };
 + 
 ```
+
+</details>
 
 ---
 
@@ -622,7 +642,15 @@ Let me implement this component now:</details></think>
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -39,7 +39,6 @@
   			if (isSelected) {
   				return prev.filter((r) => r.id !== restaurant.id);
 - 			} else {
@@ -633,9 +661,19 @@ Let me implement this component now:</details></think>
   	}, []);
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 300, lines removed: 1
+
 ```diff
+@@ -1,1 +1,300 @@
 - 
 + "use client";
 + 
@@ -939,9 +977,19 @@ Let me implement this component now:</details></think>
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -138,5 +138,11 @@
   						id="select-all"
   						checked={allSelected}
 - 						indeterminate={someSelected}
@@ -956,7 +1004,11 @@ Let me implement this component now:</details></think>
   							toggleSelectAll(restaurants, !!checked)
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -200,5 +206,5 @@
   						<TableHeader>
   							<TableRow>
 - 								<TableHead className="w-10"></TableHead>
@@ -965,14 +1017,26 @@ Let me implement this component now:</details></think>
   								<TableHead>Current Status</TableHead>
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/index.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -1,1 +1,3 @@
 - 
 + // Import the BulkQRCodeManager component
 + import { BulkQRCodeManager } from "./bulk-qr-code-manager";
 + 
 ```
+
+</details>
 
 ---
 
@@ -980,7 +1044,15 @@ Read file: src/app/admin/restaurants/index.tsx
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/index.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 35, lines removed: undefined
+
 ```diff
+@@ -1,3 +1,38 @@
   // Import the BulkQRCodeManager component
   import { BulkQRCodeManager } from "./bulk-qr-code-manager";
 + import { getRestaurants } from "@/db/models/restaurants";
@@ -1021,6 +1093,8 @@ Read file: src/app/admin/restaurants/index.tsx
   
 ```
 
+</details>
+
 ---
 
 Could not find file 'src/db/models/restaurants.ts'. Did you mean one of:
@@ -1037,7 +1111,15 @@ Read file: src/db/models/restaurants/restaurants.ts
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/dummy-components.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 47, lines removed: 1
+
 ```diff
+@@ -1,1 +1,47 @@
 - 
 + "use client";
 + 
@@ -1088,9 +1170,19 @@ Read file: src/db/models/restaurants/restaurants.ts
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/index.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 5
+
 ```diff
+@@ -2,13 +2,17 @@
   import { BulkQRCodeManager } from "./bulk-qr-code-manager";
   import { getRestaurants } from "@/db/models/restaurants";
 - import { AddRestaurantDialog } from "./add-restaurant-dialog";
@@ -1115,9 +1207,19 @@ Read file: src/db/models/restaurants/restaurants.ts
   	return (
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -3,7 +3,8 @@
   import { saveBulkQRCodeUrls } from "@/app/admin/restaurants/actions";
   import type { Restaurant } from "@/types/db";
 - import { useState, useCallback } from "react";
@@ -1129,7 +1231,11 @@ Read file: src/db/models/restaurants/restaurants.ts
   export const useHandleBulkQRCode = () => {
 ```
 
+**Chunk 2**
+Lines added: 50, lines removed: undefined
+
 ```diff
+@@ -63,4 +64,54 @@
   		[],
   	);
 + 
@@ -1186,7 +1292,11 @@ Read file: src/db/models/restaurants/restaurants.ts
   	// Generate QR codes for all selected restaurants
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -83,6 +134,8 @@
   				const restaurant = selectedRestaurants[i];
   
 - 				// Create SVG for QR code value
@@ -1198,7 +1308,11 @@ Read file: src/db/models/restaurants/restaurants.ts
             <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" style="background-color: white">
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -97,5 +150,5 @@
           `;
   
 - 				// Convert to data URL
@@ -1206,6 +1320,8 @@ Read file: src/db/models/restaurants/restaurants.ts
   				const dataUrl = await svgToDataUrl(svgString);
   
 ```
+
+</details>
 
 ---
 
@@ -1702,7 +1818,15 @@ Let's start with the implementations.</details></think>
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 70
+
 ```diff
+@@ -44,74 +44,4 @@
   		});
   	}, []);
 - 
@@ -1779,7 +1903,11 @@ Let's start with the implementations.</details></think>
   	// Generate QR codes for all selected restaurants
 ```
 
+**Chunk 2**
+Lines added: 103, lines removed: 12
+
 ```diff
+@@ -137,19 +67,110 @@
   				const qrCodeValue = `/api/restaurants/${restaurant.id}/scan`;
   
 - 				// Generate QR code SVG and convert to data URL
@@ -1904,7 +2032,11 @@ Let's start with the implementations.</details></think>
   				generatedResults.push({
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -168,5 +189,5 @@
   			setError("Failed to generate QR codes");
   		}
 - 	}, [selectedRestaurants, svgToDataUrl]);
@@ -1913,7 +2045,11 @@ Let's start with the implementations.</details></think>
   	// Save all generated QR codes to the database
 ```
 
+**Chunk 4**
+Lines added: 46, lines removed: 5
+
 ```diff
+@@ -237,27 +258,68 @@
   				throw new Error("Failed to create folder in ZIP");
   			}
 + 
@@ -1989,9 +2125,19 @@ Let's start with the implementations.</details></think>
   	}, [results, selectedRestaurants]);
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,5 +1,5 @@
   "use client";
   
 - import { useState } from "react";
@@ -2000,7 +2146,11 @@ Let's start with the implementations.</details></think>
   import type { Restaurant } from "@/types/db";
 ```
 
+**Chunk 2**
+Lines added: 15, lines removed: undefined
+
 ```diff
+@@ -66,4 +66,19 @@
   	const restaurantsWithoutQR = restaurants.filter((r) => !r.qrCodeUrl);
   	const hasRestaurantsWithoutQR = restaurantsWithoutQR.length > 0;
 + 
@@ -2022,7 +2172,11 @@ Let's start with the implementations.</details></think>
   	// Handle dialog close - reset state if needed
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 7
+
 ```diff
+@@ -137,12 +152,6 @@
   					<Checkbox
   						id="select-all"
 + 						ref={checkboxRef}
@@ -2038,9 +2192,19 @@ Let's start with the implementations.</details></think>
   							toggleSelectAll(restaurants, !!checked)
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 4
+
 ```diff
+@@ -74,9 +74,8 @@
   		// Access the DOM element through ref.current
   		if (checkboxRef.current && someSelected) {
 - 			const element = checkboxRef.current as any;
@@ -2055,9 +2219,19 @@ Let's start with the implementations.</details></think>
   	}, [someSelected]);
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/index.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 21, lines removed: 2
+
 ```diff
+@@ -12,7 +12,26 @@
   
   export default async function RestaurantsPage() {
 - 	// Fetch restaurants from the database and cast to Restaurant[]
@@ -2088,17 +2262,27 @@ Let's start with the implementations.</details></think>
   	return (
 ```
 
----
-
-Read file: src/types/db.ts
+</details>
 
 ---
 
 Read file: src/types/db.ts
 
 ---
+
+Read file: src/types/db.ts
+
+---
+
+<details><summary>Edit file: src/app/admin/restaurants/index.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 17, lines removed: 11
 
 ```diff
+@@ -9,28 +9,34 @@
   import { Button } from "@/components/ui/button";
   import { PlusCircle } from "lucide-react";
 - import type { Restaurant } from "@/types/db";
@@ -2145,6 +2329,8 @@ Read file: src/types/db.ts
   	});
   
 ```
+
+</details>
 
 ---
 
@@ -2326,7 +2512,15 @@ Read file: src/app/admin/restaurants/dummy-components.tsx
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/selectable-restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 274, lines removed: 1
+
 ```diff
+@@ -1,1 +1,274 @@
 - 
 + "use client";
 + 
@@ -2604,9 +2798,19 @@ Read file: src/app/admin/restaurants/dummy-components.tsx
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/selectable-restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -196,5 +196,5 @@
   									<TableCell>
   										<div className="font-medium">{restaurant.name}</div>
 - 										{restaurant.dealCount > 0 && (
@@ -2615,9 +2819,19 @@ Read file: src/app/admin/restaurants/dummy-components.tsx
   												{restaurant.dealCount} deals
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/selectable-restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -196,5 +196,7 @@
   									<TableCell>
   										<div className="font-medium">{restaurant.name}</div>
 - 										{"dealCount" in restaurant && restaurant.dealCount > 0 && (
@@ -2628,9 +2842,19 @@ Read file: src/app/admin/restaurants/dummy-components.tsx
   													{restaurant.dealCount} deals
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/index.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 7
+
 ```diff
+@@ -1,13 +1,10 @@
   // Import the BulkQRCodeManager component
 - import { BulkQRCodeManager } from "./bulk-qr-code-manager";
   import { getRestaurants } from "@/db/models/restaurants";
@@ -2650,7 +2874,11 @@ Read file: src/app/admin/restaurants/dummy-components.tsx
   export default async function RestaurantsPage() {
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -48,7 +45,4 @@
   					subheading="Manage all participating restaurants"
   				/>
 - 
@@ -2660,7 +2888,11 @@ Read file: src/app/admin/restaurants/dummy-components.tsx
   				<AddRestaurantDialog>
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -58,8 +52,7 @@
   					</Button>
   				</AddRestaurantDialog>
 - 				</div>
@@ -2671,6 +2903,8 @@ Read file: src/app/admin/restaurants/dummy-components.tsx
   		</div>
   	);
 ```
+
+</details>
 
 ---
 
@@ -2979,7 +3213,15 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 12
+
 ```diff
+@@ -20,16 +20,4 @@
   		{ restaurantId: string; success: boolean; qrCodeDataUrl?: string }[]
   	>([]);
 - 
@@ -2998,7 +3240,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   	// Toggle selection of a single restaurant
 ```
 
+**Chunk 2**
+Lines added: 18, lines removed: 3
+
 ```diff
+@@ -45,7 +33,22 @@
   	}, []);
   
 - 	// Generate QR codes for all selected restaurants
@@ -3026,7 +3272,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   				return;
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -61,6 +64,6 @@
   				const generatedResults = [];
   
 - 			for (let i = 0; i < selectedRestaurants.length; i++) {
@@ -3037,7 +3287,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   					// Create QR code value
 ```
 
+**Chunk 4**
+Lines added: 11, lines removed: 2
+
 ```diff
+@@ -181,13 +184,22 @@
   
   					// Update progress
 - 				setProgress(Math.round(((i + 1) / selectedRestaurants.length) * 100));
@@ -3064,9 +3318,19 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   	// Save all generated QR codes to the database
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -27,4 +27,5 @@
   	Trash2,
   	ExternalLink,
 + 	Checkbox,
@@ -3074,7 +3338,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   import type { z } from "zod";
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -41,4 +42,6 @@
   import { AdminRestaurantSearchBar } from "@/features/restaurants/AdminRestaurantSearchBar";
   import { RestaurantQuickView } from "./restaurant-quick-view";
 + import { useHandleBulkQRCode } from "@/hooks/use-handle-bulk-qr-code";
@@ -3083,7 +3351,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   // Styled components imports
 ```
 
+**Chunk 3**
+Lines added: 15, lines removed: undefined
+
 ```diff
+@@ -224,9 +227,24 @@
   	const [data, setData] = React.useState<RestaurantData[]>(initialData);
   	const [sorting, setSorting] = React.useState<SortingState>([]);
 + 	const [rowSelection, setRowSelection] = React.useState({});
@@ -3110,7 +3382,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   	// Check viewport size on mount and window resize
 ```
 
+**Chunk 4**
+Lines added: 23, lines removed: undefined
+
 ```diff
+@@ -266,4 +284,27 @@
   	// Define columns for the table
   	const columns: ColumnDef<RestaurantData>[] = [
 + 		{
@@ -3140,7 +3416,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   			accessorKey: "id",
 ```
 
+**Chunk 5**
+Lines added: 15, lines removed: undefined
+
 ```diff
+@@ -633,4 +674,19 @@
   		));
   	};
 + 
@@ -3162,9 +3442,19 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   	return (
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -27,6 +27,6 @@
   	Trash2,
   	ExternalLink,
 - 	Checkbox,
@@ -3174,7 +3464,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   import type { restaurantSchema } from "@/types/schemas";
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -289,5 +289,7 @@
   				<Checkbox
   					checked={table.getIsAllPageRowsSelected()}
 - 					onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
@@ -3185,7 +3479,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   					className="translate-y-[2px]"
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -298,5 +300,7 @@
   					<Checkbox
   						checked={row.getIsSelected()}
 - 						onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -3196,9 +3494,19 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   						className="translate-y-[2px]"
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -27,4 +27,6 @@
   	Trash2,
   	ExternalLink,
 + 	Save,
@@ -3207,7 +3515,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   import { Checkbox } from "@/components/ui/checkbox";
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -574,5 +576,8 @@
   		state: {
   			sorting,
 + 			rowSelection,
@@ -3218,7 +3530,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   		getCoreRowModel: getCoreRowModel(),
 ```
 
+**Chunk 3**
+Lines added: 88, lines removed: undefined
+
 ```diff
+@@ -702,4 +707,92 @@
   				onSortChange={setSortOption}
   			/>
 + 
@@ -3313,9 +3629,19 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   			{/* Mobile card view */}
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 27, lines removed: 3
+
 ```diff
+@@ -605,13 +605,37 @@
   	});
   
 - 	// Render mobile card view for each restaurant
@@ -3358,7 +3684,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   							<DropdownMenuTrigger asChild>
 ```
 
+**Chunk 2**
+Lines added: 27, lines removed: undefined
+
 ```diff
+@@ -641,4 +665,31 @@
   						</DropdownMenu>
   					</div>
 + 
@@ -3392,7 +3722,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   					{/* Restaurant Image */}
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -666,5 +717,6 @@
   						<div className="text-xs bg-sidebar-accent/30 px-2 py-1 rounded-md">
   							Punch Cards:{" "}
 - 						{(restaurant as unknown as ExtendedRestaurant).punchCardCount || 0}
@@ -3402,7 +3736,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -681,5 +733,6 @@
   					</div>
   				</div>
 - 		));
@@ -3412,7 +3750,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   
 ```
 
+**Chunk 5**
+Lines added: 134, lines removed: 2
+
 ```diff
+@@ -796,8 +849,140 @@
   			)}
   
 - 			{/* Mobile card view */}
@@ -3557,9 +3899,19 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   					<div className="bg-background rounded-lg border border-sidebar-border p-8 text-center">
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -103,4 +103,7 @@
   	table: TanstackTable<RestaurantData>;
   };
 + 
@@ -3569,7 +3921,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   // Helper function for sorting indicators
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -229,5 +232,5 @@
   	const [data, setData] = React.useState<RestaurantData[]>(initialData);
   	const [sorting, setSorting] = React.useState<SortingState>([]);
 - 	const [rowSelection, setRowSelection] = React.useState({});
@@ -3578,7 +3934,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   	const [restaurantToDelete, setRestaurantToDelete] =
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -626,5 +629,5 @@
   								onCheckedChange={(value: boolean | "indeterminate") => {
   									const newRowSelection = { ...rowSelection };
 - 									if (!!value) {
@@ -3587,7 +3947,11 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   									} else {
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -872,5 +875,5 @@
   												onCheckedChange={(value: boolean | "indeterminate") => {
   													const newRowSelection = { ...rowSelection };
 - 													if (!!value) {
@@ -3596,9 +3960,19 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   													} else {
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 132
+
 ```diff
+@@ -607,136 +607,4 @@
   		} as TableMeta,
   	});
 - 
@@ -3736,6 +4110,8 @@ Let's start by implementing the changes to the RestaurantsTable component.</deta
   
   	// Add a function to handle bulk QR code generation
 ```
+
+</details>
 
 ---
 
@@ -4072,7 +4448,15 @@ Let me fix these issues:</details></think>
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 3
+
 ```diff
+@@ -290,9 +290,6 @@
   	const columns: ColumnDef<RestaurantData>[] = [
   		{
 - 			accessorKey: "select",
@@ -4084,7 +4468,11 @@ Let me fix these issues:</details></think>
   					checked={table.getIsAllPageRowsSelected()}
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 11
+
 ```diff
+@@ -301,17 +298,8 @@
   					}
   					aria-label="Select all rows"
 - 						className="border border-black-300"
@@ -4106,7 +4494,11 @@ Let me fix these issues:</details></think>
   					checked={row.getIsSelected()}
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 26
+
 ```diff
+@@ -322,30 +310,8 @@
   					className="translate-y-[2px]"
   				/>
 - 					</div>
@@ -4143,7 +4535,11 @@ Let me fix these issues:</details></think>
   			accessorKey: "name",
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 5
+
 ```diff
+@@ -365,9 +331,4 @@
   			cell: EditableCell,
   		},
 - 		// {
@@ -4154,6 +4550,8 @@ Let me fix these issues:</details></think>
   		{
   			accessorKey: "address",
 ```
+
+</details>
 
 ---
 
@@ -4203,7 +4601,15 @@ Let's go with option 2 and create a button that links to a dedicated bulk QR cod
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 31, lines removed: undefined
+
 ```diff
+@@ -88,4 +88,35 @@
   							Add Restaurant
   						</Link>
 + 						<Link
@@ -4241,9 +4647,19 @@ Let's go with option 2 and create a button that links to a dedicated bulk QR cod
   							href="/admin"
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 246, lines removed: 1
+
 ```diff
+@@ -1,1 +1,246 @@
 - 
 + "use client";
 + 
@@ -4493,9 +4909,19 @@ Let's go with option 2 and create a button that links to a dedicated bulk QR cod
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/bulk-qr/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 25, lines removed: 1
+
 ```diff
+@@ -1,1 +1,25 @@
 - 
 + import { getRestaurants } from "@/db/models";
 + import { BulkQRPage } from "../bulk-qr";
@@ -4524,15 +4950,27 @@ Let's go with option 2 and create a button that links to a dedicated bulk QR cod
 + 
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -103,4 +103,5 @@
   								strokeLinejoin="round"
   								className="lucide lucide-qr-code"
 + 								aria-hidden="true"
   							>
   								<rect width="5" height="5" x="3" y="3" rx="1" />
 ```
+
+</details>
 
 ---
 
@@ -4590,7 +5028,15 @@ I'll focus on editing the `src/components/admin/restaurants-table.tsx` file, spe
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -292,4 +292,5 @@
   			id: "select",
   			header: ({ table }) => (
 + 				<div className="w-16 flex justify-center">
@@ -4598,7 +5044,11 @@ I'll focus on editing the `src/components/admin/restaurants-table.tsx` file, spe
   						checked={table.getIsAllPageRowsSelected()}
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -298,8 +299,10 @@
   						}
   						aria-label="Select all rows"
 - 					className="translate-y-[2px]"
@@ -4612,7 +5062,11 @@ I'll focus on editing the `src/components/admin/restaurants-table.tsx` file, spe
   						checked={row.getIsSelected()}
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -308,6 +311,7 @@
   						}
   						aria-label="Select row"
 - 					className="translate-y-[2px]"
@@ -4623,9 +5077,19 @@ I'll focus on editing the `src/components/admin/restaurants-table.tsx` file, spe
   			enableSorting: false,
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -862,4 +862,9 @@
   											key={header.id}
   											className="text-sidebar-foreground px-4 py-3"
 + 											style={{ 
@@ -4636,6 +5100,8 @@ I'll focus on editing the `src/components/admin/restaurants-table.tsx` file, spe
   										>
   											{header.isPlaceholder
 ```
+
+</details>
 
 ---
 

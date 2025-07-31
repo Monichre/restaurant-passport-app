@@ -49,7 +49,15 @@ Read file: src/types/db.ts
 
 ---
 
+<details><summary>Edit file: src/hooks/useUserRaffleSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 76, lines removed: 1
+
 ```diff
+@@ -1,1 +1,76 @@
 - 
 + 'use client'
 + 
@@ -129,6 +137,8 @@ Read file: src/types/db.ts
 + 
 ```
 
+</details>
+
 ---
 
 I've created a new hook called `useUserRaffleSubscription` that subscribes to raffle entries for a specific user. The hook:
@@ -145,7 +155,15 @@ The hook follows the same pattern as the existing `useRaffleEntriesSubscription`
 
 ---
 
+<details><summary>Edit file: src/hooks/useRaffleEntriesSubscription.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -23,6 +23,16 @@
         console.log('🚀 ~ fetchRaffleEntries ~ entries:', entries)
   
 -       setRaffleEntries(entries)
@@ -165,7 +183,11 @@ The hook follows the same pattern as the existing `useRaffleEntriesSubscription`
         setIsLoading(false)
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -43,7 +53,6 @@
           'postgres_changes',
           {event: '*', schema: 'public', table: 'raffle_entries'},
 -         async (payload) => {
@@ -176,6 +198,8 @@ The hook follows the same pattern as the existing `useRaffleEntriesSubscription`
           }
         )
 ```
+
+</details>
 
 ---
 

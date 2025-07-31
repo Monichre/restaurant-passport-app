@@ -10,7 +10,15 @@ _**User**_
 
 _**Assistant**_
 
+<details><summary>Edit file: app/layout.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -1,1 +1,11 @@
 - 
 + export const metadata = {
 +   title: "My App",
@@ -24,6 +32,8 @@ _**Assistant**_
 +   maximumScale: 1
 + }; 
 ```
+
+</details>
 
 ---
 
@@ -55,7 +65,15 @@ Make the QR code download as a PNG file
 
 _**Assistant**_
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 43, lines removed: 23
+
 ```diff
+@@ -35,40 +35,60 @@
   }
   
 - // Add this new helper function before the QRCodeManager component
@@ -141,9 +159,19 @@ _**Assistant**_
   };
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -35,5 +35,5 @@
   }
   
 - // Updated download function to convert SVG to PNG
@@ -152,7 +180,11 @@ _**Assistant**_
   	element: HTMLDivElement | null,
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -55,5 +55,5 @@
   		const url = URL.createObjectURL(svgBlob);
   
 - 		const image = new Image();
@@ -161,7 +193,11 @@ _**Assistant**_
   		image.onload = () => {
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -85,5 +85,5 @@
   			document.body.removeChild(link);
   		};
 - 		image.onerror = (err) => {
@@ -170,9 +206,19 @@ _**Assistant**_
   		};
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -35,5 +35,5 @@
   }
   
 - // Updated download function to convert SVG to PNG with linter fixes
@@ -181,7 +227,11 @@ _**Assistant**_
   	element: HTMLDivElement | null,
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -85,7 +85,7 @@
   			document.body.removeChild(link);
   		};
 - 		image.onerror = (err: Event) => {
@@ -193,6 +243,8 @@ _**Assistant**_
   		image.src = url;
   	} catch (err) {
 ```
+
+</details>
 
 ---
 

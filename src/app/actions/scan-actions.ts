@@ -201,7 +201,7 @@ export async function processQrScan( formData: {
 
 			console.log( "🚀 ~ raffleEntry:", raffleEntry )
 			return {
-				message: `Congrats! ${user?.name}! You've entered the raffle!`,
+				message: `Congrats! ${user?.name}! You've been entered to win the grand prize!`,
 				data: {
 					raffleEntry,
 					punchCard,
@@ -220,7 +220,7 @@ export async function processQrScan( formData: {
 		console.log( "🚀 ~ punchCard:", punchCard )
 
 		return {
-			message: "Punch card created successfully",
+			message: "Stamp collected successfully",
 			data: convertBigInts( punchCard ),
 			restaurantName: restaurant?.name || "Restaurant",
 			isExisting: false,

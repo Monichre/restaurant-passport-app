@@ -48,7 +48,15 @@ Read file: src/types/db.ts
 
 ---
 
+<details><summary>Edit file: src/app/admin/users/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 40, lines removed: 32
+
 ```diff
+@@ -1,79 +1,87 @@
 - import { getUsers } from "@/db/models/users/users";
 - import Link from "next/link";
 + import {getUsers} from '@/db/models/users/users'
@@ -170,7 +178,11 @@ Read file: src/types/db.ts
                     </button>
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -85,5 +93,5 @@
         </div>
       </div>
 - 	);
@@ -178,6 +190,8 @@ Read file: src/types/db.ts
   }
   
 ```
+
+</details>
 
 ---
 
@@ -226,7 +240,15 @@ Let me modify the user table to add a column for the punch cards count.</details
 
 ---
 
+<details><summary>Edit file: src/app/admin/users/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -41,4 +41,10 @@
                   Role
                 </th>
 +               <th
@@ -239,7 +261,11 @@ Let me modify the user table to add a column for the punch cards count.</details
                   scope='col'
 ```
 
+**Chunk 2**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -50,5 +56,11 @@
             </thead>
             <tbody className='bg-white divide-y divide-gray-200'>
 -             {users.map((user) => (
@@ -254,7 +280,11 @@ Let me modify the user table to add a column for the punch cards count.</details
                     <td className='px-6 py-4 whitespace-nowrap'>
 ```
 
+**Chunk 3**
+Lines added: 17, lines removed: undefined
+
 ```diff
+@@ -73,4 +85,21 @@
                       </span>
                     </td>
 +                   <td className='px-6 py-4 whitespace-nowrap'>
@@ -278,7 +308,11 @@ Let me modify the user table to add a column for the punch cards count.</details
                       <button
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -88,5 +117,6 @@
                     </td>
                   </tr>
 -             ))}
@@ -287,6 +321,8 @@ Let me modify the user table to add a column for the punch cards count.</details
             </tbody>
           </table>
 ```
+
+</details>
 
 ---
 
@@ -324,7 +360,15 @@ Let me create this implementation in the src/app/admin/users/page.tsx file:</det
 
 ---
 
+<details><summary>Edit file: src/app/admin/users/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -62,4 +62,7 @@
                   user.punchCards?.filter((card) => card.completed).length || 0
   
 +               // Check if user has 8 or more punch cards for raffle eligibility
@@ -334,7 +378,11 @@ Let me create this implementation in the src/app/admin/users/page.tsx file:</det
                   <tr key={user.id}>
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -86,5 +89,5 @@
                     </td>
                     <td className='px-6 py-4 whitespace-nowrap'>
 -                     <div className='text-sm text-gray-900'>
@@ -343,7 +391,11 @@ Let me create this implementation in the src/app/admin/users/page.tsx file:</det
                           <>
 ```
 
+**Chunk 3**
+Lines added: 20, lines removed: undefined
+
 ```diff
+@@ -96,4 +99,24 @@
                             <span className='font-medium'>{totalPunchCards}</span>
                             <span className='text-gray-500'> total</span>
 + 
@@ -370,9 +422,19 @@ Let me create this implementation in the src/app/admin/users/page.tsx file:</det
                         ) : (
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/users/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -108,5 +108,7 @@
                                   viewBox='0 0 24 24'
                                   stroke='currentColor'
 +                                 aria-hidden='true'
@@ -381,6 +443,8 @@ Let me create this implementation in the src/app/admin/users/page.tsx file:</det
                                   <path
                                     strokeLinecap='round'
 ```
+
+</details>
 
 ---
 

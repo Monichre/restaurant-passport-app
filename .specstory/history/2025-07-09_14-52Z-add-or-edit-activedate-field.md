@@ -41,7 +41,15 @@ I'll help you add the "activeDate" field to both the edit and new deal forms. Th
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/edit-deal-form.tsx</summary>
+
+Add an activeDate input field to the form, include it in the form state, and pass it to the update function
+
+**Chunk 1**
+Lines added: 43, lines removed: 42
+
 ```diff
+@@ -1,102 +1,103 @@
 - "use client";
 + 'use client'
   
@@ -189,7 +197,11 @@ I'll help you add the "activeDate" field to both the edit and new deal forms. Th
   
 ```
 
+**Chunk 2**
+Lines added: 19, lines removed: 18
+
 ```diff
+@@ -107,33 +108,34 @@
           active: formData.active,
           restaurantId: BigInt(formData.restaurantId),
 - 			});
@@ -244,7 +256,11 @@ I'll help you add the "activeDate" field to both the edit and new deal forms. Th
                   Go back
 ```
 
+**Chunk 3**
+Lines added: 14, lines removed: 14
+
 ```diff
+@@ -143,35 +145,35 @@
           </div>
         </div>
 - 		);
@@ -296,7 +312,11 @@ I'll help you add the "activeDate" field to both the edit and new deal forms. Th
               required
 ```
 
+**Chunk 4**
+Lines added: 8, lines removed: 8
+
 ```diff
+@@ -180,19 +182,19 @@
   
           {/* Deal Content / Description */}
 - 				<div className="col-span-2">
@@ -326,7 +346,11 @@ I'll help you add the "activeDate" field to both the edit and new deal forms. Th
             />
 ```
 
+**Chunk 5**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -202,19 +204,19 @@
           <div>
             <label
 - 						htmlFor="restaurantId"
@@ -355,7 +379,11 @@ I'll help you add the "activeDate" field to both the edit and new deal forms. Th
                 <option key={String(restaurant.id)} value={String(restaurant.id)}>
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -224,5 +226,5 @@
             </select>
             {isLoadingRestaurants && (
 - 						<p className="mt-1 text-xs text-gray-500">Loading restaurants...</p>
@@ -364,7 +392,11 @@ I'll help you add the "activeDate" field to both the edit and new deal forms. Th
           </div>
 ```
 
+**Chunk 7**
+Lines added: 46, lines removed: 24
+
 ```diff
+@@ -231,66 +233,88 @@
           <div>
             <label
 - 						htmlFor="imageUrl"
@@ -479,6 +511,8 @@ I'll help you add the "activeDate" field to both the edit and new deal forms. Th
   
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>The linter errors indicate that the `activeDate` field is not properly typed in the Deal type or in the `updateRestaurantDeal` function. Looking at the linter errors from the original page.tsx file, I can see that the Deal type does have an `activeDate` field but it seems like it's not included in the type definition where it's being used. 
@@ -491,7 +525,15 @@ Now let me update the new deal form to include the activeDate field:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+Add an activeDate input field to the new deal form
+
+**Chunk 1**
+Lines added: 20, lines removed: undefined
+
 ```diff
+@@ -201,4 +201,24 @@
             </p>
           </div>
 + 
@@ -518,6 +560,8 @@ Now let me update the new deal form to include the activeDate field:
   
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now I need to check the createDeal action to see if it needs to be updated to handle the activeDate field. Let me search for this action.</details></think>
@@ -536,7 +580,15 @@ Read file: src/components/admin/deals/actions.ts
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/actions.ts</summary>
+
+Update the createDeal action to handle the activeDate field from the form
+
+**Chunk 1**
+Lines added: 6, lines removed: 6
+
 ```diff
+@@ -1,12 +1,12 @@
 - "use server";
 + "use server"
   
@@ -557,7 +609,11 @@ Read file: src/components/admin/deals/actions.ts
   // Server action to handle form submission
 ```
 
+**Chunk 2**
+Lines added: 20, lines removed: 18
+
 ```diff
+@@ -17,40 +17,42 @@
   	try {
   		// Extract values from formData
 - 		const title = formData.get("title") as string;
@@ -620,6 +676,8 @@ Read file: src/components/admin/deals/actions.ts
   }
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>The linter errors indicate that the `createRestaurantDeal` and `updateRestaurantDeal` functions are not expecting the `activeDate` field. I need to check these functions and update them to accept the activeDate field. Let me look at the restaurants.ts file to see these functions.</details></think>
@@ -638,7 +696,15 @@ Read file: src/db/models/restaurants/restaurants.ts
 
 ---
 
+<details><summary>Edit file: src/db/models/restaurants/restaurants.ts</summary>
+
+Update createRestaurantDeal and updateRestaurantDeal functions to accept activeDate field
+
+**Chunk 1**
+Lines added: 18, lines removed: 18
+
 ```diff
+@@ -1,36 +1,36 @@
 - "use server";
 + "use server"
   
@@ -695,7 +761,11 @@ Read file: src/db/models/restaurants/restaurants.ts
   export const getPaginatedRestaurants = async (
 ```
 
+**Chunk 2**
+Lines added: 5, lines removed: 5
+
 ```diff
+@@ -39,14 +39,14 @@
   ): Promise<PaginatedRestaurants> => {
   	// Get paginated restaurants and only load essential relations
 - 	const offset = (page - 1) * pageSize;
@@ -717,7 +787,11 @@ Read file: src/db/models/restaurants/restaurants.ts
   			deals: true,
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -55,12 +55,12 @@
   		limit: pageSize,
   		offset: offset,
 - 	});
@@ -735,7 +809,11 @@ Read file: src/db/models/restaurants/restaurants.ts
   	// Return both the restaurants and pagination metadata
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -71,9 +71,9 @@
   			pageSize,
   			currentPage: page,
 - 			totalPages: Math.ceil(totalCount / pageSize),
@@ -750,7 +828,11 @@ Read file: src/db/models/restaurants/restaurants.ts
   // export const getDeals = async () => {
 ```
 
+**Chunk 5**
+Lines added: 65, lines removed: 63
+
 ```diff
+@@ -93,101 +93,103 @@
   // };
   
 - export const getRestaurantById = async (id: bigint) => {
@@ -919,6 +1001,8 @@ Read file: src/db/models/restaurants/restaurants.ts
   
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now let me also check the Deal type to see if it already includes the activeDate field or if it needs to be added. Based on the linter errors earlier, it seems the Deal type already has activeDate but there might be an issue with how it's being used in certain contexts.</details></think>
@@ -937,7 +1021,15 @@ Read file: src/types/db.ts
 
 ---
 
+<details><summary>Edit file: src/types/db.ts</summary>
+
+Add activeDate field to the Deal type
+
+**Chunk 1**
+Lines added: 89, lines removed: 89
+
 ```diff
+@@ -7,146 +7,146 @@
    */
   export type User = {
 - 	id: bigint;
@@ -1175,7 +1267,11 @@ Read file: src/types/db.ts
   /**
 ```
 
+**Chunk 2**
+Lines added: 22, lines removed: 21
+
 ```diff
+@@ -157,40 +157,41 @@
   	| "transfer_milestone"
   	| "punch_card_complete"
 - 	| "prize_redemption";
@@ -1240,6 +1336,8 @@ Read file: src/types/db.ts
   
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>Now I need to check if the Deal type also needs to include `imageUrl` as optional since the linter errors showed it was missing from the database query results. Let me check the schema to see what fields are actually in the database.</details></think>
@@ -1255,10 +1353,10 @@ Let me check the database schema to see what fields are actually in the restaura
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L80 | `export const restaurantDeals = pgTable(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-13_23-55Z-creating-restaurant-deals-model.md` | L37 | `+ export const restaurantDeals = pgTable(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-13_23-55Z-creating-restaurant-deals-model.md` | L129 | `export const restaurantDeals = pgTable(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L80 | `export const restaurantDeals = pgTable(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L81 | `export const restaurantDeals = pgTable(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-13_23-55Z-creating-restaurant-deals-model.md` | L38 | `+ export const restaurantDeals = pgTable(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-13_23-55Z-creating-restaurant-deals-model.md` | L130 | `export const restaurantDeals = pgTable(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/drizzle/schema.ts` | L81 | `export const restaurantDeals = pgTable(` |
 
 </details>
 
@@ -1290,7 +1388,15 @@ I see the issue now. The database schema doesn't have an `imageUrl` field in the
 
 ---
 
+<details><summary>Edit file: src/types/db.ts</summary>
+
+Remove imageUrl from Deal type as it doesn't exist in the database schema
+
+**Chunk 1**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -187,11 +187,10 @@
   	title: string
   	content: string
 - 	imageUrl: string
@@ -1305,6 +1411,8 @@ I see the issue now. The database schema doesn't have an `imageUrl` field in the
   }
   
 ```
+
+</details>
 
 ---
 
@@ -1321,38 +1429,38 @@ Let me check if there's a DealWithRestaurant type that needs to be updated:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L17 | `export type DealWithRestaurant = Deal & {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L33 | `const [deals, setDeals] = useState<DealWithRestaurant[]>([])` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L87 | `type DealWithRestaurant = Deal & {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L97 | `deals: DealWithRestaurant[]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L225 | `deal: Omit<DealWithRestaurant, 'id' | 'createdAt' | 'updatedAt'>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L251 | `const columns = useMemo<ColumnDef<DealWithRestaurant>[]>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_20-26Z-implementing-%40dealschema-subscription-with-supabase.md` | L69 | `+ export type DealWithRestaurant = Deal & {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_20-26Z-implementing-%40dealschema-subscription-with-supabase.md` | L101 | `+   const [deals, setDeals] = useState<DealWithRestaurant[]>([])` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_20-26Z-implementing-%40dealschema-subscription-with-supabase.md` | L380 | `const [deals, setDeals] = useState<DealWithRestaurant[]>([])` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_06-05Z-date-conversion-error-in-javascript.md` | L41 | `| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L22 | `type DealWithRestaurant = Deal & {` |` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_06-05Z-date-conversion-error-in-javascript.md` | L44 | `| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L22 | `type DealWithRestaurant = Deal & {` |` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L507 | `+     deal: Omit<DealWithRestaurant, 'id' | 'createdAt' | 'updatedAt'>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L1127 | `-     deal: Omit<DealWithRestaurant, 'id' | 'createdAt' | 'updatedAt'>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L1155 | `1. Type mismatches between DealWithRestaurant and Deal in the DealQuickView component` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L1614 | `deal: Omit<DealWithRestaurant, 'id' | 'createdAt' | 'updatedAt'>` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L172 | `- export function DealsTable({deals}: {deals: DealWithRestaurant[]}) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L176 | `+   deals: DealWithRestaurant[]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L221 | `+   const columns = useMemo<ColumnDef<DealWithRestaurant>[]>(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L1784 | `type DealWithRestaurant = Deal & {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L1795 | `- export function DealsTable({ deals }: { deals: DealWithRestaurant[] }) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L1801 | `+ export function DealsTable({deals}: {deals: DealWithRestaurant[]}) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-52Z-implementing-crud-for-deals-with-database.md` | L326 | `+ type DealWithRestaurant = Deal & {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-52Z-implementing-crud-for-deals-with-database.md` | L342 | `+ export function DealsTable({ deals }: { deals: DealWithRestaurant[] }) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-52Z-implementing-crud-for-deals-with-database.md` | L425 | `export function DealsTable({ deals }: { deals: DealWithRestaurant[] }) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3817 | `type 'DealWithRestaurant | DatabaseDeal'.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3818 | `Property 'title' does not exist on type 'DealWithRestaurant'.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3824 | `on type 'DealWithRestaurant | DatabaseDeal'.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3825 | `Property 'content' does not exist on type 'DealWithRestaurant'.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3831 | `n type 'DealWithRestaurant | DatabaseDeal'.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3832 | `Property 'active' does not exist on type 'DealWithRestaurant'.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3838 | `on type 'DealWithRestaurant | DatabaseDeal'.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3839 | `Property 'content' does not exist on type 'DealWithRestaurant'.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L18 | `export type DealWithRestaurant = Deal & {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/useDealsSubscription.tsx` | L34 | `const [deals, setDeals] = useState<DealWithRestaurant[]>([])` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L88 | `type DealWithRestaurant = Deal & {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L98 | `deals: DealWithRestaurant[]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L226 | `deal: Omit<DealWithRestaurant, 'id' | 'createdAt' | 'updatedAt'>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L252 | `const columns = useMemo<ColumnDef<DealWithRestaurant>[]>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_20-26Z-implementing-%40dealschema-subscription-with-supabase.md` | L70 | `+ export type DealWithRestaurant = Deal & {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_20-26Z-implementing-%40dealschema-subscription-with-supabase.md` | L102 | `+   const [deals, setDeals] = useState<DealWithRestaurant[]>([])` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_20-26Z-implementing-%40dealschema-subscription-with-supabase.md` | L381 | `const [deals, setDeals] = useState<DealWithRestaurant[]>([])` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_06-05Z-date-conversion-error-in-javascript.md` | L42 | `| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L22 | `type DealWithRestaurant = Deal & {` |` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_06-05Z-date-conversion-error-in-javascript.md` | L45 | `| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L22 | `type DealWithRestaurant = Deal & {` |` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L508 | `+     deal: Omit<DealWithRestaurant, 'id' | 'createdAt' | 'updatedAt'>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L1128 | `-     deal: Omit<DealWithRestaurant, 'id' | 'createdAt' | 'updatedAt'>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L1156 | `1. Type mismatches between DealWithRestaurant and Deal in the DealQuickView component` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L1615 | `deal: Omit<DealWithRestaurant, 'id' | 'createdAt' | 'updatedAt'>` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L173 | `- export function DealsTable({deals}: {deals: DealWithRestaurant[]}) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L177 | `+   deals: DealWithRestaurant[]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-37Z-implementing-tanstack-react-table-in-dealstable.md` | L222 | `+   const columns = useMemo<ColumnDef<DealWithRestaurant>[]>(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L1785 | `type DealWithRestaurant = Deal & {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L1796 | `- export function DealsTable({ deals }: { deals: DealWithRestaurant[] }) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-26_18-48Z-csv-export-feature-for-admin-tables.md` | L1802 | `+ export function DealsTable({deals}: {deals: DealWithRestaurant[]}) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-52Z-implementing-crud-for-deals-with-database.md` | L327 | `+ type DealWithRestaurant = Deal & {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-52Z-implementing-crud-for-deals-with-database.md` | L343 | `+ export function DealsTable({ deals }: { deals: DealWithRestaurant[] }) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-52Z-implementing-crud-for-deals-with-database.md` | L426 | `export function DealsTable({ deals }: { deals: DealWithRestaurant[] }) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3818 | `type 'DealWithRestaurant | DatabaseDeal'.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3819 | `Property 'title' does not exist on type 'DealWithRestaurant'.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3825 | `on type 'DealWithRestaurant | DatabaseDeal'.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3826 | `Property 'content' does not exist on type 'DealWithRestaurant'.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3832 | `n type 'DealWithRestaurant | DatabaseDeal'.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3833 | `Property 'active' does not exist on type 'DealWithRestaurant'.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3839 | `on type 'DealWithRestaurant | DatabaseDeal'.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-47Z-complete-logic-for-storage-module.md` | L3840 | `Property 'content' does not exist on type 'DealWithRestaurant'.` |
 
 </details>
 
@@ -1387,11 +1495,11 @@ Let me check the getDeals function to see what it returns:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L78 | `// export const getDeals = async () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/deals/deals.ts` | L15 | `export const getDeals = async () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/deals/deals.ts` | L45 | `export const getDealsByRestaurantId = async (restaurantId: bigint) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/deals/deals.ts` | L15 | `export const getDeals = async () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/deals/deals.ts` | L45 | `export const getDealsByRestaurantId = async (restaurantId: bigint) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L79 | `// export const getDeals = async () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/deals/deals.ts` | L16 | `export const getDeals = async () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/deals/deals.ts` | L46 | `export const getDealsByRestaurantId = async (restaurantId: bigint) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/deals/deals.ts` | L16 | `export const getDeals = async () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/deals/deals.ts` | L46 | `export const getDealsByRestaurantId = async (restaurantId: bigint) => {` |
 
 </details>
 
@@ -1569,27 +1677,27 @@ I don't see a date picker component in the UI folder. Let me check if there's a 
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/card-10.tsx` | Lundefined | `import { Clock, X, Calendar } from "lucide-react";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/card-10.tsx` | L88 | `<Calendar className="w-3.5 h-3.5 text-zinc-400" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L18 | `CalendarClock,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L517 | `icon: <CalendarClock className='w-4 h-4 text-green-500' />,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-quick-view.tsx` | L8 | `CalendarClock,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-quick-view.tsx` | L292 | `icon: <CalendarClock className='w-4 h-4 text-purple-500' />,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L5 | `import {BarChart, CalendarDays, Ticket, Users} from 'lucide-react'` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L125 | `<CalendarDays className='h-4 w-4 text-muted-foreground' />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L6 | `import { Calendar, Store, Edit, Trash2 } from "lucide-react";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L231 | `<Calendar className="mr-1.5 h-4 w-4 text-gray-400" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L237 | `<Calendar className="mr-1.5 h-4 w-4 text-gray-400" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_02-46Z-refactoring-quickview-to-bentogrid-layout.md` | L48 | `+ 	CalendarClock,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_02-46Z-refactoring-quickview-to-bentogrid-layout.md` | L129 | `+ 			icon: <CalendarClock className="w-4 h-4 text-green-500" />,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_02-46Z-refactoring-quickview-to-bentogrid-layout.md` | L384 | `CalendarClock,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-39Z-add-deals-section-to-admin-ui.md` | L1406 | `+ import { Calendar, Store, Edit, Trash2 } from "lucide-react";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-39Z-add-deals-section-to-admin-ui.md` | L1631 | `+ 								<Calendar className="mr-1.5 h-4 w-4 text-gray-400" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-39Z-add-deals-section-to-admin-ui.md` | L1637 | `+ 								<Calendar className="mr-1.5 h-4 w-4 text-gray-400" />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L55 | `+   CalendarClock,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L317 | `+       icon: <CalendarClock className='w-4 h-4 text-purple-500' />,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-09_07-31Z-qr-code-scan-user-profile-redirect.md` | L1812 | `+ import { BarChart, CalendarDays, Ticket, Users } from "lucide-react";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-09_07-31Z-qr-code-scan-user-profile-redirect.md` | L1932 | `+ 						<CalendarDays className="h-4 w-4 text-muted-foreground" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/card-10.tsx` | L1 | `import { Clock, X, Calendar } from "lucide-react";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/kokonutui/card-10.tsx` | L89 | `<Calendar className="w-3.5 h-3.5 text-zinc-400" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L19 | `CalendarClock,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L518 | `icon: <CalendarClock className='w-4 h-4 text-green-500' />,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-quick-view.tsx` | L9 | `CalendarClock,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-quick-view.tsx` | L293 | `icon: <CalendarClock className='w-4 h-4 text-purple-500' />,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L6 | `import {BarChart, CalendarDays, Ticket, Users} from 'lucide-react'` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L126 | `<CalendarDays className='h-4 w-4 text-muted-foreground' />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L7 | `import { Calendar, Store, Edit, Trash2 } from "lucide-react";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L232 | `<Calendar className="mr-1.5 h-4 w-4 text-gray-400" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L238 | `<Calendar className="mr-1.5 h-4 w-4 text-gray-400" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_02-46Z-refactoring-quickview-to-bentogrid-layout.md` | L49 | `+ 	CalendarClock,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_02-46Z-refactoring-quickview-to-bentogrid-layout.md` | L130 | `+ 			icon: <CalendarClock className="w-4 h-4 text-green-500" />,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_02-46Z-refactoring-quickview-to-bentogrid-layout.md` | L385 | `CalendarClock,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-39Z-add-deals-section-to-admin-ui.md` | L1407 | `+ import { Calendar, Store, Edit, Trash2 } from "lucide-react";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-39Z-add-deals-section-to-admin-ui.md` | L1632 | `+ 								<Calendar className="mr-1.5 h-4 w-4 text-gray-400" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_05-39Z-add-deals-section-to-admin-ui.md` | L1638 | `+ 								<Calendar className="mr-1.5 h-4 w-4 text-gray-400" />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L56 | `+   CalendarClock,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-10_22-54Z-quick-view-modal-for-deals-creation.md` | L318 | `+       icon: <CalendarClock className='w-4 h-4 text-purple-500' />,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-09_07-31Z-qr-code-scan-user-profile-redirect.md` | L1813 | `+ import { BarChart, CalendarDays, Ticket, Users } from "lucide-react";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-09_07-31Z-qr-code-scan-user-profile-redirect.md` | L1933 | `+ 						<CalendarDays className="h-4 w-4 text-muted-foreground" />` |
 
 </details>
 
@@ -1604,32 +1712,32 @@ Let me check if there's a popover component that could be used with a calendar:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L59 | `"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dropdown-menu.tsx` | L44 | `"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dropdown-menu.tsx` | L232 | `"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sonner.tsx` | L14 | `"--normal-bg": "var(--popover)",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sonner.tsx` | L15 | `"--normal-text": "var(--popover-foreground)",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L16 | `--color-popover: hsl(var(--popover));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L17 | `--color-popover-foreground: hsl(var(--popover-foreground));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L74 | `--popover: 0 0% 100%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L75 | `--popover-foreground: 222.2 84% 4.9%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L123 | `--popover: 222.2 84% 4.9%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L124 | `--popover-foreground: 210 40% 98%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L81 | `--popover: 0 0% 100%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L83 | `- 		--popover-foreground: 240 10% 3.9%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L84 | `+ 		--popover-foreground: 222.2 84% 4.9%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L183 | `- 		--popover: 240 10% 3.9%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L185 | `- 		--popover-foreground: 0 0% 98%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L186 | `+ 		--popover: 222.2 84% 4.9%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L187 | `+ 		--popover-foreground: 210 40% 98%;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L375 | `- 	--color-popover: hsl(var(--popover));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L376 | `- 	--color-popover-foreground: hsl(var(--popover-foreground));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L431 | `+ 		--color-popover: hsl(var(--popover));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L432 | `+ 		--color-popover-foreground: hsl(var(--popover-foreground));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L641 | `+ 	--color-popover: hsl(var(--popover));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L642 | `+ 	--color-popover-foreground: hsl(var(--popover-foreground));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L707 | `- 		--color-popover: hsl(var(--popover));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L708 | `- 		--color-popover-foreground: hsl(var(--popover-foreground));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/select.tsx` | L60 | `"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dropdown-menu.tsx` | L45 | `"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/dropdown-menu.tsx` | L233 | `"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sonner.tsx` | L15 | `"--normal-bg": "var(--popover)",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sonner.tsx` | L16 | `"--normal-text": "var(--popover-foreground)",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L17 | `--color-popover: hsl(var(--popover));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L18 | `--color-popover-foreground: hsl(var(--popover-foreground));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L75 | `--popover: 0 0% 100%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L76 | `--popover-foreground: 222.2 84% 4.9%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L124 | `--popover: 222.2 84% 4.9%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/globals.css` | L125 | `--popover-foreground: 210 40% 98%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L82 | `--popover: 0 0% 100%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L84 | `- 		--popover-foreground: 240 10% 3.9%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L85 | `+ 		--popover-foreground: 222.2 84% 4.9%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L184 | `- 		--popover: 240 10% 3.9%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L186 | `- 		--popover-foreground: 0 0% 98%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L187 | `+ 		--popover: 222.2 84% 4.9%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L188 | `+ 		--popover-foreground: 210 40% 98%;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L376 | `- 	--color-popover: hsl(var(--popover));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L377 | `- 	--color-popover-foreground: hsl(var(--popover-foreground));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L432 | `+ 		--color-popover: hsl(var(--popover));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L433 | `+ 		--color-popover-foreground: hsl(var(--popover-foreground));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L642 | `+ 	--color-popover: hsl(var(--popover));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L643 | `+ 	--color-popover-foreground: hsl(var(--popover-foreground));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L708 | `- 		--color-popover: hsl(var(--popover));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-10_03-27Z-css-syntax-issues-in-tailwind-configuration.md` | L709 | `- 		--color-popover-foreground: hsl(var(--popover-foreground));` |
 
 </details>
 
@@ -1644,7 +1752,7 @@ It looks like the project uses shadcn/ui components, but doesn't have a date pic
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L65 | `"date-fns": "^4.1.0",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L66 | `"date-fns": "^4.1.0",` |
 
 </details>
 
@@ -1677,7 +1785,15 @@ Let me create the necessary components for a date picker. First, I'll create a p
 
 ---
 
+<details><summary>Edit file: src/components/ui/popover.tsx</summary>
+
+Create a new popover component following shadcn/ui patterns
+
+**Chunk 1**
+Lines added: 32, lines removed: 1
+
 ```diff
+@@ -1,1 +1,32 @@
 - 
 + 'use client'
 + 
@@ -1713,6 +1829,8 @@ Let me create the necessary components for a date picker. First, I'll create a p
 + 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>The user wants to use a date picker component instead of the native HTML date input. I should:
@@ -1735,19 +1853,19 @@ Let me check if the Radix UI popover package is installed:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L33 | `"@radix-ui/react-alert-dialog": "^1.1.14",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L34 | `"@radix-ui/react-avatar": "^1.1.10",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L35 | `"@radix-ui/react-checkbox": "^1.3.2",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L36 | `"@radix-ui/react-dialog": "^1.1.14",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L37 | `"@radix-ui/react-dropdown-menu": "^2.1.15",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L38 | `"@radix-ui/react-label": "^2.1.7",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L39 | `"@radix-ui/react-progress": "^1.1.7",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L40 | `"@radix-ui/react-select": "^2.2.5",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L41 | `"@radix-ui/react-separator": "^1.1.7",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L42 | `"@radix-ui/react-slot": "^1.2.3",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L43 | `"@radix-ui/react-switch": "^1.2.5",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L44 | `"@radix-ui/react-tabs": "^1.1.12",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L45 | `"@radix-ui/react-tooltip": "^1.2.7",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L34 | `"@radix-ui/react-alert-dialog": "^1.1.14",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L35 | `"@radix-ui/react-avatar": "^1.1.10",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L36 | `"@radix-ui/react-checkbox": "^1.3.2",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L37 | `"@radix-ui/react-dialog": "^1.1.14",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L38 | `"@radix-ui/react-dropdown-menu": "^2.1.15",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L39 | `"@radix-ui/react-label": "^2.1.7",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L40 | `"@radix-ui/react-progress": "^1.1.7",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L41 | `"@radix-ui/react-select": "^2.2.5",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L42 | `"@radix-ui/react-separator": "^1.1.7",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L43 | `"@radix-ui/react-slot": "^1.2.3",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L44 | `"@radix-ui/react-switch": "^1.2.5",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L45 | `"@radix-ui/react-tabs": "^1.1.12",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L46 | `"@radix-ui/react-tooltip": "^1.2.7",` |
 
 </details>
 
@@ -1791,7 +1909,15 @@ Now let's create a calendar component:
 
 ---
 
+<details><summary>Edit file: src/components/ui/calendar.tsx</summary>
+
+Create a new calendar component using react-day-picker and shadcn/ui patterns
+
+**Chunk 1**
+Lines added: 67, lines removed: 1
+
 ```diff
+@@ -1,1 +1,67 @@
 - 
 + 'use client'
 + 
@@ -1862,13 +1988,23 @@ Now let's create a calendar component:
 + 
 ```
 
+</details>
+
 ---
 
 Let me fix the Calendar component by using the correct component props for react-day-picker v9:
 
 ---
 
+<details><summary>Edit file: src/components/ui/calendar.tsx</summary>
+
+Fix the component props for react-day-picker v9
+
+**Chunk 1**
+Lines added: 6, lines removed: 2
+
 ```diff
+@@ -55,6 +55,10 @@
         }}
         components={{
 -         IconLeft: ({...props}) => <ChevronLeft className='h-4 w-4' />,
@@ -1882,6 +2018,8 @@ Let me fix the Calendar component by using the correct component props for react
         }}
         {...props}
 ```
+
+</details>
 
 ---
 
@@ -1900,7 +2038,15 @@ Now let's add the CSS needed for the date picker:
 
 ---
 
+<details><summary>Edit file: src/app/globals.css</summary>
+
+Add CSS for react-day-picker at the end of the file
+
+**Chunk 1**
+Lines added: 16, lines removed: undefined
+
 ```diff
+@@ -536,2 +536,18 @@
   	border-bottom: 1px solid #ddd !important;
   }
 + 
@@ -1921,6 +2067,8 @@ Now let's add the CSS needed for the date picker:
 + }
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>The user wants to use a date picker component instead of the native HTML date input. I should:
@@ -1938,7 +2086,15 @@ Now let's create a date picker component that combines the calendar with a popov
 
 ---
 
+<details><summary>Edit file: src/components/ui/date-picker.tsx</summary>
+
+Create a date picker component that combines popover and calendar
+
+**Chunk 1**
+Lines added: 49, lines removed: 1
+
 ```diff
+@@ -1,1 +1,49 @@
 - 
 + 'use client'
 + 
@@ -1991,6 +2147,8 @@ Now let's create a date picker component that combines the calendar with a popov
 + 
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>The user wants to use a date picker component instead of the native HTML date input. I should:
@@ -2008,7 +2166,15 @@ Now let's update the edit deal form to use the new date picker component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/edit-deal-form.tsx</summary>
+
+Replace the native date input with the new DatePicker component
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -9,4 +9,5 @@
   } from '@/db/models/restaurants/restaurants'
   import {toast} from 'sonner'
 + import {DatePicker} from '@/components/ui/date-picker'
@@ -2016,7 +2182,11 @@ Now let's update the edit deal form to use the new date picker component:
   // Define a simplified restaurant type for the select dropdown
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -35,4 +36,8 @@
       activeDate: deal.activeDate ? deal.activeDate.split('T')[0] : '', // Format for date input
     })
 + 
@@ -2027,7 +2197,11 @@ Now let's update the edit deal form to use the new date picker component:
     const [isSubmitting, setIsSubmitting] = useState(false)
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -108,5 +113,5 @@
           active: formData.active,
           restaurantId: BigInt(formData.restaurantId),
 -         activeDate: formData.activeDate || null,
@@ -2036,7 +2210,11 @@ Now let's update the edit deal form to use the new date picker component:
   
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 7
+
 ```diff
+@@ -283,11 +288,8 @@
               Active Date
             </label>
 -           <input
@@ -2053,6 +2231,8 @@ Now let's update the edit deal form to use the new date picker component:
             />
             <p className='mt-1 text-xs text-gray-500'>
 ```
+
+</details>
 
 ---
 
@@ -2071,7 +2251,15 @@ Let me fix the imageUrl issue by removing it since it doesn't exist in the Deal 
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/edit-deal-form.tsx</summary>
+
+Remove imageUrl from the form since it doesn't exist in the Deal type
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -31,5 +31,4 @@
       title: deal.title,
       content: deal.content,
 -     imageUrl: deal.imageUrl || '',
@@ -2079,7 +2267,11 @@ Let me fix the imageUrl issue by removing it since it doesn't exist in the Deal 
       restaurantId: String(deal.restaurantId),
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 22
+
 ```diff
+@@ -234,26 +233,4 @@
             )}
           </div>
 - 
@@ -2108,6 +2300,8 @@ Let me fix the imageUrl issue by removing it since it doesn't exist in the Deal 
           {/* Active Status */}
 ```
 
+</details>
+
 ---
 
 <think><details><summary>Thought Process</summary>The user wants to use a date picker component instead of the native HTML date input. I should:
@@ -2125,7 +2319,15 @@ Now let's update the new deal form to use the date picker:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+Replace the native date input with the DatePicker component
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -6,4 +6,5 @@
   import type {Restaurant} from '@/types/db'
   import {toast} from 'sonner'
 + import {DatePicker} from '@/components/ui/date-picker'
@@ -2133,7 +2335,11 @@ Now let's update the new deal form to use the date picker:
   // Server actions (placed outside the component)
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -63,4 +64,5 @@
       useState<SimpleRestaurant[]>(restaurantDeals)
     const [isLoadingRestaurants, setIsLoadingRestaurants] = useState(true)
 +   const [activeDate, setActiveDate] = useState<Date | undefined>()
@@ -2141,7 +2347,11 @@ Now let's update the new deal form to use the date picker:
     // Initialize form state using useFormState hook with the createDeal server action
 ```
 
+**Chunk 3**
+Lines added: 7, lines removed: undefined
+
 ```diff
+@@ -99,4 +101,11 @@
     return (
       <form action={formAction} className='space-y-6'>
 +       {/* Hidden input for activeDate */}
@@ -2155,7 +2365,11 @@ Now let's update the new deal form to use the date picker:
           <div className='bg-red-50 border-l-4 border-red-500 p-4 mb-6'>
 ```
 
+**Chunk 4**
+Lines added: 4, lines removed: 5
+
 ```diff
+@@ -210,9 +219,8 @@
               Active Date
             </label>
 -           <input
@@ -2170,6 +2384,8 @@ Now let's update the new deal form to use the date picker:
             />
             <p className='mt-1 text-xs text-gray-500'>
 ```
+
+</details>
 
 ---
 

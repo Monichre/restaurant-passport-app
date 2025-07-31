@@ -33,9 +33,9 @@ Now I'll check for the presence of any Storybook configuration in the project to
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.storybook/main.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.storybook/preview.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.storybook/vitest.setup.ts` |
 
 </details>
 
@@ -66,10 +66,10 @@ Now let me check if there are any existing stories in the project to use as a re
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/stories/Page.stories.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/stories/Button.stories.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/stories/Header.stories.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.storybook/vitest.setup.ts` |
 
 </details>
 
@@ -95,7 +95,15 @@ Now I'll create a Storybook story for the Nav component based on the pattern obs
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.stories.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 48, lines removed: 1
+
 ```diff
+@@ -1,1 +1,48 @@
 - 
 + import type { Meta, StoryObj } from '@storybook/react';
 + import { Nav } from './nav';
@@ -147,6 +155,8 @@ Now I'll create a Storybook story for the Nav component based on the pattern obs
 + }; 
 ```
 
+</details>
+
 ---
 
 
@@ -155,7 +165,15 @@ I see that we have linter errors because the `Nav` component doesn't accept an `
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 2
+
 ```diff
+@@ -13,6 +13,10 @@
   import { useState } from "react";
   
 - export const Nav = () => {
@@ -170,6 +188,8 @@ I see that we have linter errors because the `Nav` component doesn't accept an `
   	return (
 ```
 
+</details>
+
 ---
 
 
@@ -180,7 +200,15 @@ Now that we've updated the Nav component to accept an `initialActiveTab` prop, l
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.stories.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 43, lines removed: 14
+
 ```diff
+@@ -2,47 +2,76 @@
   import { Nav } from "./nav";
   
 + /**
@@ -273,6 +301,8 @@ Now that we've updated the Nav component to accept an `initialActiveTab` prop, l
   };
 ```
 
+</details>
+
 ---
 
 
@@ -283,7 +313,15 @@ Let's also add a story that demonstrates interaction with the navigation compone
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.stories.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -1,4 +1,5 @@
   import type { Meta, StoryObj } from "@storybook/react";
   import { Nav } from "./nav";
 + import { fn } from "@storybook/test";
@@ -291,7 +329,11 @@ Let's also add a story that demonstrates interaction with the navigation compone
   /**
 ```
 
+**Chunk 2**
+Lines added: 24, lines removed: undefined
+
 ```diff
+@@ -77,3 +78,27 @@
   	},
   };
 + 
@@ -321,6 +363,8 @@ Let's also add a story that demonstrates interaction with the navigation compone
   
 ```
 
+</details>
+
 ---
 
 
@@ -333,7 +377,15 @@ Now let's add a more sophisticated play function for the Interactive story to de
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.stories.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,5 +1,5 @@
   import type { Meta, StoryObj } from "@storybook/react";
   import { Nav } from "./nav";
 - import { fn } from "@storybook/test";
@@ -342,7 +394,11 @@ Now let's add a more sophisticated play function for the Interactive story to de
   /**
 ```
 
+**Chunk 2**
+Lines added: 43, lines removed: 3
+
 ```diff
+@@ -98,7 +98,47 @@
   		chromatic: { pauseAnimationAtEnd: true },
   	},
 - 	play: async ({ canvasElement }) => {
@@ -395,6 +451,8 @@ Now let's add a more sophisticated play function for the Interactive story to de
   };
 ```
 
+</details>
+
 ---
 
 
@@ -409,7 +467,15 @@ First, let's update the Nav component to include this callback:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -15,8 +15,14 @@
   export type NavProps = {
   	initialActiveTab?: string;
 + 	onTabChange?: (tabId: string) => void;
@@ -427,7 +493,11 @@ First, let's update the Nav component to include this callback:
   	return (
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -38,5 +44,5 @@
   							activeTab === item.id && "text-primary",
   						)}
 - 						onClick={() => setActiveTab(item.id)}
@@ -435,6 +505,8 @@ First, let's update the Nav component to include this callback:
   					>
   						<item.icon className="h-5 w-5" />
 ```
+
+</details>
 
 ---
 
@@ -446,7 +518,15 @@ Now let's add a story that demonstrates the `onTabChange` callback:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.stories.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -2,4 +2,5 @@
   import { Nav } from "./nav";
   import { fn, userEvent, within, expect } from "@storybook/test";
 + import { useState } from 'react';
@@ -454,7 +534,11 @@ Now let's add a story that demonstrates the `onTabChange` callback:
   /**
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -28,4 +29,8 @@
   			defaultValue: "home",
   		},
 + 		onTabChange: {
@@ -465,7 +549,11 @@ Now let's add a story that demonstrates the `onTabChange` callback:
   } satisfies Meta<typeof Nav>;
 ```
 
+**Chunk 3**
+Lines added: 46, lines removed: undefined
+
 ```diff
+@@ -143,3 +148,49 @@
   	},
   };
 + 
@@ -516,6 +604,8 @@ Now let's add a story that demonstrates the `onTabChange` callback:
 + };
   
 ```
+
+</details>
 
 ---
 

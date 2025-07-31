@@ -51,7 +51,15 @@ Read file: src/hooks/use-punch-card-subscription.ts
 
 ---
 
+<details><summary>Edit file: src/app/users/[id]/profile/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -9,4 +9,6 @@
   import Link from 'next/link'
   import {getPunchCardsByUserId} from '@/db/models/punch-cards'
 + import {getRaffleEntryById} from '@/db/models/raffle-entries/raffle-entries'
@@ -60,7 +68,11 @@ Read file: src/hooks/use-punch-card-subscription.ts
   // Define viewport metadata as per Next.js recommendations
 ```
 
+**Chunk 2**
+Lines added: 9, lines removed: 1
+
 ```diff
+@@ -17,5 +19,13 @@
   }
   
 - export default async function ProfilePage(props) {
@@ -77,7 +89,11 @@ Read file: src/hooks/use-punch-card-subscription.ts
   
 ```
 
+**Chunk 3**
+Lines added: 11, lines removed: 2
+
 ```diff
+@@ -26,6 +36,15 @@
   
     // Let the client component handle all data fetching with realtime updates
 -   const initialPunchCards: PunchCardWithRestaurant[] =
@@ -97,7 +113,11 @@ Read file: src/hooks/use-punch-card-subscription.ts
     console.log('🚀 ~ ProfilePage ~ initialPunchCards:', initialPunchCards)
 ```
 
+**Chunk 4**
+Lines added: 9, lines removed: 1
+
 ```diff
+@@ -58,6 +77,14 @@
           className='w-full h-auto mb-8 mx-auto display-block'
         />
 + 
@@ -115,6 +135,8 @@ Read file: src/hooks/use-punch-card-subscription.ts
         <Button
 ```
 
+</details>
+
 ---
 
 Now I need to create the RaffleSuccessAnimation component:
@@ -125,15 +147,176 @@ Tool create_directory not found.
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: aidd_ai_software_development_utilities - create_directory: Create a new directory or ensure a directory exists. Can create multiple nested directories in one operation. If the directory already exists, this operation will succeed silently. Useful for setting up project structure or organizing files. Only works within the allowed directory. Example: Enter 'src/components' to create nested directories.
 
+*Parameters*:
+  * path: src/components/raffle
+
+*Result*:
+Successfully created directory: src/components/raffle
+</details>
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: aidd_ai_software_development_utilities - write_file: Create a new file or overwrite an existing file with new content. Use this to save changes, create new files, or update existing ones. Use with caution as it will overwrite existing files without warning. Path must be relative to the allowed directory. Creates parent directories if needed. Example: Path='notes.txt', Content='Meeting notes for project X'
 
+*Parameters*:
+  * path: src/components/raffle/RaffleSuccessAnimation.tsx
+  * content: "use client";
+
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import confetti from 'canvas-confetti';
+import { Card } from '@/components/ui/card';
+
+type RaffleEntry = {
+  id: bigint;
+  userId: bigint;
+  punchCardId: bigint;
+  createdAt: string;
+};
+
+type RaffleSuccessAnimationProps = {
+  raffleEntry: RaffleEntry;
+};
+
+export function RaffleSuccessAnimation({ raffleEntry }: RaffleSuccessAnimationProps) {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    // Trigger confetti animation when component mounts
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min: number, max: number) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      
+      // Since particles fall down, start a bit higher than random
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: randomInRange(0, 0.2) },
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: randomInRange(0, 0.2) },
+      });
+    }, 250);
+
+    // Hide animation after 5 seconds
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5, y: -50 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: -50 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <Card className="p-8 bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-center shadow-xl">
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+            >
+              <h2 className="text-2xl font-bold mb-2">Congratulations! 🎉</h2>
+            </motion.div>
+            <p className="text-lg mb-4">
+              You've been entered into our raffle!
+            </p>
+            <p className="text-sm opacity-90">
+              Raffle Entry #{raffleEntry.id.toString()} was created on{' '}
+              {new Date(raffleEntry.createdAt).toLocaleDateString()}
+            </p>
+            <div className="mt-4 text-sm">
+              <p>Good luck! Winners will be announced soon.</p>
+            </div>
+          </Card>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+*Result*:
+Successfully wrote to src/components/raffle/RaffleSuccessAnimation.tsx
+</details>
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: aidd_ai_software_development_utilities - write_file: Create a new file or overwrite an existing file with new content. Use this to save changes, create new files, or update existing ones. Use with caution as it will overwrite existing files without warning. Path must be relative to the allowed directory. Creates parent directories if needed. Example: Path='notes.txt', Content='Meeting notes for project X'
 
+*Parameters*:
+  * path: src/components/raffle/RaffleSuccessAnimation.md
+  * content: # RaffleSuccessAnimation Component
+
+## Overview
+This component displays a celebratory animation when a user has successfully completed a punch card and been entered into a raffle. It uses Framer Motion for animations and canvas-confetti for a festive confetti effect.
+
+## Architecture
+
+### Component Structure
+- `RaffleSuccessAnimation`: Client component that shows a congratulatory message with animations and confetti effects.
+
+### Data Flow
+1. The component receives raffle entry data from the parent page component.
+2. On mount, it triggers confetti animations using the canvas-confetti library.
+3. After 5 seconds, the component animates out and disappears using Framer Motion's AnimatePresence.
+
+### Key Features
+- Confetti animation that bursts from multiple origins
+- Pulsing text animation using Framer Motion
+- Automatic dismissal after 5 seconds
+- Responsive card layout with gradient background
+- Displays raffle entry ID and creation date
+
+### Dependencies
+- `framer-motion`: For entrance, exit, and pulsing animations
+- `canvas-confetti`: For the celebratory confetti effect
+- `@/components/ui/card`: ShadCN UI component for the card container
+
+## Integration
+This component is designed to be used in the user profile page when URL parameters indicate a successful raffle entry. The parent page component checks for `raffle=true` and a valid `raffleEntryId` parameter, fetches the raffle entry data, and conditionally renders this animation.
+
+## Considerations
+- The animation is shown for a limited time (5 seconds) to not distract users from their main profile content
+- The component is designed to work well on both mobile and desktop screens
+- All animations are accessible and don't cause layout shifts
+
+*Result*:
+Successfully wrote to src/components/raffle/RaffleSuccessAnimation.md
+</details>
 
 ---
 
@@ -216,7 +399,15 @@ Now, let's create the RaffleSuccessAnimation component:
 
 ---
 
+<details><summary>Edit file: src/components/raffle/RaffleSuccessAnimation.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 98, lines removed: 1
+
 ```diff
+@@ -1,1 +1,98 @@
 - 
 + 'use client'
 + 
@@ -317,6 +508,8 @@ Now, let's create the RaffleSuccessAnimation component:
 + }
 + 
 ```
+
+</details>
 
 ---
 

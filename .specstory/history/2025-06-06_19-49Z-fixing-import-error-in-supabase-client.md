@@ -17,7 +17,24 @@ Let me fix this import error in the storage-server.ts file:
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1,5 +1,5 @@
+  "use server";
+  
+- import { createSupabaseServiceClient } from "@/db/supabase/supabase.server";
++ import { createSupabaseServerClient } from "@/db/supabase/supabase.server";
+  import {
+    BucketName,
+```
+
+</details>
 
 ---
 
@@ -25,7 +42,7 @@ Now I need to update all the references to `createSupabaseServiceClient` to use 
 
 ---
 
-
+The model provided an ambiguous search string to replace.
 
 ---
 
@@ -38,22 +55,22 @@ Let me check the exact content and update all occurrences:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L27 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L73 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L112 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L159 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L202 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L245 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L289 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L334 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L27 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L73 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L112 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L159 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L202 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L245 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L289 | `const supabase = createSupabaseServiceClient();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L334 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L28 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L74 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L113 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L160 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L203 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L246 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L290 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L335 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L28 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L74 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L113 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L160 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L203 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L246 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L290 | `const supabase = createSupabaseServiceClient();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/storage/storage-server.ts` | L335 | `const supabase = createSupabaseServiceClient();` |
 
 </details>
 
@@ -63,7 +80,7 @@ Now I need to update each occurrence. Since `createSupabaseServerClient` is an a
 
 ---
 
-
+The model provided an ambiguous search string to replace.
 
 ---
 
@@ -79,7 +96,7 @@ I see the issue. The function name is `createSupabaseServiceClient` in the code,
 
 ---
 
-
+The model provided an ambiguous search string to replace.
 
 ---
 
@@ -87,7 +104,7 @@ Let me update them one by one:
 
 ---
 
-
+The model provided an ambiguous search string to replace.
 
 ---
 
@@ -95,7 +112,15 @@ Let me use a more efficient approach and create a new version of the file with a
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
+
+Replace all occurrences of createSupabaseServiceClient with createSupabaseServerClient and add await since it's an async function
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -26,5 +26,5 @@
       }
   
 -     const supabase = createSupabaseServiceClient();
@@ -104,7 +129,11 @@ Let me use a more efficient approach and create a new version of the file with a
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -72,5 +72,5 @@
       }
   
 -     const supabase = createSupabaseServiceClient();
@@ -113,7 +142,11 @@ Let me use a more efficient approach and create a new version of the file with a
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -111,5 +111,5 @@
   ): Promise<StorageResponse<FileObject[]>> => {
     try {
 -     const supabase = createSupabaseServiceClient();
@@ -122,7 +155,11 @@ Let me use a more efficient approach and create a new version of the file with a
   
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -158,5 +158,5 @@
       }
   
 -     const supabase = createSupabaseServiceClient();
@@ -131,7 +168,11 @@ Let me use a more efficient approach and create a new version of the file with a
   
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -201,5 +201,5 @@
       }
   
 -     const supabase = createSupabaseServiceClient();
@@ -140,7 +181,11 @@ Let me use a more efficient approach and create a new version of the file with a
   
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -244,5 +244,5 @@
       }
   
 -     const supabase = createSupabaseServiceClient();
@@ -149,7 +194,11 @@ Let me use a more efficient approach and create a new version of the file with a
       const normalizedToPath = normalizeFilePath(toPath);
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -288,5 +288,5 @@
       }
   
 -     const supabase = createSupabaseServiceClient();
@@ -158,7 +207,11 @@ Let me use a more efficient approach and create a new version of the file with a
       const normalizedToPath = normalizeFilePath(toPath);
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -333,5 +333,5 @@
       }
   
 -     const supabase = createSupabaseServiceClient();
@@ -166,6 +219,8 @@ Let me use a more efficient approach and create a new version of the file with a
       const normalizedPath = normalizeFilePath(path);
   
 ```
+
+</details>
 
 ---
 
@@ -237,7 +292,51 @@ Let me fix this by creating a service client function and updating the storage m
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
+```diff
+@@ -1,3 +1,4 @@
+  import { createServerClient } from "@supabase/ssr";
++ import { createClient } from "@supabase/supabase-js";
+  import { cookies } from "next/headers";
+  
+```
+
+**Chunk 2**
+Lines added: 18, lines removed: undefined
+
+```diff
+@@ -28,4 +29,22 @@
+  	);
+  }
++ 
++ // Service client for admin operations (bypasses RLS)
++ export function createSupabaseServiceClient() {
++ 	if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
++ 		throw new Error('SUPABASE_SERVICE_ROLE_KEY environment variable is required for admin operations');
++ 	}
++ 
++ 	return createClient(
++ 		process.env.NEXT_PUBLIC_SUPABASE_URL!,
++ 		process.env.SUPABASE_SERVICE_ROLE_KEY!,
++ 		{
++ 			auth: {
++ 				autoRefreshToken: false,
++ 				persistSession: false
++ 			}
++ 		}
++ 	);
++ }
+  
+  export const supabaseServerClient = createSupabaseServerClient();
+```
+
+</details>
 
 ---
 
@@ -249,7 +348,24 @@ Now let's update the storage server module to use the service client:
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1,5 +1,5 @@
+  "use server";
+  
+- import { createSupabaseServerClient } from "@/db/supabase/supabase.server";
++ import { createSupabaseServiceClient } from "@/db/supabase/supabase.server";
+  import {
+    BucketName,
+```
+
+</details>
 
 ---
 
@@ -261,7 +377,7 @@ Now let's update all the function calls to use the service client (and remove `a
 
 ---
 
-
+The model provided an ambiguous search string to replace.
 
 ---
 
@@ -273,7 +389,15 @@ Let me update all occurrences in one comprehensive edit:
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
+
+Replace all occurrences of "await createSupabaseServerClient()" with "createSupabaseServiceClient()" since the service client is synchronous and bypasses RLS
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -14,5 +14,5 @@
   } from "./storage-types";
   
 - // Server-Side Storage Operations (using server client)
@@ -282,7 +406,11 @@ Let me update all occurrences in one comprehensive edit:
     bucket: BucketName,
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -26,5 +26,5 @@
       }
   
 -     const supabase = await createSupabaseServerClient();
@@ -291,7 +419,11 @@ Let me update all occurrences in one comprehensive edit:
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -72,5 +72,5 @@
       }
   
 -     const supabase = await createSupabaseServerClient();
@@ -300,7 +432,11 @@ Let me update all occurrences in one comprehensive edit:
   
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -111,5 +111,5 @@
   ): Promise<StorageResponse<FileObject[]>> => {
     try {
 -     const supabase = await createSupabaseServerClient();
@@ -309,7 +445,11 @@ Let me update all occurrences in one comprehensive edit:
   
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -158,5 +158,5 @@
       }
   
 -     const supabase = await createSupabaseServerClient();
@@ -318,7 +458,11 @@ Let me update all occurrences in one comprehensive edit:
   
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -201,5 +201,5 @@
       }
   
 -     const supabase = await createSupabaseServerClient();
@@ -327,7 +471,11 @@ Let me update all occurrences in one comprehensive edit:
   
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -244,5 +244,5 @@
       }
   
 -     const supabase = await createSupabaseServerClient();
@@ -336,7 +484,11 @@ Let me update all occurrences in one comprehensive edit:
       const normalizedToPath = normalizeFilePath(toPath);
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -288,5 +288,5 @@
       }
   
 -     const supabase = await createSupabaseServerClient();
@@ -345,7 +497,11 @@ Let me update all occurrences in one comprehensive edit:
       const normalizedToPath = normalizeFilePath(toPath);
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -333,5 +333,5 @@
       }
   
 -     const supabase = await createSupabaseServerClient();
@@ -353,6 +509,8 @@ Let me update all occurrences in one comprehensive edit:
       const normalizedPath = normalizeFilePath(path);
   
 ```
+
+</details>
 
 ---
 
@@ -369,16 +527,16 @@ Perfect! Now we need to make sure you have the `SUPABASE_SERVICE_ROLE_KEY` envir
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_04-33-enhancing-quick-view-with-qr-code-features.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-14_13-17-hydration-error-invalid-html-structure.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/features/mouse-sensitive-nav-implementation.mdc` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_06-05-date-conversion-error-in-javascript.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-04-05_05-44-rendering-svg-qr-code-in-react.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-03_19-28-csv-to-json-conversion-request.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-03_20-53-merge-navigation-items-into-component.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-14_03-19-adding-columns-for-deals-and-navigation.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-03-03_20-40-creating-a-storybook-story-for-navigation-component.md` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/.specstory/history/2025-06-06_18-38-display-restaurant-image-in-quick-view.md` |
 
 </details>
 
@@ -510,7 +668,38 @@ Let me fix this by creating a server-safe version of `getPublicUrl`:
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 16, lines removed: undefined
+
+```diff
+@@ -321,4 +321,20 @@
+    }
+  };
++ 
++ // Public URL Generation (server-side)
++ export const getPublicUrlServer = (bucket: BucketName, path: string): string => {
++   if (!validatePath(path)) {
++     throw new StorageError('Invalid file path', StorageErrorCode.INVALID_PATH);
++   }
++ 
++   const normalizedPath = normalizeFilePath(path);
++   const supabase = createSupabaseServiceClient();
++   
++   const { data } = supabase.storage
++     .from(bucket)
++     .getPublicUrl(normalizedPath);
++ 
++   return data.publicUrl;
++ };
+  
+  // Generate Signed URL for private access
+```
+
+</details>
 
 ---
 
@@ -522,7 +711,26 @@ Now let's update the upload action to use the server-side version:
 
 ---
 
+<details><summary>Edit file: src/app/actions/upload-restaurant-image.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
+```diff
+@@ -1,7 +1,6 @@
+  'use server'
+  
+- import { uploadFileServer } from '@/db/storage/storage-server'
++ import { uploadFileServer, getPublicUrlServer } from '@/db/storage/storage-server'
+  import { updateRestaurant } from '@/db/models/restaurants/restaurants'
+- import { getPublicUrl } from '@/db/storage/storage-client'
+  import { 
+    BUCKET_NAMES, 
+```
+
+</details>
 
 ---
 
@@ -530,7 +738,24 @@ Now let's update the upload action to use the server-side version:
 
 ---
 
+<details><summary>Edit file: src/app/actions/upload-restaurant-image.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -69,5 +69,5 @@
+      }
+  
+-     const imageUrl = getPublicUrl(BUCKET_NAMES.RESTAURANTS, imagePath)
++     const imageUrl = getPublicUrlServer(BUCKET_NAMES.RESTAURANTS, imagePath)
+  
+      // Update restaurant in database
+```
+
+</details>
 
 ---
 
@@ -564,7 +789,22 @@ Add this function to your `src/db/supabase/supabase.server.ts` file:
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
+```diff
+@@ -1,3 +1,4 @@
+  import { createServerClient } from "@supabase/ssr";
++ import { createClient } from "@supabase/supabase-js";
+  import { cookies } from "next/headers";
+  
+```
+
+</details>
 
 ---
 
@@ -572,7 +812,40 @@ Add this function to your `src/db/supabase/supabase.server.ts` file:
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 18, lines removed: undefined
+
+```diff
+@@ -29,4 +29,22 @@
+  	);
+  }
++ 
++ // Service client for admin operations (bypasses RLS)
++ export function createSupabaseServiceClient() {
++ 	if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
++ 		throw new Error('SUPABASE_SERVICE_ROLE_KEY environment variable is required for admin operations');
++ 	}
++ 
++ 	return createClient(
++ 		process.env.NEXT_PUBLIC_SUPABASE_URL!,
++ 		process.env.SUPABASE_SERVICE_ROLE_KEY!,
++ 		{
++ 			auth: {
++ 				autoRefreshToken: false,
++ 				persistSession: false
++ 			}
++ 		}
++ 	);
++ }
+  
+  export const supabaseServerClient = createSupabaseServerClient();
+```
+
+</details>
 
 ---
 
@@ -646,7 +919,51 @@ You're absolutely right! Let me move the service client to the client file where
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
+```diff
+@@ -1,4 +1,3 @@
+  import { createServerClient } from "@supabase/ssr";
+- import { createClient } from "@supabase/supabase-js";
+  import { cookies } from "next/headers";
+  
+```
+
+**Chunk 2**
+Lines added: undefined, lines removed: 18
+
+```diff
+@@ -29,22 +28,4 @@
+  	);
+  }
+- 
+- // Service client for admin operations (bypasses RLS)
+- export function createSupabaseServiceClient() {
+- 	if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+- 		throw new Error('SUPABASE_SERVICE_ROLE_KEY environment variable is required for admin operations');
+- 	}
+- 
+- 	return createClient(
+- 		process.env.NEXT_PUBLIC_SUPABASE_URL!,
+- 		process.env.SUPABASE_SERVICE_ROLE_KEY!,
+- 		{
+- 			auth: {
+- 				autoRefreshToken: false,
+- 				persistSession: false
+- 			}
+- 		}
+- 	);
+- }
+  
+  export const supabaseServerClient = createSupabaseServerClient();
+```
+
+</details>
 
 ---
 
@@ -658,7 +975,50 @@ Now let's add the service client to the client file where it belongs:
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.client.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 21, lines removed: 2
+
+```diff
+@@ -1,11 +1,30 @@
+  import { createBrowserClient } from "@supabase/ssr";
++ import { createClient } from "@supabase/supabase-js";
+  
+- export const createClient = () =>
++ export const createBrowserSupabaseClient = () =>
+  	createBrowserClient(
+  		process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  		process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  	);
+  
+- export const supabaseBrowserClient = createClient();
++ export const supabaseBrowserClient = createBrowserSupabaseClient();
++ 
++ // Service client for admin operations (bypasses RLS)
++ export function createSupabaseServiceClient() {
++ 	if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
++ 		throw new Error('SUPABASE_SERVICE_ROLE_KEY environment variable is required for admin operations');
++ 	}
++ 
++ 	return createClient(
++ 		process.env.NEXT_PUBLIC_SUPABASE_URL!,
++ 		process.env.SUPABASE_SERVICE_ROLE_KEY!,
++ 		{
++ 			auth: {
++ 				autoRefreshToken: false,
++ 				persistSession: false
++ 			}
++ 		}
++ 	);
++ }
+  
+  // // For client-side usage with a token from Clerk
+```
+
+</details>
 
 ---
 
@@ -670,7 +1030,24 @@ Now let's update the storage server to import from the client file:
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1,5 +1,5 @@
+  "use server";
+  
+- import { createSupabaseServiceClient } from "@/db/supabase/supabase.server";
++ import { createSupabaseServiceClient } from "@/db/supabase/supabase.client";
+  import {
+    BucketName,
+```
+
+</details>
 
 ---
 
@@ -738,7 +1115,22 @@ Let me fix this by moving the service client back to the server file where it be
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
+```diff
+@@ -1,3 +1,4 @@
+  import { createServerClient } from "@supabase/ssr";
++ import { createClient } from "@supabase/supabase-js";
+  import { cookies } from "next/headers";
+  
+```
+
+</details>
 
 ---
 
@@ -746,7 +1138,40 @@ Let me fix this by moving the service client back to the server file where it be
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 18, lines removed: undefined
+
+```diff
+@@ -29,4 +29,22 @@
+  	);
+  }
++ 
++ // Service client for admin operations (bypasses RLS)
++ export function createSupabaseServiceClient() {
++ 	if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
++ 		throw new Error('SUPABASE_SERVICE_ROLE_KEY environment variable is required for admin operations');
++ 	}
++ 
++ 	return createClient(
++ 		process.env.NEXT_PUBLIC_SUPABASE_URL!,
++ 		process.env.SUPABASE_SERVICE_ROLE_KEY!,
++ 		{
++ 			auth: {
++ 				autoRefreshToken: false,
++ 				persistSession: false
++ 			}
++ 		}
++ 	);
++ }
+  
+  export const supabaseServerClient = createSupabaseServerClient();
+```
+
+</details>
 
 ---
 
@@ -754,7 +1179,50 @@ Let me fix this by moving the service client back to the server file where it be
 
 ---
 
+<details><summary>Edit file: src/db/supabase/supabase.client.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 21
+
+```diff
+@@ -1,30 +1,11 @@
+  import { createBrowserClient } from "@supabase/ssr";
+- import { createClient } from "@supabase/supabase-js";
+  
+- export const createBrowserSupabaseClient = () =>
++ export const createClient = () =>
+  	createBrowserClient(
+  		process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  		process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  	);
+  
+- export const supabaseBrowserClient = createBrowserSupabaseClient();
+- 
+- // Service client for admin operations (bypasses RLS)
+- export function createSupabaseServiceClient() {
+- 	if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+- 		throw new Error('SUPABASE_SERVICE_ROLE_KEY environment variable is required for admin operations');
+- 	}
+- 
+- 	return createClient(
+- 		process.env.NEXT_PUBLIC_SUPABASE_URL!,
+- 		process.env.SUPABASE_SERVICE_ROLE_KEY!,
+- 		{
+- 			auth: {
+- 				autoRefreshToken: false,
+- 				persistSession: false
+- 			}
+- 		}
+- 	);
+- }
++ export const supabaseBrowserClient = createClient();
+  
+  // // For client-side usage with a token from Clerk
+```
+
+</details>
 
 ---
 
@@ -762,7 +1230,24 @@ Let me fix this by moving the service client back to the server file where it be
 
 ---
 
+<details><summary>Edit file: src/db/storage/storage-server.ts</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -1,5 +1,5 @@
+  "use server";
+  
+- import { createSupabaseServiceClient } from "@/db/supabase/supabase.client";
++ import { createSupabaseServiceClient } from "@/db/supabase/supabase.server";
+  import {
+    BucketName,
+```
+
+</details>
 
 ---
 

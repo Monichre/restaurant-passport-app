@@ -107,7 +107,15 @@ First, let's add a new function to fetch raffle entries in the leaderboard model
 
 ---
 
+<details><summary>Edit file: src/db/models/leaderboard/leaderboard.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -3,8 +3,9 @@
   import { sql } from "drizzle-orm";
   import { db } from "../../db";
 - import { punchCards, users, restaurants } from "@/db/drizzle/schema";
@@ -120,7 +128,11 @@ First, let's add a new function to fetch raffle entries in the leaderboard model
   
 ```
 
+**Chunk 2**
+Lines added: 31, lines removed: undefined
+
 ```diff
+@@ -61,3 +62,34 @@
   	return result as unknown as RestaurantLeaderboardEntry[];
   };
 + 
@@ -157,6 +169,8 @@ First, let's add a new function to fetch raffle entries in the leaderboard model
   
 ```
 
+</details>
+
 ---
 
 Now let's define the `RaffleEntryWithUser` type by updating the API types:
@@ -168,7 +182,7 @@ Now let's define the `RaffleEntryWithUser` type by updating the API types:
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` |
 
 </details>
 
@@ -182,7 +196,15 @@ Now let's add the `RaffleEntryWithUser` type to the API types file:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 13, lines removed: undefined
+
 ```diff
+@@ -173,3 +173,16 @@
   	rank: number;
   };
 + 
@@ -201,6 +223,8 @@ Now let's add the `RaffleEntryWithUser` type to the API types file:
   
 ```
 
+</details>
+
 ---
 
 Now let's examine the `LotteryStatus` component to understand its requirements:
@@ -212,7 +236,7 @@ Now let's examine the `LotteryStatus` component to understand its requirements:
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/features/users/lottery-status.tsx` |
 
 </details>
 
@@ -226,7 +250,15 @@ Now let's update the leaderboard page to show users in the raffle:
 
 ---
 
+<details><summary>Edit file: src/app/leaderboard/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: undefined
+
 ```diff
+@@ -10,9 +10,13 @@
     getTopUsersByPunchCardCount,
     getPopularRestaurantsByPunchCardCount,
 +   getUsersInRaffle,
@@ -242,7 +274,11 @@ Now let's update the leaderboard page to show users in the raffle:
   export const metadata = {
 ```
 
+**Chunk 2**
+Lines added: 18, lines removed: 3
+
 ```diff
+@@ -25,16 +29,31 @@
     const topUsers = await getTopUsersByPunchCardCount(10)
     const popularRestaurants = await getPopularRestaurantsByPunchCardCount(10)
 +   const raffleEntries = await getUsersInRaffle(10)
@@ -279,7 +315,11 @@ Now let's update the leaderboard page to show users in the raffle:
     return (
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -84,5 +103,5 @@
               </CardHeader>
               <CardContent>
 -               
@@ -287,6 +327,8 @@ Now let's update the leaderboard page to show users in the raffle:
               </CardContent>
             </Card>
 ```
+
+</details>
 
 ---
 
@@ -302,7 +344,15 @@ Now let's fix the errors in the leaderboard page:
 
 ---
 
+<details><summary>Edit file: src/app/leaderboard/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -18,5 +18,5 @@
   import {db} from '@/db/db'
   import {punchCards as punchCardsTable} from '@/db/drizzle/schema'
 - import {eq} from 'drizzle-orm'
@@ -311,7 +361,11 @@ Now let's fix the errors in the leaderboard page:
   export const metadata = {
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: 2
+
 ```diff
+@@ -39,11 +39,19 @@
     const userIds = raffleEntries.map((entry) => entry.userId)
     const userPunchCards = await db.query.punchCards.findMany({
 -     where: eq(punchCardsTable.user_id, userIds),
@@ -334,6 +388,8 @@ Now let's fix the errors in the leaderboard page:
   
     console.log('🚀 ~ LeaderboardPage ~ serializedTopUsers:', serializedTopUsers)
 ```
+
+</details>
 
 ---
 
@@ -366,11 +422,11 @@ Let's check the LotteryStatus component again to see what it expects:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L26 | `const initialPunchCards: PunchCardWithRestaurant[] = []` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/lottery-status.tsx` | L20 | `punchCards: PunchCardWithRestaurant[]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L15 | `initialPunchCards: PunchCardWithRestaurant[]` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L26 | `const initialPunchCards: PunchCardWithRestaurant[] = []` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/lottery-status.tsx` | L20 | `punchCards: PunchCardWithRestaurant[]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L27 | `const initialPunchCards: PunchCardWithRestaurant[] = []` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/lottery-status.tsx` | L21 | `punchCards: PunchCardWithRestaurant[]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L16 | `initialPunchCards: PunchCardWithRestaurant[]` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L27 | `const initialPunchCards: PunchCardWithRestaurant[] = []` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/lottery-status.tsx` | L21 | `punchCards: PunchCardWithRestaurant[]` |
 
 </details>
 
@@ -380,7 +436,15 @@ Let's adjust our approach. Since we're having issues with the type compatibility
 
 ---
 
+<details><summary>Edit file: src/features/users/lottery-status.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -14,10 +14,9 @@
   import {motion, AnimatePresence} from 'motion/react'
   import type {PunchCardWithRestaurant} from '@/types/api'
 - import type {PunchCard} from '@/types'
@@ -394,7 +458,11 @@ Let's adjust our approach. Since we're having issues with the type compatibility
     console.log('🚀 ~ punchCards:', punchCards)
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -176,5 +175,5 @@
   
                     <div className='space-y-3 pl-7 pt-2'>
 -                     {punchCards.map((punchCard: PunchCard) => (
@@ -402,6 +470,8 @@ Let's adjust our approach. Since we're having issues with the type compatibility
                         <motion.div
                           key={punchCard.id}
 ```
+
+</details>
 
 ---
 
@@ -417,7 +487,15 @@ Let's fix that linter error in LotteryStatus:
 
 ---
 
+<details><summary>Edit file: src/features/users/lottery-status.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -113,5 +113,5 @@
                     {punchCard.restaurant.name
                       .split(' ')
 -                     .map((word: any[]) => word[0])
@@ -426,13 +504,23 @@ Let's fix that linter error in LotteryStatus:
                   </motion.div>
 ```
 
+</details>
+
 ---
 
 Now let's try one more time with the leaderboard page:
 
 ---
 
+<details><summary>Edit file: src/app/leaderboard/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -18,5 +18,5 @@
   import {db} from '@/db/db'
   import {punchCards as punchCardsTable} from '@/db/drizzle/schema'
 - import {eq, inArray} from 'drizzle-orm'
@@ -441,7 +529,11 @@ Now let's try one more time with the leaderboard page:
   export const metadata = {
 ```
 
+**Chunk 2**
+Lines added: 14, lines removed: 7
+
 ```diff
+@@ -45,13 +45,20 @@
     })
   
 -   // Transform punch cards to ensure all properties are non-null
@@ -471,6 +563,8 @@ Now let's try one more time with the leaderboard page:
     console.log('🚀 ~ LeaderboardPage ~ serializedTopUsers:', serializedTopUsers)
 ```
 
+</details>
+
 ---
 
 Let's add a "Raffle Entries" component to display users in the raffle more explicitly:
@@ -493,7 +587,95 @@ Tool create_directory not found
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: aidd_ai_software_development_utilities - write_file: Create a new file or overwrite an existing file with new content. Use this to save changes, create new files, or update existing ones. Use with caution as it will overwrite existing files without warning. Path must be relative to the allowed directory. Creates parent directories if needed. Example: Path='notes.txt', Content='Meeting notes for project X'
 
+*Parameters*:
+  * path: src/components/leaderboard/raffle-entries.tsx
+  * content: 'use client'
+
+import React from 'react'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import {Avatar, AvatarFallback} from '@/components/ui/avatar'
+import {Badge} from '@/components/ui/badge'
+import {formatDistanceToNow} from 'date-fns'
+import type {RaffleEntryWithUser} from '@/types/api'
+
+interface RaffleEntriesProps {
+  entries: RaffleEntryWithUser[]
+}
+
+export function RaffleEntries({entries}: RaffleEntriesProps) {
+  return (
+    <div className="space-y-4">
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[60px]">Rank</TableHead>
+              <TableHead>User</TableHead>
+              <TableHead>Restaurant</TableHead>
+              <TableHead>Entered</TableHead>
+              <TableHead className="text-right">Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {entries.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center py-6 text-muted-foreground">
+                  No entries in the current raffle
+                </TableCell>
+              </TableRow>
+            ) : (
+              entries.map((entry, index) => (
+                <TableRow key={entry.raffleEntryId.toString()}>
+                  <TableCell className="font-medium">{index + 1}</TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback className="bg-primary text-primary-foreground">
+                          {entry.userName.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span>{entry.userName}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell>{entry.restaurantName}</TableCell>
+                  <TableCell>
+                    {formatDistanceToNow(new Date(entry.enteredAt), {
+                      addSuffix: true,
+                    })}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+                      Active
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <p className="text-sm text-muted-foreground text-center">
+        Users who complete punch cards are automatically entered into the raffle
+      </p>
+    </div>
+  )
+}
+
+*Result*:
+Successfully wrote to src/components/leaderboard/raffle-entries.tsx
+</details>
 
 ---
 
@@ -501,7 +683,15 @@ Now let's update the leaderboard page to also display the RaffleEntries componen
 
 ---
 
+<details><summary>Edit file: src/app/leaderboard/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -15,4 +15,5 @@
   import {UserLeaderboard} from '@/components/leaderboard/user-leaderboard'
   import {RestaurantLeaderboard} from '@/components/leaderboard/restaurant-leaderboard'
 + import {RaffleEntries} from '@/components/leaderboard/raffle-entries'
@@ -509,7 +699,11 @@ Now let's update the leaderboard page to also display the RaffleEntries componen
   import {db} from '@/db/db'
 ```
 
+**Chunk 2**
+Lines added: 18, lines removed: 2
+
 ```diff
+@@ -112,13 +113,29 @@
   
           <TabsContent value='raffle'>
 +           <div className='grid gap-6 grid-cols-1 md:grid-cols-2'>
@@ -542,6 +736,8 @@ Now let's update the leaderboard page to also display the RaffleEntries componen
           </TabsContent>
         </Tabs>
 ```
+
+</details>
 
 ---
 
@@ -617,7 +813,95 @@ _**Assistant**_
 
 ---
 
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: aidd_ai_software_development_utilities - write_file: Create a new file or overwrite an existing file with new content. Use this to save changes, create new files, or update existing ones. Use with caution as it will overwrite existing files without warning. Path must be relative to the allowed directory. Creates parent directories if needed. Example: Path='notes.txt', Content='Meeting notes for project X'
 
+*Parameters*:
+  * path: src/components/leaderboard/raffle-entries.tsx
+  * content: 'use client'
+
+import React from 'react'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import {Avatar, AvatarFallback} from '@/components/ui/avatar'
+import {Badge} from '@/components/ui/badge'
+import {formatDistanceToNow} from 'date-fns'
+import type {RaffleEntryWithUser} from '@/types/api'
+
+interface RaffleEntriesProps {
+  entries: RaffleEntryWithUser[]
+}
+
+export function RaffleEntries({entries}: RaffleEntriesProps) {
+  return (
+    <div className="space-y-4">
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[60px]">Rank</TableHead>
+              <TableHead>User</TableHead>
+              <TableHead>Restaurant</TableHead>
+              <TableHead>Entered</TableHead>
+              <TableHead className="text-right">Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {entries.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center py-6 text-muted-foreground">
+                  No entries in the current raffle
+                </TableCell>
+              </TableRow>
+            ) : (
+              entries.map((entry, index) => (
+                <TableRow key={entry.raffleEntryId.toString()}>
+                  <TableCell className="font-medium">{index + 1}</TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback className="bg-primary text-primary-foreground">
+                          {entry.userName.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span>{entry.userName}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell>{entry.restaurantName}</TableCell>
+                  <TableCell>
+                    {formatDistanceToNow(new Date(entry.enteredAt), {
+                      addSuffix: true,
+                    })}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+                      Active
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <p className="text-sm text-muted-foreground text-center">
+        Users who complete punch cards are automatically entered into the raffle
+      </p>
+    </div>
+  )
+}
+
+*Result*:
+Successfully wrote to src/components/leaderboard/raffle-entries.tsx
+</details>
 
 ---
 
@@ -813,7 +1097,15 @@ I'll add a leaderboard option to the Nav component, using the Trophy icon that's
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 30, lines removed: undefined
+
 ```diff
+@@ -243,4 +243,34 @@
                 </Link>
               </Button>
 + 
@@ -850,13 +1142,23 @@ I'll add a leaderboard option to the Nav component, using the Trophy icon that's
               {currentUser && !userIsAdmin && (
 ```
 
+</details>
+
 ---
 
 I need to fix the linter errors that were present before and are still showing after my edit. Let's update the handleHoverButton function to accept null and fix the userId type:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -146,5 +146,5 @@
     const [elementFocused, setElementFocused] = useState<string | null>(null)
   
 -   const handleHoverButton = (type: string) => {
@@ -865,13 +1167,23 @@ I need to fix the linter errors that were present before and are still showing a
     }
 ```
 
+</details>
+
 ---
 
 Now let's fix the userId issue:
 
 ---
 
+<details><summary>Edit file: src/components/nav/nav.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -176,5 +176,5 @@
                     <div className='flex flex-col items-center space-y-4 mt-4'>
                       <NavScanner
 -                       userId={currentUser?.id || ''}
@@ -879,6 +1191,8 @@ Now let's fix the userId issue:
                         closeModal={closeModal}
                       />
 ```
+
+</details>
 
 ---
 

@@ -33,29 +33,29 @@ Let me explore more of the codebase to understand the structure and find the Dea
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L4 | `import { restaurants, prizes, punchCards, restaurantDeals } from "../../schema";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L1 | `import { DealsList, DealsListSkeleton } from "@/features/deals";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L6 | `import { DealsList } from "@/features/deals";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L8 | `import type { Deal } from "@/types/db";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | Lundefined | `import { DealsTable } from "@/components/admin/deals/deals-table";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L1 | `import { DealFilters } from "@/components/admin/deals/deal-filters";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | Lundefined | `import { NewDealForm } from "@/components/admin/deals/new-deal-form";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | Lundefined | `import { DealDetail } from "@/components/admin/deals/deal-detail";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-deals-display.tsx` | L5 | `import type { Deal } from "./restaurant-quick-view";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L34 | `import { DealsList, EmptyDeals } from "./restaurant-deals-display";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L4 | `import type { Deal, Restaurant } from "@/types/db";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | Lundefined | `import { EditDealForm } from "@/components/admin/deals/edit-deal-form";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L6 | `import type { Deal, Restaurant } from "@/types/db";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L7 | `import type { Deal, Restaurant } from "@/types/db";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L4 | `import { restaurants, prizes, punchCards, restaurantDeals } from "../../schema";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L34 | `import { DealsList, EmptyDeals } from "./restaurant-deals-display";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L1 | `import { DealsList, DealsListSkeleton } from "@/features/deals";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L8 | `import type { Deal } from "@/types/db";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L6 | `import { DealsList } from "@/features/deals";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L6 | `import type { Deal, Restaurant } from "@/types/db";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | Lundefined | `import { DealFilters } from "@/components/admin/deals/deal-filters";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L5 | `import { restaurants, prizes, punchCards, restaurantDeals } from "../../schema";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L2 | `import { DealsList, DealsListSkeleton } from "@/features/deals";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L7 | `import { DealsList } from "@/features/deals";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L9 | `import type { Deal } from "@/types/db";` |
 | `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L1 | `import { DealsTable } from "@/components/admin/deals/deals-table";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L2 | `import { getDeals } from "@/db/models/restaurants/restaurants";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L2 | `import { DealFilters } from "@/components/admin/deals/deal-filters";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/new/page.tsx` | L1 | `import { NewDealForm } from "@/components/admin/deals/new-deal-form";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/page.tsx` | L1 | `import { DealDetail } from "@/components/admin/deals/deal-detail";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-deals-display.tsx` | L6 | `import type { Deal } from "./restaurant-quick-view";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L35 | `import { DealsList, EmptyDeals } from "./restaurant-deals-display";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L5 | `import type { Deal, Restaurant } from "@/types/db";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/%5Bid%5D/edit/page.tsx` | L1 | `import { EditDealForm } from "@/components/admin/deals/edit-deal-form";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L7 | `import type { Deal, Restaurant } from "@/types/db";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deal-detail.tsx` | L8 | `import type { Deal, Restaurant } from "@/types/db";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L5 | `import { restaurants, prizes, punchCards, restaurantDeals } from "../../schema";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L35 | `import { DealsList, EmptyDeals } from "./restaurant-deals-display";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/%28public%29/deals/page.tsx` | L2 | `import { DealsList, DealsListSkeleton } from "@/features/deals";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/deals/DealsList.tsx` | L9 | `import type { Deal } from "@/types/db";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L7 | `import { DealsList } from "@/features/deals";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L7 | `import type { Deal, Restaurant } from "@/types/db";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L1 | `import { DealFilters } from "@/components/admin/deals/deal-filters";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L2 | `import { DealsTable } from "@/components/admin/deals/deals-table";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/page.tsx` | L3 | `import { getDeals } from "@/db/models/restaurants/restaurants";` |
 
 </details>
 
@@ -70,7 +70,7 @@ Let's check the Deal type from the DB types:
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` |
 
 </details>
 
@@ -100,7 +100,15 @@ Now let's check the current deals-table implementation:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 15, lines removed: 2
+
 ```diff
+@@ -5,8 +5,21 @@
   import Image from "next/image";
   import { Edit, Trash2, Eye } from "lucide-react";
 - import type { Deal, Restaurant } from "@/types/db";
@@ -126,7 +134,11 @@ Now let's check the current deals-table implementation:
   		id: BigInt(1),
 ```
 
+**Chunk 2**
+Lines added: 39, lines removed: 2
+
 ```diff
+@@ -67,13 +80,50 @@
   ];
   
 - export function DealsTable({ deals }: { deals: Deal[] }) {
@@ -181,7 +193,11 @@ Now let's check the current deals-table implementation:
   				<div className="overflow-x-auto">
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -134,5 +184,7 @@
   										</td>
   										<td className="whitespace-nowrap px-6 py-4">
 - 										<span className="font-medium">{deal.restaurant?.name}</span>
@@ -192,7 +208,11 @@ Now let's check the current deals-table implementation:
   										<td className="whitespace-nowrap px-6 py-4">
 ```
 
+**Chunk 4**
+Lines added: 23, lines removed: undefined
+
 ```diff
+@@ -257,4 +309,27 @@
   				</div>
   			</div>
 + 
@@ -222,6 +242,8 @@ Now let's check the current deals-table implementation:
   }
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors by checking the UI components and creating the missing toast component if needed:
@@ -233,8 +255,8 @@ Let's fix the linter errors by checking the UI components and creating the missi
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` |
 
 </details>
 
@@ -253,10 +275,10 @@ Let's check if there's a Toast component:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toast.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/restaurant-leaderboard.tsx` |
 
 </details>
 
@@ -271,8 +293,8 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/to
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` |
 
 </details>
 
@@ -287,8 +309,8 @@ Let's see if there's a component that provides the Toast context:
         
 | File |
 |------|
-| `undefined` |
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/leaderboard/restaurant-leaderboard.tsx` |
 
 </details>
 
@@ -307,7 +329,7 @@ Now let's check if there's an existing AlertDialog component:
         
 | File |
 |------|
-| `undefined` |
+| `/Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/alert-dialog.tsx` |
 
 </details>
 
@@ -317,7 +339,15 @@ Let's update the DealsTable component to fix the linter errors:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 1
+
 ```diff
+@@ -18,5 +18,13 @@
   	AlertDialogTitle,
   } from "@/components/ui/alert-dialog";
 - 
@@ -334,7 +364,11 @@ Let's update the DealsTable component to fix the linter errors:
   // Mock data for development purposes, replace with actual API calls later
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 3
+
 ```diff
+@@ -80,11 +88,10 @@
   ];
   
 - export function DealsTable({
@@ -350,13 +384,23 @@ Let's update the DealsTable component to fix the linter errors:
   	// Function to handle deal deletion
 ```
 
+</details>
+
 ---
 
 Let's completely remove the mock data since we're using real data now, and adjust the type:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 61
+
 ```diff
+@@ -24,67 +24,6 @@
   	restaurant?: {
   		name: string;
 - 		id?: bigint;
@@ -426,6 +470,8 @@ Let's completely remove the mock data since we're using real data now, and adjus
   export function DealsTable({ deals }: { deals: DealWithRestaurant[] }) {
 ```
 
+</details>
+
 ---
 
 Now let's create the edit form component:
@@ -460,7 +506,15 @@ Now let's update the NewDealForm component to use the real database methods:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 29
+
 ```diff
+@@ -1,38 +1,16 @@
   "use client";
   
 - import { useState } from "react";
@@ -508,7 +562,11 @@ Now let's update the NewDealForm component to use the real database methods:
   	const [formData, setFormData] = useState({
 ```
 
+**Chunk 2**
+Lines added: 18, lines removed: undefined
+
 ```diff
+@@ -46,4 +24,22 @@
   	const [isSubmitting, setIsSubmitting] = useState(false);
   	const [error, setError] = useState<string | null>(null);
 + 
@@ -533,7 +591,11 @@ Now let's update the NewDealForm component to use the real database methods:
   	const handleChange = (
 ```
 
+**Chunk 3**
+Lines added: 12, lines removed: 5
+
 ```diff
+@@ -87,9 +83,16 @@
   			}
   
 - 			// In a real app, this would be an API call to create the deal
@@ -557,7 +619,11 @@ Now let's update the NewDealForm component to use the real database methods:
   			// Redirect to deals listing page on success
 ```
 
+**Chunk 4**
+Lines added: 5, lines removed: undefined
+
 ```diff
+@@ -98,4 +101,9 @@
   		} catch (err) {
   			setError(err instanceof Error ? err.message : "Failed to create deal");
 + 			toast({
@@ -569,7 +635,11 @@ Now let's update the NewDealForm component to use the real database methods:
   		}
 ```
 
+**Chunk 5**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -170,12 +178,16 @@
   						className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#818cf8] focus:outline-none focus:ring-1 focus:ring-[#818cf8] sm:text-sm"
   						required
 + 						disabled={isLoadingRestaurants}
@@ -589,13 +659,23 @@ Now let's update the NewDealForm component to use the real database methods:
   
 ```
 
+</details>
+
 ---
 
 Let's fix the typing issue in the NewDealForm:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -7,9 +7,15 @@
   import { getRestaurants } from "@/db/models/restaurants/restaurants";
   import { useToast } from "@/hooks/use-toast";
 + 
@@ -614,7 +694,11 @@ Let's fix the typing issue in the NewDealForm:
   
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -31,5 +37,10 @@
   				setIsLoadingRestaurants(true);
   				const restaurantsList = await getRestaurants();
 - 				setRestaurants(restaurantsList);
@@ -628,13 +712,23 @@ Let's fix the typing issue in the NewDealForm:
   				console.error("Error fetching restaurants:", err);
 ```
 
+</details>
+
 ---
 
 Now let's update the EditDealForm component to use the real database methods:
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 39, lines removed: 131
+
 ```diff
+@@ -3,154 +3,62 @@
   import { useState, useEffect } from "react";
   import { useRouter } from "next/navigation";
 - import type { Deal, Restaurant } from "@/types/db";
@@ -830,7 +924,11 @@ Now let's update the EditDealForm component to use the real database methods:
   	const handleChange = (
 ```
 
+**Chunk 2**
+Lines added: 12, lines removed: 5
+
 ```diff
+@@ -194,9 +102,16 @@
   			}
   
 - 			// In a real app, this would be an API call to update the deal
@@ -854,7 +952,11 @@ Now let's update the EditDealForm component to use the real database methods:
   			// Redirect to deal detail page on success
 ```
 
+**Chunk 3**
+Lines added: 5, lines removed: 11
+
 ```diff
+@@ -205,18 +120,12 @@
   		} catch (err) {
   			setError(err instanceof Error ? err.message : "Failed to update deal");
 + 			toast({
@@ -880,7 +982,11 @@ Now let's update the EditDealForm component to use the real database methods:
   	if (error && !isSubmitting) {
 ```
 
+**Chunk 4**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -309,12 +218,16 @@
   						className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#818cf8] focus:outline-none focus:ring-1 focus:ring-[#818cf8] sm:text-sm"
   						required
 + 						disabled={isLoadingRestaurants}
@@ -900,6 +1006,8 @@ Now let's update the EditDealForm component to use the real database methods:
   
 ```
 
+</details>
+
 ---
 
 Let's update the edit deal page to pass the deal data to the EditDealForm component:
@@ -910,7 +1018,15 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/[id]/edit/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -1,3 +1,5 @@
   import { EditDealForm } from "@/components/admin/deals/edit-deal-form";
 + import { notFound } from "next/navigation";
 + import { getDeals } from "@/db/models/restaurants/restaurants";
@@ -918,7 +1034,11 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/
   export const metadata = {
 ```
 
+**Chunk 2**
+Lines added: 12, lines removed: 1
+
 ```diff
+@@ -6,5 +8,16 @@
   };
   
 - export default function EditDealPage({ params }: { params: { id: string } }) {
@@ -938,7 +1058,11 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/
   		<div className="space-y-6">
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -17,5 +30,5 @@
   
   			<div className="bg-white rounded-lg shadow-sm p-6">
 - 				<EditDealForm id={params.id} />
@@ -946,6 +1070,8 @@ Read file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/deals/
   			</div>
   		</div>
 ```
+
+</details>
 
 ---
 

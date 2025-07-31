@@ -113,14 +113,26 @@ src` |
 
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/(public)/deals/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -1,3 +1,4 @@
   import Link from 'next/link'
 + import Image from 'next/image'
   import {DealsList, DealsListSkeleton} from '@/features/deals'
   import {
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -6,5 +7,6 @@
   } from '@/db/models/restaurants/restaurants'
   import {Suspense} from 'react'
 - import {ArrowLeftIcon, Home} from 'lucide-react'
@@ -130,7 +142,11 @@ src` |
   export const metadata = {
 ```
 
+**Chunk 3**
+Lines added: 84, lines removed: 14
+
 ```diff
+@@ -16,20 +18,90 @@
   export default async function DealsPage() {
     const deals = await getActiveDeals()
 - 
@@ -237,7 +253,11 @@ src` |
                 View Restaurants
 ```
 
+**Chunk 4**
+Lines added: 22, lines removed: 9
+
 ```diff
+@@ -38,19 +110,32 @@
               <Link
                 href='/'
 -             className='rounded-full bg-black text-white p-4 shadow-sm hover:shadow-md transition-shadow'
@@ -281,9 +301,19 @@ src` |
     )
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: /Users/liamellis/Desktop/restaurant-passport-app/src/app/(public)/deals/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -123,10 +123,11 @@
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 1440 320'
 +           aria-hidden='true'
@@ -297,6 +327,8 @@ src` |
           </svg>
         </motion.div>
 ```
+
+</details>
 
 ---
 

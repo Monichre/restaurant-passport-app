@@ -41,7 +41,15 @@ First, create a file for Storybook mocks:
 
 ---
 
+<details><summary>Edit file: .storybook/preview.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 31, lines removed: 1
+
 ```diff
+@@ -1,1 +1,31 @@
 - 
 + import { themes } from "@storybook/theming";
 + import "../src/app/globals.css";
@@ -75,6 +83,8 @@ First, create a file for Storybook mocks:
 + };
 + 
 ```
+
+</details>
 
 ---
 
@@ -298,7 +308,15 @@ Now, let's fix the linter error in our preview.js file:
 
 ---
 
+<details><summary>Edit file: .storybook/preview.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -3,6 +3,5 @@
   
   // Add Buffer polyfill for browser environment
 - import { Buffer } from "buffer";
@@ -308,13 +326,23 @@ Now, let's fix the linter error in our preview.js file:
   // Mock database modules
 ```
 
+</details>
+
 ---
 
 Now, create a mock for the database module that's causing problems:
 
 ---
 
+<details><summary>Edit file: .storybook/mocks/db.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 35, lines removed: 1
+
 ```diff
+@@ -1,1 +1,35 @@
 - 
 + // Mock for database-related functions
 + // This file will be imported instead of the real db modules in Storybook
@@ -353,13 +381,23 @@ Now, create a mock for the database module that's causing problems:
 + 
 ```
 
+</details>
+
 ---
 
 Finally, let's create a decorator for Storybook that handles mocking database modules:
 
 ---
 
+<details><summary>Edit file: .storybook/preview.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: undefined
+
 ```diff
+@@ -4,4 +4,16 @@
   // Add Buffer polyfill for browser environment
   window.Buffer = window.Buffer || require("buffer/").Buffer;
 + 
@@ -378,13 +416,23 @@ Finally, let's create a decorator for Storybook that handles mocking database mo
   // Mock database modules
 ```
 
+</details>
+
 ---
 
 Let's adjust the preview.js since we're trying to use jest.mock but Storybook might not have jest available:
 
 ---
 
+<details><summary>Edit file: .storybook/preview.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 20, lines removed: 16
+
 ```diff
+@@ -4,23 +4,27 @@
   // Add Buffer polyfill for browser environment
   window.Buffer = window.Buffer || require("buffer/").Buffer;
 - 
@@ -430,13 +478,23 @@ Let's adjust the preview.js since we're trying to use jest.mock but Storybook mi
   }
 ```
 
+</details>
+
 ---
 
 Let's create a better solution by configuring Storybook's webpack:
 
 ---
 
+<details><summary>Edit file: .storybook/main.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 44, lines removed: 1
+
 ```diff
+@@ -1,1 +1,44 @@
 - 
 + const path = require("path");
 + const {
@@ -484,6 +542,8 @@ Let's create a better solution by configuring Storybook's webpack:
 + 
 ```
 
+</details>
+
 ---
 
 Let's install the necessary packages for our webpack polyfills:
@@ -521,7 +581,15 @@ Let's simplify our preview.js file since we're now handling the mocking in webpa
 
 ---
 
+<details><summary>Edit file: .storybook/preview.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 27
+
 ```diff
+@@ -2,31 +2,6 @@
   import "../src/app/globals.css";
   
 - // Add Buffer polyfill for browser environment
@@ -557,19 +625,31 @@ Let's simplify our preview.js file since we're now handling the mocking in webpa
   export const parameters = {
 ```
 
+</details>
+
 ---
 
 Let's fix the main.js file to address the linter error:
 
 ---
 
+<details><summary>Edit file: .storybook/main.js</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1,3 +1,4 @@
 - const path = require("path");
 + // Importing Node.js native modules with the node: protocol
 + const path = require("node:path");
   const {
   	loadConfigFromFile,
 ```
+
+</details>
 
 ---
 

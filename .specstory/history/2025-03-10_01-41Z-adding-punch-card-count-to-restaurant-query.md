@@ -28,110 +28,110 @@ Let's first search for punch card schema information to understand how it's stru
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` | L135 | `foreignColumns: [punchCards.id],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` | L187 | `foreignColumns: [punchCards.id],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` | L198 | `export const punchCards = pgTable(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L8 | `punchCards,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L31 | `punchCards: many(punchCards),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L61 | `punchCard: one(punchCards, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L63 | `references: [punchCards.id],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L80 | `export const punchCardsRelations = relations(punchCards, ({ one, many }) => ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L84 | `fields: [punchCards.restaurantId],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L88 | `fields: [punchCards.userId],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L95 | `punchCards: many(punchCards),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L99 | `punchCard: one(punchCards, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L101 | `references: [punchCards.id],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/leaderboard/leaderboard.ts` | L4 | `import { punchCards, users, restaurants } from "../../schema";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/leaderboard/leaderboard.ts` | L25 | `${punchCards} pc ON u.id = pc.user_id` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/leaderboard/leaderboard.ts` | L52 | `${punchCards} pc ON r.id = pc.restaurant_id` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L4 | `import { punchCards, restaurants } from "../../schema";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L6 | `export const getPunchCards = async () => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L7 | `return await db.select().from(punchCards);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L11 | `return await db.query.punchCards.findFirst({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L12 | `where: eq(punchCards.id, id),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L20 | `export const getPunchCardsByUserId = async (userId: bigint) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L21 | `return await db.query.punchCards.findMany({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L22 | `where: eq(punchCards.userId, userId),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L36 | `.from(punchCards)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L39 | `eq(punchCards.userId, userId),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L40 | `eq(punchCards.restaurantId, restaurantId),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L47 | `export const getPunchCardsByRestaurantId = async (restaurantId: bigint) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L50 | `.from(punchCards)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L51 | `.where(eq(punchCards.restaurantId, restaurantId));` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L60 | `.from(punchCards)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L63 | `eq(punchCards.userId, userId),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L64 | `eq(punchCards.restaurantId, restaurantId),` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L77 | `return await db.insert(punchCards).values(data).returning();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L88 | `.update(punchCards)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L90 | `.where(eq(punchCards.id, id))` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L100 | `.update(punchCards)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L105 | `.where(eq(punchCards.id, id))` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L110 | `return await db.delete(punchCards).where(eq(punchCards.id, id)).returning();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L15 | `punchCards: {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L31 | `punchCards: {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L45 | `export const getUserByClerkIdWithPunchCards = async (clerkId: string) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L49 | `punchCards: {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L26 | `options: ["home", "restaurants", "profile", "punchCards", "leaderBoard"],` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L68 | `* Navigation bar with the "punchCards" tab active.` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L70 | `export const ActivePunchCards: Story = {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L72 | `initialActiveTab: "punchCards",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L130 | `const punchCardsTab = canvas.getByText("Punch Cards");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L131 | `expect(punchCardsTab.closest("button")).toHaveClass("text-primary");` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L135 | `checkingPunchCardStatus,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L303 | `{checkingPunchCardStatus && (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L38 | `checkingPunchCardStatus: boolean;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L52 | `const [checkingPunchCardStatus, setCheckingPunchCardStatus] =` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L109 | `setCheckingPunchCardStatus(true);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L143 | `setCheckingPunchCardStatus(true);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L153 | `setCheckingPunchCardStatus(false);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L167 | `setCheckingPunchCardStatus(false);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L175 | `setCheckingPunchCardStatus(false);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L189 | `checkingPunchCardStatus,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/index.ts` | L1 | `export * from "./UserPunchCards";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L23 | `checkingPunchCardStatus,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L133 | `{checkingPunchCardStatus && (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L28 | `export function UserPunchCards({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L29 | `punchCards,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L31 | `punchCards: User["punchCards"];` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L36 | `if (!punchCards || punchCards.length === 0) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L59 | `{punchCards.map((punchCard) => (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L4 | `import { UserPunchCards } from "@/features/users/UserPunchCards";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L30 | `{/* <BentoGrid items={user.punchCards.map((punchCard) => ({ */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L33 | `{/* {user?.punchCards && <UserPunchCards punchCards={user?.punchCards} />} */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L59 | `export const punchCardSchema = z.object({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L68 | `export const createPunchCardSchema = punchCardSchema.omit({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L75 | `export type CreatePunchCardInput = z.infer<typeof createPunchCardSchema>;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L57 | `punchCards: PunchCard[];` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L121 | `totalPunchCards: number;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L122 | `completedPunchCards: number;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L15 | `punchCards?: PunchCard[];` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L17 | `totalPunchCards: number;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L18 | `completedPunchCards: number;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L19 | `activePunchCards: number;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L26 | `totalPunchCards,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L27 | `completedPunchCards,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L28 | `activePunchCards,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L33 | `totalPunchCards > 0` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L34 | `? Math.round((completedPunchCards / totalPunchCards) * 100)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L38 | `totalPunchCards > 0` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L39 | `? PUNCH_THRESHOLD * (completedPunchCards / totalPunchCards)` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L38 | `checkingPunchCardStatus: boolean;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L52 | `const [checkingPunchCardStatus, setCheckingPunchCardStatus] =` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L109 | `setCheckingPunchCardStatus(true);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L143 | `setCheckingPunchCardStatus(true);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L153 | `setCheckingPunchCardStatus(false);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L167 | `setCheckingPunchCardStatus(false);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L175 | `setCheckingPunchCardStatus(false);` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L189 | `checkingPunchCardStatus,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L135 | `checkingPunchCardStatus,` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L303 | `{checkingPunchCardStatus && (` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L4 | `import { UserPunchCards } from "@/features/users/UserPunchCards";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L30 | `{/* <BentoGrid items={user.punchCards.map((punchCard) => ({ */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L33 | `{/* {user?.punchCards && <UserPunchCards punchCards={user?.punchCards} />} */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L15 | `punchCards: {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L31 | `punchCards: {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L45 | `export const getUserByClerkIdWithPunchCards = async (clerkId: string) => {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L49 | `punchCards: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` | L136 | `foreignColumns: [punchCards.id],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` | L188 | `foreignColumns: [punchCards.id],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` | L199 | `export const punchCards = pgTable(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L9 | `punchCards,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L32 | `punchCards: many(punchCards),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L62 | `punchCard: one(punchCards, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L64 | `references: [punchCards.id],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L81 | `export const punchCardsRelations = relations(punchCards, ({ one, many }) => ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L85 | `fields: [punchCards.restaurantId],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L89 | `fields: [punchCards.userId],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L96 | `punchCards: many(punchCards),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L100 | `punchCard: one(punchCards, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L102 | `references: [punchCards.id],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/leaderboard/leaderboard.ts` | L5 | `import { punchCards, users, restaurants } from "../../schema";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/leaderboard/leaderboard.ts` | L26 | `${punchCards} pc ON u.id = pc.user_id` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/leaderboard/leaderboard.ts` | L53 | `${punchCards} pc ON r.id = pc.restaurant_id` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L5 | `import { punchCards, restaurants } from "../../schema";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L7 | `export const getPunchCards = async () => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L8 | `return await db.select().from(punchCards);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L12 | `return await db.query.punchCards.findFirst({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L13 | `where: eq(punchCards.id, id),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L21 | `export const getPunchCardsByUserId = async (userId: bigint) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L22 | `return await db.query.punchCards.findMany({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L23 | `where: eq(punchCards.userId, userId),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L37 | `.from(punchCards)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L40 | `eq(punchCards.userId, userId),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L41 | `eq(punchCards.restaurantId, restaurantId),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L48 | `export const getPunchCardsByRestaurantId = async (restaurantId: bigint) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L51 | `.from(punchCards)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L52 | `.where(eq(punchCards.restaurantId, restaurantId));` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L61 | `.from(punchCards)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L64 | `eq(punchCards.userId, userId),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L65 | `eq(punchCards.restaurantId, restaurantId),` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L78 | `return await db.insert(punchCards).values(data).returning();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L89 | `.update(punchCards)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L91 | `.where(eq(punchCards.id, id))` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L101 | `.update(punchCards)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L106 | `.where(eq(punchCards.id, id))` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L111 | `return await db.delete(punchCards).where(eq(punchCards.id, id)).returning();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L16 | `punchCards: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L32 | `punchCards: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L46 | `export const getUserByClerkIdWithPunchCards = async (clerkId: string) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L50 | `punchCards: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L27 | `options: ["home", "restaurants", "profile", "punchCards", "leaderBoard"],` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L69 | `* Navigation bar with the "punchCards" tab active.` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L71 | `export const ActivePunchCards: Story = {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L73 | `initialActiveTab: "punchCards",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L131 | `const punchCardsTab = canvas.getByText("Punch Cards");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.stories.tsx` | L132 | `expect(punchCardsTab.closest("button")).toHaveClass("text-primary");` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L136 | `checkingPunchCardStatus,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L304 | `{checkingPunchCardStatus && (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L39 | `checkingPunchCardStatus: boolean;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L53 | `const [checkingPunchCardStatus, setCheckingPunchCardStatus] =` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L110 | `setCheckingPunchCardStatus(true);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L144 | `setCheckingPunchCardStatus(true);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L154 | `setCheckingPunchCardStatus(false);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L168 | `setCheckingPunchCardStatus(false);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L176 | `setCheckingPunchCardStatus(false);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L190 | `checkingPunchCardStatus,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/index.ts` | L2 | `export * from "./UserPunchCards";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L24 | `checkingPunchCardStatus,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L134 | `{checkingPunchCardStatus && (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L29 | `export function UserPunchCards({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L30 | `punchCards,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L32 | `punchCards: User["punchCards"];` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L37 | `if (!punchCards || punchCards.length === 0) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserPunchCards.tsx` | L60 | `{punchCards.map((punchCard) => (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L5 | `import { UserPunchCards } from "@/features/users/UserPunchCards";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L31 | `{/* <BentoGrid items={user.punchCards.map((punchCard) => ({ */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L34 | `{/* {user?.punchCards && <UserPunchCards punchCards={user?.punchCards} />} */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L60 | `export const punchCardSchema = z.object({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L69 | `export const createPunchCardSchema = punchCardSchema.omit({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L76 | `export type CreatePunchCardInput = z.infer<typeof createPunchCardSchema>;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L58 | `punchCards: PunchCard[];` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L122 | `totalPunchCards: number;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/api.ts` | L123 | `completedPunchCards: number;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/db.ts` | L16 | `punchCards?: PunchCard[];` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L18 | `totalPunchCards: number;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L19 | `completedPunchCards: number;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L20 | `activePunchCards: number;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L27 | `totalPunchCards,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L28 | `completedPunchCards,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L29 | `activePunchCards,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L34 | `totalPunchCards > 0` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L35 | `? Math.round((completedPunchCards / totalPunchCards) * 100)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L39 | `totalPunchCards > 0` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/restaurant-punch-card.tsx` | L40 | `? PUNCH_THRESHOLD * (completedPunchCards / totalPunchCards)` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L39 | `checkingPunchCardStatus: boolean;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L53 | `const [checkingPunchCardStatus, setCheckingPunchCardStatus] =` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L110 | `setCheckingPunchCardStatus(true);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L144 | `setCheckingPunchCardStatus(true);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L154 | `setCheckingPunchCardStatus(false);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L168 | `setCheckingPunchCardStatus(false);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L176 | `setCheckingPunchCardStatus(false);` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L190 | `checkingPunchCardStatus,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L136 | `checkingPunchCardStatus,` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/nav/nav.tsx` | L304 | `{checkingPunchCardStatus && (` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L5 | `import { UserPunchCards } from "@/features/users/UserPunchCards";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L31 | `{/* <BentoGrid items={user.punchCards.map((punchCard) => ({ */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L34 | `{/* {user?.punchCards && <UserPunchCards punchCards={user?.punchCards} />} */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L16 | `punchCards: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L32 | `punchCards: {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L46 | `export const getUserByClerkIdWithPunchCards = async (clerkId: string) => {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L50 | `punchCards: {` |
 
 </details>
 
@@ -202,13 +202,13 @@ Now that we understand the structure, let's check how the RestaurantsTable compo
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L5 | `import { RestaurantsTable } from "@/components/admin/restaurants-table";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L68 | `return <RestaurantsTable restaurants={restaurants} />;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L112 | `<RestaurantsTable restaurants={restaurants} />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L207 | `export function RestaurantsTable({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L5 | `import { RestaurantsTable } from "@/components/admin/restaurants-table";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L68 | `return <RestaurantsTable restaurants={restaurants} />;` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L112 | `<RestaurantsTable restaurants={restaurants} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L6 | `import { RestaurantsTable } from "@/components/admin/restaurants-table";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L69 | `return <RestaurantsTable restaurants={restaurants} />;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L113 | `<RestaurantsTable restaurants={restaurants} />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L208 | `export function RestaurantsTable({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L6 | `import { RestaurantsTable } from "@/components/admin/restaurants-table";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L69 | `return <RestaurantsTable restaurants={restaurants} />;` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/admin/restaurants/page.tsx` | L113 | `<RestaurantsTable restaurants={restaurants} />` |
 
 </details>
 
@@ -242,7 +242,15 @@ Based on all the information we've gathered, now we can modify the `getRestauran
 
 ---
 
+<details><summary>Edit file: src/db/models/restaurants/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: 1
+
 ```diff
+@@ -7,5 +7,16 @@
   
   export const getRestaurants = async () => {
 - 	return await db.select().from(restaurants);
@@ -262,6 +270,8 @@ Based on all the information we've gathered, now we can modify the `getRestauran
   
 ```
 
+</details>
+
 ---
 
 Now we need to update the Restaurant type to include the punchCardCount field. Let's first check if there's a suitable type file:
@@ -276,7 +286,15 @@ Let's update the Restaurant type to include punchCardCount:
 
 ---
 
+<details><summary>Edit file: src/types/db.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -30,4 +30,6 @@
   	address: string;
   	qrCodeUrl: string | null;
 + 	punchCardCount?: number;
@@ -284,6 +302,8 @@ Let's update the Restaurant type to include punchCardCount:
   };
   
 ```
+
+</details>
 
 ---
 
@@ -299,7 +319,15 @@ Now let's add a column for the punch card count:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 22, lines removed: undefined
+
 ```diff
+@@ -317,4 +317,26 @@
   			},
   		},
 + 		{
@@ -327,6 +355,8 @@ Now let's add a column for the punch card count:
   		{
   			id: "actions",
 ```
+
+</details>
 
 ---
 
@@ -387,7 +417,7 @@ Let's check if there's a query file or how queries are defined:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L902 | `⟪ 299 characters skipped ⟫ode": "^0.16.6", "@humanwhocodes/module-importer": "^1.0.1", "@humanwhocodes/retry": "^0.4.2", "@types/estree": "^1.0.6", "@types/json-schema": "^7.0.15", "ajv": "^6.12.4", "chalk": "^4.0.0", "cross-spawn": "^7.0.6", "debug": "^4.3.2", "esc` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L903 | `⟪ 299 characters skipped ⟫ode": "^0.16.6", "@humanwhocodes/module-importer": "^1.0.1", "@humanwhocodes/retry": "^0.4.2", "@types/estree": "^1.0.6", "@types/json-schema": "^7.0.15", "ajv": "^6.12.4", "chalk": "^4.0.0", "cross-spawn": "^7.0.6", "debug": "^4.3.2", "esc` |
 
 </details>
 
@@ -402,16 +432,16 @@ Let's try a more specific search:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L12 | `return await db.query.users.findFirst({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L28 | `const user = await db.query.users.findFirst({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L46 | `const user = await db.query.users.findFirst({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L8 | `return await db.query.restaurants` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L11 | `return await db.query.punchCards.findFirst({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L21 | `return await db.query.punchCards.findMany({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L8 | `return await db.query.restaurants` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L12 | `return await db.query.users.findFirst({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L28 | `const user = await db.query.users.findFirst({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L46 | `const user = await db.query.users.findFirst({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L13 | `return await db.query.users.findFirst({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L29 | `const user = await db.query.users.findFirst({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L47 | `const user = await db.query.users.findFirst({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L9 | `return await db.query.restaurants` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L12 | `return await db.query.punchCards.findFirst({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/punch-cards/punch-cards.ts` | L22 | `return await db.query.punchCards.findMany({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/restaurants/restaurants.ts` | L9 | `return await db.query.restaurants` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L13 | `return await db.query.users.findFirst({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L29 | `const user = await db.query.users.findFirst({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/models/users/users.ts` | L47 | `const user = await db.query.users.findFirst({` |
 
 </details>
 
@@ -443,7 +473,15 @@ Let's adjust our approach to use a SQL count query instead of loading all the pu
 
 ---
 
+<details><summary>Edit file: src/db/models/restaurants/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 20, lines removed: 12
+
 ```diff
+@@ -1,22 +1,30 @@
   "use server";
   
 - import { eq } from "drizzle-orm";
@@ -488,13 +526,23 @@ Let's adjust our approach to use a SQL count query instead of loading all the pu
   
 ```
 
+</details>
+
 ---
 
 Now let's update the RestaurantsTable component to include the punch card count column:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -334,8 +334,7 @@
   			cell: ({ row }) => (
   				<div className="font-medium text-sm">
 - 					{row.getValue("punchCardCount") ?? 0}
@@ -506,13 +554,23 @@ Now let's update the RestaurantsTable component to include the punch card count 
   		{
 ```
 
+</details>
+
 ---
 
 Let's fix the linter error by updating our TypeScript import to include the Restaurant type from the db.ts file:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -80,5 +80,7 @@
   
   // Type for restaurant from schema
 - type RestaurantData = z.infer<typeof restaurantSchema>;
@@ -522,6 +580,8 @@ Let's fix the linter error by updating our TypeScript import to include the Rest
   
   // Props for editable cells
 ```
+
+</details>
 
 ---
 
@@ -545,7 +605,15 @@ Perfect! We've already imported the `Restaurant` type from the db.ts file. Now, 
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 8, lines removed: 3
+
 ```diff
+@@ -334,9 +334,14 @@
   				</div>
   			),
 - 			cell: ({ row }) => (
@@ -564,6 +632,8 @@ Perfect! We've already imported the `Restaurant` type from the db.ts file. Now, 
   		},
   		{
 ```
+
+</details>
 
 ---
 
@@ -589,7 +659,15 @@ _**Assistant**_
 
 ---
 
+<details><summary>Edit file: src/db/models/restaurants/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 19, lines removed: 11
+
 ```diff
+@@ -3,20 +3,28 @@
   import { eq } from "drizzle-orm";
   import { db } from "../../db";
 - import { restaurants, prizes } from "../../schema";
@@ -631,13 +709,23 @@ _**Assistant**_
   
 ```
 
+</details>
+
 ---
 
 Let's fix the variable naming conflict in the `getRestaurants` function:
 
 ---
 
+<details><summary>Edit file: src/db/models/restaurants/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -13,5 +13,5 @@
   	const restaurantsWithPunchCards = await Promise.all(
   		restaurantsList.map(async (restaurant) => {
 - 			const punchCards = await db
@@ -646,7 +734,11 @@ Let's fix the variable naming conflict in the `getRestaurants` function:
   				.from(punchCards)
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -20,6 +20,6 @@
   			return {
   				...restaurant,
 - 				punchCards,
@@ -656,6 +748,8 @@ Let's fix the variable naming conflict in the `getRestaurants` function:
   			};
   		}),
 ```
+
+</details>
 
 ---
 
@@ -698,7 +792,15 @@ Let's create a new component to display restaurant details in a modal:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-detail-modal.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 131, lines removed: 1
+
 ```diff
+@@ -1,1 +1,131 @@
 - 
 + "use client";
 + 
@@ -833,13 +935,23 @@ Let's create a new component to display restaurant details in a modal:
 + 
 ```
 
+</details>
+
 ---
 
 Now let's create the missing components. First, let's create a PunchCardsList component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/punch-cards-list.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 62, lines removed: 1
+
 ```diff
+@@ -1,1 +1,62 @@
 - 
 + "use client";
 + 
@@ -905,13 +1017,23 @@ Now let's create the missing components. First, let's create a PunchCardsList co
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors in the PunchCardsList component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/punch-cards-list.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -11,5 +11,4 @@
   	TableRow,
   } from "@/components/ui/table";
 - import { formatDistanceToNow } from "date-fns";
@@ -919,7 +1041,11 @@ Let's fix the linter errors in the PunchCardsList component:
   interface PunchCardsListProps {
 ```
 
+**Chunk 2**
+Lines added: 11, lines removed: undefined
+
 ```diff
+@@ -18,4 +17,15 @@
   
   export function PunchCardsList({ punchCards }: PunchCardsListProps) {
 + 	// Helper function to format date
@@ -937,7 +1063,11 @@ Let's fix the linter errors in the PunchCardsList component:
   		<div className="border rounded-md">
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -40,5 +50,5 @@
   							<TableCell>
   								<Badge
 - 									variant={card.completed ? "success" : "secondary"}
@@ -946,7 +1076,11 @@ Let's fix the linter errors in the PunchCardsList component:
   										card.completed ? "bg-green-100 text-green-800" : ""
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 5
+
 ```diff
+@@ -48,9 +58,5 @@
   								</Badge>
   							</TableCell>
 - 							<TableCell>
@@ -959,13 +1093,23 @@ Let's fix the linter errors in the PunchCardsList component:
   					))}
 ```
 
+</details>
+
 ---
 
 Now, let's create a simple PrizeCard component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/prize-card.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 61, lines removed: 1
+
 ```diff
+@@ -1,1 +1,61 @@
 - 
 + "use client";
 + 
@@ -1030,13 +1174,23 @@ Now, let's create a simple PrizeCard component:
 + 
 ```
 
+</details>
+
 ---
 
 Now, let's add a function to fetch a restaurant with all relevant associations:
 
 ---
 
+<details><summary>Edit file: src/db/models/restaurants/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 32, lines removed: undefined
+
 ```diff
+@@ -55,4 +55,36 @@
   	};
   };
 + 
@@ -1075,13 +1229,23 @@ Now, let's add a function to fetch a restaurant with all relevant associations:
   	name: string;
 ```
 
+</details>
+
 ---
 
 Now, let's create a component that uses the getRestaurantByIdWithAll function to fetch data for the quick view modal:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 70, lines removed: 1
+
 ```diff
+@@ -1,1 +1,70 @@
 - 
 + "use client";
 + 
@@ -1155,13 +1319,23 @@ Now, let's create a component that uses the getRestaurantByIdWithAll function to
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the type error in the RestaurantQuickView component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -6,5 +6,5 @@
   import { Eye } from "lucide-react";
   import { getRestaurantByIdWithAll } from "@/db/models/restaurants/restaurants";
 - import type { Restaurant } from "@/types/db";
@@ -1170,7 +1344,11 @@ Let's fix the type error in the RestaurantQuickView component:
   
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -18,5 +18,6 @@
   	const [isOpen, setIsOpen] = useState(false);
   	const [isLoading, setIsLoading] = useState(false);
 - 	const [restaurantData, setRestaurantData] = useState<any>(null);
@@ -1180,13 +1358,23 @@ Let's fix the type error in the RestaurantQuickView component:
   
 ```
 
+</details>
+
 ---
 
 Let's create a simple toast component first:
 
 ---
 
+<details><summary>Edit file: src/components/ui/use-toast.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 26, lines removed: 1
+
 ```diff
+@@ -1,1 +1,26 @@
 - 
 + "use client";
 + 
@@ -1216,13 +1404,23 @@ Let's create a simple toast component first:
 + 
 ```
 
+</details>
+
 ---
 
 Let's fix the toast component:
 
 ---
 
+<details><summary>Edit file: src/components/ui/use-toast.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -8,7 +8,11 @@
   	variant?: "default" | "destructive";
   }
 + 
@@ -1237,13 +1435,23 @@ Let's fix the toast component:
   	const toast = (props: ToastProps) => {
 ```
 
+</details>
+
 ---
 
 Now, let's fix the type issue in the RestaurantQuickView component and handle the type safely:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 8, lines removed: 1
+
 ```diff
+@@ -6,6 +6,13 @@
   import { Eye } from "lucide-react";
   import { getRestaurantByIdWithAll } from "@/db/models/restaurants/restaurants";
 - import type { RestaurantDetailPayload } from "@/types/db";
@@ -1260,7 +1468,11 @@ Now, let's fix the type issue in the RestaurantQuickView component and handle th
   interface RestaurantQuickViewProps {
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -19,5 +26,5 @@
   	const [isLoading, setIsLoading] = useState(false);
   	const [restaurantData, setRestaurantData] =
 - 		useState<RestaurantDetailPayload | null>(null);
@@ -1269,7 +1481,11 @@ Now, let's fix the type issue in the RestaurantQuickView component and handle th
   
 ```
 
+**Chunk 3**
+Lines added: 9, lines removed: 1
+
 ```diff
+@@ -28,6 +35,14 @@
   			try {
   				const data = await getRestaurantByIdWithAll(restaurantId);
 - 				setRestaurantData(data);
@@ -1287,13 +1503,23 @@ Now, let's fix the type issue in the RestaurantQuickView component and handle th
   				console.error("Error fetching restaurant data:", error);
 ```
 
+</details>
+
 ---
 
 Now we need to update the RestaurantDetailModal to use the DetailedRestaurant type instead of RestaurantDetailPayload:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-detail-modal.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: 2
+
 ```diff
+@@ -15,9 +15,16 @@
   import { Badge } from "@/components/ui/badge";
   import Image from "next/image";
 - import type { RestaurantDetailPayload } from "@/types/db";
@@ -1314,13 +1540,23 @@ Now we need to update the RestaurantDetailModal to use the DetailedRestaurant ty
   	onClose: () => void;
 ```
 
+</details>
+
 ---
 
 Finally, let's add the quick view column to the restaurants table:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -39,4 +39,5 @@
   import { useRestaurantSearch } from "@/hooks/useRestaurantSearch";
   import { AdminRestaurantSearchBar } from "@/features/restaurants/AdminRestaurantSearchBar";
 + import { RestaurantQuickView } from "./restaurant-quick-view";
@@ -1328,7 +1564,11 @@ Finally, let's add the quick view column to the restaurants table:
   // Styled components imports
 ```
 
+**Chunk 2**
+Lines added: 20, lines removed: 3
+
 ```diff
+@@ -332,9 +333,26 @@
   				</div>
   			),
 - 			cell: ({ row }) => (
@@ -1359,6 +1599,8 @@ Finally, let's add the quick view column to the restaurants table:
   			meta: { editable: false } as ColumnMeta,
   		},
 ```
+
+</details>
 
 ---
 
@@ -1427,7 +1669,15 @@ Let's fix this in the `restaurant-quick-view.tsx` file:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 18, lines removed: 1
+
 ```diff
+@@ -36,5 +36,22 @@
   				const data = await getRestaurantByIdWithAll(restaurantId);
   				if (data) {
 - 					setRestaurantData(data as DetailedRestaurant);
@@ -1453,13 +1703,23 @@ Let's fix this in the `restaurant-quick-view.tsx` file:
   				} else {
 ```
 
+</details>
+
 ---
 
 Let's fix the null handling in the date conversion:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -41,5 +41,5 @@
   						prizes: data.prizes.map((prize) => ({
   							...prize,
 - 							// Convert string dates to Date objects
@@ -1468,13 +1728,23 @@ Let's fix the null handling in the date conversion:
   								? new Date(prize.createdAt)
 ```
 
+</details>
+
 ---
 
 Let's try adding a type assertion to resolve the error:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -43,5 +43,5 @@
   							// Convert string dates to Date objects, handle null values safely
   							createdAt: prize.createdAt
 - 								? new Date(prize.createdAt)
@@ -1482,6 +1752,8 @@ Let's try adding a type assertion to resolve the error:
   								: new Date(),
   						})),
 ```
+
+</details>
 
 ---
 
@@ -1518,10 +1790,10 @@ Let's check the prizes schema:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` | L146 | `export const prizes = pgTable(` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L72 | `export const prizesRelations = relations(prizes, ({ one, many }) => ({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L88 | `export const prizeSchema = z.object({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L147 | `export const prizes = pgTable("prizes", {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/schema.ts` | L147 | `export const prizes = pgTable(` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/db/relations.ts` | L73 | `export const prizesRelations = relations(prizes, ({ one, many }) => ({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/types/schemas.ts` | L89 | `export const prizeSchema = z.object({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/.cursor/rules/prd.mdc` | L148 | `export const prizes = pgTable("prizes", {` |
 
 </details>
 
@@ -1535,7 +1807,15 @@ Let's fix the `restaurant-quick-view.tsx` file one more time. Now we can see tha
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 12, lines removed: 7
+
 ```diff
+@@ -36,22 +36,27 @@
   				const data = await getRestaurantByIdWithAll(restaurantId);
   				if (data) {
 - 					// Transform date strings to Date objects
@@ -1572,6 +1852,8 @@ Let's fix the `restaurant-quick-view.tsx` file one more time. Now we can see tha
   				} else {
 ```
 
+</details>
+
 ---
 
 ## 2. Fix the imports in `restaurant-detail-modal.tsx`:
@@ -1580,7 +1862,15 @@ Let's make sure the PrizeCard import is correct:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-detail-modal.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -11,10 +11,10 @@
   } from "@/components/ui/dialog";
   import { Button } from "@/components/ui/button";
 - 
@@ -1595,13 +1885,23 @@ Let's make sure the PrizeCard import is correct:
   // Define a type for the detailed restaurant with associated data
 ```
 
+</details>
+
 ---
 
 ## 3. Fix the path to use-toast in the restaurant-quick-view.tsx:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -7,5 +7,5 @@
   import { getRestaurantByIdWithAll } from "@/db/models/restaurants/restaurants";
   import type { Restaurant, Prize, PunchCard } from "@/types/db";
 - import { useToast } from "@/hooks/use-toast";
@@ -1609,6 +1909,8 @@ Let's make sure the PrizeCard import is correct:
   
   // Define a type for the detailed restaurant with associated data
 ```
+
+</details>
 
 ---
 
@@ -1676,7 +1978,15 @@ Let's update the path:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -7,5 +7,5 @@
   import { getRestaurantByIdWithAll } from "@/db/models/restaurants/restaurants";
   import type { Restaurant, Prize, PunchCard } from "@/types/db";
 - import { useToast } from "@/components/ui/use-toast";
@@ -1684,6 +1994,8 @@ Let's update the path:
   
   // Define a type for the detailed restaurant with associated data
 ```
+
+</details>
 
 ---
 

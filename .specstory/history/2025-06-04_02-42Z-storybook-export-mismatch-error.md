@@ -106,7 +106,24 @@ Let me fix this by updating the package versions to be consistent:
 
 ---
 
+<details><summary>Edit file: package.json</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -102,5 +102,5 @@
+      "@chromatic-com/storybook": "^4.0.0",
+      "@eslint/eslintrc": "^3.3.1",
+-     "@storybook/addon-essentials": "^8.6.14",
++     "@storybook/addon-essentials": "^9.0.4",
+      "@storybook/addon-onboarding": "^9.0.4",
+      "@storybook/addon-vitest": "9.0.4",
+```
+
+</details>
 
 ---
 
@@ -118,7 +135,24 @@ Now let's also update the `@chromatic-com/storybook` package to a more recent ve
 
 ---
 
+<details><summary>Edit file: package.json</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -100,5 +100,5 @@
+    },
+    "devDependencies": {
+-     "@chromatic-com/storybook": "^4.0.0",
++     "@chromatic-com/storybook": "^3.2.2",
+      "@eslint/eslintrc": "^3.3.1",
+      "@storybook/addon-essentials": "^9.0.4",
+```
+
+</details>
 
 ---
 
@@ -235,7 +269,32 @@ Perfect! Let's downgrade all Storybook packages to the stable 8.6.14 version to 
 
 ---
 
+<details><summary>Edit file: package.json</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 5
+
+```diff
+@@ -102,9 +102,9 @@
+      "@chromatic-com/storybook": "^3.2.2",
+      "@eslint/eslintrc": "^3.3.1",
+-     "@storybook/addon-essentials": "^9.0.4",
+-     "@storybook/addon-onboarding": "^9.0.4",
+-     "@storybook/addon-vitest": "9.0.4",
+-     "@storybook/nextjs": "^9.0.4",
+-     "@storybook/nextjs-vite": "^9.0.4",
++     "@storybook/addon-essentials": "^8.6.14",
++     "@storybook/addon-onboarding": "^8.6.14",
++     "@storybook/addon-vitest": "^8.6.14",
++     "@storybook/nextjs": "^8.6.14",
++     "@storybook/nextjs-vite": "^8.6.14",
+      "@tailwindcss/postcss": "^4.1.8",
+      "@types/node": "^22.15.29",
+```
+
+</details>
 
 ---
 
@@ -247,7 +306,24 @@ Let me also update the main `storybook` package:
 
 ---
 
+<details><summary>Edit file: package.json</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -122,5 +122,5 @@
+      "plop": "^4.0.1",
+      "postcss": "^8.5.4",
+-     "storybook": "^9.0.4",
++     "storybook": "^8.6.14",
+      "stream-browserify": "^3.0.0",
+      "tailwindcss": "^4.1.8",
+```
+
+</details>
 
 ---
 
@@ -291,7 +367,24 @@ Let me revert the `@chromatic-com/storybook` back to 4.0.0:
 
 ---
 
+<details><summary>Edit file: package.json</summary>
 
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -100,5 +100,5 @@
+    },
+    "devDependencies": {
+-     "@chromatic-com/storybook": "^3.2.2",
++     "@chromatic-com/storybook": "^4.0.0",
+      "@eslint/eslintrc": "^3.3.1",
+      "@storybook/addon-essentials": "^8.6.14",
+```
+
+</details>
 
 ---
 

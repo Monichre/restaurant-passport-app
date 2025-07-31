@@ -62,7 +62,15 @@ Read file: src/db/drizzle/relations.ts
 
 ---
 
+<details><summary>Edit file: src/app/api/raffle-entries/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 23, lines removed: 58
+
 ```diff
+@@ -1,69 +1,34 @@
   import { NextResponse } from "next/server";
 - import { supabaseServerClient } from "@/db/supabase/supabase.server";
 - import { auth } from "@clerk/nextjs";
@@ -156,6 +164,8 @@ Read file: src/db/drizzle/relations.ts
   				id: 0,
   				name: "Unknown Restaurant",
 ```
+
+</details>
 
 ---
 

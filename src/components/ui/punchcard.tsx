@@ -105,7 +105,6 @@ const triggerMegaConfetti = () => {
 
 export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
   ({className, restaurants, showSharing = false, onShare, ...props}, ref) => {
-    console.log('🚀 ~ restaurants:', restaurants)
     const currentPunches = restaurants.length
     const MAX_PUNCH_THRESHOLD = 6
     const [lastPunchCount, setLastPunchCount] = React.useState(currentPunches)
@@ -114,30 +113,48 @@ export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
 
     // Generate sharing content for punch card achievements
     const generateShareContent = React.useCallback(() => {
-      const restaurantNames = restaurants.slice(0, 3).map(r => r.restaurantName).join(', ')
+      const restaurantNames = restaurants
+        .slice(0, 3)
+        .map((r) => r.restaurantName)
+        .join(', ')
       const remainingCount = restaurants.length - 3
-      const restaurantText = remainingCount > 0 
-        ? `${restaurantNames} and ${remainingCount} more`
-        : restaurantNames
+      const restaurantText =
+        remainingCount > 0
+          ? `${restaurantNames} and ${remainingCount} more`
+          : restaurantNames
 
       return {
-        title: isCompleted 
+        title: isCompleted
           ? '🎉 I completed my Restaurant Passport!'
           : `📍 ${currentPunches}/6 stamps collected on my Restaurant Passport!`,
         description: isCompleted
-          ? `Just finished my dining journey visiting ${restaurants.length} amazing local restaurants! ${restaurantText ? `Including ${restaurantText}.` : ''} Ready for the next adventure!`
-          : `Making progress on my foodie journey! So far I've visited: ${restaurantText}. ${MAX_PUNCH_THRESHOLD - currentPunches} more stamps to go!`,
+          ? `Just finished my dining journey visiting ${
+              restaurants.length
+            } amazing local restaurants! ${
+              restaurantText ? `Including ${restaurantText}.` : ''
+            } Ready for the next adventure!`
+          : `Making progress on my foodie journey! So far I've visited: ${restaurantText}. ${
+              MAX_PUNCH_THRESHOLD - currentPunches
+            } more stamps to go!`,
         url: typeof window !== 'undefined' ? window.location.href : '',
-        hashtags: isCompleted 
+        hashtags: isCompleted
           ? ['RestaurantPassport', 'FoodieGoals', 'LocalEats', 'Completed']
-          : ['RestaurantPassport', 'FoodieLife', 'LocalEats', `${currentPunches}of6`],
+          : [
+              'RestaurantPassport',
+              'FoodieLife',
+              'LocalEats',
+              `${currentPunches}of6`,
+            ],
       }
     }, [restaurants, currentPunches, isCompleted])
 
     // Trigger confetti when punch count increases - disabled for Storybook
     React.useEffect(() => {
       // Only trigger animations if we're not in Storybook
-      if (typeof window !== 'undefined' && !window.location.href.includes('storybook')) {
+      if (
+        typeof window !== 'undefined' &&
+        !window.location.href.includes('storybook')
+      ) {
         if (currentPunches > lastPunchCount && lastPunchCount > 0) {
           // Check if punch card is completed
           if (currentPunches >= MAX_PUNCH_THRESHOLD) {
@@ -209,12 +226,12 @@ export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
 
           <div className='absolute bottom-0 w-full p-4'>
             <h3 className='text-lg sm:text-xl font-bold text-white'>
-              Your Punch Card
+              Your Passport
             </h3>
             <p className='text-xs text-white/70'>
               {currentPunches >= MAX_PUNCH_THRESHOLD
-                ? '🎉 Congratulations! You completed your punch card!'
-                : 'Collect punches from your favorite restaurants'}
+                ? '🎉 Congratulations! You completed your passport!'
+                : 'Collect stamps from your favorite restaurants'}
             </p>
           </div>
         </div>
@@ -225,7 +242,7 @@ export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
 
           {restaurants.length === 0 ? (
             <div className='py-8 text-center text-muted-foreground'>
-              You haven't earned any punches yet. Visit a restaurant to get
+              You haven't earned any stamps yet. Visit a restaurant to get
               started!
             </div>
           ) : (
@@ -306,7 +323,7 @@ export const PunchCard = React.forwardRef<HTMLDivElement, PunchCardProps>(
         {/* Share Menu - shows when enabled and triggered */}
         {showSharing && showShareMenu && (
           <div className='absolute top-4 left-4 z-20'>
-            <SharePunchMenu 
+            <SharePunchMenu
               shareContent={generateShareContent()}
               className='relative'
             />

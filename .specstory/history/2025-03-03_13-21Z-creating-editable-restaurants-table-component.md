@@ -50,8 +50,8 @@ Let's look at the restaurant schema to understand the data structure:
 ---
 
 <details>
-            <summary>Searched codebase "restaurant schema definition type" • **25** results</summary>
-        
+                <summary>Searched codebase "restaurant schema definition type" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/schemas.ts` | L36-48 |
@@ -95,10 +95,10 @@ Now I need to check if TanStack Table is already installed or if I need to add i
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L22 | `"@tanstack/react-table": "^8.21.2",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L12 | `"@tanstack/react-table": "^8.21.2",` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L477 | `"@tanstack/react-table": ["@tanstack/react-table@8.21.2", "", { "dependencies": { "@tanstack/table-core": "8.21.2" }, "peerDependencies": { "react": ">=16.8", "react-dom": ">=16.8" } }, "sha512-11tNlEDTdIhMJba2RBH+ecJ9l1zgS2kjm` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L22 | `"@tanstack/react-table": "^8.21.2",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L23 | `"@tanstack/react-table": "^8.21.2",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L13 | `"@tanstack/react-table": "^8.21.2",` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/bun.lock` | L478 | `"@tanstack/react-table": ["@tanstack/react-table@8.21.2", "", { "dependencies": { "@tanstack/table-core": "8.21.2" }, "peerDependencies": { "react": ">=16.8", "react-dom": ">=16.8" } }, "sha512-11tNlEDTdIhMJba2RBH+ecJ9l1zgS2kjm` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/package.json` | L23 | `"@tanstack/react-table": "^8.21.2",` |
 
 </details>
 
@@ -111,8 +111,8 @@ Great! TanStack Table is already installed. Now let's examine if there are any e
 ---
 
 <details>
-            <summary>Searched codebase "useReactTable tanstack" • **25** results</summary>
-        
+                <summary>Searched codebase "useReactTable tanstack" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/table.tsx` | L1-67 |
@@ -152,8 +152,8 @@ Now let's see if there are any update endpoints for restaurants:
 ---
 
 <details>
-            <summary>Searched codebase "updateRestaurant function" • **25** results</summary>
-        
+                <summary>Searched codebase "updateRestaurant function" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/restaurants/restaurants.ts` | L45-62 |
@@ -193,8 +193,8 @@ Let's also check the api routes for restaurants:
 ---
 
 <details>
-            <summary>Searched codebase "api routes restaurants" • **25** results</summary>
-        
+                <summary>Searched codebase "api routes restaurants" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/restaurants/restaurants.ts` | L36-45 |
@@ -236,8 +236,8 @@ Now let's check for any existing API routes for updating restaurants:
 ---
 
 <details>
-            <summary>Searched codebase "api restaurant update" • **25** results</summary>
-        
+                <summary>Searched codebase "api restaurant update" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/db/models/restaurants/restaurants.ts` | L45-62 |
@@ -280,7 +280,15 @@ Let's create the new file for our table component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 320, lines removed: 1
+
 ```diff
+@@ -1,1 +1,320 @@
 - 
 + "use client";
 + 
@@ -604,6 +612,8 @@ Let's create the new file for our table component:
 + } 
 ```
 
+</details>
+
 ---
 
 
@@ -614,7 +624,15 @@ Now, let's fix the linter errors by improving the types in our component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 2
+
 ```diff
+@@ -3,12 +3,15 @@
   import { useState } from "react";
   import {
 - 	type ColumnDef,
@@ -634,7 +652,11 @@ Now, let's fix the linter errors by improving the types in our component:
   import {
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -23,6 +26,6 @@
   import { Input } from "@/components/ui/input";
   import { Check, X, Edit, ChevronLeft, ChevronRight } from "lucide-react";
 - import type { restaurantSchema } from "@/types/schemas";
@@ -645,7 +667,11 @@ Now, let's fix the linter errors by improving the types in our component:
   // Declare the type for our restaurant
 ```
 
+**Chunk 3**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -31,8 +34,8 @@
   // Create a custom cell type that includes editing capabilities
   type EditableCellProps = {
 - 	getValue: () => any;
@@ -660,7 +686,11 @@ Now, let's fix the linter errors by improving the types in our component:
   
 ```
 
+**Chunk 4**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -43,5 +46,10 @@
   
   // Editable cell component
 - const EditableCell = ({ getValue, row, column, table }: EditableCellProps) => {
@@ -674,7 +704,11 @@ Now, let's fix the linter errors by improving the types in our component:
   	const columnId = column.id;
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -76,5 +84,5 @@
   		<div className="flex items-center space-x-2">
   			<Input
 - 				value={value}
@@ -683,7 +717,11 @@ Now, let's fix the linter errors by improving the types in our component:
   				onBlur={onBlur}
 ```
 
+**Chunk 6**
+Lines added: 6, lines removed: 3
+
 ```diff
+@@ -116,7 +124,10 @@
   };
   
 - export function RestaurantsTable({
@@ -699,7 +737,11 @@ Now, let's fix the linter errors by improving the types in our component:
   	const [sorting, setSorting] = useState<SortingState>([]);
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -128,7 +139,5 @@
   			accessorKey: "id",
   			header: "ID",
 - 			cell: ({ row }) => (
@@ -710,7 +752,11 @@ Now, let's fix the linter errors by improving the types in our component:
   				editable: false,
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -209,4 +218,5 @@
   			// Success feedback could be added here
   			console.log("Restaurant updated successfully");
 + 			
@@ -718,7 +764,11 @@ Now, let's fix the linter errors by improving the types in our component:
   			console.error("Error updating restaurant:", error);
 ```
 
+**Chunk 9**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -223,5 +233,5 @@
   
   	// Create the table instance
 - 	const table = useReactTable({
@@ -727,7 +777,11 @@ Now, let's fix the linter errors by improving the types in our component:
   		columns,
 ```
 
+**Chunk 10**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -235,5 +245,5 @@
   		},
   		meta: {
 - 			updateData: (rowIndex: number, columnId: string, value: any) => {
@@ -736,7 +790,11 @@ Now, let's fix the linter errors by improving the types in our component:
   					old.map((row, index) => {
 ```
 
+**Chunk 11**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -245,8 +255,8 @@
   						}
   						return row;
 - 					}),
@@ -749,7 +807,11 @@ Now, let's fix the linter errors by improving the types in our component:
   
 ```
 
+**Chunk 12**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -263,5 +273,5 @@
   										: flexRender(
   												header.column.columnDef.header,
 - 												header.getContext(),
@@ -758,7 +820,11 @@ Now, let's fix the linter errors by improving the types in our component:
   								</TableHead>
 ```
 
+**Chunk 13**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -286,5 +296,8 @@
   					) : (
   						<TableRow>
 - 							<TableCell colSpan={columns.length} className="h-24 text-center">
@@ -769,6 +835,8 @@ Now, let's fix the linter errors by improving the types in our component:
   								No restaurants found
   							</TableCell>
 ```
+
+</details>
 
 ---
 
@@ -782,7 +850,15 @@ Let's fix the remaining linter errors by properly declaring the meta interfaces:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 9, lines removed: undefined
+
 ```diff
+@@ -31,4 +31,13 @@
   // Declare the type for our restaurant
   type Restaurant = z.infer<typeof restaurantSchema>;
 + 
@@ -798,7 +874,11 @@ Let's fix the remaining linter errors by properly declaring the meta interfaces:
   // Create a custom cell type that includes editing capabilities
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -53,5 +62,5 @@
   
   	const onBlur = () => {
 - 		table.options.meta?.updateData(row.index, columnId, value);
@@ -807,7 +887,11 @@ Let's fix the remaining linter errors by properly declaring the meta interfaces:
   	};
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -67,10 +76,10 @@
   
   	const onSaveClick = () => {
 - 		table.options.meta?.updateData(row.index, columnId, value);
@@ -822,7 +906,11 @@ Let's fix the remaining linter errors by properly declaring the meta interfaces:
   	}
 ```
 
+**Chunk 4**
+Lines added: undefined, lines removed: 5
+
 ```diff
+@@ -118,9 +127,4 @@
   	);
   };
 - 
@@ -834,7 +922,11 @@ Let's fix the remaining linter errors by properly declaring the meta interfaces:
   export function RestaurantsTable({
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -141,5 +145,5 @@
   			meta: {
   				editable: false,
 - 			},
@@ -842,6 +934,8 @@ Let's fix the remaining linter errors by properly declaring the meta interfaces:
   		},
   		{
 ```
+
+</details>
 
 ---
 
@@ -856,7 +950,15 @@ Now, let's create an API route to handle restaurant updates:
 
 ---
 
+<details><summary>Edit file: src/app/api/restaurants/[id]/route.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 72, lines removed: 1
+
 ```diff
+@@ -1,1 +1,72 @@
 - 
 + import { NextRequest, NextResponse } from "next/server";
 + import { updateRestaurant } from "@/db/models/restaurants/restaurants";
@@ -932,6 +1034,8 @@ Now, let's create an API route to handle restaurant updates:
 + } 
 ```
 
+</details>
+
 ---
 
 
@@ -946,7 +1050,15 @@ Finally, let's update the restaurants admin page to use our new table component:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 14, lines removed: 17
+
 ```diff
+@@ -6,30 +6,27 @@
   import { Suspense } from "react";
   import { getRestaurants } from "@/db/models";
 - import type { restaurantSchema } from "@/types";
@@ -993,7 +1105,11 @@ Finally, let's update the restaurants admin page to use our new table component:
   
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -65,5 +62,5 @@
   }
   
 - // Restaurants list component
@@ -1002,7 +1118,11 @@ Finally, let's update the restaurants admin page to use our new table component:
   	// Fetch restaurants from the database
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 10
+
 ```diff
+@@ -80,14 +77,5 @@
   	}
   
 - 	return (
@@ -1020,7 +1140,11 @@ Finally, let's update the restaurants admin page to use our new table component:
   
 ```
 
+**Chunk 4**
+Lines added: 15, lines removed: 8
+
 ```diff
+@@ -102,16 +90,23 @@
   			<div className="flex justify-between items-center mb-8">
   				<h1 className="text-3xl font-bold">Restaurants</h1>
 - 				<Link
@@ -1054,6 +1178,8 @@ Finally, let's update the restaurants admin page to use our new table component:
   			</div>
 ```
 
+</details>
+
 ---
 
 
@@ -1068,7 +1194,15 @@ Let's fix the remaining linter errors in the restaurants page:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/page.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -6,6 +6,10 @@
   import { Suspense } from "react";
   import { getRestaurants } from "@/db/models";
 - import type { restaurantSchema } from "@/types/schemas";
@@ -1082,7 +1216,11 @@ Let's fix the remaining linter errors in the restaurants page:
   // Loading component
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -28,7 +32,5 @@
   
   // Restaurant card component
 - function RestaurantCard({
@@ -1093,7 +1231,11 @@ Let's fix the remaining linter errors in the restaurants page:
   
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -65,5 +67,5 @@
   
   // Restaurants list component with table
 - async function RestaurantsList({ restaurants }: { restaurants: any }) {
@@ -1101,6 +1243,8 @@ Let's fix the remaining linter errors in the restaurants page:
   	// Fetch restaurants from the database
   
 ```
+
+</details>
 
 ---
 
@@ -1113,8 +1257,8 @@ Now let's make sure the Button and Input components are properly imported for ou
 ---
 
 <details>
-            <summary>Searched codebase "Button component shadcn" • **25** results</summary>
-        
+                <summary>Searched codebase "Button component shadcn" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/button.tsx` | L1-41 |
@@ -1154,8 +1298,8 @@ Now let's make sure the Button and Input components are properly imported for ou
 ---
 
 <details>
-            <summary>Searched codebase "Input component shadcn" • **25** results</summary>
-        
+                <summary>Searched codebase "Input component shadcn" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/ui/input.tsx` | L1-22 |

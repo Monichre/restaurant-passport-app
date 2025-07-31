@@ -51,7 +51,15 @@ Now I'll replace the contents of `use-toast.ts` with a simplified version that u
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 33, lines removed: 165
+
 ```diff
+@@ -1,180 +1,48 @@
   "use client";
 - import * as React from "react";
 - 
@@ -267,6 +275,8 @@ Now I'll replace the contents of `use-toast.ts` with a simplified version that u
   
 ```
 
+</details>
+
 ---
 
 Now we need to find and update the Toaster component in your application. This is typically in a layout file or a provider component. Let's search for its usage:
@@ -278,13 +288,13 @@ Now we need to find and update the Toaster component in your application. This i
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L1 | `import { toast as sonnerToast, Toaster as SonnerToaster } from "sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sonner.tsx` | L3 | `import { Toaster as Sonner, ToasterProps } from "sonner"` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L7 | `import { Toaster } from "@/components/ui/sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L51 | `<Toaster />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L7 | `import { Toaster } from "@/components/ui/sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L51 | `<Toaster />` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L1 | `import { toast as sonnerToast, Toaster as SonnerToaster } from "sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L2 | `import { toast as sonnerToast, Toaster as SonnerToaster } from "sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/sonner.tsx` | L4 | `import { Toaster as Sonner, ToasterProps } from "sonner"` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L8 | `import { Toaster } from "@/components/ui/sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L52 | `<Toaster />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L8 | `import { Toaster } from "@/components/ui/sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L52 | `<Toaster />` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L2 | `import { toast as sonnerToast, Toaster as SonnerToaster } from "sonner";` |
 
 </details>
 
@@ -307,31 +317,31 @@ Perfect! The application already has a properly configured Sonner implementation
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L3 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L23 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L11 | `function useToast() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L40 | `const { toast: toastFn } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L14 | `export function useToast() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L10 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L19 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L34 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L9 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L25 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L7 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L17 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | L10 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | L13 | `const { toasts } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L10 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L19 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L34 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L7 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L17 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L9 | `import { useToast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L25 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L11 | `function useToast() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L40 | `const { toast: toastFn } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L4 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L24 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L12 | `function useToast() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L41 | `const { toast: toastFn } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L15 | `export function useToast() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L11 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L20 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L35 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L10 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L26 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L8 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L18 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | L11 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | L14 | `const { toasts } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L11 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L20 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L35 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L8 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L18 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L10 | `import { useToast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L26 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L12 | `function useToast() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L41 | `const { toast: toastFn } = useToast();` |
 
 </details>
 
@@ -346,47 +356,47 @@ I also need to check for direct usage of the `toast` function:
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L23 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L74 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L14 | `export function useToast() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L11 | `function useToast() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L15 | `return sonnerToast(title as string, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L40 | `const { toast: toastFn } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L3 | `import { toast } from "@/hooks/use-toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L193 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L357 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L136 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L144 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L203 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L25 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L111 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L121 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L37 | `import { toast } from "sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | L13 | `const { toasts } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L34 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L48 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L55 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L17 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L102 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L112 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L37 | `import { toast } from "sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L136 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L144 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L203 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L34 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L48 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L55 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L17 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L102 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L112 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L25 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L111 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L121 | `toast({` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L11 | `function useToast() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L15 | `return sonnerToast(title as string, {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L40 | `const { toast: toastFn } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L24 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L75 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L15 | `export function useToast() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L12 | `function useToast() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L16 | `return sonnerToast(title as string, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L41 | `const { toast: toastFn } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L4 | `import { toast } from "@/hooks/use-toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L194 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-scan-qr-code.ts` | L358 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L137 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L145 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L204 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L26 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L112 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L122 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L38 | `import { toast } from "sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/ui/toaster.tsx` | L14 | `const { toasts } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L35 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L49 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L56 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L18 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L103 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L113 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurants-table.tsx` | L38 | `import { toast } from "sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L137 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L145 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L204 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L35 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L49 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L56 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L18 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L103 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L113 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L26 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L112 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L122 | `toast({` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L12 | `function useToast() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L16 | `return sonnerToast(title as string, {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L41 | `const { toast: toastFn } = useToast();` |
 
 </details>
 
@@ -401,8 +411,8 @@ Now let's check if we still need the old Toaster component from the previous imp
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L2 | `import type { ToastProps } from "@/components/ui/toast";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L2 | `import type { ToastProps } from "@/components/ui/toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L3 | `import type { ToastProps } from "@/components/ui/toast";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.ts` | L3 | `import type { ToastProps } from "@/components/ui/toast";` |
 
 </details>
 
@@ -426,7 +436,15 @@ Let's revise our `use-toast.ts` implementation:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 1
+
 ```diff
+@@ -1,4 +1,5 @@
   "use client";
 - import { toast as sonnerToast, Toaster as SonnerToaster } from "sonner";
 + import { toast as sonnerToast } from "sonner";
@@ -435,7 +453,11 @@ Let's revise our `use-toast.ts` implementation:
   
 ```
 
+**Chunk 2**
+Lines added: 41, lines removed: 7
+
 ```diff
+@@ -10,21 +11,55 @@
   };
   
 - function useToast() {
@@ -500,13 +522,23 @@ Let's revise our `use-toast.ts` implementation:
   			if (toastId) {
 ```
 
+</details>
+
 ---
 
 Let me fix the linter errors in the `useToast` implementation:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -12,5 +12,9 @@
   
   interface UseToastReturn {
 - 	toast: (props: ToasterToast) => { id: string; dismiss: () => void; update: (props: ToasterToast) => void };
@@ -519,7 +551,11 @@ Let me fix the linter errors in the `useToast` implementation:
   	dismiss: (toastId?: string) => void;
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 2
+
 ```diff
+@@ -19,11 +23,12 @@
   function useToast(): UseToastReturn {
   	// This is just a stub to maintain API compatibility
 - 	const [toasts, setToasts] = React.useState<ToasterToast[]>([]);
@@ -536,7 +572,11 @@ Let me fix the linter errors in the `useToast` implementation:
   				: undefined;
 ```
 
+**Chunk 3**
+Lines added: 10, lines removed: 13
+
 ```diff
+@@ -42,18 +47,15 @@
   			update: (props: ToasterToast) => {
   				const { title, description, variant = "default", ...restProps } = props;
 - 				sonnerToast.custom(
@@ -567,7 +607,11 @@ Let me fix the linter errors in the `useToast` implementation:
   	};
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -72,5 +74,5 @@
   }
   
 - // Re-export the toast function directly for convenience
@@ -576,13 +620,23 @@ Let me fix the linter errors in the `useToast` implementation:
   	const { toast: toastFn } = useToast();
 ```
 
+</details>
+
 ---
 
 The linter error is about a missing export of `SonnerToaster`. Let's fix that:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 2
+
 ```diff
+@@ -80,6 +80,4 @@
   };
   
 - // Re-export Toaster component
@@ -590,6 +644,8 @@ The linter error is about a missing export of `SonnerToaster`. Let's fix that:
   export { useToast, toast };
   
 ```
+
+</details>
 
 ---
 
@@ -634,7 +690,15 @@ This aligns well with sonner's native API. Let's modify the use-toast.ts file to
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 80
+
 ```diff
+@@ -1,83 +1,9 @@
   "use client";
 - import { toast as sonnerToast } from "sonner";
 - import * as React from "react";
@@ -726,13 +790,23 @@ This aligns well with sonner's native API. Let's modify the use-toast.ts file to
   
 ```
 
+</details>
+
 ---
 
 Let me fix the type export issues:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 22, lines removed: 2
+
 ```diff
+@@ -5,5 +5,25 @@
   export { toast };
   
 - // Add type exports for backwards compatibility
@@ -762,19 +836,31 @@ Let me fix the type export issues:
   
 ```
 
+</details>
+
 ---
 
 There's still an issue with the React import. Let's fix that:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -1,4 +1,5 @@
   "use client";
   import { toast } from "sonner";
 + import type * as React from "react";
   
   // Re-export toast directly from sonner
 ```
+
+</details>
 
 ---
 
@@ -787,15 +873,15 @@ Now let's check a component that uses the old toast pattern and update it to use
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L23 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L25 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L34 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L17 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L77 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L34 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L17 | `const { toast } = useToast();` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L25 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L24 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L26 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L35 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L18 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/restaurant-quick-view.tsx` | L78 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/deals-table.tsx` | L35 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/new-deal-form.tsx` | L18 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/components/admin/deals/edit-deal-form.tsx` | L26 | `const { toast } = useToast();` |
 
 </details>
 
@@ -813,7 +899,15 @@ Now I'll update one of these components as an example. Let's update `new-deal-fo
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -6,5 +6,5 @@
   import { createRestaurantDeal } from "@/db/models/restaurants/restaurants";
   import { getRestaurants } from "@/db/models/restaurants/restaurants";
 - import { useToast } from "@/hooks/use-toast";
@@ -822,7 +916,11 @@ Now I'll update one of these components as an example. Let's update `new-deal-fo
   // Define a simplified restaurant type for the select dropdown
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -16,5 +16,4 @@
   export function NewDealForm() {
   	const router = useRouter();
 - 	const { toast } = useToast();
@@ -830,7 +928,11 @@ Now I'll update one of these components as an example. Let's update `new-deal-fo
   	const [isLoadingRestaurants, setIsLoadingRestaurants] = useState(true);
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -101,6 +100,5 @@
   			});
   
 - 			toast({
@@ -840,7 +942,11 @@ Now I'll update one of these components as an example. Let's update `new-deal-fo
   			});
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -111,6 +109,5 @@
   		} catch (err) {
   			setError(err instanceof Error ? err.message : "Failed to create deal");
 - 			toast({
@@ -850,13 +956,23 @@ Now I'll update one of these components as an example. Let's update `new-deal-fo
   				variant: "destructive",
 ```
 
+</details>
+
 ---
 
 Let's update the `use-toast.ts` file to ensure the `variant` property is properly handled:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 4
+
 ```diff
+@@ -1,8 +1,5 @@
   "use client";
 - import { toast } from "sonner";
 + import { toast as sonnerToast } from "sonner";
@@ -868,7 +984,11 @@ Let's update the `use-toast.ts` file to ensure the `variant` property is properl
   // Define types for backwards compatibility
 ```
 
+**Chunk 2**
+Lines added: 28, lines removed: undefined
+
 ```diff
+@@ -19,4 +16,32 @@
   	variant?: "default" | "destructive";
   };
 + 
@@ -903,7 +1023,11 @@ Let's update the `use-toast.ts` file to ensure the `variant` property is properl
   // Export a stub useToast for backwards compatibility
 ```
 
+**Chunk 3**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -28,3 +53,6 @@
   	};
   };
 + 
@@ -912,13 +1036,23 @@ Let's update the `use-toast.ts` file to ensure the `variant` property is properl
   
 ```
 
+</details>
+
 ---
 
 Now let's update the `new-deal-form.tsx` file again to ensure the error is fixed:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/new-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -109,7 +109,6 @@
   		} catch (err) {
   			setError(err instanceof Error ? err.message : "Failed to create deal");
 - 			toast("Error", {
@@ -929,13 +1063,23 @@ Now let's update the `new-deal-form.tsx` file again to ensure the error is fixed
   			setIsSubmitting(false);
 ```
 
+</details>
+
 ---
 
 Perfect! As a best practice, let's update another component to demonstrate the pattern:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/edit-deal-form.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -8,5 +8,5 @@
   	updateRestaurantDeal,
   } from "@/db/models/restaurants/restaurants";
 - import { useToast } from "@/hooks/use-toast";
@@ -944,7 +1088,11 @@ Perfect! As a best practice, let's update another component to demonstrate the p
   // Define a simplified restaurant type for the select dropdown
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -24,5 +24,4 @@
   export function EditDealForm({ id, deal }: EditDealFormProps) {
   	const router = useRouter();
 - 	const { toast } = useToast();
@@ -952,7 +1100,11 @@ Perfect! As a best practice, let's update another component to demonstrate the p
   	const [isLoadingRestaurants, setIsLoadingRestaurants] = useState(true);
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -110,6 +109,5 @@
   			});
   
 - 			toast({
@@ -962,7 +1114,11 @@ Perfect! As a best practice, let's update another component to demonstrate the p
   			});
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -120,8 +118,6 @@
   		} catch (err) {
   			setError(err instanceof Error ? err.message : "Failed to update deal");
 - 			toast({
@@ -973,6 +1129,8 @@ Perfect! As a best practice, let's update another component to demonstrate the p
   			});
   			setIsSubmitting(false);
 ```
+
+</details>
 
 ---
 
@@ -993,8 +1151,8 @@ We need to fix the Toaster component since it's using the old useToast pattern. 
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L7 | `import { Toaster } from "@/components/ui/sonner";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L7 | `import { Toaster } from "@/components/ui/sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L8 | `import { Toaster } from "@/components/ui/sonner";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/layout.tsx` | L8 | `import { Toaster } from "@/components/ui/sonner";` |
 
 </details>
 
@@ -1081,7 +1239,15 @@ Since we're still using the ToastProps type in our hook, we should keep the toas
 
 ---
 
+<details><summary>Edit file: src/hooks/use-toast.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 4, lines removed: 8
+
 ```diff
+@@ -2,12 +2,8 @@
   import { toast as sonnerToast } from "sonner";
   import type * as React from "react";
 - 
@@ -1100,13 +1266,23 @@ Since we're still using the ToastProps type in our hook, we should keep the toas
   	title?: React.ReactNode;
 ```
 
+</details>
+
 ---
 
 Now let's update a few more components to use the direct toast approach:
 
 ---
 
+<details><summary>Edit file: src/components/admin/deals/deals-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -18,5 +18,5 @@
   	AlertDialogTitle,
   } from "@/components/ui/alert-dialog";
 - import { useToast } from "@/hooks/use-toast";
@@ -1115,7 +1291,11 @@ Now let's update a few more components to use the direct toast approach:
   // Define the type for the deals with restaurant name
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -33,5 +33,4 @@
   	const [dealToDelete, setDealToDelete] = useState<bigint | null>(null);
   	const router = useRouter();
 - 	const { toast } = useToast();
@@ -1123,7 +1303,11 @@ Now let's update a few more components to use the direct toast approach:
   	// Function to handle deal deletion
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 5
+
 ```diff
+@@ -47,15 +46,12 @@
   			setIsDeleting(dealToDelete);
   			await deleteRestaurantDeal(dealToDelete);
 - 			toast({
@@ -1143,13 +1327,23 @@ Now let's update a few more components to use the direct toast approach:
   		} finally {
 ```
 
+</details>
+
 ---
 
 Let's update one more component:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -9,5 +9,5 @@
   } from "@/db/models/restaurants/restaurants";
   import type { Restaurant, Prize, PunchCard } from "@/types/db";
 - import { useToast } from "@/hooks/use-toast";
@@ -1158,7 +1352,11 @@ Let's update one more component:
   import {
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -76,5 +76,4 @@
   	const [restaurantData, setRestaurantData] =
   		useState<DetailedRestaurant | null>(null);
 - 	const { toast } = useToast();
@@ -1166,7 +1364,11 @@ Let's update one more component:
   	const [newDeal, setNewDeal] = useState({
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 10
+
 ```diff
+@@ -135,17 +134,9 @@
   					setIsOpen(true);
   				} else {
 - 					toast({
@@ -1188,7 +1390,11 @@ Let's update one more component:
   				setIsLoading(false);
 ```
 
+**Chunk 4**
+Lines added: 1, lines removed: 5
+
 ```diff
+@@ -202,9 +193,5 @@
   
   		// Show a success toast
 - 		toast({
@@ -1201,6 +1407,8 @@ Let's update one more component:
   
 ```
 
+</details>
+
 ---
 
 The linter errors are unrelated to our toast changes and would require a deeper understanding of the component's type system. Since they appear to be pre-existing issues with the types and not directly related to our toast implementation, we can focus on finishing our task.
@@ -1209,7 +1417,15 @@ Let's make one more attempt to fix the specific issues in restaurant-quick-view.
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurant-quick-view.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 2
+
 ```diff
+@@ -134,9 +134,13 @@
   					setIsOpen(true);
   				} else {
 - 					toast("Restaurant not found");
@@ -1227,7 +1443,11 @@ Let's make one more attempt to fix the specific issues in restaurant-quick-view.
   				setIsLoading(false);
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 1
+
 ```diff
+@@ -193,5 +197,7 @@
   
   		// Show a success toast
 - 		toast("New deal created successfully");
@@ -1237,6 +1457,8 @@ Let's make one more attempt to fix the specific issues in restaurant-quick-view.
   	};
   
 ```
+
+</details>
 
 ---
 
@@ -1252,7 +1474,15 @@ Let's update this usage as well:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-scan-qr-code.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -192,8 +192,6 @@
   				onScanError(scanError);
   			} else {
 - 				toast({
@@ -1264,7 +1494,11 @@ Let's update this usage as well:
   			}
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 3
+
 ```diff
+@@ -356,8 +354,6 @@
   				setError(null);
   
 - 				toast({
@@ -1275,6 +1509,8 @@ Let's update this usage as well:
   				});
   
 ```
+
+</details>
 
 ---
 
@@ -1289,8 +1525,8 @@ Let's check if there are any other direct uses of the `useToast` hook that we've
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L14 | `export function useToast() {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L23 | `const { toast } = useToast();` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/hooks/use-toast.tsx` | L15 | `export function useToast() {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L24 | `const { toast } = useToast();` |
 
 </details>
 
@@ -1316,7 +1552,15 @@ Now let's update the component:
 
 ---
 
+<details><summary>Edit file: src/features/users/UserScanQrCode.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -2,5 +2,5 @@
   
   import { useState, useEffect, useRef } from "react";
 - import { useToast } from "@/hooks/use-toast";
@@ -1325,7 +1569,11 @@ Now let's update the component:
   import { Button } from "@/components/ui/button";
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 2
+
 ```diff
+@@ -22,9 +22,8 @@
   
   export function UserScanQrCode({ user }: { user: User }) {
 - 	const { toast } = useToast();
@@ -1337,6 +1585,8 @@ Now let's update the component:
   
   	// Check for browser compatibility
 ```
+
+</details>
 
 ---
 

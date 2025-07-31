@@ -15,12 +15,12 @@ _**Assistant**_
         
 | File | Line | Match |
 |------|------|-------|
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L3 | `import { UserScanQrCode } from "@/features/users/UserScanQrCode";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L41 | `{/* {user?.id && <UserScanQrCode user={user} />} */}` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L4 | `import { UserScanQrCode } from "@/features/users";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L137 | `export function UserScanQrCode({ user }: { user: User }) {` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/index.ts` | L2 | `export * from "./UserScanQrCode";` |
-| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L137 | `export function UserScanQrCode({ user }: { user: User }) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L4 | `import { UserScanQrCode } from "@/features/users/UserScanQrCode";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/app/users/%5Bid%5D/profile/page.tsx` | L42 | `{/* {user?.id && <UserScanQrCode user={user} />} */}` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/restaurants/restaurant-detail/RestaurantDetail.tsx` | L5 | `import { UserScanQrCode } from "@/features/users";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L138 | `export function UserScanQrCode({ user }: { user: User }) {` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/index.ts` | L3 | `export * from "./UserScanQrCode";` |
+| `file:///Users/liamellis/Desktop/restaurant-passport-app/src/features/users/UserScanQrCode.tsx` | L138 | `export function UserScanQrCode({ user }: { user: User }) {` |
 
 </details>
 

@@ -179,7 +179,15 @@ I'll create the SVGRenderer component in a new file:
 
 ---
 
+<details><summary>Edit file: src/components/ui/svg-renderer.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 86, lines removed: 1
+
 ```diff
+@@ -1,1 +1,86 @@
 - 
 + import type React from 'react'
 + 
@@ -268,6 +276,8 @@ I'll create the SVGRenderer component in a new file:
 + }
 + 
 ```
+
+</details>
 
 ---
 

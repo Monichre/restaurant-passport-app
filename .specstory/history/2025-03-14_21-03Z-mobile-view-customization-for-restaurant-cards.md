@@ -26,7 +26,15 @@ For the restaurant image, I notice that the restaurant data includes an imageUrl
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 5
+
 ```diff
+@@ -563,10 +563,5 @@
   			>
   				<div className="flex justify-between items-start mb-3">
 - 					<div>
@@ -39,7 +47,11 @@ For the restaurant image, I notice that the restaurant data includes an imageUrl
   						<DropdownMenuTrigger asChild>
 ```
 
+**Chunk 2**
+Lines added: 10, lines removed: 12
+
 ```diff
+@@ -597,19 +592,17 @@
   				</div>
   
 - 				<div className="space-y-2 text-sm">
@@ -71,7 +83,11 @@ For the restaurant image, I notice that the restaurant data includes an imageUrl
   						<QrCode className="h-3 w-3 mr-1" />
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: undefined
+
 ```diff
+@@ -620,9 +613,11 @@
   					</div>
   
 + 					{/* Punch Cards Count */}
@@ -85,7 +101,11 @@ For the restaurant image, I notice that the restaurant data includes an imageUrl
   						Deals:{" "}
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 10
+
 ```diff
+@@ -631,15 +626,7 @@
   				</div>
   
 - 				<div className="flex justify-between mt-4 pt-3 border-t border-sidebar-border">
@@ -104,6 +124,8 @@ For the restaurant image, I notice that the restaurant data includes an imageUrl
   				</div>
   			</div>
 ```
+
+</details>
 
 ---
 

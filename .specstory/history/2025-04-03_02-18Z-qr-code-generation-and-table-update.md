@@ -40,7 +40,15 @@ Looking at the code, the issue is that when QR codes are generated and saved (ei
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -255,4 +255,5 @@
     const [isExporting, setIsExporting] = React.useState(false)
     const [isImporting, setIsImporting] = React.useState(false)
 +   const [refreshTrigger, setRefreshTrigger] = React.useState(0)
@@ -48,7 +56,11 @@ Looking at the code, the issue is that when QR codes are generated and saved (ei
     // Track selection count for visibility check
 ```
 
+**Chunk 2**
+Lines added: 14, lines removed: 1
+
 ```diff
+@@ -271,5 +272,18 @@
       handleDownloadAll = () => {},
       handleReset = () => {},
 -   } = useHandleBulkQRCode()
@@ -70,7 +82,11 @@ Looking at the code, the issue is that when QR codes are generated and saved (ei
     // Check viewport size on mount and window resize
 ```
 
+**Chunk 3**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -302,8 +316,8 @@
     })
   
 -   // Update local data when initialData changes
@@ -83,7 +99,11 @@ Looking at the code, the issue is that when QR codes are generated and saved (ei
     // Define a handler for toggling selection
 ```
 
+**Chunk 4**
+Lines added: 5, lines removed: 1
+
 ```diff
+@@ -431,5 +445,9 @@
             <div className='flex items-center'>
               <QrCode className='h-4 w-4 text-sidebar-foreground/50 mr-2' />
 -             <QRCodeManager restaurant={restaurant} variant='table' />
@@ -96,7 +116,11 @@ Looking at the code, the issue is that when QR codes are generated and saved (ei
           )
 ```
 
+**Chunk 5**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -640,5 +658,5 @@
     })
   
 -   // Update the bulk operations to use table row IDs for selection
@@ -105,7 +129,11 @@ Looking at the code, the issue is that when QR codes are generated and saved (ei
       const selectedRows = table.getSelectedRowModel().rows
 ```
 
+**Chunk 6**
+Lines added: 11, lines removed: undefined
+
 ```diff
+@@ -654,4 +672,15 @@
       handleGenerateAll(selectedRestaurants)
     }
 + 
@@ -123,7 +151,11 @@ Looking at the code, the issue is that when QR codes are generated and saved (ei
     // Update CSV export to use table row selections
 ```
 
+**Chunk 7**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -797,5 +826,5 @@
                   <Button
                     size='sm'
 -                   onClick={handleSaveAll}
@@ -132,13 +164,19 @@ Looking at the code, the issue is that when QR codes are generated and saved (ei
                     className='h-8 bg-background border-sidebar-border hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
 ```
 
+**Chunk 8**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -945,4 +974,5 @@
                             restaurant={restaurant as Restaurant}
                             variant='table'
 +                           onUpdate={handleQRCodeUpdate}
                           />
                         </div>
 ```
+
+</details>
 
 ---
 
@@ -147,8 +185,8 @@ Now we need to fix those linter errors by updating the QRCodeManager component t
 ---
 
 <details>
-            <summary>Searched codebase "QRCodeManager component props" • **25** results</summary>
-        
+                <summary>Searched codebase "QRCodeManager component props" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/app/admin/restaurants/qr-code-manager.tsx` | L346-362 |
@@ -184,8 +222,8 @@ src/components/admin/restaurants/qr-code-manager.stories.tsx` | L5-32 |
 ---
 
 <details>
-            <summary>Searched codebase "useHandleBulkQRCode hook implementation" • **25** results</summary>
-        
+                <summary>Searched codebase "useHandleBulkQRCode hook implementation" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/hooks/use-handle-qr-code.tsx` | L534-581 |
@@ -222,7 +260,15 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -1,10 +1,10 @@
 - "use client";
 + 'use client'
   
@@ -242,7 +288,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
     Dialog,
 ```
 
+**Chunk 2**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -15,6 +15,6 @@
     DialogDescription,
     DialogFooter,
 - } from "@/components/ui/dialog";
@@ -253,7 +303,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
     QrCode,
 ```
 
+**Chunk 3**
+Lines added: 6, lines removed: 5
+
 ```diff
+@@ -25,12 +25,13 @@
     AlertTriangle,
     HelpCircle,
 - } from "lucide-react";
@@ -274,7 +328,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
   
 ```
 
+**Chunk 4**
+Lines added: 88, lines removed: 72
+
 ```diff
+@@ -40,145 +41,161 @@
     restaurantName: string
   ) => {
 - 	if (!element) return;
@@ -510,7 +568,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
                 restaurant={restaurant}
 ```
 
+**Chunk 5**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -198,7 +215,7 @@
   
             {restaurant.qrCodeUrl && (
 - 						<DialogFooter className="mt-4">
@@ -523,7 +585,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
                 </Button>
 ```
 
+**Chunk 6**
+Lines added: 14, lines removed: 14
+
 ```diff
+@@ -207,37 +224,37 @@
           </DialogContent>
         </Dialog>
 - 		);
@@ -577,7 +643,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
                 >
 ```
 
+**Chunk 7**
+Lines added: 8, lines removed: 8
+
 ```diff
+@@ -247,19 +264,19 @@
                   <>
                     <Button
 - 										size="sm"
@@ -607,7 +677,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
                     </Button>
 ```
 
+**Chunk 8**
+Lines added: 16, lines removed: 16
+
 ```diff
+@@ -270,44 +287,44 @@
           ) : (
             <Button
 - 						size="sm"
@@ -670,7 +744,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
                 </Button>
 ```
 
+**Chunk 9**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -317,15 +334,15 @@
   
           {error && (
 - 					<div className="mt-2 p-2 bg-red-100 border border-red-200 text-red-700 rounded-md text-xs">
@@ -691,7 +769,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
           restaurant={restaurant}
 ```
 
+**Chunk 10**
+Lines added: 13, lines removed: 13
+
 ```diff
+@@ -343,21 +360,21 @@
         />
       </div>
 - 	);
@@ -728,7 +810,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
   
 ```
 
+**Chunk 11**
+Lines added: 15, lines removed: 15
+
 ```diff
+@@ -377,42 +394,42 @@
   }: FullQRManagerProps) => {
     // Create refs for the displayed QR codes
 - 	const currentQrRef = useRef<HTMLDivElement>(null);
@@ -788,7 +874,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
           </p>
 ```
 
+**Chunk 12**
+Lines added: 17, lines removed: 17
+
 ```diff
+@@ -422,45 +439,45 @@
           <Button
             onClick={handleGenerate}
 - 					className="flex items-center gap-1 touch-manipulation"
@@ -853,7 +943,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
               </Button>
 ```
 
+**Chunk 13**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -470,6 +487,6 @@
   
         {error && (
 - 				<Alert variant="destructive" className="mt-4">
@@ -864,7 +958,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
             <AlertDescription>{error}</AlertDescription>
 ```
 
+**Chunk 14**
+Lines added: 11, lines removed: 11
+
 ```diff
+@@ -478,31 +495,31 @@
   
         {success && (
 - 				<div className="mt-4 space-y-3">
@@ -909,7 +1007,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
                   </Button>
 ```
 
+**Chunk 15**
+Lines added: 3, lines removed: 3
+
 ```diff
+@@ -511,8 +528,8 @@
                 <>
                   <Alert
 - 									variant="warning"
@@ -923,7 +1025,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
                     <AlertDescription>
 ```
 
+**Chunk 16**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -524,6 +541,6 @@
                   <Button
                     onClick={handleCopyQrValue}
 - 									variant="secondary"
@@ -934,7 +1040,11 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
                     Copy QR Code URL
 ```
 
+**Chunk 17**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -535,5 +552,5 @@
         )}
       </div>
 - 	);
@@ -944,13 +1054,23 @@ Now let's modify the QRCodeManager component to accept the onUpdate prop and upd
   
 ```
 
+</details>
+
 ---
 
 Now let's update the useHandleBulkQRCode hook to accept an onSuccess callback:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 27, lines removed: 6
+
 ```diff
+@@ -1,9 +1,30 @@
 - "use client";
 + 'use client'
   
@@ -989,13 +1109,23 @@ Now let's update the useHandleBulkQRCode hook to accept an onSuccess callback:
   
 ```
 
+</details>
+
 ---
 
 Let's fix the linter errors in both files:
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: undefined
+
 ```diff
+@@ -15,5 +15,8 @@
   
     const handleSaveAll = async () => {
 +     // Check if originalHandleSaveAll exists before calling it
@@ -1006,9 +1136,19 @@ Let's fix the linter errors in both files:
       // If the save was successful and onSuccess callback exists, call it
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -116,5 +116,5 @@
       error,
       qrRef,
 -   } = useHandleQRCode({restaurant, mode: 'single'})
@@ -1017,6 +1157,8 @@ Let's fix the linter errors in both files:
     // Wrap handleSave to call onUpdate callback after successful save
 ```
 
+</details>
+
 ---
 
 Let's update the use-handle-qr-code.tsx file to properly support the mode parameter:
@@ -1024,8 +1166,8 @@ Let's update the use-handle-qr-code.tsx file to properly support the mode parame
 ---
 
 <details>
-            <summary>Searched codebase "UseHandleQRCodeProps type mode" • **25** results</summary>
-        
+                <summary>Searched codebase "UseHandleQRCodeProps type mode" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/hooks/use-handle-qr-code.tsx` | L16-20 |
@@ -1063,7 +1205,15 @@ Now let's update the QRCodeManager component without the type assertion:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -116,5 +116,5 @@
       error,
       qrRef,
 -   } = useHandleQRCode({restaurant, mode: 'single'} as any)
@@ -1071,6 +1221,8 @@ Now let's update the QRCodeManager component without the type assertion:
   
     // Wrap handleSave to call onUpdate callback after successful save
 ```
+
+</details>
 
 ---
 
@@ -1119,7 +1271,15 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 28, lines removed: 28
+
 ```diff
+@@ -1,53 +1,53 @@
 - "use client";
 + 'use client'
   
@@ -1203,7 +1363,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
     // Generate QR code SVG data URL
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 4
+
 ```diff
+@@ -60,10 +60,10 @@
         <path d="M40,40 L50,40 L50,50 L40,50 Z M60,40 L70,40 L70,50 L60,50 Z M80,40 L90,40 L90,50 L80,50 Z M100,40 L110,40 L110,50 L100,50 Z M120,40 L130,40 L130,50 L120,50 Z M140,40 L150,40 L150,50 L140,50 Z M160,40 L170,40 L170,50 L160,50 Z" fill="black" />
         <!-- QR code pattern for ${qrCodeValue(restaurantId)} -->
 -     </svg>`;
@@ -1220,7 +1384,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
     // Extract SVG data from a reference or data URL
 ```
 
+**Chunk 3**
+Lines added: 7, lines removed: 7
+
 ```diff
+@@ -73,18 +73,18 @@
         if (dataUrl) {
           try {
 - 					if (dataUrl.startsWith("data:")) {
@@ -1248,7 +1416,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
           }
 ```
 
+**Chunk 4**
+Lines added: 38, lines removed: 36
+
 ```diff
+@@ -94,86 +94,88 @@
         if (svgElement) {
           // Clone SVG to avoid modifying the original
 - 				const clonedSvg = svgElement.cloneNode(true) as SVGElement;
@@ -1375,7 +1547,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
             newTab.document.write(`
 ```
 
+**Chunk 5**
+Lines added: 160, lines removed: 153
+
 ```diff
+@@ -205,348 +207,355 @@
                 </body>
               </html>
 -           `);
@@ -1886,7 +2062,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
         qrCodeDataUrl,
 ```
 
+**Chunk 6**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -561,5 +570,5 @@
         error,
         qrRef,
 - 		};
@@ -1895,7 +2075,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
       return {
 ```
 
+**Chunk 7**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -577,6 +586,6 @@
         handleDownloadAll,
         handleReset,
 - 		};
@@ -1906,9 +2090,19 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
   
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 11, lines removed: 1
+
 ```diff
+@@ -260,5 +260,15 @@
     const selectedCount = Object.keys(rowSelection).length
   
 -   // Add bulk QR code generation hook
@@ -1927,7 +2121,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
       generating: bulkGenerating,
 ```
 
+**Chunk 2**
+Lines added: 3, lines removed: 9
+
 ```diff
+@@ -273,17 +283,11 @@
       handleReset = () => {},
     } = useHandleBulkQRCode({
 -     onSuccess: () => {
@@ -1950,7 +2148,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
     // Check viewport size on mount and window resize
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -316,5 +320,5 @@
     })
   
 -   // Update local data when initialData changes or refresh is triggered
@@ -1959,7 +2161,11 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
       setData(initialData)
 ```
 
+**Chunk 4**
+Lines added: 3, lines removed: 6
+
 ```diff
+@@ -673,13 +677,10 @@
     }
   
 -   // Custom function to handle successful bulk QR code save
@@ -1978,9 +2184,19 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
   
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -323,5 +323,5 @@
     React.useEffect(() => {
       setData(initialData)
 -   }, [initialData, refreshTrigger])
@@ -1988,6 +2204,8 @@ The problem is that your bulk QR code generation in the RestaurantsTable compone
   
     // Define a handler for toggling selection
 ```
+
+</details>
 
 ---
 
@@ -2017,7 +2235,15 @@ Let's update the bulk QR code handling to fix the issue where the table doesn't 
 
 ---
 
+<details><summary>Edit file: src/hooks/use-handle-bulk-qr-code.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -3,4 +3,5 @@
   import {useHandleQRCode} from './use-handle-qr-code'
   import type {Restaurant} from '@/types/db'
 + import {useCallback, useEffect} from 'react'
@@ -2025,7 +2251,11 @@ Let's update the bulk QR code handling to fix the issue where the table doesn't 
   interface BulkQRCodeOptions {
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: 3
+
 ```diff
+@@ -14,15 +15,18 @@
     const originalHandleSaveAll = qrCodeHook.handleSaveAll
   
 -   const handleSaveAll = async () => {
@@ -2049,13 +2279,23 @@ Let's update the bulk QR code handling to fix the issue where the table doesn't 
     return {
 ```
 
+</details>
+
 ---
 
 Let's also make sure the QRCodeManager component properly updates after saving:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 5
+
 ```diff
+@@ -118,12 +118,13 @@
     } = useHandleQRCode({restaurant, mode: 'single'})
   
 -   // Wrap handleSave to call onUpdate callback after successful save
@@ -2075,6 +2315,8 @@ Let's also make sure the QRCodeManager component properly updates after saving:
   
     // Check for downloadSupported
 ```
+
+</details>
 
 ---
 
@@ -2120,7 +2362,15 @@ I'll improve the QR code generation interface to make it less confusing and fix 
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -36,5 +36,5 @@
   }
   
 - // Updated download function to convert SVG to PNG with linter fixes and event listener for error
@@ -2129,7 +2379,11 @@ I'll improve the QR code generation interface to make it less confusing and fix 
     element: HTMLDivElement | null,
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -116,5 +116,5 @@
       error,
       qrRef,
 -   } = useHandleQRCode({restaurant, mode: 'single'})
@@ -2138,7 +2392,11 @@ I'll improve the QR code generation interface to make it less confusing and fix 
     // Use effect to monitor success state changes and call onUpdate
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -125,5 +125,5 @@
     }, [success, onUpdate])
   
 -   // Pass through the original handleSave without modifications
@@ -2147,7 +2405,11 @@ I'll improve the QR code generation interface to make it less confusing and fix 
   
 ```
 
+**Chunk 4**
+Lines added: 118, lines removed: 19
+
 ```diff
+@@ -196,31 +196,130 @@
           <DialogContent className='max-w-md p-6'>
             <DialogHeader>
 -             <DialogTitle>QR Code Manager</DialogTitle>
@@ -2299,13 +2561,23 @@ I'll improve the QR code generation interface to make it less confusing and fix 
         </Dialog>
 ```
 
+</details>
+
 ---
 
 Let's fix the remaining linter errors:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -7,4 +7,5 @@
   import {useHandleQRCode} from '@/hooks/use-handle-qrCode'
   import type {Restaurant} from '@/types/db'
 + import type {UseHandleQRCodeProps} from '@/hooks/use-handle-qr-code'
@@ -2313,7 +2585,11 @@ Let's fix the remaining linter errors:
     Dialog,
 ```
 
+**Chunk 2**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -35,4 +36,10 @@
     onUpdate?: () => void
   }
 + 
@@ -2326,7 +2602,11 @@ Let's fix the remaining linter errors:
   // Download function to convert SVG to PNG
 ```
 
+**Chunk 3**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -104,4 +111,5 @@
     onUpdate,
   }: QRCodeManagerProps) {
 +   // Use proper typing for the hook props
@@ -2334,7 +2614,11 @@ Let's fix the remaining linter errors:
       qrCodeDataUrl,
 ```
 
+**Chunk 4**
+Lines added: 2, lines removed: 2
+
 ```diff
+@@ -116,8 +124,8 @@
       error,
       qrRef,
 -   } = useHandleQRCode({restaurant, mode: 'single'} as any)
@@ -2347,19 +2631,31 @@ Let's fix the remaining linter errors:
         onUpdate()
 ```
 
+</details>
+
 ---
 
 Let's fix the final error:
 
 ---
 
+<details><summary>Edit file: src/app/admin/restaurants/qr-code-manager.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -7,5 +7,4 @@
   import {useHandleQRCode} from '@/hooks/use-handle-qrCode'
   import type {Restaurant} from '@/types/db'
 - import type {UseHandleQRCodeProps} from '@/hooks/use-handle-qr-code'
   import {
     Dialog,
 ```
+
+</details>
 
 ---
 
@@ -2452,7 +2748,15 @@ I'll update both files to ensure they reflect the latest model changes.
 
 ---
 
+<details><summary>Edit file: src/db/models/restaurants/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -1,5 +1,5 @@
   "use server";
   
 - import { eq } from "drizzle-orm";
@@ -2461,7 +2765,11 @@ I'll update both files to ensure they reflect the latest model changes.
   import { restaurants, restaurantDeals } from "@/db/drizzle/schema";
 ```
 
+**Chunk 2**
+Lines added: 4, lines removed: 1
+
 ```diff
+@@ -27,5 +27,8 @@
   
   	// First get total count for pagination metadata
 - 	const totalCount = await db.query.restaurants.count();
@@ -2473,9 +2781,19 @@ I'll update both files to ensure they reflect the latest model changes.
   	// Then get the paginated data
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/db/models/restaurants/restaurants.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -43,5 +43,5 @@
   
   	// Add count metadata to each restaurant
 - 	const restaurants = restaurantsList.map((restaurant) => ({
@@ -2484,7 +2802,11 @@ I'll update both files to ensure they reflect the latest model changes.
   		punchCardCount: restaurant?.punchCards?.length || 0,
 ```
 
+**Chunk 2**
+Lines added: 1, lines removed: 1
+
 ```diff
+@@ -51,5 +51,5 @@
   	// Return both the restaurants and pagination metadata
   	return {
 - 		restaurants,
@@ -2493,11 +2815,13 @@ I'll update both files to ensure they reflect the latest model changes.
   			total: totalCount,
 ```
 
+</details>
+
 ---
 
 <details>
-            <summary>Searched codebase "restaurantSchema" • **25** results</summary>
-        
+                <summary>Searched codebase "restaurantSchema" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/types/schemas.ts` | L206-224 |
@@ -2531,8 +2855,8 @@ I'll update both files to ensure they reflect the latest model changes.
 ---
 
 <details>
-            <summary>Searched codebase "restaurants-table.tsx columns" • **25** results</summary>
-        
+                <summary>Searched codebase "restaurants-table.tsx columns" • **25** results</summary>
+            
 | File | Lines |
 |------|-------|
 | `src/components/admin/restaurants-table.tsx` | L486-529 |
@@ -2569,7 +2893,15 @@ Now I'll update both files to align with the latest schema changes:
 
 ---
 
+<details><summary>Edit file: src/types/schemas.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -216,4 +216,10 @@
   	address: z.string(),
   	qrCodeUrl: z.string().url().nullable(),
 + 	code: z.number().int().nullable().optional(),
@@ -2582,9 +2914,19 @@ Now I'll update both files to align with the latest schema changes:
   	dealCount: z.number().int().min(0).optional(),
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 53, lines removed: 22
+
 ```diff
+@@ -419,26 +419,57 @@
         cell: EditableCell,
       },
 -     // {
@@ -2666,7 +3008,11 @@ Now I'll update both files to align with the latest schema changes:
         accessorKey: 'qrCodeUrl',
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 1
+
 ```diff
+@@ -528,5 +559,4 @@
         meta: {editable: false} as ColumnMeta,
       },
 - 
@@ -2674,9 +3020,19 @@ Now I'll update both files to align with the latest schema changes:
         id: 'actions',
 ```
 
+</details>
+
 ---
 
+<details><summary>Edit file: src/types/db.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 7, lines removed: 1
+
 ```diff
+@@ -29,6 +29,12 @@
   	imageUrl: string;
   	address: string;
 - 	deals?: Deal[];
@@ -2692,19 +3048,31 @@ Now I'll update both files to align with the latest schema changes:
   	punchCards?: PunchCard[];
 ```
 
+</details>
+
 ---
 
 It looks like there might be other places in the db.ts file where the prizes field is defined but with inconsistent types. Let's fix those:
 
 ---
 
+<details><summary>Edit file: src/types/db.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: undefined
+
 ```diff
+@@ -39,4 +39,5 @@
   	punchCardCount?: number;
   	punchCards?: PunchCard[];
 + 	prizes?: Prize[];
   };
   
 ```
+
+</details>
 
 ---
 
@@ -2720,7 +3088,15 @@ I see the issue - there are multiple declarations of the RestaurantDetailPayload
 
 ---
 
+<details><summary>Edit file: src/types/db.ts</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: 1
+
 ```diff
+@@ -92,5 +92,10 @@
   
   export interface RestaurantDetailPayload extends Restaurant {
 - 	prizes: Prize[];
@@ -2734,7 +3110,11 @@ I see the issue - there are multiple declarations of the RestaurantDetailPayload
   
 ```
 
+**Chunk 2**
+Lines added: undefined, lines removed: 18
+
 ```diff
+@@ -185,21 +190,3 @@
   	updatedAt: Date;
   };
 - 
@@ -2757,6 +3137,8 @@ I see the issue - there are multiple declarations of the RestaurantDetailPayload
 - }
   
 ```
+
+</details>
 
 ---
 
@@ -2821,7 +3203,15 @@ I'll update the column configuration to include all new restaurant fields from t
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 36, lines removed: undefined
+
 ```diff
+@@ -419,4 +419,40 @@
         cell: EditableCell,
       },
 +     {
@@ -2864,7 +3254,11 @@ I'll update the column configuration to include all new restaurant fields from t
         accessorKey: 'address',
 ```
 
+**Chunk 2**
+Lines added: 54, lines removed: undefined
+
 ```diff
+@@ -472,4 +508,58 @@
         cell: EditableCell,
       },
 +     {
@@ -2925,13 +3319,23 @@ I'll update the column configuration to include all new restaurant fields from t
         accessorKey: 'qrCodeUrl',
 ```
 
+</details>
+
 ---
 
 Now that I've added all the new columns from the database schema, I need to update the edit cell functionality to ensure getColumnIcon returns the right icon for the new fields:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 6, lines removed: undefined
+
 ```diff
+@@ -33,4 +33,10 @@
     ChevronsLeft,
     ChevronsRight,
 +   User,
@@ -2944,7 +3348,11 @@ Now that I've added all the new columns from the database schema, I need to upda
   import {Checkbox} from '@/components/ui/checkbox'
 ```
 
+**Chunk 2**
+Lines added: 12, lines removed: undefined
+
 ```diff
+@@ -186,4 +192,16 @@
         case 'imageUrl':
           return <ImageIcon className='h-4 w-4 text-sidebar-foreground/50 mr-2' />
 +       case 'contactName':
@@ -2963,13 +3371,23 @@ Now that I've added all the new columns from the database schema, I need to upda
           return null
 ```
 
+</details>
+
 ---
 
 Finally, I need to make sure the mobile view also displays these new fields appropriately:
 
 ---
 
+<details><summary>Edit file: src/components/admin/restaurants-table.tsx</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 62, lines removed: undefined
+
 ```diff
+@@ -1104,4 +1104,66 @@
                         </div>
                       )}
 + 
@@ -3037,6 +3455,8 @@ Finally, I need to make sure the mobile view also displays these new fields appr
   
                       {/* Status badges and info */}
 ```
+
+</details>
 
 ---
 

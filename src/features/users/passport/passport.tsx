@@ -62,7 +62,7 @@ export function Passport({punches}: PassportProps) {
               {activePunchCardData?.restaurant?.name}
             </h3>
             <p className='text-xs text-white/70'>
-              Click any punch below to view details
+              Click any stamp below to view details
             </p>
             <div className='absolute right-4 top-4 z-30'>
               <SharePunchMenu
@@ -97,7 +97,7 @@ export function Passport({punches}: PassportProps) {
 
           {punches.length === 0 && (
             <div className='py-8 text-center text-muted-foreground'>
-              You haven't earned any punches yet. Visit a restaurant to get
+              You haven't earned any stamps yet. Visit a restaurant to get
               started!
             </div>
           )}
