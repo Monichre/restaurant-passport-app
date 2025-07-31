@@ -2,9 +2,7 @@
 import {BoxReveal} from '@/components/magicui/box-reveal'
 import {Button} from '@/components/ui/button'
 import {useUserContext} from '@/context/user-context'
-import {cn} from '@/lib/utils'
-import {SignedIn, SignUpButton} from '@clerk/nextjs'
-import {BookUser} from 'lucide-react'
+import {SignUpButton} from '@clerk/nextjs'
 
 import {motion} from 'motion/react'
 import Image from 'next/image'

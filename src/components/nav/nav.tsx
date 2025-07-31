@@ -5,15 +5,7 @@ import {Button} from '@/components/ui/button'
 import {cn} from '@/lib/utils'
 import Link from 'next/link'
 
-import {
-  SignedIn,
-  SignInButton,
-  SignOutButton,
-  SignUp,
-  SignUpButton,
-  useSession,
-  useUser,
-} from '@clerk/nextjs'
+import {SignUpButton, useSession} from '@clerk/nextjs'
 import {
   Trophy,
   type User,
@@ -346,7 +338,7 @@ export const Nav = () => {
             )}
 
             {!currentUser && (
-              <SignInButton mode='modal'>
+              <SignUpButton mode='modal'>
                 <Button
                   variant='ghost'
                   size='sm'
@@ -358,7 +350,7 @@ export const Nav = () => {
                   <UserPlus className='h-6 w-6 text-white' />
                   <span className='text-xs font-semibold mt-1'>Sign Up</span>
                 </Button>
-              </SignInButton>
+              </SignUpButton>
             )}
           </motion.div>
         </motion.nav>
