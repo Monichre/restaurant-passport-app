@@ -147,6 +147,15 @@ export function RestaurantDetail({
               pointerEvents: 'none',
             }}
           />
+          <div
+            className='absolute inset-0 w-full h-full'
+            style={{
+              backgroundColor: '#ed8025',
+              opacity: 0.2,
+              mixBlendMode: 'screen',
+              pointerEvents: 'none',
+            }}
+          />
 
           {/* Floating Sparkles */}
           <motion.div
@@ -260,6 +269,8 @@ export function RestaurantDetail({
               </pattern>
             </defs>
           </svg> */}
+<<<<<<< HEAD
+=======
         </motion.div>
 
         <motion.div
@@ -365,6 +376,7 @@ export function RestaurantDetail({
               </span>
             </motion.div>
           </div>
+>>>>>>> main
         </motion.div>
 
         {/* Bento Grid Layout */}
