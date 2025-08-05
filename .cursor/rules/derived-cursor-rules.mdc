@@ -1,6 +1,11 @@
 ---
 description: AI rules derived by SpecStory from the project AI interaction history
 globs: *
+alwaysApply: false
+---
+---
+description: AI rules derived by SpecStory from the project AI interaction history
+globs: *
 ---
 
 ## HEADERS
