@@ -17,8 +17,10 @@ export default async function AdminLayout({
 
   // Redirect non-admins away
   if (
-    session?.sessionClaims?.metadata?.role &&
-    session?.sessionClaims?.metadata?.role === 'admin'
+    session &&
+    session.sessionClaims &&
+    session.sessionClaims.metadata &&
+    session.sessionClaims.metadata.role === 'admin'
   ) {
     return <AdminUI>{children}</AdminUI>
   }
