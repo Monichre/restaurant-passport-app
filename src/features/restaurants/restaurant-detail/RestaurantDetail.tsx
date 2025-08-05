@@ -2,11 +2,6 @@
 
 import {getUserByClerkId} from '@/db/models/users/users'
 
-import {DealsList} from '@/features/deals'
-import {
-  PunchCard,
-  PUNCH_THRESHOLD,
-} from '@/components/ui/restaurant-specific-user-punch-card'
 import type {
   Deal,
   PunchCard as PunchCardType,
@@ -31,8 +26,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import {useUserDistanceFromRestaurant} from '@/hooks/useUserDistance'
-import NotificationCard from '@/components/NotificationCard'
-import {cn, isValidUrl} from '@/lib/utils'
+
 import {motion, AnimatePresence} from 'motion/react'
 import {BoxReveal} from '@/components/magicui/box-reveal'
 import {useMediaQuery} from 'usehooks-ts'
@@ -143,6 +137,15 @@ export function RestaurantDetail({
             style={{
               backgroundColor: '#ed8025',
               opacity: 0.6,
+              mixBlendMode: 'screen',
+              pointerEvents: 'none',
+            }}
+          />
+          <div
+            className='absolute inset-0 w-full h-full'
+            style={{
+              backgroundColor: '#ed8025',
+              opacity: 0.2,
               mixBlendMode: 'screen',
               pointerEvents: 'none',
             }}
