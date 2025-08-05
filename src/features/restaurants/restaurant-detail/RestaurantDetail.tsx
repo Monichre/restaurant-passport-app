@@ -2,11 +2,6 @@
 
 import {getUserByClerkId} from '@/db/models/users/users'
 
-import {DealsList} from '@/features/deals'
-import {
-  PunchCard,
-  PUNCH_THRESHOLD,
-} from '@/components/ui/restaurant-specific-user-punch-card'
 import type {
   Deal,
   PunchCard as PunchCardType,
@@ -31,8 +26,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import {useUserDistanceFromRestaurant} from '@/hooks/useUserDistance'
-import NotificationCard from '@/components/NotificationCard'
-import {cn, isValidUrl} from '@/lib/utils'
+
 import {motion, AnimatePresence} from 'motion/react'
 import {BoxReveal} from '@/components/magicui/box-reveal'
 import {useMediaQuery} from 'usehooks-ts'
@@ -269,8 +263,6 @@ export function RestaurantDetail({
               </pattern>
             </defs>
           </svg> */}
-<<<<<<< HEAD
-=======
         </motion.div>
 
         <motion.div
@@ -376,7 +368,6 @@ export function RestaurantDetail({
               </span>
             </motion.div>
           </div>
->>>>>>> main
         </motion.div>
 
         {/* Bento Grid Layout */}
