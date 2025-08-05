@@ -11,15 +11,18 @@ export default async function AdminLayout({
   children: React.ReactNode
 }) {
   // Perform authentication and authorization checks
-  const session = await auth()
+  const session: any = await auth()
 
   console.log('🚀 ~ AdminLayout ~ session:', session)
 
   // Redirect non-admins away
-  if (!session?.userId || !isAdmin({id: session.userId})) {
-    redirect('/')
+  if (
+    session?.sessionClaims?.metadata?.role &&
+    session?.sessionClaims?.metadata?.role === 'admin'
+  ) {
+    return <AdminUI>{children}</AdminUI>
   }
 
   // Render the admin UI with the SidebarProvider (which uses "use client")
-  return <AdminUI>{children}</AdminUI>
+  return redirect('/')
 }
