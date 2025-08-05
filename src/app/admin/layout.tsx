@@ -13,6 +13,8 @@ export default async function AdminLayout({
   // Perform authentication and authorization checks
   const session = await auth()
 
+  console.log('🚀 ~ AdminLayout ~ session:', session)
+
   // Redirect non-admins away
   if (!session?.userId || !isAdmin({id: session.userId})) {
     redirect('/')

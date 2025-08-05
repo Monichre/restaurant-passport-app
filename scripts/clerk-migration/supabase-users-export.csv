@@ -1,0 +1,62 @@
+id,clerk_id,name,is_staff,is_admin,email,phone,dev_clerk_id
+1,user_2tYiqnTGiP8byuUu4XBmfu6eNZ0,Sam Morrow,false,true,sam@clubhausagency.com,320-219-8802,user_2tYiqnTGiP8byuUu4XBmfu6eNZ0
+2,user_2su5eFUSw9IPPmzZAxT6s8VFOnY,Liam Ellis,false,true,liamhellis@gmail.com,929-438-9388,user_2su5eFUSw9IPPmzZAxT6s8VFOnY
+4,user_2trmssUcW7dAhK86eFyKv7fwk3g,null null,false,false,4qs85df9x9@privaterelay.appleid.com,,user_2trmssUcW7dAhK86eFyKv7fwk3g
+12,user_2u0KeqWjvvt7h7cZMiDRazqy5gW,Sam Morrow,false,false,sammorrow147@gmail.com,,user_2u0KeqWjvvt7h7cZMiDRazqy5gW
+20,user_2uRys7M40IYoYTGU8zdeEraLuuu,Anne Butters,false,true,aanderson1718@gmail.com,,user_2uRys7M40IYoYTGU8zdeEraLuuu
+21,user_2urg4KmXZbF5kzD77WSfUMSmvWx,Angelica Pineiro,false,false,angelicampineiro@gmail.com,,user_2urg4KmXZbF5kzD77WSfUMSmvWx
+28,user_2utu6g3x33xqFX8UdjyDJkz1WDE,Amy,false,false,amyellis3@gmail.com,,user_2utu6g3x33xqFX8UdjyDJkz1WDE
+37,user_2vFHArmiQSqiZgOXtZ2jPjg7XJD,Brendan,false,false,bellis3250@gmail.com,,user_2vFHArmiQSqiZgOXtZ2jPjg7XJD
+42,user_2vja5y7KIBQzwkU99uVmfz9amYe,Dev Guy,false,false,dev@ultraterrestrial.app,,user_2vja5y7KIBQzwkU99uVmfz9amYe
+43,user_2yCHMJRfhAxg9MggiOpEmfVOynd,Liam Ellis,false,false,liam@agencyunderground.com,,user_2yCHMJRfhAxg9MggiOpEmfVOynd
+44,user_2ymPkBb3cKjz5VVDfIjxKI2zRga,null null,false,false,greg@experiencemaplegrove.com,,user_2ymPkBb3cKjz5VVDfIjxKI2zRga
+47,user_30FOmlA3iNFJBPf09MAj101Q0Bd,takeprofit,false,false,takeprofit@comcast.net,,user_30FOmlA3iNFJBPf09MAj101Q0Bd
+48,user_3038Zkc2XB6FfLohIAP4c3AvlQP,maryjrandolph,false,false,maryjrandolph@gmail.com,,user_3038Zkc2XB6FfLohIAP4c3AvlQP
+49,user_2zmmZnhkzrjYhADl8puaWfiw3lj,Gina Magstadt,false,false,upgina@gmail.com,,user_2zmmZnhkzrjYhADl8puaWfiw3lj
+50,user_2zK9bQDX5Tr11VXQMgBO8rm5Ztm,mash4077don,false,false,mash4077don@gmail.com,,user_2zK9bQDX5Tr11VXQMgBO8rm5Ztm
+51,user_2z9X0fkEjpDSVmQXvLfNWDcxEnu,bkalscheuer,false,false,bkalscheuer@comcast.net,,user_2z9X0fkEjpDSVmQXvLfNWDcxEnu
+52,user_2z8Uqvb2EWr11wpC6AjE1cOCL0x,hansota9452,false,false,hansota9452@gmail.com,,user_2z8Uqvb2EWr11wpC6AjE1cOCL0x
+53,user_2z4fJneFM7ZcA94ma4srnVM7goW,kouathao09+admin,false,false,kouathao09+admin@gmail.com,,user_2z4fJneFM7ZcA94ma4srnVM7goW
+54,user_2yxjmK8hWImgspugopsBOg8aOac,kouathao09,false,false,kouathao09@gmail.com,,user_2yxjmK8hWImgspugopsBOg8aOac
+55,user_2ysYwp2q97M4QfkMz4Ds9qYFjbw,drsteven52,false,false,drsteven52@gmail.com,,user_2ysYwp2q97M4QfkMz4Ds9qYFjbw
+56,user_2ys3Qup3qGz1G09kXBZPpuciuJR,bree.plessel,false,false,bree.plessel@gmail.com,,user_2ys3Qup3qGz1G09kXBZPpuciuJR
+57,user_2yrv3WAkotO7DV8TxjRmmJTi97Z,Emily Karevold,false,false,emily.karevold@gmail.com,,user_2yrv3WAkotO7DV8TxjRmmJTi97Z
+58,user_2yrbhte5umti5tLOEXcifEvkRX3,Daniel Reichert,false,false,daniel.k.reichert@gmail.com,,user_2yrbhte5umti5tLOEXcifEvkRX3
+59,user_2yrRexSnloT6Dby5VFZyRwK76Vv,Jennifer Lynch,false,false,jenniferstone7@yahoo.com,,user_2yrRexSnloT6Dby5VFZyRwK76Vv
+60,user_2yqcQBPuAwy6BMQ137X7UxdEqr4,Laura Snyder,false,false,snla0501@gmail.com,,user_2yqcQBPuAwy6BMQ137X7UxdEqr4
+61,user_2ypkgSVigbMLHM6TRf3e1uuhqYR,andreagraham510,false,false,andreagraham510@gmail.com,,user_2ypkgSVigbMLHM6TRf3e1uuhqYR
+62,user_2ypJttKoHpkR07MmybmOMNhKjQq,labrosse2,false,false,labrosse2@gmail.com,,user_2ypJttKoHpkR07MmybmOMNhKjQq
+88,user_30L1dOf8tdRD2YZmmbUnEfLqAct,Liam Ellis,false,false,liam@liamellis.dev,,user_30L1dOf8tdRD2YZmmbUnEfLqAct
+89,user_30L1quQChkXowthr71jYAyEHiWz,Sam M,false,false,whayjcyyyy@gmail.com,,user_30L1quQChkXowthr71jYAyEHiWz
+90,user_30LHVxYyfKZFIdL8AulO9CZ3kfB,Darby Shaw,false,false,darby@clubhausagency.com,,user_30LHVxYyfKZFIdL8AulO9CZ3kfB
+91,user_30LI8YYitWTe1NBDbJNlMo6Jv11,Darby Shaw,false,false,darbyshaw00@gmail.com,,user_30LI8YYitWTe1NBDbJNlMo6Jv11
+92,user_30LJEL5fDafGim6n7PSFTKYXqEF,sam+1,false,false,sam+1@clubhausagency.com,,user_30LJEL5fDafGim6n7PSFTKYXqEF
+93,user_30LxaPCaL1AqZ56iRqxXol5RtZn,Sam Morrow,false,false,sm073345678@gmail.com,,user_30LxaPCaL1AqZ56iRqxXol5RtZn
+94,user_30Npd3W65lJyMLJQmxcik2M1f0Q,Jess Wemeier,false,false,agentjess96@gmail.com,,user_30Npd3W65lJyMLJQmxcik2M1f0Q
+95,user_30NqPoFzT2J5tLw3jzVHOu9Bhbf,Angelica Lim,false,false,angelica.r226@gmail.com,,user_30NqPoFzT2J5tLw3jzVHOu9Bhbf
+96,user_30O5FfZYAXr8CfbrQtBmtAm1hS3,Tinelle  Kuglin,false,false,kuglintinelle@gmail.com,,user_30O5FfZYAXr8CfbrQtBmtAm1hS3
+97,user_30OREzn7oxopm7XIre9PEqbcJvd,Austin Letcher,false,false,austin.r.letcher@gmail.com,,user_30OREzn7oxopm7XIre9PEqbcJvd
+98,user_30Y0dSS7rDy0fU8QrK45gF44g9c,Greg Anzelc,false,false,president@experiencemaplegrove.com,,user_30Y0dSS7rDy0fU8QrK45gF44g9c
+99,user_30eLGDp0DiLb83au88BC15hk8aL,Sam Morrow,false,false,sam+2@clubhausagency.com,,user_30eLGDp0DiLb83au88BC15hk8aL
+100,user_30ee785yUZdJHhVGwjxTBBwRkwD,Sam Morrow,false,false,sam+3@clubhausagency.com,,user_30ee785yUZdJHhVGwjxTBBwRkwD
+101,user_30eedXZZv2IDaatGouFI6w2cbA1,Mo Fo,false,false,sam+5@clubhausagency.com,,user_30eedXZZv2IDaatGouFI6w2cbA1
+102,user_30efQkI6AxfQGi65Zr1UMknjNtF,Test Man,false,false,sam+6@clubhausagency.com,,user_30efQkI6AxfQGi65Zr1UMknjNtF
+103,user_30enQ9UeQi37KveZae5VNs1ICT5,Yo Yo,false,false,sam+9@clubhausagency.com,,user_30enQ9UeQi37KveZae5VNs1ICT5
+104,user_30eqz6LOe8r8tmj9jhXtAJhJl3o,Sam Mor,false,false,sam+10@clubhausagency.com,,user_30eqz6LOe8r8tmj9jhXtAJhJl3o
+105,user_30gZU7iZKuCexKKLHy3nPsICf4s,BreAnn Tucker,false,false,breann.tucker@gmail.com,,user_30gZU7iZKuCexKKLHy3nPsICf4s
+106,user_30guPCaC2j1eOL6d5xOgpw4KEPX,Don Rowan,false,false,reallybigbearsfan@yahoo.com,,user_30guPCaC2j1eOL6d5xOgpw4KEPX
+107,user_30hFKXStD3OsyQ04rMHASU1UfR2,Heidi Ortiz,false,false,ortizrestaurants@hotmail.com,,user_30hFKXStD3OsyQ04rMHASU1UfR2
+108,user_30hIQ7wipXe1PThXCoygcNRMAHi,Chad Hannu,false,false,chadh202020@gmail.com,,user_30hIQ7wipXe1PThXCoygcNRMAHi
+109,user_30hJWKLYDVO41QgMLuUrTwk5qVh,Nancy Breeding,false,false,nbreeding6711@gmail.com,,user_30hJWKLYDVO41QgMLuUrTwk5qVh
+110,user_30hMeBN0E4JBIzqMEhiBflpsHS0,Sarah Mcdaniel,false,false,sarah.m.bonneville@gmail.com,,user_30hMeBN0E4JBIzqMEhiBflpsHS0
+111,user_30jSvecDj5DQ0XxeQi9hbT03RAp,Brooke Voller,false,false,bvoller@comcast.net,,user_30jSvecDj5DQ0XxeQi9hbT03RAp
+112,user_30jhmBg9FqMGoqSW790QUjSqLDI,Rajesh Selvaraj,false,false,raj@pizzakarma.com,,user_30jhmBg9FqMGoqSW790QUjSqLDI
+113,user_30joJ9fVRSFSKVBngzVImpwL7w9,Diana Wu,false,false,firiona@gmail.com,,user_30joJ9fVRSFSKVBngzVImpwL7w9
+114,user_30mPYvuTVkp17Rm6bB8DcZ1kWxh,crystal robles,false,false,crystal.robles1996@gmail.com,,user_30mPYvuTVkp17Rm6bB8DcZ1kWxh
+115,user_30mtZRmFyVONmi2cc0rUhleJihr,Kari Dahlen,false,false,kari.dahlen4@gmail.com,,user_30mtZRmFyVONmi2cc0rUhleJihr
+116,user_30nc3AUCrbj8vQrsIheQCalm1T1,Crystal Elizabeth,false,false,cdlovesmail@yahoo.com,,user_30nc3AUCrbj8vQrsIheQCalm1T1
+117,user_30p0LdUBzn7FXZ0KOPu59SjOJsn,Stephen Hearn,false,false,swhearn0807@comcast.net,,user_30p0LdUBzn7FXZ0KOPu59SjOJsn
+118,user_30pMujcil4W9Gql6hsbSMTSLB5P,Lisa Albers,false,false,lisa@rushcreek.com,,user_30pMujcil4W9Gql6hsbSMTSLB5P
+119,user_30qL1q1zxRfzAS2yLltHbl4ilyP,Kirsten Iwanski,false,false,kiwanskishop@gmail.com,,user_30qL1q1zxRfzAS2yLltHbl4ilyP
+120,user_30qMpwcMtXBKyhmYlmop9T5IkqR,Julie Titchner,false,false,titchnerjulie@gmail.com,,user_30qMpwcMtXBKyhmYlmop9T5IkqR
+121,user_30qUnDayYXdlrDOewWFEhF7qYvX,Tierney Hanna,false,false,tierney61792@gmail.com,,user_30qUnDayYXdlrDOewWFEhF7qYvX

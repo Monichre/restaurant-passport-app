@@ -1,0 +1,676 @@
+[
+  {
+    "userId": "user_2su5eFUSw9IPPmzZAxT6s8VFOnY",
+    "email": "liamhellis@gmail.com",
+    "firstName": "Liam",
+    "lastName": "Ellis",
+    "password": "$2a$10$RUjFbrlU01syKSFQea6kYetr/Czs4sD223o7T5oMU6X6sxpRnIr9W",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {},
+    "public_metadata": {
+      "role": "admin"
+    },
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2tYiqnTGiP8byuUu4XBmfu6eNZ0",
+    "email": "sam@clubhausagency.com",
+    "firstName": "Sam",
+    "lastName": "Morrow",
+    "private_metadata": {},
+    "public_metadata": {
+      "role": "admin",
+      "databaseUserId": 1
+    },
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2u0KeqWjvvt7h7cZMiDRazqy5gW",
+    "email": "sammorrow147@gmail.com",
+    "firstName": "Sam",
+    "lastName": "Morrow",
+    "private_metadata": {},
+    "public_metadata": {
+      "databaseUserId": 12
+    },
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2uRys7M40IYoYTGU8zdeEraLuuu",
+    "email": "aanderson1718@gmail.com",
+    "firstName": "Anne",
+    "lastName": "Butters Anderson",
+    "private_metadata": {},
+    "public_metadata": {
+      "role": "admin",
+      "databaseUserId": 20
+    },
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2vja5y7KIBQzwkU99uVmfz9amYe",
+    "email": "dev@ultraterrestrial.app",
+    "password": "$2a$10$LP/bHW9111G0RdVvKzSY7OHNSQRIc7G7t4JoUBG3K1.Q8LM5B99TC",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {},
+    "public_metadata": {
+      "role": "user",
+      "databaseUserId": 42
+    },
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2ymPkBb3cKjz5VVDfIjxKI2zRga",
+    "email": "greg@experiencemaplegrove.com",
+    "password": "$2a$10$9Onyx7ZkALU1AyWKzT8ss.0IJ/ugu8dQXx.dJJ7ZC1Uxj4/DfZtU6",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {},
+    "public_metadata": {
+      "databaseUserId": "44"
+    },
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2ypJttKoHpkR07MmybmOMNhKjQq",
+    "email": "labrosse2@gmail.com",
+    "password": "$2a$10$yBq2aw4meWSd7Oqew8i2iOSFkgsh1CDloWj0MGiIVceadIuT3JSbS",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "62"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2ypkgSVigbMLHM6TRf3e1uuhqYR",
+    "email": "andreagraham510@gmail.com",
+    "password": "$2a$10$Qmbhjh/VbpKDFahAnw6rJubtgGPiEoH/5z.bFsb.4O3wvuPJ6ARZ.",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "61"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2yqcQBPuAwy6BMQ137X7UxdEqr4",
+    "email": "snla0501@gmail.com",
+    "firstName": "Laura",
+    "lastName": "Snyder",
+    "private_metadata": {
+      "supabaseUserId": "60"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2yrbhte5umti5tLOEXcifEvkRX3",
+    "email": "daniel.k.reichert@gmail.com",
+    "firstName": "Daniel",
+    "lastName": "Reichert",
+    "private_metadata": {
+      "supabaseUserId": "58"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2yrRexSnloT6Dby5VFZyRwK76Vv",
+    "email": "jenniferstone7@yahoo.com",
+    "firstName": "Jennifer",
+    "lastName": "Lynch",
+    "private_metadata": {
+      "supabaseUserId": "59"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2yrv3WAkotO7DV8TxjRmmJTi97Z",
+    "email": "emily.karevold@gmail.com",
+    "firstName": "Emily",
+    "lastName": "Karevold",
+    "private_metadata": {
+      "supabaseUserId": "57"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2ys3Qup3qGz1G09kXBZPpuciuJR",
+    "email": "bree.plessel@gmail.com",
+    "password": "$2a$10$GLLaJ7Gc67Ir8YCYsO0Ba.YB/WfTJCG6RbZSNM867NAJQ1lgX8V9C",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "56"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2ysYwp2q97M4QfkMz4Ds9qYFjbw",
+    "email": "drsteven52@gmail.com",
+    "password": "$2a$10$6DY.sJuf4VpF.9v5i.lFnuPYna5w6DQYeWe4DO2Psxh21LjoY9eJ6",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "55"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2yxjmK8hWImgspugopsBOg8aOac",
+    "email": "kouathao09@gmail.com",
+    "password": "$2a$10$pObPH44VFXhgpt0T8tAQseXmmgec2nzYl78hzRIXIOEuU5F9OArrK",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "54"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2z4fJneFM7ZcA94ma4srnVM7goW",
+    "email": "kouathao09+admin@gmail.com",
+    "password": "$2a$10$cKzKMkSiDrm0CXlm9QRLO.zRZ/3bnP9jUr1Xrv4YHYcm.wqEOYuVS",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "53"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2z8Uqvb2EWr11wpC6AjE1cOCL0x",
+    "email": "hansota9452@gmail.com",
+    "password": "$2a$10$GUXJ6F0x2wmtmQtnoO1j6uXf2dxxw.taBhqK.C0q9a8QkG1XoXp3G",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "52"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2z9X0fkEjpDSVmQXvLfNWDcxEnu",
+    "email": "bkalscheuer@comcast.net",
+    "password": "$2a$10$fAc3g2DwC4sVlrSiPAuV1.8W0IwiWZV9q3IoNFqvUP8Y7kTizg4yS",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "51"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2zK9bQDX5Tr11VXQMgBO8rm5Ztm",
+    "email": "mash4077don@gmail.com",
+    "password": "$2a$10$5P4YcvQWywH6XvUSgawVf.a9BJHqwM8dQpfrRbGSMQZtUdfOTtNkK",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "50"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_2zmmZnhkzrjYhADl8puaWfiw3lj",
+    "email": "upgina@gmail.com",
+    "firstName": "Gina",
+    "lastName": "Magstadt",
+    "private_metadata": {
+      "supabaseUserId": "49"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_3038Zkc2XB6FfLohIAP4c3AvlQP",
+    "email": "maryjrandolph@gmail.com",
+    "password": "$2a$10$dG73N9QH55Go.iLqw4f02uhiFNW3YnEWdjaYyhWOruc3/BqtX2qdO",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "48"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30ee785yUZdJHhVGwjxTBBwRkwD",
+    "email": "sam+3@clubhausagency.com",
+    "firstName": "Sam",
+    "lastName": "Morrow",
+    "private_metadata": {
+      "databaseId": "100",
+      "supabaseUserId": "100"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30eedXZZv2IDaatGouFI6w2cbA1",
+    "email": "sam+5@clubhausagency.com",
+    "firstName": "Mo",
+    "lastName": "Fo ",
+    "private_metadata": {
+      "databaseId": "101",
+      "supabaseUserId": "101"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30efQkI6AxfQGi65Zr1UMknjNtF",
+    "email": "sam+6@clubhausagency.com",
+    "firstName": "Test",
+    "lastName": "Man ",
+    "private_metadata": {
+      "databaseId": "102",
+      "supabaseUserId": "102"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30eLGDp0DiLb83au88BC15hk8aL",
+    "email": "sam+2@clubhausagency.com",
+    "firstName": "Sam",
+    "lastName": "Morrow",
+    "private_metadata": {
+      "databaseId": "99",
+      "supabaseUserId": "99"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30enQ9UeQi37KveZae5VNs1ICT5",
+    "email": "sam+9@clubhausagency.com",
+    "firstName": "Yo",
+    "lastName": "Yo",
+    "private_metadata": {
+      "databaseId": "103",
+      "supabaseUserId": "103"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30eqz6LOe8r8tmj9jhXtAJhJl3o",
+    "email": "sam+10@clubhausagency.com",
+    "firstName": "Sam",
+    "lastName": "Mor",
+    "private_metadata": {
+      "databaseId": "104",
+      "supabaseUserId": "104"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30FOmlA3iNFJBPf09MAj101Q0Bd",
+    "email": "takeprofit@comcast.net",
+    "password": "$2a$10$XRcqGKYDIs4/6II/Z/lRZerIfKony4gR4tTY67iLUMpdeGq6ldvvq",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "supabaseUserId": "47"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30guPCaC2j1eOL6d5xOgpw4KEPX",
+    "email": "reallybigbearsfan@yahoo.com",
+    "firstName": "Don",
+    "lastName": "Rowan",
+    "private_metadata": {
+      "databaseId": "106",
+      "supabaseUserId": "106"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30gZU7iZKuCexKKLHy3nPsICf4s",
+    "email": "breann.tucker@gmail.com",
+    "firstName": "BreAnn",
+    "lastName": "Tucker",
+    "private_metadata": {
+      "databaseId": "105",
+      "supabaseUserId": "105"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30hFKXStD3OsyQ04rMHASU1UfR2",
+    "email": "ortizrestaurants@hotmail.com",
+    "firstName": "Heidi",
+    "lastName": "Ortiz",
+    "private_metadata": {
+      "databaseId": "107",
+      "supabaseUserId": "107"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30hIQ7wipXe1PThXCoygcNRMAHi",
+    "email": "chadh202020@gmail.com",
+    "firstName": "Chad",
+    "lastName": "Hannu",
+    "private_metadata": {
+      "databaseId": "108",
+      "supabaseUserId": "108"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30hJWKLYDVO41QgMLuUrTwk5qVh",
+    "email": "nbreeding6711@gmail.com",
+    "firstName": "Nancy",
+    "lastName": "Breeding",
+    "private_metadata": {
+      "databaseId": "109",
+      "supabaseUserId": "109"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30hMeBN0E4JBIzqMEhiBflpsHS0",
+    "email": "sarah.m.bonneville@gmail.com",
+    "firstName": "Sarah",
+    "lastName": "Mcdaniel",
+    "private_metadata": {
+      "databaseId": "110",
+      "supabaseUserId": "110"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30J0i73lPeKqor2zppQtBuvh76y",
+    "email": "4qs85df9x9@privaterelay.appleid.com",
+    "private_metadata": {},
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30jhmBg9FqMGoqSW790QUjSqLDI",
+    "email": "raj@pizzakarma.com",
+    "firstName": "Rajesh",
+    "lastName": "Selvaraj",
+    "private_metadata": {
+      "databaseId": "112",
+      "supabaseUserId": "112"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30joJ9fVRSFSKVBngzVImpwL7w9",
+    "email": "firiona@gmail.com",
+    "firstName": "Diana",
+    "lastName": "Wu",
+    "private_metadata": {
+      "databaseId": "113",
+      "supabaseUserId": "113"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30jSvecDj5DQ0XxeQi9hbT03RAp",
+    "email": "bvoller@comcast.net",
+    "firstName": "Brooke",
+    "lastName": "Voller",
+    "private_metadata": {
+      "databaseId": "111",
+      "supabaseUserId": "111"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30L1dOf8tdRD2YZmmbUnEfLqAct",
+    "email": "liam@liamellis.dev",
+    "firstName": "Liam",
+    "lastName": "Ellis",
+    "private_metadata": {
+      "databaseId": "88",
+      "supabaseUserId": "88"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30L1quQChkXowthr71jYAyEHiWz",
+    "email": "whayjcyyyy@gmail.com",
+    "firstName": "Sam",
+    "lastName": "M",
+    "private_metadata": {
+      "databaseId": "89",
+      "supabaseUserId": "89"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30LHVxYyfKZFIdL8AulO9CZ3kfB",
+    "email": "darby@clubhausagency.com",
+    "firstName": "Darby",
+    "lastName": "Shaw",
+    "private_metadata": {
+      "databaseId": "90",
+      "supabaseUserId": "90"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30LI8YYitWTe1NBDbJNlMo6Jv11",
+    "email": "darbyshaw00@gmail.com",
+    "firstName": "Darby",
+    "lastName": "Shaw",
+    "private_metadata": {
+      "databaseId": "91",
+      "supabaseUserId": "91"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30LJEL5fDafGim6n7PSFTKYXqEF",
+    "email": "sam+1@clubhausagency.com",
+    "password": "$2a$10$sPtQAqS8KAf6o6CTp5wVXOUDKuLM7AgXLpt0fvMLMVu/Vtx7bhMBi",
+    "passwordHasher": "bcrypt",
+    "private_metadata": {
+      "databaseId": "92",
+      "supabaseUserId": "92"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30LxaPCaL1AqZ56iRqxXol5RtZn",
+    "email": "sm073345678@gmail.com",
+    "firstName": "Sam",
+    "lastName": "Morrow",
+    "private_metadata": {
+      "databaseId": "93",
+      "supabaseUserId": "93"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30mPYvuTVkp17Rm6bB8DcZ1kWxh",
+    "email": "crystal.robles1996@gmail.com",
+    "firstName": "crystal",
+    "lastName": "robles",
+    "private_metadata": {
+      "databaseId": "114",
+      "supabaseUserId": "114"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30mtZRmFyVONmi2cc0rUhleJihr",
+    "email": "kari.dahlen4@gmail.com",
+    "firstName": "Kari",
+    "lastName": "Dahlen",
+    "private_metadata": {
+      "databaseId": "115",
+      "supabaseUserId": "115"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30nc3AUCrbj8vQrsIheQCalm1T1",
+    "email": "cdlovesmail@yahoo.com",
+    "firstName": "Crystal",
+    "lastName": "Elizabeth",
+    "private_metadata": {
+      "databaseId": "116",
+      "supabaseUserId": "116"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30Npd3W65lJyMLJQmxcik2M1f0Q",
+    "email": "agentjess96@gmail.com",
+    "firstName": "Jess",
+    "lastName": "Wemeier",
+    "private_metadata": {
+      "databaseId": "94",
+      "supabaseUserId": "94"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30NqPoFzT2J5tLw3jzVHOu9Bhbf",
+    "email": "angelica.r226@gmail.com",
+    "firstName": "Angelica",
+    "lastName": "Lim",
+    "private_metadata": {
+      "databaseId": "95",
+      "supabaseUserId": "95"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30O5FfZYAXr8CfbrQtBmtAm1hS3",
+    "email": "kuglintinelle@gmail.com",
+    "firstName": "Tinelle ",
+    "lastName": "Kuglin",
+    "private_metadata": {
+      "databaseId": "96",
+      "supabaseUserId": "96"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30OREzn7oxopm7XIre9PEqbcJvd",
+    "email": "austin.r.letcher@gmail.com",
+    "firstName": "Austin",
+    "lastName": "Letcher",
+    "private_metadata": {
+      "databaseId": "97",
+      "supabaseUserId": "97"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30p0LdUBzn7FXZ0KOPu59SjOJsn",
+    "email": "swhearn0807@comcast.net",
+    "firstName": "Stephen",
+    "lastName": "Hearn",
+    "private_metadata": {
+      "databaseId": "117",
+      "supabaseUserId": "117"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30pMujcil4W9Gql6hsbSMTSLB5P",
+    "email": "lisa@rushcreek.com",
+    "firstName": "Lisa",
+    "lastName": "Albers",
+    "private_metadata": {
+      "databaseId": "118",
+      "supabaseUserId": "118"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30qL1q1zxRfzAS2yLltHbl4ilyP",
+    "email": "kiwanskishop@gmail.com",
+    "firstName": "Kirsten",
+    "lastName": "Iwanski",
+    "private_metadata": {
+      "databaseId": "119",
+      "supabaseUserId": "119"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30qMpwcMtXBKyhmYlmop9T5IkqR",
+    "email": "titchnerjulie@gmail.com",
+    "firstName": "Julie",
+    "lastName": "Titchner",
+    "private_metadata": {
+      "databaseId": "120",
+      "supabaseUserId": "120"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30qUnDayYXdlrDOewWFEhF7qYvX",
+    "email": "tierney61792@gmail.com",
+    "firstName": "Tierney",
+    "lastName": "Hanna",
+    "private_metadata": {
+      "databaseId": "121",
+      "supabaseUserId": "121"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30qwcFj6pcxYleqEUppx8yTvuAB",
+    "email": "taragranger43@gmail.com",
+    "firstName": "tara",
+    "lastName": "granger",
+    "private_metadata": {
+      "databaseId": "122",
+      "supabaseUserId": "122"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  },
+  {
+    "userId": "user_30Y0dSS7rDy0fU8QrK45gF44g9c",
+    "email": "president@experiencemaplegrove.com",
+    "firstName": "Greg",
+    "lastName": "Anzelc",
+    "private_metadata": {
+      "databaseId": "98",
+      "supabaseUserId": "98"
+    },
+    "public_metadata": {},
+    "unsafe_metadata": {}
+  }
+]
