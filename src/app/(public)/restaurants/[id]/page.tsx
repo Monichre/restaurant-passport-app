@@ -1,5 +1,4 @@
 import {getRestaurantByIdWithAll} from '@/db/models/restaurants/restaurants'
-
 import {TriggerSignUp} from './TriggerSignUp'
 import {RestaurantDetail} from '@/features/restaurants/restaurant-detail/RestaurantDetail'
 // import {isFirstTimeVisitor, getFirstVisitTimestamp} from '@/lib/cookies'
