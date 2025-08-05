@@ -86,3 +86,6 @@ tasks.json
 tasks/ 
 # clerk configuration (can include secrets)
 /.clerk/
+scripts/*.json
+scripts/**/*.json
+scripts/clerk-migration/*.json
